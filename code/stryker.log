@@ -1,0 +1,787 @@
+13:56:45 (29475) WARN ProjectReader Glob pattern "!src/**/selectors/*.ts?(x)" did not exclude any files.
+13:56:45 (29475) WARN ProjectReader Glob pattern "!src/{assets,messages,services,test-utils,types}/**/*" did not exclude any files.
+13:56:45 (29475) INFO ProjectReader No incremental result file found at stryker-config/stryker-incremental.json, a full mutation testing run will be performed.
+13:56:45 (29475) INFO ProjectReader Found 6 of 26 file(s) to be mutated.
+13:56:45 (29475) DEBUG ProjectReader All input files: [
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/.nvmrc",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/babel.config.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/index.html",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.config.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.esm.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/webpack.config.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/package-lock.json",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/package.json",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/main.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/messages.ts",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/modules.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/pages/dashboard/dashboard.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/pages/dashboard/index.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/router.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/shared/modules/application/application.scss",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/shared/modules/application/application.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/shared/modules/application/i18n/en.json",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/shared/modules/application/i18n/es.json",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/shared/modules/application/i18n/index.ts",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/shared/modules/application/tests/application.test.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker.conf.js",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/tsconfig.json"
+]
+13:56:45 (29475) DEBUG ProjectReader Files to mutate: [
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/main.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/messages.ts",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/modules.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/pages/dashboard/dashboard.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/router.tsx",
+  "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/src/shared/modules/application/application.tsx"
+]
+13:56:45 (29475) DEBUG TemporaryDirectory Using temp directory "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp"
+13:56:45 (29475) DEBUG Instrumenter Instrumenting 6 source files with mutants
+13:56:45 (29475) DEBUG Instrumenter Instrumented src/main.tsx (1 mutant(s))
+13:56:45 (29475) DEBUG Instrumenter Instrumented src/messages.ts (3 mutant(s))
+13:56:45 (29475) DEBUG Instrumenter Instrumented src/modules.tsx (0 mutant(s))
+13:56:45 (29475) DEBUG Instrumenter Instrumented src/pages/dashboard/dashboard.tsx (1 mutant(s))
+13:56:45 (29475) DEBUG Instrumenter Instrumented src/router.tsx (1 mutant(s))
+13:56:46 (29475) DEBUG Instrumenter Instrumented src/shared/modules/application/application.tsx (1 mutant(s))
+13:56:46 (29475) INFO Instrumenter Instrumented 6 source file(s) with 7 mutant(s)
+13:56:46 (29475) DEBUG TSConfigPreprocessor Rewriting file ProjectFile {
+  fs: [FileSystem],
+  name: '/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/tsconfig.json',
+  mutate: false
+}
+13:56:46 (29475) INFO ConcurrencyTokenProvider Creating 8 test runner process(es).
+13:56:46 (29475) DEBUG ChildProcessProxy Started CheckerWorker in worker process 0 with pid 29476  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:47 (29476) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:47 (29476) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:47 (29475) DEBUG Sandbox Creating a sandbox for files in /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:47 (29475) DEBUG Sandbox Start symlink node_modules
+13:56:47 (29475) DEBUG Sandbox Create symlink from /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/node_modules
+13:56:47 (29475) DEBUG BroadcastReporter Broadcasting to reporters ["clear-text","progress","html","json"]
+13:56:47 (29475) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 0 with pid 29483  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:47 (29475) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 1 with pid 29484  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:47 (29483) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:47 (29483) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:47 (29484) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:47 (29484) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:47 (29483) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:47 (29484) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:47 (29483) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+13:56:47 (29484) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+13:56:48 (29483) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+13:56:48 (29484) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+13:56:48 (29483) DEBUG CustomJestConfigLoader Read config from "../../config/jest.config.js" (used native `readInitialOptions` from jest-config).
+13:56:48 (29484) DEBUG CustomJestConfigLoader Read config from "../../config/jest.config.js" (used native `readInitialOptions` from jest-config).
+13:56:48 (29483) DEBUG JestTestRunner Merging file-based config {
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
+  "rootDir": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code",
+  "preset": "ts-jest",
+  "testRegex": ".*[-.]test\\.[tj]sx?$",
+  "modulePathIgnorePatterns": [
+    "<rootDir>/.yarn_cache",
+    "<rootDir>/.stryker-tmp"
+  ],
+  "transform": {
+    "\\.(t|j)sx?$": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"
+  ],
+  "modulePaths": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
+  "setupFiles": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"
+  ],
+  "setupFilesAfterEnv": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"
+  ],
+  "moduleNameMapper": {
+    "\\.scss$": "identity-obj-proxy",
+    "@/(.*)": "<rootDir>/src/$1",
+    "#/(.*)": "<rootDir>/test/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
+  },
+  "verbose": true,
+  "snapshotFormat": {
+    "escapeString": true,
+    "printBasicPrototype": true
+  },
+  "collectCoverage": false,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/{i18n,services,modules,types}/**/*",
+    "!src/**/module.*",
+    "!src/**/modules.*",
+    "!src/**/routes.*",
+    "!src/**/types.*",
+    "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
+    "!src/{tools,icons,testing}/**/*",
+    "!src/{fixtures,test,__tests__,testing}/**/*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "coverageReporters": [
+    "text",
+    "html",
+    "lcov",
+    "clover"
+  ],
+  "reporters": [
+    "default"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/test-report.json"
+  ]
+}
+      with custom config {
+  "rootDir": "."
+}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+13:56:48 (29484) DEBUG JestTestRunner Merging file-based config {
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
+  "rootDir": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code",
+  "preset": "ts-jest",
+  "testRegex": ".*[-.]test\\.[tj]sx?$",
+  "modulePathIgnorePatterns": [
+    "<rootDir>/.yarn_cache",
+    "<rootDir>/.stryker-tmp"
+  ],
+  "transform": {
+    "\\.(t|j)sx?$": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"
+  ],
+  "modulePaths": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
+  "setupFiles": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"
+  ],
+  "setupFilesAfterEnv": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"
+  ],
+  "moduleNameMapper": {
+    "\\.scss$": "identity-obj-proxy",
+    "@/(.*)": "<rootDir>/src/$1",
+    "#/(.*)": "<rootDir>/test/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
+  },
+  "verbose": true,
+  "snapshotFormat": {
+    "escapeString": true,
+    "printBasicPrototype": true
+  },
+  "collectCoverage": false,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/{i18n,services,modules,types}/**/*",
+    "!src/**/module.*",
+    "!src/**/modules.*",
+    "!src/**/routes.*",
+    "!src/**/types.*",
+    "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
+    "!src/{tools,icons,testing}/**/*",
+    "!src/{fixtures,test,__tests__,testing}/**/*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "coverageReporters": [
+    "text",
+    "html",
+    "lcov",
+    "clover"
+  ],
+  "reporters": [
+    "default"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/test-report.json"
+  ]
+}
+      with custom config {
+  "rootDir": "."
+}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+13:56:48 (29475) INFO DryRunExecutor Starting initial test run (jest test runner with "perTest" coverage analysis). This may take a while.
+13:56:48 (29475) DEBUG DryRunExecutor Using timeout of 1200000 ms.
+13:56:48 (29475) DEBUG TimeoutDecorator Starting timeout timer (1200000 ms) for a test run
+13:56:48 (29475) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 2 with pid 29491  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:48 (29475) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 3 with pid 29492  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:48 (29483) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/src/main.tsx","/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/src/messages.ts","/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/src/modules.tsx","/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/src/pages/dashboard/dashboard.tsx","/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/src/router.tsx","/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/src/shared/modules/application/application.tsx"],"jestConfig":{"testEnvironment":"/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/jest-runner/dist/src/jest-plugins/jest-environment-generic.cjs","testEnvironmentOptions":{"url":"http://localhost"},"rootDir":".","preset":"ts-jest","testRegex":".*[-.]test\\.[tj]sx?$","modulePathIgnorePatterns":["<rootDir>/.yarn_cache","<rootDir>/.stryker-tmp"],"transform":{"\\.(t|j)sx?$":"/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"},"transformIgnorePatterns":["node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"],"modulePaths":["<rootDir>/src/","<rootDir>/test/"],"setupFiles":["/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"],"setupFilesAfterEnv":["/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js","/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"],"moduleNameMapper":{"\\.scss$":"identity-obj-proxy","@/(.*)":"<rootDir>/src/$1","#/(.*)":"<rootDir>/test/$1","@config/(.*)$":"<rootDir>/config/$1"},"verbose":false,"snapshotFormat":{"escapeString":true,"printBasicPrototype":true},"collectCoverage":false,"coverageDirectory":"coverage","collectCoverageFrom":["src/**/*.{js,jsx,ts,tsx}","!src/{i18n,services,modules,types}/**/*","!src/**/module.*","!src/**/modules.*","!src/**/routes.*","!src/**/types.*","!src/{main.{js,ts,jsx,tsx},polyfills.js}","!src/{tools,icons,testing}/**/*","!src/{fixtures,test,__tests__,testing}/**/*","!src/**/*.test.*","!src/**/*.spec.*"],"coverageReporters":["text","html","lcov","clover"],"reporters":[],"watchPathIgnorePatterns":["<rootDir>/test-report.json"],"notify":false,"bail":false,"globals":{"__strykerGlobalNamespace__":"__stryker__"}},"testLocationInResults":true}
+13:56:48 (29491) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:48 (29492) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:48 (29492) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:48 (29491) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:48 (29491) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:48 (29492) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:48 (29492) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+13:56:48 (29491) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+13:56:48 (29492) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+13:56:48 (29491) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+13:56:48 (29492) DEBUG CustomJestConfigLoader Read config from "../../config/jest.config.js" (used native `readInitialOptions` from jest-config).
+13:56:48 (29491) DEBUG CustomJestConfigLoader Read config from "../../config/jest.config.js" (used native `readInitialOptions` from jest-config).
+13:56:48 (29492) DEBUG JestTestRunner Merging file-based config {
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
+  "rootDir": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code",
+  "preset": "ts-jest",
+  "testRegex": ".*[-.]test\\.[tj]sx?$",
+  "modulePathIgnorePatterns": [
+    "<rootDir>/.yarn_cache",
+    "<rootDir>/.stryker-tmp"
+  ],
+  "transform": {
+    "\\.(t|j)sx?$": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"
+  ],
+  "modulePaths": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
+  "setupFiles": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"
+  ],
+  "setupFilesAfterEnv": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"
+  ],
+  "moduleNameMapper": {
+    "\\.scss$": "identity-obj-proxy",
+    "@/(.*)": "<rootDir>/src/$1",
+    "#/(.*)": "<rootDir>/test/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
+  },
+  "verbose": true,
+  "snapshotFormat": {
+    "escapeString": true,
+    "printBasicPrototype": true
+  },
+  "collectCoverage": false,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/{i18n,services,modules,types}/**/*",
+    "!src/**/module.*",
+    "!src/**/modules.*",
+    "!src/**/routes.*",
+    "!src/**/types.*",
+    "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
+    "!src/{tools,icons,testing}/**/*",
+    "!src/{fixtures,test,__tests__,testing}/**/*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "coverageReporters": [
+    "text",
+    "html",
+    "lcov",
+    "clover"
+  ],
+  "reporters": [
+    "default"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/test-report.json"
+  ]
+}
+      with custom config {
+  "rootDir": "."
+}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+13:56:48 (29491) DEBUG JestTestRunner Merging file-based config {
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
+  "rootDir": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code",
+  "preset": "ts-jest",
+  "testRegex": ".*[-.]test\\.[tj]sx?$",
+  "modulePathIgnorePatterns": [
+    "<rootDir>/.yarn_cache",
+    "<rootDir>/.stryker-tmp"
+  ],
+  "transform": {
+    "\\.(t|j)sx?$": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"
+  ],
+  "modulePaths": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
+  "setupFiles": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"
+  ],
+  "setupFilesAfterEnv": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"
+  ],
+  "moduleNameMapper": {
+    "\\.scss$": "identity-obj-proxy",
+    "@/(.*)": "<rootDir>/src/$1",
+    "#/(.*)": "<rootDir>/test/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
+  },
+  "verbose": true,
+  "snapshotFormat": {
+    "escapeString": true,
+    "printBasicPrototype": true
+  },
+  "collectCoverage": false,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/{i18n,services,modules,types}/**/*",
+    "!src/**/module.*",
+    "!src/**/modules.*",
+    "!src/**/routes.*",
+    "!src/**/types.*",
+    "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
+    "!src/{tools,icons,testing}/**/*",
+    "!src/{fixtures,test,__tests__,testing}/**/*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "coverageReporters": [
+    "text",
+    "html",
+    "lcov",
+    "clover"
+  ],
+  "reporters": [
+    "default"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/test-report.json"
+  ]
+}
+      with custom config {
+  "rootDir": "."
+}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+13:56:48 (29475) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 4 with pid 29519  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:48 (29475) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 5 with pid 29520  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:49 (29520) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:49 (29520) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:49 (29519) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:49 (29519) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:49 (29520) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:49 (29519) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:49 (29520) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+13:56:49 (29519) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+13:56:49 (29520) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+13:56:49 (29519) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+13:56:49 (29520) DEBUG CustomJestConfigLoader Read config from "../../config/jest.config.js" (used native `readInitialOptions` from jest-config).
+13:56:49 (29520) DEBUG JestTestRunner Merging file-based config {
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
+  "rootDir": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code",
+  "preset": "ts-jest",
+  "testRegex": ".*[-.]test\\.[tj]sx?$",
+  "modulePathIgnorePatterns": [
+    "<rootDir>/.yarn_cache",
+    "<rootDir>/.stryker-tmp"
+  ],
+  "transform": {
+    "\\.(t|j)sx?$": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"
+  ],
+  "modulePaths": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
+  "setupFiles": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"
+  ],
+  "setupFilesAfterEnv": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"
+  ],
+  "moduleNameMapper": {
+    "\\.scss$": "identity-obj-proxy",
+    "@/(.*)": "<rootDir>/src/$1",
+    "#/(.*)": "<rootDir>/test/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
+  },
+  "verbose": true,
+  "snapshotFormat": {
+    "escapeString": true,
+    "printBasicPrototype": true
+  },
+  "collectCoverage": false,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/{i18n,services,modules,types}/**/*",
+    "!src/**/module.*",
+    "!src/**/modules.*",
+    "!src/**/routes.*",
+    "!src/**/types.*",
+    "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
+    "!src/{tools,icons,testing}/**/*",
+    "!src/{fixtures,test,__tests__,testing}/**/*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "coverageReporters": [
+    "text",
+    "html",
+    "lcov",
+    "clover"
+  ],
+  "reporters": [
+    "default"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/test-report.json"
+  ]
+}
+      with custom config {
+  "rootDir": "."
+}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+13:56:49 (29475) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 6 with pid 29521  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:49 (29519) DEBUG CustomJestConfigLoader Read config from "../../config/jest.config.js" (used native `readInitialOptions` from jest-config).
+13:56:49 (29519) DEBUG JestTestRunner Merging file-based config {
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
+  "rootDir": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code",
+  "preset": "ts-jest",
+  "testRegex": ".*[-.]test\\.[tj]sx?$",
+  "modulePathIgnorePatterns": [
+    "<rootDir>/.yarn_cache",
+    "<rootDir>/.stryker-tmp"
+  ],
+  "transform": {
+    "\\.(t|j)sx?$": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"
+  ],
+  "modulePaths": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
+  "setupFiles": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"
+  ],
+  "setupFilesAfterEnv": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"
+  ],
+  "moduleNameMapper": {
+    "\\.scss$": "identity-obj-proxy",
+    "@/(.*)": "<rootDir>/src/$1",
+    "#/(.*)": "<rootDir>/test/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
+  },
+  "verbose": true,
+  "snapshotFormat": {
+    "escapeString": true,
+    "printBasicPrototype": true
+  },
+  "collectCoverage": false,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/{i18n,services,modules,types}/**/*",
+    "!src/**/module.*",
+    "!src/**/modules.*",
+    "!src/**/routes.*",
+    "!src/**/types.*",
+    "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
+    "!src/{tools,icons,testing}/**/*",
+    "!src/{fixtures,test,__tests__,testing}/**/*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "coverageReporters": [
+    "text",
+    "html",
+    "lcov",
+    "clover"
+  ],
+  "reporters": [
+    "default"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/test-report.json"
+  ]
+}
+      with custom config {
+  "rootDir": "."
+}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+13:56:49 (29475) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 7 with pid 29522  (using args --no-compilation-cache --max-old-space-size=8192)
+13:56:50 (29522) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:50 (29522) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:50 (29521) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+13:56:50 (29521) DEBUG PluginLoader Loading plugin file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+13:56:50 (29522) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:50 (29521) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866
+13:56:50 (29522) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+13:56:50 (29521) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+13:56:50 (29521) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+13:56:50 (29522) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+13:56:50 (29521) DEBUG CustomJestConfigLoader Read config from "../../config/jest.config.js" (used native `readInitialOptions` from jest-config).
+13:56:50 (29521) DEBUG JestTestRunner Merging file-based config {
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
+  "rootDir": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code",
+  "preset": "ts-jest",
+  "testRegex": ".*[-.]test\\.[tj]sx?$",
+  "modulePathIgnorePatterns": [
+    "<rootDir>/.yarn_cache",
+    "<rootDir>/.stryker-tmp"
+  ],
+  "transform": {
+    "\\.(t|j)sx?$": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"
+  ],
+  "modulePaths": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
+  "setupFiles": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"
+  ],
+  "setupFilesAfterEnv": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"
+  ],
+  "moduleNameMapper": {
+    "\\.scss$": "identity-obj-proxy",
+    "@/(.*)": "<rootDir>/src/$1",
+    "#/(.*)": "<rootDir>/test/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
+  },
+  "verbose": true,
+  "snapshotFormat": {
+    "escapeString": true,
+    "printBasicPrototype": true
+  },
+  "collectCoverage": false,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/{i18n,services,modules,types}/**/*",
+    "!src/**/module.*",
+    "!src/**/modules.*",
+    "!src/**/routes.*",
+    "!src/**/types.*",
+    "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
+    "!src/{tools,icons,testing}/**/*",
+    "!src/{fixtures,test,__tests__,testing}/**/*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "coverageReporters": [
+    "text",
+    "html",
+    "lcov",
+    "clover"
+  ],
+  "reporters": [
+    "default"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/test-report.json"
+  ]
+}
+      with custom config {
+  "rootDir": "."
+}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+13:56:50 (29522) DEBUG CustomJestConfigLoader Read config from "../../config/jest.config.js" (used native `readInitialOptions` from jest-config).
+13:56:50 (29522) DEBUG JestTestRunner Merging file-based config {
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost"
+  },
+  "rootDir": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code",
+  "preset": "ts-jest",
+  "testRegex": ".*[-.]test\\.[tj]sx?$",
+  "modulePathIgnorePatterns": [
+    "<rootDir>/.yarn_cache",
+    "<rootDir>/.stryker-tmp"
+  ],
+  "transform": {
+    "\\.(t|j)sx?$": "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"
+  ],
+  "modulePaths": [
+    "<rootDir>/src/",
+    "<rootDir>/test/"
+  ],
+  "setupFiles": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"
+  ],
+  "setupFilesAfterEnv": [
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js",
+    "/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"
+  ],
+  "moduleNameMapper": {
+    "\\.scss$": "identity-obj-proxy",
+    "@/(.*)": "<rootDir>/src/$1",
+    "#/(.*)": "<rootDir>/test/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
+  },
+  "verbose": true,
+  "snapshotFormat": {
+    "escapeString": true,
+    "printBasicPrototype": true
+  },
+  "collectCoverage": false,
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/{i18n,services,modules,types}/**/*",
+    "!src/**/module.*",
+    "!src/**/modules.*",
+    "!src/**/routes.*",
+    "!src/**/types.*",
+    "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
+    "!src/{tools,icons,testing}/**/*",
+    "!src/{fixtures,test,__tests__,testing}/**/*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
+  ],
+  "coverageReporters": [
+    "text",
+    "html",
+    "lcov",
+    "clover"
+  ],
+  "reporters": [
+    "default"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/test-report.json"
+  ]
+}
+      with custom config {
+  "rootDir": "."
+}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+13:56:51 (29475) INFO DryRunExecutor Initial test run succeeded. Ran 1 tests in 3 seconds (net 39 ms, overhead 3043 ms).
+13:56:51 (29475) DEBUG ChildProcessProxy Disposing of worker process 29476
+13:56:51 (29475) DEBUG TimeoutDecorator Starting timeout timer (603277 ms) for a test run
+13:56:51 (29475) DEBUG ChildProcessProxy Kill 29476
+13:56:51 (29484) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/src/shared/modules/application/application.tsx"],"jestConfig":{"testEnvironment":"/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@stryker-mutator/jest-runner/dist/src/jest-plugins/jest-environment-generic.cjs","testEnvironmentOptions":{"url":"http://localhost"},"rootDir":".","preset":"ts-jest","testRegex":".*[-.]test\\.[tj]sx?$","modulePathIgnorePatterns":["<rootDir>/.yarn_cache","<rootDir>/.stryker-tmp"],"transform":{"\\.(t|j)sx?$":"/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.transformer.js"},"transformIgnorePatterns":["node_modules/(?!(uuid|cross-blob|@react-dnd|react-dnd|dnd-core)/)"],"modulePaths":["<rootDir>/src/","<rootDir>/test/"],"setupFiles":["/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.polyfills.js"],"setupFilesAfterEnv":["/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/setup-tests.js","/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/config/jest.reacttesting.js"],"moduleNameMapper":{"\\.scss$":"identity-obj-proxy","@/(.*)":"<rootDir>/src/$1","#/(.*)":"<rootDir>/test/$1","@config/(.*)$":"<rootDir>/config/$1"},"verbose":false,"snapshotFormat":{"escapeString":true,"printBasicPrototype":true},"collectCoverage":false,"coverageDirectory":"coverage","collectCoverageFrom":["src/**/*.{js,jsx,ts,tsx}","!src/{i18n,services,modules,types}/**/*","!src/**/module.*","!src/**/modules.*","!src/**/routes.*","!src/**/types.*","!src/{main.{js,ts,jsx,tsx},polyfills.js}","!src/{tools,icons,testing}/**/*","!src/{fixtures,test,__tests__,testing}/**/*","!src/**/*.test.*","!src/**/*.spec.*"],"coverageReporters":["text","html","lcov","clover"],"reporters":[],"watchPathIgnorePatterns":["<rootDir>/test-report.json"],"notify":false,"bail":false,"globals":{"__strykerGlobalNamespace__":"__stryker__"}},"testNamePattern":"(Application should render)"}
+13:56:53 (29475) DEBUG ClearTextReporter [Killed] BlockStatement
+13:56:53 (29475) DEBUG ClearTextReporter src/shared/modules/application/application.tsx:8:57
+13:56:53 (29475) DEBUG ClearTextReporter -   const Application = ({ children }: ApplicationProps) => {
+13:56:53 (29475) DEBUG ClearTextReporter -     return (
+13:56:53 (29475) DEBUG ClearTextReporter -       <div className="application">
+13:56:53 (29475) DEBUG ClearTextReporter -         <h1 className="application__header">Hello, React with Webpack!</h1>
+13:56:53 (29475) DEBUG ClearTextReporter -         {children}
+13:56:53 (29475) DEBUG ClearTextReporter -       </div>
+13:56:53 (29475) DEBUG ClearTextReporter -     );
+13:56:53 (29475) DEBUG ClearTextReporter -   };
+13:56:53 (29475) DEBUG ClearTextReporter +   const Application = ({ children }: ApplicationProps) => {};
+13:56:53 (29475) DEBUG ClearTextReporter Killed by: Application should render
+13:56:53 (29475) DEBUG ClearTextReporter 
+13:56:53 (29475) DEBUG HtmlReporter Using file "reports/stryker/stryker.html"
+13:56:53 (29475) DEBUG JsonReporter Using relative path reports/stryker/stryker.json
+13:56:53 (29475) DEBUG MutationTestReportHelper No breaking threshold configured. Won't fail the build no matter how low your mutation score is. Set `thresholds.break` to change this behavior.
+13:56:53 (29475) INFO JsonReporter Your report can be found at: file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/reports/stryker/stryker.json
+13:56:53 (29475) INFO HtmlReporter Your report can be found at: file:///Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/reports/stryker/stryker.html
+13:56:53 (29475) INFO MutationTestExecutor Done in 7 seconds.
+13:56:53 (29475) DEBUG ChildProcessProxy Disposing of worker process 29483
+13:56:53 (29475) DEBUG ChildProcessProxy Disposing of worker process 29484
+13:56:53 (29475) DEBUG ChildProcessProxy Disposing of worker process 29492
+13:56:53 (29475) DEBUG ChildProcessProxy Disposing of worker process 29491
+13:56:53 (29475) DEBUG ChildProcessProxy Disposing of worker process 29519
+13:56:53 (29475) DEBUG ChildProcessProxy Disposing of worker process 29522
+13:56:53 (29475) DEBUG ChildProcessProxy Disposing of worker process 29520
+13:56:53 (29475) DEBUG ChildProcessProxy Disposing of worker process 29521
+13:56:53 (29475) DEBUG ChildProcessProxy Kill 29483
+13:56:53 (29475) DEBUG ChildProcessProxy Kill 29484
+13:56:53 (29475) DEBUG ChildProcessProxy Kill 29519
+13:56:53 (29475) DEBUG ChildProcessProxy Kill 29491
+13:56:53 (29475) DEBUG ChildProcessProxy Kill 29492
+13:56:53 (29475) DEBUG ChildProcessProxy Kill 29522
+13:56:53 (29475) DEBUG ChildProcessProxy Kill 29521
+13:56:53 (29475) DEBUG ChildProcessProxy Kill 29520
+13:56:53 (29475) DEBUG TemporaryDirectory Deleting stryker temp directory /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp

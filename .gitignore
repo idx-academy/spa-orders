@@ -1,0 +1,15 @@
+.idea
+.vscode
+# Build
+code/dist
+
+node_modules
+
+# Tests
+code/coverage
+code/test-report.json
+# stryker temp files
+code/.stryker-tmp
+code/stryker-tmp
+code/reports/mutation
+
