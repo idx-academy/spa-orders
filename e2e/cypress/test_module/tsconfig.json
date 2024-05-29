@@ -1,0 +1,14 @@
+{
+  "include": ["cypress/**/*.ts"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["cypress", "node", "cypress-real-events", "cypress-wait-until"],
+    "paths": {
+      "@cypress-e2e/*": ["./cypress/*"]
+    },
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "ES5"
+  }
+}
