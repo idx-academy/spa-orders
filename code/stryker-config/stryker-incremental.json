@@ -9,6 +9,7 @@
           "replacement": "{}",
           "status": "NoCoverage",
           "static": false,
+          "killedBy": [],
           "coveredBy": [],
           "location": {
             "end": {
@@ -33,6 +34,7 @@
           "replacement": "{}",
           "status": "NoCoverage",
           "static": false,
+          "killedBy": [],
           "coveredBy": [],
           "location": {
             "end": {
@@ -51,6 +53,7 @@
           "replacement": "{}",
           "status": "NoCoverage",
           "static": false,
+          "killedBy": [],
           "coveredBy": [],
           "location": {
             "end": {
@@ -69,6 +72,7 @@
           "replacement": "{}",
           "status": "NoCoverage",
           "static": false,
+          "killedBy": [],
           "coveredBy": [],
           "location": {
             "end": {
@@ -93,6 +97,7 @@
           "replacement": "{}",
           "status": "NoCoverage",
           "static": false,
+          "killedBy": [],
           "coveredBy": [],
           "location": {
             "end": {
@@ -117,6 +122,7 @@
           "replacement": "{}",
           "status": "NoCoverage",
           "static": false,
+          "killedBy": [],
           "coveredBy": [],
           "location": {
             "end": {
@@ -141,8 +147,8 @@
           "replacement": "{}",
           "statusReason": "TestingLibraryElementError: Unable to find an element with the text: Hello, React with Webpack!. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.\n\nIgnored nodes: comments, script, style\n\u001b[36m<body>\u001b[39m\n  \u001b[36m<div />\u001b[39m\n\u001b[36m</body>\u001b[39m\n    at Object.getElementError (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@testing-library/dom/dist/config.js:37:19)\n    at /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@testing-library/dom/dist/query-helpers.js:76:38\n    at /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@testing-library/dom/dist/query-helpers.js:52:17\n    at /Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/@testing-library/dom/dist/query-helpers.js:95:19\n    at Object.getByText (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/stryker-tmp/sandbox7191866/src/shared/modules/application/tests/application.test.tsx:11:19)\n    at Promise.then.completed (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/run.js:121:9)\n    at run (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/mykhailokonstantynovskyi/WebstormProjects/spa-orders/code/node_modules/jest-runner/build/runTest.js:444:34)",
           "status": "Killed",
-          "static": false,
           "testsCompleted": 1,
+          "static": false,
           "killedBy": [
             "0"
           ],
