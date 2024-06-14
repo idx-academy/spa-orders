@@ -13,3 +13,6 @@ code/.stryker-tmp
 code/stryker-tmp
 code/reports/mutation
 
+# Mock backend
+mock-backend/node_modules
+
