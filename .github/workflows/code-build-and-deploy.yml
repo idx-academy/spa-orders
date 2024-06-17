@@ -18,9 +18,6 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: code
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/develop' && 'dev' || 'test'}}
     env:
@@ -36,12 +33,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache-dependency-path: code/package-lock.json
           cache: 'npm'
 
       - name: install dependencies
+        working-dir: code
         run: npm i -g npm@latest
 
       - name: Build app
+        working-dir: code
         run: npm run build
           npm run test
 
@@ -69,7 +69,7 @@ jobs:
       - name: Build and export to Docker
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: code
           load: true
           tags: ${{ env.ACR_REGISTRY }}/${{ env.IMAGE }}
           cache-from: type=gha
