@@ -1,0 +1,92 @@
+{
+  "env": {
+    "es2022": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended"
+  ],
+  "globals": {
+    "JSX": "readonly"
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "jest/require-top-level-describe": "off",
+    "react-hooks/exhaustive-deps": "off"
+  },
+  "overrides": [
+    {
+      "files": ["config_test/**", "config/**"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "jest/valid-expect": "off",
+        "jest/no-standalone-expect": "off",
+        "@typescript-eslint/no-namespace": "off",
+        "node/global-require": "off"
+      }
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [
+          ".ts",
+          ".tsx",
+          ".js",
+          ".jsx",
+          ".json"
+        ],
+        "map": [
+          [
+            "@",
+            "./src"
+          ],
+          [
+            "@cypress-e2e",
+            "e2e/cypress/cypress"
+          ],
+          [
+            "config",
+            "./config"
+          ],
+          [
+            "resources",
+            "./resources"
+          ],
+          [
+            "root",
+            "."
+          ]
+        ]
+      },
+      "node": {
+        "extensions": [
+          ".ts",
+          ".tsx",
+          ".js",
+          ".jsx",
+          ".json"
+        ],
+        "paths": [
+          "./src/"
+        ]
+      }
+    }
+  }
+}
