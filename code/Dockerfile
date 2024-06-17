@@ -6,7 +6,7 @@ RUN npm ci; \
     npm run build; \
     npm prune --omit-dev
 
-FROM nginx:1.22.0-alpine
+FROM nginx:1.27-alpine
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 WORKDIR /app
