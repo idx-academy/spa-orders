@@ -18,6 +18,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: code
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/develop' && 'dev' || 'test'}}
     env:
@@ -66,7 +69,7 @@ jobs:
       - name: Build and export to Docker
         uses: docker/build-push-action@v5
         with:
-          context: code
+          context: .
           load: true
           tags: ${{ env.ACR_REGISTRY }}/${{ env.IMAGE }}
           cache-from: type=gha
