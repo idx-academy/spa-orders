@@ -1,6 +1,9 @@
 name: code-build
 
 on:
+  pull_request:
+    branches:
+      - develop
   push:
     paths:
       - 'code/**'
@@ -15,6 +18,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: code
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/develop' && 'dev' || 'test'}}
     env:
@@ -22,7 +28,7 @@ jobs:
       ACR_REGISTRY: ${{ secrets.AZURE_ACR_NAME }}.azurecr.io
       NODE_VERSION: '18.x'
 
-    steps:
+    steps:          
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -30,13 +36,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache-dependency-path: code/package-lock.json
           cache: 'npm'
 
-      - name: install dependencies
-        run: npm i -g npm@latest
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build app
-        run: npm run build
+        run: |
+          npm run build
           npm run test
 
       - name: Log in to Azure
