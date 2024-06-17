@@ -86,7 +86,7 @@ module.exports = {
 module.exports = {
   entry: path.join(__dirname, "..", "src", "main.tsx"),
   output: {
-    path:path.resolve(__dirname, "dist"),
+    path:path.resolve(__dirname, "../dist"),
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "webpack serve --config ./config/webpack.config.js --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --config ./config/webpack.config.js --mode production",
     "test": "jest --config config/jest.config.js --rootDir ./ --maxWorkers=25% --passWithNoTests --colors -u",
     "test:mutation": "stryker run",
     "typescript:check": "tsc --noEmit",
