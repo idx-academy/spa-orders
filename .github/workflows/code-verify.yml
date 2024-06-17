@@ -1,0 +1,84 @@
+name: code-verify
+
+on:
+  push:
+    paths:
+      - 'code/**'
+      - '.github/workflows/code-verify.yml'
+    branches:
+      - develop
+      - main
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    paths:
+      - 'code/**'
+      - '.github/workflows/code-verify.yml'
+    branches:
+      - develop
+      - main
+
+jobs:
+  verify:
+    name: Build and analyze
+    runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: '18.x'
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: install dependencies
+        run: npm install
+
+      - name: build app
+        run: npm run build
+
+      - name: run tests
+        run: npm test -- --coverage
+
+      - name: cache SonarCloud dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+
+      - name: Build and analyze
+        uses: SonarSource/sonarqube-scan-action@v2.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        working-directory: code
+        run: |
+          -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+          -Dsonar.projectKey="${{ github.event.repository.name }}" \
+          -Dsonar.projectName="${{ github.event.repository.name }}" \
+          -Dsonar.host.url="https://sonarcloud.io/"  \
+          -Dsonar.organization=idx-academy  \
+          -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}  \
+          -Dsonar.pullrequest.branch="${{ github.head_ref }}"  \
+          -Dsonar.pullrequest.base=${{ github.base_ref }}  \
+          -Dsonar.scm.revision=${{ github.event.pull_request.head.sha }}  \
+          -Dsonar.qualitygate.wait=true  \
+          -Dsonar.qualitygate.timeout=300  \
+          -Dsonar.pullrequest.provider=GitHub  \
+          -Dsonar.pullrequest.github.repository="${{ github.repository }}"  \
+          -Dsonar.pullrequest.github.summary_comment=true  \
+
+      - name: Run ESLint and generate report
+        run: |
+          npm run lint -- --format junit --output-file eslint-report.xml
+
+      - name: Upload ESLint report
+        uses: actions/upload-artifact@v3
+        with:
+          name: eslint-report
+          path: eslint-report.xml
+
