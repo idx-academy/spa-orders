@@ -28,11 +28,7 @@ jobs:
       ACR_REGISTRY: ${{ secrets.AZURE_ACR_NAME }}.azurecr.io
       NODE_VERSION: '18.x'
 
-    steps:
-      - name: Print GitHub Ref
-        run: |
-          echo "GitHub Ref: ${{ github.ref }}"
-          
+    steps:          
       - name: Checkout repository
         uses: actions/checkout@v4
 
