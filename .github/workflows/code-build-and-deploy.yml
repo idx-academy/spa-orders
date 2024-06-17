@@ -18,6 +18,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: code
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/develop' && 'dev' || 'test'}}
     env:
@@ -37,11 +40,9 @@ jobs:
           cache: 'npm'
 
       - name: install dependencies
-        working-dir: code
         run: npm i -g npm@latest
 
       - name: Build app
-        working-dir: code
         run: npm run build
           npm run test
 
