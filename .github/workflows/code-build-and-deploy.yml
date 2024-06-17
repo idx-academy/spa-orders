@@ -1,9 +1,6 @@
 name: code-build
 
 on:
-  pull_request:
-    branches:
-      - develop
   push:
     paths:
       - 'code/**'
