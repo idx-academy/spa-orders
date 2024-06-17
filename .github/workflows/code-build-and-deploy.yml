@@ -29,6 +29,10 @@ jobs:
       NODE_VERSION: '18.x'
 
     steps:
+      - name: Print GitHub Ref
+        run: |
+          echo "GitHub Ref: ${{ github.ref }}"
+          
       - name: Checkout repository
         uses: actions/checkout@v4
 
