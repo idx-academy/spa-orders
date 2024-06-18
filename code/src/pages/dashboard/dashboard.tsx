@@ -1,7 +1,13 @@
+import { FormattedMessage } from "react-intl";
+
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <span>Dashboard route</span>
+      <span>
+        <FormattedMessage
+          id="dashboard.label"
+        />
+      </span>
     </div>
   )
 };

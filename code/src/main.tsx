@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
-import { IntlProvider } from "react-intl";
+import I18nProivider from "@/shared/i18n/I18nProvider";
 import Router from "@/router";
 import '@/styles/scss/global.scss'
 import { theme } from "@/styles/muiTheme"
@@ -9,9 +9,9 @@ const App = () => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <IntlProvider locale="en">
+        <I18nProivider>
           <Router />
-        </IntlProvider>
+        </I18nProivider>
       </ThemeProvider>
     </StyledEngineProvider>
   );

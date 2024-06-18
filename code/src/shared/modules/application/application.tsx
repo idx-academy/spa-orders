@@ -1,5 +1,6 @@
-import "./application.scss";
 import { ReactNode } from "react";
+import { FormattedMessage } from "react-intl";
+import "@/shared/modules/application/application.scss";
 
 type ApplicationProps = {
   children: ReactNode;
@@ -8,7 +9,11 @@ type ApplicationProps = {
 const Application = ({ children }: ApplicationProps) => {
   return (
     <div className="application">
-      <h1 className="application__header">Hello, React with Webpack!</h1>
+      <h1 className="application__header">
+        <FormattedMessage
+          id="application.header"
+        />
+      </h1>
       {children}
     </div>
   );

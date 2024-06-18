@@ -1,11 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import Application from "@/shared/modules/application/application";
+import I18nProivider from "@/shared/i18n/I18nProvider";
 
 import "@testing-library/jest-dom";
 
 describe("Application", () => {
   test("should render", () => {
-    render(<Application>items</Application>);
+    render(
+      <I18nProivider>
+        <Application>items</Application>
+      </I18nProivider>
+    );
 
     expect(screen.getByText("Hello, React with Webpack!")).toBeInTheDocument();
   });
