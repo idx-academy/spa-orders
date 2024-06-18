@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { IntlProvider } from "react-intl";
 import Router from "@/router";
+import '@/styles/scss/global.scss'
 
 const App = () => {
   return (
