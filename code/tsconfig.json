@@ -53,7 +53,7 @@
     "src/**/*",
     "config/**/*",
     "types/**/*"
-, "styles/muiTheme.ts"  ],
+, "src/styles/muiTheme.ts"  ],
   "exclude": [
     "node_modules/**",
   ],
