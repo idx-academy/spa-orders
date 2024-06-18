@@ -1,7 +1,7 @@
-import en from "./en.json";
-import es from "./es.json";
+import en from "@/shared/modules/application/i18n/en.json";
+import uk from "@/shared/modules/application/i18n/uk.json";
 
 export default {
   en: { ...en },
-  es: { ...es },
+  uk: { ...uk },
 };
