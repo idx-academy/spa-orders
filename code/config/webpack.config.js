@@ -1,7 +1,7 @@
 // webpack.config.js
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 /*
 module.exports = {
@@ -86,13 +86,13 @@ module.exports = {
 module.exports = {
   entry: path.join(__dirname, "..", "src", "main.tsx"),
   output: {
-    path:path.resolve(__dirname, "../dist"),
+    path: path.resolve(__dirname, "../dist")
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "index.html"),
+      template: path.join(__dirname, "index.html")
     }),
-    new MiniCssExtractPlugin({ filename: '[name].css' }),
+    new MiniCssExtractPlugin({ filename: "[name].css" })
   ],
   module: {
     rules: [
@@ -102,7 +102,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ["@babel/preset-env", "@babel/preset-react"]
           }
         }
       },
@@ -111,38 +111,47 @@ module.exports = {
         exclude: [/node_modules/, /\.test\.tsx?$/],
         use: [
           {
-            loader: 'ts-loader',
-          },
-        ],
+            loader: "ts-loader"
+          }
+        ]
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.s[ac]ss$/,
         use: [
           {
-            loader: require('mini-css-extract-plugin').loader, // eslint-disable-line global-require
+            loader: require("mini-css-extract-plugin").loader // eslint-disable-line global-require
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
-              importLoaders: 2,
-            },
+              importLoaders: 2
+            }
           },
-          'sass-loader',
-        ],
-      },
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                includePaths: [
+                  path.resolve(__dirname, "../node_modules/normalize-scss/sass")
+                ]
+              }
+            }
+          }
+        ]
+      }
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
-      '@': path.join(__dirname, '..', 'src'),
-    },
+      "@": path.join(__dirname, "..", "src")
+    }
   },
   devServer: {
-    port: 3000,
-  },
+    port: 3000
+  }
 };
