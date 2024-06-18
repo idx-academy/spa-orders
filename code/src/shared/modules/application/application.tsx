@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 type ApplicationProps = {
   children: ReactNode;
-}
+};
 
 const Application = ({ children }: ApplicationProps) => {
   return (
