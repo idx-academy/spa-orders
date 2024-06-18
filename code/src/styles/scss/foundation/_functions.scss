@@ -1,0 +1,17 @@
+@function mapjoin($map, $delimiter) {
+  $result: "";
+
+  @each $key, $value in $map {
+    $result: $result + $delimiter + $value;
+  }
+
+  @return $result;
+}
+
+@function spacing($value: 1) {
+  @if $value != round($value) or $value <= 0 {
+    @error "#{$value} should be an integer in range from 1 to 10 inclusive";
+  }
+
+  @return $spacing-scale-factor * $value;
+}
