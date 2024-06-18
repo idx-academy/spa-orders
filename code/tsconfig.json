@@ -1,15 +1,9 @@
 {
   "compilerOptions": {
     "paths": {
-      "*": [
-        "types/*"
-      ],
-      "@/*": [
-        "src/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
+      "*": ["types/*"],
+      "@/*": ["src/*"],
+      "@config/*": ["config/*"]
     },
     "baseUrl": ".",
     "target": "es6",
@@ -36,26 +30,10 @@
     "listFiles": false,
     "pretty": true,
     "skipLibCheck": true,
-    "lib": [
-      "es5",
-      "es6",
-      "es7",
-      "es2017",
-      "es2019",
-      "dom"
-    ],
-    "typeRoots": [
-      "./types",
-      "./node_modules/@types",
-    ]
+    "lib": ["es5", "es6", "es7", "es2017", "es2019", "dom"],
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
-  "include": [
-    "src/**/*",
-    "config/**/*",
-    "types/**/*"
-  ],
-  "exclude": [
-    "node_modules/**",
-  ],
+  "include": ["src/**/*", "config/**/*", "types/**/*"],
+  "exclude": ["node_modules/**"],
   "types": ["node", "jest", "@testing-library/jest-dom"]
 }

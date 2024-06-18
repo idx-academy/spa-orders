@@ -4,6 +4,8 @@ import crypto from "crypto";
 
 import failOnConsole from "jest-fail-on-console";
 
+import "@testing-library/jest-dom";
+
 const MOCK_TEST_LOCALE = 'en';
 
 global.React = React;
