@@ -108,5 +108,5 @@ jobs:
           cd k8s-app-manifests
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
-          git commit -am "Update backend image ${{ env.IMAGE }}"
+          git commit -am "Update frontend image ${{ env.IMAGE }}"
           git push -u origin main
