@@ -9,7 +9,7 @@ describe("AppButton", () => {
   });
 
   test("is disabled when isLoading is true", () => {
-    render(<AppButton isLoading={true}>Test Button</AppButton>);
+    render(<AppButton isLoading>Test Button</AppButton>);
     const buttonElement = screen.getByRole("button");
     expect(buttonElement).toBeDisabled();
   });
