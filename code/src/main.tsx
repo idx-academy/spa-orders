@@ -1,19 +1,25 @@
 import { createRoot } from "react-dom/client";
-import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
+import { Provider } from "react-redux";
 import I18nProivider from "@/shared/i18n/I18nProvider";
+import { StyledEngineProvider, ThemeProvider } from "@mui/material";
+
 import Router from "@/router";
-import '@/styles/scss/global.scss'
-import { theme } from "@/styles/muiTheme"
+import { theme } from "@/styles/muiTheme";
+import { store } from "@/store/store";
+
+import "@/styles/scss/global.scss";
 
 const App = () => {
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <I18nProivider>
-          <Router />
-        </I18nProivider>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <Provider store={store}>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <I18nProivider>
+            <Router />
+          </I18nProivider>
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </Provider>
   );
 };
 
