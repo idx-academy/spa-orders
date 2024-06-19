@@ -148,7 +148,16 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
-      "@": path.join(__dirname, "..", "src")
+      "@": path.join(__dirname, "..", "src"),
+      "@design-system": path.join(
+        __dirname,
+        "..",
+        "src",
+        "styles",
+        "scss",
+        "foundation",
+        "_all.scss"
+      )
     }
   },
   devServer: {

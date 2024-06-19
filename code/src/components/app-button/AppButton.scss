@@ -1,0 +1,40 @@
+@import "@design-system";
+
+// @TODO: It is just an example. Remove it or modify later
+.button__contained {
+  // Example of using variable from design system
+  background-color: var(--spa-button-bg-color, $purple);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--spa-button-border-color, $purple);
+  color: var(--spa-button-color, $white);
+  // Example of using spacing
+  border-radius: spacing(2);
+  padding: spacing(2) spacing(3);
+
+  &:hover {
+    background-color: var(--spa-button-hover-color, transparent);
+    color: var(--spa-button-hover-color, $purple);
+  }
+
+  // Example of media query usage
+  @include breakpoint('md') {
+    border-radius: spacing(1);
+  }
+}
+
+.gray-100 {
+  background-color: $light;
+}
+
+.gray-300 {
+  background-color: $gray;
+}
+
+.gray-700 {
+  background-color: $ghost-alpha;
+}
+
+.gray-800 {
+  background-color: $dark-alpha;
+}

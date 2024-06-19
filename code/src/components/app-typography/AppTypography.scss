@@ -1,0 +1,50 @@
+@import "@design-system";
+
+.spa-typography {
+  font-family: $body-font-family;
+
+  &__h1 {
+    font-size: var(--spa-h1-font-size, $fs-h1);
+    font-weight: var(--spa-h1-font-weight, $fw-extra-bold);
+    font-weight: var(--spa-h1-text-transform, $tt-none);
+  }
+
+  &__h2 {
+    font-size: var(--spa-h2-font-size, $fs-h2);
+    font-weight: var(--spa-h2-font-weight, $fw-extra-bold);
+    font-weight: var(--spa-h2-text-transform, $tt-none);
+  }
+
+  &__h3 {
+    font-size: var(--spa-h3-font-size, $fs-h3);
+    font-weight: var(--spa-h3-font-weight, $fw-extra-bold);
+    font-weight: var(--spa-h3-text-transform, $tt-none);
+  }
+
+  &__body {
+    font-size: var(--spa-typography-body-font-size, $fs-base);
+  }
+
+  &__concept {
+    font-size: var(--spa-typography-concept-font-size, $fs-4xl);
+    font-weight: var(--spa-typography-concept-font-weight, $fw-extra-bold);
+    text-transform: var(--spa-typography-concept-text-transform, $tt-uppercase);
+  }
+
+  &__subtitle1 {
+    font-size: var(--spa-typography-subtitle1-font-size, $fs-xl);
+    font-weight: var(--spa-typography-subtitle1-font-weight, $fw-extra-bold);
+  }
+
+  &__subtitle2 {
+    font-size: var(--spa-typography-subtitle2-font-size, $fs-lg);
+  }
+
+  &__caption {
+    font-size: var(--spa-typography-caption-font-size, $fs-sm);
+  }
+
+  &__caption-small {
+    font-size: var(--spa-typography-caption-small-font-size, $fs-xs);
+  }
+}

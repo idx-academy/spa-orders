@@ -1,1 +1,106 @@
-// @TODO: Add variables
+/*=============================================
+ =                   COLORS                    =
+ =============================================*/
+
+/* Basic colors */
+
+$purple: #751fff;
+$purple-light: #d1b4ff;
+$red: #d72d2d;
+
+/* Additional colors */
+
+$white: #ffffff;
+$black: #000000;
+
+$light: #efefec;
+$gray: #575757;
+
+$ghost-alpha: rgba(0, 0, 0, 0.12);
+$dark-alpha: rgba(0, 0, 0, 0.7);
+
+/*=============================================
+=                TYPOGRAPHY                   =
+=============================================*/
+
+/* Font families */
+
+$lato: "Lato, sans-serif";
+
+/* Font weights */
+
+$fw-regular: 400;
+$fw-extra-bold: 700;
+
+$fw: (
+  regular: $fw-regular,
+  extra-bold: $fw-extra-bold
+);
+
+/* Font sizes (headings) */
+
+$fs-h1: 3.75rem; // 60px
+$fs-h2: 3.125rem; // 50px
+$fs-h3: 1.875rem; // 30px
+
+$fs-h: (
+  h1: $fs-h1,
+  h2: $fs-h2,
+  h3: $fs-h3
+);
+
+/* Font sizes (texts) */
+
+$fs-xs: 0.75rem; // 12px
+$fs-sm: 0.875rem; // 14px
+$fs-base: 1rem; // 16px
+$fs-lg: 1.25rem; // 20px
+$fs-xl: 1.375rem; // 22px
+$fs-4xl: 5.625rem; // 90px
+
+$fs: (
+  xs: $fs-xs,
+  sm: $fs-sm,
+  base: $fs-base,
+  lg: $fs-lg,
+  xl: $fs-xl,
+  4xl: $fs-4xl
+);
+
+/* Text transforms */
+
+$tt-none: none;
+$tt-uppercase: uppercase;
+
+$tt: (
+  none: $tt-none,
+  uppercase: $tt-uppercase
+);
+
+/*=====  End of TYPOGRAPHY  ======*/
+
+/*=============================================
+=                BREAKPOINTS                  =
+=============================================*/
+
+$screen-xs: 0;
+$screen-sm: 37.5rem; // 600px
+$screen-md: 56.25rem; // 900px
+$screen-lg: 75rem; // 1200px
+$screen-xl: 96rem; // 1536px
+
+$breakpoints: (
+  xs: $screen-xs,
+  sm: $screen-sm,
+  md: $screen-md,
+  lg: $screen-lg,
+  xl: $screen-xl
+);
+
+/*=============================================
+=                  SPACING                   =
+=============================================*/
+
+$spacing-scale-factor: 0.25rem; // 4px
+
+/*=====  End of BREAKPOINTS  ======*/
