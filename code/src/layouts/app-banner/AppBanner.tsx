@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import Box from "@mui/material/Box";
 
 import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
@@ -8,7 +6,7 @@ import AppButton from "@/components/app-button/AppButton";
 
 import "@/layouts/app-banner/AppBanner.scss";
 
-const AppBanner: FC = () => {
+const AppBanner = () => {
   return (
     <Box className="banner">
       <PageWrapper>
