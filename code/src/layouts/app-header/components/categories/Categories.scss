@@ -1,0 +1,17 @@
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 0;
+  background-color: #e9ecef;
+
+  &__item {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    padding: 10px 20px;
+
+    &:hover {
+      color: #007bff;
+    }
+  }
+}

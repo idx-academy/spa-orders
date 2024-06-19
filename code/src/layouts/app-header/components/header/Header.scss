@@ -1,0 +1,51 @@
+.wrapper {
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+
+    &-image {
+      height: 70px;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+
+    > * {
+      margin-left: 40px;
+    }
+
+    .MuiBadge-root {
+      .MuiBadge-badge {
+        width: 20px;
+        height: 20px;
+        background-color: black;
+        color: white;
+        font-weight: bold;
+      }
+    }
+
+    .MuiButton-root {
+      background-color: #5155c8;
+      color: white;
+      text-transform: none;
+      font-weight: bold;
+      font-family: "Roboto", sans-serif;
+
+      &:hover {
+        background-color: #3e42a4;
+      }
+    }
+  }
+}
