@@ -86,3 +86,28 @@ jobs:
 
       - name: Push to Azure Container registry
         run: docker push ${{ env.ACR_REGISTRY }}/${{ env.IMAGE }}
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Checkout kustomize repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/k8s-app-manifests
+          ref: main
+          token: ${{ secrets.ACTION_TOKEN }}
+          path: k8s-app-manifests
+
+      - name: Update Kubernetes resources
+        run: |
+          ENV=${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/develop' && 'dev' || 'test'}}
+          cd k8s-app-manifests/apps/env/${ENV}/frontend
+          kustomize edit set image ${{ env.ACR_REGISTRY }}/${{ env.APP_NAME }}=${{ env.ACR_REGISTRY }}/${{ env.IMAGE }}
+
+      - name: Commit files
+        run: |
+          cd k8s-app-manifests
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          git commit -am "Update backend image ${{ env.IMAGE }}"
+          git push -u origin main
