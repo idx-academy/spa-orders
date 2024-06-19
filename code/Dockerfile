@@ -18,6 +18,7 @@ RUN touch /var/run/nginx.pid && \
         chown -R nginx:nginx /var/run/nginx.pid
 
 EXPOSE 8080
+
 USER nginx
 
 COPY --from=builder --chown=nginx:nginx /build/dist /etc/nginx/html
