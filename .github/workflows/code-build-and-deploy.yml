@@ -33,10 +33,13 @@ jobs:
           cache-dependency-path: code/package-lock.json
           cache: 'npm'
 
-      - name: Install dependencies and build app
+      - name: Install dependencies
+        working-directory: code
+        run: npm ci
+
+      - name: Build app
         working-directory: code
         run: |
-          npm ci
           npm run build
           npm run test
 
