@@ -12,6 +12,6 @@ describe("Application", () => {
       </I18nProivider>
     );
 
-    expect(screen.getByText("Hello, React with Webpack!")).toBeInTheDocument();
+    expect(screen.getByText("Hello, React with Webpack!!!")).toBeInTheDocument();
   });
 });
