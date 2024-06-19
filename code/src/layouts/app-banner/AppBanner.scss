@@ -1,0 +1,26 @@
+.banner {
+  background-image: url("@/assets/images/home-page/hero_section_img.jpg");
+  background-size: cover;
+  background-position: center;
+  aspect-ratio: 12/5;
+
+  &__container {
+    max-width: 500px;
+    max-height: 400px;
+    height: auto;
+    margin: 100px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+  }
+  &__paragraph {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__button {
+    margin-top: 20px;
+  }
+}
