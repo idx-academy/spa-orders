@@ -36,6 +36,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache-dependency-path: code/package-lock.json
           cache: 'npm'
           
       - name: Run ESLint and generate report
