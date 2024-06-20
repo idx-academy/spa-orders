@@ -1,12 +1,16 @@
-import { Avatar, Box } from "@mui/material";
+import Box from "@mui/material/Box";
 
-const SubintroElement = ({content, icon}: {content : string, icon: any}) => {
+type SubintroElement = {
+    content: string;
+    icon: string;
+}
+const SubintroElement = ({ content, icon }: SubintroElement) => {
     return (
         <Box className="spa-subintro_element" data-testid="spa-subintro-item">
-            <img className="spa-subintro_icon" src={icon}/>
+            <img className="spa-subintro_icon" src={icon} />
             <p className="spa-subintro_content">{content}</p>
         </Box>
     )
-}
+};
 
-export default SubintroElement
+export default SubintroElement;

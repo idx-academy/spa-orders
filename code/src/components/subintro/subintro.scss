@@ -18,9 +18,9 @@
 
     &_content {
         white-space: pre-line;
-        font-family: $lato;
-        font-size: $fs-xl;
-        font-weight: fw(extra-bold);
+        font-family: $body-font-family;
+        font-size: var(--spa-typography-concept-font-size,$fs-lg);
+        font-weight: var(--spa-typography-concept-font-weight, $fw-extra-bold);
         color: $black;
     }
 }
