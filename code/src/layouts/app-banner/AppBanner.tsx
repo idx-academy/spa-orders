@@ -15,10 +15,13 @@ const AppBanner = () => {
             <AppTypography variant="h1" translationKey="appBanner.header" />
           </Box>
           <Box className="spa-banner__paragraph">
-            <AppTypography variant="subtitle2" translationKey="appBanner.paragraphfirst" />
+            <AppTypography
+              variant="subtitle2"
+              translationKey="appBanner.paragraphfirst"
+            />
           </Box>
           <Box>
-            <AppButton variant="contained">Shop Now</AppButton>
+            <AppButton size="large">Shop Now</AppButton>
           </Box>
         </Box>
       </PageWrapper>
