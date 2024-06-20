@@ -16,7 +16,6 @@ const AppBanner = () => {
           </Box>
           <Box className="banner__paragraph">
             <AppTypography translationKey="appBanner.paragraphfirst" />
-            <AppTypography translationKey="appBanner.paragraphsecond" />
           </Box>
           <Box className="banner__button">
             <AppButton variant="contained">Shop Now</AppButton>
