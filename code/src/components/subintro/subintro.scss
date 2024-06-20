@@ -1,23 +1,23 @@
 @import "@design-system";
 
 .spa-subintro {
+  display: flex;
+  align-items: center;
+  gap: spacing(25);
+
+  &__element {
     display: flex;
-    align-items: center;
-    gap: spacing(25);
+    gap: spacing(7);
+    padding: spacing(10) 0 spacing(10);
+  }
 
-    &_element {
-        display: flex;
-        gap: spacing(7);
-        padding: spacing(10) 0px spacing(10);
-    }
+  &__icon {
+    height: 50px;
+    margin-top: spacing(1);
+  }
 
-    &_icon {
-        height: 50px;
-        margin-top: spacing(1);
-    }
-
-    &_content {
-        white-space: pre-line;
-        font-weight: var(--spa-typography-subtitle2-font-weight, $fw-extra-bold);
-    }
+  &__content {
+    white-space: pre-line;
+    font-weight: var(--spa-typography-subtitle2-font-weight, $fw-extra-bold);
+  }
 }
