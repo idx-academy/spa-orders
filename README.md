@@ -47,7 +47,7 @@ npm run start
 
 ### Pull requests
 
-- Use `git rebase` to merge brances locally.
+- Use `git rebase` to merge branches locally.
 - Use `Squash and merge` option to merge PR into develop
 
 ### Main branches
@@ -66,6 +66,7 @@ Allowed prefixes are:
 - `feature` - for new feature
 - `hotfix` - for urgent fixes
 - `bugfix` - for fixing existing functionality
+- `tests` - for unit, mutation or e2e tests
 
 ## Project structure
 
