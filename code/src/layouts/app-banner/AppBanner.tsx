@@ -8,16 +8,16 @@ import "@/layouts/app-banner/AppBanner.scss";
 
 const AppBanner = () => {
   return (
-    <Box className="banner">
+    <Box className="spa-banner">
       <PageWrapper>
-        <Box className="banner__container">
+        <Box className="spa-banner__container">
           <Box>
             <AppTypography variant="h1" translationKey="appBanner.header" />
           </Box>
-          <Box className="banner__paragraph">
-            <AppTypography translationKey="appBanner.paragraphfirst" />
+          <Box className="spa-banner__paragraph">
+            <AppTypography variant="subtitle2" translationKey="appBanner.paragraphfirst" />
           </Box>
-          <Box className="banner__button">
+          <Box>
             <AppButton variant="contained">Shop Now</AppButton>
           </Box>
         </Box>
