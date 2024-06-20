@@ -149,12 +149,8 @@
           "status": "Killed",
           "testsCompleted": 1,
           "static": false,
-          "killedBy": [
-            "0"
-          ],
-          "coveredBy": [
-            "0"
-          ],
+          "killedBy": ["0"],
+          "coveredBy": ["0"],
           "location": {
             "end": {
               "column": 2,
@@ -219,12 +215,7 @@
       "!src/{assets,messages,services,test-utils,types}/**/*"
     ],
     "ignoreStatic": true,
-    "reporters": [
-      "clear-text",
-      "progress",
-      "html",
-      "json"
-    ],
+    "reporters": ["clear-text", "progress", "html", "json"],
     "coverageAnalysis": "perTest",
     "timeoutMS": 600000,
     "timeoutFactor": 6,
@@ -236,20 +227,14 @@
     "htmlReporter": {
       "fileName": "reports/stryker/stryker.html"
     },
-    "checkerNodeArgs": [
-      "--no-compilation-cache",
-      "--max-old-space-size=8192"
-    ],
+    "checkerNodeArgs": ["--no-compilation-cache", "--max-old-space-size=8192"],
     "testRunnerNodeArgs": [
       "--no-compilation-cache",
       "--max-old-space-size=8192"
     ],
     "logLevel": "info",
     "mutator": {
-      "excludedMutations": [
-        "StringLiteral",
-        "ArrayDeclaration"
-      ],
+      "excludedMutations": ["StringLiteral", "ArrayDeclaration"],
       "plugins": null
     },
     "dryRunTimeoutMinutes": 20,
@@ -280,9 +265,7 @@
     "inPlace": false,
     "maxConcurrentTestRunners": 9007199254740991,
     "maxTestRunnerReuse": 0,
-    "plugins": [
-      "@stryker-mutator/*"
-    ],
+    "plugins": ["@stryker-mutator/*"],
     "appendPlugins": [],
     "symlinkNodeModules": true,
     "thresholds": {

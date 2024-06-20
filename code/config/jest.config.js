@@ -47,6 +47,8 @@ module.exports = {
 
   // Imported CSS/images mocks
   moduleNameMapper: {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$":
+      "<rootDir>/config/__mocks__/fileMock.js",
     "\\.scss$": "identity-obj-proxy",
     // Alias @/ imports
     "@/(.*)": "<rootDir>/src/$1",

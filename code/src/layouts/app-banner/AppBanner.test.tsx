@@ -6,10 +6,12 @@ describe("AppBanner", () => {
   test("should render AppBanner component", () => {
     render(
       <I18nProivider>
-        <AppBanner/>
+        <AppBanner />
       </I18nProivider>
     );
-    const headerText = screen.getByText("Welcome");
+    const headerText = screen.getByText(
+      /Incredible Prices on All Your Favorite Items/i
+    );
     expect(headerText).toBeInTheDocument();
   });
 });
