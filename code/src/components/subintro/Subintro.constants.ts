@@ -7,22 +7,22 @@ import clockIcon from "@/assets/images/subintro/clock-icon.jpg";
 const subintroData = [
     {
         id: 1,
-        content: "Curb-side\npickup",
+        content: "subintro.firstParagraph",
         icon: mopedIcon
     },
     {
         id: 2,
-        content: "Free shipping on\n\orders over $50",
+        content: "subintro.secondParagraph",
         icon: boxIcon
     },
     {
         id: 3,
-        content: "Low price\n\guaranteed",
+        content: "subintro.thirdparagraph",
         icon: percentIcon
     },
     {
         id: 4,
-        content: "Available to\n\you 24/7",
+        content: "subintro.fourthParagraph",
         icon: clockIcon
     }
 ];
