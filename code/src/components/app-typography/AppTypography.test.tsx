@@ -1,8 +1,8 @@
+import { FormattedMessage } from "react-intl";
 import { render, screen } from "@testing-library/react";
 import AppTypography, {
   AppTypographyVariant
 } from "@/components/app-typography/AppTypography";
-import { FormattedMessage } from "react-intl";
 
 jest.mock("react-intl", () => ({
   FormattedMessage: jest.fn()
