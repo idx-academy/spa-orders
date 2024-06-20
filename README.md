@@ -68,7 +68,7 @@ Allowed prefixes are:
 - `bugfix` - for fixing existing functionality
 - `tests` - for unit, mutation or e2e tests
 
-### git Before starting work on a task:
+### Before starting work on a task:
 
 Switch to the develop branch and download the latest changes.
 
