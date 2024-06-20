@@ -68,6 +68,73 @@ Allowed prefixes are:
 - `bugfix` - for fixing existing functionality
 - `tests` - for unit, mutation or e2e tests
 
+### git Before starting work on a task:
+
+Switch to the develop branch and download the latest changes.
+
+`git pull origin develop` – charges changes
+
+Create a branch for the task:
+
+`git checkout -b your_branch_name`
+
+You work
+
+### Finished work, or want to synchronize changes with develop before continuing.
+
+`git add .`
+`git commit -m 'Commit’s label'` – зsave changes
+
+then you need to update develop
+
+`git checkout develop` – на develop switch to develop
+`git pull origin develop` – charges changes
+
+And back to my branch
+
+`git checkout your_branch_name`
+
+Then we rebase
+
+`git rebase develop`
+
+If there are no conflicts, continue the work or push the branch.
+
+`git push origin your_branch_name`
+
+If there are problems, resolve conflicts
+
+`git rebase –continue`
+`git push origin your_branch_name`
+
+and then finish the work.
+
+### To switch to existing remote branches and work with them locally:
+
+- Make a `git pull` on the develop branch and get the remote branch locally
+- Check all available branches
+  `git branch -a` (in red) are removed
+  do git checkout branch on the desired branch. It is important that the branches start with the prefix feature/ bugfix/ that is, copy from the beginning of the prefixes and do -`git checkout feature/update-react-to-v18` for example:
+  remotes/origin/feature/update-react-to-v18 - copy only this part
+- if existing node_modules remove them and install them again npm ci
+- finished work - `git add .` what needs to be added -`git commit -m 'message'`
+- `git push origin branch_name`
+
+### Conflict resolution:
+
+`git rebase develop` (have conflicts)
+
+After conflict resolution:
+`git rebase --continue`
+
+Do until conflicts are resolved for all files
+(resolve rebase successfully)
+
+`git push --force-with-lease origin branch_name`
+(after resolving conflicts - push)
+
+
+
 ## Project structure
 
 - **Project root**
