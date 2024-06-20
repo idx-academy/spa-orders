@@ -83,18 +83,18 @@ You work
 ### Finished work, or want to synchronize changes with develop before continuing.
 
 `git add .`
-`git commit -m 'Commit’s label'` – зsave changes
+`git commit -m 'Commit’s label'` – save changes
 
 then you need to update develop
 
-`git checkout develop` – на develop switch to develop
+`git checkout develop` – switch to develop
 `git pull origin develop` – charges changes
 
-And back to my branch
+And back to your branch
 
 `git checkout your_branch_name`
 
-Then we rebase
+Then we should rebase
 
 `git rebase develop`
 
@@ -104,7 +104,7 @@ If there are no conflicts, continue the work or push the branch.
 
 If there are problems, resolve conflicts
 
-`git rebase –continue`
+`git rebase -–continue`
 `git push origin your_branch_name`
 
 and then finish the work.
@@ -133,8 +133,6 @@ Do until conflicts are resolved for all files
 `git push --force-with-lease origin branch_name`
 (after resolving conflicts - push)
 
-
-
 ## Project structure
 
 - **Project root**
@@ -161,7 +159,7 @@ Do until conflicts are resolved for all files
 
 ### Motivation
 
-The general idea of our styling system is to create custom components (building blocks), that starts of prefix `App`, like `AppButton`, `AppTypography` etc. Then we use mui component inside as a base and add `scss` styles to it to customize it for our needs. Then we need to use `App`-prefixed component in our project and do not import it from mui directly. For building more complex components, like `containers`, `layouts` and `pages` we should use our wrappers around mui component. In that way we can easily migrate from mui to another ui package without huge refactorings.
+The general idea of our styling system is to create custom components (building blocks), that starts of prefix `App`, like `AppButton`, `AppTypography` etc. Then we use MUI component inside as a base and add `scss` styles to it to customize it for our needs. Then we need to use `App`-prefixed component in our project and do not import it from mui directly. For building more complex components, like `containers`, `layouts` and `pages` we should use our wrappers around mui component. In that way we can easily migrate from mui to another ui package without huge refactorings.
 
 ### Steps to create wrapper around mui component
 
@@ -218,15 +216,17 @@ font-weight: var(--spa-typography-subtitle1-font-weight, $fw-extra-bold);
 }
 ```
 
-5. If you want to set margin or padding, use `spacing` function. `spacing(1)` means `4px`,` spacing(2)` means `8px`, `spacing(3)` - `12px` and so on:
+5. If you want to set margin, padding, gap or border-radius, use `spacing` function. `spacing(1)` means `4px`,` spacing(2)` means `8px`, `spacing(3)` - `12px` and so on:
 
 ```scss
 border-radius: spacing(2);
 padding: spacing(2) spacing(3);
 margin-bottom: spacing(4);
+gap: spacing(4);
 ```
 
 ### Also some rules related to styling
+
 - Use only default imports for mui components, because it improves performance
 - Use css variables from our scss design system
 
