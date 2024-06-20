@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { IntlProvider } from "react-intl";
 import Header from "@/layouts/app-header/components/header/Header";
 
-jest.mock("@/assets/images/logo.jpeg", () => {});
 jest.mock("react-intl", () => ({
   ...jest.requireActual("react-intl"),
   FormattedMessage: ({ value }) => <span>{value}</span>
