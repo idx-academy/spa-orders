@@ -13,14 +13,11 @@
 
     &_icon {
         height: 50px;
-        margin-top: spacing(5);
+        margin-top: spacing(1);
     }
 
     &_content {
         white-space: pre-line;
-        font-family: $body-font-family;
-        font-size: var(--spa-typography-concept-font-size,$fs-lg);
-        font-weight: var(--spa-typography-concept-font-weight, $fw-extra-bold);
-        color: $black;
+        font-weight: var(--spa-typography-subtitle2-font-weight, $fw-extra-bold);
     }
 }
