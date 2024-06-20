@@ -11,7 +11,7 @@ type TextVariant =
   | "subtitle2"
   | "caption"
   | "caption-small";
-type AppTypographyVariant = HeadingVariant | TextVariant;
+export type AppTypographyVariant = HeadingVariant | TextVariant;
 
 type AppTypographyProps = Omit<TypographyProps, "variant" | "children"> & {
   variant?: AppTypographyVariant;
