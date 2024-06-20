@@ -3,5 +3,5 @@ export const apiNames = {
 } as const;
 
 export const sliceNames = {
-  todo: "todoSlice" // it's just an example
+  products: "productsSlice"
 } as const;
