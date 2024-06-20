@@ -282,6 +282,40 @@ export default Component;
 - Use objects with `as const` instead of `enum`
 - Declare all local types locally (props, complex types that are used only in one file) as much as possible. If type becomes repeated, we should consider moving it to global `types` folder
 
+### Imports organization
+
+1. Imports from `React`
+2. Imports from other packages
+3. Import from the layouts folder
+4. Imports from the component folder
+5. Hooks
+6. Utility functions
+7. Constants
+8. Images
+9. Styles
+
+You can see provided examples of correctly organized imports:
+
+```
+import { Ref, forwardRef, PropsWithChildren } from "react";
+import { FormattedMessage } from "react-intl";
+import Typography, { TypographyProps } from "@mui/material/Typography";
+
+import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
+
+import AppButton from "@/components/app-button/AppButton";
+import AppTypography from "@/components/app-typography/AppTypography";
+
+import { useAppSelector } from "@/hooks/use-redux";
+import { createUrlPath } from "@/utils/createUrlPath";
+
+import { URLS } from "@/constants/requests";
+
+import Banner from "@/assets/images/banner.jpg";
+
+import "@/components/app-button/AppButton.scss";
+```
+
 ## References
 
 - [Use-case diagram](https://app.diagrams.net/#G17iCThtH58keC83T8SUX5Lpo9Oiipvetp#%7B%22pageId%22%3A%22c0BYFkauXTc5PcYzelpT%22%7D)
