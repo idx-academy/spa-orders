@@ -12,7 +12,11 @@ const AppBanner = () => {
       <PageWrapper>
         <Box className="spa-banner__container">
           <Box>
-            <AppTypography variant="h1" translationKey="appBanner.header" />
+            <AppTypography
+              className="spa-banner__header"
+              variant="h1"
+              translationKey="appBanner.header"
+            />
           </Box>
           <Box className="spa-banner__paragraph">
             <AppTypography
