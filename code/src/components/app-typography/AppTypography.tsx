@@ -13,7 +13,12 @@ type TextVariant =
   | "caption-small";
 type AppTypographyVariant = HeadingVariant | TextVariant;
 
-type AppTypographyProps = Omit<TypographyProps, "variant" | "children"> & {
+type BaseComponent = React.ElementType<any, keyof React.JSX.IntrinsicElements>;
+
+type AppTypographyProps<T extends BaseComponent = "span"> = Omit<
+  TypographyProps<T>,
+  "variant" | "children"
+> & {
   variant?: AppTypographyVariant;
 } & (
     | {
@@ -40,7 +45,7 @@ function getDefaultComponentTag(variant: AppTypographyVariant) {
   return "p";
 }
 
-const AppTypography = ({
+const AppTypography = <T extends BaseComponent = "span">({
   variant = "body",
   className,
   component,
@@ -48,7 +53,7 @@ const AppTypography = ({
   translationKey,
   translationProps,
   ...props
-}: AppTypographyProps) => {
+}: { component?: T } & AppTypographyProps<T>) => {
   const TypographyContent = translationKey ? (
     <FormattedMessage id={translationKey} {...translationProps} />
   ) : (

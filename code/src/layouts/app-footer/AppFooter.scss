@@ -1,0 +1,64 @@
+@import "@/styles/scss/foundation/all";
+
+.footer {
+  padding: spacing(18) 0;
+  background-color: $white;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: spacing(2);
+  }
+
+  &__list-title {
+    font-size: $fs-lg;
+    text-decoration: none;
+    margin-bottom: spacing(10);
+    font-weight: 600;
+  }
+
+  &__list-item {
+    text-decoration: none;
+    list-style: none;
+  }
+
+  &__list-item-link {
+    text-decoration: none;
+    color: $black;
+    transition: 0.25s color;
+
+    &:hover {
+      color: $dark-alpha;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: spacing(3);
+    align-items: center;
+    margin-top: spacing(7);
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  &__socials-item {
+    @include box(20px);
+
+    list-style: none;
+
+    a {
+      color: $black;
+      transition: 0.25s;
+
+      &:hover {
+        color: $dark-alpha;
+      }
+    }
+  }
+}
