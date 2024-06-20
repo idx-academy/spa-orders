@@ -1,8 +1,8 @@
-import { FormattedMessage } from "react-intl";
 import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
-import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AppButton from "@/components/app-button/AppButton";
+import AppTypography from "@/components/app-typography/AppTypography";
 import Logo from "@/assets/images/logo.jpeg";
 
 import "@/layouts/app-header/components/header/Header.scss";
@@ -23,9 +23,9 @@ const Header = () => {
           <Badge badgeContent={10} color="primary">
             <ShoppingCartIcon fontSize="large" />
           </Badge>
-          <Button variant="contained" color="primary">
-            <FormattedMessage id="login.label" />
-          </Button>
+          <AppButton>
+            <AppTypography translationKey="login.label" />
+          </AppButton>
         </Box>
       </Box>
     </Box>

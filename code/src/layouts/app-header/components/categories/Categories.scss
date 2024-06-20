@@ -1,17 +1,16 @@
+@import "@design-system";
+
 .menu {
   display: flex;
-  justify-content: flex-start;
-  padding: 10px 0;
-  background-color: #e9ecef;
+  padding: spacing(2) 0;
+  background-color: var(--spa-menu-background-color, $darken-light);
 
   &__item {
-    font-size: 16px;
-    color: #333;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: spacing(2) spacing(5);
 
     &:hover {
-      color: #007bff;
+      color: var(--spa-menu-hover-color, $purple);
     }
   }
 }

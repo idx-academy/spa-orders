@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import AppTypography from "@/components/app-typography/AppTypography";
 import { categories } from "@/layouts/app-header/components/categories/Categories.constants";
 import "@/layouts/app-header/components/categories/Categories.scss";
 
@@ -6,9 +7,9 @@ const Categories = () => {
   return (
     <Box className="menu">
       {categories.map((category, i) => (
-        <Box key={i} className="menu__item" data-testid="menu-item">
+        <AppTypography className="menu__item" key={i} data-testid="menu-item">
           {category}
-        </Box>
+        </AppTypography>
       ))}
     </Box>
   );
