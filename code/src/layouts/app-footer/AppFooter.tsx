@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 
@@ -13,7 +12,7 @@ import {
 
 import "@/layouts/app-footer/AppFooter.scss";
 
-const AppFooter: FC = () => {
+const AppFooter = () => {
   const locationItems = locationFooterItems.map((item) => (
     <Box component="li" className="footer__list-item" key={item.label}>
       <AppTypography
@@ -27,7 +26,9 @@ const AppFooter: FC = () => {
 
   const socialsItems = socialsFooterItems.map((item) => (
     <Box component="li" className="footer__socials-item" key={item.href}>
-      <a href={item.href}>{item.element}</a>
+      <AppTypography component={Link} to={item.href}>
+        {item.element}
+      </AppTypography>
     </Box>
   ));
 
@@ -61,7 +62,7 @@ const AppFooter: FC = () => {
             <AppTypography
               className="footer__list-title"
               translationKey="footer.location.title"
-              component="h5"
+              variant="h3"
             />
             <Box component="ul" className="footer__list">
               {locationItems}
@@ -74,7 +75,7 @@ const AppFooter: FC = () => {
             <AppTypography
               className="footer__list-title"
               translationKey="footer.support.title"
-              component="h5"
+              variant="h3"
             />
             <Box component="ul" className="footer__list">
               {customerSupportItems}
@@ -84,7 +85,7 @@ const AppFooter: FC = () => {
             <AppTypography
               className="footer__list-title"
               translationKey="footer.policy.title"
-              component="h5"
+              variant="h3"
             />
             <Box component="ul" className="footer__list">
               {policyItems}

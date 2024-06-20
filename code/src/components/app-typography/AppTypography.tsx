@@ -1,4 +1,4 @@
-import { ComponentProps, ReactNode } from "react";
+import { ComponentProps, ElementType, ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
 import Typography, { TypographyProps } from "@mui/material/Typography";
 import "@/components/app-typography/AppTypography.scss";
@@ -13,13 +13,14 @@ type TextVariant =
   | "caption-small";
 type AppTypographyVariant = HeadingVariant | TextVariant;
 
-type BaseComponent = React.ElementType<any, keyof React.JSX.IntrinsicElements>;
+type BaseComponent = ElementType<any, keyof JSX.IntrinsicElements>;
 
 type AppTypographyProps<T extends BaseComponent = "span"> = Omit<
   TypographyProps<T>,
   "variant" | "children"
 > & {
   variant?: AppTypographyVariant;
+  component?: T;
 } & (
     | {
         translationKey: string;
@@ -53,7 +54,7 @@ const AppTypography = <T extends BaseComponent = "span">({
   translationKey,
   translationProps,
   ...props
-}: { component?: T } & AppTypographyProps<T>) => {
+}: AppTypographyProps<T>) => {
   const TypographyContent = translationKey ? (
     <FormattedMessage id={translationKey} {...translationProps} />
   ) : (

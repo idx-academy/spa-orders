@@ -1,4 +1,7 @@
-import { Instagram, Twitter, YouTube } from "@mui/icons-material";
+import Facebook from "@mui/icons-material/Facebook";
+import Instagram from "@mui/icons-material/Instagram";
+import Twitter from "@mui/icons-material/Twitter";
+import YouTube from "@mui/icons-material/YouTube";
 
 export const locationFooterItems = [
   {
@@ -20,7 +23,7 @@ export const locationFooterItems = [
 export const socialsFooterItems = [
   {
     href: "https://facebook.com",
-    element: <YouTube />
+    element: <Facebook />
   },
   {
     href: "https://instagram.com",
