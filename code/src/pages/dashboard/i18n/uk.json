@@ -1,3 +1,16 @@
 {
-  "dashboard.label": "Сторінка панелі"
+  "dashboard.label": "Сторінка панелі",
+  "footer.location.title": "Розміщення Магазину",
+  "footer.location.street": "Вулиця Террі Франсін, 500",
+  "footer.location.city": "Сан-Франциско, Каліфорнія 94158",
+  "footer.location.email": "info@mysite.com",
+  "footer.location.phone": "123-456-7890",
+  "footer.support.title": "Підтримка",
+  "footer.support.helpCenter": "Центр Допомоги",
+  "footer.support.aboutUs": "Про Нас",
+  "footer.policy.title": "Положення",
+  "footer.policy.shipping": "Доставка і Повернення",
+  "footer.policy.terms": "Умови та Правила",
+  "footer.policy.payment": "Методи Оплати",
+  "footer.policy.faq": "Часті запитання"
 }

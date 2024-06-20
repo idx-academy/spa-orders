@@ -1,3 +1,16 @@
 {
-  "dashboard.label": "Dashboard route"
+  "dashboard.label": "Dashboard route",
+  "footer.location.title": "Store Location",
+  "footer.location.street": "500 Terry Francine Street",
+  "footer.location.city": "San Francisco, CA 94158",
+  "footer.location.email": "info@mysite.com",
+  "footer.location.phone": "123-456-7890",
+  "footer.support.title": "Customer Support",
+  "footer.support.helpCenter": "Help Center",
+  "footer.support.aboutUs": "About Us",
+  "footer.policy.title": "Policy",
+  "footer.policy.shipping": "Shipping & Returns",
+  "footer.policy.terms": "Terms & Conditions",
+  "footer.policy.payment": "Payment Methods",
+  "footer.policy.faq": "FAQ"
 }
