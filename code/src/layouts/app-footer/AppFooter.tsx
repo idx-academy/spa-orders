@@ -26,9 +26,7 @@ const AppFooter = () => {
 
   const socialsItems = socialsFooterItems.map((item) => (
     <Box component="li" className="footer__socials-item" key={item.href}>
-      <AppTypography component={Link} to={item.href}>
-        {item.element}
-      </AppTypography>
+      <Link to={item.href}>{item.element}</Link>
     </Box>
   ));
 
