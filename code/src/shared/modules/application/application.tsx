@@ -10,12 +10,12 @@ type ApplicationProps = {
 
 const Application = ({ children }: ApplicationProps) => {
   return (
-    <div className="application">
+    <>
       <AppHeader />
       <AppBanner />
       {children}
       <AppFooter />
-    </div>
+    </>
   );
 };
 

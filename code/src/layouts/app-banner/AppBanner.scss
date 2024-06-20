@@ -8,9 +8,9 @@
   &__container {
     max-width: 500px;
     max-height: 400px;
-    margin: spacing(25) spacing(10);
     display: flex;
     flex-direction: column;
+    padding-top: spacing(20);
     gap: spacing(5);
   }
 
@@ -25,6 +25,6 @@
   }
 
   &__button {
-    margin-top: spacing(10);
+    margin-top: spacing(4);
   }
 }

@@ -4,6 +4,7 @@
   display: flex;
   padding: spacing(2) 0;
   background-color: var(--spa-menu-background-color, $darken-light);
+  box-shadow: var(--spa-menu-shadow, $shadow-black);
 
   &__item {
     cursor: pointer;
