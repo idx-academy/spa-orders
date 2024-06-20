@@ -1,0 +1,26 @@
+@import "@design-system";
+
+.spa-subintro {
+    display: flex;
+    align-items: center;
+    gap: spacing(25);
+
+    &_element {
+        display: flex;
+        gap: spacing(7);
+        padding: spacing(10) 0px spacing(10);
+    }
+
+    &_icon {
+        height: 50px;
+        margin-top: spacing(5);
+    }
+
+    &_content {
+        white-space: pre-line;
+        font-family: $lato;
+        font-size: $fs-xl;
+        font-weight: fw(extra-bold);
+        color: $black;
+    }
+}
