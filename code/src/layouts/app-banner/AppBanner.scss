@@ -16,11 +16,16 @@
   }
 
   &__header {
-    line-height: spacing(20);
+    line-height: spacing(18);
   }
+
   &__paragraph {
     display: flex;
     flex-direction: column;
     gap: spacing(3);
+  }
+
+  &__button {
+    margin-top: spacing(10);
   }
 }

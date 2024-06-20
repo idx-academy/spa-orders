@@ -24,7 +24,7 @@ const AppBanner = () => {
               translationKey="appBanner.paragraphfirst"
             />
           </Box>
-          <Box>
+          <Box className="spa-banner__button">
             <AppButton size="large">Shop Now</AppButton>
           </Box>
         </Box>
