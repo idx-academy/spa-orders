@@ -1,7 +1,7 @@
-import mopedIcon from "@/assets/images/subintro/moped-icon.jpg"
-import boxIcon from "@/assets/images/subintro/box-icon.jpg"
-import percentIcon from "@/assets/images/subintro/percent-icon.jpg"
-import clockIcon from "@/assets/images/subintro/clock-icon.jpg"
+import mopedIcon from "@/assets/images/subintro/moped-icon.jpg";
+import boxIcon from "@/assets/images/subintro/box-icon.jpg";
+import percentIcon from "@/assets/images/subintro/percent-icon.jpg";
+import clockIcon from "@/assets/images/subintro/clock-icon.jpg";
 
 
 const subintroData = [
@@ -25,6 +25,6 @@ const subintroData = [
         content: "Available to\n\you 24/7",
         icon: clockIcon
     }
-]
+];
 
-export {subintroData}
+export default  subintroData;
