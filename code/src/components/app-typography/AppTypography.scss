@@ -6,19 +6,19 @@
   &__h1 {
     font-size: var(--spa-h1-font-size, $fs-h1);
     font-weight: var(--spa-h1-font-weight, $fw-extra-bold);
-    font-weight: var(--spa-h1-text-transform, $tt-none);
+    text-transform: var(--spa-h1-text-transform, $tt-none);
   }
 
   &__h2 {
     font-size: var(--spa-h2-font-size, $fs-h2);
     font-weight: var(--spa-h2-font-weight, $fw-extra-bold);
-    font-weight: var(--spa-h2-text-transform, $tt-none);
+    text-transform: var(--spa-h2-text-transform, $tt-none);
   }
 
   &__h3 {
     font-size: var(--spa-h3-font-size, $fs-h3);
     font-weight: var(--spa-h3-font-weight, $fw-extra-bold);
-    font-weight: var(--spa-h3-text-transform, $tt-none);
+    text-transform: var(--spa-h3-text-transform, $tt-none);
   }
 
   &__body {

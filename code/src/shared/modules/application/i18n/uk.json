@@ -1,3 +1,6 @@
 {
-  "application.header": "Привіт, React з Webpack!"
+  "application.header": "Привіт, React з Webpack!",
+  "appBanner.header": "Неймовірні Ціни на Усі Ваші Улюблені товари",
+  "appBanner.paragraphfirst": "Ласкаво просимо до нашого магазину! Тут ви знайдете найкращі гаджети з усього світу та зможете обрати найкращий для вас товар."
+  
 }
