@@ -5,10 +5,19 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppButton from "@/components/app-button/AppButton";
 
 import "@/layouts/app-banner/AppBanner.scss";
+import heroImage from "@/assets/images/home-page/hero_section_img.jpg";
 
 const AppBanner = () => {
   return (
-    <Box className="spa-banner">
+    <Box
+      className="spa-banner"
+      style={{
+        backgroundImage: `url(${heroImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        aspectRatio: "12 / 5"
+      }}
+    >
       <PageWrapper>
         <Box className="spa-banner__container">
           <Box>
