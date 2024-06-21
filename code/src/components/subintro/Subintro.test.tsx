@@ -1,12 +1,16 @@
+import { IntlProvider } from "react-intl";
 import { render, screen } from "@testing-library/react";
 import Subintro from "@/components/subintro/Subintro";
-import subintroData from "@/components/subintro/Subintro.constants";
+import paragraphs from "@/shared/modules/application/i18n/en.json";
+import subintroElements from "@/components/subintro/Subintro.constants";
 
+test("renders four subintro elements correctly", () => {
+  render(
+    <IntlProvider locale="en" messages={paragraphs}>
+      <Subintro />
+    </IntlProvider>
+  );
 
-describe("Subintro Component", () => {
-  test("render all subintro elements correctly", () => {
-    render(<Subintro />);
-    const subintroItems = screen.getAllByTestId("subintro-item");
-    expect(subintroItems).toHaveLength(subintroData.length);
-  });
+  const subintroItems = screen.getAllByTestId("spa-subintro-item");
+  expect(subintroItems).toHaveLength(subintroElements.length);
 });

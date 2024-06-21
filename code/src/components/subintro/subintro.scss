@@ -4,11 +4,12 @@
   display: flex;
   align-items: center;
   gap: spacing(25);
+  background-color: var(--spa-wrapper-background-color, $white);
 
   &__element {
     display: flex;
     gap: spacing(7);
-    padding: spacing(10) 0 spacing(10);
+    padding: spacing(9) 0 spacing(9);
   }
 
   &__icon {
