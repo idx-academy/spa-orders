@@ -8,7 +8,7 @@ type I18nProividerProps = {
 
 const I18nProivider: FC<I18nProividerProps> = ({ children }) => {
   return (
-    <IntlProvider locale="uk" defaultLocale="uk" messages={messages.uk}>
+    <IntlProvider locale="en" defaultLocale="en" messages={messages.en}>
       {children}
     </IntlProvider>
   );
