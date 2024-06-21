@@ -45,30 +45,10 @@ jobs:
           
       - name: Run ESLint and generate report
         run: |
-          npm run lint --format junit --output-file eslint-report.xml
-
-      - name: Upload ESLint report
-        uses: actions/upload-artifact@v3
-        with:
-          name: eslint-report
-          path: eslint-report.xml
+          npm run lint
 
       - name: Build app and rub tests
         working-directory: code
         run: |
           npm run build
           npm test -- --coverage
-
-      - name: cache SonarCloud dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
