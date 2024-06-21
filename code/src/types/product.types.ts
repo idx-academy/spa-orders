@@ -1,10 +1,10 @@
-export type Status = "AVAILABLE";
+export type ProductStatus = "AVAILABLE";
 
 export type Product = {
   id: string;
   name: string;
   description: string;
-  status: Status;
+  status: ProductStatus;
   tags: string[];
   image: string;
   price: string;
