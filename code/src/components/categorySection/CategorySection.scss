@@ -1,0 +1,30 @@
+@import "@design-system";
+
+.spa-category-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: spacing(25);
+  padding-top: spacing(20);
+  background-color: var(--spa-wrapper-background-color, $white);
+  margin-top: spacing(5);
+  margin-bottom: spacing(5);
+
+  &__element {
+    display: flex;
+    justify-content: center;
+    gap: spacing(7);
+    padding: spacing(10) 0 spacing(20);
+  }
+  &__title {
+    position: absolute;
+    margin-bottom: spacing(90);
+  }
+  &__image {
+    width: 200px;
+  }
+  &__label {
+    position: absolute;
+    margin-top: spacing(52);
+  }
+}
