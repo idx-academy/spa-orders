@@ -16,3 +16,5 @@ code/reports/mutation
 # Mock backend
 mock-backend/node_modules
 
+# Environment variables
+code/.env.local
