@@ -1,6 +1,6 @@
 @import "@design-system";
 
-.spa-productsList {
+.spa-products-list {
   margin-top: spacing(5);
   padding: spacing(12) spacing(12);
   background-color: var(--spa-foreground-background-color, $white);
@@ -19,12 +19,12 @@
     gap: spacing(6);
   }
 
-  &__productContainer {
+  &__product-container {
     padding: spacing(2);
     display: flex;
     flex-direction: column;
     gap: spacing(2);
-    border: 2px solid $darken-light;
+    border: 2px solid var(--spa-products-container-border-color, $darken-light);
   }
   &__img {
     width: 100%;
@@ -33,6 +33,6 @@
   }
 
   &__price {
-    color: $purple;
+    color: var(--spa-products-price-color, $purple);
   }
 }

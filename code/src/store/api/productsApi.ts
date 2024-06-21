@@ -1,7 +1,9 @@
 import { appApi } from "@/store/api/appApi";
-import { httpMethods } from "@/constants/methods";
+
 import { createUrlPath } from "@/utils/createUrlPath";
+import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
+
 import { Product } from "@/types/product.types";
 
 const productsApi = appApi.injectEndpoints({
@@ -10,8 +12,8 @@ const productsApi = appApi.injectEndpoints({
       query: () => URLS.products.get
     }),
     addProduct: build.mutation<
-      any,
-      { name: string; description: string; price: number }
+      Product,
+      Pick<Product, "name" | "description" | "price">
     >({
       query: (productData) => ({
         url: URLS.products.post,
@@ -19,7 +21,7 @@ const productsApi = appApi.injectEndpoints({
         body: productData
       })
     }),
-    deleteProduct: build.mutation<any, string>({
+    deleteProduct: build.mutation<Product, string>({
       query: (id: string) => ({
         url: createUrlPath(URLS.products.delete, id),
         method: httpMethods.delete

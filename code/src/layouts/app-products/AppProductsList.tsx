@@ -1,27 +1,30 @@
 import Box from "@mui/material/Box";
 
-import { useGetProductsQuery } from "@/store/api/productsApi";
 import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
+
+import { useGetProductsQuery } from "@/store/api/productsApi";
 
 import { Product } from "@/types/product.types";
 
 import "@/layouts/app-products/AppProductsList.scss";
 
 const AppProductsList = () => {
-  const { data: products } = useGetProductsQuery();
+  const { data: products, isLoading } = useGetProductsQuery();
+
+  if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
   const renderProducts = (products: Product[]) => {
     return products.map((product) => (
-      <Box className="spa-productsList__productContainer" key={product.id}>
+      <Box className="spa-products-list__product-container" key={product.id}>
         <img
-          className="spa-productsList__img"
+          className="spa-products-list__img"
           src={product.image}
           alt={product.name}
         />
         <Box>
           <AppTypography variant="caption">{product.name}</AppTypography>
-          <AppTypography className="spa-productsList__price">
+          <AppTypography className="spa-products-list__price">
             {product.price}
           </AppTypography>
         </Box>
@@ -30,14 +33,14 @@ const AppProductsList = () => {
   };
 
   return (
-    <PageWrapper className="spa-productsList">
+    <PageWrapper className="spa-products-list">
       <AppTypography
-        className="spa-productsList__header"
+        className="spa-products-list__header"
         translationKey="appProductsList.header"
         variant="h3"
       />
 
-      <Box className="spa-productsList__container">
+      <Box className="spa-products-list__container">
         {products && renderProducts(products)}
       </Box>
     </PageWrapper>
