@@ -1,9 +1,9 @@
 {
   "application.header": "Hello, React with Webpack!",
   "appBanner.header": "Incredible Prices on All Your Favorite Items",
-  "appBanner.paragraphfirst": "Wellcome to our store! Here you will find the best gadgets from around the world, and you can choose the perfect product for you.",
+  "appBanner.paragraphfirst": "Welcome to our store! Here you will find the best gadgets from around the world, and you can choose the perfect product for you.",
   "subintro.firstParagraph": "Curb-side\npickup",
   "subintro.secondParagraph": "Free shipping on\norders over $50",
-  "subintro.thirdparagraph": "Low price\nguaranteed",
+  "subintro.thirdParagraph": "Low price\nguaranteed",
   "subintro.fourthParagraph": "Available to\nyou 24/7"
 }
