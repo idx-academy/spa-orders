@@ -8,6 +8,7 @@
 - [Project structure](#project-structure)
 - [Code conventions](#code-conventions)
 - [Styling](#styling)
+- [Testing](#testing)
 - [References](#references)
 
 ## Getting Started
@@ -211,7 +212,7 @@ font-weight: var(--spa-typography-subtitle1-font-weight, $fw-extra-bold);
 4. If you want to use media query, use mixin `breakpoint` like following:
 
 ```scss
-@include breakpoint("md") {
+@include breakpoint('md') {
   border-radius: spacing(1);
 }
 ```
@@ -239,13 +240,13 @@ gap: spacing(4);
 ```tsx
 type ComponentProps = {
   // ...
-};
+}
 
 const Component = ({ prop1 }: ComponentProps) => {
   // ...
-};
+}
 
-export default Component;
+export default Component
 ```
 
 - Handlers should be arrow functions and start from prefix `handle`, for instance `handleButtonClick`, `handlePositionChange`
@@ -315,6 +316,59 @@ import Banner from "@/assets/images/banner.jpg";
 
 import "@/components/app-button/AppButton.scss";
 ```
+
+## Testing
+
+### Running Tests
+
+To run the unit tests, use the following command:
+
+```
+npm run test
+```
+
+To run unit tests and collect coverage information:
+
+```
+npm run test:coverage
+```
+
+To run mutation tests:
+
+```
+npm run test:mutation
+```
+
+### Unit Tests
+
+Unit tests are used to test individual components and functions in isolation. They should be placed in the same folder as the component they are testing, with the `.test.tsx` suffix
+
+```
+components
+  header
+    Header.tsx
+    Header.test.tsx
+```
+
+### Mutation Tests
+
+Mutation testing helps to ensure the quality of the unit tests by introducing changes (mutations) to the code and checking if the tests catch the errors. Mutation testing reports are generated and stored in the `/reports` folder
+
+To run mutation tests:
+
+```
+npm run test:mutation
+```
+
+### End-to-End (E2E) Tests
+
+E2E tests are used to test the entire application flow. These tests are located in the `/e2e` folder and can be run using a test runner like Cypress
+
+### Testing Tools
+
+- `Jest:` Used for running unit tests and collecting coverage information
+- `Stryker:` Used for running mutation tests
+- `Cypress:` Used for running end-to-end tests
 
 ## References
 
