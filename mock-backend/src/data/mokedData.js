@@ -1,7 +1,7 @@
 const products = [
     {
        "id": "123",
-       "name": "Mobile Phone Samsung Galaxy A55 5G 8/256GB Lilac (SM-A556BLVCEUC)",
+       "name": "Mobile Phone Samsung Galaxy A55 5G 8/256GB Lilac",
        "description": "Screen: 6.6\" Super AMOLED, 2340x1080 / Samsung Exynos 1480 (4 x 2.75 GHz + 4 x 2.0 GHz) / Main Triple Camera: 50 MP + 12 MP + 5 MP, Front Camera: 32 MP / RAM 8 GB / 256 GB internal storage + microSD (up to 1 TB) / 3G / LTE / 5G / GPS / A-GPS / GLONASS / BDS / Dual SIM support (Nano-SIM) / Android 14 / 5000 mAh",
        "status": "AVAILABLE",
        "tags": ["category:mobile"],
@@ -52,6 +52,24 @@ const products = [
        "tags": ["category:computer"],
        "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_2-KjjXijfL9U0rd3P4Jfk06KwUHkSRRl.webp",
        "price": "1399$"
+    },
+    {
+      "id": "129",
+      "name": "Mobile Phone Google Pixel 7 Pro 128GB Obsidian",
+      "description": "Screen: 6.7\" LTPO AMOLED, 3120x1440 / Google Tensor G2 / Main Triple Camera: 50 MP + 48 MP + 12 MP, Front Camera: 11.1 MP / RAM 12 GB / 128 GB internal storage / 3G / LTE / 5G / GPS / GLONASS / Dual SIM support (Nano-SIM and eSIM) / Android 13 / 5000 mAh",
+      "status": "AVAILABLE",
+      "tags": ["category:mobile"],
+      "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
+      "price": "899$"
+    },
+    {
+      "id": "130",
+      "name": "Laptop HP Spectre x360 14\" (2023) Intel Core i7 1TB SSD Nightfall Black",
+      "description": "Screen: 14\" UHD OLED, 3840x2160 / Intel Core i7-1260P / RAM 16 GB / 1TB SSD / Wi-Fi 6E / Bluetooth 5.2 / Windows 11 Home / 66 Wh battery",
+      "status": "AVAILABLE",
+      "tags": ["category:computer"],
+      "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg",
+      "price": "1799$"
     }
  ];
  
