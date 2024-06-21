@@ -5,7 +5,7 @@ const products = [
        "description": "Screen: 6.6\" Super AMOLED, 2340x1080 / Samsung Exynos 1480 (4 x 2.75 GHz + 4 x 2.0 GHz) / Main Triple Camera: 50 MP + 12 MP + 5 MP, Front Camera: 32 MP / RAM 8 GB / 256 GB internal storage + microSD (up to 1 TB) / 3G / LTE / 5G / GPS / A-GPS / GLONASS / BDS / Dual SIM support (Nano-SIM) / Android 14 / 5000 mAh",
        "status": "AVAILABLE",
        "tags": ["category:mobile"],
-       "image": "https://drive.google.com/file/d/15sQqEKFJGWZL00WFV4JfgGPl4xLhiEgg/view?usp=drive_link",
+       "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_2-tTDYhyoyqsEkwPzySFdXflYCe7TkUb.jpg",
        "price": "500$"
     },
     {
@@ -14,7 +14,7 @@ const products = [
        "description": "Screen: 6.1\" Super Retina XDR, 2532x1170 / A16 Bionic chip / Main Triple Camera: 48 MP + 12 MP + 12 MP, Front Camera: 12 MP / RAM 6 GB / 128 GB internal storage / 3G / LTE / 5G / GPS / GLONASS / Dual SIM support (Nano-SIM and eSIM) / iOS 16 / 3200 mAh",
        "status": "AVAILABLE",
        "tags": ["category:mobile"],
-       "image": "https://drive.google.com/file/d/1JmXsHBhAGZVXHpdeymjhX_dB62dn9kyq/view?usp=drive_link",
+       "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
        "price": "999$"
     },
     {
@@ -23,7 +23,7 @@ const products = [
        "description": "Screen: 11\" Liquid Retina, 2388x1668 / M2 chip / Main Camera: 12 MP, Front Camera: 12 MP / RAM 8 GB / 128 GB internal storage / Wi-Fi / Bluetooth 5.3 / iPadOS 16 / 7538 mAh",
        "status": "AVAILABLE",
        "tags": ["category:tablet"],
-       "image": "https://drive.google.com/file/d/1jMfGUNm2QZnXuudBWAUpSB7zVMuqXgWu/view?usp=drive_link",
+       "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_1-PpRl76SFgEv3Zig14ygkiiabH9f8qS.png",
        "price": "799$"
     },
     {
@@ -32,7 +32,7 @@ const products = [
        "description": "Screen: 12.4\" Super AMOLED, 2800x1752 / Snapdragon 8 Gen 1 / Main Camera: 13 MP, Front Camera: 12 MP / RAM 8 GB / 256 GB internal storage + microSD (up to 1 TB) / Wi-Fi / Bluetooth 5.2 / Android 12 / 10090 mAh",
        "status": "AVAILABLE",
        "tags": ["category:tablet"],
-       "image": "https://drive.google.com/file/d/1cOffiAF-a5r3MmrBiW3vQVl-wl29lkgY/view?usp=drive_link",
+       "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_2-ayF4QQ9ilJtRKlpBLCvwlJkBYddhPO.png",
        "price": "999$"
     },
     {
@@ -41,7 +41,7 @@ const products = [
        "description": "Screen: 14.2\" Liquid Retina XDR, 3024x1964 / M2 Pro chip / RAM 16 GB / 512 GB SSD / Wi-Fi 6 / Bluetooth 5.3 / macOS Ventura / 70 Wh battery",
        "status": "AVAILABLE",
        "tags": ["category:computer"],
-       "image": "https://drive.google.com/file/d/1Y2IbKaWiFhmFDirHjD-N0kP6G7NQa7pg/view?usp=drive_link",
+       "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg",
        "price": "1999$"
     },
     {
@@ -50,7 +50,7 @@ const products = [
        "description": "Screen: 13.4\" FHD+ Touchscreen, 1920x1200 / Intel Core i7-1165G7 / RAM 16 GB / 512 GB SSD / Wi-Fi 6 / Bluetooth 5.1 / Windows 11 Home / 52 Wh battery",
        "status": "AVAILABLE",
        "tags": ["category:computer"],
-       "image": "https://drive.google.com/file/d/1viBDLLigLIInkbmZE1lOsOfmSh1bedN0/view?usp=drive_link",
+       "image": "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_2-KjjXijfL9U0rd3P4Jfk06KwUHkSRRl.webp",
        "price": "1399$"
     }
  ];
