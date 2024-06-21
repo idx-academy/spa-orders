@@ -1,12 +1,7 @@
-import { FormattedMessage } from "react-intl";
 import { render, screen } from "@testing-library/react";
 import AppTypography, {
   AppTypographyVariant
 } from "@/components/app-typography/AppTypography";
-
-jest.mock("react-intl", () => ({
-  FormattedMessage: jest.fn()
-}));
 
 const renderAndCheckForTag = (
   expectedTagName: string,
@@ -35,8 +30,6 @@ describe("AppTypography", () => {
 
   test("should render translated text if translationKey is provided", () => {
     const translationKey = "translation.key";
-
-    (FormattedMessage as jest.Mock).mockReturnValueOnce(translationKey);
     render(<AppTypography translationKey={translationKey} />);
 
     const typography = screen.getByText(translationKey);

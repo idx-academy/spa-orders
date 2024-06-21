@@ -1,15 +1,12 @@
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import AppFooter from "@/layouts/app-footer/AppFooter";
-import I18nProivider from "@/shared/i18n/I18nProvider";
 
 describe("Test Footer component", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <I18nProivider>
-          <AppFooter />
-        </I18nProivider>
+        <AppFooter />
       </BrowserRouter>
     );
   });

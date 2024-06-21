@@ -1,65 +1,34 @@
 import React from "react";
-
 import crypto from "crypto";
-
 import failOnConsole from "jest-fail-on-console";
-
 import "@testing-library/jest-dom";
-
-const MOCK_TEST_LOCALE = 'en';
 
 global.React = React;
 
-failOnConsole({
-  shouldFailOnWarn: true,
-});
+failOnConsole({ shouldFailOnWarn: true });
 
-Object.defineProperty(global.self, 'crypto', {
+Object.defineProperty(global.self, "crypto", {
   value: {
-    getRandomValues: (arr) => crypto.randomBytes(arr.length),
-  },
+    getRandomValues: (arr) => crypto.randomBytes(arr.length)
+  }
 });
 
-jest.mock('react-redux', () => {
-  const actualReactRedux = jest.requireActual('react-redux');
-
-  return {
-    ...actualReactRedux,
-    useSelector: jest.fn(),
-  };
-});
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: () => ({
-    push: jest.fn(),
-    listen: jest.fn(),
-  }),
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useSelector: jest.fn()
 }));
 
-const mockIntl = () => {
-  const applicationModuleI18n = require('@/shared/modules/application/i18n/en.json');
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useHistory: () => ({
+    push: jest.fn(),
+    listen: jest.fn()
+  })
+}));
 
-  return {
-    en: {
-      ...applicationModuleI18n,
-    },
-  };
-};
-
-const internalMessages = mockIntl();
-
-const formatMessage = (...args) => {
-  let foundStr = internalMessages[MOCK_TEST_LOCALE][args[0].id] || '';
-  for (let i = 1; i < args.length; i++) {
-    for (let key in args[i]) {
-      if (key !== 'id') {
-        foundStr = foundStr.replace(new RegExp('{' + key + '}', 'g'), args[i][key]);
-      }
-    }
-  }
-  return foundStr;
-};
-
+jest.mock("react-intl", () => ({
+  ...jest.requireActual("react-intl"),
+  FormattedMessage: jest.fn().mockImplementation(({ id }) => id)
+}));
 
 window.URL.createObjectURL = function () {};
