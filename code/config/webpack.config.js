@@ -147,14 +147,14 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[hash].[ext]',
-              outputPath: 'assets',
-            },
-          },
-        ],
-      },
+              name: "[name].[hash].[ext]",
+              outputPath: "assets"
+            }
+          }
+        ]
+      }
     ]
   },
   resolve: {
@@ -166,7 +166,6 @@ module.exports = {
         "..",
         "src",
         "styles",
-        "scss",
         "foundation",
         "_all.scss"
       )
