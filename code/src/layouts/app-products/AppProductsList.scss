@@ -1,6 +1,6 @@
 @import "@design-system";
 
-.spa-productList {
+.spa-productsList {
   margin-top: spacing(5);
   padding: spacing(12) spacing(12);
   background-color: var(--spa-foreground-background-color, $white);
@@ -16,16 +16,15 @@
   &__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: spacing(2);
+    gap: spacing(6);
   }
 
   &__productContainer {
     padding: spacing(2);
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: spacing(2);
-    border: 2px solid $gray-light;
+    border: 2px solid $darken-light;
   }
   &__img {
     width: 100%;
