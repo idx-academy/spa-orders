@@ -16,7 +16,7 @@ const subintroData = [
   },
   {
     id: 3,
-    content: "subintro.thirdparagraph",
+    content: "subintro.thirdParagraph",
     icon: percentIcon
   },
   {
