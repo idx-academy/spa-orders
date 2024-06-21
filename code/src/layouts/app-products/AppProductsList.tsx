@@ -4,23 +4,24 @@ import { useGetProductsQuery } from "@/store/api/productsApi";
 import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import "@/layouts/app-products/AppProductsList.scss";
+
 const AppProductsList = () => {
-  const { data: products, error, isLoading } = useGetProductsQuery();
-  console.log(products);
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
+  const { data: products } = useGetProductsQuery();
 
   return (
-    <PageWrapper>
-      <AppTypography variant="h3">All Products</AppTypography>
-      <Box>
+    <PageWrapper className="spa-productList">
+      <AppTypography className="spa-productList__header" variant="h3">
+        All Products
+      </AppTypography>
+      <Box className="spa-productList__container">
         {products &&
           products.map((product) => (
-            <Box key={product.id}>
-              <img src={product.image} />
-
-              <AppTypography>
-                {product.name} - {product.price}
+            <Box className="spa-productList__productContainer" key={product.id}>
+              <img className="spa-productList__img" src={product.image} />
+              <AppTypography>{product.name}</AppTypography>
+              <AppTypography className="spa-productList__price">
+                {product.price}
               </AppTypography>
             </Box>
           ))}

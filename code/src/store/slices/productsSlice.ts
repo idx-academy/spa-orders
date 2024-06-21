@@ -2,12 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { sliceNames } from "@/store/constants";
 
-type Product = {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-};
+import { Product } from "@/types/product.types";
 
 type ProductsState = {
   list: Product[];
