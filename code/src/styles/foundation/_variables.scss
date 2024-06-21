@@ -7,14 +7,17 @@
 $purple: #751fff;
 $purple-light: #d1b4ff;
 $red: #d72d2d;
-
-/* Additional colors */
-
 $white: #ffffff;
 $black: #000000;
-
 $light: #efefec;
 $gray: #575757;
+
+/* Additional colors */
+$transparent: transparent;
+$light-white: #f8f9fa;
+$darken-light: #e9ecef;
+
+$gray-light: #b3b3b3;
 
 $ghost-alpha: rgba(0, 0, 0, 0.12);
 $dark-alpha: rgba(0, 0, 0, 0.7);
@@ -101,6 +104,14 @@ $breakpoints: (
 =                  SPACING                   =
 =============================================*/
 
-$spacing-scale-factor: 0.25rem; // 4px
+$spacing-scale-factor: 0.25rem;
 
 /*=====  End of BREAKPOINTS  ======*/
+
+/*=============================================
+=                  SHADOWS                   =
+=============================================*/
+
+$shadow-black: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+/*=====  End of SHADOWS  ======*/

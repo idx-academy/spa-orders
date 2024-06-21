@@ -1,21 +1,22 @@
 import { ReactNode } from "react";
-import { FormattedMessage } from "react-intl";
+import AppHeader from "@/layouts/app-header/AppHeader";
+import AppBanner from "@/layouts/app-banner/AppBanner";
+import AppFooter from "@/layouts/app-footer/AppFooter";
 import "@/shared/modules/application/application.scss";
+import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
 
 type ApplicationProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const Application = ({ children }: ApplicationProps) => {
   return (
-    <div className="application">
-      <h1 className="application__header">
-        <FormattedMessage
-          id="application.header"
-        />
-      </h1>
-      {children}
-    </div>
+    <>
+      <AppHeader />
+      <AppBanner />
+      <PageWrapper>{children}</PageWrapper>
+      <AppFooter />
+    </>
   );
 };
 

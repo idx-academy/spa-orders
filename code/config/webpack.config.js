@@ -142,6 +142,18 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[hash].[ext]",
+              outputPath: "assets"
+            }
+          }
+        ]
       }
     ]
   },
@@ -154,7 +166,6 @@ module.exports = {
         "..",
         "src",
         "styles",
-        "scss",
         "foundation",
         "_all.scss"
       )

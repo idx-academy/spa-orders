@@ -1,0 +1,40 @@
+@import "@design-system";
+
+.wrapper {
+  padding: spacing(2) spacing(5);
+  background-color: var(--spa-wrapper-background-color, $light-white);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+
+    &-image {
+      height: 70px;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+
+    > * {
+      margin-left: spacing(10);
+    }
+
+    //@TODO create app-badge
+    .MuiBadge-root {
+      .MuiBadge-badge {
+        @include box(20px);
+        background-color: var(--spa-badge-background-color, $black);
+        color: var(--spa-badge-color, $white);
+        font-weight: var(--spa-badge-color, $fw-extra-bold);
+      }
+    }
+  }
+}

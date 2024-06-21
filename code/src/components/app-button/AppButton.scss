@@ -1,40 +1,142 @@
 @import "@design-system";
 
-// @TODO: It is just an example. Remove it or modify later
-.button__contained {
-  // Example of using variable from design system
-  background-color: var(--spa-button-bg-color, $purple);
+@mixin button-size($padding, $font-size) {
+  padding: spacing(2) spacing($padding);
+  font-size: $font-size;
+}
+
+@mixin focus-style($color) {
+  &:focus {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+}
+
+@mixin hover-effect($bg-color, $text-color, $border-color: null) {
+  &:hover {
+    background-color: $bg-color;
+    color: $text-color;
+    @if $border-color {
+      border-color: $border-color;
+    }
+  }
+}
+
+.spa-button {
+  @include focus-style(var(--spa-button-focus-color, $purple));
+
+  display: inline-flex;
+  align-items: center;
+  column-gap: spacing(2);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--spa-button-border-color, $purple);
-  color: var(--spa-button-color, $white);
-  // Example of using spacing
-  border-radius: spacing(2);
-  padding: spacing(2) spacing(3);
+  border-radius: spacing(5);
 
-  &:hover {
-    background-color: var(--spa-button-hover-color, transparent);
-    color: var(--spa-button-hover-color, $purple);
+  &__contained {
+    @include focus-style(var(--spa-button-contained-focus-color, $purple));
+    @include hover-effect(
+      var(--spa-button-contained--bg-hover-color, $transparent),
+      var(--spa-button-contained--text-hover-color, $purple)
+    );
+
+    background-color: var(--spa-button-contained-bg-color, $purple);
+    color: var(--spa-button-contained-color, $white);
+    border-color: var(--spa-button-contained-border-color, $purple);
   }
 
-  // Example of media query usage
-  @include breakpoint('md') {
-    border-radius: spacing(1);
+  &__outlined {
+    @include focus-style(var(--spa-button-outlined-focus-color, $purple));
+    @include hover-effect(
+      var(--spa-button-outlined--bg-hover-color, $light),
+      var(--spa-button-outlined--text-hover-color, $purple)
+    );
+
+    background-color: var(--spa-button-outlined-bg-color, $transparent);
+    color: var(--spa-button-outlined-color, $purple);
+    border-color: var(--spa-button-outlined-border-color, $purple);
+  }
+
+  &__text {
+    background-color: var(--spa-button-text-bg-color, $transparent);
+    color: var(--spa-button-text-color, $purple);
+    border-color: var(--spa-button-text-border-color, $transparent);
+
+    .css-8je8zh-MuiTouchRipple-root {
+      display: none;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      background-color: var(--spa-button-text-bg-color, $transparent);
+    }
+    &:focus {
+      outline: none;
+      text-decoration: underline;
+    }
+  }
+
+  &__black {
+    @include focus-style(var(--spa-button-black-focus-color, $black));
+    @include hover-effect(
+      var(--spa-button-black--bg-hover-color, $white),
+      var(--spa-button-black--text-hover-color, $black)
+    );
+
+    background-color: var(--spa-button-black-bg-color, $black);
+    color: var(--spa-button-black-color, $white);
+    border-color: var(--spa-button-black-border-color, $black);
+  }
+
+  &__white {
+    @include focus-style(var(--spa-button-white-focus-color, $black));
+    @include hover-effect(
+      var(--spa-button-white--bg-hover-color, $transparent),
+      var(--spa-button-white--text-hover-color, $white),
+      var(--spa-button-white--border-hover-color, $white)
+    );
+
+    background-color: var(--spa-button-white-bg-color, $white);
+    color: var(--spa-button-white-color, $black);
+    border-color: var(--spa-button-white-border-color, $transparent);
+  }
+
+  &__danger {
+    @include focus-style(var(--spa-button-danger-focus-color, $red));
+    @include hover-effect(
+      var(--spa-button-danger--bg-hover-color, $white),
+      var(--spa-button-danger--text-hover-color, $red)
+    );
+
+    background-color: var(--spa-button-danger-bg-color, $red);
+    color: var(--spa-button-danger-color, $white);
+    border-color: var(--spa-button-danger-border-color, $red);
+  }
+
+  &__small {
+    @include button-size(2, var(--spa-button-small-font-size, $fs-base));
+  }
+
+  &__medium {
+    @include button-size(4, var(--spa-button-medium-font-size, $fs-base));
+  }
+
+  &__large {
+    @include button-size(12, var(--spa-button-large-font-size, $fs-base));
+  }
+
+  &__extra-large {
+    @include button-size(20, var(--spa-button-extra-large-font-size, $fs-base));
+  }
+
+  &:disabled {
+    background-color: var(--spa-button-disabled-bg-color, $light);
+    color: var(--spa-button-disabled-color, $gray-light);
+    border-color: var(--spa-button-disabled-border-color, $transparent);
+    pointer-events: none;
   }
 }
 
-.gray-100 {
-  background-color: $light;
-}
-
-.gray-300 {
-  background-color: $gray;
-}
-
-.gray-700 {
-  background-color: $ghost-alpha;
-}
-
-.gray-800 {
-  background-color: $dark-alpha;
+//@TODO: Create a separate component for the loader
+.spa-loader {
+  color: var(--spa-loader-color, $gray-light);
 }
