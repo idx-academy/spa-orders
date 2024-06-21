@@ -13,9 +13,7 @@ type TextVariant =
   | "caption-small";
 export type AppTypographyVariant = HeadingVariant | TextVariant;
 
-type BaseComponent = ElementType<any, keyof JSX.IntrinsicElements>;
-
-type AppTypographyProps<T extends BaseComponent = "span"> = Omit<
+type AppTypographyProps<T extends ElementType = "span"> = Omit<
   TypographyProps<T>,
   "variant" | "children"
 > & {
@@ -46,7 +44,7 @@ function getDefaultComponentTag(variant: AppTypographyVariant) {
   return "p";
 }
 
-const AppTypography = <T extends BaseComponent = "span">({
+const AppTypography = <T extends ElementType = "span">({
   variant = "body",
   className,
   component,
