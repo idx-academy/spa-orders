@@ -37,11 +37,6 @@ $sizes: (
   )
 );
 
-$round-styles: (
-  "round": spacing(3),
-  "no-round": 0
-);
-
 @mixin badge-size($padding-y, $padding-x) {
   padding: spacing($padding-y) spacing($padding-x);
 }
@@ -66,9 +61,7 @@ $round-styles: (
     }
   }
 
-  @each $style, $radius in $round-styles {
-    &__#{$style} .MuiBadge-badge {
-      border-radius: $radius;
-    }
+  &__no-rounded .MuiBadge-badge {
+    border-radius: 0;
   }
 }

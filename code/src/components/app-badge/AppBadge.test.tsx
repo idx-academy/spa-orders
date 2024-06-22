@@ -1,15 +1,18 @@
 import { render, screen } from "@testing-library/react";
-import AppBadge from "./AppBadge";
+import AppBadge from "@/components/app-badge/AppBadge";
 
 describe("AppBadge", () => {
-  it("renders AppBadge component", () => {
+  test("renders AppBadge component", () => {
     render(<AppBadge>children</AppBadge>);
-    const child = screen.getByText("children");
-    expect(child).toBeInTheDocument();
+
+    const children = screen.getByText("children");
+    expect(children).toBeInTheDocument();
   });
 
-  it("applies the no-round class when isRounded is false", () => {
-    const { container } = render(<AppBadge isRounded={false} />);
-    expect(container.firstChild).toHaveClass("spa-badge__no-round");
+  test("applies the no-round class when isRounded is false", () => {
+    render(<AppBadge isRounded={false}>children</AppBadge>);
+
+    const children = screen.getByText("children");
+    expect(children).toHaveClass("spa-badge__no-rounded");
   });
 });

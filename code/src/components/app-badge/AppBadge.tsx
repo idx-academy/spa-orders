@@ -10,11 +10,12 @@ const AppBadge = ({
   color = "contained",
   ...props
 }: AppBadgeProps) => {
-  const roundVariant = isRounded ? "round" : "no-round";
+  const roundVariant = isRounded ? "" : "spa-badge__no-rounded";
+
   return (
     <Badge
       max={10}
-      className={`spa-badge spa-badge__${color} spa-badge__${roundVariant} spa-badge__${size} ${className}`}
+      className={`spa-badge spa-badge__${color} ${roundVariant} spa-badge__${size} ${className}`}
       {...props}
     />
   );
