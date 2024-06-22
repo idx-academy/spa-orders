@@ -1,6 +1,6 @@
 import {
   NavLinkProps,
-  LinkProps as ReactRouterLinkProps
+  LinkProps as ReactRouterDomLinkProps
 } from "react-router-dom";
 import { LinkProps as MuiLinkProps } from "@mui/material/Link";
 
@@ -21,5 +21,5 @@ export type AppLinkProps = Omit<MuiLinkProps, "variant" | "component"> &
   BaseProps &
   (
     | ({ isNavLink: true } & NavLinkProps)
-    | ({ isNavLink?: false } & ReactRouterLinkProps)
+    | ({ isNavLink?: false } & ReactRouterDomLinkProps)
   );
