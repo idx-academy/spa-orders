@@ -8,13 +8,13 @@ const messages = {
     ...commonMessages.en,
     ...footerMessages.en,
     ...bannerMessages.en,
-    ...productsListMessages
+    ...productsListMessages.en
   },
   uk: {
     ...commonMessages.uk,
     ...footerMessages.uk,
     ...bannerMessages.uk,
-    ...productsListMessages
+    ...productsListMessages.uk
   }
 };
 
