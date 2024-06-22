@@ -17,10 +17,11 @@ const NavLinkWrapper = forwardRef<HTMLAnchorElement, NavLinkProps>(
   }
 );
 
+NavLinkWrapper.displayName = "NavLinkWrapper";
+
 const AppLink = ({
   variant = "default",
   isNavLink = false,
-  className,
   ...props
 }: AppLinkProps) => {
   const component = isNavLink ? NavLinkWrapper : ReactRouterDomLink;
