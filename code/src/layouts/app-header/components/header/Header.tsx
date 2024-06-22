@@ -8,6 +8,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import Logo from "@/assets/images/logo.jpeg";
 
 import "@/layouts/app-header/components/header/Header.scss";
+import AppBadge from "@/components/app-badge/AppBadge";
 
 const Header = () => {
   return (
@@ -22,9 +23,14 @@ const Header = () => {
           />
         </AppBox>
         <AppBox className="header__icons">
-          <Badge badgeContent={10} color="primary">
+          <AppBadge
+            badgeContent={
+              <AppTypography variant="caption-small">10</AppTypography>
+            }
+          >
             <ShoppingCartIcon fontSize="large" />
-          </Badge>
+          </AppBadge>
+
           <AppButton>
             <AppTypography translationKey="login.label" />
           </AppButton>
