@@ -22,3 +22,27 @@
   -webkit-line-clamp: $line-clamp;
   -webkit-box-orient: vertical;
 }
+
+@mixin transition($transitions...) {
+  $result: ();
+
+  @each $transition in $transitions {
+    $property: nth($transition, 1);
+    $speed: if(length($transition) > 1, nth($transition, 2), "fast");
+    $result: append($result, $property map-get($duration, $speed), comma);
+  }
+
+  transition: $result;
+}
+
+@mixin transform($transforms...) {
+  $result: ();
+
+  @each $transform in $transforms {
+    $property: nth($transform, 1);
+    $speed: if(length($transform) > 1, nth($transform, 2), "fast");
+    $result: append($result, $property map-get($duration, $speed), comma);
+  }
+
+  transition: $result;
+}
