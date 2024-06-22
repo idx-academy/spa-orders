@@ -1,6 +1,6 @@
+import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
-import { MemoryRouter } from "react-router-dom";
 
 describe("HeaderToolbar", () => {
   test("renders the logo", () => {
