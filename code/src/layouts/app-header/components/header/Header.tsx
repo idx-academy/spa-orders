@@ -1,14 +1,13 @@
-import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import AppBox from "@/components/app-box/AppBox";
+import AppBadge from "@/components/app-badge/AppBadge";
 import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import Logo from "@/assets/images/logo.jpeg";
 
 import "@/layouts/app-header/components/header/Header.scss";
-import AppBadge from "@/components/app-badge/AppBadge";
 
 const Header = () => {
   return (
