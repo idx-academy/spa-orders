@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
 
-import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
 import {
   customerSupportFooterItems,
@@ -11,87 +10,88 @@ import {
 } from "@/layouts/app-footer/AppFooter.constants";
 
 import "@/layouts/app-footer/AppFooter.scss";
+import AppBox from "@/components/app-box/AppBox";
 
 const AppFooter = () => {
   const locationItems = locationFooterItems.map((item) => (
-    <Box component="li" className="footer__list-item" key={item.label}>
+    <AppBox component="li" className="footer__list-item" key={item.label}>
       <AppTypography
         className="footer__list-item-link"
         translationKey={item.label}
         component={item.href ? Link : undefined}
         to={item.href as string}
       />
-    </Box>
+    </AppBox>
   ));
 
   const socialsItems = socialsFooterItems.map((item) => (
-    <Box component="li" className="footer__socials-item" key={item.href}>
+    <AppBox component="li" className="footer__socials-item" key={item.href}>
       <Link to={item.href}>{item.element}</Link>
-    </Box>
+    </AppBox>
   ));
 
   const customerSupportItems = customerSupportFooterItems.map((item) => (
-    <Box component="li" className="footer__list-item" key={item.label}>
+    <AppBox component="li" className="footer__list-item" key={item.label}>
       <AppTypography
         className="footer__list-item-link"
         component={Link}
         to={item.href}
         translationKey={item.label}
       />
-    </Box>
+    </AppBox>
   ));
 
   const policyItems = policyFooterItems.map((item) => (
-    <Box component="li" className="footer__list-item" key={item.label}>
+    <AppBox component="li" className="footer__list-item" key={item.label}>
       <AppTypography
         className="footer__list-item-link"
         component={Link}
         to={item.href}
         translationKey={item.label}
       />
-    </Box>
+    </AppBox>
   ));
 
   return (
-    <Box className="footer" component="footer">
+    <AppBox className="footer" component="footer">
       <PageWrapper>
-        <Box className="footer__container">
-          <Box>
+        <AppBox className="footer__container">
+          <AppBox>
             <AppTypography
               className="footer__list-title"
               translationKey="footer.location.title"
               variant="h3"
             />
-            <Box component="ul" className="footer__list">
+            <AppBox component="ul" className="footer__list">
               {locationItems}
-            </Box>
-            <Box className="footer__socials" component="ul">
+            </AppBox>
+            <AppBox className="footer__socials" component="ul">
               {socialsItems}
-            </Box>
-          </Box>
-          <Box>
+            </AppBox>
+          </AppBox>
+          <AppBox>
             <AppTypography
               className="footer__list-title"
               translationKey="footer.support.title"
               variant="h3"
             />
-            <Box component="ul" className="footer__list">
+            <AppBox component="ul" className="footer__list">
               {customerSupportItems}
-            </Box>
-          </Box>
-          <Box>
+            </AppBox>
+          </AppBox>
+          <AppBox>
             <AppTypography
               className="footer__list-title"
               translationKey="footer.policy.title"
               variant="h3"
             />
-            <Box component="ul" className="footer__list">
+            <AppBox component="ul" className="footer__list">
               {policyItems}
-            </Box>
-          </Box>
-        </Box>
+            </AppBox>
+          </AppBox>
+        </AppBox>
       </PageWrapper>
-    </Box>
+    </AppBox>
   );
 };
 
