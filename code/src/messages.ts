@@ -1,15 +1,18 @@
-import applicationModuleI18n from "@/shared/modules/application/i18n";
-import dashboardI18n from "@/pages/dashboard/i18n";
+import commonMessages from "@/shared/i18n/common-messages";
+import bannerMessages from "@/layouts/app-banner/messages";
+import footerMessages from "@/layouts/app-footer/messages";
 
 const messages = {
   en: {
-    ...applicationModuleI18n.en,
-    ...dashboardI18n.en,
+    ...commonMessages.en,
+    ...footerMessages.en,
+    ...bannerMessages.en
   },
   uk: {
-    ...applicationModuleI18n.uk,
-    ...dashboardI18n.uk,
-  },
+    ...commonMessages.uk,
+    ...footerMessages.uk,
+    ...bannerMessages.uk
+  }
 };
 
 export default messages;
