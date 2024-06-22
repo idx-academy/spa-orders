@@ -115,3 +115,19 @@ $spacing-scale-factor: 0.25rem;
 $shadow-black: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 /*=====  End of SHADOWS  ======*/
+
+/*=============================================
+=                 TRANSITIONS                 =
+=============================================*/
+
+$duration-fast: .3s;
+$duration-medium: .5s;
+$duration-slow: .8s;
+
+$duration: (
+  fast: $duration-fast,
+  medium: $duration-medium,
+  slow: $duration-slow
+);
+
+/*=====  End of SHADOWS  ======*/

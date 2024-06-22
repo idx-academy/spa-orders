@@ -22,3 +22,24 @@
   -webkit-line-clamp: $line-clamp;
   -webkit-box-orient: vertical;
 }
+
+@mixin transition($transitions...) {
+  $result: ();
+  $default-speed: "fast";
+  $default-timing-function: ease;
+
+  @each $transition in $transitions {
+    $property: nth($transition, 1);
+    $speed: if(length($transition) > 1, nth($transition, 2), $default-speed);
+    $timing-function: if(
+      length($transition) > 2,
+      nth($transition, 3),
+      $default-timing-function
+    );
+    $duration-value: map-get($duration, $speed);
+
+    $result: append($result, $property $duration-value $timing-function, comma);
+  }
+
+  transition: $result;
+}

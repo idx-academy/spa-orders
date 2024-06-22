@@ -1,0 +1,31 @@
+@import "@design-system";
+
+.spa-link {
+  text-decoration: none;
+  color: var(--spa-link-primary-color, $black);
+  @include transition((color, "fast"));
+
+  &__default.spa-link--active {
+    color: var(---spa-link-default-color, $gray);
+  }
+
+  &__colored {
+    &:hover {
+      color: var(--spa-link-colored-hover-color, $purple);
+    }
+  }
+
+  &__colored.spa-link--active {
+    color: var(--spa-link-colored-hover-color, $purple);
+  }
+
+  &__underlined {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__underlined.spa-link--active {
+    font-weight: $fw-extra-bold;
+  }
+}
