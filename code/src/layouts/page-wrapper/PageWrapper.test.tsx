@@ -1,5 +1,5 @@
-import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
 import { render, screen } from "@testing-library/react";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
 describe("PageWrapper", () => {
   test("should render children", () => {

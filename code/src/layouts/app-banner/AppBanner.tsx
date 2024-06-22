@@ -1,39 +1,41 @@
-import Box from "@mui/material/Box";
-import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppButton from "@/components/app-button/AppButton";
-import "@/layouts/app-banner/AppBanner.scss";
+import AppBox from "@/components/app-box/AppBox";
+
 import heroImage from "@/assets/images/home-page/hero_section_img.jpg";
+
+import "@/layouts/app-banner/AppBanner.scss";
 
 const AppBanner = () => {
   return (
-    <Box
+    <AppBox
       className="spa-banner"
       style={{
         backgroundImage: `url(${heroImage})`
       }}
     >
       <PageWrapper>
-        <Box className="spa-banner__container">
-          <Box>
+        <AppBox className="spa-banner__container">
+          <AppBox>
             <AppTypography
               className="spa-banner__header"
               variant="h1"
               translationKey="appBanner.header"
             />
-            <Box className="spa-banner__paragraph">
+            <AppBox className="spa-banner__paragraph">
               <AppTypography
                 variant="subtitle2"
                 translationKey="appBanner.paragraphfirst"
               />
-            </Box>
-            <Box className="spa-banner__button">
+            </AppBox>
+            <AppBox className="spa-banner__button">
               <AppButton size="large">Shop Now</AppButton>
-            </Box>
-          </Box>
-        </Box>
+            </AppBox>
+          </AppBox>
+        </AppBox>
       </PageWrapper>
-    </Box>
+    </AppBox>
   );
 };
 

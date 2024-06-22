@@ -3,7 +3,7 @@ import AppHeader from "@/layouts/app-header/AppHeader";
 import AppBanner from "@/layouts/app-banner/AppBanner";
 import AppFooter from "@/layouts/app-footer/AppFooter";
 import "@/shared/modules/application/application.scss";
-import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
 type ApplicationProps = {
   children?: ReactNode;
