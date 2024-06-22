@@ -3,17 +3,29 @@
 .spa-link {
   text-decoration: none;
   color: var(--spa-link-primary-color, $black);
-  transition: color .3s;
+  transition: color 0.3s;
+
+  &__default.spa-link--active {
+    color: var(---spa-link-default-color, $gray);
+  }
 
   &__colored {
     &:hover {
-      color: var(--spa-link-primary-hover-color, $purple);
+      color: var(--spa-link-colored-hover-color, $purple);
     }
+  }
+
+  &__colored.spa-link--active {
+    color: var(--spa-link-colored-hover-color, $purple);
   }
 
   &__underlined {
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  &__underlined.spa-link--active {
+    font-weight: $fw-extra-bold;
   }
 }
