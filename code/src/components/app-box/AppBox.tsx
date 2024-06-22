@@ -1,5 +1,5 @@
-import Box, { BoxProps } from "@mui/material/Box";
 import { ImgHTMLAttributes } from "react";
+import Box, { BoxProps } from "@mui/material/Box";
 
 type AppBoxProps = BoxProps & ImgHTMLAttributes<HTMLImageElement>;
 
