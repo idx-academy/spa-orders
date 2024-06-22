@@ -1,0 +1,13 @@
+@import "@design-system";
+
+.menu {
+  display: flex;
+  padding-top: spacing(2);
+  padding-bottom: spacing(2);
+  background-color: var(--spa-menu-background-color, $darken-light);
+  box-shadow: var(--spa-menu-shadow, $shadow-black);
+
+  &__item {
+    padding: spacing(2) spacing(5);
+  }
+}
