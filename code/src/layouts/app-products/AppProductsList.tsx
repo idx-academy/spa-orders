@@ -1,7 +1,6 @@
-import Box from "@mui/material/Box";
-
-import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
+import AppBox from "@/components/app-box/AppBox"
 
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
@@ -16,19 +15,19 @@ const AppProductsList = () => {
 
   const renderProducts = (products: Product[]) => {
     return products.map((product) => (
-      <Box className="spa-products-list__product-container" key={product.id}>
+      <AppBox className="spa-products-list__product-container" key={product.id}>
         <img
           className="spa-products-list__img"
           src={product.image}
           alt={product.name}
         />
-        <Box>
+        <AppBox>
           <AppTypography variant="caption">{product.name}</AppTypography>
           <AppTypography className="spa-products-list__price">
             {product.price}
           </AppTypography>
-        </Box>
-      </Box>
+        </AppBox>
+      </AppBox>
     ));
   };
 
@@ -40,9 +39,9 @@ const AppProductsList = () => {
         variant="h3"
       />
 
-      <Box className="spa-products-list__container">
+      <AppBox className="spa-products-list__container">
         {products && renderProducts(products)}
-      </Box>
+      </AppBox>
     </PageWrapper>
   );
 };
