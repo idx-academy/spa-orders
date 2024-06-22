@@ -1,12 +1,16 @@
+import { forwardRef } from "react";
 import {
   Link as ReactRouterDomLink,
   NavLink,
   NavLinkProps
 } from "react-router-dom";
 import MuiLink from "@mui/material/Link";
+import {
+  AppLinkProps,
+  NavLinkRenderProps
+} from "@/components/app-link/AppLink.types";
+
 import "@/components/app-link/AppLink.scss";
-import { AppLinkProps, NavLinkRenderProps } from "./AppLink.types";
-import { forwardRef } from "react";
 
 const NavLinkWrapper = forwardRef<HTMLAnchorElement, NavLinkProps>(
   ({ className, ...props }, ref) => {

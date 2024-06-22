@@ -1,8 +1,8 @@
-import { LinkProps as MuiLinkProps } from "@mui/material";
 import {
   NavLinkProps,
   LinkProps as ReactRouterLinkProps
 } from "react-router-dom";
+import { LinkProps as MuiLinkProps } from "@mui/material/Link";
 
 // Used from react-router-dom
 export type NavLinkRenderProps = {
