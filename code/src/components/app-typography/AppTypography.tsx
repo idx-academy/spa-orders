@@ -1,6 +1,8 @@
 import { ComponentProps, ElementType, ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
 import Typography, { TypographyProps } from "@mui/material/Typography";
+import cn from "@/utils/cn";
+
 import "@/components/app-typography/AppTypography.scss";
 
 type HeadingVariant = "h1" | "h2" | "h3";
@@ -62,7 +64,7 @@ const AppTypography = <T extends ElementType = "span">({
   return (
     <Typography
       component={component ?? getDefaultComponentTag(variant)}
-      className={`spa-typography spa-typography__${variant} ${className}`}
+      className={cn(`spa-typography`, `spa-typography__${variant}`, className)}
       {...props}
     >
       {TypographyContent}

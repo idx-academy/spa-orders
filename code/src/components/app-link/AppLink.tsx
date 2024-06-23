@@ -9,13 +9,14 @@ import {
   AppLinkProps,
   NavLinkRenderProps
 } from "@/components/app-link/AppLink.types";
+import cn from "@/utils/cn";
 
 import "@/components/app-link/AppLink.scss";
 
 const NavLinkWrapper = forwardRef<HTMLAnchorElement, NavLinkProps>(
   ({ className, ...props }, ref) => {
     const classNameCallback = ({ isActive }: NavLinkRenderProps) =>
-      `${className} ${isActive ? "spa-link--active" : ""}`;
+      cn(className, isActive && "spa-link--active");
 
     return <NavLink ref={ref} className={classNameCallback} {...props} />;
   }
@@ -33,7 +34,7 @@ const AppLink = ({
   return (
     <MuiLink
       component={component}
-      className={`spa-link spa-link__${variant}`}
+      className={cn("spa-link", `spa-link__${variant}`)}
       {...props}
     />
   );
