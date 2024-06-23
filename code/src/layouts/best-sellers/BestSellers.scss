@@ -1,12 +1,11 @@
 @import "@design-system";
 
-.spa-products-list {
+.spa-best-sellers {
   margin-top: spacing(5);
   padding: spacing(12) spacing(12);
   background-color: var(--spa-foreground-background-color, $white);
   display: flex;
   flex-direction: column;
-  align-items: stretch;
 
   &__header {
     margin-bottom: spacing(5);
@@ -34,5 +33,10 @@
 
   &__price {
     color: var(--spa-products-price-color, $purple);
+  }
+
+  &__button {
+    margin: spacing(12);
+    align-self: center;
   }
 }

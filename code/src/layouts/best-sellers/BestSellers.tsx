@@ -1,29 +1,30 @@
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
-import AppBox from "@/components/app-box/AppBox"
+import AppBox from "@/components/app-box/AppBox";
 
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
 import { Product } from "@/types/product.types";
 
-import "@/layouts/app-products/AppProductsList.scss";
+import "@/layouts/best-sellers/BestSellers.scss";
+import AppButton from "@/components/app-button/AppButton";
 
-const AppProductsList = () => {
+const BestSellers = () => {
   const { data: products, isLoading } = useGetProductsQuery();
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
   const renderProducts = (products: Product[]) => {
-    return products.map((product) => (
-      <AppBox className="spa-products-list__product-container" key={product.id}>
+    return products.slice(0, 5).map((product) => (
+      <AppBox className="spa-best-sellers__product-container" key={product.id}>
         <img
-          className="spa-products-list__img"
+          className="spa-best-sellers__img"
           src={product.image}
           alt={product.name}
         />
         <AppBox>
           <AppTypography variant="caption">{product.name}</AppTypography>
-          <AppTypography className="spa-products-list__price">
+          <AppTypography className="spa-best-sellers__price">
             {product.price}
           </AppTypography>
         </AppBox>
@@ -32,18 +33,21 @@ const AppProductsList = () => {
   };
 
   return (
-    <PageWrapper className="spa-products-list">
+    <PageWrapper className="spa-best-sellers">
       <AppTypography
-        className="spa-products-list__header"
-        translationKey="appProductsList.header"
+        className="spa-best-sellers__header"
+        translationKey="bestSellers.header"
         variant="h3"
       />
 
-      <AppBox className="spa-products-list__container">
+      <AppBox className="spa-best-sellers__container">
         {products && renderProducts(products)}
+      </AppBox>
+      <AppBox className="spa-best-sellers__button">
+        <AppButton size="extra-large">View All</AppButton>
       </AppBox>
     </PageWrapper>
   );
 };
 
-export default AppProductsList;
+export default BestSellers;

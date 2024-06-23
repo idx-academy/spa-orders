@@ -4,7 +4,7 @@ import AppHeader from "@/layouts/app-header/AppHeader";
 import AppBanner from "@/layouts/app-banner/AppBanner";
 import AppFooter from "@/layouts/app-footer/AppFooter";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
-import AppProductsList from "@/layouts/app-products/AppProductsList";
+import BestSellers from "@/layouts/best-sellers/BestSellers";
 
 import "@/shared/modules/application/application.scss";
 
@@ -17,7 +17,7 @@ const Application = ({ children }: ApplicationProps) => {
     <>
       <AppHeader />
       <AppBanner />
-      <AppProductsList />
+      <BestSellers />
       <PageWrapper>{children}</PageWrapper>
       <AppFooter />
     </>
