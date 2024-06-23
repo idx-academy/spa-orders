@@ -9,8 +9,8 @@ type ButtonVariant =
   | "outlined"
   | "text"
   | "danger"
-  | "white"
-  | "black";
+  | "light"
+  | "dark";
 type ButtonSize = "small" | "medium" | "large" | "extra-large";
 
 type AppButtonProps = Omit<ButtonProps, "variant" | "size"> & {
