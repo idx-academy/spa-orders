@@ -24,7 +24,17 @@
     flex-direction: column;
     gap: spacing(2);
     border: 2px solid var(--spa-products-container-border-color, $darken-light);
+    position: relative;
+    overflow: hidden;
+
+    &:hover .spa-best-sellers__description {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      height: 100%;
+    }
   }
+
   &__img {
     width: 100%;
     height: 100%;
@@ -32,11 +42,23 @@
   }
 
   &__price {
-    color: var(--spa-products-price-color, $purple);
+    color: var(--spa-best-sellers-price-color, $purple);
   }
 
   &__button {
     margin: spacing(12);
     align-self: center;
+  }
+
+  &__description {
+    position: absolute;
+    inset: 0;
+    background: var(--spa-hover-product-background-color, $light-alpha);
+    color: var(--spa-hover-product-text-color, $white);
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
   }
 }

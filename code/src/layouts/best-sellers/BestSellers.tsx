@@ -29,6 +29,9 @@ const BestSellers = () => {
             <AppTypography className="spa-best-sellers__price">
               {product.price}
             </AppTypography>
+            <AppTypography className="spa-best-sellers__description">
+              {product.description}
+            </AppTypography>
           </AppBox>
         </AppBox>
       </AppLink>
