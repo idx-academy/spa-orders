@@ -1,7 +1,5 @@
 import Badge from "@mui/material/Badge";
-
 import { AppBadgeProps } from "@/components/app-badge/AppBadge.types";
-
 import cn from "@/utils/cn";
 
 import "@/components/app-badge/AppBadge.scss";
@@ -15,7 +13,6 @@ const AppBadge = ({
 }: AppBadgeProps) => {
   return (
     <Badge
-      max={10}
       className={cn(
         "spa-badge",
         `spa-badge__${color}`,
