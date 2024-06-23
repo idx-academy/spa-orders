@@ -1,0 +1,67 @@
+@import "@design-system";
+
+$badge-colors: (
+  "contained": (
+    var(--spa-badge-contained-bg-color, $purple),
+    var(--spa-badge-contained-color, $white)
+  ),
+  "dark": (
+    var(--spa-badge-dark-bg-color, $black),
+    var(--spa-badge-dark-color, $white)
+  ),
+  "light": (
+    var(--spa-badge-light-color, $white) var(--spa-badge-light-bg-color, $black)
+  ),
+  "danger": (
+    var(--spa-badge-danger-bg-color, $red),
+    var(--spa-badge-danger-color, $white)
+  )
+);
+
+$sizes: (
+  "small": (
+    1,
+    1
+  ),
+  "medium": (
+    2,
+    2
+  ),
+  "large": (
+    3,
+    4
+  ),
+  "extra-large": (
+    4,
+    10
+  )
+);
+
+@mixin badge-size($padding-y, $padding-x) {
+  padding: spacing($padding-y) spacing($padding-x);
+}
+
+@mixin badge-color($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+.spa-badge {
+  @each $variant, $colors in $badge-colors {
+    &__#{$variant} .MuiBadge-badge {
+      @include badge-color(nth($colors, 1), nth($colors, 2));
+    }
+  }
+
+  @each $size, $values in $sizes {
+    &__#{$size} {
+      .MuiBadge-badge {
+        @include badge-size(nth($values, 1), nth($values, 2));
+      }
+    }
+  }
+
+  &__no-rounded .MuiBadge-badge {
+    border-radius: 0;
+  }
+}
