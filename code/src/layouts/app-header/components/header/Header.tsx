@@ -26,7 +26,11 @@ const Header = () => {
           />
         </AppBox>
         <AppBox className="header__icons">
-          <AppBadge badgeContent={badgeContentTypography}>
+          <AppBadge
+            size="small"
+            variant="dark"
+            badgeContent={badgeContentTypography}
+          >
             <ShoppingCartIcon fontSize="large" />
           </AppBadge>
 

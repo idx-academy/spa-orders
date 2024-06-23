@@ -8,7 +8,7 @@ const AppBadge = ({
   className,
   isRounded = true,
   size = "medium",
-  color = "contained",
+  variant = "contained",
   children,
   ...props
 }: AppBadgeProps) => {
@@ -16,7 +16,7 @@ const AppBadge = ({
     <Badge
       className={cn(
         "spa-badge",
-        `spa-badge__${color}`,
+        `spa-badge__${variant}`,
         `spa-badge__${size}`,
         !isRounded && "spa-badge__no-rounded",
         !children && "spa-badge__no-children",

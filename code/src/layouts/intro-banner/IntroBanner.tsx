@@ -12,6 +12,10 @@ import "@/layouts/intro-banner/IntroBanner.scss";
 const IntroBanner = () => {
   const currentImageIndex = useIntroBanner(introBannerImages);
 
+  const badgeContent = (
+    <AppTypography variant="body" translationKey="IntroBanner.badge" />
+  );
+
   return (
     <AppBox
       className="spa-banner-intro"
@@ -22,15 +26,10 @@ const IntroBanner = () => {
       <AppContainer maxWidth="lg">
         <AppBox className="spa-banner-intro__wrapper">
           <AppBadge
-            color="danger"
+            variant="danger"
             size="large"
             isRounded={false}
-            badgeContent={
-              <AppTypography
-                variant="body"
-                translationKey="IntroBanner.badge"
-              />
-            }
+            badgeContent={badgeContent}
           />
           <AppTypography
             className="spa-banner-intro__heading"
