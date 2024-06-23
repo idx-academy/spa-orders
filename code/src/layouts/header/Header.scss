@@ -1,0 +1,11 @@
+@import "@design-system";
+
+.header {
+  --top: 0;
+
+  @include transition((top, "fast"));
+  position: sticky;
+  z-index: 1000;
+  top: var(--top);
+  box-shadow: var(--spa-menu-shadow, $shadow-black);
+}

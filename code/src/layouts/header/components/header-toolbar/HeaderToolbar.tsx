@@ -1,6 +1,6 @@
-import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppContainer from "@/components/app-container/AppContainer";
@@ -16,34 +16,35 @@ const HeaderToolbar = () => {
   // @TODO: use dynamic value instead of hardcoded
   const itemsInCartCount = 10;
 
+  const badgeContentTypography = (
+    <AppTypography variant="caption-small">{itemsInCartCount}</AppTypography>
+  );
+
   return (
-    <AppContainer maxWidth="xl" className="wrapper">
-      <AppBox className="header">
-        <AppBox className="header__logo">
+    <AppContainer maxWidth="xl" className="header__wrapper">
+      <AppBox className="header__toolbar">
+        <AppBox className="header__toolbar-logo">
           <AppLink to="/">
             <AppBox
               component="img"
               src={Logo}
               alt="Logo"
-              className="header__logo-image"
+              className="header__toolbar-logo-image"
             />
           </AppLink>
         </AppBox>
-        <AppBox className="header__icons">
+        <AppBox className="header__toolbar-icons">
           <AppIconButton>
-            <Badge
-              badgeContent={
-                <AppTypography variant="caption-small">
-                  {itemsInCartCount}
-                </AppTypography>
-              }
-              color="primary"
+            <AppBadge
+              badgeContent={badgeContentTypography}
+              color="dark"
+              size="small"
             >
               <ShoppingCartIcon
-                className="header__cart-icon"
+                className="header__toolbar-cart-icon"
                 fontSize="large"
               />
-            </Badge>
+            </AppBadge>
           </AppIconButton>
           <AppButton>
             <AppTypography translationKey="login.label" />

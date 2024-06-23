@@ -1,16 +1,17 @@
 @import "@design-system";
 
-.wrapper {
-  padding: spacing(2) spacing(5);
+.header__wrapper {
+  padding-top: spacing(2);
+  padding-bottom: spacing(2);
   background-color: var(--spa-wrapper-background-color, $light-white);
 }
 
-.header {
+.header__toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  &__logo {
+  &-logo {
     display: flex;
     align-items: center;
 
@@ -19,12 +20,13 @@
     }
   }
 
-  &__icons {
+  &-cart-icon {
+    color: $black;
+  }
+
+  &-icons {
     display: flex;
     align-items: center;
-
-    > * {
-      margin-left: spacing(10);
-    }
+    gap: spacing(8);
   }
 }
