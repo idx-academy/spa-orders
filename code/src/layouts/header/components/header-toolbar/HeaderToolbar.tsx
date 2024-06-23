@@ -13,6 +13,9 @@ import Logo from "@/assets/images/logo.jpeg";
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 
 const HeaderToolbar = () => {
+  // @TODO: use denamic value instead of hardcoded
+  const itemsInCartCount = 10;
+
   return (
     <AppContainer maxWidth="xl" className="wrapper">
       <AppBox className="header">
@@ -30,7 +33,9 @@ const HeaderToolbar = () => {
           <AppIconButton>
             <Badge
               badgeContent={
-                <AppTypography variant="caption-small">{10}</AppTypography>
+                <AppTypography variant="caption-small">
+                  {itemsInCartCount}
+                </AppTypography>
               }
               color="primary"
             >
