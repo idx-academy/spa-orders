@@ -64,4 +64,9 @@ $sizes: (
   &__no-rounded .MuiBadge-badge {
     border-radius: 0;
   }
+
+  &__no-children .MuiBadge-badge {
+    position: static;
+    transform: none;
+  }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useAppBanner = (images: string[], intervalTime = 6) => {
+const useIntroBanner = (images: string[], intervalTime = 6) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const intervalTimeInMilliseconds = intervalTime * 1000;
@@ -16,4 +16,4 @@ const useAppBanner = (images: string[], intervalTime = 6) => {
   return currentImageIndex;
 };
 
-export default useAppBanner;
+export default useIntroBanner;

@@ -1,6 +1,6 @@
 @import "@design-system";
 
-.spa-banner {
+.spa-banner-intro {
   @include transition((background-image "slow" ease-in-out));
 
   background-size: cover;
@@ -13,6 +13,7 @@
     gap: spacing(5);
     padding-block: spacing(30);
   }
+
   &__heading {
     line-height: 1.2;
   }
@@ -20,13 +21,4 @@
   &__button {
     align-self: flex-start;
   }
-}
-
-.best-prices {
-  background-color: $red;
-  font-size: 20px;
-  color: white;
-  padding-block: 2px;
-  max-width: 120px;
-  text-align: center;
 }

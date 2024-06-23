@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import AppHeader from "@/layouts/app-header/AppHeader";
-import AppBanner from "@/layouts/app-banner/AppBanner";
+import IntroBanner from "@/layouts/intro-banner/IntroBanner";
 import AppFooter from "@/layouts/app-footer/AppFooter";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
@@ -14,7 +14,7 @@ const Application = ({ children }: ApplicationProps) => {
   return (
     <>
       <AppHeader />
-      <AppBanner />
+      <IntroBanner />
       <PageWrapper>{children}</PageWrapper>
       <AppFooter />
     </>
