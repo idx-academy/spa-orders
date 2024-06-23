@@ -4,24 +4,19 @@ import AppButton from "@/components/app-button/AppButton";
 import AppBox from "@/components/app-box/AppBox";
 import AppBadge from "@/components/app-badge/AppBadge";
 
+import { introBannerImages } from "@/layouts/intro-banner/IntroBanner.constants";
 import useIntroBanner from "@/layouts/intro-banner/useIntroBanner";
-
-import heroImage1 from "@/assets/images/home-page/hero-section-img-1.webp";
-import heroImage2 from "@/assets/images/home-page/hero-section-img-2.webp";
-import heroImage3 from "@/assets/images/home-page/hero-section-img-3.webp";
 
 import "@/layouts/intro-banner/IntroBanner.scss";
 
-const images = [heroImage1, heroImage2, heroImage3];
-
 const IntroBanner = () => {
-  const currentImageIndex = useIntroBanner(images);
+  const currentImageIndex = useIntroBanner(introBannerImages);
 
   return (
     <AppBox
       className="spa-banner-intro"
       style={{
-        backgroundImage: `url(${images[currentImageIndex]})`
+        backgroundImage: `url(${introBannerImages[currentImageIndex]})`
       }}
     >
       <AppContainer maxWidth="lg">
