@@ -1,9 +1,11 @@
 @import "@design-system";
 
 .spa-banner {
+  @include transition((background-image "slow" ease-in-out));
+
   background-size: cover;
   background-position: bottom;
-  transition: background-image 0.8s ease-in-out;
+
   &__wrapper {
     max-width: 500px;
     display: flex;
@@ -17,18 +19,6 @@
 
   &__button {
     align-self: flex-start;
-  }
-
-  &--image-0 {
-    background-image: url("@/assets/images/home-page/hero-section-img-1.webp");
-  }
-
-  &--image-1 {
-    background-image: url("@/assets/images/home-page/hero-section-img-2.webp");
-  }
-
-  &--image-2 {
-    background-image: url("@/assets/images/home-page/hero-section-img-3.webp");
   }
 }
 
