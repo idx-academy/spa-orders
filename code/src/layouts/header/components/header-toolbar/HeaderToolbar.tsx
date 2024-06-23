@@ -13,7 +13,7 @@ import Logo from "@/assets/images/logo.jpeg";
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 
 const HeaderToolbar = () => {
-  // @TODO: use denamic value instead of hardcoded
+  // @TODO: use dynamic value instead of hardcoded
   const itemsInCartCount = 10;
 
   return (
