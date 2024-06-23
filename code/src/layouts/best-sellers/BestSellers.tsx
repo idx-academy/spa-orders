@@ -8,6 +8,7 @@ import { Product } from "@/types/product.types";
 
 import "@/layouts/best-sellers/BestSellers.scss";
 import AppButton from "@/components/app-button/AppButton";
+import AppLink from "@/components/app-link/AppLink";
 
 const BestSellers = () => {
   const { data: products, isLoading } = useGetProductsQuery();
@@ -16,19 +17,24 @@ const BestSellers = () => {
 
   const renderProducts = (products: Product[]) => {
     return products.slice(0, 5).map((product) => (
-      <AppBox className="spa-best-sellers__product-container" key={product.id}>
-        <img
-          className="spa-best-sellers__img"
-          src={product.image}
-          alt={product.name}
-        />
-        <AppBox>
-          <AppTypography variant="caption">{product.name}</AppTypography>
-          <AppTypography className="spa-best-sellers__price">
-            {product.price}
-          </AppTypography>
+      <AppLink to="/">
+        <AppBox
+          className="spa-best-sellers__product-container"
+          key={product.id}
+        >
+          <img
+            className="spa-best-sellers__img"
+            src={product.image}
+            alt={product.name}
+          />
+          <AppBox>
+            <AppTypography variant="caption">{product.name}</AppTypography>
+            <AppTypography className="spa-best-sellers__price">
+              {product.price}
+            </AppTypography>
+          </AppBox>
         </AppBox>
-      </AppBox>
+      </AppLink>
     ));
   };
 
