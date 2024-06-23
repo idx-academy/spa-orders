@@ -9,4 +9,6 @@ const AppBox = forwardRef(
   }
 );
 
+AppBox.displayName = "AppBox";
+
 export default AppBox;
