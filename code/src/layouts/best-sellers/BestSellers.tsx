@@ -1,42 +1,17 @@
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
+import AppButton from "@/components/app-button/AppButton";
+import ProductCard from "@/components/product-card/ProductCard";
 
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
-import { Product } from "@/types/product.types";
-
 import "@/layouts/best-sellers/BestSellers.scss";
-import AppButton from "@/components/app-button/AppButton";
-import AppLink from "@/components/app-link/AppLink";
 
 const BestSellers = () => {
   const { data: products, isLoading } = useGetProductsQuery();
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
-
-  const renderProducts = (products: Product[]) => {
-    return products.slice(0, 5).map((product) => (
-      <AppLink key={product.id} to="/">
-        <AppBox className="spa-best-sellers__product-container">
-          <img
-            className="spa-best-sellers__img"
-            src={product.image}
-            alt={product.name}
-          />
-          <AppBox>
-            <AppTypography variant="caption">{product.name}</AppTypography>
-            <AppTypography className="spa-best-sellers__price">
-              {product.price}
-            </AppTypography>
-            <AppTypography className="spa-best-sellers__description">
-              {product.description}
-            </AppTypography>
-          </AppBox>
-        </AppBox>
-      </AppLink>
-    ));
-  };
 
   return (
     <PageWrapper className="spa-best-sellers">
@@ -47,7 +22,12 @@ const BestSellers = () => {
       />
 
       <AppBox className="spa-best-sellers__container">
-        {products && renderProducts(products)}
+        {products &&
+          products
+            .slice(0, 5)
+            .map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
       </AppBox>
       <AppBox className="spa-best-sellers__button">
         <AppButton size="extra-large">
