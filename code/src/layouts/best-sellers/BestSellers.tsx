@@ -17,11 +17,8 @@ const BestSellers = () => {
 
   const renderProducts = (products: Product[]) => {
     return products.slice(0, 5).map((product) => (
-      <AppLink to="/">
-        <AppBox
-          className="spa-best-sellers__product-container"
-          key={product.id}
-        >
+      <AppLink key={product.id} to="/">
+        <AppBox className="spa-best-sellers__product-container">
           <img
             className="spa-best-sellers__img"
             src={product.image}
@@ -50,7 +47,9 @@ const BestSellers = () => {
         {products && renderProducts(products)}
       </AppBox>
       <AppBox className="spa-best-sellers__button">
-        <AppButton size="extra-large">View All</AppButton>
+        <AppButton size="extra-large">
+          <AppTypography translationKey="bestSellers.button" />
+        </AppButton>
       </AppBox>
     </PageWrapper>
   );
