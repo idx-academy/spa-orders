@@ -2,29 +2,41 @@
 
 .spa-banner {
   background-size: cover;
-  background-position: center;
-  aspect-ratio: 12/5;
-
-  &__container {
+  background-position: bottom;
+  transition: background-image 0.8s ease-in-out;
+  &__wrapper {
     max-width: 500px;
-    max-height: 400px;
     display: flex;
     flex-direction: column;
-    padding-top: spacing(20);
     gap: spacing(5);
+    padding-block: spacing(30);
   }
-
-  &__header {
-    line-height: spacing(18);
-  }
-
-  &__paragraph {
-    display: flex;
-    flex-direction: column;
-    gap: spacing(3);
+  &__heading {
+    line-height: 1.2;
   }
 
   &__button {
-    margin-top: spacing(4);
+    align-self: flex-start;
   }
+
+  &--image-0 {
+    background-image: url("@/assets/images/home-page/hero-section-img-1.webp");
+  }
+
+  &--image-1 {
+    background-image: url("@/assets/images/home-page/hero-section-img-2.webp");
+  }
+
+  &--image-2 {
+    background-image: url("@/assets/images/home-page/hero-section-img-3.webp");
+  }
+}
+
+.best-prices {
+  background-color: $red;
+  font-size: 20px;
+  color: white;
+  padding-block: 2px;
+  max-width: 120px;
+  text-align: center;
 }

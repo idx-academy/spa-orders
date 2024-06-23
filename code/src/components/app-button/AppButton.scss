@@ -30,7 +30,8 @@
   column-gap: spacing(2);
   border-width: 1px;
   border-style: solid;
-  border-radius: spacing(5);
+  border-radius: spacing(6);
+  text-transform: none;
 
   &__contained {
     @include focus-style(var(--spa-button-contained-focus-color, $purple));
