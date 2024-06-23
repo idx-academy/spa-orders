@@ -1,5 +1,8 @@
 import Badge from "@mui/material/Badge";
+
 import { AppBadgeProps } from "@/components/app-badge/AppBadge.types";
+
+import cn from "@/utils/cn";
 
 import "@/components/app-badge/AppBadge.scss";
 
@@ -10,12 +13,16 @@ const AppBadge = ({
   color = "contained",
   ...props
 }: AppBadgeProps) => {
-  const roundVariant = isRounded ? "" : "spa-badge__no-rounded";
-
   return (
     <Badge
       max={10}
-      className={`spa-badge spa-badge__${color} ${roundVariant} spa-badge__${size} ${className}`}
+      className={cn(
+        "spa-badge",
+        `spa-badge__${color}`,
+        !isRounded && "spa-badge__no-rounded",
+        `spa-badge__${size}`,
+        className
+      )}
       {...props}
     />
   );
