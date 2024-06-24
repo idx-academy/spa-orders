@@ -130,3 +130,25 @@ $duration: (
 );
 
 /*=====  End of SHADOWS  ======*/
+
+/*=============================================
+=                  Z-INDEXES                  =
+=============================================*/
+
+$layer-default: 1;
+$layer-dropdown: 10;
+$layer-overlay: 20;
+$layer-modal: 30;
+$layer-tooltip: 40;
+$layer-popover: 50;
+
+$layers: (
+  default: 1,
+  dropdown: 10,
+  overlay: 20,
+  modal: 30,
+  tooltip: 40,
+  popover: 50
+);
+
+/*=====  End of SHADOWS  ======*/

@@ -43,3 +43,7 @@
 
   transition: $result;
 }
+
+@mixin layer($variant) {
+  z-index: map-get($layers, $variant);
+}
