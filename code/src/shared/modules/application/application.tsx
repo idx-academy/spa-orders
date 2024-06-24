@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import AppHeader from "@/layouts/app-header/AppHeader";
 import IntroBanner from "@/layouts/intro-banner/IntroBanner";
-import CategorySection from "@/components/categorySection/CategorySection";
+import CategorySection from "@/layouts/categorySection/CategorySection";
 import AppFooter from "@/layouts/app-footer/AppFooter";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
