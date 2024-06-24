@@ -1,5 +1,6 @@
 import Button, { ButtonProps } from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
+import cn from "@/utils/cn";
 
 import "@/components/app-button/AppButton.scss";
 
@@ -8,8 +9,8 @@ type ButtonVariant =
   | "outlined"
   | "text"
   | "danger"
-  | "white"
-  | "black";
+  | "light"
+  | "dark";
 type ButtonSize = "small" | "medium" | "large" | "extra-large";
 
 type AppButtonProps = Omit<ButtonProps, "variant" | "size"> & {
@@ -37,7 +38,12 @@ const AppButton = ({
   return (
     <Button
       disabled={isDisabled}
-      className={`spa-button spa-button__${variant} spa-button__${size} ${className}`}
+      className={cn(
+        "spa-button",
+        `spa-button__${variant}`,
+        `spa-button__${size}`,
+        className
+      )}
       {...props}
     >
       {children}
