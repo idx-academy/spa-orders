@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
       <IntroBanner />
-      <BestSellers/>
+      <BestSellers />
       <PageWrapper>Content</PageWrapper>
     </>
   );
