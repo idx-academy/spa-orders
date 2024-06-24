@@ -3,8 +3,7 @@ const routes = {
     path: "/"
   },
   products: {
-    path: "/products",
-    route: "products"
+    path: "/products"
   },
   any: {
     path: "*"
