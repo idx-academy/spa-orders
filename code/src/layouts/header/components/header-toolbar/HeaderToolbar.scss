@@ -20,7 +20,7 @@
   }
 
   &-cart-icon {
-    color: $black;
+    color: var(--spa-cart-icon-color, $black);
   }
 
   &-icons {

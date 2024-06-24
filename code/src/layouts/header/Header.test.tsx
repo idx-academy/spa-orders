@@ -19,5 +19,7 @@ test("renders Header correctly", () => {
       <Header />
     </MemoryRouter>
   );
-  expect(screen.getByText("login.label")).toBeInTheDocument();
+
+  const loginLabel = screen.getByText("login.label");
+  expect(loginLabel).toBeInTheDocument();
 });
