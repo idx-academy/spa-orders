@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-const useIntroBanner = (images: string[], intervalTime = 6000) => {
+const useIntroBanner = (length: number, intervalTime = 6000) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % length);
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, [images.length, intervalTime]);
+  }, [length, intervalTime]);
 
   return currentImageIndex;
 };

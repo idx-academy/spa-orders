@@ -8,7 +8,7 @@ describe("useIntroBanner", () => {
     const timer = jest.useFakeTimers();
 
     const { result } = renderHook(() =>
-      useIntroBanner(introBannerImages, timeTick)
+      useIntroBanner(introBannerImages.length, timeTick)
     );
 
     act(() => {
