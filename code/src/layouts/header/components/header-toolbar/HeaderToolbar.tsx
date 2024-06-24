@@ -8,7 +8,7 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import Logo from "@/assets/images/logo.jpeg";
+import logo from "@/assets/images/logo.png";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 
@@ -21,14 +21,14 @@ const HeaderToolbar = () => {
   );
 
   return (
-    <AppContainer maxWidth="xl" className="header__wrapper">
-      <AppBox className="header__toolbar">
+    <AppBox className="header__wrapper">
+      <AppContainer maxWidth="xl" className="header__toolbar">
         <AppBox className="header__toolbar-logo">
           <AppLink to="/">
             <AppBox
               component="img"
-              src={Logo}
-              alt="Logo"
+              src={logo}
+              alt="App logo"
               className="header__toolbar-logo-image"
             />
           </AppLink>
@@ -50,8 +50,8 @@ const HeaderToolbar = () => {
             <AppTypography translationKey="login.label" />
           </AppButton>
         </AppBox>
-      </AppBox>
-    </AppContainer>
+      </AppContainer>
+    </AppBox>
   );
 };
 
