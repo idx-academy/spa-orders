@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-type SubintroElementProps = {
+type SubintroItemProps = {
   content: string;
   icon: string;
 };
 
-const SubintroElement = ({ content, icon }: SubintroElementProps) => {
+const SubintroItem = ({ content, icon }: SubintroItemProps) => {
   return (
     <Box className="spa-subintro__element" data-testid="spa-subintro-item">
       <img className="spa-subintro__icon" src={icon} />
@@ -19,4 +19,4 @@ const SubintroElement = ({ content, icon }: SubintroElementProps) => {
   );
 };
 
-export default SubintroElement;
+export default SubintroItem;
