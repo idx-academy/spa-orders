@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import subintroData from "@/components/subintro/Subintro.constants";
 import SubintroElement from "@/components/subintroElement/SubintroElement";
-import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import "@/components/subintro/subintro.scss";
 
 const Subintro = () => {
