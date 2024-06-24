@@ -7,9 +7,11 @@ import NotFoundPage from "@/pages/not-found/NotFoundPage";
 import HomePage from "@/pages/home/HomePage";
 import ProductsPage from "@/pages/products/ProductsPage";
 
+import routePaths from "@/constants/routes";
+
 const routes: RouteObject[] = [
   {
-    path: "/",
+    path: routePaths.home,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -19,7 +21,7 @@ const routes: RouteObject[] = [
     ]
   },
   {
-    path: "/products",
+    path: routePaths.products,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -29,7 +31,7 @@ const routes: RouteObject[] = [
     ]
   },
   {
-    path: "*",
+    path: routePaths.any,
     element: <NotFoundPage />
   }
 ];
