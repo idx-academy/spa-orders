@@ -13,6 +13,12 @@ const BestSellers = () => {
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
+  const productCards = products
+    ? products
+        .slice(0, 5)
+        .map((product) => <ProductCard key={product.id} product={product} />)
+    : null;
+
   return (
     <PageWrapper className="spa-best-sellers">
       <AppTypography
@@ -21,14 +27,7 @@ const BestSellers = () => {
         variant="h3"
       />
 
-      <AppBox className="spa-best-sellers__container">
-        {products &&
-          products
-            .slice(0, 5)
-            .map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-      </AppBox>
+      <AppBox className="spa-best-sellers__container">{productCards}</AppBox>
       <AppBox className="spa-best-sellers__button">
         <AppButton size="extra-large">
           <AppTypography translationKey="bestSellers.button" />

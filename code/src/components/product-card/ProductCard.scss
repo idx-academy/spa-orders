@@ -31,11 +31,11 @@
     inset: 0;
     background: var(--spa-hover-product-background-color, $light-alpha);
     color: var(--spa-hover-product-text-color, $white);
-    padding: 10px;
+    padding: spacing(4) spacing(3);
     opacity: 0;
     visibility: hidden;
     transform: translateY(100%);
-    transition: all 0.3s ease;
+    @include transition((all, "medium"));
     backdrop-filter: blur(spacing(2));
   }
 }

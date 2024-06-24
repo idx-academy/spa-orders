@@ -14,10 +14,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <AppLink key={product.id} to="/">
       <AppBox className="spa-product-card">
-        <img
-          className="spa-product-card__img"
-          src={product.image}
+        <AppBox
           alt={product.name}
+          className="spa-product-card__img"
+          component="img"
+          src={product.image}
         />
         <AppBox>
           <AppTypography variant="caption">{product.name}</AppTypography>
