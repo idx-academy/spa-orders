@@ -1,10 +1,10 @@
-import AppBanner from "@/layouts/app-banner/AppBanner";
+import IntroBanner from "@/layouts/intro-banner/IntroBanner";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
 const HomePage = () => {
   return (
     <>
-      <AppBanner />
+      <IntroBanner />
       <PageWrapper>Content</PageWrapper>
     </>
   );
