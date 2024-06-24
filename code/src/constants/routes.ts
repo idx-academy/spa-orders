@@ -1,7 +1,14 @@
 const routes = {
-  home: "/",
-  products: "/products",
-  any: "*"
+  home: {
+    path: "/"
+  },
+  products: {
+    path: "/products",
+    route: "products"
+  },
+  any: {
+    path: "*"
+  }
 } as const;
 
 export default routes;

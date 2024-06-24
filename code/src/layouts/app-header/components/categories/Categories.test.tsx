@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import Categories from "@/layouts/app-header/components/categories/Categories";
 import { categories } from "@/layouts/app-header/components/categories/Categories.constants";
 
-describe("Categories Component", () => {
+describe("Categories component", () => {
   test("render number length of categories", () => {
     render(
       <BrowserRouter>

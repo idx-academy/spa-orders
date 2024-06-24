@@ -11,27 +11,20 @@ import routePaths from "@/constants/routes";
 
 const routes: RouteObject[] = [
   {
-    path: routePaths.home,
+    path: routePaths.home.path,
     errorElement: <ErrorPage />,
     children: [
       {
         element: <RootLayout />,
-        children: [{ index: true, element: <HomePage /> }]
+        children: [
+          { index: true, element: <HomePage /> },
+          { path: routePaths.products.route, element: <ProductsPage /> }
+        ]
       }
     ]
   },
   {
-    path: routePaths.products,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        element: <RootLayout />,
-        children: [{ index: true, element: <ProductsPage /> }]
-      }
-    ]
-  },
-  {
-    path: routePaths.any,
+    path: routePaths.any.path,
     element: <NotFoundPage />
   }
 ];
