@@ -5,20 +5,26 @@ import RootLayout from "@/layouts/root-layout/RootLayout";
 import ErrorPage from "@/pages/error/ErrorPage";
 import NotFoundPage from "@/pages/not-found/NotFoundPage";
 import HomePage from "@/pages/home/HomePage";
+import ProductsPage from "@/pages/products/ProductsPage";
+
+import routePaths from "@/constants/routes";
 
 const routes: RouteObject[] = [
   {
-    path: "/",
+    path: routePaths.home.path,
     errorElement: <ErrorPage />,
     children: [
       {
         element: <RootLayout />,
-        children: [{ index: true, element: <HomePage /> }]
+        children: [
+          { index: true, element: <HomePage /> },
+          { path: routePaths.products.path, element: <ProductsPage /> }
+        ]
       }
     ]
   },
   {
-    path: "*",
+    path: routePaths.any.path,
     element: <NotFoundPage />
   }
 ];
