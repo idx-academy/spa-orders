@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
 import categoryData from "@/components/categorySection/CategorySection.constants";
 import "@/components/categorySection/CategorySection.scss";
@@ -20,9 +20,7 @@ const CategoryElement = ({ label, image }: CategoryElementProps) => {
         translationKey={label}
         variant="subtitle2"
         className="spa-category-section__label"
-      >
-        {}
-      </AppTypography>
+      />
     </Box>
   );
 };
@@ -35,7 +33,7 @@ const CategorySection = () => {
           translationKey="categorySection.title"
           variant="subtitle1"
           className="spa-category-section__title"
-        ></AppTypography>
+        />
         {categoryData.map((element) => (
           <CategoryElement
             key={element.id}

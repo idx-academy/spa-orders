@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import AppHeader from "@/layouts/app-header/AppHeader";
 import IntroBanner from "@/layouts/intro-banner/IntroBanner";
-import AppFooter from "@/layouts/app-footer/AppFooter";
 import CategorySection from "@/components/categorySection/CategorySection";
+import AppFooter from "@/layouts/app-footer/AppFooter";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
 import "@/shared/modules/application/application.scss";
@@ -17,7 +17,7 @@ const Application = ({ children }: ApplicationProps) => {
       <AppHeader />
       <IntroBanner />
       <PageWrapper>{children}</PageWrapper>
-      <CategorySection/>
+      <CategorySection />
       <AppFooter />
     </>
   );
