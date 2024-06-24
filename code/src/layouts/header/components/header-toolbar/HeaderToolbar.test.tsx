@@ -10,7 +10,7 @@ describe("HeaderToolbar", () => {
       </MemoryRouter>
     );
 
-    const logo = screen.getByAltText("Logo");
+    const logo = screen.getByAltText("App logo");
     expect(logo).toBeInTheDocument();
   });
 });
