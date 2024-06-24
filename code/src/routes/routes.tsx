@@ -5,6 +5,7 @@ import RootLayout from "@/layouts/root-layout/RootLayout";
 import ErrorPage from "@/pages/error/ErrorPage";
 import NotFoundPage from "@/pages/not-found/NotFoundPage";
 import HomePage from "@/pages/home/HomePage";
+import ProductsPage from "@/pages/products/ProductsPage";
 
 const routes: RouteObject[] = [
   {
@@ -14,6 +15,16 @@ const routes: RouteObject[] = [
       {
         element: <RootLayout />,
         children: [{ index: true, element: <HomePage /> }]
+      }
+    ]
+  },
+  {
+    path: "/products",
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        element: <RootLayout />,
+        children: [{ index: true, element: <ProductsPage /> }]
       }
     ]
   },

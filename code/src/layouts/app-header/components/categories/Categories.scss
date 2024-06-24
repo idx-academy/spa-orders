@@ -7,8 +7,12 @@
   box-shadow: var(--spa-menu-shadow, $shadow-black);
 
   &__item {
+    @include transition((color));
+
     cursor: pointer;
     padding: spacing(2) spacing(5);
+    text-decoration: none;
+    color: var(--spa-menu-item-text-color, $black);
 
     &:hover {
       color: var(--spa-menu-hover-color, $purple);
