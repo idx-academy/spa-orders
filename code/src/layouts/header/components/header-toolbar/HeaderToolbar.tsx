@@ -37,7 +37,7 @@ const HeaderToolbar = () => {
           <AppIconButton>
             <AppBadge
               badgeContent={badgeContentTypography}
-              color="dark"
+              variant="dark"
               size="small"
             >
               <ShoppingCartIcon
