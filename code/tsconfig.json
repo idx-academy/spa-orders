@@ -31,7 +31,11 @@
     "pretty": true,
     "skipLibCheck": true,
     "lib": ["es5", "es6", "es7", "es2017", "es2019", "dom"],
-    "typeRoots": ["./types", "./node_modules/@types"]
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types",
+      "node_modules/@testing-library"
+    ]
   },
   "include": ["src/**/*", "config/**/*", "types/**/*"],
   "exclude": ["node_modules/**"],
