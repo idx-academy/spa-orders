@@ -3,7 +3,7 @@ import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
 import categoryData from "@/layouts/categorySection/CategorySection.constants";
 import CategoryItem from "@/layouts/categorySection/components/CategoryItem";
-import "@/components/categorySection/CategorySection.scss";
+import "@/layouts/categorySection/CategorySection.scss";
 
 const CategorySection = () => {
   return (
