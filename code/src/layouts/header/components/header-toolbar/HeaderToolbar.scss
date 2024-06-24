@@ -1,9 +1,8 @@
 @import "@design-system";
 
 .header__wrapper {
-  padding-top: spacing(2);
-  padding-bottom: spacing(2);
-  background-color: var(--spa-wrapper-background-color, $light-white);
+  padding-block: spacing(2);
+  background-color: var(--spa-wrapper-background-color, $white);
 }
 
 .header__toolbar {
