@@ -1,0 +1,24 @@
+@import "@design-system";
+
+.spa-banner-intro {
+  @include transition((background-image, "slow", ease-in-out));
+
+  background-size: cover;
+  background-position: bottom;
+
+  &__wrapper {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: spacing(5);
+    padding-block: spacing(30);
+  }
+
+  &__heading {
+    line-height: 1.2;
+  }
+
+  &__button {
+    align-self: flex-start;
+  }
+}
