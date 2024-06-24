@@ -29,7 +29,7 @@ const useStickyHeader = () => {
     return () => observer.unobserve(targetElement);
   }, []);
 
-  return { headerRef, scrollHandleRef };
+  return { headerRef, scrollHandleRef } as const;
 };
 
 export default useStickyHeader;
