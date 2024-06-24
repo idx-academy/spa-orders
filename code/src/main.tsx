@@ -1,10 +1,11 @@
-import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import I18nProivider from "@/shared/i18n/I18nProvider";
+import { createRoot } from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { StyledEngineProvider } from "@mui/material";
+import I18nProivider from "@/context/I18nProvider";
 
-import Router from "@/router";
 import { store } from "@/store/store";
+import routes from "@/routes/routes";
 
 import "@/styles/global.scss";
 
@@ -13,7 +14,7 @@ const App = () => {
     <Provider store={store}>
       <StyledEngineProvider injectFirst>
         <I18nProivider>
-          <Router />
+          <RouterProvider router={createBrowserRouter(routes)} />
         </I18nProivider>
       </StyledEngineProvider>
     </Provider>

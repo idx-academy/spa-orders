@@ -1,5 +1,5 @@
-import commonMessages from "@/shared/i18n/common-messages";
 import bannerMessages from "@/layouts/intro-banner/messages";
+import commonMessages from "@/constants/common-messages";
 import footerMessages from "@/layouts/app-footer/messages";
 
 const messages = {

@@ -87,7 +87,8 @@ module.exports = {
 module.exports = {
   entry: path.join(__dirname, "..", "src", "main.tsx"),
   output: {
-    path: path.resolve(__dirname, "../dist")
+    path: path.resolve(__dirname, "../dist"),
+    publicPath: "/"
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -176,6 +177,7 @@ module.exports = {
     }
   },
   devServer: {
-    port: 3000
+    port: 3000,
+    historyApiFallback: true
   }
 };
