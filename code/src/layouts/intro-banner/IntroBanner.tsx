@@ -13,7 +13,7 @@ const IntroBanner = () => {
   const currentImageIndex = useIntervalSwitcher(introBannerImages.length);
 
   const badgeContent = (
-    <AppTypography variant="body" translationKey="IntroBanner.badge" />
+    <AppTypography variant="body" translationKey="introBanner.badge" />
   );
 
   return (
@@ -34,15 +34,15 @@ const IntroBanner = () => {
           <AppTypography
             className="spa-banner-intro__heading"
             variant="h1"
-            translationKey="IntroBanner.header"
+            translationKey="introBanner.header"
           />
           <AppTypography
             variant="subtitle2"
-            translationKey="IntroBanner.paragraphfirst"
+            translationKey="introBanner.paragraphfirst"
             className="spa-banner-intro__desctiption"
           />
           <AppButton size="large" className="spa-banner-intro__button">
-            <AppTypography variant="body" translationKey="IntroBanner.button" />
+            <AppTypography variant="body" translationKey="introBanner.button" />
           </AppButton>
         </AppBox>
       </AppContainer>
