@@ -1,13 +1,13 @@
-import Box from "@mui/material/Box";
 import subintroData from "@/layouts/subintro/Subintro.constants";
 import SubintroItem from "@/layouts/subintro/components/SubintroItem";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import "@/layouts/subintro/subintro.scss";
+import AppBox from "@/components/app-box/AppBox";
 
 const Subintro = () => {
   return (
     <PageWrapper>
-      <Box className="spa-subintro">
+      <AppBox className="spa-subintro">
         {subintroData.map((element) => (
           <SubintroItem
             icon={element.icon}
@@ -15,7 +15,7 @@ const Subintro = () => {
             content={element.content}
           />
         ))}
-      </Box>
+      </AppBox>
     </PageWrapper>
   );
 };
