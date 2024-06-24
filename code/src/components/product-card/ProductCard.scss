@@ -36,5 +36,6 @@
     visibility: hidden;
     transform: translateY(100%);
     transition: all 0.3s ease;
+    backdrop-filter: blur(spacing(2));
   }
 }
