@@ -5,12 +5,12 @@ import AppBox from "@/components/app-box/AppBox";
 import AppBadge from "@/components/app-badge/AppBadge";
 
 import { introBannerImages } from "@/layouts/intro-banner/IntroBanner.constants";
-import useIntroBanner from "@/layouts/intro-banner/useIntroBanner";
+import useIntervalSwitcher from "@/hooks/use-interval-switcher/useIntervalSwitcher";
 
 import "@/layouts/intro-banner/IntroBanner.scss";
 
 const IntroBanner = () => {
-  const currentImageIndex = useIntroBanner(introBannerImages.length);
+  const currentImageIndex = useIntervalSwitcher(introBannerImages.length);
 
   const badgeContent = (
     <AppTypography variant="body" translationKey="IntroBanner.badge" />
