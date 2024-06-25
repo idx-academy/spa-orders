@@ -3,6 +3,12 @@
 .spa-banner-intro {
   @include transition((background-image, "slow", ease-in-out));
 
+  @for $i from 0 through 2 {
+    &--image-#{$i} {
+      background-image: url("@/assets/images/home-page/intro-banner/hero-section-img-#{$i + 1}.webp");
+    }
+  }
+
   background-size: cover;
   background-position: bottom;
 
