@@ -9,7 +9,7 @@ const PageWrapper = (
   ref: Ref<HTMLDivElement>
 ) => {
   return (
-    <AppContainer maxWidth="lg" ref={ref} {...rest}>
+    <AppContainer maxWidth="xl" ref={ref} {...rest}>
       {children}
     </AppContainer>
   );

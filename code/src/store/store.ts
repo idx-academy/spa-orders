@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 
-import todoReducer from "@/store/slices/todoSlice"; //this reducer just for example
+import productsReducer from "@/store/slices/productsSlice"; 
 import { appApi } from "@/store/api/appApi";
 
 export const store = configureStore({
   reducer: {
-    todos: todoReducer, //this reducer just for example
+    products: productsReducer, 
     [appApi.reducerPath]: appApi.reducer
   },
   middleware: (getDefaultMiddleware) =>

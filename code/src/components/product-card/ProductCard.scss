@@ -1,0 +1,41 @@
+@import "@design-system";
+
+.spa-product-card {
+  padding: spacing(2);
+  display: flex;
+  flex-direction: column;
+  gap: spacing(2);
+  border: 2px solid var(--spa-products-container-border-color, $darken-light);
+  position: relative;
+  overflow: hidden;
+
+  &:hover .spa-product-card__description {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    height: 100%;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__price {
+    color: var(--spa-best-sellers-price-color, $purple);
+  }
+
+  &__description {
+    position: absolute;
+    inset: 0;
+    background: var(--spa-hover-product-background-color, $light-alpha);
+    color: var(--spa-hover-product-text-color, $white);
+    padding: spacing(4) spacing(3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    @include transition((all, "medium"));
+    backdrop-filter: blur(spacing(2));
+  }
+}
