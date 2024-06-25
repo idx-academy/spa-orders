@@ -4,6 +4,7 @@ import footerMessages from "@/layouts/footer/messages";
 import bestSellersMessages from "@/layouts/best-sellers/messages";
 import subintroMessages from "@/layouts/subintro/messages";
 import categorySectionMessages from "@/layouts/category-section/messages";
+import callToActionSectionMessages from "@/pages/home/components/call-to-action-section/messages";
 
 const messages = {
   en: {
@@ -12,7 +13,8 @@ const messages = {
     ...bannerMessages.en,
     ...bestSellersMessages.en,
     ...subintroMessages.en,
-    ...categorySectionMessages.en
+    ...categorySectionMessages.en,
+    ...callToActionSectionMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -20,7 +22,8 @@ const messages = {
     ...bannerMessages.uk,
     ...bestSellersMessages.uk,
     ...subintroMessages.uk,
-    ...categorySectionMessages.uk
+    ...categorySectionMessages.uk,
+    ...callToActionSectionMessages.uk
   }
 };
 
