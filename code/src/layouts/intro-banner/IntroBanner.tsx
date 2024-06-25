@@ -18,10 +18,7 @@ const IntroBanner = () => {
 
   return (
     <AppBox
-      className="spa-banner-intro"
-      style={{
-        backgroundImage: `url(${introBannerImages[currentImageIndex]})`
-      }}
+      className={`spa-banner-intro spa-banner-intro--image-${currentImageIndex}`}
     >
       <AppContainer maxWidth="lg">
         <AppBox className="spa-banner-intro__wrapper">
