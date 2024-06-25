@@ -48,6 +48,7 @@ $loader-sizes: (
     &__#{$size} {
       width: nth($values, 1) !important;
       height: nth($values, 1) !important;
+      // !important is needed to override the inline style from MUI
 
       .MuiCircularProgress-root {
         @include box(nth($values, 1));
