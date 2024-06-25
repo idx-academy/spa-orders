@@ -18,7 +18,7 @@ const CategorySection = () => {
     <AppBox className="spa-category-section">
       <AppTypography
         translationKey="categorySection.title"
-        variant="subtitle1"
+        variant="h3"
         className="spa-category-section__title"
       />
       <AppBox className="spa-category-section__container">
