@@ -1,0 +1,25 @@
+@import "@design-system";
+
+.spa-best-sellers {
+  margin-top: spacing(5);
+  padding: spacing(12);
+  background-color: var(--spa-foreground-background-color, $white);
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    margin-bottom: spacing(5);
+    align-self: center;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: spacing(6);
+  }
+
+  &__button {
+    margin: spacing(12);
+    align-self: center;
+  }
+}

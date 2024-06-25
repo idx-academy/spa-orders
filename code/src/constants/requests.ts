@@ -1,8 +1,8 @@
 export const URLS = {
-  todos: {
-    get: "/todos",
-    post: "/todos",
-    put: "/todos",
-    delete: "/todos"
-  } // example of endopoints
+  products: {
+    get: "/products",
+    post: "/products",
+    put: "/products",
+    delete: "/products"
+  }
 } as const;
