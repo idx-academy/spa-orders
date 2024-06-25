@@ -1,12 +1,7 @@
-import AppContainer from "@/components/app-container/AppContainer";
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppButton from "@/components/app-button/AppButton";
 import AppLink from "@/components/app-link/AppLink";
-
-import callToActionItems from "@/pages/home/components/call-to-action-section/CallToAction.constants";
-
-import "@/pages/home/components/call-to-action-section/CallToActionSection.scss";
 
 type CallToActionSectionItemProps = {
   titleTranslationKey: string;
@@ -17,7 +12,7 @@ type CallToActionSectionItemProps = {
   buttonLabelTranslationKey: string;
 };
 
-const CallToActionSectionItem = ({
+const CallToActionItem = ({
   titleTranslationKey,
   descriptionTranslationKey,
   captionTranslationKey,
@@ -51,17 +46,4 @@ const CallToActionSectionItem = ({
   );
 };
 
-const CallToActionSection = () => {
-  return (
-    <AppContainer maxWidth="xl" className="call-to-action">
-      {callToActionItems.map((itemData) => (
-        <CallToActionSectionItem
-          key={itemData.titleTranslationKey}
-          {...itemData}
-        />
-      ))}
-    </AppContainer>
-  );
-};
-
-export default CallToActionSection;
+export default CallToActionItem;

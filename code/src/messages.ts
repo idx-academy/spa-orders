@@ -4,7 +4,7 @@ import footerMessages from "@/layouts/footer/messages";
 import bestSellersMessages from "@/layouts/best-sellers/messages";
 import subintroMessages from "@/layouts/subintro/messages";
 import categorySectionMessages from "@/layouts/category-section/messages";
-import callToActionSectionMessages from "@/pages/home/components/call-to-action-section/messages";
+import callToActionSectionMessages from "@/pages/home/components/call-to-action/messages";
 
 const messages = {
   en: {

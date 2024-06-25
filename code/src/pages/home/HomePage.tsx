@@ -3,7 +3,7 @@ import IntroBanner from "@/layouts/intro-banner/IntroBanner";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import Subintro from "@/layouts/subintro/Subintro";
 import CategorySection from "@/layouts/category-section/CategorySection";
-import CallToActionSection from "@/pages/home/components/call-to-action-section/CallToActionSection";
+import CallToActionSection from "@/pages/home/components/call-to-action/CallToActionSection";
 
 const HomePage = () => {
   return (

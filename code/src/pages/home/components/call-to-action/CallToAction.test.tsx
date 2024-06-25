@@ -1,6 +1,6 @@
 import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
-import CallToActionSection from "@/pages/home/components/call-to-action-section/CallToActionSection";
+import CallToActionSection from "@/pages/home/components/call-to-action/CallToActionSection";
 
 describe("CallToAction", () => {
   test("renders correctly", () => {
