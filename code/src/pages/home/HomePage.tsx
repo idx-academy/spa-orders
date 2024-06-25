@@ -9,13 +9,12 @@ const HomePage = () => {
   return (
     <>
       <IntroBanner />
-      <CallToActionSection />
       <PageWrapper>
         <Subintro />
+        <CallToActionSection />
         <BestSellers />
         <CategorySection />
       </PageWrapper>
-      <PageWrapper>Content</PageWrapper>
     </>
   );
 };
