@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: spacing(2);
-  border: 2px solid var(--spa-products-container-border-color, $light);
+  border: 2px solid var(--spa-products-container-border-color, $darken-light);
   position: relative;
   overflow: hidden;
 
