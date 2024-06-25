@@ -8,15 +8,18 @@ import { categories } from "@/layouts/header/components/header-categories/Header
 import "@/layouts/header/components/header-categories/HeaderCategories.scss";
 
 const HeaderCategories = () => {
-  // @TODO: change "to" prop in the future
-
   return (
     <AppBox className="menu">
       <AppContainer maxWidth="xl" className="menu__container">
-        {categories.map((category, i) => (
-          <AppLink to={`/category${i}`} variant="colored" isNavLink key={i}>
+        {categories.map((category) => (
+          <AppLink
+            to={category.href}
+            variant="colored"
+            isNavLink
+            key={category.label}
+          >
             <AppTypography variant="caption" data-testid="menu-item">
-              {category}
+              {category.label}
             </AppTypography>
           </AppLink>
         ))}
