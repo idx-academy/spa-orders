@@ -1,5 +1,5 @@
 import Button, { ButtonProps } from "@mui/material/Button";
-import CircularProgress from "@mui/material/CircularProgress";
+import AppLoader from "@/components/app-loader/AppLoader";
 import cn from "@/utils/cn";
 
 import "@/components/app-button/AppButton.scss";
@@ -30,10 +30,7 @@ const AppButton = ({
 }: AppButtonProps) => {
   const isDisabled = disabled || isLoading;
 
-  //@TODO: Create a separate component for the loader
-  const loader = isLoading && (
-    <CircularProgress className="spa-loader" size={16} />
-  );
+  const loader = isLoading && <AppLoader variant="disabled" size="small" />;
 
   return (
     <Button

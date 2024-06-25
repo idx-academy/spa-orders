@@ -1,0 +1,58 @@
+@import "@design-system";
+
+$loader-colors: (
+  "contained": (
+    var(--spa-loader-contained-color, $purple)
+  ),
+  "dark": (
+    var(--spa-loader-dark-color, $black)
+  ),
+  "light": (
+    var(--spa-loader-light-color, $white)
+  ),
+  "danger": (
+    var(--spa-loader-danger-color, $red)
+  ),
+  "disabled": (
+    var(--spa-loader-disabled-color, $gray-light)
+  )
+);
+
+$loader-sizes: (
+  "small": (
+    16px
+  ),
+  "medium": (
+    24px
+  ),
+  "large": (
+    32px
+  ),
+  "extra-large": (
+    48px
+  )
+);
+
+@mixin loader-color($color) {
+  color: $color;
+}
+
+.spa-loader {
+  @each $variant, $colors in $loader-colors {
+    &__#{$variant} {
+      @include loader-color(nth($colors, 1));
+    }
+  }
+
+  @each $size, $values in $loader-sizes {
+    &__#{$size} {
+      width: nth($values, 1) !important;
+      height: nth($values, 1) !important;
+      // !important is needed to override the inline style from MUI
+
+      .MuiCircularProgress-root {
+        @include box(nth($values, 1));
+      }
+    }
+  }
+}

@@ -136,8 +136,3 @@
     pointer-events: none;
   }
 }
-
-//@TODO: Create a separate component for the loader
-.spa-loader {
-  color: var(--spa-loader-color, $gray-light);
-}
