@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-
-import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppTypography from "@/components/app-typography/AppTypography";
+import AppBox from "@/components/app-box/AppBox";
+import AppLink from "@/components/app-link/AppLink";
+import AppContainer from "@/components/app-container/AppContainer";
+
 import {
   customerSupportFooterItems,
   locationFooterItems,
@@ -10,7 +11,6 @@ import {
 } from "@/layouts/app-footer/AppFooter.constants";
 
 import "@/layouts/app-footer/AppFooter.scss";
-import AppBox from "@/components/app-box/AppBox";
 
 const AppFooter = () => {
   const locationItems = locationFooterItems.map((item) => (
@@ -18,7 +18,7 @@ const AppFooter = () => {
       <AppTypography
         className="footer__list-item-link"
         translationKey={item.label}
-        component={item.href ? Link : undefined}
+        component={item.href ? AppLink : undefined}
         to={item.href as string}
       />
     </AppBox>
@@ -26,7 +26,7 @@ const AppFooter = () => {
 
   const socialsItems = socialsFooterItems.map((item) => (
     <AppBox component="li" className="footer__socials-item" key={item.href}>
-      <Link to={item.href}>{item.element}</Link>
+      <AppLink to={item.href}>{item.element}</AppLink>
     </AppBox>
   ));
 
@@ -34,7 +34,7 @@ const AppFooter = () => {
     <AppBox component="li" className="footer__list-item" key={item.label}>
       <AppTypography
         className="footer__list-item-link"
-        component={Link}
+        component={AppLink}
         to={item.href}
         translationKey={item.label}
       />
@@ -45,7 +45,7 @@ const AppFooter = () => {
     <AppBox component="li" className="footer__list-item" key={item.label}>
       <AppTypography
         className="footer__list-item-link"
-        component={Link}
+        component={AppLink}
         to={item.href}
         translationKey={item.label}
       />
@@ -54,7 +54,7 @@ const AppFooter = () => {
 
   return (
     <AppBox className="footer" component="footer">
-      <PageWrapper>
+      <AppContainer maxWidth="lg">
         <AppBox className="footer__container">
           <AppBox>
             <AppTypography
@@ -90,7 +90,7 @@ const AppFooter = () => {
             </AppBox>
           </AppBox>
         </AppBox>
-      </PageWrapper>
+      </AppContainer>
     </AppBox>
   );
 };
