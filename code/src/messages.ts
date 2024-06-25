@@ -3,25 +3,20 @@ import commonMessages from "@/constants/common-messages";
 import footerMessages from "@/layouts/app-footer/messages";
 import bestSellersMessages from "@/layouts/best-sellers/messages";
 import subintroMessages from "@/layouts/subintro/messages";
-import bestSellersMessages from "@/layouts/best-sellers/messages";
 
 const messages = {
   en: {
     ...commonMessages.en,
     ...footerMessages.en,
     ...bannerMessages.en,
-    ...bestSellersMessages.en,
-    ...subintroMessages.en
-    ...bannerMessages.en,
+    ...subintroMessages.en,
     ...bestSellersMessages.en
   },
   uk: {
     ...commonMessages.uk,
     ...footerMessages.uk,
     ...bannerMessages.uk,
-    ...bestSellersMessages.uk,
-    ...subintroMessages.uk
-    ...bannerMessages.uk,
+    ...subintroMessages.uk,
     ...bestSellersMessages.uk
   }
 };
