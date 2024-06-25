@@ -4,12 +4,19 @@ import AppContainer, {
   AppContainerProps
 } from "@/components/app-container/AppContainer";
 
+import "./PageWrapper.scss";
+
 const PageWrapper = (
-  { children, ...rest }: PropsWithChildren<AppContainerProps>,
+  { children, ...props }: PropsWithChildren<AppContainerProps>,
   ref: Ref<HTMLDivElement>
 ) => {
   return (
-    <AppContainer maxWidth="xl" ref={ref} {...rest}>
+    <AppContainer
+      className="spa-page-wrapper"
+      maxWidth="xl"
+      ref={ref}
+      {...props}
+    >
       {children}
     </AppContainer>
   );
