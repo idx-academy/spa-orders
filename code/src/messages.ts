@@ -9,7 +9,7 @@ const messages = {
     ...commonMessages.en,
     ...footerMessages.en,
     ...bannerMessages.en,
-    ...subintroMessages.en
+    ...subintroMessages.en,
     ...bannerMessages.en,
     ...bestSellersMessages.en
   },
@@ -17,7 +17,7 @@ const messages = {
     ...commonMessages.uk,
     ...footerMessages.uk,
     ...bannerMessages.uk,
-    ...subintroMessages.uk
+    ...subintroMessages.uk,
     ...bannerMessages.uk,
     ...bestSellersMessages.uk
   }
