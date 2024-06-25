@@ -1,14 +1,13 @@
 @import "@design-system";
 
 .spa-best-sellers {
-  margin-top: spacing(5);
-  padding: spacing(12);
+  padding: spacing(15) spacing(12);
   background-color: var(--spa-foreground-background-color, $white);
   display: flex;
   flex-direction: column;
+  gap: spacing(10);
 
   &__header {
-    margin-bottom: spacing(5);
     align-self: center;
   }
 
@@ -19,7 +18,6 @@
   }
 
   &__button {
-    margin: spacing(12);
     align-self: center;
   }
 }
