@@ -9,13 +9,11 @@ $purple-light: #d1b4ff;
 $red: #d72d2d;
 $white: #ffffff;
 $black: #000000;
-$light: #efefec;
 $gray: #575757;
+$light: #edecec;
 
 /* Additional colors */
 $transparent: transparent;
-$light-white: #f8f9fa;
-$darken-light: #e9ecef;
 
 $gray-light: #b3b3b3;
 
@@ -121,9 +119,9 @@ $shadow-black: 0 4px 8px rgba(0, 0, 0, 0.1);
 =                 TRANSITIONS                 =
 =============================================*/
 
-$duration-fast: .3s;
-$duration-medium: .5s;
-$duration-slow: .8s;
+$duration-fast: 0.3s;
+$duration-medium: 0.5s;
+$duration-slow: 0.8s;
 
 $duration: (
   fast: $duration-fast,
@@ -132,3 +130,25 @@ $duration: (
 );
 
 /*=====  End of SHADOWS  ======*/
+
+/*=============================================
+=                  Z-INDEXES                  =
+=============================================*/
+
+$layer-default: 1;
+$layer-dropdown: 10;
+$layer-overlay: 20;
+$layer-modal: 30;
+$layer-tooltip: 40;
+$layer-popover: 50;
+
+$layers: (
+  default: 1,
+  dropdown: 10,
+  overlay: 20,
+  modal: 30,
+  tooltip: 40,
+  popover: 50
+);
+
+/*=====  End of Z-INDEXES  ======*/

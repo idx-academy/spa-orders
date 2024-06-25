@@ -1,0 +1,11 @@
+@import "@design-system";
+
+.menu {
+  padding: spacing(2) spacing(4);
+  background-color: var(--spa-menu-background-color, $light);
+
+  &__container {
+    display: flex;
+    column-gap: spacing(8);
+  }
+}

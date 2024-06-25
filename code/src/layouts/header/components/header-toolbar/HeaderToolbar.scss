@@ -1,0 +1,31 @@
+@import "@design-system";
+
+.header__wrapper {
+  padding: spacing(3) spacing(4);
+  background-color: var(--spa-wrapper-background-color, $white);
+}
+
+.header__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &-logo {
+    display: flex;
+    align-items: center;
+
+    &-image {
+      height: 35px;
+    }
+  }
+
+  &-cart-icon {
+    color: var(--spa-cart-icon-color, $black);
+  }
+
+  &-icons {
+    display: flex;
+    align-items: center;
+    gap: spacing(8);
+  }
+}
