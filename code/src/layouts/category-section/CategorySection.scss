@@ -1,0 +1,29 @@
+@import "@design-system";
+
+.spa-category-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  padding-top: spacing(10);
+  background-color: var(--spa-wrapper-background-color, $white);
+  margin-top: spacing(5);
+  margin-bottom: spacing(5);
+
+  &__element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    gap: spacing(3);
+  }
+  &__image {
+    max-width: 70%;
+  }
+  &__container {
+    display: flex;
+    margin-top: spacing(5);
+  }
+}
