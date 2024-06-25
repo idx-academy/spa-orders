@@ -1,7 +1,7 @@
 import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
-import CallToActionItem from "@/layouts/call-to-action-item/CallToActionItem";
-import callToActionItems from "@/pages/home/components/call-to-action/CallToAction.constants";
+import CallToActionItem from "@/layouts/call-to-action/components/call-to-action-item/CallToActionItem";
+import callToActionItems from "@/layouts/call-to-action/CallToAction.constants";
 
 describe("CallToActionItem", () => {
   test("renders correctly", () => {

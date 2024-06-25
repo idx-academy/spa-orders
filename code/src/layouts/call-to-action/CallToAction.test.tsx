@@ -1,12 +1,12 @@
 import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
-import CallToActionSection from "@/pages/home/components/call-to-action/CallToActionSection";
+import CallToAction from "@/layouts/call-to-action/CallToAction";
 
 describe("CallToAction", () => {
   test("renders correctly", () => {
     render(
       <MemoryRouter>
-        <CallToActionSection />
+        <CallToAction />
       </MemoryRouter>
     );
 
