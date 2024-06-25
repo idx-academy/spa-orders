@@ -1,0 +1,9 @@
+@import "@design-system";
+
+.spa-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: spacing(5);
+  padding-top: spacing(5);
+  padding-bottom: spacing(15);
+}
