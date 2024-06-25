@@ -10,7 +10,7 @@ describe("CallToAction", () => {
       </MemoryRouter>
     );
 
-    const titles = screen.getAllByText(/callToActionSection\..+\.title/);
+    const titles = screen.getAllByText(/callToAction\..+\.title/);
     expect(titles).toHaveLength(2);
   });
 });

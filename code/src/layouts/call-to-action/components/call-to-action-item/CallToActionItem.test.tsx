@@ -11,7 +11,7 @@ describe("CallToActionItem", () => {
       </MemoryRouter>
     );
 
-    const title = screen.getByText("callToActionSection.phones.title");
+    const title = screen.getByText("callToAction.phones.title");
     expect(title).toBeInTheDocument();
   });
 });
