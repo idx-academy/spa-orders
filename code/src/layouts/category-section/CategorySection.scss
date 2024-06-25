@@ -5,8 +5,8 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  gap: spacing(25);
-  padding-top: spacing(20);
+  flex-direction: column;
+  padding-top: spacing(10);
   background-color: var(--spa-wrapper-background-color, $white);
   margin-top: spacing(5);
   margin-bottom: spacing(5);
@@ -16,18 +16,14 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    gap: spacing(7);
-    padding: spacing(2) 0 spacing(16);
-  }
-  &__title {
-    position:absolute;
-    top: spacing(7);
+    flex-direction: column;
+    gap: spacing(3);
   }
   &__image {
     max-width: 70%;
   }
-  &__label {
-    position: absolute;
-    bottom: spacing(3);
+  &__container {
+    display: flex;
+    margin-top: spacing(5);
   }
 }
