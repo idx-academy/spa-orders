@@ -1,4 +1,4 @@
-import { screen, render } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import ProductCard from "@/components/product-card/ProductCard";
 import { Product } from "@/types/product.types";
 import { renderWithProviders } from "@/utils/test-utils";

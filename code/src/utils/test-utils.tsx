@@ -1,36 +1,44 @@
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, StateFromReducersMapObject } from "@reduxjs/toolkit";
 import { render, RenderOptions } from "@testing-library/react";
-import { ReactElement, ReactNode } from "react";
+import { PropsWithChildren, ReactElement } from "react";
 import { StyledEngineProvider } from "@mui/material/styles";
 
 import productsReducer from "@/store/slices/productsSlice";
+import I18nProivider from "@/context/I18nProvider";
 
-interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+const reducer = {
+  products: productsReducer
+};
+
+type ExtendedRenderOptions = RenderOptions & {
   initialEntries?: string[];
-  preloadedState?: any
-  store?: ReturnType<typeof configureStore>;
-}
+  preloadedState: StateFromReducersMapObject<typeof reducer>;
+};
 
 export const renderWithProviders = (
   ui: ReactElement,
   {
     initialEntries = ["/"],
-    preloadedState = {},
-    store = configureStore({
-      reducer: productsReducer,
-      preloadedState,
-    }),
+    preloadedState,
     ...renderOptions
-  }: ExtendedRenderOptions = {}
+  }: Partial<ExtendedRenderOptions> = {}
 ) => {
-  const Wrapper = ({ children }: { children?: ReactNode }) => (
+  const store = configureStore({
+    reducer,
+    preloadedState
+  });
+
+  const Wrapper = ({ children }: PropsWithChildren) => (
     <Provider store={store}>
-      <BrowserRouter>
-        <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
-      </BrowserRouter>
+      <MemoryRouter initialEntries={initialEntries}>
+        <I18nProivider>
+          <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
+        </I18nProivider>
+      </MemoryRouter>
     </Provider>
   );
+
   return render(ui, { wrapper: Wrapper, ...renderOptions });
 };
