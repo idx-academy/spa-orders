@@ -1,12 +1,12 @@
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import AppFooter from "@/layouts/app-footer/AppFooter";
+import Footer from "@/layouts/footer/Footer";
 
 describe("Test Footer component", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <AppFooter />
+        <Footer />
       </BrowserRouter>
     );
   });
