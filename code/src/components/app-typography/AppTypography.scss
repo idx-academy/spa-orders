@@ -2,6 +2,7 @@
 
 .spa-typography {
   font-family: $body-font-family;
+  white-space: pre-line;
 
   &__h1 {
     font-size: var(--spa-h1-font-size, $fs-h1);

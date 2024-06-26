@@ -3,6 +3,7 @@ import IntroBanner from "@/layouts/intro-banner/IntroBanner";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import Subintro from "@/layouts/subintro/Subintro";
 import CategorySection from "@/layouts/category-section/CategorySection";
+import CallToAction from "@/layouts/call-to-action/CallToAction";
 
 const HomePage = () => {
   return (
@@ -10,6 +11,7 @@ const HomePage = () => {
       <IntroBanner />
       <PageWrapper>
         <Subintro />
+        <CallToAction />
         <BestSellers />
         <CategorySection />
       </PageWrapper>

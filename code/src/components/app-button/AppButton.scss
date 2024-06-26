@@ -76,29 +76,29 @@
     }
   }
 
-  &__black {
-    @include focus-style(var(--spa-button-black-focus-color, $black));
+  &__dark {
+    @include focus-style(var(--spa-button-dark-focus-color, $black));
     @include hover-effect(
-      var(--spa-button-black--bg-hover-color, $white),
-      var(--spa-button-black--text-hover-color, $black)
+      var(--spa-button-dark-bg-hover-color, $white),
+      var(--spa-button-dark-text-hover-color, $black)
     );
 
-    background-color: var(--spa-button-black-bg-color, $black);
-    color: var(--spa-button-black-color, $white);
-    border-color: var(--spa-button-black-border-color, $black);
+    background-color: var(--spa-button-dark-bg-color, $black);
+    color: var(--spa-button-dark-color, $white);
+    border-color: var(--spa-button-dark-border-color, $black);
   }
 
-  &__white {
-    @include focus-style(var(--spa-button-white-focus-color, $black));
+  &__light {
+    @include focus-style(var(--spa-button-light-focus-color, $white));
     @include hover-effect(
-      var(--spa-button-white--bg-hover-color, $transparent),
-      var(--spa-button-white--text-hover-color, $white),
-      var(--spa-button-white--border-hover-color, $white)
+      var(--spa-button-light-bg-hover-color, $transparent),
+      var(--spa-button-light-text-hover-color, $white),
+      var(--spa-button-light-border-hover-color, $white)
     );
 
-    background-color: var(--spa-button-white-bg-color, $white);
-    color: var(--spa-button-white-color, $black);
-    border-color: var(--spa-button-white-border-color, $transparent);
+    background-color: var(--spa-button-light-bg-color, $white);
+    color: var(--spa-button-light-color, $black);
+    border-color: var(--spa-button-light-border-color, $transparent);
   }
 
   &__danger {

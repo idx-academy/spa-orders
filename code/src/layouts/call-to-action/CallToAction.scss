@@ -1,0 +1,29 @@
+@import "@design-system";
+
+.call-to-action {
+  display: flex;
+  gap: spacing(10);
+  margin: spacing(10) 0;
+  flex-direction: column;
+
+  @include breakpoint("lg") {
+    flex-direction: row;
+  }
+
+  &__item {
+    flex-basis: 100%;
+    padding: spacing(14);
+    color: var(--spa-call-to-action-text-color, $white);
+    display: flex;
+    flex-direction: column;
+    gap: spacing(5);
+    padding-bottom: spacing(20);
+    white-space: wrap;
+    background-size: cover;
+    background-position: center;
+  }
+
+  h2 {
+    line-height: 1.2;
+  }
+}
