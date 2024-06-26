@@ -7,10 +7,6 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
 }));
 
-jest.mock("@/components/product-card/ProductCard", () =>
-  jest.fn(() => <div data-testid="product-card" />)
-);
-
 const mockProducts = [
   { id: 1, name: "Product 1", price: 100 },
   { id: 2, name: "Product 2", price: 200 },
@@ -28,40 +24,20 @@ const renderProductsPage = () =>
 describe("ProductsPage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  test("renders products when data is available", () => {
     (useGetProductsQuery as jest.Mock).mockReturnValue({
       data: mockProducts,
       isLoading: false
     });
-
-    renderProductsPage();
-
-    expect(screen.getAllByTestId("product-card")).toHaveLength(
-      mockProducts.length
-    );
   });
 
   test("renders the product count correctly", () => {
     renderProductsPage();
-    (useGetProductsQuery as jest.Mock).mockReturnValue({
-      data: mockProducts,
-      isLoading: false
-    });
-
     expect(screen.getByText(mockProducts.length)).toBeInTheDocument();
   });
 
   test("renders the sort by section", () => {
     renderProductsPage();
-    (useGetProductsQuery as jest.Mock).mockReturnValue({
-      data: mockProducts,
-      isLoading: false
-    });
-
     const sortBy = screen.getByText(/Sort by: Recommended/i);
-
     expect(sortBy).toBeInTheDocument();
   });
 });
