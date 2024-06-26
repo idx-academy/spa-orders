@@ -4,7 +4,7 @@ import ProductCard from "@/components/product-card/ProductCard";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
-import "./ProductsPage.scss";
+import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {
   const { data: products, isLoading } = useGetProductsQuery();
@@ -22,9 +22,9 @@ const ProductsPage = () => {
     <PageWrapper>
       <AppBox className="spa-products-page">
         <AppTypography
+          variant="h1"
           className="spa-products-page__header"
           translationKey="productsAll.label"
-          component="h1"
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">

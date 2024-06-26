@@ -55,7 +55,6 @@
   }
 
   &__button {
-    border: 1px solid var(--spa-best-sellers-price-color, $black);
     background-color: var(--spa-button-bg-color, $transparent);
     color: var(--spa-best-sellers-price-color, $black);
     gap: spacing(1);

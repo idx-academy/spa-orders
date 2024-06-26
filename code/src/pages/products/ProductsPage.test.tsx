@@ -60,6 +60,8 @@ describe("ProductsPage", () => {
       isLoading: false
     });
 
-    expect(screen.getByText(/Sort by: Recommended/i)).toBeInTheDocument();
+    const sortBy = screen.getByText(/Sort by: Recommended/i);
+
+    expect(sortBy).toBeInTheDocument();
   });
 });
