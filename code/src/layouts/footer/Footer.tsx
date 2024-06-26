@@ -8,11 +8,11 @@ import {
   locationFooterItems,
   policyFooterItems,
   socialsFooterItems
-} from "@/layouts/app-footer/AppFooter.constants";
+} from "@/layouts/footer/Footer.constants";
 
-import "@/layouts/app-footer/AppFooter.scss";
+import "@/layouts/footer/Footer.scss";
 
-const AppFooter = () => {
+const Footer = () => {
   const locationItems = locationFooterItems.map((item) => (
     <AppBox component="li" className="footer__list-item" key={item.label}>
       <AppTypography
@@ -95,4 +95,4 @@ const AppFooter = () => {
   );
 };
 
-export default AppFooter;
+export default Footer;
