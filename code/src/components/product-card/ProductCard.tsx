@@ -2,7 +2,7 @@ import AddIcon from "@mui/icons-material/Add";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import AppLink from "@/components/app-link/AppLink";
-import AppIconButton from "@/components/app-icon-button/AppIconButton"; // Adjust the path as needed
+import AppButton from "@/components/app-button/AppButton";
 import { Product } from "@/types/product.types";
 
 import "@/components/product-card/ProductCard.scss";
@@ -33,16 +33,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <AppTypography className="spa-product-card__footer-price">
             {product.price}
           </AppTypography>
-          <AppIconButton
-            size="large"
-            className="spa-product-card__button"
-            onClick={() => {
-              // Handle add functionality here
-              console.log("Add to cart clicked");
-            }}
-          >
+          <AppButton size="large" className="spa-product-card__button">
             <AddIcon />
-          </AppIconButton>
+            <AppTypography translationKey="productCard.add" />
+          </AppButton>
         </AppBox>
       </AppBox>
     </AppLink>
