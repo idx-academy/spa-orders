@@ -9,26 +9,37 @@
   position: relative;
   overflow: hidden;
 
-  &:hover .spa-product-card__description {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    height: 100%;
+  &__img {
+    position: relative;
+    overflow: hidden;
+
+    &:hover .spa-product-card__description {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
   }
 
-  &__img {
+  &__img-name {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  &__price {
+  &__footer-price {
     color: var(--spa-best-sellers-price-color, $purple);
   }
 
   &__description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: var(--spa-hover-product-background-color, $light-alpha);
     color: var(--spa-hover-product-text-color, $white);
     padding: spacing(4) spacing(3);
@@ -37,5 +48,28 @@
     transform: translateY(100%);
     @include transition((all, "medium"));
     backdrop-filter: blur(spacing(2));
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: spacing(2);
+    border-top: 1px solid var(--spa-products-container-border-color, $light);
+  }
+
+  &__button {
+    border: 1px solid var(--spa-best-sellers-price-color, $black);
+    background-color: transparent;
+    color: var(--spa-best-sellers-price-color, $black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: spacing(1);
+
+    &:hover {
+      background-color: var(--spa-hover-button-background-color, $light);
+    }
   }
 }
