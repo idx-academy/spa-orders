@@ -1,6 +1,6 @@
-import { MemoryRouter } from "react-router-dom";
-import { screen, render } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import Header from "@/layouts/header/Header";
+import { renderWithProviders } from "@/utils/test-utils";
 
 // @TODO: remove or move this mock
 global.IntersectionObserver = jest.fn(() => ({
@@ -14,11 +14,7 @@ global.IntersectionObserver = jest.fn(() => ({
 }));
 
 test("renders Header correctly", () => {
-  render(
-    <MemoryRouter>
-      <Header />
-    </MemoryRouter>
-  );
+  renderWithProviders(<Header />);
 
   const loginLabel = screen.getByText("login.label");
   expect(loginLabel).toBeInTheDocument();

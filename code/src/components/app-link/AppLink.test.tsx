@@ -1,28 +1,25 @@
-import { MemoryRouter } from "react-router-dom";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import AppLink from "@/components/app-link/AppLink";
+import { renderWithProviders } from "@/utils/test-utils";
 
 describe("AppLink", () => {
   test("renders correctly", () => {
-    render(
-      <MemoryRouter>
-        <AppLink to="/">Test link</AppLink>
-      </MemoryRouter>
-    );
+    renderWithProviders(<AppLink to="/">Test link</AppLink>);
     const link = screen.getByRole("link");
     expect(link).toBeInTheDocument();
   });
 
   test("adds active class when link's pathname is equal to location pathname", async () => {
-    render(
-      <MemoryRouter initialEntries={["/test1"]}>
+    renderWithProviders(
+      <>
         <AppLink to="/test1" isNavLink>
           Link1
         </AppLink>
         <AppLink to="/test2" isNavLink>
           Link2
         </AppLink>
-      </MemoryRouter>
+      </>,
+      { initialEntries: ["/test1"] }
     );
 
     const link1 = screen.getByText("Link1");
