@@ -28,7 +28,7 @@ const ProductsPage = () => {
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">
-            {products?.length}
+            {products?.length || 0}
             <AppTypography
               translationKey="productsItems.label"
               component="span"
