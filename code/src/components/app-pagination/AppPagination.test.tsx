@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import AppPagination from "./AppPagination";
+import AppPagination from "@/components/app-pagination/AppPagination";
 import { renderWithProviders } from "@/utils/test-utils";
 
 describe("Test AppPagination", () => {
