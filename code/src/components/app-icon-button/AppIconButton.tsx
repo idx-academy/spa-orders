@@ -1,10 +1,5 @@
-import { LinkProps as ReactRouterDomLinkProps } from "react-router-dom";
-import { LinkProps as MuiLinkProps } from "@mui/material/Link";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-
-type AppIconButtonProps = IconButtonProps &
-  MuiLinkProps &
-  Partial<ReactRouterDomLinkProps>;
+import IconButton from "@mui/material/IconButton";
+import { AppIconButtonProps } from "./AppIconButton.types";
 
 const AppIconButton = (props: AppIconButtonProps) => {
   return <IconButton {...props} />;

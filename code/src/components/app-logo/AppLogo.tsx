@@ -1,16 +1,9 @@
-import { ComponentPropsWithoutRef } from "react";
 import AppBox from "@/components/app-box/AppBox";
 import logo from "@/assets/images/logo.png";
 import cn from "@/utils/cn";
+import { AppLogoType, COMPONENT } from "@/components/app-logo/AppLogo.types";
 
-const COMPONENT = "img";
-
-type AppLogo = Omit<
-  ComponentPropsWithoutRef<typeof COMPONENT>,
-  "component" | "src" | "alt"
->;
-
-const AppLogo = ({ className, ...props }: AppLogo) => {
+const AppLogo = ({ className, ...props }: AppLogoType) => {
   return (
     <AppBox
       component={COMPONENT}

@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import AppTypography, {
-  AppTypographyVariant
-} from "@/components/app-typography/AppTypography";
+import AppTypography from "@/components/app-typography/AppTypography";
+import { AppTypographyVariant } from "@/components/app-typography/AppTypography.types";
 
 const renderAndCheckForTag = (
   expectedTagName: string,

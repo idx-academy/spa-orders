@@ -1,7 +1,6 @@
-import { ForwardedRef, HTMLProps, forwardRef } from "react";
-import Box, { BoxProps } from "@mui/material/Box";
-
-type AppBoxProps<TElement> = BoxProps & HTMLProps<TElement>;
+import { ForwardedRef, forwardRef } from "react";
+import Box from "@mui/material/Box";
+import { AppBoxProps } from "@/components/app-box/AppBox.types";
 
 const AppBox = forwardRef(
   <TElement,>(props: AppBoxProps<TElement>, ref: ForwardedRef<HTMLElement>) => {

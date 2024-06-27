@@ -1,8 +1,7 @@
 import { Ref, forwardRef, PropsWithChildren } from "react";
 
-import AppContainer, {
-  AppContainerProps
-} from "@/components/app-container/AppContainer";
+import AppContainer from "@/components/app-container/AppContainer";
+import { AppContainerProps } from "@/components/app-container/AppContainer.types";
 
 import "./PageWrapper.scss";
 

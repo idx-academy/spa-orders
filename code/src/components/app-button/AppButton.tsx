@@ -1,24 +1,9 @@
-import Button, { ButtonProps } from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import AppLoader from "@/components/app-loader/AppLoader";
 import cn from "@/utils/cn";
+import { AppButtonProps } from "./AppButton.types";
 
 import "@/components/app-button/AppButton.scss";
-
-type ButtonVariant =
-  | "contained"
-  | "outlined"
-  | "text"
-  | "danger"
-  | "light"
-  | "dark"
-  | "shadow";
-type ButtonSize = "small" | "medium" | "large" | "extra-large";
-
-type AppButtonProps = Omit<ButtonProps, "variant" | "size"> & {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  isLoading?: boolean;
-};
 
 const AppButton = ({
   children,

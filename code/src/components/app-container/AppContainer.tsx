@@ -1,6 +1,5 @@
-import Container, { ContainerProps } from "@mui/material/Container";
-
-export type AppContainerProps = ContainerProps;
+import Container from "@mui/material/Container";
+import { AppContainerProps } from "./AppContainer.types";
 
 const AppContainer = (props: AppContainerProps) => {
   return <Container {...props} />;

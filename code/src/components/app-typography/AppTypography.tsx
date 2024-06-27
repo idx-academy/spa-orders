@@ -1,38 +1,14 @@
-import { ComponentProps, ElementType, ReactNode } from "react";
+import { ElementType } from "react";
 import { FormattedMessage } from "react-intl";
-import Typography, { TypographyProps } from "@mui/material/Typography";
+import Typography from "@mui/material/Typography";
 import cn from "@/utils/cn";
+import {
+  HeadingVariant,
+  AppTypographyVariant,
+  AppTypographyProps
+} from "@/components/app-typography/AppTypography.types";
 
 import "@/components/app-typography/AppTypography.scss";
-
-type HeadingVariant = "h1" | "h2" | "h3";
-type TextVariant =
-  | "body"
-  | "concept"
-  | "subtitle1"
-  | "subtitle2"
-  | "caption"
-  | "caption-small";
-export type AppTypographyVariant = HeadingVariant | TextVariant;
-
-type AppTypographyProps<T extends ElementType = "span"> = Omit<
-  TypographyProps<T>,
-  "variant" | "children"
-> & {
-  variant?: AppTypographyVariant;
-  component?: T;
-} & (
-    | {
-        translationKey: string;
-        translationProps?: Omit<ComponentProps<typeof FormattedMessage>, "id">;
-        children?: never;
-      }
-    | {
-        translationKey?: never;
-        translationProps?: never;
-        children: ReactNode;
-      }
-  );
 
 function getDefaultComponentTag(variant: AppTypographyVariant) {
   if (variant.startsWith("h")) {
