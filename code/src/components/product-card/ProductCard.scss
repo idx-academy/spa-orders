@@ -53,14 +53,4 @@
     padding-top: spacing(2);
     border-top: 1px solid var(--spa-products-container-border-color, $light);
   }
-
-  &__button {
-    background-color: var(--spa-button-bg-color, $transparent);
-    color: var(--spa-best-sellers-price-color, $black);
-    gap: spacing(1);
-
-    &:hover {
-      background-color: var(--spa-hover-button-background-color, $light);
-    }
-  }
 }

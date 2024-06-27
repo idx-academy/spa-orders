@@ -33,11 +33,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <AppTypography className="spa-product-card__footer-price">
             {product.price}
           </AppTypography>
-          <AppButton
-            size="large"
-            variant="contained"
-            className="spa-product-card__button"
-          >
+          <AppButton size="large" variant="shadow">
             <AddIcon />
             <AppTypography translationKey="productCard.add" />
           </AppButton>

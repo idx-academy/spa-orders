@@ -113,6 +113,18 @@
     border-color: var(--spa-button-danger-border-color, $red);
   }
 
+  &__shadow {
+    @include focus-style(var(--spa-button-shadow-focus-color, $black));
+    @include hover-effect(
+      var(--spa-button-shadow--bg-hover-color, $light),
+      var(--spa-button-shadow-hover-color, $black)
+    );
+
+    gap: spacing(1);
+    color: var(--spa-button-shadow-color, $black);
+    background-color: var(--spa-button-shadow-bg-color, $transparent);
+  }
+
   &__small {
     @include button-size(2, var(--spa-button-small-font-size, $fs-base));
   }

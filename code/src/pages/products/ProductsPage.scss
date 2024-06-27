@@ -7,10 +7,6 @@
   flex-direction: column;
   gap: spacing(5);
 
-  &__header {
-    font-size: 2rem;
-  }
-
   &__info {
     display: flex;
     justify-content: space-between;

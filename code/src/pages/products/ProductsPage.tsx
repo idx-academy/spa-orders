@@ -22,9 +22,10 @@ const ProductsPage = () => {
     <PageWrapper>
       <AppBox className="spa-products-page">
         <AppTypography
-          variant="h1"
+          variant="h3"
           className="spa-products-page__header"
           translationKey="productsAll.label"
+          component="h1"
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">
