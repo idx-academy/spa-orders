@@ -26,7 +26,6 @@ const BestSellers = () => {
         translationKey="bestSellers.header"
         variant="h3"
       />
-
       <AppBox className="spa-best-sellers__container">{productCards}</AppBox>
       <AppBox className="spa-best-sellers__button">
         <AppButton size="extra-large">
