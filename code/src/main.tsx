@@ -2,7 +2,9 @@ import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { StyledEngineProvider } from "@mui/material";
+
 import I18nProivider from "@/context/I18nProvider";
+import { ModalProvider } from "@/context/ModalContext";
 
 import { store } from "@/store/store";
 import routes from "@/routes/routes";
@@ -14,7 +16,9 @@ const App = () => {
     <Provider store={store}>
       <StyledEngineProvider injectFirst>
         <I18nProivider>
-          <RouterProvider router={createBrowserRouter(routes)} />
+          <ModalProvider>
+            <RouterProvider router={createBrowserRouter(routes)} />
+          </ModalProvider>
         </I18nProivider>
       </StyledEngineProvider>
     </Provider>
