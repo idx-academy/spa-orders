@@ -9,14 +9,14 @@ import { useGetProductsQuery } from "@/store/api/productsApi";
 import "@/layouts/best-sellers/BestSellers.scss";
 
 const BestSellers = () => {
-  const { data, isLoading } = useGetProductsQuery();
+  const { data, isLoading } = useGetProductsQuery({ itemsPerPage: 5 });
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
   const productCards = data?.items
-    ? data.items
-        .slice(0, 5)
-        .map((product) => <ProductCard key={product.id} product={product} />)
+    ? data.items.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))
     : null;
 
   return (

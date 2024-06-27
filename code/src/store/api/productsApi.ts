@@ -14,6 +14,7 @@ type GetProductsResponse = {
 
 type GetProductsParams = {
   page?: number;
+  itemsPerPage?: number;
 };
 
 const productsApi = appApi.injectEndpoints({

@@ -18,7 +18,10 @@ const ProductsPage = () => {
   const isPageValid = searchParamsPage && !Number.isNaN(searchParamsPage);
   const page = isPageValid ? Number(searchParamsPage) : 1;
 
-  const { data, isLoading } = useGetProductsQuery({ page });
+  const { data, isLoading } = useGetProductsQuery({
+    page,
+    itemsPerPage: 10
+  });
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 

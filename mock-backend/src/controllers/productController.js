@@ -1,20 +1,20 @@
 const products = require("../data/mokedData");
 
-const ITEMS_PER_PAGE = 10;
-
-const validatePage = (page) => (page && !Number.isNaN(page) ? Number(page) : 1);
-
+const validateNumberQueryParam = (value, defaultValue = 1) => {
+  return value && !Number.isNaN(value) ? Number(value) : defaultValue;
+};
 const getAllProducts = (req, res) => {
-  const page = validatePage(req.query.page);
+  const page = validateNumberQueryParam(req.query.page);
+  const itemsPerPage = validateNumberQueryParam(req.query.itemsPerPage, 10);
 
-  const skip = (page - 1) * ITEMS_PER_PAGE;
-  const limit = page * ITEMS_PER_PAGE;
+  const skip = (page - 1) * itemsPerPage;
+  const limit = page * itemsPerPage;
 
   const slicedProducts = products.slice(skip, limit);
 
   const response = {
     items: slicedProducts,
-    pagesCount: Math.ceil(products.length / ITEMS_PER_PAGE),
+    pagesCount: Math.ceil(products.length / itemsPerPage),
     itemsCount: products.length
   };
 
