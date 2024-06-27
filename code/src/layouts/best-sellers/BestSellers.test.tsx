@@ -6,7 +6,7 @@ import { renderWithProviders } from "@/utils/test-utils";
 
 import { mockData } from "@/layouts/best-sellers/BestSellers.constants";
 
-jest.mock("../../store/api/productsApi", () => ({
+jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
 }));
 
