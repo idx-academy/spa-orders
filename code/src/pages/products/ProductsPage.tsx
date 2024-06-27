@@ -1,22 +1,40 @@
+import { useSearchParams } from "react-router-dom";
+
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import ProductCard from "@/components/product-card/ProductCard";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
+import AppPagination from "@/components/app-pagination/AppPagination";
+import AppContainer from "@/components/app-container/AppContainer";
+
 import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {
-  const { data: products, isLoading } = useGetProductsQuery();
+  const [searchParams] = useSearchParams();
 
-  //@TODO Create Skeleton for product items
+  const searchParamsPage = searchParams.get("page");
+  const page = searchParamsPage ? Number(searchParamsPage) : 1;
+
+  const { data, isLoading } = useGetProductsQuery({ page });
+
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const productCards = products
-    ? products
+  const pagesCount = data?.pagesCount;
+
+  //@TODO Create Skeleton for product items
+  const productCards = data?.items
+    ? data?.items
         .slice(0, 4)
         .map((product) => <ProductCard key={product.id} product={product} />)
     : null;
+
+  const paginationBlock = pagesCount ? (
+    <AppContainer className="spa-products-page__pagination">
+      <AppPagination page={page} count={pagesCount} />
+    </AppContainer>
+  ) : null;
 
   return (
     <PageWrapper>
@@ -29,7 +47,7 @@ const ProductsPage = () => {
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">
-            {products?.length || 0}
+            {data?.items.length || 0}
             <AppTypography
               translationKey="productsItems.label"
               component="span"
@@ -41,6 +59,7 @@ const ProductsPage = () => {
           </AppTypography>
         </AppBox>
         <AppBox className="spa-products-page__grid">{productCards}</AppBox>
+        {paginationBlock}
       </AppBox>
     </PageWrapper>
   );
