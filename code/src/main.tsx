@@ -5,6 +5,7 @@ import { StyledEngineProvider } from "@mui/material";
 
 import I18nProivider from "@/context/I18nProvider";
 import { ModalProvider } from "@/context/ModalContext";
+import AppSnackbar from "@/components/app-snackbar/AppSnackbar";
 
 import { store } from "@/store/store";
 import routes from "@/routes/routes";
@@ -18,6 +19,7 @@ const App = () => {
         <I18nProivider>
           <ModalProvider>
             <RouterProvider router={createBrowserRouter(routes)} />
+            <AppSnackbar />
           </ModalProvider>
         </I18nProivider>
       </StyledEngineProvider>

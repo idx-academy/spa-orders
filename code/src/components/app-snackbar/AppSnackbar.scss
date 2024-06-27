@@ -1,0 +1,15 @@
+@import "@design-system";
+
+.spa-snackbar {
+  &__alert {
+    border-radius: spacing(2);
+  }
+
+  &__alert.MuiAlert-colorSuccess {
+    background-color: var(--spa-snackbar-success-bg-color, $green);
+  }
+
+  &__alert.MuiAlert-colorError {
+    background-color: var(--spa-snackbar-error-bg-color, $red);
+  }
+}
