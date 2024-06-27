@@ -13,10 +13,9 @@ const AppPagination = (props: AppPaginationProps) => {
   const [searchParams] = useSearchParams();
 
   const renderPaginationItem = (itemProps: PaginationRenderItemParams) => {
-    const itemSearchParams = new URLSearchParams(searchParams);
-    itemSearchParams.set("page", String(itemProps.page));
+    searchParams.set("page", String(itemProps.page));
 
-    const itemSearchParamsString = itemSearchParams.toString();
+    const itemSearchParamsString = searchParams.toString();
 
     return (
       <PaginationItem

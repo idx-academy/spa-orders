@@ -6,7 +6,11 @@ import { renderWithProviders } from "@/utils/test-utils";
 
 import { mockData as mockItems } from "@/layouts/best-sellers/BestSellers.constants";
 
-const mockData = { items: mockItems, pagesCount: 5, itemsCount: 20 };
+const mockData = {
+  items: mockItems.slice(0, 5),
+  pagesCount: 5,
+  itemsCount: 20
+};
 
 jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
