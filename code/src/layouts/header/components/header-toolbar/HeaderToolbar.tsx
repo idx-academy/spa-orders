@@ -15,12 +15,27 @@ import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
+import { useState } from "react";
 
 const HeaderToolbar = () => {
   const { openModal } = useModalContext();
   const isAuthenticated = useIsAuthSelector();
   const dispatch = useAppDispatch();
 
+  const [searchValue, setSearchValue] = useState("");
+
+  // @TODO: add logic to search product
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleClearSearch = () => {
+    setSearchValue("");
+  };
+
+  const handleSearch = () => {
+    console.log("Search:", searchValue);
+  };
   // @TODO: use dynamic value instead of hardcoded
   const itemsInCartCount = 10;
 
@@ -53,6 +68,16 @@ const HeaderToolbar = () => {
           <AppLink to="/">
             <AppLogo className="header__toolbar-logo-image" />
           </AppLink>
+          <AppBox className="header__toolbar-search-field">
+            <AppInput
+              placeholder="Search..."
+              variant="search"
+              value={searchValue}
+              onChange={handleSearchChange}
+              onClear={handleClearSearch}
+              onSearch={handleSearch}
+            />
+          </AppBox>
         </AppBox>
         <AppBox className="header__toolbar-icons">
           <AppIconButton>

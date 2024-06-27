@@ -1,0 +1,24 @@
+@import "@design-system";
+
+.spa-input {
+  &__search-text-field {
+    background-color: var(--spa-search-input-background, $light);
+
+    &:hover {
+      background-color: var(--spa-search-input-hover-background, $white);
+    }
+    &:focus {
+      padding-left: 150px;
+    }
+  }
+
+  &__icon-search-button {
+    background-color: var(--spa-icon-button-bacground, $purple);
+    color: var(--spa-icon-search-color, $white);
+
+    &:hover {
+      background-color: var(--spa-icon-button-hover-bacground, $black);
+    }
+  }
+
+}
