@@ -4,6 +4,8 @@ import footerMessages from "@/layouts/footer/messages";
 import bestSellersMessages from "@/layouts/best-sellers/messages";
 import subintroMessages from "@/layouts/subintro/messages";
 import categorySectionMessages from "@/layouts/category-section/messages";
+import productCardMessages from "@/components/product-card/messages";
+import productsItemsMessages from "@/pages/products/messages";
 import callToActionSectionMessages from "@/layouts/call-to-action/messages";
 
 const messages = {
@@ -14,6 +16,8 @@ const messages = {
     ...bestSellersMessages.en,
     ...subintroMessages.en,
     ...categorySectionMessages.en,
+    ...productCardMessages.en,
+    ...productsItemsMessages.en,
     ...callToActionSectionMessages.en
   },
   uk: {
@@ -23,6 +27,8 @@ const messages = {
     ...bestSellersMessages.uk,
     ...subintroMessages.uk,
     ...categorySectionMessages.uk,
+    ...productCardMessages.uk,
+    ...productsItemsMessages.uk,
     ...callToActionSectionMessages.uk
   }
 };

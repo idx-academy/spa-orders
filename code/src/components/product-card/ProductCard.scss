@@ -9,24 +9,31 @@
   position: relative;
   overflow: hidden;
 
-  &:hover .spa-product-card__description {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    height: 100%;
+  &__img {
+    position: relative;
+    overflow: hidden;
+
+    &:hover .spa-product-card__description {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
   }
 
-  &__img {
-    width: 100%;
-    height: 100%;
+  &__img-name {
+    @include box(100%);
     object-fit: cover;
   }
 
-  &__price {
+  &__footer-price {
     color: var(--spa-best-sellers-price-color, $purple);
   }
 
   &__description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     position: absolute;
     inset: 0;
     background: var(--spa-hover-product-background-color, $light-alpha);
@@ -37,5 +44,13 @@
     transform: translateY(100%);
     @include transition((all, "medium"));
     backdrop-filter: blur(spacing(2));
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: spacing(2);
+    border-top: 1px solid var(--spa-products-container-border-color, $light);
   }
 }
