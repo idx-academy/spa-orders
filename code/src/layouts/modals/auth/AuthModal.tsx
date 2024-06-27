@@ -1,5 +1,4 @@
 import CloseIcon from "@mui/icons-material/Close";
-
 import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppTypography from "@/components/app-typography/AppTypography";
@@ -9,6 +8,7 @@ import "@/layouts/modals/auth/AuthModal.scss";
 
 const AuthModal = () => {
   const { handleCloseModal } = useModalContext();
+
   return (
     <AppBox className="spa-auth-modal">
       <AppIconButton
