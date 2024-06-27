@@ -15,7 +15,8 @@ const ProductsPage = () => {
   const [searchParams] = useSearchParams();
 
   const searchParamsPage = searchParams.get("page");
-  const page = searchParamsPage ? Number(searchParamsPage) : 1;
+  const isPageValid = searchParamsPage && !Number.isNaN(searchParamsPage);
+  const page = isPageValid ? Number(searchParamsPage) : 1;
 
   const { data, isLoading } = useGetProductsQuery({ page });
 
