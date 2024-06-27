@@ -7,6 +7,7 @@ import { StyledEngineProvider } from "@mui/material/styles";
 
 import productsReducer from "@/store/slices/productsSlice";
 import I18nProivider from "@/context/I18nProvider";
+import { ModalProvider } from "@/context/ModalContext";
 
 const reducer = {
   products: productsReducer
@@ -34,7 +35,9 @@ export const renderWithProviders = (
     <Provider store={store}>
       <MemoryRouter initialEntries={initialEntries}>
         <I18nProivider>
-          <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
+          <ModalProvider>
+            <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
+          </ModalProvider>
         </I18nProivider>
       </MemoryRouter>
     </Provider>
