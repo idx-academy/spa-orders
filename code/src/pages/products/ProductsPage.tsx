@@ -25,14 +25,14 @@ const ProductsPage = () => {
 
   //@TODO Create Skeleton for product items
   const productCards = data?.items
-    ? data?.items
-        .slice(0, 4)
-        .map((product) => <ProductCard key={product.id} product={product} />)
+    ? data?.items.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))
     : null;
 
   const paginationBlock = pagesCount ? (
     <AppContainer className="spa-products-page__pagination">
-      <AppPagination page={page} count={pagesCount} />
+      <AppPagination page={page} count={pagesCount} size="large" />
     </AppContainer>
   ) : null;
 
@@ -47,7 +47,7 @@ const ProductsPage = () => {
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">
-            {data?.items.length || 0}
+            {data?.itemsCount}
             <AppTypography
               translationKey="productsItems.label"
               component="span"

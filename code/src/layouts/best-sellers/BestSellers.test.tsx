@@ -4,7 +4,9 @@ import BestSellers from "@/layouts/best-sellers/BestSellers";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 import { renderWithProviders } from "@/utils/test-utils";
 
-import { mockData } from "@/layouts/best-sellers/BestSellers.constants";
+import { mockData as mockItems } from "@/layouts/best-sellers/BestSellers.constants";
+
+const mockData = { items: mockItems, pagesCount: 5, itemsCount: 20 };
 
 jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()

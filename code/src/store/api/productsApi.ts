@@ -6,7 +6,11 @@ import { URLS } from "@/constants/requests";
 
 import { Product } from "@/types/product.types";
 
-type GetProductsResponse = { items: Product[]; pagesCount: number };
+type GetProductsResponse = {
+  items: Product[];
+  pagesCount: number;
+  itemsCount: number;
+};
 
 type GetProductsParams = {
   page?: number;
