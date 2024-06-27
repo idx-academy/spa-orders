@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { sliceNames } from "@/store/constants";
 import { useAppSelector } from "@/hooks/use-redux/useRedux";
+import { TimerId } from "@/types/common";
 import {
   BaseSnackbarConfig,
   SnackbarConfigWithTimeout
@@ -12,13 +13,12 @@ const DEFAULT_AUTOHIDE_DURATION = 3000;
 type SnackbarState = {
   isOpen: boolean;
   config: BaseSnackbarConfig;
-  _timerId: ReturnType<typeof setTimeout> | null;
+  _timerId?: TimerId;
 };
 
 const initialState: SnackbarState = {
   isOpen: false,
-  config: {} as BaseSnackbarConfig,
-  _timerId: null
+  config: {} as BaseSnackbarConfig
 };
 
 const snackbarSlice = createSlice({
@@ -30,14 +30,14 @@ const snackbarSlice = createSlice({
       state.config = action.payload;
       if (state._timerId) {
         clearTimeout(state._timerId);
-        state._timerId = null;
+        delete state._timerId;
       }
     },
     closeSnackbar: (state) => {
       state.isOpen = false;
       if (state._timerId) {
         clearTimeout(state._timerId);
-        state._timerId = null;
+        delete state._timerId;
       }
     },
     setSnackbarTimerId: (
