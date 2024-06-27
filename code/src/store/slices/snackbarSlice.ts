@@ -22,7 +22,7 @@ const initialState: SnackbarState = {
 };
 
 const snackbarSlice = createSlice({
-  name: sliceNames.products,
+  name: sliceNames.snackbar,
   initialState,
   reducers: {
     openSnackbar: (state, action: PayloadAction<BaseSnackbarConfig>) => {
@@ -40,10 +40,7 @@ const snackbarSlice = createSlice({
         delete state._timerId;
       }
     },
-    setSnackbarTimerId: (
-      state,
-      action: PayloadAction<ReturnType<typeof setTimeout>>
-    ) => {
+    _setSnackbarTimerId: (state, action: PayloadAction<TimerId>) => {
       state._timerId = action.payload;
     }
   }
@@ -59,7 +56,8 @@ export const openSnackbarWithTimeout =
       dispatch(closeSnackbar());
     }, config.autohideDuration ?? DEFAULT_AUTOHIDE_DURATION);
 
-    dispatch(snackbarSlice.actions.setSnackbarTimerId(timerId));
+    const setSnackbarTimerId = snackbarSlice.actions._setSnackbarTimerId;
+    dispatch(setSnackbarTimerId(timerId));
   };
 
 export const useIsSnackbarOpenSelector = () =>
