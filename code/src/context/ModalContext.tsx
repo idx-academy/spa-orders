@@ -9,9 +9,9 @@ import Dialog from "@mui/material/Dialog";
 import AppBox from "@/components/app-box/AppBox";
 
 type ModalContextType = {
-  handleOpenModal: (component: ReactElement) => void;
-  handleToggleModal: (component: ReactElement) => void;
-  handleCloseModal: () => void;
+  openModal: (component: ReactElement) => void;
+  toggleModal: (component: ReactElement) => void;
+  closeModal: () => void;
 };
 
 type ModalProviderProps = Required<PropsWithChildren>;
@@ -23,32 +23,30 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
 
   const isModalOpen = Boolean(modal);
 
-  const handleOpenModal = (component: ReactElement) => {
+  const openModal = (component: ReactElement) => {
     setModal(component);
   };
 
-  const handleCloseModal = () => {
+  const closeModal = () => {
     setModal(null);
   };
 
-  const handleToggleModal = (component: ReactElement) => {
+  const toggleModal = (component: ReactElement) => {
     if (modal) {
-      handleCloseModal();
+      closeModal();
     } else {
-      handleOpenModal(component);
+      openModal(component);
     }
   };
 
   const modalContent = modal && (
-    <Dialog open={isModalOpen} onClose={handleCloseModal}>
+    <Dialog open={isModalOpen} onClose={toggleModal}>
       <AppBox>{modal}</AppBox>
     </Dialog>
   );
 
   return (
-    <ModalContext.Provider
-      value={{ handleOpenModal, handleCloseModal, handleToggleModal }}
-    >
+    <ModalContext.Provider value={{ openModal, closeModal, toggleModal }}>
       {modalContent}
       {children}
     </ModalContext.Provider>

@@ -7,13 +7,13 @@ import { useModalContext } from "@/context/ModalContext";
 import "@/layouts/modals/auth/AuthModal.scss";
 
 const AuthModal = () => {
-  const { handleCloseModal } = useModalContext();
+  const { closeModal } = useModalContext();
 
   return (
     <AppBox className="spa-auth-modal">
       <AppIconButton
         className="spa-auth-modal__close-icon"
-        onClick={handleCloseModal}
+        onClick={closeModal}
       >
         <CloseIcon />
       </AppIconButton>

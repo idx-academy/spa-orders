@@ -15,7 +15,7 @@ import { useModalContext } from "@/context/ModalContext";
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 
 const HeaderToolbar = () => {
-  const { handleOpenModal } = useModalContext();
+  const { openModal } = useModalContext();
 
   // @TODO: use dynamic value instead of hardcoded
   const itemsInCartCount = 10;
@@ -25,7 +25,7 @@ const HeaderToolbar = () => {
   );
 
   const handleOpenAuthModal = () => {
-    handleOpenModal(<AuthModal />);
+    openModal(<AuthModal />);
   };
 
   return (
