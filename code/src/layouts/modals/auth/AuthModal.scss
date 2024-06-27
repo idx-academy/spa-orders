@@ -1,0 +1,16 @@
+@import "@design-system";
+
+.spa-auth-modal {
+  height: 675px;
+  display: flex;
+  flex-direction: column;
+  padding: spacing(2);
+}
+
+.spa-auth-modal__close-icon {
+  align-self: flex-end;
+}
+
+.spa-auth-modal__wrapper {
+  padding-inline: spacing(25);
+}
