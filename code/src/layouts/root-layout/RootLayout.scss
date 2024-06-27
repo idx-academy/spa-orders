@@ -1,0 +1,11 @@
+@import "@design-system";
+
+.root-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: $screen-height;
+}
+
+.root-layout__content {
+  flex: 1;
+}
