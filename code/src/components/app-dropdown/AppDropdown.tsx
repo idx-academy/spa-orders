@@ -69,6 +69,7 @@ const AppDropdown = ({
       className={`app-dropdown ${className}`}
       onClick={handleToggleDropdownClick}
       onBlur={handleBlur}
+      tabIndex={0}
     >
       <AppBox component="span" className="app-dropdown__selected">
         <AppTypography translationKey="sortBy.label" />
