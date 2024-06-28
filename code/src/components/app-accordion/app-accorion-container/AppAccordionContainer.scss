@@ -1,0 +1,9 @@
+@import "@design-system";
+
+.spa-accordion-container {
+  &--expanded {
+    margin: 0 !important; //necessary for overriding MUI styles
+  }
+  box-shadow: none;
+  border: 1px solid $ghost-alpha;
+}
