@@ -3,7 +3,7 @@ import { AppAccordionSummaryProps } from "@/components/app-accordion/app-accordi
 
 import "@/components/app-accordion/app-accorion-container/AppAccordionContainer.scss";
 
-const AppAccordionSummary = ({ ...props }: AppAccordionSummaryProps) => {
+const AppAccordionSummary = (props: AppAccordionSummaryProps) => {
   return <AccordionSummary {...props} />;
 };
 
