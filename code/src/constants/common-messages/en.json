@@ -1,3 +1,4 @@
 {
-  "login.label": "Login"
+  "login.label": "Login",
+  "logout.label": "Logout"
 }
