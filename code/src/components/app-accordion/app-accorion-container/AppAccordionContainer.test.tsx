@@ -8,10 +8,9 @@ describe("AppAccordionContainer", () => {
         <div>Child</div>
       </AppAccordionContainer>
     );
-    const accordionElement = screen
-      .getByText("Child")
-      .closest(".spa-accordion-container");
 
-    expect(accordionElement).toHaveClass("spa-accordion-container--expanded");
+    const accordionContainer = screen.getByText("Child").parentElement;
+
+    expect(accordionContainer).toHaveClass("spa-accordion-container--expanded");
   });
 });
