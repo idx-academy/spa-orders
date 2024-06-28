@@ -10,7 +10,7 @@ export type TextVariant =
   | "subtitle2"
   | "caption"
   | "caption-small";
-export type FontWeightVariant = "regular" | "extra-bold";
+export type AppFontWeightVariant = "regular" | "extra-bold";
 export type AppTypographyVariant = HeadingVariant | TextVariant;
 
 export type AppTypographyProps<T extends ElementType = "span"> = Omit<
@@ -19,7 +19,7 @@ export type AppTypographyProps<T extends ElementType = "span"> = Omit<
 > & {
   variant?: AppTypographyVariant;
   component?: T;
-  fontWeight?: FontWeightVariant;
+  fontWeight?: AppFontWeightVariant;
 } & (
     | {
         translationKey: string;
