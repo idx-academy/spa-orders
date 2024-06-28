@@ -3,7 +3,7 @@ import { Ref, forwardRef, PropsWithChildren } from "react";
 import AppContainer from "@/components/app-container/AppContainer";
 import { AppContainerProps } from "@/components/app-container/AppContainer.types";
 
-import "./PageWrapper.scss";
+import "@/layouts/page-wrapper/PageWrapper.scss";
 
 const PageWrapper = (
   { children, ...props }: PropsWithChildren<AppContainerProps>,

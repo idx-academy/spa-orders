@@ -1,6 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
-
-export const COMPONENT = "img";
+import { COMPONENT } from "@/components/app-logo/AppLogo";
 
 export type AppLogoType = Omit<
   ComponentPropsWithoutRef<typeof COMPONENT>,

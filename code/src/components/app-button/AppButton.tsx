@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import AppLoader from "@/components/app-loader/AppLoader";
 import cn from "@/utils/cn";
-import { AppButtonProps } from "./AppButton.types";
+import { AppButtonProps } from "@/components/app-button/AppButton.types";
 
 import "@/components/app-button/AppButton.scss";
 
