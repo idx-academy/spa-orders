@@ -1,4 +1,10 @@
 {
   "productsAll.label": "All Products",
-  "productsItems.label": "products"
+  "productsItems.label": "products",
+  "productsDefault.label": "Recommended",
+  "sortOptions.newest": "Newest",
+  "sortOptions.priceLowHigh": "Price (low to high)",
+  "sortOptions.priceHighLow": "Price (high to low)",
+  "sortOptions.nameAZ": "Name A-Z",
+  "sortOptions.nameZA": "Name Z-A"
 }

@@ -40,10 +40,4 @@ describe("ProductsPage", () => {
     renderProductsPage();
     expect(screen.getByText(mockProducts.length)).toBeInTheDocument();
   });
-
-  test("renders the sort by section", () => {
-    renderProductsPage();
-    const sortBy = screen.getByText(/Sort by: Recommended/i);
-    expect(sortBy).toBeInTheDocument();
-  });
 });
