@@ -7,15 +7,18 @@
   &__h1 {
     font-size: var(--spa-h1-font-size, $fs-h1);
     text-transform: var(--spa-h1-text-transform, $tt-none);
+    font-weight: var(--spa-h1-font-weight, $fw-extra-bold);
   }
 
   &__h2 {
     font-size: var(--spa-h2-font-size, $fs-h2);
+    font-weight: var(--spa-h2-font-weight, $fw-extra-bold);
     text-transform: var(--spa-h2-text-transform, $tt-none);
   }
 
   &__h3 {
     font-size: var(--spa-h3-font-size, $fs-h3);
+    font-weight: var(--spa-h3-font-weight, $fw-extra-bold);
     text-transform: var(--spa-h3-text-transform, $tt-none);
   }
 
@@ -25,6 +28,7 @@
 
   &__concept {
     font-size: var(--spa-typography-concept-font-size, $fs-4xl);
+    font-weight: var(--spa-typography-concept-font-weight, $fw-extra-bold);
     text-transform: var(--spa-typography-concept-text-transform, $tt-uppercase);
   }
 
