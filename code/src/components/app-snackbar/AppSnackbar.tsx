@@ -4,7 +4,7 @@ import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 
 import "@/components/app-snackbar/AppSnackbar.scss";
 
-export default function AppSnackbar() {
+const AppSnackbar = () => {
   const { isOpen, config, closeSnackbar } = useSnackbar();
   const { message, variant } = config;
 
@@ -25,4 +25,6 @@ export default function AppSnackbar() {
       </Alert>
     </Snackbar>
   );
-}
+};
+
+export default AppSnackbar;
