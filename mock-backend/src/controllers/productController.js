@@ -1,4 +1,5 @@
 const products = require("../data/mokedData");
+const { sortProducts } = require("..//utils/sortUtils");
 
 const validateNumberQueryParam = (value, defaultValue = 0) => {
   return !isNaN(value) && Number(value) >= 0 ? Number(value) : defaultValue;
@@ -20,6 +21,11 @@ const getAllProducts = (req, res) => {
   };
 
   res.json(response);
+  const { sort } = req.query;
+
+  let sortedProducts = sort ? sortProducts(products, sort) : products;
+
+  res.json(sortedProducts);
 };
 
 module.exports = { getAllProducts };
