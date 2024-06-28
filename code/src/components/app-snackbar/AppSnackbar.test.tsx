@@ -17,19 +17,18 @@ const mockUseSnackbar = {
 };
 
 describe("AppSnackbar", () => {
-  test("renders correctly", () => {
+  beforeEach(() => {
     (useSnackbar as jest.Mock).mockReturnValueOnce(mockUseSnackbar);
     renderWithProviders(<AppSnackbar />);
+  });
 
+  test("renders correctly", () => {
     const alert = screen.getByRole("alert");
     expect(alert).toBeInTheDocument();
     expect(alert).toHaveTextContent("Test message");
   });
 
   test("closes snackbar when close button is clicked", () => {
-    (useSnackbar as jest.Mock).mockReturnValueOnce(mockUseSnackbar);
-    renderWithProviders(<AppSnackbar />);
-
     const closeButton = screen.getByRole("button", { name: /close/i });
     fireEvent.click(closeButton);
 

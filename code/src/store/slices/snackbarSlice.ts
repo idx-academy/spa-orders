@@ -26,22 +26,22 @@ const snackbarSlice = createSlice({
   initialState,
   reducers: {
     openSnackbar: (state, action: PayloadAction<BaseSnackbarConfig>) => {
+      snackbarSlice.caseReducers._clearTimeout(state);
       state.isOpen = true;
       state.config = action.payload;
-      if (state._timerId) {
-        clearTimeout(state._timerId);
-        delete state._timerId;
-      }
     },
     closeSnackbar: (state) => {
+      snackbarSlice.caseReducers._clearTimeout(state);
       state.isOpen = false;
-      if (state._timerId) {
-        clearTimeout(state._timerId);
-        delete state._timerId;
-      }
     },
     _setSnackbarTimerId: (state, action: PayloadAction<TimerId>) => {
       state._timerId = action.payload;
+    },
+    _clearTimeout: (state) => {
+      if (state._timerId) {
+        clearTimeout(state._timerId);
+        delete state._timerId;
+      }
     }
   }
 });
