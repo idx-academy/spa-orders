@@ -1,14 +1,13 @@
-import { InputBase, InputBaseProps, Paper } from "@mui/material";
+import { InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
+
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
+import { InputWithIconProps } from "@/components/app-input-with-icon/AppInputWithIcon.types";
+
+import cn from "@/utils/cn";
 
 import "@/components/app-input-with-icon/AppInputWithIcon.scss";
-
-type InputWithIconProps = InputBaseProps & {
-  onSearch?: () => void;
-  onClear?: () => void;
-};
 
 const AppInputWithIcon = ({
   onSearch,
@@ -23,11 +22,12 @@ const AppInputWithIcon = ({
         className="spa-search-input__text-field"
         {...props}
       />
-      <AppIconButton onClick={onClear}>
-        <ClearIcon
-          fontSize="small"
-          className={!value ? "spa-search-input__clear-icon" : ""}
-        />
+
+      <AppIconButton
+        onClick={onClear}
+        className={!value ? "spa-search-input__clear-icon" : ""}
+      >
+        <ClearIcon fontSize="small" />
       </AppIconButton>
       <AppIconButton
         onClick={onSearch}

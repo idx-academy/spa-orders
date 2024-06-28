@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
@@ -26,8 +26,7 @@ const HeaderToolbar = () => {
 
   const [searchValue, setSearchValue] = useState("");
 
-  // @TODO: add logic to search product
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
