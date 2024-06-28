@@ -12,7 +12,7 @@ const mockProduct: Product = {
   tags: ["category:mobile"],
   image:
     "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_2-tTDYhyoyqsEkwPzySFdXflYCe7TkUb.jpg",
-  price: "500$"
+  price: 500
 };
 
 describe("ProductCard component", () => {
@@ -25,7 +25,7 @@ describe("ProductCard component", () => {
   });
 
   test("should render product price", () => {
-    const productPrice = screen.getByText(mockProduct.price);
+    const productPrice = screen.getByText(mockProduct.price + "$");
     expect(productPrice).toBeInTheDocument();
   });
 
