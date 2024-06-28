@@ -3,5 +3,6 @@ export const apiNames = {
 } as const;
 
 export const sliceNames = {
-  snackbar: "snackbarSlice"
+  snackbar: "snackbarSlice",
+  user: "userSlice"
 } as const;

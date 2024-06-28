@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 
 import snackbarReducer from "@/store/slices/snackbarSlice";
+import userReducer from "@/store/slices/userSlice";
 import { appApi } from "@/store/api/appApi";
 
 export const store = configureStore({
   reducer: {
     snackbar: snackbarReducer,
+    user: userReducer,
     [appApi.reducerPath]: appApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
