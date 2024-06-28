@@ -7,7 +7,6 @@ import ProductCard from "@/components/product-card/ProductCard";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
 import "@/layouts/best-sellers/BestSellers.scss";
-import AppInput from "@/components/app-input/AppInput";
 
 const BestSellers = () => {
   const { data: products, isLoading } = useGetProductsQuery();
@@ -32,7 +31,6 @@ const BestSellers = () => {
         <AppButton size="extra-large">
           <AppTypography translationKey="bestSellers.button" />
         </AppButton>
-      <AppInput label = "hELLO" helperText="hOW are YOU?"/>
       </AppBox>
     </PageWrapper>
   );
