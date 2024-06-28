@@ -3,7 +3,6 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import ProductCard from "@/components/product-card/ProductCard";
-import Demo from "@/components/app-input/Demo";
 
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
@@ -32,7 +31,6 @@ const BestSellers = () => {
         <AppButton size="extra-large">
           <AppTypography translationKey="bestSellers.button" />
         </AppButton>
-        <Demo/>
       </AppBox>
     </PageWrapper>
   );

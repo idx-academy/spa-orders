@@ -9,6 +9,7 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLogo from "@/components/app-logo/AppLogo";
 import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
+import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
 
 import { useModalContext } from "@/context/ModalContext";
 import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
@@ -69,9 +70,8 @@ const HeaderToolbar = () => {
             <AppLogo className="header__toolbar-logo-image" />
           </AppLink>
           <AppBox className="header__toolbar-search-field">
-            <AppInput
+            <AppInputWithIcon
               placeholder="Search..."
-              variant="search"
               value={searchValue}
               onChange={handleSearchChange}
               onClear={handleClearSearch}

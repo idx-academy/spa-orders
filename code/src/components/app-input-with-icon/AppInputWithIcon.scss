@@ -1,0 +1,31 @@
+@import "@design-system";
+
+.spa-search-input {
+  padding: spacing(1) spacing(2);
+  display: flex;
+  align-items: flex-end;
+  height: spacing(9);
+  border-radius: 50px;
+  background-color: var(--spa-search-input-background-color, $light);
+
+  &:hover {
+    background-color: var(--spa-search-input-hover-background-color, $white);
+  }
+
+  &__text-field {
+    margin-left: spacing(2);
+  }
+
+  &__clear-icon {
+    visibility: hidden;
+  }
+
+  &__search-icon {
+    background-color: var(--spa-search-button-background-color, $purple);
+    color: $white;
+
+    &:hover {
+      background-color: var(--spa-search-button-hover-background-color, $black);
+    }
+  }
+}

@@ -62,4 +62,5 @@ describe("HeaderToolbar", () => {
       expect(mockDispatch).toHaveBeenCalledWith(logout());
     });
   });
+  
 });
