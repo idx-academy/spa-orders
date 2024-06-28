@@ -3,5 +3,5 @@ export const apiNames = {
 } as const;
 
 export const sliceNames = {
-  products: "productsSlice"
+  snackbar: "snackbarSlice"
 } as const;

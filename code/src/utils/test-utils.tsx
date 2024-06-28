@@ -5,12 +5,12 @@ import { render, RenderOptions } from "@testing-library/react";
 import { PropsWithChildren, ReactElement } from "react";
 import { StyledEngineProvider } from "@mui/material/styles";
 
-import productsReducer from "@/store/slices/productsSlice";
+import snackbarReducer from '@/store/slices/snackbarSlice'
 import I18nProivider from "@/context/I18nProvider";
 import { ModalProvider } from "@/context/ModalContext";
 
 const reducer = {
-  products: productsReducer
+  snackbar: snackbarReducer
 };
 
 type ExtendedRenderOptions = RenderOptions & {

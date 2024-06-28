@@ -11,7 +11,12 @@ code/test-report.json
 # stryker temp files
 code/.stryker-tmp
 code/stryker-tmp
-code/reports/mutation
+
+# stryker reports
+code/stryker-config/*
+code/reports/*
+code/stryker.log
+
 
 # Mock backend
 mock-backend/node_modules

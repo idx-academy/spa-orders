@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 
-import productsReducer from "@/store/slices/productsSlice"; 
+import snackbarReducer from "@/store/slices/snackbarSlice";
 import { appApi } from "@/store/api/appApi";
 
 export const store = configureStore({
   reducer: {
-    products: productsReducer, 
+    snackbar: snackbarReducer,
     [appApi.reducerPath]: appApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
