@@ -1,0 +1,19 @@
+@import "@design-system";
+
+.spa-order-item {
+  &__title {
+    .MuiAccordionSummary-content {
+      padding-inline: spacing(5);
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__image {
+    @include box(50px);
+  }
+  &__status,
+  &__payment-status {
+    display: flex;
+    flex-direction: column;
+  }
+}
