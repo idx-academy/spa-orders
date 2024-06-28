@@ -19,13 +19,10 @@ type GetProductsParams = {
 
 const productsApi = appApi.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<
-      GetProductsResponse,
-      GetProductsParams | undefined | void
-    >({
-      query: (params = {}) => ({
+    getProducts: build.query<GetProductsResponse, GetProductsParams | void>({
+      query: (params) => ({
         url: URLS.products.get,
-        params: params
+        params: params ?? {}
       })
     }),
     addProduct: build.mutation<

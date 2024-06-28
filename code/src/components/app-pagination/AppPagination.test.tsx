@@ -3,19 +3,19 @@ import AppPagination from "@/components/app-pagination/AppPagination";
 import { renderWithProviders } from "@/utils/test-utils";
 
 describe("Test AppPagination", () => {
-  test("renders correctly", () => {
-    renderWithProviders(<AppPagination page={1} count={2} />);
-
-    const paginationItems = screen.getAllByRole("link");
-
-    expect(paginationItems.length).toBe(4);
-  });
-
-  test("Correctly sets links", () => {
+  beforeEach(() => {
     renderWithProviders(<AppPagination page={3} count={5} />, {
       initialEntries: ["?category=mobile"]
     });
+  });
 
+  test("renders correctly", () => {
+    const paginationItems = screen.getAllByRole("link");
+
+    expect(paginationItems.length).toBe(7);
+  });
+
+  test("Correctly sets links", () => {
     const anchorElement = screen.getAllByRole("link")[1];
 
     expect(anchorElement).toHaveAttribute("href", "/?category=mobile&page=1");

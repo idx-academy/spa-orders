@@ -1,8 +1,9 @@
 const products = require("../data/mokedData");
 
 const validateNumberQueryParam = (value, defaultValue = 1) => {
-  return value && !Number.isNaN(value) ? Number(value) : defaultValue;
+  return isNaN(value) ? Number(value) : defaultValue;
 };
+
 const getAllProducts = (req, res) => {
   const page = validateNumberQueryParam(req.query.page);
   const itemsPerPage = validateNumberQueryParam(req.query.itemsPerPage, 10);

@@ -9,15 +9,17 @@ import { useGetProductsQuery } from "@/store/api/productsApi";
 import "@/layouts/best-sellers/BestSellers.scss";
 
 const BestSellers = () => {
-  const { data, isLoading } = useGetProductsQuery({ itemsPerPage: 5 });
+  const { data: productsData, isLoading } = useGetProductsQuery({
+    itemsPerPage: 5
+  });
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const productCards = data?.items
-    ? data.items.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))
-    : null;
+  const productCards =
+    Boolean(productsData?.items) &&
+    productsData?.items.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ));
 
   return (
     <PageWrapper className="spa-best-sellers">

@@ -18,27 +18,27 @@ const ProductsPage = () => {
   const isPageValid = searchParamsPage && !Number.isNaN(searchParamsPage);
   const page = isPageValid ? Number(searchParamsPage) : 1;
 
-  const { data, isLoading } = useGetProductsQuery({
+  const { data: productsData, isLoading } = useGetProductsQuery({
     page,
     itemsPerPage: 10
   });
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const pagesCount = data?.pagesCount;
+  const pagesCount = productsData?.pagesCount;
 
   //@TODO Create Skeleton for product items
-  const productCards = data?.items
-    ? data?.items.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))
-    : null;
+  const productCards =
+    Boolean(productsData?.items) &&
+    productsData?.items.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ));
 
-  const paginationBlock = pagesCount ? (
+  const paginationBlock = Boolean(pagesCount) && (
     <AppContainer className="spa-products-page__pagination">
       <AppPagination page={page} count={pagesCount} size="large" />
     </AppContainer>
-  ) : null;
+  );
 
   return (
     <PageWrapper>
@@ -51,7 +51,7 @@ const ProductsPage = () => {
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">
-            {data?.itemsCount}
+            {productsData?.itemsCount}
             <AppTypography
               translationKey="productsItems.label"
               component="span"
