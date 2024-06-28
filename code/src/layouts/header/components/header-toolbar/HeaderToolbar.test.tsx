@@ -62,5 +62,11 @@ describe("HeaderToolbar", () => {
       expect(mockDispatch).toHaveBeenCalledWith(logout());
     });
   });
-  
+
+  test("renders search field", () => {
+    renderWithProviders(<HeaderToolbar />);
+
+    const searchField = screen.getByTestId(/SearchIcon/);
+    expect(searchField).toBeInTheDocument();
+  });
 });

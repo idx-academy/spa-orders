@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import AuthModal from "@/layouts/modals/auth/AuthModal";
@@ -16,7 +18,6 @@ import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
-import { useState } from "react";
 
 const HeaderToolbar = () => {
   const { openModal } = useModalContext();
@@ -34,6 +35,7 @@ const HeaderToolbar = () => {
     setSearchValue("");
   };
 
+  // @TODO: add logic to search product
   const handleSearch = () => {
     console.log("Search:", searchValue);
   };
