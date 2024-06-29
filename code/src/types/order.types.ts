@@ -3,7 +3,7 @@ import { orderStatuses } from "@/constants/orderStatuses";
 import { Product } from "@/types/product.types";
 import { PostAddress, Receiver } from "@/types/delivery.types";
 
-export type OrderStatuses = keyof typeof orderStatuses;
+export type OrderStatus = keyof typeof orderStatuses;
 
 export type OrderItem = {
   price: number;
@@ -14,7 +14,7 @@ export type OrderItem = {
 export type Order = {
   id: string;
   isPaid: boolean;
-  orderStatus: OrderStatuses;
+  orderStatus: OrderStatus;
   createdAt: string;
   receiver: Receiver;
   postAddress: PostAddress;

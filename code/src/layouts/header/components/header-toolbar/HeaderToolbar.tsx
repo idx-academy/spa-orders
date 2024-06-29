@@ -13,11 +13,11 @@ import AppLogo from "@/components/app-logo/AppLogo";
 import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
-import routes from "@/constants/routes";
 
 import { useModalContext } from "@/context/ModalContext";
 import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
+import routes from "@/constants/routes";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 
@@ -85,14 +85,12 @@ const HeaderToolbar = () => {
         </AppBox>
         <AppBox className="header__toolbar-icons">
           <AppBox className="header__toolbar-action-icons">
-            <AppLink to={routes.orders.path}>
-              <AppIconButton>
-                <ListAltIcon
-                  className="header__toolbar-cart-icon"
-                  fontSize="large"
-                />
-              </AppIconButton>
-            </AppLink>
+            <AppIconButton to={routes.orders.path} component={AppLink}>
+              <ListAltIcon
+                className="header__toolbar-cart-icon"
+                fontSize="large"
+              />
+            </AppIconButton>
             <AppIconButton>
               <AppBadge
                 badgeContent={badgeContentTypography}
