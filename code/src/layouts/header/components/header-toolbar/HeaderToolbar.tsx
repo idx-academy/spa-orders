@@ -1,3 +1,5 @@
+import { ChangeEvent, useState } from "react";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import AuthModal from "@/layouts/modals/auth/AuthModal";
@@ -9,6 +11,7 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLogo from "@/components/app-logo/AppLogo";
 import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
+import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
 
 import { useModalContext } from "@/context/ModalContext";
 import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
@@ -21,6 +24,20 @@ const HeaderToolbar = () => {
   const isAuthenticated = useIsAuthSelector();
   const dispatch = useAppDispatch();
 
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleClearSearch = () => {
+    setSearchValue("");
+  };
+
+  // @TODO: add logic to search product
+  const handleSearch = () => {
+    console.log("Search:", searchValue);
+  };
   // @TODO: use dynamic value instead of hardcoded
   const itemsInCartCount = 10;
 
@@ -53,6 +70,15 @@ const HeaderToolbar = () => {
           <AppLink to="/">
             <AppLogo className="header__toolbar-logo-image" />
           </AppLink>
+          <AppBox className="header__toolbar-search-field">
+            <AppInputWithIcon
+              placeholder="Search..."
+              value={searchValue}
+              onChange={handleSearchChange}
+              onClear={handleClearSearch}
+              onSearch={handleSearch}
+            />
+          </AppBox>
         </AppBox>
         <AppBox className="header__toolbar-icons">
           <AppIconButton>

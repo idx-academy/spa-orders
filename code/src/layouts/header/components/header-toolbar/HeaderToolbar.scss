@@ -19,6 +19,10 @@
     }
   }
 
+  &-search-field {
+    margin-left: spacing(10);
+  }
+
   &-cart-icon {
     color: var(--spa-cart-icon-color, $black);
   }
