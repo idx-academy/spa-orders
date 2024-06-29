@@ -1,4 +1,7 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+
+import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
 import Header from "@/layouts/header/Header";
 import Footer from "@/layouts/footer/Footer";
 import AppBox from "@/components/app-box/AppBox";
@@ -10,7 +13,9 @@ const RootLayout = () => {
     <AppBox className="root-layout">
       <Header />
       <AppBox className="root-layout__content">
-        <Outlet />
+        <Suspense fallback={<PageLoadingFallback />}>
+          <Outlet />
+        </Suspense>
       </AppBox>
       <Footer />
     </AppBox>

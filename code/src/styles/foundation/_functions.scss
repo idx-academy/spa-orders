@@ -2,7 +2,7 @@
   $result: "";
 
   @each $key, $value in $map {
-    $result: $result + $delimiter + $value;
+    $result: if($result == "", $value, $result + $delimiter + $value);
   }
 
   @return $result;
