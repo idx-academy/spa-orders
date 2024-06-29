@@ -4,6 +4,8 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 import { useModalContext } from "@/context/ModalContext";
 
+import SignupForm from "@/layouts/modals/auth/components/registration-form/SignupForm";
+
 import "@/layouts/modals/auth/AuthModal.scss";
 
 const AuthModal = () => {
@@ -20,6 +22,7 @@ const AuthModal = () => {
       <AppBox className="spa-auth-modal__wrapper">
         <AppTypography variant="h3" translationKey="authModal.signIn.title" />
       </AppBox>
+      <SignupForm />
     </AppBox>
   );
 };

@@ -6,7 +6,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 
-const useInputVisibility = (error: string) => {
+const useInputVisibility = () => {
   const [showInputText, setShowInputText] = useState(false);
 
   //   visibilityIconColor = error ? "error" : "secondary";
@@ -15,11 +15,7 @@ const useInputVisibility = (error: string) => {
     endAdornment: (
       <InputAdornment position="end">
         <AppIconButton onClick={() => setShowInputText(!showInputText)}>
-          {showInputText ? (
-            <VisibilityIcon color="secondary" />
-          ) : (
-            <VisibilityOffIcon color="secondary" />
-          )}
+          {showInputText ? <VisibilityIcon /> : <VisibilityOffIcon />}
         </AppIconButton>
       </InputAdornment>
     )

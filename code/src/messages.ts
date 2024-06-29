@@ -10,6 +10,7 @@ import callToActionSectionMessages from "@/layouts/call-to-action/messages";
 import authModalMessages from "@/layouts/modals/auth/messages";
 import orderItemMessages from "@/layouts/order-item/messages";
 import dropDownMessages from "@/components/app-dropdown/messages";
+import signupFormMessages from "@/layouts/modals/auth/components/registration-form/messages"
 
 const messages = {
   en: {
@@ -24,7 +25,9 @@ const messages = {
     ...callToActionSectionMessages.en,
     ...authModalMessages.en,
     ...orderItemMessages.en,
-    ...dropDownMessages.en
+    ...dropDownMessages.en,
+    ...signupFormMessages.en
+  
   },
   uk: {
     ...commonMessages.uk,
@@ -38,7 +41,8 @@ const messages = {
     ...callToActionSectionMessages.uk,
     ...authModalMessages.uk,
     ...orderItemMessages.uk,
-    ...dropDownMessages.en
+    ...dropDownMessages.en,
+    ...signupFormMessages.uk
   }
 };
 
