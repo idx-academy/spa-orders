@@ -1,5 +1,5 @@
-import Skeleton from "@mui/material/Skeleton";
 import AppBox from "@/components/app-box/AppBox";
+import AppSkeleton from "@/components/app-skeleton/AppSkeleton";
 
 import cn from "@/utils/cn";
 
@@ -16,7 +16,7 @@ const PageLoadingFallback = ({ fullScreen }: PageLoadingFallbackProps) => {
       )}
       data-testid="page-loading-fallback"
     >
-      <Skeleton
+      <AppSkeleton
         data-testid="page-loading-fallback-skeleton"
         variant="rounded"
         className="page-loading-fallback__skeleton"
