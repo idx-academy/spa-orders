@@ -7,7 +7,7 @@ import { store } from "@/store/store";
 import { openSnackbarWithTimeout } from "@/store/slices/snackbarSlice";
 import { APIError } from "@/types/common";
 import { ERROR_MESSAGES_BY_STATUS } from "@/constants/common";
-import { SnackbarPayload } from "./api/appApi";
+import { SnackbarPayload } from "@/store/api/appApi";
 
 type ErrorPayload = {
   status: number;
