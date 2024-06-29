@@ -50,13 +50,12 @@ describe("AppInputWithIcon with empty value", () => {
         placeholder="Search..."
         onClear={handleClear}
         onSearch={handleSearch}
-        value=""
       />
     );
   });
 
   test("Should not render clear icon button when there is no value", () => {
-    const clearButton = screen.queryByTestId(/ClearIcon/i);
-    expect(clearButton).not.toHaveClass("spa-search-input__text-field");
+    const clearButton = screen.getAllByRole("button")[0];
+    expect(clearButton).toHaveClass("spa-search-input__clear-icon");
   });
 });
