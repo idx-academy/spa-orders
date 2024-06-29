@@ -1,0 +1,10 @@
+@import "@design-system";
+
+.page-loading-fallback {
+  height: calc($screen-height - $header-height - spacing(10));
+  padding: spacing(5);
+
+  &__skeleton {
+    height: 100%;
+  }
+}
