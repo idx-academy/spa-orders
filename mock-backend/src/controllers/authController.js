@@ -1,6 +1,6 @@
 const APIError = require("../error/APIError");
 const authService = require("../services/authService");
-const wait = require('../utils/wait')
+const wait = require("../utils/wait");
 
 const signUp = async (req, res, next) => {
   try {
@@ -13,8 +13,8 @@ const signUp = async (req, res, next) => {
       return next(APIError.BadRequest());
     }
 
-    if (triggerStatus === 401) {
-      return next(APIError.Unauthorized());
+    if (triggerStatus === 409) {
+      return next(APIError.Conflict());
     }
 
     const payload = { email, password, firstName, lastName };
@@ -35,8 +35,8 @@ const signIn = async (req, res, next) => {
       return next(APIError.BadRequest());
     }
 
-    if (triggerStatus === 409) {
-      return next(APIError.Conflict());
+    if (triggerStatus === 401) {
+      return next(APIError.Unauthorized());
     }
 
     const payload = { email, password };
