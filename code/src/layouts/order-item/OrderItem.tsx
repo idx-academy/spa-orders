@@ -9,7 +9,7 @@ import AppBox from "@/components/app-box/AppBox";
 import OrderItemDetails from "@/layouts/order-item/components/order-item-details/OrderItemDetails";
 
 import { Order } from "@/types/order.types";
-import { orderStatus } from "@/constants/orderStatus";
+import { orderStatuses } from "@/constants/orderStatuses";
 
 import "@/layouts/order-item/OrderItem.scss";
 
@@ -18,7 +18,7 @@ type OrderItemProps = {
 };
 
 const OrderItem = ({ order }: OrderItemProps) => {
-  const orderItemStatus = orderStatus[order.orderStatus];
+  const orderItemStatus = orderStatuses[order.orderStatus];
 
   const orderTotalPrice = order.orderItems.reduce(
     (accumulator, orderItem) => accumulator + orderItem.price,

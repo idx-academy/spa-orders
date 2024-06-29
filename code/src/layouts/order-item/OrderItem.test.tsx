@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import OrderItem from "./OrderItem";
+import OrderItem from "@/layouts/order-item/OrderItem";
 import { Order } from "@/types/order.types";
 
 const mockOrder: Order = {

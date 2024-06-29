@@ -4,6 +4,13 @@
   font-family: $body-font-family;
   white-space: pre-line;
 
+  &__extra-bold {
+    font-weight: var(--spa-typography-font-bold, $fw-extra-bold);
+  }
+  &__regular {
+    font-weight: var(--spa-typography-font-bold, $fw-regular);
+  }
+
   &__h1 {
     font-size: var(--spa-h1-font-size, $fs-h1);
     text-transform: var(--spa-h1-text-transform, $tt-none);
@@ -46,12 +53,5 @@
 
   &__caption-small {
     font-size: var(--spa-typography-caption-small-font-size, $fs-xs);
-  }
-
-  &__extra-bold {
-    font-weight: var(--spa-typography-font-bold, $fw-extra-bold);
-  }
-  &__regular {
-    font-weight: var(--spa-typography-font-bold, $fw-regular);
   }
 }
