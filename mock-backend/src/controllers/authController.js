@@ -1,9 +1,13 @@
 const APIError = require("../error/APIError");
 const authService = require("../services/authService");
+const wait = require('../utils/wait')
 
 const signUp = async (req, res, next) => {
   try {
     const { email, password, firstName, lastName, triggerStatus } = req.body;
+
+    // simulate longer request to real server
+    await wait(1000);
 
     if (triggerStatus === 400) {
       return next(APIError.BadRequest());
@@ -23,6 +27,9 @@ const signUp = async (req, res, next) => {
 const signIn = async (req, res, next) => {
   try {
     const { email, password, triggerStatus } = req.body;
+
+    // simulate longer request to real server
+    await wait(1000);
 
     if (triggerStatus === 400) {
       return next(APIError.BadRequest());
