@@ -1,20 +1,40 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+  createApi,
+  fetchBaseQuery
+} from "@reduxjs/toolkit/query/react";
 import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import { apiNames } from "@/store/constants";
 
-export const appApi = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env.API_BASE_PATH,
-    prepareHeaders: (headers) => {
-      const token = window.localStorage.getItem(LOCAL_STORAGE_KEYS.userDetails);
+export type SnackbarPayload = {
+  isSnackbarHidden?: boolean;
+};
 
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
+type CustomFetchBaseQueryError = FetchBaseQueryError & SnackbarPayload;
 
-      return headers;
+const baseQuery: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  CustomFetchBaseQueryError
+> = fetchBaseQuery({
+  baseUrl: process.env.API_BASE_PATH,
+  prepareHeaders: (headers) => {
+    const token = window.localStorage.getItem(LOCAL_STORAGE_KEYS.userDetails);
+
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
     }
-  }),
+
+    return headers;
+  }
+});
+
+export const appApi = createApi({
+  baseQuery,
   reducerPath: apiNames.app,
   endpoints: () => ({})
 });
+
+appApi.middleware;

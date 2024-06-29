@@ -4,11 +4,13 @@ import { useAppSelector } from "@/hooks/use-redux/useRedux";
 import { TimerId } from "@/types/common";
 import {
   BaseSnackbarConfig,
-  SnackbarConfigWithTimeout
+  SnackbarConfigWithTimeout,
+  SnackbarVariant
 } from "@/types/snackbar.types";
 import { AppDispatch } from "@/store/store";
 
 const DEFAULT_AUTOHIDE_DURATION = 3000;
+const DEFAULT_VARIANT: SnackbarVariant = "error";
 
 type SnackbarState = {
   isOpen: boolean;
@@ -28,7 +30,8 @@ const snackbarSlice = createSlice({
     openSnackbar: (state, action: PayloadAction<BaseSnackbarConfig>) => {
       snackbarSlice.caseReducers._clearTimeout(state);
       state.isOpen = true;
-      state.config = action.payload;
+
+      state.config = { variant: DEFAULT_VARIANT, ...action.payload };
     },
     closeSnackbar: (state) => {
       snackbarSlice.caseReducers._clearTimeout(state);

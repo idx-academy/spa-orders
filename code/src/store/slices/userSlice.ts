@@ -16,7 +16,7 @@ const initialState: UserState = {
 
 export const checkAuth = createAsyncThunk(
   `${sliceNames.user}/checkAuth`,
-  (_, { dispatch }) => {
+  (_, { dispatch, rejectWithValue }) => {
     try {
       const serializedUserDetails = window.localStorage.getItem(
         LOCAL_STORAGE_KEYS.userDetails
@@ -28,8 +28,10 @@ export const checkAuth = createAsyncThunk(
 
       const userDetails = JSON.parse(serializedUserDetails);
       dispatch(authenticate(userDetails));
+      return null;
     } catch {
       dispatch(logout());
+      return rejectWithValue({ isSnackbarHidden: true });
     }
   }
 );
