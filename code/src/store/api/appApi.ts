@@ -36,5 +36,3 @@ export const appApi = createApi({
   reducerPath: apiNames.app,
   endpoints: () => ({})
 });
-
-appApi.middleware;

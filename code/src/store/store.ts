@@ -5,6 +5,13 @@ import snackbarReducer from "@/store/slices/snackbarSlice";
 import userReducer from "@/store/slices/userSlice";
 import { appApi } from "@/store/api/appApi";
 import { errorMiddleware } from "@/store/errorMiddleware";
+import { GetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+
+const middleware = (getDefaultMiddleware: GetDefaultMiddleware) => {
+  return getDefaultMiddleware()
+    .concat(appApi.middleware)
+    .concat(errorMiddleware);
+};
 
 export const store = configureStore({
   reducer: {
@@ -12,8 +19,7 @@ export const store = configureStore({
     user: userReducer,
     [appApi.reducerPath]: appApi.reducer
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(appApi.middleware).concat(errorMiddleware)
+  middleware
 });
 
 setupListeners(store.dispatch);
