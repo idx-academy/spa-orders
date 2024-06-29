@@ -2,7 +2,7 @@ import AppBox from "@/components/app-box/AppBox";
 import OrderItem from "@/layouts/order-item/OrderItem";
 
 //@TODO: Replace with mock backend
-import { item } from "@/layouts/order-item/constants";
+import { item } from "@/layouts/order-item/OrderItem.constants";
 
 import "@/layouts/orders-list/OrdersList.scss";
 

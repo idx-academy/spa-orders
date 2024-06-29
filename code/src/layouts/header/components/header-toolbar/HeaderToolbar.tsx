@@ -54,6 +54,8 @@ const HeaderToolbar = () => {
     dispatch(logout());
   };
 
+  //@TODO render order icon if user is authenticated. Now it's just for showcase
+
   const AuthButton = isAuthenticated ? (
     <AppButton onClick={handleLogout}>
       <AppTypography translationKey="logout.label" />
