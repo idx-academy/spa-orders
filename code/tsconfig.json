@@ -7,7 +7,7 @@
     },
     "baseUrl": ".",
     "target": "es6",
-    "module": "es2015",
+    "module": "ESNext",
     "moduleResolution": "node",
     "inlineSourceMap": true,
     "allowSyntheticDefaultImports": true,

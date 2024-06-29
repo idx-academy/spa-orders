@@ -1,13 +1,14 @@
 import { RouteObject } from "react-router-dom";
+import { lazy } from "react";
 
-// @TODO: Add lazy imports
 import RootLayout from "@/layouts/root-layout/RootLayout";
-import ErrorPage from "@/pages/error/ErrorPage";
-import NotFoundPage from "@/pages/not-found/NotFoundPage";
-import HomePage from "@/pages/home/HomePage";
-import ProductsPage from "@/pages/products/ProductsPage";
 
 import routePaths from "@/constants/routes";
+
+const ErrorPage = lazy(() => import("@/pages/error/ErrorPage"));
+const HomePage = lazy(() => import("@/pages/home/HomePage"));
+const ProductsPage = lazy(() => import("@/pages/products/ProductsPage"));
+const NotFoundPage = lazy(() => import("@/pages/not-found/NotFoundPage"));
 
 const routes: RouteObject[] = [
   {

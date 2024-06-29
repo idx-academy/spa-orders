@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";
 import { StyledEngineProvider } from "@mui/material";
@@ -17,7 +18,9 @@ root.render(
     <StyledEngineProvider injectFirst>
       <I18nProivider>
         <ModalProvider>
-          <App />
+          <Suspense>
+            <App />
+          </Suspense>
         </ModalProvider>
       </I18nProivider>
     </StyledEngineProvider>

@@ -94,7 +94,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "index.html")
     }),
-    new MiniCssExtractPlugin({ filename: "[name].css" }),
+    new MiniCssExtractPlugin({ filename: "[name].css", ignoreOrder: true }),
     new Dotenv({
       path: path.join(__dirname, "..", ".env.local")
     })
@@ -150,7 +150,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
         parser: {
           dataUrlCondition: {
             maxSize: 8192
