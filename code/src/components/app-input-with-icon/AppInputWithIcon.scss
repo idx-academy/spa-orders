@@ -9,7 +9,7 @@
   background-color: var(--spa-search-input-background-color, $light);
 
   &:hover {
-    --spa-search-input-background-color: $white;
+    background-color: var(--spa-search-input-hover-background-color, $white);
   }
 
   &__text-field {
