@@ -7,14 +7,14 @@ import { URLS } from "@/constants/requests";
 import { Product } from "@/types/product.types";
 
 type GetProductsResponse = {
-  items: Product[];
-  pagesCount: number;
-  itemsCount: number;
+  content: Product[];
+  totalPages: number;
+  totalItems: number;
 };
 
 type GetProductsParams = {
   page?: number;
-  itemsPerPage?: number;
+  size?: number;
 };
 
 const productsApi = appApi.injectEndpoints({

@@ -10,12 +10,12 @@ import "@/layouts/best-sellers/BestSellers.scss";
 
 const BestSellers = () => {
   const { data: products, isLoading } = useGetProductsQuery({
-    itemsPerPage: 5
+    size: 5
   });
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const productCards = products?.items.map((product) => (
+  const productCards = products?.content.map((product) => (
     <ProductCard key={product.id} product={product} />
   ));
 

@@ -19,17 +19,17 @@ const ProductsPage = () => {
   const page = isPageValid ? Number(searchParamsPage) : 1;
 
   const { data: products, isLoading } = useGetProductsQuery({
-    page,
-    itemsPerPage: 10
+    page: page - 1,
+    size: 10
   });
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const pagesCount = products?.pagesCount;
-  const productsCount = products?.itemsCount ?? 0;
+  const pagesCount = products?.totalPages;
+  const productsCount = products?.totalItems ?? 0;
 
   //@TODO Create Skeleton for product items
-  const productCards = products?.items.map((product) => (
+  const productCards = products?.content.map((product) => (
     <ProductCard key={product.id} product={product} />
   ));
 
