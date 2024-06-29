@@ -19,7 +19,7 @@ root.render(
     <StyledEngineProvider injectFirst>
       <I18nProivider>
         <ModalProvider>
-          <Suspense fallback={<PageLoadingFallback />}>
+          <Suspense fallback={<PageLoadingFallback fullScreen />}>
             <App />
           </Suspense>
         </ModalProvider>

@@ -4,6 +4,10 @@
   height: calc($screen-height - $header-height - spacing(10));
   padding: spacing(5);
 
+  &__full-screen {
+    height: calc($screen-height - spacing(10));
+  }
+
   &__skeleton {
     height: 100%;
   }
