@@ -14,9 +14,10 @@ const PageLoadingFallback = ({ fullScreen }: PageLoadingFallbackProps) => {
         "page-loading-fallback",
         fullScreen && "page-loading-fallback__full-screen"
       )}
+      data-testid="page-loading-fallback"
     >
       <Skeleton
-        data-testid="page-loading-skeleton"
+        data-testid="page-loading-fallback-skeleton"
         variant="rounded"
         className="page-loading-fallback__skeleton"
       />
