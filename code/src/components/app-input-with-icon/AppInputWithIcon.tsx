@@ -1,4 +1,5 @@
-import { InputBase, Paper } from "@mui/material";
+import InputBase from "@mui/material/InputBase";
+import Paper from "@mui/material/Paper";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 
