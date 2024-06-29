@@ -12,9 +12,9 @@ type OrderItemDetailsProps = {
 };
 
 const postAddressFields: Record<keyof PostAddress, string> = {
-  city: "City",
-  department: "Department",
-  deliveryMethod: "Delivery Method"
+  city: "orderProductItem.details.city",
+  department: "orderProductItem.details.department",
+  deliveryMethod: "orderProductItem.details.deliveryMethod"
 };
 
 const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
@@ -23,7 +23,7 @@ const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
   const postAddressFieldsList = Object.entries(postAddressFields).map(
     ([key, label]) => (
       <AppBox key={key} className="spa-order-details__address-fields">
-        <AppTypography variant="caption">{label}:</AppTypography>
+        <AppTypography variant="caption" translationKey={label} />
         <AppTypography variant="caption" fontWeight="extra-bold">
           {order.postAddress[key as keyof typeof order.postAddress]}
         </AppTypography>
@@ -49,10 +49,8 @@ const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
           <AppTypography
             variant="caption-small"
             component="p"
-            fontWeight="extra-bold"
-          >
-            Order reciever:
-          </AppTypography>
+            translationKey="orderProductItem.details.orderReciever"
+          />
           <AppTypography
             variant="caption"
             component="p"
@@ -68,9 +66,8 @@ const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
             variant="caption-small"
             component="p"
             className="spa-order-details__address-label"
-          >
-            Receiver adress:
-          </AppTypography>
+            translationKey="orderProductItem.details.recieverAddress"
+          />
           {postAddressFieldsList}
         </AppBox>
       </AppBox>

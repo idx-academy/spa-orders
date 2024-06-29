@@ -25,7 +25,9 @@ describe("ProductCard component", () => {
   });
 
   test("should render product price", () => {
-    const productPrice = screen.getByText(mockProduct.price + "$");
+    const productPrice = screen.getByText(
+      new RegExp(`${mockProduct.price}\\$`)
+    );
     expect(productPrice).toBeInTheDocument();
   });
 

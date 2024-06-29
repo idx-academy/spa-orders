@@ -8,9 +8,11 @@
       justify-content: space-between;
     }
   }
+
   &__image {
     @include box(50px);
   }
+
   &__status,
   &__payment-status {
     display: flex;

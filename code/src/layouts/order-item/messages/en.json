@@ -1,0 +1,8 @@
+{
+  "orderProductItem.isPaid": "Paid",
+  "orderProductItem.details.city": "City:",
+  "orderProductItem.details.department": "Department:",
+  "orderProductItem.details.deliveryMethod": "Delivery method:",
+  "orderProductItem.details.orderReciever": "Order reciever",
+  "orderProductItem.details.recieverAddress": "Receiver address"
+}

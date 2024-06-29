@@ -6,12 +6,12 @@ import {
 } from "@/components/app-accordion/AppAccordion";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
+import OrderItemDetails from "@/layouts/order-item/components/order-item-details/OrderItemDetails";
 
 import { Order } from "@/types/order.types";
 import { orderStatus } from "@/constants/orderStatus";
 
 import "@/layouts/order-item/OrderItem.scss";
-import OrderItemDetails from "./components/order-item-details/OrderItemDetails";
 
 type OrderItemProps = {
   order: Order;
@@ -47,7 +47,10 @@ const OrderItem = ({ order }: OrderItemProps) => {
         </AppBox>
 
         <AppBox className="spa-order-item__payment-status">
-          <AppTypography variant="caption">isPaid:</AppTypography>
+          <AppTypography
+            variant="caption"
+            translationKey="orderProductItem.isPaid"
+          />
           <AppTypography
             className="spa-order-item__payment-status"
             variant="body"

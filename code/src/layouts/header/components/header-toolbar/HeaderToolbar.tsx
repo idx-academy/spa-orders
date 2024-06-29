@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ListAltIcon from "@mui/icons-material/ListAlt";
 
 import AuthModal from "@/layouts/modals/auth/AuthModal";
 import AppBadge from "@/components/app-badge/AppBadge";
@@ -12,6 +13,7 @@ import AppLogo from "@/components/app-logo/AppLogo";
 import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
+import routes from "@/constants/routes";
 
 import { useModalContext } from "@/context/ModalContext";
 import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
@@ -38,16 +40,15 @@ const HeaderToolbar = () => {
   const handleSearch = () => {
     console.log("Search:", searchValue);
   };
+  const handleOpenAuthModal = () => {
+    openModal(<AuthModal />);
+  };
   // @TODO: use dynamic value instead of hardcoded
   const itemsInCartCount = 10;
 
   const badgeContentTypography = (
     <AppTypography variant="caption-small">{itemsInCartCount}</AppTypography>
   );
-
-  const handleOpenAuthModal = () => {
-    openModal(<AuthModal />);
-  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -81,18 +82,28 @@ const HeaderToolbar = () => {
           </AppBox>
         </AppBox>
         <AppBox className="header__toolbar-icons">
-          <AppIconButton>
-            <AppBadge
-              badgeContent={badgeContentTypography}
-              variant="dark"
-              size="small"
-            >
-              <ShoppingCartIcon
-                className="header__toolbar-cart-icon"
-                fontSize="large"
-              />
-            </AppBadge>
-          </AppIconButton>
+          <AppBox className="header__toolbar-action-icons">
+            <AppLink to={routes.orders.path}>
+              <AppIconButton>
+                <ListAltIcon
+                  className="header__toolbar-cart-icon"
+                  fontSize="large"
+                />
+              </AppIconButton>
+            </AppLink>
+            <AppIconButton>
+              <AppBadge
+                badgeContent={badgeContentTypography}
+                variant="dark"
+                size="small"
+              >
+                <ShoppingCartIcon
+                  className="header__toolbar-cart-icon"
+                  fontSize="large"
+                />
+              </AppBadge>
+            </AppIconButton>
+          </AppBox>
           {AuthButton}
         </AppBox>
       </AppContainer>
