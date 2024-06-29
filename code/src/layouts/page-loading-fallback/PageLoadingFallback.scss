@@ -1,5 +1,7 @@
 @import "@design-system";
 
+$header-height: 112px;
+
 .page-loading-fallback {
   height: calc($screen-height - $header-height - spacing(10));
   padding: spacing(5);
