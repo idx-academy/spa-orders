@@ -9,7 +9,7 @@ type RenderUseStickyHeaderOptions = {
 const mockedObserveFn = jest.fn();
 const mockedUnobserveFn = jest.fn();
 
-let mockedOptions: Partial<IntersectionObserverInit> | undefined;
+let observerOptions: Partial<IntersectionObserverInit> | undefined;
 let observerCallback: (entry?: { isIntersecting: boolean }) => void;
 
 const rightIntersectionOptions = { rootMargin: "300px" };
@@ -21,7 +21,7 @@ global.IntersectionObserver = jest.fn((callback, options) => {
     callback([entry as IntersectionObserverEntry], {} as IntersectionObserver);
   };
 
-  mockedOptions = options;
+  observerOptions = options;
 
   return {
     observe: mockedObserveFn,
@@ -69,7 +69,7 @@ describe("Test useStickyHeader", () => {
     initialHeaderElement = document.createElement("div");
     initialScrollHandleElement = document.createElement("div");
 
-    mockedOptions = undefined;
+    observerOptions = undefined;
     observerCallback = () => {};
 
     jest.clearAllMocks();
@@ -136,6 +136,6 @@ describe("Test useStickyHeader", () => {
   it("Should be called with the right options", async () => {
     renderUseStickyHeader();
 
-    expect(mockedOptions).toEqual(rightIntersectionOptions);
+    expect(observerOptions).toEqual(rightIntersectionOptions);
   });
 });
