@@ -29,7 +29,7 @@ const messages = {
     ...orderItemMessages.en,
     ...dropDownMessages.en,
     ...signupFormMessages.en,
-    ...loginFormMessages.en
+    ...loginFormMessages.en,
     ...orderPageMessages.en
   },
   uk: {
@@ -46,7 +46,7 @@ const messages = {
     ...orderItemMessages.uk,
     ...dropDownMessages.en,
     ...signupFormMessages.uk,
-    ...loginFormMessages.uk
+    ...loginFormMessages.uk,
     ...orderPageMessages.uk
   }
 };
