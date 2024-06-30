@@ -9,15 +9,15 @@ import { useGetProductsQuery } from "@/store/api/productsApi";
 import "@/layouts/best-sellers/BestSellers.scss";
 
 const BestSellers = () => {
-  const { data: products, isLoading } = useGetProductsQuery();
+  const { data: products, isLoading } = useGetProductsQuery({
+    size: 5
+  });
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const productCards = products
-    ? products
-        .slice(0, 5)
-        .map((product) => <ProductCard key={product.id} product={product} />)
-    : null;
+  const productCards = products?.content?.map((product) => (
+    <ProductCard key={product.id} product={product} />
+  ));
 
   return (
     <PageWrapper className="spa-best-sellers">

@@ -7,7 +7,7 @@ export const mockData = [
     status: "AVAILABLE",
     tags: ["category:mobile"],
     image: "https://example.com/phone1.jpg",
-    price: "599$"
+    price: "599"
   },
   {
     id: "124",
@@ -17,7 +17,7 @@ export const mockData = [
     status: "AVAILABLE",
     tags: ["category:mobile"],
     image: "https://example.com/phone2.jpg",
-    price: "799$"
+    price: "799"
   },
   {
     id: "125",
@@ -27,7 +27,7 @@ export const mockData = [
     status: "AVAILABLE",
     tags: ["category:tablet"],
     image: "https://example.com/tablet1.jpg",
-    price: "899$"
+    price: "899"
   },
   {
     id: "126",
@@ -37,7 +37,7 @@ export const mockData = [
     status: "AVAILABLE",
     tags: ["category:tablet"],
     image: "https://example.com/tablet2.jpg",
-    price: "999$"
+    price: "999"
   },
   {
     id: "127",
@@ -47,7 +47,7 @@ export const mockData = [
     status: "AVAILABLE",
     tags: ["category:computer"],
     image: "https://example.com/laptop1.jpg",
-    price: "1799$"
+    price: "1799"
   },
   {
     id: "128",
@@ -57,7 +57,7 @@ export const mockData = [
     status: "AVAILABLE",
     tags: ["category:computer"],
     image: "https://example.com/laptop2.jpg",
-    price: "1299$"
+    price: "1299"
   },
   {
     id: "129",
@@ -67,7 +67,7 @@ export const mockData = [
     status: "AVAILABLE",
     tags: ["category:mobile"],
     image: "https://example.com/phone3.jpg",
-    price: "1099$"
+    price: "1099"
   },
   {
     id: "130",
@@ -77,6 +77,6 @@ export const mockData = [
     status: "AVAILABLE",
     tags: ["category:computer"],
     image: "https://example.com/laptop3.jpg",
-    price: "1999$"
+    price: "1999"
   }
 ];

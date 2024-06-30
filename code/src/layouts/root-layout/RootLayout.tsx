@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 
 import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
 import Header from "@/layouts/header/Header";
@@ -11,6 +11,7 @@ import "@/layouts/root-layout/RootLayout.scss";
 const RootLayout = () => {
   return (
     <AppBox className="root-layout">
+      <ScrollRestoration />
       <Header />
       <AppBox className="root-layout__content">
         <Suspense fallback={<PageLoadingFallback />}>

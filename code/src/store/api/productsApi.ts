@@ -6,10 +6,24 @@ import { URLS } from "@/constants/requests";
 
 import { Product } from "@/types/product.types";
 
+type GetProductsResponse = {
+  content: Product[];
+  totalPages: number;
+  totalItems: number;
+};
+
+type GetProductsParams = {
+  page?: number;
+  size?: number;
+};
+
 const productsApi = appApi.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<Product[], void>({
-      query: () => URLS.products.get
+    getProducts: build.query<GetProductsResponse, GetProductsParams | void>({
+      query: (params) => ({
+        url: URLS.products.get,
+        params: params ?? {}
+      })
     }),
     addProduct: build.mutation<
       Product,
