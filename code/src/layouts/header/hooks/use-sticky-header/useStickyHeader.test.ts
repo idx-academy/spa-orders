@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useStickyHeader from "./useStickyHeader";
+import useStickyHeader from "@/layouts/header/hooks/use-sticky-header/useStickyHeader";
 
 type RenderUseStickyHeaderOptions = {
   headerElement?: HTMLDivElement | null;
@@ -50,10 +50,7 @@ const renderUseStickyHeader = ({
     const hookReturnedValue = useStickyHeader();
 
     headerElement &&
-      Object.defineProperty(headerElement, "clientHeight", {
-        configurable: true,
-        value: 112
-      });
+      Object.defineProperty(headerElement, "clientHeight", { value: 112 });
 
     hookReturnedValue.headerRef.current = headerElement;
     hookReturnedValue.scrollHandleRef.current = scrollHandleElement;
@@ -75,7 +72,7 @@ describe("Test useStickyHeader", () => {
     jest.clearAllMocks();
   });
 
-  it("Should not call observe function or return ref if there is no at least one ref assigned to html element", async () => {
+  test("Should not call observe function or return ref if there is no at least one ref assigned to html element", () => {
     const { result } = renderUseStickyHeader({
       headerElement: null
     });
@@ -85,7 +82,7 @@ describe("Test useStickyHeader", () => {
     expect(mockedObserveFn).not.toHaveBeenCalled();
   });
 
-  it("Should call observe and unobserve if refs are asigned", async () => {
+  test("Should call observe and unobserve if refs are asigned", () => {
     const { unmount } = renderUseStickyHeader();
 
     expect(mockedObserveFn).toHaveBeenCalled();
@@ -95,7 +92,7 @@ describe("Test useStickyHeader", () => {
     expect(mockedUnobserveFn).toHaveBeenCalled();
   });
 
-  it("Should set --top css variable to negative element's height if there is no intersection", async () => {
+  test("Should set --top css variable to negative element's height if there is no intersection", () => {
     const { result } = renderUseStickyHeader();
 
     observerCallback({ isIntersecting: false });
@@ -105,7 +102,7 @@ describe("Test useStickyHeader", () => {
     expect(headerElement).toHaveStyle(headerStyleWithoutIntersection);
   });
 
-  it("Should set --top css variable to 0 when intersection is detected", async () => {
+  test("Should set --top css variable to 0 when intersection is detected", () => {
     const { result } = renderUseStickyHeader();
 
     observerCallback();
@@ -115,7 +112,7 @@ describe("Test useStickyHeader", () => {
     expect(headerElement).toHaveStyle(headerStyleWithIntersection);
   });
 
-  it("Should change --top value after intersection reappears", async () => {
+  test("Should change --top value after intersection reappears", () => {
     const { result } = renderUseStickyHeader();
 
     const headerElement = result.current.headerRef.current;
@@ -133,7 +130,7 @@ describe("Test useStickyHeader", () => {
     expect(headerElement).toHaveStyle(headerStyleWithIntersection);
   });
 
-  it("Should be called with the right options", async () => {
+  test("Should be called with the right options", () => {
     renderUseStickyHeader();
 
     expect(observerOptions).toEqual(rightIntersectionOptions);
