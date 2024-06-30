@@ -15,7 +15,7 @@ const BestSellers = () => {
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const productCards = products?.content.map((product) => (
+  const productCards = products?.content?.map((product) => (
     <ProductCard key={product.id} product={product} />
   ));
 

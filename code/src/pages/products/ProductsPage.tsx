@@ -29,7 +29,7 @@ const ProductsPage = () => {
   const productsCount = products?.totalItems ?? 0;
 
   //@TODO Create Skeleton for product items
-  const productCards = products?.content.map((product) => (
+  const productCards = products?.content?.map((product) => (
     <ProductCard key={product.id} product={product} />
   ));
 
