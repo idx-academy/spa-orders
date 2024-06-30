@@ -1,14 +1,14 @@
 import AppBox from "@/components/app-box/AppBox";
 import OrderItem from "@/layouts/order-item/OrderItem";
-
-//@TODO: Replace with mock backend
-import { item } from "@/layouts/order-item/OrderItem.constants";
+import { Order } from "@/types/order.types";
 
 import "@/layouts/orders-list/OrdersList.scss";
 
-const OrdersList = () => {
-  const orders = item.content;
+type OrderListProps = {
+  orders: Order[];
+};
 
+const OrdersList = ({ orders }: OrderListProps) => {
   return (
     <AppBox className="spa-order-list">
       {orders.map((order) => (
