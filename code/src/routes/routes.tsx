@@ -5,6 +5,7 @@ import RootLayout from "@/layouts/root-layout/RootLayout";
 
 import routePaths from "@/constants/routes";
 
+const OrdersPage = lazy(() => import("@/pages/orders/OrdersPage"));
 const ErrorPage = lazy(() => import("@/pages/error/ErrorPage"));
 const HomePage = lazy(() => import("@/pages/home/HomePage"));
 const ProductsPage = lazy(() => import("@/pages/products/ProductsPage"));
@@ -19,7 +20,8 @@ const routes: RouteObject[] = [
         element: <RootLayout />,
         children: [
           { index: true, element: <HomePage /> },
-          { path: routePaths.products.path, element: <ProductsPage /> }
+          { path: routePaths.products.path, element: <ProductsPage /> },
+          { path: routePaths.orders.path, element: <OrdersPage /> }
         ]
       }
     ]

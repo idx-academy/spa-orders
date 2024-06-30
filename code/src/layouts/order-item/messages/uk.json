@@ -1,0 +1,8 @@
+{
+  "orderProductItem.isPaid": "Сплачено",
+  "orderProductItem.details.city": "Місто:",
+  "orderProductItem.details.department": "Відділ:",
+  "orderProductItem.details.deliveryMethod": "Метод доставки:",
+  "orderProductItem.details.orderReciever": "Отримувач замовлення",
+  "orderProductItem.details.recieverAddress": "Адреса отримувача"
+}

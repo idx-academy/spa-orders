@@ -1,0 +1,35 @@
+@import "@design-system";
+
+.spa-order-product {
+  flex: 1;
+
+  &__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: spacing(2);
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+
+  &__image {
+    @include box(86px);
+  }
+
+  &__description {
+    max-width: 300px;
+    line-clamp: 3;
+  }
+
+  &__title {
+    font-weight: $fw-extra-bold;
+  }
+
+  &__price {
+    margin-left: spacing(12);
+  }
+}

@@ -14,6 +14,9 @@ const routes = {
   mobiles: {
     path: "/mobiles"
   },
+  orders: {
+    path: "/orders"
+  },
   any: {
     path: "*"
   }

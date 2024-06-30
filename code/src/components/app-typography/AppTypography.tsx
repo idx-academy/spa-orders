@@ -25,6 +25,7 @@ function getDefaultComponentTag(variant: AppTypographyVariant) {
 const AppTypography = <T extends ElementType = "span">({
   variant = "body",
   className,
+  fontWeight = "regular",
   component,
   children,
   translationKey,
@@ -40,7 +41,12 @@ const AppTypography = <T extends ElementType = "span">({
   return (
     <Typography
       component={component ?? getDefaultComponentTag(variant)}
-      className={cn(`spa-typography`, `spa-typography__${variant}`, className)}
+      className={cn(
+        `spa-typography`,
+        `spa-typography__${variant}`,
+        `spa-typography__${fontWeight}`,
+        className
+      )}
       {...props}
     >
       {TypographyContent}

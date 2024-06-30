@@ -10,14 +10,16 @@ export type TextVariant =
   | "subtitle2"
   | "caption"
   | "caption-small";
+export type AppFontWeightVariant = "regular" | "extra-bold";
 export type AppTypographyVariant = HeadingVariant | TextVariant;
 
 export type AppTypographyProps<T extends ElementType = "span"> = Omit<
   TypographyProps<T>,
-  "variant" | "children"
+  "variant" | "children" | "fontWeight"
 > & {
   variant?: AppTypographyVariant;
   component?: T;
+  fontWeight?: AppFontWeightVariant;
 } & (
     | {
         translationKey: string;

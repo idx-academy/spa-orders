@@ -17,27 +17,26 @@ const NavLinkWrapper = forwardRef<HTMLAnchorElement, NavLinkProps>(
   ({ className, ...props }, ref) => {
     const classNameCallback = ({ isActive }: NavLinkRenderProps) =>
       cn(className, isActive && "spa-link--active");
-
     return <NavLink ref={ref} className={classNameCallback} {...props} />;
   }
 );
 
 NavLinkWrapper.displayName = "NavLinkWrapper";
 
-const AppLink = ({
-  variant = "default",
-  isNavLink = false,
-  ...props
-}: AppLinkProps) => {
-  const component = isNavLink ? NavLinkWrapper : ReactRouterDomLink;
+const AppLink = forwardRef<HTMLAnchorElement, AppLinkProps>(
+  ({ variant = "default", isNavLink = false, className, ...props }, ref) => {
+    const component = isNavLink ? NavLinkWrapper : ReactRouterDomLink;
+    return (
+      <MuiLink
+        component={component}
+        className={cn("spa-link", `spa-link__${variant}`, className)}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
 
-  return (
-    <MuiLink
-      component={component}
-      className={cn("spa-link", `spa-link__${variant}`)}
-      {...props}
-    />
-  );
-};
+AppLink.displayName = "AppLink";
 
 export default AppLink;

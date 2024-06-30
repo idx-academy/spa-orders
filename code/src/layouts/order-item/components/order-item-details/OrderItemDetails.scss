@@ -1,0 +1,25 @@
+@import "@design-system";
+
+.spa-order-details {
+  border-top: 1px solid $ghost-alpha;
+  display: flex;
+  padding: spacing(5) spacing(12);
+  gap: spacing(7);
+
+  &__delivery {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: spacing(3);
+    padding-block: spacing(2);
+  }
+  &__address {
+    &-label {
+      margin-bottom: spacing(1);
+    }
+  }
+  &__address-fields {
+    display: flex;
+    justify-content: space-between;
+  }
+}

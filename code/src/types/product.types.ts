@@ -7,5 +7,5 @@ export type Product = {
   status: ProductStatus;
   tags: string[];
   image: string;
-  price: string;
+  price: number;
 };

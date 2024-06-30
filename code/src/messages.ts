@@ -8,6 +8,7 @@ import productCardMessages from "@/components/product-card/messages";
 import productsItemsMessages from "@/pages/products/messages";
 import callToActionSectionMessages from "@/layouts/call-to-action/messages";
 import authModalMessages from "@/layouts/modals/auth/messages";
+import orderItemMessages from "@/layouts/order-item/messages";
 
 const messages = {
   en: {
@@ -20,7 +21,8 @@ const messages = {
     ...productCardMessages.en,
     ...productsItemsMessages.en,
     ...callToActionSectionMessages.en,
-    ...authModalMessages.en
+    ...authModalMessages.en,
+    ...orderItemMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -32,7 +34,8 @@ const messages = {
     ...productCardMessages.uk,
     ...productsItemsMessages.uk,
     ...callToActionSectionMessages.uk,
-    ...authModalMessages.uk
+    ...authModalMessages.uk,
+    ...orderItemMessages.uk
   }
 };
 
