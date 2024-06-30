@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: spacing(10);
 
   &-logo {
     display: flex;
@@ -19,17 +20,19 @@
     }
   }
 
-  &-search-field {
-    margin-left: spacing(10);
-  }
-
-  &-cart-icon {
+  &-icon {
     color: var(--spa-cart-icon-color, $black);
   }
 
-  &-icons {
+  &-action {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: spacing(8);
+    justify-content: space-between;
+    &-icons {
+      display: flex;
+      align-items: center;
+      gap: spacing(8);
+    }
   }
 }
