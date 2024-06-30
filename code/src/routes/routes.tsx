@@ -2,6 +2,7 @@ import { RouteObject } from "react-router-dom";
 import { lazy } from "react";
 
 import RootLayout from "@/layouts/root-layout/RootLayout";
+import OrdersPage from "@/pages/orders/OrdersPage";
 
 import routePaths from "@/constants/routes";
 
@@ -19,7 +20,8 @@ const routes: RouteObject[] = [
         element: <RootLayout />,
         children: [
           { index: true, element: <HomePage /> },
-          { path: routePaths.products.path, element: <ProductsPage /> }
+          { path: routePaths.products.path, element: <ProductsPage /> },
+          { path: routePaths.orders.path, element: <OrdersPage /> }
         ]
       }
     ]
