@@ -4,6 +4,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppLink from "@/components/app-link/AppLink";
 import AppButton from "@/components/app-button/AppButton";
 import { Product } from "@/types/product.types";
+import formatPrice from "@/utils/formatPrice";
 
 import "@/components/product-card/ProductCard.scss";
 
@@ -31,7 +32,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </AppBox>
         <AppBox className="spa-product-card__footer">
           <AppTypography className="spa-product-card__footer-price">
-            {product.price}$
+            {formatPrice(product.price)}
           </AppTypography>
           <AppButton size="small" variant="shadow">
             <AddIcon />

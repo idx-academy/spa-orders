@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import OrderItem from "@/layouts/order-item/OrderItem";
 import { Order } from "@/types/order.types";
+import formatPrice from "@/utils/formatPrice";
 
 const mockOrder: Order = {
   id: "order-1",
@@ -45,7 +46,9 @@ describe("OrderItem", () => {
     expect(receiverEmail).toBeInTheDocument();
   });
   test("renders total price correctly", () => {
-    const totalPrice = screen.getAllByText("500$");
+    const totalPrice = screen.getAllByText(
+      formatPrice(mockOrder.orderItems[0].price)
+    );
     expect(totalPrice).toHaveLength(2);
   });
 });
