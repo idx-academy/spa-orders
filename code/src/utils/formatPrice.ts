@@ -1,5 +1,7 @@
+type Currency = "USD" | "EUR" | "UAH";
+
 type FormatPriceOptions = {
-  currency?: "USD" | "EUR" | "GBP" | "BDT";
+  currency?: Currency;
   notation?: Intl.NumberFormatOptions["notation"];
 };
 
