@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const productRoutes = require("./routes/productRoutes");
+const authRoutes = require("./routes/authRoutes");
+const errorMiddleware = require("./middlewares/error");
 
 const app = express();
 app.use(
@@ -12,9 +14,7 @@ app.use(
 app.use(express.json());
 
 app.use("/api", productRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+app.use("/api/auth", authRoutes);
+app.use(errorMiddleware);
 
 module.exports = app;

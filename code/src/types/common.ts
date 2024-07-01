@@ -11,3 +11,9 @@ export type Sort = {
   unsorted: boolean;
   empty: boolean;
 };
+
+export type APIError = {
+  status: number;
+  title: string;
+  detail: string;
+};
