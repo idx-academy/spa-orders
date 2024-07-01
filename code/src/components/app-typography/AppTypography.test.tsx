@@ -27,6 +27,10 @@ describe("AppTypography", () => {
     renderAndCheckForTag("SPAN", "caption");
   });
 
+  test("should render small-caption as span", () => {
+    renderAndCheckForTag("SPAN", "caption-small");
+  });
+
   test("should render translated text if translationKey is provided", () => {
     const translationKey = "translation.key";
     render(<AppTypography translationKey={translationKey} />);

@@ -13,4 +13,12 @@ describe("AppButton", () => {
     const buttonElement = screen.getByRole("button");
     expect(buttonElement).toBeDisabled();
   });
+
+  test("Should show loader circle when isLoading is true", () => {
+    render(<AppButton isLoading>Test Button</AppButton>);
+    const loaderElement = screen.getByRole("progressbar");
+
+    expect(loaderElement).toBeInTheDocument();
+    expect(loaderElement).toHaveClass("spa-loader");
+  });
 });
