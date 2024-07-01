@@ -19,4 +19,14 @@ describe("formatDate", () => {
     });
     expect(formattedDate).toBe("Thursday, 27/06/2024, 15:35:14");
   });
+
+  test("accepts Date object directly", () => {
+    const formattedDate = formatDate(new Date("2024-06-27T12:35:14.396Z"));
+    expect(formattedDate).toBe("27/06/2024, 15:35:14");
+  });
+
+  test("accepts Date object directly", () => {
+    const formattedDate = formatDate("hello");
+    expect(formattedDate).toBe("Invalid date");
+  });
 });

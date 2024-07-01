@@ -4,10 +4,15 @@ type FormatDateOptions = {
 };
 
 const formatDate = (
-  dateString: string,
+  dateLike: string | Date,
   { locale = "en-GB", options = {} }: FormatDateOptions = {}
 ) => {
-  const date = new Date(dateString);
+  const date = dateLike instanceof Date ? dateLike : new Date(dateLike);
+
+  if (date.toString() === "Invalid Date") {
+    return "Invalid date";
+  }
+
   const defaultOptions: Intl.DateTimeFormatOptions = {
     day: "2-digit",
     month: "2-digit",
