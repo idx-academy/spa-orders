@@ -9,6 +9,13 @@ describe("AppLink", () => {
     expect(link).toBeInTheDocument();
   });
 
+  test("Should not have nav link class by default", () => {
+    renderWithProviders(<AppLink to="/">Test link</AppLink>);
+
+    const linkElement = screen.getByRole("link");
+    expect(linkElement).not.toHaveClass("spa-link--active");
+  });
+
   test("adds active class when link's pathname is equal to location pathname", async () => {
     renderWithProviders(
       <>
