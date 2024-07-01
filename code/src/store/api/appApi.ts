@@ -12,15 +12,15 @@ export type SnackbarPayload = {
   isSnackbarHidden?: boolean;
 };
 
-type CustomFetchBaseQueryError = FetchBaseQueryError & SnackbarPayload;
+type FetchBaseQueryErrorType = FetchBaseQueryError & SnackbarPayload;
 
-type CustomBaseQuery = BaseQueryFn<
+type BaseQueryType = BaseQueryFn<
   string | FetchArgs,
   unknown,
-  CustomFetchBaseQueryError
+  FetchBaseQueryErrorType
 >;
 
-const baseQuery: CustomBaseQuery = fetchBaseQuery({
+const baseQuery: BaseQueryType = fetchBaseQuery({
   baseUrl: process.env.API_BASE_PATH,
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState;
