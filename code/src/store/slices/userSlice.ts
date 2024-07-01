@@ -25,8 +25,7 @@ export const checkAuth = createAsyncThunk(
         throw new Error("No user details");
       }
 
-      // @TODO: use type from user.types
-      const userDetails = JSON.parse(serializedUserDetails);
+      const userDetails = JSON.parse(serializedUserDetails) as UserDetails;
 
       if (!("token" in userDetails)) {
         throw new Error("No token");
