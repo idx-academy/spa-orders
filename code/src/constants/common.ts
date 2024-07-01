@@ -8,3 +8,9 @@ export const ERROR_MESSAGES_BY_STATUS = {
   401: "User is not authorized to perform this action",
   409: "Already exists"
 } as const;
+
+export const ROLES = {
+  USER: "ROLE_USER",
+  SHOP_MANAGER: "ROLE_SHOP_MANAGER",
+  ADMIN: "ROLE_ADMIN"
+} as const;

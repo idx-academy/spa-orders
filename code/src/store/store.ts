@@ -7,7 +7,9 @@ import { appApi } from "@/store/api/appApi";
 import { errorMiddleware } from "@/store/errorMiddleware";
 import { GetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
-const middleware = (getDefaultMiddleware: GetDefaultMiddleware) => {
+const middleware = <State>(
+  getDefaultMiddleware: GetDefaultMiddleware<State>
+) => {
   return getDefaultMiddleware()
     .concat(appApi.middleware)
     .concat(errorMiddleware);

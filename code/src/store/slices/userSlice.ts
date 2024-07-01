@@ -3,6 +3,7 @@ import { sliceNames } from "@/store/constants";
 import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import { useAppSelector } from "@/hooks/use-redux/useRedux";
 import { UserDetails } from "@/types/user.types";
+import checkJWTTokenExpiration from "@/utils/check-jwt-token-expiration/checkJWTTokenExpiration";
 
 type UserState = {
   userDetails: UserDetails | null;
@@ -21,10 +22,21 @@ export const checkAuth = createAsyncThunk(
       );
 
       if (!serializedUserDetails) {
-        throw new Error("Forbidden");
+        throw new Error("No user details");
       }
 
-      const userDetails = JSON.parse(serializedUserDetails);
+      const userDetails = JSON.parse(serializedUserDetails) as UserDetails;
+
+      if (!("token" in userDetails)) {
+        throw new Error("No token");
+      }
+
+      const isTokenExpired = checkJWTTokenExpiration(userDetails.token);
+
+      if (isTokenExpired) {
+        throw new Error("Token expired");
+      }
+
       dispatch(authenticate(userDetails));
       return null;
     } catch {
