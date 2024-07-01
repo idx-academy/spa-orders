@@ -1,10 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { sliceNames } from "@/store/constants";
 import { LOCAL_STORAGE_KEYS } from "@/constants/common";
-import { SignInResponse, SignUpResponse } from "@/types/auth.types";
 import { useAppSelector } from "@/hooks/use-redux/useRedux";
-
-type UserDetails = SignUpResponse | SignInResponse;
+import { UserDetails } from "@/types/user.types";
 
 type UserState = {
   userDetails: UserDetails | null;

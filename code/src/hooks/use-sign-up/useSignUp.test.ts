@@ -21,6 +21,13 @@ const credentials = {
   lastName: "Johnes"
 };
 
+const signUpResponse = {
+  token: "Test token",
+  email: credentials.email,
+  firstName: credentials.firstName,
+  lastName: credentials.lastName
+};
+
 type MockReturnValueType = { error: string } | { data: Record<string, string> };
 
 const setupWithMockSignInReturnValue = async (
@@ -49,11 +56,10 @@ describe("useSignIn", () => {
   });
 
   test("should sign up successfully and dispatch authenticate action", async () => {
-    const userDetails = { token: "test token" };
-    await setupWithMockSignInReturnValue({ data: userDetails });
+    await setupWithMockSignInReturnValue({ data: signUpResponse });
 
     expect(mockSignUp).toHaveBeenCalledWith(credentials);
-    expect(mockDispatch).toHaveBeenCalledWith(authenticate(userDetails));
+    expect(mockDispatch).toHaveBeenCalledWith(authenticate(signUpResponse));
     expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({
       message: "You successfully signed up",
       variant: "success"

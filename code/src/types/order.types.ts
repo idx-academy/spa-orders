@@ -1,7 +1,8 @@
 import { Pageable, Sort } from "@/types/common";
 import { orderStatuses } from "@/constants/orderStatuses";
 import { Product } from "@/types/product.types";
-import { PostAddress, Receiver } from "@/types/delivery.types";
+import { PostAddress } from "@/types/delivery.types";
+import { User } from "@/types/user.types";
 
 export type OrderStatus = keyof typeof orderStatuses;
 
@@ -10,6 +11,8 @@ export type OrderItem = {
   quantity: number;
   product: Product;
 };
+
+type Receiver = Pick<User, "email" | "firstName" | "lastName">;
 
 export type Order = {
   id: string;
