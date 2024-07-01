@@ -8,7 +8,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppButton from "@/components/app-button/AppButton";
 
 import LoginForm from "@/layouts/modals/auth/components/login-form/LoginForm";
-import SignupForm from "@/layouts/modals/auth/components/registration-form/SignupForm";
+import SignupForm from "@/layouts/modals/auth/components/signup-form/SignupForm";
 
 import { useModalContext } from "@/context/ModalContext";
 
@@ -34,12 +34,12 @@ const AuthModal = () => {
   const toggleButtonText = isLoginPage ? (
     <AppTypography
       translationKey="authModal.tosignUp.button"
-      fontWeight="bold"
+      fontWeight="extra-bold"
     />
   ) : (
     <AppTypography
       translationKey="authModal.tologIn.button"
-      fontWeight="bold"
+      fontWeight="extra-bold"
     />
   );
 

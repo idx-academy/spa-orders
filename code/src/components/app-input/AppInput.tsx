@@ -6,7 +6,6 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import "@/components/app-input/AppInput.scss";
 
 const AppInput = ({ labelTranslationKey, ...props }: AppInputProps) => {
-  
   const translatedLabel = labelTranslationKey ? (
     <AppTypography translationKey={labelTranslationKey} />
   ) : undefined;

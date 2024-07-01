@@ -6,7 +6,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility";
 
-import "@/layouts/modals/auth/components/registration-form/SignupForm.scss";
+import "@/layouts/modals/auth/components/signup-form/SignupForm.scss";
 
 const SignupForm = () => {
   const { inputVisibility: passwordVisibility, showInputText: showPassword } =

@@ -10,7 +10,7 @@ import callToActionSectionMessages from "@/layouts/call-to-action/messages";
 import authModalMessages from "@/layouts/modals/auth/messages";
 import orderItemMessages from "@/layouts/order-item/messages";
 import dropDownMessages from "@/components/app-dropdown/messages";
-import signupFormMessages from "@/layouts/modals/auth/components/registration-form/messages";
+import signupFormMessages from "@/layouts/modals/auth/components/signup-form/messages";
 import loginFormMessages from "@/layouts/modals/auth/components/login-form/messages";
 
 const messages = {

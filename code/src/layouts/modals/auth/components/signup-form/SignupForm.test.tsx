@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import SignupForm from "@/layouts/modals/auth/components/registration-form/SignupForm";
+import SignupForm from "@/layouts/modals/auth/components/signup-form/SignupForm";
 
 describe("SignupForm", () => {
   beforeEach(() => {
