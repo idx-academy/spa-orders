@@ -39,7 +39,7 @@ export const checkAuth = createAsyncThunk(
 
       dispatch(authenticate(userDetails));
       return null;
-    } catch (error) {
+    } catch {
       dispatch(logout());
       return rejectWithValue({ isSnackbarHidden: true });
     }
