@@ -3,6 +3,7 @@ import { sliceNames } from "@/store/constants";
 import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import { useAppSelector } from "@/hooks/use-redux/useRedux";
 import { UserDetails } from "@/types/user.types";
+import checkJWTTokenExpiration from "@/utils/check-jwt-token-expiration/checkJWTTokenExpiration";
 
 type UserState = {
   userDetails: UserDetails | null;
@@ -21,13 +22,25 @@ export const checkAuth = createAsyncThunk(
       );
 
       if (!serializedUserDetails) {
-        throw new Error("Forbidden");
+        throw new Error("No user details");
       }
 
+      // @TODO: use type from user.types
       const userDetails = JSON.parse(serializedUserDetails);
+
+      if (!userDetails.hasOwnProperty("token")) {
+        throw new Error("No token");
+      }
+
+      const isTokenExpired = checkJWTTokenExpiration(userDetails.token);
+
+      if (isTokenExpired) {
+        throw new Error("Token expired");
+      }
+
       dispatch(authenticate(userDetails));
       return null;
-    } catch {
+    } catch (error) {
       dispatch(logout());
       return rejectWithValue({ isSnackbarHidden: true });
     }
