@@ -1,19 +1,13 @@
-type BaseCredentials = {
-  email: string;
+import { User, UserDetails } from "@/types/user.types";
+
+type Password = {
   password: string;
 };
 
-export type SignUpCredentials = BaseCredentials & {
-  firstName: string;
-  lastName: string;
-};
+export type SignUpCredentials = Pick<User, "email" | "firstName" | "lastName"> &
+  Password;
 
-export type SignInCredentials = BaseCredentials;
+export type SignInCredentials = Pick<User, "email"> & Password;
 
-export type SignUpResponse = {
-  token: string;
-};
-
-export type SignInResponse = {
-  token: string;
-};
+export type SignUpResponse = UserDetails;
+export type SignInResponse = UserDetails;
