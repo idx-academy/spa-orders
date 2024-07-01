@@ -5,8 +5,8 @@ import {
   createApi,
   fetchBaseQuery
 } from "@reduxjs/toolkit/query/react";
-import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import { apiNames } from "@/store/constants";
+import { RootState } from "@/store/store";
 
 export type SnackbarPayload = {
   isSnackbarHidden?: boolean;
@@ -14,17 +14,20 @@ export type SnackbarPayload = {
 
 type CustomFetchBaseQueryError = FetchBaseQueryError & SnackbarPayload;
 
-const baseQuery: BaseQueryFn<
+type CustomBaseQuery = BaseQueryFn<
   string | FetchArgs,
   unknown,
   CustomFetchBaseQueryError
-> = fetchBaseQuery({
-  baseUrl: process.env.API_BASE_PATH,
-  prepareHeaders: (headers) => {
-    const token = window.localStorage.getItem(LOCAL_STORAGE_KEYS.userDetails);
+>;
 
-    if (token) {
-      headers.set("Authorization", `Bearer ${token}`);
+const baseQuery: CustomBaseQuery = fetchBaseQuery({
+  baseUrl: process.env.API_BASE_PATH,
+  prepareHeaders: (headers, { getState }) => {
+    const state = getState() as RootState;
+    const userDetails = state.user.userDetails;
+
+    if (userDetails !== null) {
+      headers.set("Authorization", `Bearer ${userDetails.token}`);
     }
 
     return headers;
