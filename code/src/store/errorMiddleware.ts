@@ -8,17 +8,16 @@ import { openSnackbarWithTimeout } from "@/store/slices/snackbarSlice";
 import { APIError } from "@/types/common";
 import { ERROR_MESSAGES_BY_STATUS } from "@/constants/common";
 import { SnackbarPayload } from "@/store/api/appApi";
+import { BaseQueryApi } from "@reduxjs/toolkit/query";
 
 type ErrorPayload = {
   status: number;
   data: APIError;
 };
 
-type QueryType = "query" | "mutation";
-
 type ErrorActionMeta = {
   arg: {
-    type: QueryType;
+    type: BaseQueryApi["type"];
   };
 };
 
