@@ -32,7 +32,7 @@ const mockOrder: Order = {
   ],
   isPaid: false,
   orderStatus: "IN_PROGRESS",
-  createdAt: "20.12.2020"
+  createdAt: "2024-06-27T12:35:14.396Z"
 };
 
 describe("OrderItem", () => {
