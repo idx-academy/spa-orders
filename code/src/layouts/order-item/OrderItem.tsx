@@ -13,6 +13,7 @@ import { orderStatuses } from "@/constants/orderStatuses";
 import formatPrice from "@/utils/formatPrice";
 
 import "@/layouts/order-item/OrderItem.scss";
+import formatDate from "@/utils/format-date/formatDate";
 
 type OrderItemProps = {
   order: Order;
@@ -26,9 +27,6 @@ const OrderItem = ({ order }: OrderItemProps) => {
     0
   );
 
-  //Create a custom utility function for that
-  const orderDateCreation = new Date(order.createdAt).toLocaleString();
-
   return (
     <AppAccordionContainer className="spa-order-item__container">
       <AppAccordionSummary
@@ -41,7 +39,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
             variant="caption"
             fontWeight="extra-bold"
           >
-            {orderDateCreation}
+            {formatDate(order.createdAt)}
           </AppTypography>
           {/*@TODO: add badge component instead */}
           <AppTypography variant="caption">{orderItemStatus}</AppTypography>
