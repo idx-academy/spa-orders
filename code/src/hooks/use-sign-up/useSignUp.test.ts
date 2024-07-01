@@ -4,6 +4,7 @@ import { authenticate } from "@/store/slices/userSlice";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import useSignUp from "@/hooks/use-sign-up/useSignUp";
+import { SignUpResponse } from "@/types/auth.types";
 
 jest.mock("@/store/api/authApi");
 jest.mock("@/store/slices/userSlice");
@@ -21,11 +22,13 @@ const credentials = {
   lastName: "Johnes"
 };
 
-const signUpResponse = {
+const signUpResponse: SignUpResponse = {
+  id: "1",
   token: "Test token",
   email: credentials.email,
   firstName: credentials.firstName,
-  lastName: credentials.lastName
+  lastName: credentials.lastName,
+  role: "ROLE_USER"
 };
 
 type MockReturnValueType = { error: string } | { data: Record<string, string> };
