@@ -5,6 +5,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppDropdownOptions from "@/components/app-dropdown/components/AppDropdownOptions";
 import { AppDropdownProps } from "@/components/app-dropdown/AppDropdown.types";
+import cn from "@/utils/cn";
 
 import "@/components/app-dropdown/AppDropdown.scss";
 
@@ -12,7 +13,8 @@ const AppDropdown = ({
   options,
   onSelect,
   defaultLabel,
-  className
+  className,
+  ...props
 }: AppDropdownProps) => {
   const selectedLabelValue = defaultLabel || options[0].label;
 
@@ -52,31 +54,28 @@ const AppDropdown = ({
     }
   };
 
-  const handleOpenDropdown = () => {
-    return (
-      isOpen && (
-        <AppDropdownOptions
-          handleOptionClick={handleOptionClick}
-          options={options}
-        />
-      )
-    );
-  };
+  const dropdownContent = isOpen ? (
+    <AppDropdownOptions
+      handleOptionClick={handleOptionClick}
+      options={options}
+    />
+  ) : null;
 
   return (
     <AppBox
       ref={dropdownRef}
-      className={`app-dropdown ${className}`}
+      className={cn("app-dropdown", className)}
       onClick={handleToggleDropdownClick}
       onBlur={handleBlur}
       tabIndex={0}
+      {...props}
     >
       <AppBox component="span" className="app-dropdown__selected">
         <AppTypography translationKey="sortBy.label" />
         {selectedLabel}
-        <AppBox component="span">{iconConditional}</AppBox>
+        {iconConditional}
       </AppBox>
-      {handleOpenDropdown()}
+      {dropdownContent}
     </AppBox>
   );
 };

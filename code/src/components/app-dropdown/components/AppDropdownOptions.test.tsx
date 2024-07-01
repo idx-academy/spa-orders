@@ -21,7 +21,9 @@ describe("AppDropdownOptions block", () => {
 
   test("should render all options", () => {
     options.forEach((option) => {
-      expect(screen.getByText(option.label)).toBeInTheDocument();
+      const optionLabel = screen.getByText(option.label);
+
+      expect(optionLabel).toBeInTheDocument();
     });
   });
 

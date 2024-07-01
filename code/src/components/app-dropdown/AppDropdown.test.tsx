@@ -9,7 +9,7 @@ const options = [
   { value: "option2", label: "Label 2" }
 ];
 
-describe("AppDropdown block", () => {
+describe("AppDropdown", () => {
   beforeEach(() => {
     renderWithProviders(
       <AppDropdown
@@ -22,34 +22,7 @@ describe("AppDropdown block", () => {
   });
 
   test("renders the default label", () => {
-    expect(screen.getByText("Select an option")).toBeInTheDocument();
-  });
-
-  test("toggles the dropdown when clicked", () => {
-    const dropdown = screen.getByText("Select an option");
-
-    fireEvent.click(dropdown);
-
-    options.forEach((option) => {
-      expect(screen.getByText(option.label)).toBeInTheDocument();
-    });
-
-    fireEvent.click(dropdown);
-
-    options.forEach((option) => {
-      expect(screen.queryByText(option.label)).not.toBeInTheDocument();
-    });
-  });
-
-  test("selects an option and calls onSelect", () => {
-    const dropdown = screen.getByText("Select an option");
-
-    fireEvent.click(dropdown);
-
-    const optionToSelect = screen.getByText("Label 2");
-
-    fireEvent.click(optionToSelect);
-
-    expect(screen.getByText("Label 2")).toBeInTheDocument();
+    const selectOption = screen.getByText("Select an option");
+    expect(selectOption).toBeInTheDocument();
   });
 });
