@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { act, fireEvent, screen } from "@testing-library/react";
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 import { renderWithProviders } from "@/utils/test-utils";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
@@ -68,5 +68,40 @@ describe("HeaderToolbar", () => {
 
     const searchField = screen.getByTestId(/SearchIcon/);
     expect(searchField).toBeInTheDocument();
+  });
+
+  test("changes input value", () => {
+    renderWithProviders(<HeaderToolbar />);
+
+    const searchField = screen.getByRole("textbox");
+    expect(searchField).toBeInTheDocument();
+
+    act(() => {
+      fireEvent.change(searchField, { target: { value: "test" } });
+    });
+
+    expect(searchField).toHaveValue("test");
+  });
+
+  test("clears input value when clear button is clicked", () => {
+    renderWithProviders(<HeaderToolbar />);
+
+    const searchField = screen.getByRole("textbox");
+    const clearButton = screen.getAllByRole("button")[0];
+
+    expect(searchField).toBeInTheDocument();
+    expect(clearButton).toBeInTheDocument();
+
+    act(() => {
+      fireEvent.change(searchField, { target: { value: "test" } });
+    });
+
+    expect(searchField).toHaveValue("test");
+
+    act(() => {
+      fireEvent.click(clearButton);
+    });
+
+    expect(searchField).toHaveValue("");
   });
 });
