@@ -13,8 +13,12 @@ describe("createUrlPath", () => {
     expect(createUrlPath(`${baseUrl}/`, resourcePath)).toBe(expectedUrl);
   });
 
-  test("should join base URL without trailing slash and resource path with trailing slash correctly", () => {
-    expect(createUrlPath(baseUrl, `/${resourcePath}`)).toBe(expectedUrl);
+  test("should join base URL without trailing slash and resource path with multiple trailing slashes correctly", () => {
+    expect(createUrlPath(baseUrl, `//${resourcePath}`)).toBe(expectedUrl);
+  });
+
+  test("should not replace trailing slash at the end of resource path", () => {
+    expect(createUrlPath(baseUrl, `${resourcePath}/`)).toBe(`${expectedUrl}/`);
   });
 
   test("should join base URL and resource path if both have trailing slashes correctly", () => {
