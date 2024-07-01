@@ -47,3 +47,10 @@
 @mixin layer($variant) {
   z-index: map-get($layers, $variant);
 }
+
+@mixin line-clamp($lines: 1) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+}

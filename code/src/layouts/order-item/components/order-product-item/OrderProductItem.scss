@@ -23,18 +23,12 @@
 
   &__description {
     max-width: 350px;
-    &--title,
-    &--caption {
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-    }
 
     &--title {
-      -webkit-line-clamp: 1;
+      @include line-clamp(1);
     }
     &--caption {
-      -webkit-line-clamp: 3;
+      @include line-clamp(3);
     }
   }
 
