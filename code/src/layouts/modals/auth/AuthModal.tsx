@@ -14,34 +14,39 @@ import { useModalContext } from "@/context/ModalContext";
 
 import "@/layouts/modals/auth/AuthModal.scss";
 
+type AuthTab = "login" | "signup";
+
 const AuthModal = () => {
   const { closeModal } = useModalContext();
 
-  const [isLoginPage, setIsLoginPage] = useState(true);
+  const [activeTab, setActiveTab] = useState<AuthTab>("login");
 
   const toggleForm = () => {
-    setIsLoginPage(!isLoginPage);
+    setActiveTab((prevTab) => (prevTab === "login" ? "signup" : "login"));
   };
 
-  const authModalContent = isLoginPage ? <LoginForm /> : <SignupForm />;
+  const authModalContent =
+    activeTab === "login" ? <LoginForm /> : <SignupForm />;
 
-  const toggleText = isLoginPage ? (
-    <AppTypography translationKey="authModal.tosignUp.text" />
-  ) : (
-    <AppTypography translationKey="authModal.tologIn.text" />
-  );
+  const toggleText =
+    activeTab === "login" ? (
+      <AppTypography translationKey="authModal.tosignUp.text" />
+    ) : (
+      <AppTypography translationKey="authModal.tologIn.text" />
+    );
 
-  const toggleButtonText = isLoginPage ? (
-    <AppTypography
-      translationKey="authModal.tosignUp.button"
-      fontWeight="extra-bold"
-    />
-  ) : (
-    <AppTypography
-      translationKey="authModal.tologIn.button"
-      fontWeight="extra-bold"
-    />
-  );
+  const toggleButtonText =
+    activeTab === "login" ? (
+      <AppTypography
+        translationKey="authModal.tosignUp.button"
+        fontWeight="extra-bold"
+      />
+    ) : (
+      <AppTypography
+        translationKey="authModal.tologIn.button"
+        fontWeight="extra-bold"
+      />
+    );
 
   return (
     <AppBox className="spa-auth-modal">
@@ -55,7 +60,9 @@ const AuthModal = () => {
         <AppTypography
           variant="h3"
           translationKey={
-            isLoginPage ? "authModal.logIn.title" : "authModal.signUp.title"
+            activeTab === "login"
+              ? "authModal.logIn.title"
+              : "authModal.signUp.title"
           }
           className="spa-auth-modal__title"
         />
