@@ -1,12 +1,46 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import AuthModal from "@/layouts/modals/auth/AuthModal";
 import { renderWithProviders } from "@/utils/test-utils";
 
 describe("AuthModal", () => {
-  test("renders AuthModal component", () => {
+  beforeEach(() => {
     renderWithProviders(<AuthModal />);
+  });
 
-    const titleElement = screen.getByText("authModal.signIn.title");
-    expect(titleElement).toBeInTheDocument();
+  test("Should render modal close button", () => {
+    const closeButton = screen.getByTestId(/CloseIcon/i);
+    expect(closeButton).toBeInTheDocument();
+  });
+
+  test("Should render login modal title", () => {
+    const loginTitle = screen.getByText("authModal.logIn.title");
+    expect(loginTitle).toBeInTheDocument();
+  });
+
+  test("Should render login modal toggle text and button", () => {
+    const loginToggleText = screen.getByText("authModal.tosignUp.text");
+    expect(loginToggleText).toBeInTheDocument();
+
+    const loginToggleButton = screen.getByText("authModal.tosignUp.button");
+    expect(loginToggleButton).toBeInTheDocument();
+  });
+
+  test("Should witch to SignupForm when toggle button is clicked and back", () => {
+    const loginToggleButton = screen.getByText("authModal.tosignUp.button");
+    fireEvent.click(loginToggleButton);
+
+    const signupTitle = screen.getByText("authModal.signUp.title");
+    expect(signupTitle).toBeInTheDocument();
+
+    const signupToggleText = screen.getByText("authModal.tologIn.text");
+    expect(signupToggleText).toBeInTheDocument();
+
+    const signupToggleButton = screen.getByText("authModal.tologIn.button");
+    expect(signupToggleButton).toBeInTheDocument();
+
+    fireEvent.click(signupToggleButton);
+
+    const loginTitle = screen.getByText("authModal.logIn.title");
+    expect(loginTitle).toBeInTheDocument();
   });
 });

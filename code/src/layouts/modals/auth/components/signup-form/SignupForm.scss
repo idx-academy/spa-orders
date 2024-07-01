@@ -1,0 +1,21 @@
+@import "@design-system";
+
+.spa-signup {
+  &__name-fields {
+    display: flex;
+    gap: spacing(5);
+    margin-top: spacing(8);
+  }
+
+  &__email-password-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: spacing(5);
+    gap: spacing(5);
+  }
+
+  &__button {
+    margin-top: spacing(15);
+    margin-bottom: spacing(3);
+  }
+}

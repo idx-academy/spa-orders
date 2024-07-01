@@ -1,0 +1,15 @@
+@import "@design-system";
+
+.spa-login {
+  &__input-fields {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(5);
+    margin-top: spacing(8);
+  }
+
+  &__button {
+    margin-top: spacing(15);
+    margin-bottom: spacing(3);
+  }
+}
