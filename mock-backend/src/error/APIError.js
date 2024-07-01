@@ -1,30 +1,27 @@
-class APIError extends Error {
-  constructor(message, status, title) {
-    super(message);
-    this.detail = message;
-    this.title = title;
-    this.status = status;
-  }
+const createAPIError = (message, status, title) => {
+  const error = new Error(message);
+  error.status = status;
+  error.title = title;
+  error.detail = message;
+  return error;
+};
 
-  static BadRequest() {
-    return new APIError(
-      "Invalid Request. Please, check the data in the request (QueryString Parameters and/or Body).",
-      400,
-      "Bad Request"
-    );
-  }
+module.exports.createBadRequestError = () => {
+  return createAPIError(
+    "Invalid Request. Please, check the data in the request (QueryString Parameters and/or Body).",
+    400,
+    "Bad Request"
+  );
+};
 
-  static Unauthorized() {
-    return new APIError(
-      "Unauthorized access to the resource",
-      401,
-      "Unauthorized"
-    );
-  }
+module.exports.createUnauthorizedError = () => {
+  return createAPIError(
+    "Unauthorized access to the resource",
+    401,
+    "Unauthorized"
+  );
+};
 
-  static Conflict() {
-    return new APIError("The requested has conflict", 409, "Conflict");
-  }
-}
-
-module.exports = APIError;
+module.exports.createConflictError = () => {
+  return createAPIError("The requested has conflict", 409, "Conflict");
+};

@@ -1,4 +1,8 @@
-const APIError = require("../error/APIError");
+const {
+  createBadRequestError,
+  createConflictError,
+  createUnauthorizedError,
+} = require("../error/APIError");
 const authService = require("../services/authService");
 const wait = require("../utils/wait");
 
@@ -10,11 +14,11 @@ const signUp = async (req, res, next) => {
     await wait(1000);
 
     if (triggerStatus === 400) {
-      return next(APIError.BadRequest());
+      return next(createBadRequestError());
     }
 
     if (triggerStatus === 409) {
-      return next(APIError.Conflict());
+      return next(createConflictError());
     }
 
     const payload = { email, password, firstName, lastName };
@@ -32,11 +36,11 @@ const signIn = async (req, res, next) => {
     await wait(1000);
 
     if (triggerStatus === 400) {
-      return next(APIError.BadRequest());
+      return next(createBadRequestError());
     }
 
     if (triggerStatus === 401) {
-      return next(APIError.Unauthorized());
+      return next(createUnauthorizedError());
     }
 
     const payload = { email, password };
