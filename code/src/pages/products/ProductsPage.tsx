@@ -15,6 +15,7 @@ import AppPagination from "@/components/app-pagination/AppPagination";
 import AppContainer from "@/components/app-container/AppContainer";
 
 import "@/pages/products/ProductsPage.scss";
+import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
 const ProductsPage = () => {
   const [sortOption, setSortOption] = useState("");
@@ -30,10 +31,13 @@ const ProductsPage = () => {
     sort: sortOption
   });
 
-  if (isLoading) return <AppTypography>Loading...</AppTypography>;
-
   const pagesCount = products?.totalPages;
   const productsCount = products?.totalItems ?? 0;
+
+  const skeletonCards = Array.from(
+    { length: products?.content?.length || 10 },
+    (_, index) => <ProductSkeleton key={index} />
+  );
 
   const productCards = products?.content?.map((product: Product) => (
     <ProductCard key={product.id} product={product} />

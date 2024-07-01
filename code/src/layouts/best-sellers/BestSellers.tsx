@@ -3,6 +3,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import ProductCard from "@/components/product-card/ProductCard";
+import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
 import { Product } from "@/types/product.types";
 import { useGetProductsQuery } from "@/store/api/productsApi";
@@ -14,8 +15,10 @@ const BestSellers = () => {
     size: 5
   });
 
-  //@TODO Create Skeleton for component loading
-  if (isLoading) return <AppTypography>Loading...</AppTypography>;
+  const skeletonCards = Array.from(
+    { length: products?.content?.length || 10 },
+    (_, index) => <ProductSkeleton key={index} />
+  );
 
   const productCards = products?.content?.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
@@ -28,7 +31,9 @@ const BestSellers = () => {
         translationKey="bestSellers.header"
         variant="h3"
       />
-      <AppBox className="spa-best-sellers__container">{productCards}</AppBox>
+      <AppBox className="spa-best-sellers__container">
+        {isLoading ? skeletonCards : productCards}
+      </AppBox>
       <AppBox className="spa-best-sellers__button">
         <AppButton size="extra-large">
           <AppTypography translationKey="bestSellers.button" />
