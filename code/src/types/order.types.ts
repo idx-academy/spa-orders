@@ -37,3 +37,5 @@ export type OrderResponse = {
   empty: boolean;
   content: Order[];
 };
+
+export type OrderRequest = { id: string };
