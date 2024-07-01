@@ -10,6 +10,7 @@ import OrderItemDetails from "@/layouts/order-item/components/order-item-details
 
 import { Order } from "@/types/order.types";
 import { orderStatuses } from "@/constants/orderStatuses";
+import formatPrice from "@/utils/formatPrice";
 
 import "@/layouts/order-item/OrderItem.scss";
 
@@ -56,8 +57,7 @@ const OrderItem = ({ order }: OrderItemProps) => {
             variant="body"
             fontWeight="extra-bold"
           >
-            {/*It will be replaced by the utility function*/}
-            {orderTotalPrice}$
+            {formatPrice(orderTotalPrice)}
           </AppTypography>
         </AppBox>
       </AppAccordionSummary>

@@ -1,6 +1,7 @@
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 import { Product } from "@/types/product.types";
+import formatPrice from "@/utils/formatPrice";
 
 import "@/layouts/order-item/components/order-product-item/OrderProductItem.scss";
 
@@ -38,14 +39,12 @@ const OrderProductItem = ({ product, quantity, price }: OrderProductItem) => {
           component="p"
           fontWeight="extra-bold"
         >
-          {/*This $ will be replaced by the utility function*/}
-          {product.price}$ x {quantity}
+          {formatPrice(product.price)}$ x {quantity}
         </AppTypography>
       </AppBox>
 
       <AppTypography variant="body" component="p" fontWeight="extra-bold">
-        {/*This $ will be replaced by the utility function*/}
-        {price}$
+        {formatPrice(price)}
       </AppTypography>
     </AppBox>
   );

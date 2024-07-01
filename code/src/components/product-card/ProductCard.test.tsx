@@ -2,6 +2,7 @@ import { screen } from "@testing-library/react";
 import ProductCard from "@/components/product-card/ProductCard";
 import { Product } from "@/types/product.types";
 import { renderWithProviders } from "@/utils/test-utils";
+import formatPrice from "@/utils/formatPrice";
 
 const mockProduct: Product = {
   id: "123",
@@ -25,9 +26,7 @@ describe("ProductCard component", () => {
   });
 
   test("should render product price", () => {
-    const productPrice = screen.getByText(
-      new RegExp(`${mockProduct.price}\\$`)
-    );
+    const productPrice = screen.getByText(formatPrice(mockProduct.price));
     expect(productPrice).toBeInTheDocument();
   });
 
