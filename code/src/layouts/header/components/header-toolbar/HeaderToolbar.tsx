@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import AuthModal from "@/layouts/modals/auth/AuthModal";
 import AppBadge from "@/components/app-badge/AppBadge";
@@ -46,19 +47,17 @@ const HeaderToolbar = () => {
   // @TODO: use dynamic value instead of hardcoded
   const itemsInCartCount = 10;
 
-  const badgeContentTypography = (
-    <AppTypography variant="caption-small">{itemsInCartCount}</AppTypography>
-  );
-
   const handleLogout = () => {
     dispatch(logout());
   };
 
-  //@TODO render order icon if user is authenticated. Now it's just for showcase
+  const badgeContentTypography = (
+    <AppTypography variant="caption-small">{itemsInCartCount}</AppTypography>
+  );
 
   const AuthButton = isAuthenticated ? (
-    <AppButton onClick={handleLogout}>
-      <AppTypography translationKey="logout.label" />
+    <AppButton onClick={handleLogout} variant="danger" size="small">
+      <LogoutIcon />
     </AppButton>
   ) : (
     <AppButton onClick={handleOpenAuthModal}>
@@ -66,45 +65,44 @@ const HeaderToolbar = () => {
     </AppButton>
   );
 
+  const OrdersButton = isAuthenticated && (
+    <AppIconButton to={routes.orders.path} component={AppLink}>
+      <ListAltIcon className="header__toolbar-icon" fontSize="large" />
+    </AppIconButton>
+  );
+
   return (
     <AppBox className="header__wrapper">
       <AppContainer maxWidth="xl" className="header__toolbar">
-        <AppBox className="header__toolbar-logo">
-          <AppLink to="/">
-            <AppLogo className="header__toolbar-logo-image" />
-          </AppLink>
-          <AppBox className="header__toolbar-search-field">
-            <AppInputWithIcon
-              placeholder="Search..."
-              value={searchValue}
-              onChange={handleSearchChange}
-              onClear={handleClearSearch}
-              onSearch={handleSearch}
-            />
-          </AppBox>
-        </AppBox>
-        <AppBox className="header__toolbar-icons">
+        <AppLink to="/">
+          <AppLogo className="header__toolbar-logo-image" />
+        </AppLink>
+        <AppBox className="header__toolbar-action">
+          <AppInputWithIcon
+            placeholder="Search..."
+            value={searchValue}
+            onChange={handleSearchChange}
+            onClear={handleClearSearch}
+            onSearch={handleSearch}
+          />
           <AppBox className="header__toolbar-action-icons">
-            <AppIconButton to={routes.orders.path} component={AppLink}>
-              <ListAltIcon
-                className="header__toolbar-cart-icon"
-                fontSize="large"
-              />
-            </AppIconButton>
-            <AppIconButton>
-              <AppBadge
-                badgeContent={badgeContentTypography}
-                variant="dark"
-                size="small"
-              >
-                <ShoppingCartIcon
-                  className="header__toolbar-cart-icon"
-                  fontSize="large"
-                />
-              </AppBadge>
-            </AppIconButton>
+            <AppBox>
+              {OrdersButton}
+              <AppIconButton>
+                <AppBadge
+                  badgeContent={badgeContentTypography}
+                  variant="dark"
+                  size="small"
+                >
+                  <ShoppingCartIcon
+                    className="header__toolbar-icon"
+                    fontSize="large"
+                  />
+                </AppBadge>
+              </AppIconButton>
+            </AppBox>
+            {AuthButton}
           </AppBox>
-          {AuthButton}
         </AppBox>
       </AppContainer>
     </AppBox>

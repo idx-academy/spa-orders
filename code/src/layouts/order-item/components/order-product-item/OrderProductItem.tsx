@@ -23,13 +23,18 @@ const OrderProductItem = ({ product, quantity, price }: OrderProductItem) => {
         />
         <AppBox className="spa-order-product__description">
           <AppTypography
-            className="spa-order-product__title"
+            className="spa-order-product__description--title"
             variant="body"
+            fontWeight="extra-bold"
             component="p"
           >
             {product.name}
           </AppTypography>
-          <AppTypography variant="caption-small" component="p">
+          <AppTypography
+            variant="caption-small"
+            component="p"
+            className="spa-order-product__description--caption"
+          >
             {product.description}
           </AppTypography>
         </AppBox>

@@ -50,7 +50,7 @@ describe("HeaderToolbar", () => {
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(true);
       renderWithProviders(<HeaderToolbar />);
-      logoutButton = screen.getByRole("button", { name: "logout.label" });
+      logoutButton = screen.getByTestId(/LogoutIcon/);
     });
 
     test("renders logout button correctly", () => {
