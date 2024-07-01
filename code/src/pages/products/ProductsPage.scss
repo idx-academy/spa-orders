@@ -25,11 +25,6 @@
 
   &__sort {
     cursor: pointer;
-
-    &:after {
-      content: "\25BC";
-      margin-left: spacing(1);
-    }
   }
 
   &__grid {

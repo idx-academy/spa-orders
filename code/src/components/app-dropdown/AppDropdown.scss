@@ -1,0 +1,31 @@
+@import "@design-system";
+
+.app-dropdown {
+  position: relative;
+  cursor: pointer;
+
+  &__selected {
+    display: flex;
+    align-items: center;
+    gap: spacing(1);
+    color: var(--spa-dropdown-selected-color, $black);
+  }
+
+  &__options {
+    @include layer("popover");
+    position: absolute;
+    top: calc(100% + spacing(1));
+    background-color: var(--spa-dropdown-options-bg-color, $white);
+    border: 1px solid var(--spa-dropdown-options-border, $gray);
+    border-radius: spacing(1);
+    width: 100%;
+  }
+
+  &__option {
+    padding: spacing(2);
+
+    &:hover {
+      background-color: var(--spa-dropdown-option-bg, $gray-light);
+    }
+  }
+}

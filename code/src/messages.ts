@@ -9,6 +9,7 @@ import productsItemsMessages from "@/pages/products/messages";
 import callToActionSectionMessages from "@/layouts/call-to-action/messages";
 import authModalMessages from "@/layouts/modals/auth/messages";
 import orderItemMessages from "@/layouts/order-item/messages";
+import dropDownMessages from "@/components/app-dropdown/messages";
 
 const messages = {
   en: {
@@ -22,7 +23,8 @@ const messages = {
     ...productsItemsMessages.en,
     ...callToActionSectionMessages.en,
     ...authModalMessages.en,
-    ...orderItemMessages.en
+    ...orderItemMessages.en,
+    ...dropDownMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -35,7 +37,8 @@ const messages = {
     ...productsItemsMessages.uk,
     ...callToActionSectionMessages.uk,
     ...authModalMessages.uk,
-    ...orderItemMessages.uk
+    ...orderItemMessages.uk,
+    ...dropDownMessages.en
   }
 };
 

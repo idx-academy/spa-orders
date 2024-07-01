@@ -1,4 +1,10 @@
 {
   "productsAll.label": "Всі товари",
-  "productsItems.label": "товари"
+  "productsItems.label": "товари",
+  "productsDefault.label": "Рекомендовані",
+  "sortOptions.newest": "Нові",
+  "sortOptions.priceLowHigh": "Ціна (від низької до високої)",
+  "sortOptions.priceHighLow": "Ціна (від високої до низької)",
+  "sortOptions.nameAZ": "Ім'я від А до Я",
+  "sortOptions.nameZA": "Ім'я від Я до А"
 }

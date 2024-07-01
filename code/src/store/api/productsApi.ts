@@ -1,9 +1,7 @@
 import { appApi } from "@/store/api/appApi";
-
 import { createUrlPath } from "@/utils/createUrlPath";
 import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
-
 import { Product } from "@/types/product.types";
 
 type GetProductsResponse = {
@@ -15,11 +13,12 @@ type GetProductsResponse = {
 type GetProductsParams = {
   page?: number;
   size?: number;
+  sort?: string;
 };
 
 const productsApi = appApi.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<GetProductsResponse, GetProductsParams | void>({
+    getProducts: build.query<GetProductsResponse, GetProductsParams>({
       query: (params) => ({
         url: URLS.products.get,
         params: params ?? {}

@@ -4,6 +4,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import ProductCard from "@/components/product-card/ProductCard";
 
+import { Product } from "@/types/product.types";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
 import "@/layouts/best-sellers/BestSellers.scss";
@@ -13,9 +14,10 @@ const BestSellers = () => {
     size: 5
   });
 
+  //@TODO Create Skeleton for component loading
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const productCards = products?.content?.map((product) => (
+  const productCards = products?.content?.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
   ));
 
