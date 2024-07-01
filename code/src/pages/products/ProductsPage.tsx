@@ -10,6 +10,7 @@ import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
 import "@/pages/products/ProductsPage.scss";
+import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
 const ProductsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,18 +20,18 @@ const ProductsPage = () => {
   const isPageValid = searchParamsPage && !Number.isNaN(searchParamsPage);
   const page = isPageValid ? Number(searchParamsPage) : 1;
 
-  const { data: productsResponse, isLoading: productsLoading } =
-    useGetProductsQuery({
-      page: page - 1,
-      size: 8,
-      sort: sortOption
-    });
+  const { data: products, isLoading } = useGetProductsQuery({
+    page: page - 1,
+    size: 10,
+    sort: sortOption
+  });
 
-  const defaultDropdownText = (
-    <AppTypography translationKey="productsDefault.label" />
-  );
+  if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const productCards = productsResponse?.content?.map((product) => (
+  const pagesCount = products?.totalPages;
+  const productsCount = products?.totalItems ?? 0;
+
+  const productCards = products?.content?.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
   ));
 
