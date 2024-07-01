@@ -13,7 +13,7 @@ const AppInput = ({ labelTranslationKey, ...props }: AppInputProps) => {
   return (
     <AppBox>
       <TextField
-        size="medium"
+        size="small"
         label={translatedLabel}
         className="spa-app-input__textfield"
         {...props}

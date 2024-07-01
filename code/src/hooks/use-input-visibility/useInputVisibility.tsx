@@ -1,25 +1,25 @@
 import { useState } from "react";
 
-import { InputAdornment } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 
 const useInputVisibility = () => {
-  const [showInputText, setShowInputText] = useState(false);
+  const [shouldShowInputText, setShouldShowInputText] = useState(false);
 
   const inputVisibility = {
     endAdornment: (
       <InputAdornment position="end">
-        <AppIconButton onClick={() => setShowInputText(!showInputText)}>
-          {showInputText ? <VisibilityIcon /> : <VisibilityOffIcon />}
+        <AppIconButton onClick={() => setShouldShowInputText(!shouldShowInputText)}>
+          {shouldShowInputText ? <VisibilityIcon /> : <VisibilityOffIcon />}
         </AppIconButton>
       </InputAdornment>
     )
   };
 
-  return { inputVisibility, showInputText, setShowInputText };
+  return { inputVisibility, shouldShowInputText, setShouldShowInputText };
 };
 
 export default useInputVisibility;

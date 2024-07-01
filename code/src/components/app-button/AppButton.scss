@@ -148,26 +148,3 @@
     pointer-events: none;
   }
 }
-
-// .spa-button-square {
-//   @include focus-style(var(--spa-button-focus-color, $purple));
-
-//   display: inline-flex;
-//   align-items: center;
-//   column-gap: spacing(2);
-//   border-width: 1px;
-//   border-style: solid;
-//   text-transform: $tt-none;
-
-//   @include focus-style(var(--spa-button-contained-focus-color, $purple));
-//   @include hover-effect(
-//     var(--spa-button-contained--bg-hover-color, $transparent),
-//     var(--spa-button-contained--text-hover-color, $purple)
-//   );
-
-//   background-color: var(--spa-button-contained-bg-color, $purple);
-//   color: var(--spa-button-contained-color, $white);
-//   border-color: var(--spa-button-contained-border-color, $purple);
-
-//   @include button-size(12, var(--spa-button-medium-font-size, $fs-base));
-// }

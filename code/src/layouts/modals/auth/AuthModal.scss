@@ -1,7 +1,7 @@
 @import "@design-system";
 
 .spa-auth-modal {
-  height: 675px;
+  height: 575px;
   width: 450px;
   display: flex;
   align-items: center;
@@ -15,7 +15,6 @@
 
   &__toggle {
     display: flex;
-    flex-direction: row;
     align-items: center;
     margin-bottom: spacing(6);
   }

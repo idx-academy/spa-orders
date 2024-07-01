@@ -9,11 +9,13 @@ import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility"
 import "@/layouts/modals/auth/components/signup-form/SignupForm.scss";
 
 const SignupForm = () => {
-  const { inputVisibility: passwordVisibility, showInputText: showPassword } =
-    useInputVisibility();
+  const {
+    inputVisibility: passwordVisibility,
+    shouldShowInputText: showPassword
+  } = useInputVisibility();
   const {
     inputVisibility: confirmPasswordVisibility,
-    showInputText: showConfirmPassword
+    shouldShowInputText: showConfirmPassword
   } = useInputVisibility();
 
   return (

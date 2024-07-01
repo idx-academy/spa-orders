@@ -5,8 +5,8 @@ describe("useInputVisibility custom hook", () => {
   test("should use input visibility", () => {
     const { result } = renderHook(() => useInputVisibility());
 
-    expect(result.current.showInputText).toBe(false);
-    expect(typeof result.current.inputVisibility).toBe("object");
+    expect(result.current.shouldShowInputText).toBe(false);
+    expect(result.current.inputVisibility).toHaveProperty("endAdornment");
   });
 
   test("should toggle input visibility after click", () => {
@@ -15,11 +15,11 @@ describe("useInputVisibility custom hook", () => {
     act(() => {
       result.current.inputVisibility.endAdornment.props.children.props.onClick();
     });
-    expect(result.current.showInputText).toBe(true);
+    expect(result.current.shouldShowInputText).toBe(true);
 
     act(() => {
       result.current.inputVisibility.endAdornment.props.children.props.onClick();
     });
-    expect(result.current.showInputText).toBe(false);
+    expect(result.current.shouldShowInputText).toBe(false);
   });
 });
