@@ -1,5 +1,5 @@
 const products = require("../data/mokedData");
-const { sortProducts } = require("..//utils/sortUtils");
+const { sortProducts } = require("../utils/sortUtils");
 
 const validateNumberQueryParam = (value, defaultValue = 0) => {
   return !isNaN(value) && Number(value) >= 0 ? Number(value) : defaultValue;
@@ -8,11 +8,13 @@ const validateNumberQueryParam = (value, defaultValue = 0) => {
 const getAllProducts = (req, res) => {
   const page = validateNumberQueryParam(req.query.page);
   const size = validateNumberQueryParam(req.query.size, 10);
+  const { sort } = req.query;
 
+  let sortedProducts = sort ? sortProducts(products, sort) : products;
   const skip = page * size;
   const limit = (page + 1) * size;
 
-  const slicedProducts = products.slice(skip, limit);
+  const slicedProducts = sortedProducts.slice(skip, limit);
 
   const response = {
     content: slicedProducts,
@@ -21,11 +23,6 @@ const getAllProducts = (req, res) => {
   };
 
   res.json(response);
-  const { sort } = req.query;
-
-  let sortedProducts = sort ? sortProducts(products, sort) : products;
-
-  res.json(sortedProducts);
 };
 
 module.exports = { getAllProducts };
