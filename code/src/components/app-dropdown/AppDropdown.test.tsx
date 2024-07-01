@@ -1,4 +1,4 @@
-import { screen, fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
 import { renderWithProviders } from "@/utils/test-utils";
 
