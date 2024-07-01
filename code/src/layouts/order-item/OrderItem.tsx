@@ -11,9 +11,9 @@ import OrderItemDetails from "@/layouts/order-item/components/order-item-details
 import { Order } from "@/types/order.types";
 import { orderStatuses } from "@/constants/orderStatuses";
 import formatPrice from "@/utils/formatPrice";
+import formatDate from "@/utils/format-date/formatDate";
 
 import "@/layouts/order-item/OrderItem.scss";
-import formatDate from "@/utils/format-date/formatDate";
 
 type OrderItemProps = {
   order: Order;

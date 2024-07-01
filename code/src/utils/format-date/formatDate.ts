@@ -15,7 +15,8 @@ const formatDate = (
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
-    hour12: false
+    hour12: false,
+    timeZone: "Europe/Kiev"
   };
 
   return new Intl.DateTimeFormat(locale, {
