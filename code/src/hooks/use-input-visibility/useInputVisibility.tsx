@@ -9,8 +9,6 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 const useInputVisibility = () => {
   const [showInputText, setShowInputText] = useState(false);
 
-  //   visibilityIconColor = error ? "error" : "secondary";
-
   const inputVisibility = {
     endAdornment: (
       <InputAdornment position="end">
