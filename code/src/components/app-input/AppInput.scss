@@ -5,5 +5,8 @@
     .MuiInputBase-input {
       padding: spacing(3) spacing(4);
     }
+    .MuiFormLabel-root {
+      padding-top: 3px;
+    }
   }
 }
