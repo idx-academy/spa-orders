@@ -30,7 +30,10 @@ describe("AuthModal", () => {
     fireEvent.click(loginToggleButton);
 
     const signupTitle = screen.getByText("authModal.signUp.title");
+    const signupFormInputs = screen.getAllByRole("textbox");
+
     expect(signupTitle).toBeInTheDocument();
+    expect(signupFormInputs.length).toBe(3);
 
     const signupToggleText = screen.getByText("authModal.tologIn.text");
     expect(signupToggleText).toBeInTheDocument();
@@ -41,6 +44,9 @@ describe("AuthModal", () => {
     fireEvent.click(signupToggleButton);
 
     const loginTitle = screen.getByText("authModal.logIn.title");
+    const signinFormInputs = screen.getAllByRole("textbox");
+
     expect(loginTitle).toBeInTheDocument();
+    expect(signinFormInputs.length).toBe(1);
   });
 });
