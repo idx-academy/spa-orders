@@ -1,14 +1,10 @@
 import { screen } from "@testing-library/react";
-import {
-  TypedUseQueryHookResult,
-  TypedUseQueryStateResult
-} from "@reduxjs/toolkit/query/react";
-
 import BestSellers from "@/layouts/best-sellers/BestSellers";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 import { renderWithProviders } from "@/utils/test-utils";
 
 import { mockData as mockItems } from "@/layouts/best-sellers/BestSellers.constants";
+
 import { RTKQueryReturnState } from "@/types/common";
 
 const mockData = {
