@@ -14,6 +14,7 @@
   &__info {
     display: flex;
     align-items: center;
+    gap: spacing(3);
   }
 
   &__image {
@@ -21,12 +22,20 @@
   }
 
   &__description {
-    max-width: 300px;
-    line-clamp: 3;
-  }
+    max-width: 350px;
+    &--title,
+    &--caption {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
 
-  &__title {
-    font-weight: $fw-extra-bold;
+    &--title {
+      -webkit-line-clamp: 1;
+    }
+    &--caption {
+      -webkit-line-clamp: 3;
+    }
   }
 
   &__price {

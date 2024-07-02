@@ -12,6 +12,7 @@ import orderItemMessages from "@/layouts/order-item/messages";
 import dropDownMessages from "@/components/app-dropdown/messages";
 import signupFormMessages from "@/layouts/modals/auth/components/signup-form/messages";
 import loginFormMessages from "@/layouts/modals/auth/components/login-form/messages";
+import orderPageMessages from "@/pages/orders/messages";
 
 const messages = {
   en: {
@@ -29,6 +30,7 @@ const messages = {
     ...dropDownMessages.en,
     ...signupFormMessages.en,
     ...loginFormMessages.en
+    ...orderPageMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -45,6 +47,7 @@ const messages = {
     ...dropDownMessages.en,
     ...signupFormMessages.uk,
     ...loginFormMessages.uk
+    ...orderPageMessages.uk
   }
 };
 

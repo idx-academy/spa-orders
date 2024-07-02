@@ -1,0 +1,11 @@
+@import "@design-system";
+
+.spa-orders-page {
+  min-height: 500px;
+  padding: spacing(10);
+  background-color: var(--spa-foreground-background-color, $white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: spacing(5);
+}
