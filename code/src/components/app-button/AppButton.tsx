@@ -4,35 +4,54 @@ import cn from "@/utils/cn";
 import { AppButtonProps } from "@/components/app-button/AppButton.types";
 
 import "@/components/app-button/AppButton.scss";
+import { Link, NavLink } from "react-router-dom";
+import { forwardRef } from "react";
 
-const AppButton = ({
-  children,
-  className,
-  variant = "contained",
-  size = "medium",
-  disabled,
-  isLoading,
-  ...props
-}: AppButtonProps) => {
-  const isDisabled = disabled || isLoading;
+const AppButton = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  AppButtonProps
+>(
+  (
+    {
+      children,
+      className,
+      variant = "contained",
+      size = "medium",
+      disabled,
+      isLoading,
+      isNavLink,
+      ...props
+    },
+    ref
+  ) => {
+    const isDisabled = disabled || isLoading;
 
-  const loader = isLoading && <AppLoader variant="disabled" size="small" />;
+    const loader = isLoading && <AppLoader variant="disabled" size="small" />;
 
-  return (
-    <Button
-      disabled={isDisabled}
-      className={cn(
-        "spa-button",
-        `spa-button__${variant}`,
-        `spa-button__${size}`,
-        className
-      )}
-      {...props}
-    >
-      {children}
-      {loader}
-    </Button>
-  );
-};
+    const linkComponent = isNavLink ? NavLink : Link;
+
+    const containerComponent = props.to ? linkComponent : undefined;
+
+    return (
+      <Button
+        disabled={isDisabled}
+        className={cn(
+          "spa-button",
+          `spa-button__${variant}`,
+          `spa-button__${size}`,
+          className
+        )}
+        component={containerComponent}
+        ref={ref}
+        {...props}
+      >
+        {children}
+        {loader}
+      </Button>
+    );
+  }
+);
+
+AppButton.displayName = "AppButton";
 
 export default AppButton;
