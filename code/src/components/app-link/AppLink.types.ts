@@ -17,9 +17,10 @@ type BaseProps = {
   variant?: LinkVariant;
 };
 
+export type AppLinkWithNavLinkProps =
+  | ({ isNavLink: true } & NavLinkProps)
+  | ({ isNavLink?: false } & ReactRouterDomLinkProps);
+
 export type AppLinkProps = Omit<MuiLinkProps, "variant" | "component"> &
   BaseProps &
-  (
-    | ({ isNavLink: true } & NavLinkProps)
-    | ({ isNavLink?: false } & ReactRouterDomLinkProps)
-  );
+  AppLinkWithNavLinkProps;

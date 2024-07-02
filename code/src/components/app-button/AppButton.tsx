@@ -1,11 +1,14 @@
+import { ForwardedRef, forwardRef } from "react";
+import { Link, NavLink } from "react-router-dom";
+
 import Button from "@mui/material/Button";
 import AppLoader from "@/components/app-loader/AppLoader";
+
 import cn from "@/utils/cn";
+
 import { AppButtonProps } from "@/components/app-button/AppButton.types";
 
 import "@/components/app-button/AppButton.scss";
-import { Link, NavLink } from "react-router-dom";
-import { ForwardedRef, forwardRef } from "react";
 
 const AppButton = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,

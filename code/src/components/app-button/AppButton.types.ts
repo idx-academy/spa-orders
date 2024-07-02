@@ -1,5 +1,7 @@
+import { To } from "react-router-dom";
 import { ButtonProps } from "@mui/material/Button";
-import { LinkProps, NavLinkProps, To } from "react-router-dom";
+
+import { AppLinkWithNavLinkProps } from "@/components/app-link/AppLink.types";
 
 type ButtonVariant =
   | "contained"
@@ -9,6 +11,7 @@ type ButtonVariant =
   | "light"
   | "dark"
   | "shadow";
+
 type ButtonSize = "small" | "medium" | "large" | "extra-large";
 
 type BaseProps = Omit<ButtonProps, "variant" | "size"> & {
@@ -18,8 +21,4 @@ type BaseProps = Omit<ButtonProps, "variant" | "size"> & {
 };
 
 export type AppButtonProps = BaseProps &
-  (
-    | ({ isNavLink: true } & NavLinkProps)
-    | ({ isNavLink: false } & LinkProps)
-    | { isNavLink?: boolean; to?: To }
-  );
+  (AppLinkWithNavLinkProps | { isNavLink?: boolean; to?: To });
