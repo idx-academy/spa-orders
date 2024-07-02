@@ -74,7 +74,9 @@ const ProductsPage = () => {
             className="spa-products-page__sort"
           />
         </AppBox>
-        <AppBox className="spa-products-page__grid">{productCards}</AppBox>
+        <AppBox className="spa-products-page__grid">
+          {isLoading ? skeletonCards : productCards}
+        </AppBox>
         {paginationBlock}
       </AppBox>
     </PageWrapper>
