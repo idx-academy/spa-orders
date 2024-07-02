@@ -19,7 +19,7 @@ const useSignIn = () => {
 
     dispatch(authenticate(userDetails));
     openSnackbarWithTimeout({
-      messageTranslationKey: "login.success",
+      messageTranslationKey: "signIn.success",
       variant: "success"
     });
   };

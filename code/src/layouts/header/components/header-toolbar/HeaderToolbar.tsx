@@ -61,7 +61,7 @@ const HeaderToolbar = () => {
     </AppButton>
   ) : (
     <AppButton onClick={handleOpenAuthModal}>
-      <AppTypography translationKey="login.label" />
+      <AppTypography translationKey="signIn.label" />
     </AppButton>
   );
 

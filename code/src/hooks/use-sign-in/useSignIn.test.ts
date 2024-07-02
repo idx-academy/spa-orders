@@ -62,7 +62,7 @@ describe("useSignIn", () => {
     expect(mockSignIn).toHaveBeenCalledWith(credentials);
     expect(mockDispatch).toHaveBeenCalledWith(authenticate(signInResponse));
     expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({
-      message: "You successfully signed in",
+      messageTranslationKey: "signIn.success",
       variant: "success"
     });
   });

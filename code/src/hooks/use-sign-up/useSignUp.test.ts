@@ -64,7 +64,7 @@ describe("useSignIn", () => {
     expect(mockSignUp).toHaveBeenCalledWith(credentials);
     expect(mockDispatch).toHaveBeenCalledWith(authenticate(signUpResponse));
     expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({
-      message: "You successfully signed up",
+      messageTranslationKey: "signUp.success",
       variant: "success"
     });
   });

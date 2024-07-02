@@ -2,6 +2,7 @@ import { screen, fireEvent } from "@testing-library/react";
 import AppSnackbar from "@/components/app-snackbar/AppSnackbar";
 import { renderWithProviders } from "@/utils/test-utils";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
+import { SnackbarConfigWithTimeout } from "@/types/snackbar.types";
 
 jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
   __esModule: true,
@@ -12,7 +13,10 @@ const mockCloseSnackbar = jest.fn();
 
 const mockUseSnackbar = {
   isOpen: true,
-  config: { message: "Test message", variant: "success" },
+  config: {
+    messageTranslationKey: "translation.key",
+    variant: "success"
+  } as SnackbarConfigWithTimeout,
   closeSnackbar: mockCloseSnackbar
 };
 
@@ -25,7 +29,7 @@ describe("AppSnackbar", () => {
   test("renders correctly", () => {
     const alert = screen.getByRole("alert");
     expect(alert).toBeInTheDocument();
-    expect(alert).toHaveTextContent("Test message");
+    expect(alert).toHaveTextContent("translation.key");
   });
 
   test("closes snackbar when close button is clicked", () => {

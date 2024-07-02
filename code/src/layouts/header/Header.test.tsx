@@ -16,6 +16,6 @@ global.IntersectionObserver = jest.fn(() => ({
 test("renders Header correctly", () => {
   renderWithProviders(<Header />);
 
-  const loginLabel = screen.getByText("login.label");
-  expect(loginLabel).toBeInTheDocument();
+  const signInLabel = screen.getByText("signIn.label");
+  expect(signInLabel).toBeInTheDocument();
 });

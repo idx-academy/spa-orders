@@ -36,8 +36,8 @@ describe("HeaderToolbar", () => {
     });
 
     test("opens modal when login button is clicked", () => {
-      const loginButton = screen.getByRole("button", { name: "login.label" });
-      fireEvent.click(loginButton);
+      const signInButton = screen.getByRole("button", { name: "signIn.label" });
+      fireEvent.click(signInButton);
 
       const modalContent = screen.getByText("ModalContent");
       expect(modalContent).toBeInTheDocument();
