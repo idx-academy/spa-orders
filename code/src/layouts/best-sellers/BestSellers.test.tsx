@@ -16,13 +16,17 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
 }));
 
-const renderAndMock = (extraOptions: Object = {}) => {
+const defaultOptions = {
+  data: mockData,
+  isLoading: false,
+  isSuccess: true,
+  isError: false,
+  error: null
+};
+
+const renderAndMock = (extraOptions: Partial<typeof defaultOptions> = {}) => {
   (useGetProductsQuery as jest.Mock).mockReturnValueOnce({
-    data: mockData,
-    isLoading: false,
-    isSuccess: true,
-    isError: false,
-    error: null,
+    ...defaultOptions,
     ...extraOptions
   });
   renderWithProviders(<BestSellers />);
