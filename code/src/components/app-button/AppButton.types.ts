@@ -11,13 +11,13 @@ type ButtonVariant =
   | "shadow";
 type ButtonSize = "small" | "medium" | "large" | "extra-large";
 
-type AppButtonBaseProps = Omit<ButtonProps, "variant" | "size"> & {
+type BaseProps = Omit<ButtonProps, "variant" | "size"> & {
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
 };
 
-export type AppButtonProps = AppButtonBaseProps &
+export type AppButtonProps = BaseProps &
   (
     | ({ isNavLink: true } & NavLinkProps)
     | ({ isNavLink: false } & LinkProps)
