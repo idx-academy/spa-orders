@@ -23,25 +23,30 @@ describe("checkJWTTokenExpiration", () => {
   });
 
   test("returns false if jwt token is valid and not expired", () => {
-    expect(checkJWTTokenExpiration(validToken)).toBeFalsy();
+    const isTokenExpired = checkJWTTokenExpiration(validToken);
+    expect(isTokenExpired).toBeFalsy();
   });
 
   test("returns true if passed value is not a valid jwt token", () => {
-    expect(checkJWTTokenExpiration("123")).toBeTruthy();
+    const isTokenExpired = checkJWTTokenExpiration("123");
+    expect(isTokenExpired).toBeTruthy();
   });
 
   test("returns true if jwt token does not have 'exp' field", () => {
-    expect(checkJWTTokenExpiration(tokenWithoutExp)).toBeTruthy();
+    const isTokenExpired = checkJWTTokenExpiration(tokenWithoutExp);
+    expect(isTokenExpired).toBeTruthy();
   });
 
   test("returns true if jwt token is expired", () => {
     const expiredTimestamp = new Date("2024-01-02T10:00:00Z").getTime();
     jest.spyOn(Date, "now").mockImplementation(() => expiredTimestamp);
 
-    expect(checkJWTTokenExpiration(expiredToken)).toBeTruthy();
+    const isTokenExpired = checkJWTTokenExpiration(expiredToken);
+    expect(isTokenExpired).toBeTruthy();
   });
 
   it("returns true if expired date is strict equal to current timestamp", () => {
-    expect(checkJWTTokenExpiration(immediateToken)).toBeTruthy();
+    const isTokenExpired = checkJWTTokenExpiration(immediateToken);
+    expect(isTokenExpired).toBeTruthy();
   });
 });
