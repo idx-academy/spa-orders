@@ -1,13 +1,12 @@
 @import "@design-system";
 
 .spa-snackbar {
-  & > * {
-    display: flex;
-    align-items: center;
-  }
-
   &__alert {
     border-radius: spacing(2);
+  }
+
+  .spa-typography {
+    line-height: 1.2;
   }
 
   &__alert.MuiAlert-colorSuccess {
@@ -16,10 +15,5 @@
 
   &__alert.MuiAlert-colorError {
     background-color: var(--spa-snackbar-error-bg-color, $red);
-  }
-
-  & .MuiAlert-action,
-  & .MuiAlert-icon {
-    padding-block: 0;
   }
 }
