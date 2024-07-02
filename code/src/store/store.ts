@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 
-import snackbarReducer from "@/store/slices/snackbarSlice";
-import userReducer from "@/store/slices/userSlice";
-import { appApi } from "@/store/api/appApi";
 import { errorMiddleware } from "@/store/errorMiddleware";
 import { GetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+import { appApi } from "@/store/api/appApi";
+import { reducer } from "@/store/reducer";
 
 const middleware = <State>(
   getDefaultMiddleware: GetDefaultMiddleware<State>
@@ -16,11 +15,7 @@ const middleware = <State>(
 };
 
 export const store = configureStore({
-  reducer: {
-    snackbar: snackbarReducer,
-    user: userReducer,
-    [appApi.reducerPath]: appApi.reducer
-  },
+  reducer,
   middleware
 });
 
