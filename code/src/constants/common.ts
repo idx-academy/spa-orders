@@ -2,11 +2,11 @@ export const LOCAL_STORAGE_KEYS = {
   userDetails: "spa-user-details"
 } as const;
 
-// @TODO: rewrite with translations
-export const ERROR_MESSAGES_BY_STATUS = {
-  400: "Invalid input data. Please check it and try again",
-  401: "User is not authorized to perform this action",
-  409: "Already exists"
+// status code (key) - translation key (value)
+export const ERROR_MESSAGES_BY_STATUS_CODE = {
+  400: "errors.badRequest",
+  401: "errors.unauthorized",
+  409: "errors.conflict"
 } as const;
 
 export const ROLES = {

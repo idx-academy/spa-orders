@@ -6,7 +6,7 @@ import {
 import { store } from "@/store/store";
 import { openSnackbarWithTimeout } from "@/store/slices/snackbarSlice";
 import { APIError } from "@/types/common";
-import { ERROR_MESSAGES_BY_STATUS } from "@/constants/common";
+import { ERROR_MESSAGES_BY_STATUS_CODE } from "@/constants/common";
 import { SnackbarPayload } from "@/store/api/appApi";
 import { BaseQueryApi } from "@reduxjs/toolkit/query";
 
@@ -27,7 +27,7 @@ type ErrorAction = PayloadAction<
   string,
   Partial<ErrorActionMeta>
 >;
-type StatusCode = keyof typeof ERROR_MESSAGES_BY_STATUS;
+type StatusCode = keyof typeof ERROR_MESSAGES_BY_STATUS_CODE;
 
 export const errorMiddleware: Middleware = () => (next) => (action) => {
   if (!isRejectedWithValue(action)) {
@@ -51,13 +51,12 @@ export const errorMiddleware: Middleware = () => (next) => (action) => {
   const { data } = typedAction.payload;
   const status = data?.status as StatusCode;
 
-  const errorMessage =
-    ERROR_MESSAGES_BY_STATUS[status] ??
-    "Something went wrong. Please try again later";
+  const errorMessageTranslationKey =
+    ERROR_MESSAGES_BY_STATUS_CODE[status] ?? "errors.somethingWentWrong";
 
   store.dispatch(
     openSnackbarWithTimeout({
-      message: errorMessage
+      messageTranslationKey: errorMessageTranslationKey
     })
   );
 

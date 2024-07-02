@@ -8,6 +8,7 @@ import {
   closeSnackbar as closeSnackbarAction
 } from "@/store/slices/snackbarSlice";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
+import { SnackbarConfigWithTimeout } from "@/types/snackbar.types";
 
 jest.mock("@/store/slices/snackbarSlice", () => ({
   __esModule: true,
@@ -40,14 +41,19 @@ describe("useSnackbar hook", () => {
   });
 
   test("calls open snackbar correctly", () => {
-    const config = { message: "Test message" };
+    const config: SnackbarConfigWithTimeout = {
+      messageTranslationKey: "translation.key"
+    };
+
     hookOutput.openSnackbar(config);
 
     expect(mockDispatch).toHaveBeenCalledWith(openSnackbarAction(config));
   });
 
   test("calls open snackbar with timeout correctly", () => {
-    const config = { message: "Test message" };
+    const config: SnackbarConfigWithTimeout = {
+      messageTranslationKey: "translation.key"
+    };
     hookOutput.openSnackbarWithTimeout(config);
 
     expect(mockDispatch).toHaveBeenCalledWith(

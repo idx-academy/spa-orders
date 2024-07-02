@@ -1,4 +1,10 @@
 {
+  "errors.badRequest": "Invalid input data. Please check it and try again",
+  "errors.unauthorized": "User is not authorized to perform this action",
+  "errors.conflict": "Already exists",
+  "errors.somethingWentWrong": "Something went wrong. Please try again later",
   "login.label": "Login",
+  "login.success": "You successfully signed in",
+  "signUp.success": "You successfully signed up",
   "logout.label": "Logout"
 }
