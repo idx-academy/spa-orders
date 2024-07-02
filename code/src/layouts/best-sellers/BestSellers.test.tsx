@@ -51,9 +51,9 @@ describe("BestSellers component", () => {
   test("Should render loader if isLoading", () => {
     renderAndMock({ isLoading: true });
 
-    const bestSellersLoader = screen.getByText(/Loading/i);
+    const productSkeleton = screen.getAllByTestId("spa-product-skeleton");
 
-    expect(bestSellersLoader).toBeInTheDocument();
+    expect(productSkeleton[0]).toBeInTheDocument();
   });
 
   test("Should render product cards when data is available", async () => {
