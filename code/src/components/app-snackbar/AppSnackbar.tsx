@@ -1,9 +1,10 @@
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+
+import AppTypography from "@/components/app-typography/AppTypography";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 
 import "@/components/app-snackbar/AppSnackbar.scss";
-import AppTypography from "../app-typography/AppTypography";
 
 const AppSnackbar = () => {
   const { isOpen, config, closeSnackbar } = useSnackbar();
