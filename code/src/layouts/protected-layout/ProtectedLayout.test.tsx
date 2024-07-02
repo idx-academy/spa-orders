@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "@/utils/test-utils";
-import ProtectedLayout from "./ProtectedLayout";
+import ProtectedLayout from "@/layouts/protected-layout/ProtectedLayout";
 import { useIsAuthSelector } from "@/store/slices/userSlice";
 import routePaths from "@/constants/routes";
 
