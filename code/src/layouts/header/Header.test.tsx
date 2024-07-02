@@ -2,7 +2,12 @@ import { screen } from "@testing-library/react";
 import Header from "@/layouts/header/Header";
 import { renderWithProviders } from "@/utils/test-utils";
 
-// @TODO: remove or move this mock
+jest.mock("@/layouts/header/components/header-toolbar/HeaderToolbar", () => ({
+  __esModule: true,
+  default: () => <div>Test</div>
+}));
+
+// // @TODO: remove or move this mock
 global.IntersectionObserver = jest.fn(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
