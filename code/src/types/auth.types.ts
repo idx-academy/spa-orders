@@ -1,13 +1,10 @@
-import { User, UserDetails } from "@/types/user.types";
+import { UserDetails } from "@/types/user.types";
+import { SignInVallidatorType } from "@/utils/validators/signInScheme";
+import { SignUpValidatorType } from "@/utils/validators/signUpScheme";
 
-type Password = {
-  password: string;
-};
+export type SignUpCredentials = Omit<SignUpValidatorType, "confirmPassword">;
 
-export type SignUpCredentials = Pick<User, "email" | "firstName" | "lastName"> &
-  Password;
-
-export type SignInCredentials = Pick<User, "email"> & Password;
+export type SignInCredentials = SignInVallidatorType;
 
 export type SignUpResponse = UserDetails;
 export type SignInResponse = UserDetails;
