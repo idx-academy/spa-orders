@@ -1,10 +1,15 @@
 import { screen } from "@testing-library/react";
+import {
+  TypedUseQueryHookResult,
+  TypedUseQueryStateResult
+} from "@reduxjs/toolkit/query/react";
 
 import BestSellers from "@/layouts/best-sellers/BestSellers";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 import { renderWithProviders } from "@/utils/test-utils";
 
 import { mockData as mockItems } from "@/layouts/best-sellers/BestSellers.constants";
+import { RTKQueryReturnState } from "@/types/common";
 
 const mockData = {
   content: mockItems.slice(0, 5),
@@ -16,7 +21,7 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
 }));
 
-const defaultOptions = {
+const defaultOptions: RTKQueryReturnState<typeof mockData> = {
   data: mockData,
   isLoading: false,
   isSuccess: true,
@@ -24,15 +29,9 @@ const defaultOptions = {
   error: null
 };
 
-type Options = {
-  data: typeof mockData | null;
-  isLoading: boolean;
-  isSuccess: boolean;
-  isError: boolean;
-  error: null;
-};
-
-const renderAndMock = (extraOptions: Partial<Options> = {}) => {
+const renderAndMock = (
+  extraOptions: Partial<RTKQueryReturnState<typeof mockData>> = {}
+) => {
   (useGetProductsQuery as jest.Mock).mockReturnValueOnce({
     ...defaultOptions,
     ...extraOptions
