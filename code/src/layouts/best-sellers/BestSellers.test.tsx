@@ -29,7 +29,7 @@ type Options = {
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
-  error: any;
+  error: null;
 };
 
 const renderAndMock = (extraOptions: Partial<Options> = {}) => {
