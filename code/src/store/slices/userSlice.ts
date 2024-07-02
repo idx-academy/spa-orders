@@ -3,7 +3,7 @@ import { sliceNames } from "@/store/constants";
 import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import { useAppSelector } from "@/hooks/use-redux/useRedux";
 import { UserDetails } from "@/types/user.types";
-import checkJWTTokenExpiration from "@/utils/check-jwt-token-expiration/checkJWTTokenExpiration";
+import checkJWTExpiration from "@/utils/check-jwt-expiration/checkJWTExpiration";
 
 type UserState = {
   userDetails: UserDetails | null;
@@ -31,7 +31,7 @@ export const checkAuth = createAsyncThunk(
         throw new Error("No token");
       }
 
-      const isTokenExpired = checkJWTTokenExpiration(userDetails.token);
+      const isTokenExpired = checkJWTExpiration(userDetails.token);
 
       if (isTokenExpired) {
         throw new Error("Token expired");

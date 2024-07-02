@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 
-const checkJWTTokenExpiration = (token: string) => {
+const checkJWTExpiration = (token: string) => {
   try {
     const { exp } = jwtDecode(token);
 
@@ -15,4 +15,4 @@ const checkJWTTokenExpiration = (token: string) => {
   }
 };
 
-export default checkJWTTokenExpiration;
+export default checkJWTExpiration;
