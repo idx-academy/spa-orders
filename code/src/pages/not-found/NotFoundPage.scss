@@ -5,13 +5,13 @@
   justify-content: center;
   text-align: center;
   padding: spacing(8);
-  background-color: var(--spa-not-found-bgc, $light);
+  background-color: var(--spa-not-found-background-color, $light);
   margin-bottom: spacing(2);
 
   &__content {
     max-width: spacing(200);
     padding: spacing(12);
-    background-color: var(--spa-not-found-content-bgc, $white);
+    background-color: var(--spa-not-found-content-background-color, $white);
     border-radius: spacing(3);
     margin-bottom: spacing(2);
   }
