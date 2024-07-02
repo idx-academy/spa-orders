@@ -1,5 +1,4 @@
 import AppButton from "@/components/app-button/AppButton";
-import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
@@ -23,13 +22,11 @@ const NotFoundPage = () => {
           className="not-found-page__description"
           translationKey="notFoundDesc"
         />
-        <AppButton variant="contained">
-          <AppLink to="/">
-            <AppTypography
-              className="not-found-page__link-text"
-              translationKey="notFoundLink"
-            />
-          </AppLink>
+        <AppButton to="/" variant="contained">
+          <AppTypography
+            className="not-found-page__link-text"
+            translationKey="notFoundLink"
+          />
         </AppButton>
       </AppBox>
     </PageWrapper>

@@ -5,7 +5,7 @@ import { AppButtonProps } from "@/components/app-button/AppButton.types";
 
 import "@/components/app-button/AppButton.scss";
 import { Link, NavLink } from "react-router-dom";
-import { forwardRef } from "react";
+import { ForwardedRef, forwardRef } from "react";
 
 const AppButton = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
@@ -42,7 +42,7 @@ const AppButton = forwardRef<
           className
         )}
         component={containerComponent}
-        ref={ref}
+        ref={ref as ForwardedRef<HTMLButtonElement>}
         {...props}
       >
         {children}
