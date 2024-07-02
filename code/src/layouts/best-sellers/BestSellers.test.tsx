@@ -24,7 +24,15 @@ const defaultOptions = {
   error: null
 };
 
-const renderAndMock = (extraOptions: Partial<typeof defaultOptions> = {}) => {
+type Options = {
+  data: typeof mockData | null;
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  error: any;
+};
+
+const renderAndMock = (extraOptions: Partial<Options> = {}) => {
   (useGetProductsQuery as jest.Mock).mockReturnValueOnce({
     ...defaultOptions,
     ...extraOptions
