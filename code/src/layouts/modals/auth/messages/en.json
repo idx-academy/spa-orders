@@ -1,8 +1,8 @@
 {
-  "authModal.logIn.title": "Log In",
+  "authModal.signIn.title": "Sign In",
   "authModal.signUp.title": "Sign Up",
   "authModal.tosignUp.text": "Don't have an account yet?",
   "authModal.tosignUp.button": "Go to Sign up!",
-  "authModal.tologIn.text": "Already have an account?",
-  "authModal.tologIn.button": "Login!"
+  "authModal.tosignIn.text": "Already have an account?",
+  "authModal.tosignIn.button": "Sign In!"
 }

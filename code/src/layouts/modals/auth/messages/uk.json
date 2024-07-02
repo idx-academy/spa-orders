@@ -1,8 +1,8 @@
 {
-  "authModal.logIn.title": "Увійти",
+  "authModal.signIn.title": "Увійти",
   "authModal.signUp.title": "Зареєструватися",
   "authModal.tosignUp.text": "Ще не маєте аккаунту?",
   "authModal.tosignUp.button": "Переходьте до реєстрації!",
-  "authModal.tologIn.text": "Уже маєте аккаунт?",
-  "authModal.tologIn.button": "Логін!"
+  "authModal.tosignIn.text": "Уже маєте аккаунт?",
+  "authModal.tosignIn.button": "Увійдіть!"
 }
