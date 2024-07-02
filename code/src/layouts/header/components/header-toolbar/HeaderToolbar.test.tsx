@@ -26,7 +26,10 @@ const mockDispatch = jest.fn();
 describe("HeaderToolbar", () => {
   describe("for guest users", () => {
     beforeEach(() => {
-      (useIsAuthSelector as jest.Mock).mockReturnValue(false);
+      (useIsAuthSelector as jest.Mock).mockReturnValue({
+        isLoading: false,
+        isAuthenticated: false
+      });
       renderWithProviders(<HeaderToolbar />);
     });
 
@@ -48,7 +51,10 @@ describe("HeaderToolbar", () => {
     let logoutButton: HTMLButtonElement;
 
     beforeEach(() => {
-      (useIsAuthSelector as jest.Mock).mockReturnValue(true);
+      (useIsAuthSelector as jest.Mock).mockReturnValue({
+        isLoading: false,
+        isAuthenticated: true
+      });
       renderWithProviders(<HeaderToolbar />);
       logoutButton = screen.getByTestId(/LogoutIcon/);
     });

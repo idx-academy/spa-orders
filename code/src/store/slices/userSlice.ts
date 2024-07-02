@@ -7,10 +7,12 @@ import checkJWTExpiration from "@/utils/check-jwt-expiration/checkJWTExpiration"
 
 type UserState = {
   userDetails: UserDetails | null;
+  isLoading: boolean;
 };
 
 const initialState: UserState = {
-  userDetails: null
+  userDetails: null,
+  isLoading: true
 };
 
 export const checkAuth = createAsyncThunk(
@@ -64,13 +66,28 @@ const userSlice = createSlice({
       state.userDetails = null;
       window.localStorage.removeItem(LOCAL_STORAGE_KEYS.userDetails);
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(checkAuth.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(checkAuth.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(checkAuth.rejected, (state) => {
+        state.isLoading = false;
+      });
   }
 });
 
 export const { authenticate, logout } = userSlice.actions;
 
 export const useIsAuthSelector = () =>
-  useAppSelector((store) => store.user.userDetails !== null);
+  useAppSelector((store) => ({
+    isAuthenticated: store.user.userDetails !== null,
+    isLoading: store.user.isLoading
+  }));
 export const useUserDetailsSelector = () =>
   useAppSelector((store) => store.user.userDetails);
 
