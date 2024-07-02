@@ -26,4 +26,6 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(
   }
 );
 
+AppInput.displayName = "AppInput";
+
 export default AppInput;
