@@ -22,22 +22,22 @@
   }
 
   &__subtitle {
-    color: var(--spa-not-found-content-bgc, $gray);
-    font-size: var(--spa-subtitle-fs, $fs-xl);
+    color: var(--spa-not-found-content-background-color, $gray);
+    font-size: var(--spa-subtitle-font-size, $fs-xl);
     margin-bottom: spacing(5);
   }
 
   &__description {
-    font-size: var(--spa-description-fs, $fs-lg);
+    font-size: var(--spa-description-font-size, $fs-lg);
     color: var(--spa-not-found-description, $gray);
     margin-bottom: spacing(8);
   }
 
   &__link-text {
-    color: var(--spa-not-link-text, $white);
+    color: var(--spa-not-link-text-color, $white);
 
     &:hover {
-      color: var(--spa-not-link, $dark-alpha);
+      color: var(--spa-not-link-color, $dark-alpha);
     }
   }
 }
