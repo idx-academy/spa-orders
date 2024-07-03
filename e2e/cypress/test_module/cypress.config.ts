@@ -17,6 +17,13 @@ export default defineConfig({
       addWebpackPreprocessorPlugin(on, config);
       addTestCoveragePlugin(on, config);
       await addCucumberPreprocessorPlugin(on, config);
+      on(
+        "file:preprocessor",
+        createBundler({
+          plugins: [createEsbuildPlugin(config)]
+        })
+      );
+
       return config;
     },
     specPattern: "cypress/features/**/*.feature",
