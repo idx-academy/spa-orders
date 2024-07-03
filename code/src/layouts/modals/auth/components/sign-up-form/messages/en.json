@@ -1,9 +1,8 @@
 {
-  "signup.button": "Sign Up",
-  "signup.firstname.field": "First Name *",
-  "signup.lastname.field": "Last Name *",
-  "signup.email.field": "Email *",
-  "signup.password.field": "Password *",
-  "signup.confirmpassword.field": "Confirm Password *"
-
+  "signUp.button": "Sign Up",
+  "signUp.firstname.field": "First Name *",
+  "signUp.lastname.field": "Last Name *",
+  "signUp.email.field": "Email *",
+  "signUp.password.field": "Password *",
+  "signUp.confirmpassword.field": "Confirm Password *"
 }

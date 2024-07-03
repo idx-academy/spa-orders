@@ -7,6 +7,7 @@ import AppContainer from "@/components/app-container/AppContainer";
 import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { useModalContext } from "@/context/ModalContext";
 import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility";
 import useSignUp from "@/hooks/use-sign-up/useSignUp";
 import {
@@ -27,6 +28,8 @@ const SignupForm = () => {
 
   const [signUp, { isLoading }] = useSignUp();
 
+  const { closeModal } = useModalContext();
+
   const {
     inputVisibility: passwordVisibility,
     shouldShowInputText: showPassword
@@ -36,41 +39,41 @@ const SignupForm = () => {
     shouldShowInputText: showConfirmPassword
   } = useInputVisibility();
 
-  const onSubmit = ({
+  const onSubmit = async ({
     email,
     firstName,
     lastName,
     password
   }: SignUpValidatorType) => {
-    signUp({ email, firstName, lastName, password });
+    signUp({ email, firstName, lastName, password }).then(closeModal);
   };
 
   return (
     <AppContainer
       component="form"
-      className="spa-signup__container"
+      className="spa-sign-up__container"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <AppBox className="spa-signup__name-fields">
+      <AppBox className="spa-sign-up__name-fields">
         <AppInput
           {...register("firstName")}
           error={Boolean(errors.firstName)}
           helperText={errors.firstName ? errors.firstName.message : ""}
-          labelTranslationKey="signup.firstname.field"
+          labelTranslationKey="signUp.firstname.field"
         />
         <AppInput
           {...register("lastName")}
           error={Boolean(errors.lastName)}
           helperText={errors.lastName ? errors.lastName.message : ""}
-          labelTranslationKey="signup.lastname.field"
+          labelTranslationKey="signUp.lastname.field"
         />
       </AppBox>
-      <AppBox className="spa-signup__email-password-container">
+      <AppBox className="spa-sign-up__email-password-container">
         <AppInput
           {...register("email")}
           error={Boolean(errors.email)}
           helperText={errors.email ? errors.email.message : ""}
-          labelTranslationKey="signup.email.field"
+          labelTranslationKey="signUp.email.field"
           fullWidth
         />
         <AppInput
@@ -79,7 +82,7 @@ const SignupForm = () => {
           type={showPassword ? "text" : "password"}
           error={Boolean(errors.password)}
           helperText={errors.password ? errors.password.message : ""}
-          labelTranslationKey="signup.password.field"
+          labelTranslationKey="signUp.password.field"
           fullWidth
         />
         <AppInput
@@ -90,20 +93,20 @@ const SignupForm = () => {
           helperText={
             errors.confirmPassword ? errors.confirmPassword.message : ""
           }
-          labelTranslationKey="signup.confirmpassword.field"
+          labelTranslationKey="signUp.confirmpassword.field"
           fullWidth
         />
       </AppBox>
       <AppButton
         size="large"
-        className="spa-signup__button"
+        className="spa-sign-up__button"
         fullWidth
         type="submit"
         isLoading={isLoading}
       >
         <AppTypography
           variant="subtitle2"
-          translationKey="signup.button"
+          translationKey="signUp.button"
           fontWeight="extra-bold"
         />
       </AppButton>

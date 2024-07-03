@@ -1,12 +1,7 @@
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  act
-} from "@testing-library/react";
+import { screen, fireEvent, waitFor, act } from "@testing-library/react";
 import SignInForm from "@/layouts/modals/auth/components/sign-in-form/SignInForm";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
+import { renderWithProviders } from "@/utils/test-utils";
 
 jest.mock("@/hooks/use-sign-in/useSignIn", () => ({
   __esModule: true,
@@ -18,17 +13,17 @@ const mockSignIn = jest.fn();
 
 const mockFormValues = {
   email: "test@example.com",
-  password: "helloworld123"
+  password: "Helloworld123!"
 };
 
 describe("SignInForm", () => {
   beforeEach(() => {
-    render(<SignInForm />);
+    renderWithProviders(<SignInForm />);
   });
 
   test("renders the form correctly", () => {
     const passwordInput = screen.getByLabelText(/signIn.password.field/i);
-    const emailInput = screen.getByLabelText(/signIn.email.filed/i);
+    const emailInput = screen.getByLabelText(/signIn.email.field/i);
     const submitButton = screen.getByRole("button", { name: /signIn.button/i });
 
     expect(passwordInput).toBeInTheDocument();
@@ -37,7 +32,7 @@ describe("SignInForm", () => {
   });
 
   test("handles input changes and form submission", async () => {
-    const emailInput = screen.getByLabelText(/signIn.email.filed/);
+    const emailInput = screen.getByLabelText(/signIn.email.field/);
     const passwordInput = screen.getByLabelText(/signIn.password.field/i);
     const submitButton = screen.getByRole("button", { name: /signIn.button/i });
 

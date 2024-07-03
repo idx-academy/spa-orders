@@ -3,8 +3,8 @@
   "errors.unauthorized": "User is not authorized to perform this action",
   "errors.conflict": "Already exists",
   "errors.somethingWentWrong": "Something went wrong. Please try again later",
-  "signIn.label": "Login",
   "signIn.success": "You successfully signed in",
   "signUp.success": "You successfully signed up",
+  "signIn.label": "Sign In",
   "logout.label": "Logout"
 }

@@ -37,15 +37,15 @@ describe("AuthModal", () => {
   });
 
   test("Should render signIn modal toggle text and button", () => {
-    const signInToggleText = screen.getByText("authModal.tosignUp.text");
+    const signInToggleText = screen.getByText("authModal.toSignUp.text");
     expect(signInToggleText).toBeInTheDocument();
 
-    const signInToggleButton = screen.getByText("authModal.tosignUp.button");
+    const signInToggleButton = screen.getByText("authModal.toSignUp.button");
     expect(signInToggleButton).toBeInTheDocument();
   });
 
   test("Should witch to SignupForm when toggle button is clicked and back", () => {
-    const signInToggleButton = screen.getByText("authModal.tosignUp.button");
+    const signInToggleButton = screen.getByText("authModal.toSignUp.button");
     fireEvent.click(signInToggleButton);
 
     const signupTitle = screen.getByText("authModal.signUp.title");
@@ -54,13 +54,13 @@ describe("AuthModal", () => {
     expect(signupTitle).toBeInTheDocument();
     expect(signupFormInputs.length).toBe(3);
 
-    const signupToggleText = screen.getByText("authModal.tosignIn.text");
-    expect(signupToggleText).toBeInTheDocument();
+    const signUpToggleText = screen.getByText("authModal.toSignIn.text");
+    expect(signUpToggleText).toBeInTheDocument();
 
-    const signupToggleButton = screen.getByText("authModal.tosignIn.button");
-    expect(signupToggleButton).toBeInTheDocument();
+    const signUpToggleButton = screen.getByText("authModal.toSignIn.button");
+    expect(signUpToggleButton).toBeInTheDocument();
 
-    fireEvent.click(signupToggleButton);
+    fireEvent.click(signUpToggleButton);
 
     const loginTitle = screen.getByText("authModal.logIn.title");
     const signinFormInputs = screen.getAllByRole("textbox");

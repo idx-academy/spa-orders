@@ -6,14 +6,14 @@ export const SignUpValidationScheme = z
       .string()
       .min(2, { message: "First name is too short" })
       .max(50, { message: "First name is too long" })
-      .regex(/^[a-zA-Zа-яА-ЯёЁіІїЇєЄ'’\-]+$/, {
+      .regex(/^[a-zA-Zа-яА-ЯёЁіІїЇєЄ'’-]+$/, {
         message: "Latin, Cyrillic, ', - allowed"
       }),
     lastName: z
       .string()
       .min(2, { message: "Last name is too short" })
       .max(50, { message: "Last name is too long" })
-      .regex(/^[a-zA-Zа-яА-ЯёЁіІїЇєЄ'’\-]+$/, {
+      .regex(/^[a-zA-Zа-яА-ЯёЁіІїЇєЄ'’-]+$/, {
         message: "Latin, Cyrillic, ', - allowed"
       }),
     email: z

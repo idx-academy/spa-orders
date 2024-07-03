@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -7,14 +7,19 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppButton from "@/components/app-button/AppButton";
 
-import SignUpForm from "@/layouts/modals/auth/components/sign-in-form/SignInForm";
-import SignupForm from "@/layouts/modals/auth/components/sign-up-form/SignupForm";
+import SignInForm from "@/layouts/modals/auth/components/sign-in-form/SignInForm";
+import SignUpForm from "@/layouts/modals/auth/components/sign-up-form/SignupForm";
 
 import { useModalContext } from "@/context/ModalContext";
 
 import "@/layouts/modals/auth/AuthModal.scss";
 
-type AuthTab = "signIn" | "signup";
+type AuthTab = "signIn" | "signUp";
+
+const authModalForms = {
+  signIn: <SignInForm />,
+  signUp: <SignUpForm />
+};
 
 const AuthModal = () => {
   const { closeModal } = useModalContext();
@@ -22,28 +27,27 @@ const AuthModal = () => {
   const [activeTab, setActiveTab] = useState<AuthTab>("signIn");
 
   const toggleForm = () => {
-    setActiveTab((prevTab) => (prevTab === "signIn" ? "signup" : "signIn"));
+    setActiveTab((prevTab) => (prevTab === "signIn" ? "signUp" : "signIn"));
   };
 
-  const authModalContent =
-    activeTab === "signIn" ? <SignUpForm /> : <SignupForm />;
+  const authModalContent = authModalForms[activeTab] as ReactNode;
 
   const toggleText =
     activeTab === "signIn" ? (
-      <AppTypography translationKey="authModal.tosignUp.text" />
+      <AppTypography translationKey="authModal.toSignUp.text" />
     ) : (
-      <AppTypography translationKey="authModal.tosignIn.text" />
+      <AppTypography translationKey="authModal.toSignIn.text" />
     );
 
   const toggleButtonText =
     activeTab === "signIn" ? (
       <AppTypography
-        translationKey="authModal.tosignUp.button"
+        translationKey="authModal.toSignUp.button"
         fontWeight="extra-bold"
       />
     ) : (
       <AppTypography
-        translationKey="authModal.tosignIn.button"
+        translationKey="authModal.toSignIn.button"
         fontWeight="extra-bold"
       />
     );

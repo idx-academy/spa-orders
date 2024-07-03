@@ -1,12 +1,7 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  act
-} from "@testing-library/react";
+import { fireEvent, screen, waitFor, act } from "@testing-library/react";
 import SignupForm from "@/layouts/modals/auth/components/sign-up-form/SignupForm";
 import useSignUp from "@/hooks/use-sign-up/useSignUp";
+import { renderWithProviders } from "@/utils/test-utils";
 
 jest.mock("@/hooks/use-sign-up/useSignUp", () => ({
   __esModule: true,
@@ -18,29 +13,29 @@ const mockSignUp = jest.fn();
 
 const mockFormValues = {
   email: "test@example.com",
-  password: "helloworld123",
+  password: "Helloworld123!",
   firstName: "Eugene",
   lastName: "Snow"
 };
 
 describe("SignupForm", () => {
   beforeEach(() => {
-    render(<SignupForm />);
+    renderWithProviders(<SignupForm />);
   });
 
   test("renders input fields", () => {
-    const firstNameField = screen.getByLabelText(/signup.firstname.field/i);
+    const firstNameField = screen.getByLabelText(/signUp.firstname.field/i);
     expect(firstNameField).toBeInTheDocument();
   });
 
   test("handles input changes and form submission", async () => {
-    const emailInput = screen.getByLabelText(/signup.email.field/i);
-    const passwordInput = screen.getByLabelText(/signup.password.field/i);
+    const emailInput = screen.getByLabelText(/signUp.email.field/i);
+    const passwordInput = screen.getByLabelText(/signUp.password.field/i);
     const confirmPasswordInput = screen.getByLabelText(
-      /signup.confirmpassword.field/i
+      /signUp.confirmpassword.field/i
     );
-    const firstNameInput = screen.getByLabelText(/signup.firstname.field/i);
-    const lastNameInput = screen.getByLabelText(/signup.lastname.field/i);
+    const firstNameInput = screen.getByLabelText(/signUp.firstname.field/i);
+    const lastNameInput = screen.getByLabelText(/signUp.lastname.field/i);
 
     await act(async () => {
       fireEvent.change(emailInput, { target: { value: mockFormValues.email } });
@@ -66,7 +61,7 @@ describe("SignupForm", () => {
       expect(confirmPasswordInput).toHaveValue(mockFormValues.password);
     });
 
-    const submitButton = screen.getByText(/signup.button/i);
+    const submitButton = screen.getByText(/signUp.button/i);
 
     fireEvent.click(submitButton);
 
@@ -76,7 +71,7 @@ describe("SignupForm", () => {
   });
 
   test("displays validation errors", async () => {
-    const submitButton = screen.getByRole("button", { name: /signup.button/i });
+    const submitButton = screen.getByRole("button", { name: /signUp.button/i });
 
     fireEvent.click(submitButton);
 

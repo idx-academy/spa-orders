@@ -1,5 +1,5 @@
 {
   "signIn.button": "Увійти",
-  "signIn.email.filed": "Електронна пошта *",
+  "signIn.email.field": "Електронна пошта *",
   "signIn.password.field": "Пароль *"
 }

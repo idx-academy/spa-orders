@@ -7,6 +7,7 @@ import AppContainer from "@/components/app-container/AppContainer";
 import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { useModalContext } from "@/context/ModalContext";
 import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import {
@@ -27,27 +28,29 @@ const SignInForm = () => {
 
   const [signIn, { isLoading }] = useSignIn();
 
+  const { closeModal } = useModalContext();
+
   const {
     inputVisibility: passwordVisibility,
     shouldShowInputText: showPassword
   } = useInputVisibility();
 
-  const onSubmit = ({ email, password }: SignInVallidatorType) => {
-    signIn({ email, password });
+  const onSubmit = async ({ email, password }: SignInVallidatorType) => {
+    signIn({ email, password }).then(closeModal);
   };
 
   return (
     <AppContainer
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      className="spa-signIn__container"
+      className="spa-sign-in__container"
     >
-      <AppBox className="spa-signIn__input-fields">
+      <AppBox className="spa-sign-in__input-fields">
         <AppInput
           {...register("email")}
           error={Boolean(errors.email)}
           helperText={errors.email && errors.email.message}
-          labelTranslationKey="signIn.email.filed"
+          labelTranslationKey="signIn.email.field"
           fullWidth
         />
         <AppInput
@@ -63,7 +66,7 @@ const SignInForm = () => {
       <AppButton
         size="large"
         type="submit"
-        className="spa-signIn__button"
+        className="spa-sign-in__button"
         fullWidth
         isLoading={isLoading}
       >
