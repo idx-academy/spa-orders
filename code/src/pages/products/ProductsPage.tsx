@@ -13,6 +13,7 @@ import AppContainer from "@/components/app-container/AppContainer";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
+import validatePage from "@/utils/validatePage";
 import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {
@@ -20,8 +21,7 @@ const ProductsPage = () => {
   const sortOption = searchParams.get("sort") || "";
 
   const searchParamsPage = searchParams.get("page");
-  const isPageValid = searchParamsPage && !Number.isNaN(searchParamsPage);
-  const page = isPageValid ? Number(searchParamsPage) : 1;
+  const page = validatePage(searchParamsPage);
 
   const { data: productsResponse, isLoading } = useGetProductsQuery({
     page: page - 1,
@@ -34,10 +34,10 @@ const ProductsPage = () => {
   );
 
   const skeletonCards = createProductSkeletons(
-    productsResponse?.content?.length || 8
+    productsResponse?.content.length || 8
   );
 
-  const productCards = productsResponse?.content?.map((product: Product) => (
+  const productCards = productsResponse?.content.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
   ));
 

@@ -30,3 +30,9 @@ export type RTKQueryReturnState<TData = null, TError = null> = {
   isError: boolean;
   error: TError | null;
 };
+
+export type PaginationParams = {
+  page: number;
+  size: number;
+  sort: string;
+};

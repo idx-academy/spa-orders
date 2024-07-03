@@ -71,4 +71,10 @@ describe("BestSellers component", () => {
     const productCards = screen.queryAllByRole("link");
     expect(productCards.length).toBe(0);
   });
+
+  test("Should call useGetProductsQuery with correct params", () => {
+    renderAndMock();
+
+    expect(useGetProductsQuery).toHaveBeenCalledWith({ size: 5, page: 0 });
+  });
 });
