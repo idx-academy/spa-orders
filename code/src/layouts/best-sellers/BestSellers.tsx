@@ -10,14 +10,16 @@ import { useGetProductsQuery } from "@/store/api/productsApi";
 import "@/layouts/best-sellers/BestSellers.scss";
 
 const BestSellers = () => {
-  const { data: products, isLoading } = useGetProductsQuery({
+  const { data: productsResponse, isLoading } = useGetProductsQuery({
+    page: 0,
     size: 5
   });
 
-  //@TODO Create Skeleton for component loading
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 
-  const productCards = products?.content?.map((product: Product) => (
+  const products = productsResponse?.content ?? [];
+
+  const productCards = products.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
   ));
 

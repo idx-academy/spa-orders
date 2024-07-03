@@ -1,28 +1,30 @@
 const sortProducts = (products, sort) => {
   let sortedProducts = [...products];
+  const [sortKey, sortOrder] = sort.split(',');
 
-  switch (sort) {
-    case "recommended":
-      sortedProducts.sort((a, b) => a.id.localeCompare(b.id)); // - it's just for a placeholder no more
-      break;
-    case "newest":
-      sortedProducts.sort((a, b) => b.id.localeCompare(a.id));
-      break;
-    case "priceLowHigh":
-      sortedProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-      break;
-    case "priceHighLow":
-      sortedProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-      break;
-    case "nameAZ":
-      sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-      break;
-    case "nameZA":
-      sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-      break;
-    default:
-      break;
-  }
+  sortedProducts.sort((a, b) => {
+    let aValue = a[sortKey];
+    let bValue = b[sortKey];
+
+    if (sortKey === 'price' || sortKey === 'id') {
+      aValue = parseFloat(aValue);
+      bValue = parseFloat(bValue);
+    }
+
+    if (sortKey === 'createdAt') {
+      aValue = aValue ? new Date(aValue).getTime() : 0;
+      bValue = bValue ? new Date(bValue).getTime() : 0;
+    }
+
+    if (aValue < bValue) {
+      return sortOrder === 'asc' ? -1 : 1;
+    }
+    if (aValue > bValue) {
+      return sortOrder === 'asc' ? 1 : -1;
+    }
+
+    return 0;
+  });
 
   return sortedProducts;
 };

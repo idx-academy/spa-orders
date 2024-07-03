@@ -7,7 +7,7 @@ import { Product } from "@/types/product.types";
 type GetProductsResponse = {
   content: Product[];
   totalPages: number;
-  totalItems: number;
+  totalElements: number;
 };
 
 type GetProductsParams = {

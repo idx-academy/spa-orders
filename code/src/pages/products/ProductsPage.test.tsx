@@ -18,7 +18,7 @@ const mockProducts = [
   { id: 8, name: "Product 8", price: 400 }
 ];
 
-const mockData = { content: mockProducts, totalPages: 2, totalItems: 8 };
+const mockData = { content: mockProducts, totalPages: 2, totalElements: 8 };
 
 const renderProductsPage = () =>
   render(

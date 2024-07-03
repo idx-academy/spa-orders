@@ -5,15 +5,18 @@ export const sortOptions = [
     value: "recommended",
     label: <FormattedMessage id="productsDefault.label" />
   },
-  { value: "newest", label: <FormattedMessage id="sortOptions.newest" /> },
   {
-    value: "priceLowHigh",
+    value: "createdAt,desc",
+    label: <FormattedMessage id="sortOptions.newest" />
+  },
+  {
+    value: "price,asc",
     label: <FormattedMessage id="sortOptions.priceLowHigh" />
   },
   {
-    value: "priceHighLow",
+    value: "price,desc",
     label: <FormattedMessage id="sortOptions.priceHighLow" />
   },
-  { value: "nameAZ", label: <FormattedMessage id="sortOptions.nameAZ" /> },
-  { value: "nameZA", label: <FormattedMessage id="sortOptions.nameZA" /> }
+  { value: "name,asc", label: <FormattedMessage id="sortOptions.nameAZ" /> },
+  { value: "name,desc", label: <FormattedMessage id="sortOptions.nameZA" /> }
 ];
