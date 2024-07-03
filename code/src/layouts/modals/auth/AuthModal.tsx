@@ -8,7 +8,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppButton from "@/components/app-button/AppButton";
 
 import SignInForm from "@/layouts/modals/auth/components/sign-in-form/SignInForm";
-import SignUpForm from "@/layouts/modals/auth/components/sign-up-form/SignupForm";
+import SignUpForm from "@/layouts/modals/auth/components/sign-up-form/SignUpForm";
 
 import { useModalContext } from "@/context/ModalContext";
 

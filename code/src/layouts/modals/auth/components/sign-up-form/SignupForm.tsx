@@ -15,9 +15,9 @@ import {
   SignUpValidatorType
 } from "@/utils/validators/signUpScheme";
 
-import "@/layouts/modals/auth/components/sign-up-form/SignupForm.scss";
+import "@/layouts/modals/auth/components/sign-up-form/SignUpForm.scss";
 
-const SignupForm = () => {
+const SignUpForm = () => {
   const {
     register,
     handleSubmit,
@@ -26,7 +26,7 @@ const SignupForm = () => {
     resolver: zodResolver(SignUpValidationScheme)
   });
 
-  const [signUp, { isLoading }] = useSignUp();
+  const [signUp, { isLoading, isSuccess }] = useSignUp();
 
   const { closeModal } = useModalContext();
 
@@ -45,7 +45,11 @@ const SignupForm = () => {
     lastName,
     password
   }: SignUpValidatorType) => {
-    signUp({ email, firstName, lastName, password }).then(closeModal);
+    await signUp({ email, firstName, lastName, password });
+
+    if (isSuccess) {
+      closeModal();
+    }
   };
 
   return (
@@ -114,4 +118,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SignUpForm;

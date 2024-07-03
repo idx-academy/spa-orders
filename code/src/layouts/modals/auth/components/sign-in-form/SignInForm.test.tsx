@@ -1,24 +1,43 @@
-import { screen, fireEvent, waitFor, act } from "@testing-library/react";
+import { screen, fireEvent, waitFor } from "@testing-library/react";
 import SignInForm from "@/layouts/modals/auth/components/sign-in-form/SignInForm";
+import { useModalContext } from "@/context/ModalContext";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import { renderWithProviders } from "@/utils/test-utils";
+import typeIntoInput from "@/utils/typeIntoInput";
 
 jest.mock("@/hooks/use-sign-in/useSignIn", () => ({
   __esModule: true,
   default: jest.fn()
 }));
 
+jest.mock("@/context/ModalContext", () => ({
+  ...jest.requireActual("@/context/ModalContext"),
+  useModalContext: jest.fn()
+}));
+
+const mockCloseModal = jest.fn();
+(useModalContext as jest.Mock).mockReturnValue({
+  closeModal: mockCloseModal
+});
+
 const mockSignIn = jest.fn();
-(useSignIn as jest.Mock).mockReturnValue([mockSignIn, { isLoading: false }]);
 
 const mockFormValues = {
   email: "test@example.com",
   password: "Helloworld123!"
 };
 
-describe("SignInForm", () => {
+describe("SignInForm - Success Cases", () => {
   beforeEach(() => {
+    (useSignIn as jest.Mock).mockReturnValue([
+      mockSignIn,
+      { isLoading: false, isSuccess: true }
+    ]);
     renderWithProviders(<SignInForm />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test("renders the form correctly", () => {
@@ -36,12 +55,8 @@ describe("SignInForm", () => {
     const passwordInput = screen.getByLabelText(/signIn.password.field/i);
     const submitButton = screen.getByRole("button", { name: /signIn.button/i });
 
-    await act(async () => {
-      fireEvent.change(emailInput, { target: { value: mockFormValues.email } });
-      fireEvent.change(passwordInput, {
-        target: { value: mockFormValues.password }
-      });
-    });
+    await typeIntoInput(emailInput, mockFormValues.email);
+    await typeIntoInput(passwordInput, mockFormValues.password);
 
     await waitFor(() => {
       expect(emailInput).toHaveValue(mockFormValues.email);
@@ -50,14 +65,36 @@ describe("SignInForm", () => {
 
     fireEvent.click(submitButton);
 
-    await waitFor(() => {
+    await waitFor(async () => {
       expect(mockSignIn).toHaveBeenCalledWith(mockFormValues);
+      expect(mockCloseModal).toHaveBeenCalled();
     });
+  });
+
+  test("toggles password visibility", async () => {
+    const hideVisibilityIcon = screen.getByTestId("VisibilityOffIcon");
+    expect(hideVisibilityIcon).toBeInTheDocument();
+    fireEvent.click(hideVisibilityIcon);
+    const showVisibilityIcon = screen.getByTestId("VisibilityIcon");
+    expect(showVisibilityIcon).toBeInTheDocument();
+  });
+});
+
+describe("SignInForm - Failure Cases", () => {
+  beforeEach(() => {
+    (useSignIn as jest.Mock).mockReturnValue([
+      mockSignIn,
+      { isLoading: false, isSuccess: false }
+    ]);
+    renderWithProviders(<SignInForm />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test("displays validation errors", async () => {
     const submitButton = screen.getByRole("button", { name: /signIn.button/i });
-
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -67,18 +104,24 @@ describe("SignInForm", () => {
       const passwordErrorMessage = screen.getByText(
         "Password must be at least 8 characters long"
       );
-
       expect(emailErrorMessage).toBeInTheDocument();
       expect(passwordErrorMessage).toBeInTheDocument();
     });
   });
-  test("displays validation errors", async () => {
-    const hideVisibilityIcon = screen.getByTestId("VisibilityOffIcon");
-    expect(hideVisibilityIcon).toBeInTheDocument();
 
-    fireEvent.click(hideVisibilityIcon);
+  test("handles unsuccessful sign-in", async () => {
+    const emailInput = screen.getByLabelText(/signIn.email.field/);
+    const passwordInput = screen.getByLabelText(/signIn.password.field/i);
+    const submitButton = screen.getByRole("button", { name: /signIn.button/i });
 
-    const showVisibilityIcon = screen.getByTestId("VisibilityIcon");
-    expect(showVisibilityIcon).toBeInTheDocument();
+    await typeIntoInput(emailInput, mockFormValues.email);
+    await typeIntoInput(passwordInput, mockFormValues.password);
+
+    fireEvent.click(submitButton);
+
+    await waitFor(async () => {
+      expect(mockSignIn).toHaveBeenCalledWith(mockFormValues);
+      expect(mockCloseModal).not.toHaveBeenCalled();
+    });
   });
 });

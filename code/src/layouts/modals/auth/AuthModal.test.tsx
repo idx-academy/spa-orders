@@ -44,7 +44,7 @@ describe("AuthModal", () => {
     expect(signInToggleButton).toBeInTheDocument();
   });
 
-  test("Should witch to SignupForm when toggle button is clicked and back", () => {
+  test("Should witch to SignUpForm when toggle button is clicked and back", () => {
     const signInToggleButton = screen.getByText("authModal.toSignUp.button");
     fireEvent.click(signInToggleButton);
 

@@ -26,8 +26,7 @@ const SignInForm = () => {
     resolver: zodResolver(SignInVallidationScheme)
   });
 
-  const [signIn, { isLoading }] = useSignIn();
-
+  const [signIn, { isLoading, isSuccess }] = useSignIn();
   const { closeModal } = useModalContext();
 
   const {
@@ -36,7 +35,11 @@ const SignInForm = () => {
   } = useInputVisibility();
 
   const onSubmit = async ({ email, password }: SignInVallidatorType) => {
-    signIn({ email, password }).then(closeModal);
+    await signIn({ email, password });
+
+    if (isSuccess) {
+      closeModal();
+    }
   };
 
   return (

@@ -1,15 +1,27 @@
-import { fireEvent, screen, waitFor, act } from "@testing-library/react";
-import SignupForm from "@/layouts/modals/auth/components/sign-up-form/SignupForm";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+import SignUpForm from "@/layouts/modals/auth/components/sign-up-form/SignUpForm";
+import { useModalContext } from "@/context/ModalContext";
 import useSignUp from "@/hooks/use-sign-up/useSignUp";
 import { renderWithProviders } from "@/utils/test-utils";
+import typeIntoInput from "@/utils/typeIntoInput";
 
 jest.mock("@/hooks/use-sign-up/useSignUp", () => ({
   __esModule: true,
   default: jest.fn()
 }));
 
+jest.mock("@/context/ModalContext", () => ({
+  ...jest.requireActual("@/context/ModalContext"),
+  useModalContext: jest.fn()
+}));
+
 const mockSignUp = jest.fn();
 (useSignUp as jest.Mock).mockReturnValue([mockSignUp, { isLoading: false }]);
+
+const mockCloseModal = jest.fn();
+(useModalContext as jest.Mock).mockReturnValue({
+  closeModal: mockCloseModal
+});
 
 const mockFormValues = {
   email: "test@example.com",
@@ -18,9 +30,17 @@ const mockFormValues = {
   lastName: "Snow"
 };
 
-describe("SignupForm", () => {
+describe("SignUpForm - Success Cases", () => {
   beforeEach(() => {
-    renderWithProviders(<SignupForm />);
+    (useSignUp as jest.Mock).mockReturnValue([
+      mockSignUp,
+      { isLoading: false, isSuccess: true }
+    ]);
+    renderWithProviders(<SignUpForm />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test("renders input fields", () => {
@@ -37,21 +57,11 @@ describe("SignupForm", () => {
     const firstNameInput = screen.getByLabelText(/signUp.firstname.field/i);
     const lastNameInput = screen.getByLabelText(/signUp.lastname.field/i);
 
-    await act(async () => {
-      fireEvent.change(emailInput, { target: { value: mockFormValues.email } });
-      fireEvent.change(passwordInput, {
-        target: { value: mockFormValues.password }
-      });
-      fireEvent.change(confirmPasswordInput, {
-        target: { value: mockFormValues.password }
-      });
-      fireEvent.change(firstNameInput, {
-        target: { value: mockFormValues.firstName }
-      });
-      fireEvent.change(lastNameInput, {
-        target: { value: mockFormValues.lastName }
-      });
-    });
+    await typeIntoInput(emailInput, mockFormValues.email);
+    await typeIntoInput(passwordInput, mockFormValues.password);
+    await typeIntoInput(confirmPasswordInput, mockFormValues.password);
+    await typeIntoInput(firstNameInput, mockFormValues.firstName);
+    await typeIntoInput(lastNameInput, mockFormValues.lastName);
 
     await waitFor(() => {
       expect(emailInput).toHaveValue(mockFormValues.email);
@@ -67,7 +77,32 @@ describe("SignupForm", () => {
 
     await waitFor(() => {
       expect(mockSignUp).toHaveBeenCalledWith(mockFormValues);
+      expect(mockCloseModal).toHaveBeenCalled();
     });
+  });
+
+  test("renders visibility icon", () => {
+    const hideVisibilityIcon = screen.getAllByTestId("VisibilityOffIcon");
+    expect(hideVisibilityIcon).toHaveLength(2);
+
+    hideVisibilityIcon.forEach((icon) => fireEvent.click(icon));
+
+    const showVisibilityIcon = screen.getAllByTestId("VisibilityIcon");
+    expect(showVisibilityIcon).toHaveLength(2);
+  });
+});
+
+describe("SignInForm - Failure Cases", () => {
+  beforeEach(() => {
+    (useSignUp as jest.Mock).mockReturnValue([
+      mockSignUp,
+      { isLoading: false, isSuccess: false }
+    ]);
+    renderWithProviders(<SignUpForm />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   test("displays validation errors", async () => {
@@ -86,14 +121,36 @@ describe("SignupForm", () => {
       expect(passwordErrors).toHaveLength(2);
     });
   });
+  test("handles unsuccessful sign-up", async () => {
+    const emailInput = screen.getByLabelText(/signUp.email.field/i);
+    const passwordInput = screen.getByLabelText(/signUp.password.field/i);
+    const confirmPasswordInput = screen.getByLabelText(
+      /signUp.confirmpassword.field/i
+    );
+    const firstNameInput = screen.getByLabelText(/signUp.firstname.field/i);
+    const lastNameInput = screen.getByLabelText(/signUp.lastname.field/i);
 
-  test("renders visibility icon", () => {
-    const hideVisibilityIcon = screen.getAllByTestId("VisibilityOffIcon");
-    expect(hideVisibilityIcon).toHaveLength(2);
+    await typeIntoInput(emailInput, mockFormValues.email);
+    await typeIntoInput(passwordInput, mockFormValues.password);
+    await typeIntoInput(confirmPasswordInput, mockFormValues.password);
+    await typeIntoInput(firstNameInput, mockFormValues.firstName);
+    await typeIntoInput(lastNameInput, mockFormValues.lastName);
 
-    hideVisibilityIcon.forEach((icon) => fireEvent.click(icon));
+    await waitFor(() => {
+      expect(emailInput).toHaveValue(mockFormValues.email);
+      expect(passwordInput).toHaveValue(mockFormValues.password);
+      expect(firstNameInput).toHaveValue(mockFormValues.firstName);
+      expect(lastNameInput).toHaveValue(mockFormValues.lastName);
+      expect(confirmPasswordInput).toHaveValue(mockFormValues.password);
+    });
 
-    const showVisibilityIcon = screen.getAllByTestId("VisibilityIcon");
-    expect(showVisibilityIcon).toHaveLength(2);
+    const submitButton = screen.getByText(/signUp.button/i);
+
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockSignUp).toHaveBeenCalledWith(mockFormValues);
+      expect(mockCloseModal).not.toHaveBeenCalled();
+    });
   });
 });
