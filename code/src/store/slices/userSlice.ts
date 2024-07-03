@@ -1,8 +1,9 @@
+import { jwtDecode } from "jwt-decode";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { sliceNames } from "@/store/constants";
 import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import { useAppSelector } from "@/hooks/use-redux/useRedux";
-import { UserDetails } from "@/types/user.types";
+import { TokenPayload, UserDetails, UserFromServer } from "@/types/user.types";
 import checkJWTExpiration from "@/utils/check-jwt-expiration/checkJWTExpiration";
 
 type UserState = {
@@ -27,19 +28,21 @@ export const checkAuth = createAsyncThunk(
         throw new Error("No user details");
       }
 
-      const userDetails = JSON.parse(serializedUserDetails) as UserDetails;
+      const tokenPayload = JSON.parse(serializedUserDetails) as TokenPayload;
 
-      if (!("token" in userDetails)) {
+      if (!("token" in tokenPayload)) {
         throw new Error("No token");
       }
 
-      const isTokenExpired = checkJWTExpiration(userDetails.token);
+      const token = tokenPayload.token;
+
+      const isTokenExpired = checkJWTExpiration(token);
 
       if (isTokenExpired) {
         throw new Error("Token expired");
       }
 
-      dispatch(authenticate(userDetails));
+      dispatch(authenticate(token));
       return null;
     } catch {
       dispatch(logout());
@@ -52,8 +55,19 @@ const userSlice = createSlice({
   name: sliceNames.user,
   initialState,
   reducers: {
-    authenticate: (state, action: PayloadAction<UserDetails>) => {
-      const userDetails = action.payload;
+    authenticate: (state, action: PayloadAction<string>) => {
+      const token = action.payload;
+      const user = jwtDecode<UserFromServer>(token);
+
+      const userDetails: UserDetails = {
+        token,
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.sub,
+        role: user.scope
+      };
+
       state.userDetails = userDetails;
 
       const serializedUserDetails = JSON.stringify(userDetails);

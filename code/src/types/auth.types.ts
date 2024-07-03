@@ -1,10 +1,10 @@
-import { UserDetails } from "@/types/user.types";
 import { SignInValidatorType } from "@/utils/validators/signInScheme";
 import { SignUpValidatorType } from "@/utils/validators/signUpScheme";
+import { TokenPayload } from "@/types/user.types";
 
 export type SignUpCredentials = Omit<SignUpValidatorType, "confirmPassword">;
 
 export type SignInCredentials = SignInValidatorType;
 
-export type SignUpResponse = UserDetails;
-export type SignInResponse = UserDetails;
+export type SignUpResponse = TokenPayload;
+export type SignInResponse = TokenPayload;

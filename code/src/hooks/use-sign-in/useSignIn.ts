@@ -17,7 +17,7 @@ const useSignIn = () => {
       return;
     }
 
-    dispatch(authenticate(userDetails));
+    dispatch(authenticate(userDetails.token));
     openSnackbarWithTimeout({
       messageTranslationKey: "signIn.success",
       variant: "success"

@@ -2,14 +2,23 @@ import { ROLES } from "@/constants/common";
 
 export type UserRole = (typeof ROLES)[keyof typeof ROLES];
 
-export type User = {
-  id: string;
-  email: string;
+type BaseUser = {
+  id: number;
   firstName: string;
   lastName: string;
+};
+export type User = BaseUser & {
   role: UserRole;
+  email: string;
 };
 
-export type UserDetails = User & {
+export type UserFromServer = BaseUser & {
+  sub: string;
+  scope: UserRole;
+};
+
+export type TokenPayload = {
   token: string;
 };
+
+export type UserDetails = User & TokenPayload;

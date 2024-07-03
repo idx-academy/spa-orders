@@ -22,14 +22,7 @@ const credentials = {
   lastName: "Johnes"
 };
 
-const signUpResponse: SignUpResponse = {
-  id: "1",
-  token: "Test token",
-  email: credentials.email,
-  firstName: credentials.firstName,
-  lastName: credentials.lastName,
-  role: "ROLE_USER"
-};
+const signUpResponse: SignUpResponse = { token: "Test token" };
 
 type MockReturnValueType = { error: string } | { data: Record<string, string> };
 
@@ -62,7 +55,9 @@ describe("useSignIn", () => {
     await setupWithMockSignInReturnValue({ data: signUpResponse });
 
     expect(mockSignUp).toHaveBeenCalledWith(credentials);
-    expect(mockDispatch).toHaveBeenCalledWith(authenticate(signUpResponse));
+    expect(mockDispatch).toHaveBeenCalledWith(
+      authenticate(signUpResponse.token)
+    );
     expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({
       messageTranslationKey: "signUp.success",
       variant: "success"
