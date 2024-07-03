@@ -4,13 +4,13 @@ export const URLS = {
     signIn: "/auth/sign-in"
   },
   products: {
-    get: "/products",
-    post: "/products",
-    put: "/products",
-    delete: "/products"
+    get: "/v1/products",
+    post: "/v1/products",
+    put: "/v1/products",
+    delete: "/v1/products"
   },
   orders: {
-    get: "/orders/user",
-    post: "/orders"
+    get: "/v1/orders/user",
+    post: "/v1/orders"
   }
 } as const;
