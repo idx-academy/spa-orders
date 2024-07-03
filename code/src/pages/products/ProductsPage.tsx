@@ -13,7 +13,7 @@ import AppContainer from "@/components/app-container/AppContainer";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
-import validatePage from "@/utils/validatePage";
+import validatePage from "@/utils/validate-page/validatePage";
 import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {

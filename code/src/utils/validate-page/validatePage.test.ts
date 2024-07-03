@@ -1,4 +1,4 @@
-import validatePage from "../validatePage";
+import validatePage from "@/utils/validate-page/validatePage";
 
 describe("Test validatePage util", () => {
   test("Should return passed number value when it is valid", () => {
