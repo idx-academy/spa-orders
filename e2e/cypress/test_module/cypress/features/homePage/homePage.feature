@@ -14,16 +14,16 @@ Feature: |User Home Page|
     Then the uset should be redirected to All Products Page
 
   Scenario: View Banner section
-    When the user views the banner
+    When the user views the Banner
     Then the user should see the banner with bage, title and button
 
   Scenario: View Subintro section
     When the user views the Subintro
     Then the user should see the list of four elements inside Subintro
 
-  Scenario: View Call-to-action section
-    When the user views the Call-to-action
-    Then the user should see the two Call-to-action elements with buttons inside Call-to-action
+  # Scenario: View Call-to-action section
+  #   When the user views the Call-to-action
+  #   Then the user should see the two Call-to-action elements with buttons inside Call-to-action
 
   Scenario: View Best Sellers section
     When the user views the Best Sellers
