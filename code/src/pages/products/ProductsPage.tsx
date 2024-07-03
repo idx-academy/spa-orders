@@ -5,9 +5,7 @@ import AppBox from "@/components/app-box/AppBox";
 import ProductCard from "@/components/product-card/ProductCard";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
 
-import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { Product } from "@/types/product.types";
-import { useGetProductsQuery } from "@/store/api/productsApi";
 import createProductSkeletons from "@/utils/createSkeletonCards";
 
 import AppPagination from "@/components/app-pagination/AppPagination";
@@ -25,28 +23,27 @@ const ProductsPage = () => {
   const isPageValid = searchParamsPage && !Number.isNaN(searchParamsPage);
   const page = isPageValid ? Number(searchParamsPage) : 1;
 
-  const { data: products, isLoading } = useGetProductsQuery({
+  const { data: productsResponse, isLoading } = useGetProductsQuery({
     page: page - 1,
-    size: 10,
+    size: 8,
     sort: sortOption
   });
 
-  if (isLoading) return <AppTypography>Loading...</AppTypography>;
+  const defaultDropdownText = (
+    <AppTypography translationKey="productsDefault.label" />
+  );
 
-  const pagesCount = products?.totalPages;
-  const productsCount = products?.totalItems ?? 0;
+  const skeletonCards = createProductSkeletons(
+    productsResponse?.content?.length || 8
+  );
 
-  const skeletonCards = createProductSkeletons(products?.content?.length || 10);
-
-  const productCards = products?.content?.map((product: Product) => (
+  const productCards = productsResponse?.content?.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
   ));
 
   const handleSortChange = (value: string) => {
     setSearchParams({ sort: value });
   };
-
-  if (productsLoading) return <AppTypography>Loading...</AppTypography>;
 
   const pagesCount = productsResponse?.totalPages ?? 1;
   const productsCount = productsResponse?.totalElements ?? 0;

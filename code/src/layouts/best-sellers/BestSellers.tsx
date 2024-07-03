@@ -18,9 +18,11 @@ const BestSellers = () => {
 
   //@TODO Create Skeleton for component loading
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
-  const skeletonCards = createProductSkeletons(products?.content?.length || 5);
+  const skeletonCards = createProductSkeletons(
+    productsResponse?.content?.length || 5
+  );
 
-  const productCards = products.map((product: Product) => (
+  const productCards = productsResponse?.content?.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
   ));
 
