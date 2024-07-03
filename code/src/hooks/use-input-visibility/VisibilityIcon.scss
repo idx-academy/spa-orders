@@ -1,0 +1,7 @@
+@import "@design-system";
+
+.spa-visibility-icon {
+  &--error {
+    fill: var(--spa-visibility-icon-fill, $red);
+  }
+}

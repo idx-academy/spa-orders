@@ -1,5 +1,5 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
-import SignUpForm from "@/layouts/modals/auth/components/sign-up-form/SignUpForm";
+import SignUpForm from "@/layouts/forms/sign-up-form/SignUpForm";
 import { useModalContext } from "@/context/ModalContext";
 import useSignUp from "@/hooks/use-sign-up/useSignUp";
 import { renderWithProviders } from "@/utils/test-utils";
@@ -44,18 +44,18 @@ describe("SignUpForm - Success Cases", () => {
   });
 
   test("renders input fields", () => {
-    const firstNameField = screen.getByLabelText(/signUp.firstname.field/i);
+    const firstNameField = screen.getByLabelText(/signUp.firstname.field/);
     expect(firstNameField).toBeInTheDocument();
   });
 
   test("handles input changes and form submission", async () => {
-    const emailInput = screen.getByLabelText(/signUp.email.field/i);
-    const passwordInput = screen.getByLabelText(/signUp.password.field/i);
+    const emailInput = screen.getByLabelText(/signUp.email.field/);
+    const passwordInput = screen.getByLabelText(/signUp.password.field/);
     const confirmPasswordInput = screen.getByLabelText(
-      /signUp.confirmpassword.field/i
+      /signUp.confirmpassword.field/
     );
-    const firstNameInput = screen.getByLabelText(/signUp.firstname.field/i);
-    const lastNameInput = screen.getByLabelText(/signUp.lastname.field/i);
+    const firstNameInput = screen.getByLabelText(/signUp.firstname.field/);
+    const lastNameInput = screen.getByLabelText(/signUp.lastname.field/);
 
     await typeIntoInput(emailInput, mockFormValues.email);
     await typeIntoInput(passwordInput, mockFormValues.password);
@@ -71,7 +71,7 @@ describe("SignUpForm - Success Cases", () => {
       expect(confirmPasswordInput).toHaveValue(mockFormValues.password);
     });
 
-    const submitButton = screen.getByText(/signUp.button/i);
+    const submitButton = screen.getByText(/signUp.button/);
 
     fireEvent.click(submitButton);
 
@@ -106,7 +106,7 @@ describe("SignInForm - Failure Cases", () => {
   });
 
   test("displays validation errors", async () => {
-    const submitButton = screen.getByRole("button", { name: /signUp.button/i });
+    const submitButton = screen.getByRole("button", { name: /signUp.button/ });
 
     fireEvent.click(submitButton);
 
@@ -122,13 +122,13 @@ describe("SignInForm - Failure Cases", () => {
     });
   });
   test("handles unsuccessful sign-up", async () => {
-    const emailInput = screen.getByLabelText(/signUp.email.field/i);
-    const passwordInput = screen.getByLabelText(/signUp.password.field/i);
+    const emailInput = screen.getByLabelText(/signUp.email.field/);
+    const passwordInput = screen.getByLabelText(/signUp.password.field/);
     const confirmPasswordInput = screen.getByLabelText(
-      /signUp.confirmpassword.field/i
+      /signUp.confirmpassword.field/
     );
-    const firstNameInput = screen.getByLabelText(/signUp.firstname.field/i);
-    const lastNameInput = screen.getByLabelText(/signUp.lastname.field/i);
+    const firstNameInput = screen.getByLabelText(/signUp.firstname.field/);
+    const lastNameInput = screen.getByLabelText(/signUp.lastname.field/);
 
     await typeIntoInput(emailInput, mockFormValues.email);
     await typeIntoInput(passwordInput, mockFormValues.password);
@@ -144,7 +144,7 @@ describe("SignInForm - Failure Cases", () => {
       expect(confirmPasswordInput).toHaveValue(mockFormValues.password);
     });
 
-    const submitButton = screen.getByText(/signUp.button/i);
+    const submitButton = screen.getByText(/signUp.button/);
 
     fireEvent.click(submitButton);
 

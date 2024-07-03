@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -15,7 +16,7 @@ import {
   SignUpValidatorType
 } from "@/utils/validators/signUpScheme";
 
-import "@/layouts/modals/auth/components/sign-up-form/SignUpForm.scss";
+import "@/layouts/forms/sign-up-form/SignUpForm.scss";
 
 const SignUpForm = () => {
   const {
@@ -33,11 +34,17 @@ const SignUpForm = () => {
   const {
     inputVisibility: passwordVisibility,
     shouldShowInputText: showPassword
-  } = useInputVisibility();
+  } = useInputVisibility({ isError: Boolean(errors.password) });
   const {
     inputVisibility: confirmPasswordVisibility,
     shouldShowInputText: showConfirmPassword
-  } = useInputVisibility();
+  } = useInputVisibility({ isError: Boolean(errors.confirmPassword) });
+
+  useEffect(() => {
+    if (isSuccess) {
+      closeModal();
+    }
+  }, [isSuccess, closeModal]);
 
   const onSubmit = async ({
     email,
@@ -46,10 +53,6 @@ const SignUpForm = () => {
     password
   }: SignUpValidatorType) => {
     await signUp({ email, firstName, lastName, password });
-
-    if (isSuccess) {
-      closeModal();
-    }
   };
 
   return (

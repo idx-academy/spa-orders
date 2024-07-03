@@ -1,5 +1,5 @@
 import { screen, fireEvent, waitFor } from "@testing-library/react";
-import SignInForm from "@/layouts/modals/auth/components/sign-in-form/SignInForm";
+import SignInForm from "@/layouts/forms/sign-in-form/SignInForm";
 import { useModalContext } from "@/context/ModalContext";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import { renderWithProviders } from "@/utils/test-utils";
@@ -52,8 +52,8 @@ describe("SignInForm - Success Cases", () => {
 
   test("handles input changes and form submission", async () => {
     const emailInput = screen.getByLabelText(/signIn.email.field/);
-    const passwordInput = screen.getByLabelText(/signIn.password.field/i);
-    const submitButton = screen.getByRole("button", { name: /signIn.button/i });
+    const passwordInput = screen.getByLabelText(/signIn.password.field/);
+    const submitButton = screen.getByRole("button", { name: /signIn.button/ });
 
     await typeIntoInput(emailInput, mockFormValues.email);
     await typeIntoInput(passwordInput, mockFormValues.password);
@@ -94,7 +94,7 @@ describe("SignInForm - Failure Cases", () => {
   });
 
   test("displays validation errors", async () => {
-    const submitButton = screen.getByRole("button", { name: /signIn.button/i });
+    const submitButton = screen.getByRole("button", { name: /signIn.button/ });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -111,8 +111,8 @@ describe("SignInForm - Failure Cases", () => {
 
   test("handles unsuccessful sign-in", async () => {
     const emailInput = screen.getByLabelText(/signIn.email.field/);
-    const passwordInput = screen.getByLabelText(/signIn.password.field/i);
-    const submitButton = screen.getByRole("button", { name: /signIn.button/i });
+    const passwordInput = screen.getByLabelText(/signIn.password.field/);
+    const submitButton = screen.getByRole("button", { name: /signIn.button/ });
 
     await typeIntoInput(emailInput, mockFormValues.email);
     await typeIntoInput(passwordInput, mockFormValues.password);

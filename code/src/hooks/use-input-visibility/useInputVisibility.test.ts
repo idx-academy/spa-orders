@@ -3,14 +3,14 @@ import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility"
 
 describe("useInputVisibility custom hook", () => {
   test("should use input visibility", () => {
-    const { result } = renderHook(() => useInputVisibility());
+    const { result } = renderHook(() => useInputVisibility({ isError: false }));
 
     expect(result.current.shouldShowInputText).toBe(false);
     expect(result.current.inputVisibility).toHaveProperty("endAdornment");
   });
 
   test("should toggle input visibility after click", () => {
-    const { result } = renderHook(() => useInputVisibility());
+    const { result } = renderHook(() => useInputVisibility({ isError: true }));
 
     act(() => {
       result.current.inputVisibility.endAdornment.props.children.props.onClick();

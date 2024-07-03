@@ -11,8 +11,8 @@ import callToActionSectionMessages from "@/layouts/call-to-action/messages";
 import authModalMessages from "@/layouts/modals/auth/messages";
 import orderItemMessages from "@/layouts/order-item/messages";
 import dropDownMessages from "@/components/app-dropdown/messages";
-import signupFormMessages from "@/layouts/modals/auth/components/sign-up-form/messages";
-import signInFormMessages from "@/layouts/modals/auth/components/sign-in-form/messages";
+import signupFormMessages from "@/layouts/forms/sign-up-form/messages";
+import signInFormMessages from "@/layouts/forms/sign-in-form/messages";
 import orderPageMessages from "@/pages/orders/messages";
 
 const messages = {

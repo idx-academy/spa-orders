@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -15,7 +16,7 @@ import {
   SignInVallidatorType
 } from "@/utils/validators/signInScheme";
 
-import "@/layouts/modals/auth/components/sign-in-form/SignInForm.scss";
+import "@/layouts/forms/sign-in-form/SignInForm.scss";
 
 const SignInForm = () => {
   const {
@@ -27,19 +28,22 @@ const SignInForm = () => {
   });
 
   const [signIn, { isLoading, isSuccess }] = useSignIn();
+
   const { closeModal } = useModalContext();
 
   const {
     inputVisibility: passwordVisibility,
     shouldShowInputText: showPassword
-  } = useInputVisibility();
+  } = useInputVisibility({ isError: Boolean(errors.password) });
 
-  const onSubmit = async ({ email, password }: SignInVallidatorType) => {
-    await signIn({ email, password });
-
+  useEffect(() => {
     if (isSuccess) {
       closeModal();
     }
+  }, [isSuccess, closeModal]);
+
+  const onSubmit = async ({ email, password }: SignInVallidatorType) => {
+    await signIn({ email, password });
   };
 
   return (

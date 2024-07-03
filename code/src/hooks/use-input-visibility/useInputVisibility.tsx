@@ -5,15 +5,29 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
+import cn from "@/utils/cn";
 
-const useInputVisibility = () => {
+import "@/hooks/use-input-visibility/VisibilityIcon.scss";
+type UseInputVisibilityProps = {
+  isError?: boolean;
+};
+
+const useInputVisibility = ({ isError }: UseInputVisibilityProps) => {
   const [shouldShowInputText, setShouldShowInputText] = useState(false);
+
+  const errorStyles = isError && "spa-visibility-icon--error";
 
   const inputVisibility = {
     endAdornment: (
       <InputAdornment position="end">
-        <AppIconButton onClick={() => setShouldShowInputText(!shouldShowInputText)}>
-          {shouldShowInputText ? <VisibilityIcon /> : <VisibilityOffIcon />}
+        <AppIconButton
+          onClick={() => setShouldShowInputText(!shouldShowInputText)}
+        >
+          {shouldShowInputText ? (
+            <VisibilityIcon className={cn(errorStyles)} />
+          ) : (
+            <VisibilityOffIcon className={cn(errorStyles)} />
+          )}
         </AppIconButton>
       </InputAdornment>
     )
