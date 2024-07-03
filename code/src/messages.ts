@@ -30,7 +30,7 @@ const messages = {
     ...orderItemMessages.en,
     ...dropDownMessages.en,
     ...signupFormMessages.en,
-    ...loginFormMessages.en,
+    ...signInFormMessages.en,
     ...orderPageMessages.en,
     ...notFoundMessages.en
   },
