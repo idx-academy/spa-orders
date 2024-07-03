@@ -16,8 +16,6 @@ const BestSellers = () => {
     size: 5
   });
 
-  //@TODO Create Skeleton for component loading
-  if (isLoading) return <AppTypography>Loading...</AppTypography>;
   const skeletonCards = createProductSkeletons(
     productsResponse?.content?.length || 5
   );

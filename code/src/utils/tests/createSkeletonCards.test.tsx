@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import generateProductSkeletons from "@/utils/createSkeletonCards";
 
 describe("generateProductSkeletons", () => {
