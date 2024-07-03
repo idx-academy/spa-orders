@@ -1,6 +1,6 @@
 import { screen, fireEvent } from "@testing-library/react";
 import AppDropdownOptions from "@/components/app-dropdown/components/AppDropdownOptions";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockHandleOptionClick = jest.fn();
 

@@ -1,7 +1,7 @@
 import AppBox from "@/components/app-box/AppBox";
 import AppSkeleton from "@/components/app-skeleton/AppSkeleton";
 
-import cn from "@/utils/cn";
+import cn from "@/utils/cn/cn";
 
 import { PageLoadingFallbackProps } from "@/layouts/page-loading-fallback/PageLoadingFallback.types";
 

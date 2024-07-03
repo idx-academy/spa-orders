@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import Header from "@/layouts/header/Header";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/layouts/header/components/header-toolbar/HeaderToolbar", () => ({
   __esModule: true,

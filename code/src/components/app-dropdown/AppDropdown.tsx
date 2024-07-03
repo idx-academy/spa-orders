@@ -5,7 +5,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppDropdownOptions from "@/components/app-dropdown/components/AppDropdownOptions";
 import { AppDropdownProps } from "@/components/app-dropdown/AppDropdown.types";
-import cn from "@/utils/cn";
+import cn from "@/utils/cn/cn";
 
 import "@/components/app-dropdown/AppDropdown.scss";
 

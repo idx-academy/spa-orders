@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 import ProductCard from "@/components/product-card/ProductCard";
 import { Product } from "@/types/product.types";
-import { renderWithProviders } from "@/utils/test-utils";
-import formatPrice from "@/utils/formatPrice";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import formatPrice from "@/utils/format-price/formatPrice";
 
 const mockProduct: Product = {
   id: "123",

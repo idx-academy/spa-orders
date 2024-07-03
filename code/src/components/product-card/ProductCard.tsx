@@ -4,7 +4,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppLink from "@/components/app-link/AppLink";
 import AppButton from "@/components/app-button/AppButton";
 import { Product } from "@/types/product.types";
-import formatPrice from "@/utils/formatPrice";
+import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/components/product-card/ProductCard.scss";
 

@@ -1,6 +1,6 @@
 import Accordion from "@mui/material/Accordion";
 import { AppAccordionProps } from "@/components/app-accordion/app-accorion-container/AppAccordionContainer.types";
-import cn from "@/utils/cn";
+import cn from "@/utils/cn/cn";
 
 import "@/components/app-accordion/app-accorion-container/AppAccordionContainer.scss";
 

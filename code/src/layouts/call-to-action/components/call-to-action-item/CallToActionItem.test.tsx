@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import CallToActionItem from "@/layouts/call-to-action/components/call-to-action-item/CallToActionItem";
 import callToActionItems from "@/layouts/call-to-action/CallToAction.constants";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockImageUrl =
   "https://www.softserveinc.com/cdn/img/icons/favicon-32x32.png";

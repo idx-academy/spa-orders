@@ -1,6 +1,6 @@
 import { screen, fireEvent } from "@testing-library/react";
 import AppSnackbar from "@/components/app-snackbar/AppSnackbar";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { SnackbarConfigWithTimeout } from "@/types/snackbar.types";
 

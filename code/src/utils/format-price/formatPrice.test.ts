@@ -1,4 +1,4 @@
-import formatPrice from "@/utils/formatPrice";
+import formatPrice from "@/utils/format-price/formatPrice";
 
 describe("formatPrice", () => {
   test("formats price with some option", () => {

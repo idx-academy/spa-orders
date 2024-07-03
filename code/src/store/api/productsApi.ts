@@ -1,5 +1,5 @@
 import { appApi } from "@/store/api/appApi";
-import { createUrlPath } from "@/utils/createUrlPath";
+import createUrlPath from "@/utils/create-url-path/createUrlPath";
 import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
 import { Product } from "@/types/product.types";

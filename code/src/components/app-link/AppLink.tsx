@@ -9,7 +9,7 @@ import {
   AppLinkProps,
   NavLinkRenderProps
 } from "@/components/app-link/AppLink.types";
-import cn from "@/utils/cn";
+import cn from "@/utils/cn/cn";
 
 import "@/components/app-link/AppLink.scss";
 

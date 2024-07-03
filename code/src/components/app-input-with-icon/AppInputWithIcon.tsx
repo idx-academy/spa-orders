@@ -6,7 +6,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import { InputWithIconProps } from "@/components/app-input-with-icon/AppInputWithIcon.types";
 
-import cn from "@/utils/cn";
+import cn from "@/utils/cn/cn";
 
 import "@/components/app-input-with-icon/AppInputWithIcon.scss";
 

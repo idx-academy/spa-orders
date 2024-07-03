@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import AuthModal from "@/layouts/modals/auth/AuthModal";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 describe("AuthModal", () => {
   beforeEach(() => {

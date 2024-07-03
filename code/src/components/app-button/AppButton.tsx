@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 import AppLoader from "@/components/app-loader/AppLoader";
 
-import cn from "@/utils/cn";
+import cn from "@/utils/cn/cn";
 
 import { AppButtonProps } from "@/components/app-button/AppButton.types";
 

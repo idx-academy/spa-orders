@@ -14,7 +14,7 @@ type ExtendedRenderOptions = RenderOptions & {
   preloadedState: StateFromReducersMapObject<typeof reducer>;
 };
 
-export const renderWithProviders = (
+const renderWithProviders = (
   ui: ReactElement,
   {
     initialEntries = ["/"],
@@ -41,3 +41,5 @@ export const renderWithProviders = (
 
   return render(ui, { wrapper: Wrapper, ...renderOptions });
 };
+
+export default renderWithProviders;

@@ -1,4 +1,4 @@
-import cn from "@/utils/cn";
+import cn from "@/utils/cn/cn";
 
 describe("Test cn function", () => {
   test("should return empty string if no arguments are provided", () => {

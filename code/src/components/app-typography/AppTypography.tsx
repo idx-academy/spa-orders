@@ -1,7 +1,7 @@
 import { ElementType } from "react";
 import { FormattedMessage } from "react-intl";
 import Typography from "@mui/material/Typography";
-import cn from "@/utils/cn";
+import cn from "@/utils/cn/cn";
 import {
   HeadingVariant,
   AppTypographyVariant,

@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import RootLayout from "@/layouts/root-layout/RootLayout";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/layouts/header/Header", () => jest.fn(() => <div>Header</div>));
 jest.mock("@/layouts/footer/Footer", () => jest.fn(() => <div>Footer</div>));

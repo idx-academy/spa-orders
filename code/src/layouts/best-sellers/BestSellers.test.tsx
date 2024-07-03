@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import BestSellers from "@/layouts/best-sellers/BestSellers";
 import { useGetProductsQuery } from "@/store/api/productsApi";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 import { mockData as mockItems } from "@/layouts/best-sellers/BestSellers.constants";
 

@@ -10,7 +10,7 @@ const createQueryParamsString = (query: Record<string, string>) => {
   return queryParams.toString();
 };
 
-export const createUrlPath = (URL: string, params = "", query = {}) => {
+const createUrlPath = (URL: string, params = "", query = {}) => {
   let trimmedUrl = URL;
   while (trimmedUrl.endsWith("/")) {
     trimmedUrl = trimmedUrl.slice(0, -1);
@@ -22,3 +22,5 @@ export const createUrlPath = (URL: string, params = "", query = {}) => {
 
   return `${trimmedUrl}${paramsString}${queryParamsString}`;
 };
+
+export default createUrlPath;

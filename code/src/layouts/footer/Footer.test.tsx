@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import Footer from "@/layouts/footer/Footer";
 
 describe("Test Footer component", () => {

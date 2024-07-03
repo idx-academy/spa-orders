@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockAppDropdownOnSelect = jest.fn();
 

@@ -1,4 +1,4 @@
-import { createUrlPath } from "@/utils/createUrlPath";
+import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
 const baseUrl = "https://www.google.com";
 const resourcePath = "products";

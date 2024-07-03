@@ -1,7 +1,7 @@
 import { appApi } from "@/store/api/appApi";
 import { URLS } from "@/constants/requests";
 import { OrderRequest, OrderResponse } from "@/types/order.types";
-import { createUrlPath } from "@/utils/createUrlPath";
+import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
 const ordersApi = appApi.injectEndpoints({
   endpoints: (build) => ({

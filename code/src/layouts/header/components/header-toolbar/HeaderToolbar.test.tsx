@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
-import { renderWithProviders } from "@/utils/test-utils";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
 

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import OrderItem from "@/layouts/order-item/OrderItem";
 import { Order } from "@/types/order.types";
-import formatPrice from "@/utils/formatPrice";
+import formatPrice from "@/utils/format-price/formatPrice";
 
 const mockOrder: Order = {
   id: "order-1",

@@ -308,7 +308,7 @@ import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useAppSelector } from "@/hooks/use-redux";
-import { createUrlPath } from "@/utils/createUrlPath";
+import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
 import { URLS } from "@/constants/requests";
 
