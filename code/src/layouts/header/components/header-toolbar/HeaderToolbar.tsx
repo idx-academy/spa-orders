@@ -146,10 +146,10 @@ const HeaderToolbar = () => {
   );
 
   return (
-    <AppBox className="header__wrapper">
+    <AppBox className="header__wrapper" data-cy="header-toolbar">
       <AppContainer maxWidth="xl" className="header__toolbar">
         <AppLink to="/">
-          <AppLogo className="header__toolbar-logo-image" />
+          <AppLogo className="header__toolbar-logo-image" data-cy="logo" />
         </AppLink>
         <AppBox className="header__toolbar-action">
           <AppInputWithIcon

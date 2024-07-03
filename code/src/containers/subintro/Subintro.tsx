@@ -7,7 +7,7 @@ import "@/containers/subintro/Subintro.scss";
 
 const Subintro = () => {
   return (
-    <AppBox className="spa-subintro">
+    <AppBox className="spa-subintro" data-cy="subintro">
       {subintroData.map((element) => (
         <SubintroItem
           icon={element.icon}

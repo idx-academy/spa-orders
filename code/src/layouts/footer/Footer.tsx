@@ -53,7 +53,7 @@ const Footer = () => {
   ));
 
   return (
-    <AppBox className="footer" component="footer">
+    <AppBox className="footer" component="footer" data-cy="footer">
       <AppContainer maxWidth="lg">
         <AppBox className="footer__container">
           <AppBox>
@@ -62,10 +62,10 @@ const Footer = () => {
               translationKey="footer.location.title"
               variant="h3"
             />
-            <AppBox component="ul" className="footer__list">
+            <AppBox component="ul" className="footer__list" data-cy="footer-location-info">
               {locationItems}
             </AppBox>
-            <AppBox className="footer__socials" component="ul">
+            <AppBox className="footer__socials" component="ul" data-cy="footer-socials">
               {socialsItems}
             </AppBox>
           </AppBox>
@@ -75,7 +75,7 @@ const Footer = () => {
               translationKey="footer.support.title"
               variant="h3"
             />
-            <AppBox component="ul" className="footer__list">
+            <AppBox component="ul" className="footer__list" data-cy="footer-customer-support-info">
               {customerSupportItems}
             </AppBox>
           </AppBox>
@@ -85,7 +85,7 @@ const Footer = () => {
               translationKey="footer.policy.title"
               variant="h3"
             />
-            <AppBox component="ul" className="footer__list">
+            <AppBox component="ul" className="footer__list" data-cy="footer-policy-info">
               {policyItems}
             </AppBox>
           </AppBox>

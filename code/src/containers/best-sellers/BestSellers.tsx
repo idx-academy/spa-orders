@@ -22,7 +22,7 @@ const BestSellers = () => {
   });
 
   return (
-    <PageWrapper className="spa-best-sellers">
+    <PageWrapper className="spa-best-sellers" data-cy="best-sellers">
       <AppTypography
         className="spa-best-sellers__header"
         translationKey="bestSellers.header"
