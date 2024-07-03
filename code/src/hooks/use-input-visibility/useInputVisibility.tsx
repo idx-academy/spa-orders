@@ -3,19 +3,22 @@ import { useState } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import cn from "@/utils/cn/cn";
 
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
-import cn from "@/utils/cn";
 
 import "@/hooks/use-input-visibility/VisibilityIcon.scss";
 type UseInputVisibilityProps = {
   isError?: boolean;
 };
 
-const useInputVisibility = ({ isError }: UseInputVisibilityProps) => {
+const useInputVisibility = ({ isError }: UseInputVisibilityProps = {}) => {
   const [shouldShowInputText, setShouldShowInputText] = useState(false);
 
-  const errorStyles = isError && "spa-visibility-icon--error";
+  let errorClass: string | undefined;
+  if (isError) {
+    errorClass = "spa-visibility-icon--error";
+  }
 
   const inputVisibility = {
     endAdornment: (
@@ -24,9 +27,9 @@ const useInputVisibility = ({ isError }: UseInputVisibilityProps) => {
           onClick={() => setShouldShowInputText(!shouldShowInputText)}
         >
           {shouldShowInputText ? (
-            <VisibilityIcon className={cn(errorStyles)} />
+            <VisibilityIcon className={cn(errorClass)} />
           ) : (
-            <VisibilityOffIcon className={cn(errorStyles)} />
+            <VisibilityOffIcon className={cn(errorClass)} />
           )}
         </AppIconButton>
       </InputAdornment>

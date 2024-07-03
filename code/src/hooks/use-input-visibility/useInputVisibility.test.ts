@@ -3,7 +3,7 @@ import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility"
 
 describe("useInputVisibility custom hook", () => {
   test("should use input visibility", () => {
-    const { result } = renderHook(() => useInputVisibility({ isError: false }));
+    const { result } = renderHook(() => useInputVisibility());
 
     expect(result.current.shouldShowInputText).toBe(false);
     expect(result.current.inputVisibility).toHaveProperty("endAdornment");

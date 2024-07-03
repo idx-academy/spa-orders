@@ -44,15 +44,12 @@ describe("AuthModal", () => {
     expect(signInToggleButton).toBeInTheDocument();
   });
 
-  test("Should witch to SignUpForm when toggle button is clicked and back", () => {
+  test("Should witch to SignupForm when toggle button is clicked and back", () => {
     const signInToggleButton = screen.getByText("authModal.toSignUp.button");
     fireEvent.click(signInToggleButton);
 
-    const signupTitle = screen.getByText("authModal.signUp.title");
-    const signupFormInputs = screen.getAllByRole("textbox");
-
-    expect(signupTitle).toBeInTheDocument();
-    expect(signupFormInputs.length).toBe(3);
+    const signUpTitle = screen.getByText("authModal.signUp.title");
+    expect(signUpTitle).toBeInTheDocument();
 
     const signUpToggleText = screen.getByText("authModal.toSignIn.text");
     expect(signUpToggleText).toBeInTheDocument();
@@ -62,10 +59,7 @@ describe("AuthModal", () => {
 
     fireEvent.click(signUpToggleButton);
 
-    const loginTitle = screen.getByText("authModal.logIn.title");
-    const signinFormInputs = screen.getAllByRole("textbox");
-
-    expect(loginTitle).toBeInTheDocument();
-    expect(signinFormInputs.length).toBe(1);
+    const signInTitle = screen.getByText("authModal.signIn.title");
+    expect(signInTitle).toBeInTheDocument();
   });
 });

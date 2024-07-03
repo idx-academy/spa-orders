@@ -2,8 +2,8 @@ import { screen, fireEvent, waitFor } from "@testing-library/react";
 import SignInForm from "@/layouts/forms/sign-in-form/SignInForm";
 import { useModalContext } from "@/context/ModalContext";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
-import { renderWithProviders } from "@/utils/test-utils";
-import typeIntoInput from "@/utils/typeIntoInput";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
 jest.mock("@/hooks/use-sign-in/useSignIn", () => ({
   __esModule: true,
