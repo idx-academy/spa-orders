@@ -68,6 +68,7 @@ const AppDropdown = ({
       onClick={handleToggleDropdownClick}
       onBlur={handleBlur}
       tabIndex={0}
+      data-testid="app-dropdown"
       {...props}
     >
       <AppBox component="span" className="app-dropdown__selected">
