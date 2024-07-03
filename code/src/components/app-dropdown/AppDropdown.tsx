@@ -49,7 +49,10 @@ const AppDropdown = ({
   };
 
   const handleBlur = (event: FocusEvent<HTMLElement>) => {
-    if (!dropdownRef.current?.contains(event.relatedTarget as Node)) {
+    if (
+      !dropdownRef.current ||
+      !dropdownRef.current.contains(event.relatedTarget as Node)
+    ) {
       setIsOpen(false);
     }
   };
