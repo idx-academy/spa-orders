@@ -1,4 +1,4 @@
-import { Skeleton } from "@mui/material";
+import AppSkeleton from "../app-skeleton/AppSkeleton";
 import AppBox from "@/components/app-box/AppBox";
 
 import "@/components/product-skeleton/ProductSkeleton.scss";
@@ -6,9 +6,9 @@ import "@/components/product-skeleton/ProductSkeleton.scss";
 const ProductSkeleton = () => {
   return (
     <AppBox className="spa-product-skeleton" data-testid="spa-product-skeleton">
-      <Skeleton variant="rectangular" height={264} width={254} />
-      <Skeleton variant="text" width={254} />
-      <Skeleton variant="text" width={254} />
+      <AppSkeleton variant="rectangular" height={264} width={254} />
+      <AppSkeleton variant="text" width={254} />
+      <AppSkeleton variant="text" width={254} />
     </AppBox>
   );
 };
