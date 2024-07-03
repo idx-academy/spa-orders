@@ -1,10 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
 import routePaths from "@/constants/routes";
 import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
-import { useIsAuthSelector } from "@/store/slices/userSlice";
+import {
+  useIsAuthLoadingSelector,
+  useIsAuthSelector
+} from "@/store/slices/userSlice";
 
 const ProtectedLayout = () => {
-  const { isAuthenticated, isLoading } = useIsAuthSelector();
+  const isAuthenticated = useIsAuthSelector();
+  const isLoading = useIsAuthLoadingSelector();
 
   if (isLoading) {
     return <PageLoadingFallback fullScreen />;

@@ -24,7 +24,7 @@ import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 
 const HeaderToolbar = () => {
   const { openModal } = useModalContext();
-  const { isAuthenticated } = useIsAuthSelector();
+  const isAuthenticated = useIsAuthSelector();
   const dispatch = useAppDispatch();
 
   const [searchValue, setSearchValue] = useState("");

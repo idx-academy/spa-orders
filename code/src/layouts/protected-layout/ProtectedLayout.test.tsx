@@ -1,12 +1,16 @@
 import { screen } from "@testing-library/react";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import ProtectedLayout from "@/layouts/protected-layout/ProtectedLayout";
-import { useIsAuthSelector } from "@/store/slices/userSlice";
+import {
+  useIsAuthLoadingSelector,
+  useIsAuthSelector
+} from "@/store/slices/userSlice";
 import routePaths from "@/constants/routes";
 
 jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,
-  useIsAuthSelector: jest.fn()
+  useIsAuthSelector: jest.fn(),
+  useIsAuthLoadingSelector: jest.fn()
 }));
 
 jest.mock("@/layouts/page-loading-fallback/PageLoadingFallback", () => ({
@@ -14,34 +18,37 @@ jest.mock("@/layouts/page-loading-fallback/PageLoadingFallback", () => ({
   default: () => <div data-testid="loading-fallback">Loading...</div>
 }));
 
-type HookOutput = Partial<ReturnType<typeof useIsAuthSelector>>;
+type RenderWithAuth = {
+  isAuthenticated: boolean;
+  isLoading: boolean;
+};
 
-const renderWithMock = (useIsAuthSelectorHookOutput: HookOutput = {}) => {
-  (useIsAuthSelector as jest.Mock).mockReturnValue({
-    isLoading: false,
-    isAuthenticated: false,
-    ...useIsAuthSelectorHookOutput
-  });
+const renderWithAuth = ({
+  isAuthenticated = false,
+  isLoading = false
+}: Partial<RenderWithAuth> = {}) => {
+  (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(isLoading);
+  (useIsAuthSelector as jest.Mock).mockReturnValue(isAuthenticated);
 
   renderWithProviders(<ProtectedLayout />);
 };
 
 describe("ProtectedLayout", () => {
   it("renders loading fallback when loading", () => {
-    renderWithMock({ isLoading: true });
+    renderWithAuth({ isLoading: true });
 
     const loader = screen.getByTestId("loading-fallback");
     expect(loader).toBeInTheDocument();
   });
 
   it("redirects to home when not authenticated", () => {
-    renderWithMock();
+    renderWithAuth();
 
     expect(window.location.pathname).toBe(routePaths.home.path);
   });
 
   it("renders Outlet when authenticated", () => {
-    renderWithMock({ isAuthenticated: true });
+    renderWithAuth({ isAuthenticated: true });
 
     const loader = screen.queryByTestId("loading-fallback");
     expect(loader).not.toBeInTheDocument();
