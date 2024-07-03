@@ -1,31 +1,11 @@
-import { screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
-import BestSellers from "@/layouts/best-sellers/BestSellers";
-import { useGetProductsQuery } from "@/store/api/productsApi";
-import { renderWithProviders } from "@/utils/test-utils";
+describe("Product Skeleton Card", () => {
+  test("renders product skeleton component", () => {
+    render(<ProductSkeleton />);
 
-import { mockData as mockItems } from "@/layouts/best-sellers/BestSellers.constants";
-
-const mockData = {
-  content: mockItems.slice(0, 5),
-  totalPages: 5,
-  totalItems: 20
-};
-
-jest.mock("@/store/api/productsApi", () => ({
-  useGetProductsQuery: jest.fn()
-}));
-
-test("Should render loader if isLoading", () => {
-  (useGetProductsQuery as jest.Mock).mockReturnValueOnce({
-    data: mockData,
-    isLoading: true,
-    isSuccess: true,
-    isError: false,
-    error: null
+    const productSkeletonElement = screen.getByTestId("spa-product-skeleton");
+    expect(productSkeletonElement).toBeInTheDocument();
   });
-  renderWithProviders(<BestSellers />);
-  const productSkeleton = screen.getAllByTestId("spa-product-skeleton");
-
-  expect(productSkeleton[0]).toBeInTheDocument();
 });

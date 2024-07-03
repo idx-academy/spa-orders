@@ -4,13 +4,18 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import ProductCard from "@/components/product-card/ProductCard";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
+
+import { sortOptions } from "@/pages/products/ProductsPage.constants";
+import { Product } from "@/types/product.types";
+import { useGetProductsQuery } from "@/store/api/productsApi";
+import createProductSkeletons from "@/utils/createSkeletonCards";
+
 import AppPagination from "@/components/app-pagination/AppPagination";
 import AppContainer from "@/components/app-container/AppContainer";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
 import "@/pages/products/ProductsPage.scss";
-import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
 const ProductsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,6 +35,8 @@ const ProductsPage = () => {
 
   const pagesCount = products?.totalPages;
   const productsCount = products?.totalItems ?? 0;
+
+  const skeletonCards = createProductSkeletons(products?.content?.length || 10);
 
   const productCards = products?.content?.map((product: Product) => (
     <ProductCard key={product.id} product={product} />

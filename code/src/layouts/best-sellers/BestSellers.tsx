@@ -3,7 +3,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import ProductCard from "@/components/product-card/ProductCard";
-import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
+import createProductSkeletons from "@/utils/createSkeletonCards";
 
 import { Product } from "@/types/product.types";
 import { useGetProductsQuery } from "@/store/api/productsApi";
@@ -18,6 +18,7 @@ const BestSellers = () => {
 
   //@TODO Create Skeleton for component loading
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
+  const skeletonCards = createProductSkeletons(products?.content?.length || 5);
 
   const productCards = products.map((product: Product) => (
     <ProductCard key={product.id} product={product} />
