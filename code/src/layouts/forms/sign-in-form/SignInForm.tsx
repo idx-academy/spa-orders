@@ -13,7 +13,7 @@ import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility"
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import {
   SignInVallidationScheme,
-  SignInVallidatorType
+  SignInValidatorType
 } from "@/utils/validators/signInScheme";
 
 import "@/layouts/forms/sign-in-form/SignInForm.scss";
@@ -23,7 +23,7 @@ const SignInForm = () => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<SignInVallidatorType>({
+  } = useForm<SignInValidatorType>({
     resolver: zodResolver(SignInVallidationScheme)
   });
 
@@ -42,7 +42,7 @@ const SignInForm = () => {
     }
   }, [isSuccess, closeModal]);
 
-  const onSubmit = async ({ email, password }: SignInVallidatorType) => {
+  const onSubmit = async ({ email, password }: SignInValidatorType) => {
     await signIn({ email, password });
   };
 
@@ -56,7 +56,7 @@ const SignInForm = () => {
         <AppInput
           {...register("email")}
           error={Boolean(errors.email)}
-          helperText={errors.email && errors.email.message}
+          helperText={errors.email ? errors.email.message : undefined}
           labelTranslationKey="signIn.email.field"
           fullWidth
         />
@@ -66,7 +66,7 @@ const SignInForm = () => {
           type={showPassword ? "text" : "password"}
           labelTranslationKey="signIn.password.field"
           error={Boolean(errors.password)}
-          helperText={errors.password && errors.password.message}
+          helperText={errors.password ? errors.password.message : undefined}
           fullWidth
         />
       </AppBox>

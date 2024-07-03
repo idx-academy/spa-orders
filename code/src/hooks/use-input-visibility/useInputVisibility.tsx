@@ -3,11 +3,11 @@ import { useState } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import cn from "@/utils/cn/cn";
 
-import AppIconButton from "@/components/app-icon-button/AppIconButton";
-
 import "@/hooks/use-input-visibility/VisibilityIcon.scss";
+
 type UseInputVisibilityProps = {
   isError?: boolean;
 };

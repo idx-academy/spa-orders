@@ -30,127 +30,131 @@ const mockFormValues = {
   lastName: "Snow"
 };
 
-describe("SignUpForm - Success Cases", () => {
-  beforeEach(() => {
-    (useSignUp as jest.Mock).mockReturnValue([
-      mockSignUp,
-      { isLoading: false, isSuccess: true }
-    ]);
-    renderWithProviders(<SignUpForm />);
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  test("renders input fields", () => {
-    const firstNameField = screen.getByLabelText(/signUp.firstname.field/);
-    expect(firstNameField).toBeInTheDocument();
-  });
-
-  test("handles input changes and form submission", async () => {
-    const emailInput = screen.getByLabelText(/signUp.email.field/);
-    const passwordInput = screen.getByLabelText(/signUp.password.field/);
-    const confirmPasswordInput = screen.getByLabelText(
-      /signUp.confirmpassword.field/
-    );
-    const firstNameInput = screen.getByLabelText(/signUp.firstname.field/);
-    const lastNameInput = screen.getByLabelText(/signUp.lastname.field/);
-
-    await typeIntoInput(emailInput, mockFormValues.email);
-    await typeIntoInput(passwordInput, mockFormValues.password);
-    await typeIntoInput(confirmPasswordInput, mockFormValues.password);
-    await typeIntoInput(firstNameInput, mockFormValues.firstName);
-    await typeIntoInput(lastNameInput, mockFormValues.lastName);
-
-    await waitFor(() => {
-      expect(emailInput).toHaveValue(mockFormValues.email);
-      expect(passwordInput).toHaveValue(mockFormValues.password);
-      expect(firstNameInput).toHaveValue(mockFormValues.firstName);
-      expect(lastNameInput).toHaveValue(mockFormValues.lastName);
-      expect(confirmPasswordInput).toHaveValue(mockFormValues.password);
+describe("SignUpForm", () => {
+  describe("Success Cases", () => {
+    beforeEach(() => {
+      (useSignUp as jest.Mock).mockReturnValue([
+        mockSignUp,
+        { isLoading: false, isSuccess: true }
+      ]);
+      renderWithProviders(<SignUpForm />);
     });
 
-    const submitButton = screen.getByText(/signUp.button/);
-
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(mockSignUp).toHaveBeenCalledWith(mockFormValues);
-      expect(mockCloseModal).toHaveBeenCalled();
+    afterEach(() => {
+      jest.clearAllMocks();
     });
-  });
 
-  test("renders visibility icon", () => {
-    const hideVisibilityIcon = screen.getAllByTestId("VisibilityOffIcon");
-    expect(hideVisibilityIcon).toHaveLength(2);
+    test("renders input fields", () => {
+      const firstNameField = screen.getByLabelText(/signUp.firstname.field/);
+      expect(firstNameField).toBeInTheDocument();
+    });
 
-    hideVisibilityIcon.forEach((icon) => fireEvent.click(icon));
-
-    const showVisibilityIcon = screen.getAllByTestId("VisibilityIcon");
-    expect(showVisibilityIcon).toHaveLength(2);
-  });
-});
-
-describe("SignInForm - Failure Cases", () => {
-  beforeEach(() => {
-    (useSignUp as jest.Mock).mockReturnValue([
-      mockSignUp,
-      { isLoading: false, isSuccess: false }
-    ]);
-    renderWithProviders(<SignUpForm />);
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  test("displays validation errors", async () => {
-    const submitButton = screen.getByRole("button", { name: /signUp.button/ });
-
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      const passwordErrors = screen.getAllByText(
-        "Password must be at least 8 characters long"
+    test("handles input changes and form submission", async () => {
+      const emailInput = screen.getByLabelText(/signUp.email.field/);
+      const passwordInput = screen.getByLabelText(/signUp.password.field/);
+      const confirmPasswordInput = screen.getByLabelText(
+        /signUp.confirmpassword.field/
       );
-      const emailError = screen.getByText(
-        "Please provide a valid email address"
-      );
-      expect(emailError).toBeInTheDocument();
-      expect(passwordErrors).toHaveLength(2);
+      const firstNameInput = screen.getByLabelText(/signUp.firstname.field/);
+      const lastNameInput = screen.getByLabelText(/signUp.lastname.field/);
+
+      await typeIntoInput(emailInput, mockFormValues.email);
+      await typeIntoInput(passwordInput, mockFormValues.password);
+      await typeIntoInput(confirmPasswordInput, mockFormValues.password);
+      await typeIntoInput(firstNameInput, mockFormValues.firstName);
+      await typeIntoInput(lastNameInput, mockFormValues.lastName);
+
+      await waitFor(() => {
+        expect(emailInput).toHaveValue(mockFormValues.email);
+        expect(passwordInput).toHaveValue(mockFormValues.password);
+        expect(firstNameInput).toHaveValue(mockFormValues.firstName);
+        expect(lastNameInput).toHaveValue(mockFormValues.lastName);
+        expect(confirmPasswordInput).toHaveValue(mockFormValues.password);
+      });
+
+      const submitButton = screen.getByText(/signUp.button/);
+
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(mockSignUp).toHaveBeenCalledWith(mockFormValues);
+        expect(mockCloseModal).toHaveBeenCalled();
+      });
+    });
+
+    test("renders visibility icon", () => {
+      const hideVisibilityIcon = screen.getAllByTestId("VisibilityOffIcon");
+      expect(hideVisibilityIcon).toHaveLength(2);
+
+      hideVisibilityIcon.forEach((icon) => fireEvent.click(icon));
+
+      const showVisibilityIcon = screen.getAllByTestId("VisibilityIcon");
+      expect(showVisibilityIcon).toHaveLength(2);
     });
   });
-  test("handles unsuccessful sign-up", async () => {
-    const emailInput = screen.getByLabelText(/signUp.email.field/);
-    const passwordInput = screen.getByLabelText(/signUp.password.field/);
-    const confirmPasswordInput = screen.getByLabelText(
-      /signUp.confirmpassword.field/
-    );
-    const firstNameInput = screen.getByLabelText(/signUp.firstname.field/);
-    const lastNameInput = screen.getByLabelText(/signUp.lastname.field/);
 
-    await typeIntoInput(emailInput, mockFormValues.email);
-    await typeIntoInput(passwordInput, mockFormValues.password);
-    await typeIntoInput(confirmPasswordInput, mockFormValues.password);
-    await typeIntoInput(firstNameInput, mockFormValues.firstName);
-    await typeIntoInput(lastNameInput, mockFormValues.lastName);
-
-    await waitFor(() => {
-      expect(emailInput).toHaveValue(mockFormValues.email);
-      expect(passwordInput).toHaveValue(mockFormValues.password);
-      expect(firstNameInput).toHaveValue(mockFormValues.firstName);
-      expect(lastNameInput).toHaveValue(mockFormValues.lastName);
-      expect(confirmPasswordInput).toHaveValue(mockFormValues.password);
+  describe("Failure Cases", () => {
+    beforeEach(() => {
+      (useSignUp as jest.Mock).mockReturnValue([
+        mockSignUp,
+        { isLoading: false, isSuccess: false }
+      ]);
+      renderWithProviders(<SignUpForm />);
     });
 
-    const submitButton = screen.getByText(/signUp.button/);
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
 
-    fireEvent.click(submitButton);
+    test("displays validation errors", async () => {
+      const submitButton = screen.getByRole("button", {
+        name: /signUp.button/
+      });
 
-    await waitFor(() => {
-      expect(mockSignUp).toHaveBeenCalledWith(mockFormValues);
-      expect(mockCloseModal).not.toHaveBeenCalled();
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        const passwordErrors = screen.getAllByText(
+          "Password must be at least 8 characters long"
+        );
+        const emailError = screen.getByText(
+          "Please provide a valid email address"
+        );
+        expect(emailError).toBeInTheDocument();
+        expect(passwordErrors).toHaveLength(2);
+      });
+    });
+    test("handles unsuccessful sign-up", async () => {
+      const emailInput = screen.getByLabelText(/signUp.email.field/);
+      const passwordInput = screen.getByLabelText(/signUp.password.field/);
+      const confirmPasswordInput = screen.getByLabelText(
+        /signUp.confirmpassword.field/
+      );
+      const firstNameInput = screen.getByLabelText(/signUp.firstname.field/);
+      const lastNameInput = screen.getByLabelText(/signUp.lastname.field/);
+
+      await typeIntoInput(emailInput, mockFormValues.email);
+      await typeIntoInput(passwordInput, mockFormValues.password);
+      await typeIntoInput(confirmPasswordInput, mockFormValues.password);
+      await typeIntoInput(firstNameInput, mockFormValues.firstName);
+      await typeIntoInput(lastNameInput, mockFormValues.lastName);
+
+      await waitFor(() => {
+        expect(emailInput).toHaveValue(mockFormValues.email);
+        expect(passwordInput).toHaveValue(mockFormValues.password);
+        expect(firstNameInput).toHaveValue(mockFormValues.firstName);
+        expect(lastNameInput).toHaveValue(mockFormValues.lastName);
+        expect(confirmPasswordInput).toHaveValue(mockFormValues.password);
+      });
+
+      const submitButton = screen.getByText(/signUp.button/);
+
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(mockSignUp).toHaveBeenCalledWith(mockFormValues);
+        expect(mockCloseModal).not.toHaveBeenCalled();
+      });
     });
   });
 });

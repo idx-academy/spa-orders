@@ -65,13 +65,13 @@ const SignUpForm = () => {
         <AppInput
           {...register("firstName")}
           error={Boolean(errors.firstName)}
-          helperText={errors.firstName ? errors.firstName.message : ""}
+          helperText={errors.firstName ? errors.firstName.message : undefined}
           labelTranslationKey="signUp.firstname.field"
         />
         <AppInput
           {...register("lastName")}
           error={Boolean(errors.lastName)}
-          helperText={errors.lastName ? errors.lastName.message : ""}
+          helperText={errors.lastName ? errors.lastName.message : undefined}
           labelTranslationKey="signUp.lastname.field"
         />
       </AppBox>
@@ -79,7 +79,7 @@ const SignUpForm = () => {
         <AppInput
           {...register("email")}
           error={Boolean(errors.email)}
-          helperText={errors.email ? errors.email.message : ""}
+          helperText={errors.email ? errors.email.message : undefined}
           labelTranslationKey="signUp.email.field"
           fullWidth
         />
@@ -88,7 +88,7 @@ const SignUpForm = () => {
           InputProps={passwordVisibility}
           type={showPassword ? "text" : "password"}
           error={Boolean(errors.password)}
-          helperText={errors.password ? errors.password.message : ""}
+          helperText={errors.password ? errors.password.message : undefined}
           labelTranslationKey="signUp.password.field"
           fullWidth
         />
@@ -98,7 +98,7 @@ const SignUpForm = () => {
           type={showConfirmPassword ? "text" : "password"}
           error={Boolean(errors.confirmPassword)}
           helperText={
-            errors.confirmPassword ? errors.confirmPassword.message : ""
+            errors.confirmPassword ? errors.confirmPassword.message : undefined
           }
           labelTranslationKey="signUp.confirmpassword.field"
           fullWidth

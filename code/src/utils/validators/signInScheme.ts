@@ -8,10 +8,13 @@ export const SignInVallidationScheme = z.object({
     .regex(/[A-Z]/, {
       message: "Password must contain at least one uppercase letter"
     })
+    .regex(/[a-z]/, {
+      message: "Password must contain at least one lowercase letter"
+    })
     .regex(/\d/, { message: "Password must contain at least one digit" })
     .regex(/[^A-Za-z0-9]/, {
       message: "Password must contain at least one special character"
     })
 });
 
-export type SignInVallidatorType = z.infer<typeof SignInVallidationScheme>;
+export type SignInValidatorType = z.infer<typeof SignInVallidationScheme>;
