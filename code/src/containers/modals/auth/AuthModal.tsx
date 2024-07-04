@@ -43,7 +43,7 @@ const AuthModal = () => {
       : "authModal.toSignIn.button";
 
   return (
-    <AppBox className="spa-auth-modal">
+    <AppBox className="spa-auth-modal" data-cy="auth-modal">
       <AppIconButton
         className="spa-auth-modal__close-icon"
         onClick={closeModal}

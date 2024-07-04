@@ -7,7 +7,7 @@ import "@/containers/call-to-action/CallToAction.scss";
 
 const CallToAction = () => {
   return (
-    <AppBox className="call-to-action">
+    <AppBox className="call-to-action" data-cy="call-to-action">
       {callToActionItems.map((itemData) => (
         <CallToActionItem key={itemData.titleTranslationKey} {...itemData} />
       ))}

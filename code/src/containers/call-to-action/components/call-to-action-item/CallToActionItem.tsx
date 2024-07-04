@@ -33,7 +33,12 @@ const CallToActionItem = ({
         variant="subtitle2"
         translationKey={descriptionTranslationKey}
       />
-      <AppButton to={linkTo} variant="light" size="large">
+      <AppButton
+        to={linkTo}
+        variant="light"
+        size="large"
+        data-cy="call-to-action-button"
+      >
         <AppTypography
           variant="caption"
           translationKey={buttonLabelTranslationKey}

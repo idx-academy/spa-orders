@@ -26,12 +26,16 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
             src={product.image}
             data-cy="product-card-img"
           />
-          <AppBox className="spa-product-card__description" data-cy="product-card-description">
-            <AppTypography>{product.description}</AppTypography>
+          <AppBox className="spa-product-card__description">
+            <AppTypography data-cy="product-card-description">
+              {product.description}
+            </AppTypography>
           </AppBox>
         </AppBox>
         <AppBox>
-          <AppTypography variant="caption" data-cy="product-card-caption">{product.name}</AppTypography>
+          <AppTypography variant="caption" data-cy="product-card-caption">
+            {product.name}
+          </AppTypography>
         </AppBox>
       </AppLink>
       <AppBox className="spa-product-card__footer">
