@@ -6,8 +6,7 @@ Feature: |User Home Page|
 
   Scenario: View Header section
     When the user views the header
-    Then the user should see the logo, Search input, basket ahd Login button inside header
-    And the user should see the menu-list with thee items inside header
+    Then the user should see the logo, Search input, basket, Login button and menu-list inside header
 
   Scenario: Navigate to the Product Page
     When the user click on  on Shop All button
@@ -31,9 +30,8 @@ Feature: |User Home Page|
 
   Scenario: View Best Sellers section
     When the user views the Best Sellers
-    Then the user should see the title of section, five products and button
-    And the user should see product card with img, footer, which contain price and button
-
+    Then the user should see the title of section, five products, button and product card with img
+ 
   Scenario: View Shop by category section
     When the user views the Shop by category
     Then the user should see the title and three category items within of Shop by category

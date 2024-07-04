@@ -1,7 +1,7 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
-import Homepage_PO from "../page-objects/Homepage_PO";
+import HomePageObject from "../page-objects/HomePage";
 
-const homePage = new Homepage_PO();
+const homePage = new HomePageObject();
 
 Given("the user is on home page", () => {
   cy.visit("/");
@@ -12,7 +12,7 @@ When("the user views the header", () => {
 });
 
 Then(
-  "the user should see the logo, Search input, basket ahd Login button inside header",
+  "the user should see the logo, Search input, basket, Login button and menu-list inside header",
   () => {
     cy.get('[data-cy="header-toolbar"]').within(() => {
       cy.get('[data-cy="logo"]').should("be.visible");
@@ -20,14 +20,11 @@ Then(
       cy.get('[data-testid="ShoppingCartIcon"]').should("be.visible");
       cy.get('button[type="button"]').contains("Sign In").should("be.visible");
     });
+    cy.get('[data-cy="header-menu"]').within(() => {
+      cy.get('[data-testid="menu-item"]').should("have.length", 4);
+    });
   }
 );
-
-Then("the user should see the menu-list with thee items inside header", () => {
-  cy.get('[data-cy="header-menu"]').within(() => {
-    cy.get('[data-testid="menu-item"]').should("have.length", 4);
-  });
-});
 
 When("the user click on  on Shop All button", () => {
   homePage.clickOnShopAllButton();
@@ -91,19 +88,13 @@ When("the user views the Best Sellers", () => {
 });
 
 Then(
-  "the user should see the title of section, five products and button",
+  "the user should see the title of section, five products, button and product card with img",
   () => {
     cy.get('[data-cy="best-sellers"]').within(() => {
       cy.get("h3").contains("Best Sellers").should("be.visible");
       cy.get('[data-cy="product-card"]').should("have.length", 5);
       cy.get('button[type="button"]').contains("View All").should("be.visible");
     });
-  }
-);
-
-Then(
-  "the user should see product card with img, footer, which contain price and button",
-  () => {
     cy.get('[data-cy="product-card"]').each(($card) => {
       cy.wrap($card).within(() => {
         cy.get('[data-cy="product-card-img"]').should("be.visible");
@@ -119,6 +110,7 @@ Then(
     });
   }
 );
+
 
 When("the user views the Shop by category", () => {
   cy.get('[data-cy="category-section"]').should("be.visible");

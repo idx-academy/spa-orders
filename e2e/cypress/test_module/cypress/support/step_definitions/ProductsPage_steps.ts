@@ -5,7 +5,7 @@ Given("the user is on Products Page", () => {
 });
 
 When("the user click on  on Logo button", () => {
-  cy.clickAndOpenLink_InSameTab('[data-cy="logo"]');
+  cy.clickAndOpenLink('[data-cy="logo"]');
 });
 
 Then("the user should be redirected to Home Page", () => {

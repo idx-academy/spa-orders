@@ -38,7 +38,7 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
 
 
 Cypress.Commands.add(
-  "clickAndOpenLink_InSameTab",
+  "clickAndOpenLink",
   (itemSelector: string, containerSelector?: string) => {
     if (containerSelector) {
       cy.get(containerSelector).within(() => {

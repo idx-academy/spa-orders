@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-class Base_PO {
+class BaseObject {
   baseURL = "http://localhost:3000/";
   navigate(path) {
     cy.fixture("config.json").then((data) => {
@@ -9,4 +9,4 @@ class Base_PO {
   }
 }
 
-export default Base_PO;
+export default BaseObject;
