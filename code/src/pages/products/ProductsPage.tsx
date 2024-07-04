@@ -25,7 +25,7 @@ const ProductsPage = () => {
 
   const { data: productsResponse, isLoading } = useGetProductsQuery({
     page: page - 1,
-    size: 8,
+    size: 10,
     sort: sortOption
   });
 
