@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import OrdersPage from "./OrdersPage";
+import OrdersPage from "@/pages/orders/OrdersPage";
 import { useGetOrdersQuery } from "@/store/api/ordersApi";
-import { RTKQueryReturnState } from "@/types/common";
+import { RTKQueryMockState } from "@/types/common";
 
 const mockOrders = {
   totalElements: 0,
@@ -68,9 +68,7 @@ jest.mock("@/layouts/orders-list/OrdersList", () =>
   jest.fn(() => <div>OrdersList</div>)
 );
 
-const renderAndMock = (
-  response: Partial<RTKQueryReturnState<Partial<typeof mockOrders>>> = {}
-) => {
+const renderAndMock = (response: RTKQueryMockState<typeof mockOrders> = {}) => {
   (useGetOrdersQuery as jest.Mock).mockReturnValue({
     isLoading: false,
     data: mockOrders,

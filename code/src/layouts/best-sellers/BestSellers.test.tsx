@@ -5,7 +5,7 @@ import renderWithProviders from "@/utils/render-with-providers/renderWithProvide
 
 import { mockData as mockItems } from "@/layouts/best-sellers/BestSellers.constants";
 
-import { RTKQueryReturnState } from "@/types/common";
+import { RTKQueryMockState, RTKQueryReturnState } from "@/types/common";
 
 const mockData = {
   content: mockItems.slice(0, 5),
@@ -26,7 +26,7 @@ const defaultOptions: RTKQueryReturnState<typeof mockData> = {
 };
 
 const renderAndMock = (
-  extraOptions: Partial<RTKQueryReturnState<typeof mockData>> = {}
+  extraOptions: RTKQueryMockState<typeof mockData> = {}
 ) => {
   (useGetProductsQuery as jest.Mock).mockReturnValueOnce({
     ...defaultOptions,

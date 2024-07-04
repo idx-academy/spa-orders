@@ -36,3 +36,7 @@ export type PaginationParams = {
   size: number;
   sort: string;
 };
+
+export type RTKQueryMockState<TData = null, TError = null> = Partial<
+  RTKQueryReturnState<TData, TError>
+>;
