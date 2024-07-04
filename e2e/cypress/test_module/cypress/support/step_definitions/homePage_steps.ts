@@ -1,4 +1,7 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import Homepage_PO from "../page-objects/Homepage_PO";
+
+const homePage = new Homepage_PO();
 
 Given("the user is on home page", () => {
   cy.visit("/");
@@ -15,7 +18,7 @@ Then(
       cy.get('[data-cy="logo"]').should("be.visible");
       cy.get('input[placeholder="Search..."]').should("be.visible");
       cy.get('[data-testid="ShoppingCartIcon"]').should("be.visible");
-      cy.get('button[type="button"]').contains("Login").should("be.visible");
+      cy.get('button[type="button"]').contains("Sign In").should("be.visible");
     });
   }
 );
@@ -27,13 +30,19 @@ Then("the user should see the menu-list with thee items inside header", () => {
 });
 
 When("the user click on  on Shop All button", () => {
-  cy.get('[data-cy="header-menu"]').within(() => {
-    cy.get('[data-testid="menu-item"]').first().click();
-  });
+  homePage.clickOnShopAllButton();
 });
 
-Then("the uset should be redirected to All Products Page", () => {
+Then("the user should be redirected to All Products Page", () => {
   cy.get("h1").contains("All Products").should("be.visible");
+});
+
+When("the user click on  on Sign In button", () => {
+  homePage.clickOnSignInPageButton();
+});
+
+Then("the user should see Sign In dialog", () => {
+  cy.get('[data-cy="auth-modal"]').contains("Sign In").should("be.visible");
 });
 
 When("the user views the Banner", () => {
@@ -60,26 +69,22 @@ Then("the user should see the list of four elements inside Subintro", () => {
   });
 });
 
-// When("the user views the Call-to-action", () => {
-//   cy.get(".call-to-action").should("be.visible");
-// });
+When("the user views the Call-to-action", () => {
+  cy.get('[data-cy="call-to-action"]').should("be.visible");
+});
 
-// Then(
-//   "the user should see the two Call-to-action elements with buttons inside Call-to-action",
-//   () => {
-//     cy.get(".call-to-action").within(() => {
-//       cy.get(".call-to-action__item").should("have.length", 2);
-//       cy.get('.call-to-action__item button[type="button"]').should(
-//         ($buttons) => {
-//           expect($buttons).to.have.length(2);
-//           $buttons.each((index, button) => {
-//             expect(button).to.contain.text("Shop");
-//           });
-//         }
-//       );
-//     });
-//   }
-// );
+Then(
+  "the user should see the two Call-to-action elements with buttons inside Call-to-action",
+  () => {
+    cy.get('[data-cy="call-to-action"]').within(() => {
+      cy.get('[data-cy="call-to-action-button"]')
+        .should("have.length", 2)
+        .each(($button) => {
+          cy.wrap($button).contains("Shop");
+        });
+    });
+  }
+);
 
 When("the user views the Best Sellers", () => {
   cy.get('[data-cy="best-sellers"]').should("be.visible");

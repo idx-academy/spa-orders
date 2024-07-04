@@ -1,7 +1,8 @@
 {
   "include": [
     "cypress/**/*.ts",
-    "cypress/support/step_definitions/homePage_steps.ts"
+    "cypress/support/step_definitions/HomePage_steps.ts",
+    "cypress/support/step_definitions/ProductsPage_steps.ts"
   ],
   "compilerOptions": {
     "baseUrl": ".",

@@ -11,7 +11,11 @@ Feature: |User Home Page|
 
   Scenario: Navigate to the Product Page
     When the user click on  on Shop All button
-    Then the uset should be redirected to All Products Page
+    Then the user should be redirected to All Products Page
+
+  Scenario: Navigate to the SignIn dialog
+    When the user click on  on Sign In button
+    Then the user should see Sign In dialog
 
   Scenario: View Banner section
     When the user views the Banner
@@ -21,9 +25,9 @@ Feature: |User Home Page|
     When the user views the Subintro
     Then the user should see the list of four elements inside Subintro
 
-  # Scenario: View Call-to-action section
-  #   When the user views the Call-to-action
-  #   Then the user should see the two Call-to-action elements with buttons inside Call-to-action
+  Scenario: View Call-to-action section
+    When the user views the Call-to-action
+    Then the user should see the two Call-to-action elements with buttons inside Call-to-action
 
   Scenario: View Best Sellers section
     When the user views the Best Sellers

@@ -35,3 +35,17 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
 
   cy.getById("snackbar").should("contain", "You successfully signed in");
 });
+
+
+Cypress.Commands.add(
+  "clickAndOpenLink_InSameTab",
+  (itemSelector: string, containerSelector?: string) => {
+    if (containerSelector) {
+      cy.get(containerSelector).within(() => {
+        cy.get(itemSelector).click();
+      });
+    } else {
+      cy.get(itemSelector).click();
+    }
+  }
+);
