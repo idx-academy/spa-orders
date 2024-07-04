@@ -24,7 +24,7 @@ const mockProducts = [
 const mockData = { content: mockProducts, totalPages: 2, totalElements: 8 };
 
 const defaultQueryArguments = {
-  size: 8,
+  size: 10,
   page: 0,
   sort: ""
 };
