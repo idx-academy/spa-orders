@@ -3,6 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 /*
 module.exports = {
@@ -97,6 +98,11 @@ module.exports = {
     new MiniCssExtractPlugin({ filename: "[name].css", ignoreOrder: true }),
     new Dotenv({
       path: path.join(__dirname, "..", ".env.local")
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, '../src/assets/icons/favicon.ico'), to: 'favicon.ico' }
+      ]
     })
   ],
   module: {
@@ -149,7 +155,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
         type: "asset/resource",
         parser: {
           dataUrlCondition: {
