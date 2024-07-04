@@ -35,7 +35,7 @@ Then("the user should be redirected to All Products Page", () => {
 });
 
 When("the user click on  on Sign In button", () => {
-  homePage.clickOnSignInPageButton();
+  homePage.clickOnSignInButton();
 });
 
 Then("the user should see Sign In dialog", () => {

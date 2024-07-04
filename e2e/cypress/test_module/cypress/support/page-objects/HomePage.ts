@@ -11,7 +11,7 @@ class HomePageObject extends BaseObject {
     cy.clickAndOpenLink('[data-testid="menu-item"]:first', '[data-cy="header-menu"]');
   }
 
-  clickOnSignInPageButton() {
+  clickOnSignInButton() {
     cy.clickAndOpenLink('[data-cy="header-signin-button"]');
   }
 }
