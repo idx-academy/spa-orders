@@ -3,6 +3,7 @@
 .spa-typography {
   font-family: $body-font-family;
   white-space: pre-line;
+  line-height: normal;
 
   &__extra-bold {
     font-weight: var(--spa-typography-font-bold, $fw-extra-bold);

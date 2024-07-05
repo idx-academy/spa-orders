@@ -5,10 +5,6 @@
     border-radius: spacing(2);
   }
 
-  .spa-typography {
-    line-height: 1.2;
-  }
-
   &__alert.MuiAlert-colorSuccess {
     background-color: var(--spa-snackbar-success-bg-color, $green);
   }
