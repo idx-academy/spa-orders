@@ -2,7 +2,7 @@
   "include": ["cypress/**/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
-    "types": ["cypress", "node", "cypress-real-events", "cypress-wait-until"],
+    "types": ["cypress", "node", "cypress-wait-until"],
     "paths": {
       "@cypress-e2e/*": ["./cypress/*"]
     },

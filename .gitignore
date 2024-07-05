@@ -17,6 +17,10 @@ code/stryker-config/*
 code/reports/*
 code/stryker.log
 
+# e2e
+e2e/cypress/test_module/.nyc_output
+e2e/cypress/test_module/coverage
+e2e/cypress/test_module/results
 
 # Mock backend
 mock-backend/node_modules

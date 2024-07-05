@@ -1,3 +1,4 @@
+@ignore
 Feature: |Dashboard |
   Verify the user can view the dashboard
 

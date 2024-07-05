@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --browser chrome"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +26,7 @@
     "cypress-multi-reporters": "^1.6.4",
     "cypress-wait-until": "^3.0.1",
     "cypress-xpath": "^2.0.1",
+    "esbuild-plugin-istanbul": "^0.3.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0"
