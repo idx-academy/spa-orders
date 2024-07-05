@@ -6,7 +6,6 @@ const USERNAME = Cypress.config().username;
 const PASSWORD_ENV_PROPERTY = Cypress.config().password;
 const PASSWORD = Cypress.env(PASSWORD_ENV_PROPERTY);
 
-// @ts-ignore
 Cypress.Commands.add("login", () => {
   if (Cypress.env("configFile") !== "local") {
     cy.clearLocalStorage();

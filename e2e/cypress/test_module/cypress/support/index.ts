@@ -15,6 +15,7 @@ declare global {
     }
 
     interface Chainable {
+      login(): Chainable<JQuery<void>>;
       getById(id: string): Chainable<JQuery<HTMLElement>>;
     }
   }
