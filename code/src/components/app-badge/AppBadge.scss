@@ -15,6 +15,18 @@ $badge-colors: (
   "danger": (
     var(--spa-badge-danger-bg-color, $red),
     var(--spa-badge-danger-color, $white)
+  ),
+  "pending": (
+    var(--spa-badge-danger-bg-color, $orange),
+    var(--spa-badge-danger-color, $white)
+  ),
+  "success": (
+    var(--spa-badge-success-bg-color, $green),
+    var(--spa-badge-success-color, $white)
+  ),
+  "info": (
+    var(--spa-badge-info-bg-color, $blue),
+    var(--spa-badge-info-color, $white)
   )
 );
 
