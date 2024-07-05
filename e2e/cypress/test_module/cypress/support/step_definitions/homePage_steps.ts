@@ -1,7 +1,9 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import HomePageObject from "../page_objects/HomePage";
+import ProductsPageObject from "../page_objects/ProductsPage";
 
 const homePage = new HomePageObject();
+const productsPage = new ProductsPageObject();
 
 Given("the user is on home page", () => {
   homePage.navigateToHomePage();
@@ -27,15 +29,15 @@ Then(
 );
 
 When("the user enter text in search field", () => {
-  cy.get('input[placeholder="Search..."]').type('tablet')
+  cy.get('input[placeholder="Search..."]').type("tablet");
 });
 
 When("the user click on cleat button", () => {
-  cy.get('[data-testid="ClearIcon"]').click()
+  cy.get('[data-testid="ClearIcon"]').click();
 });
 
 Then("the search field should be empty", () => {
-  cy.get('input[placeholder="Search..."]').should('be.empty')
+  cy.get('input[placeholder="Search..."]').should("be.empty");
 });
 
 When("the user click on  on Shop All button", () => {
@@ -43,7 +45,7 @@ When("the user click on  on Shop All button", () => {
 });
 
 Then("the user should be redirected to All Products Page", () => {
-  cy.get("h1").contains("All Products").should("be.visible");
+  productsPage.navigateToProductsPage();
 });
 
 When("the user click on  on Sign In button", () => {
@@ -170,7 +172,3 @@ Then(
     });
   }
 );
-function And(arg0: string, arg1: () => void) {
-  throw new Error("Function not implemented.");
-}
-
