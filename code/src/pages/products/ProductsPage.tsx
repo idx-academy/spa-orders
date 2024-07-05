@@ -4,9 +4,9 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import ProductCard from "@/components/product-card/ProductCard";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
+import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
 import { Product } from "@/types/product.types";
-import createProductSkeletons from "@/utils/createSkeletonCards";
 
 import AppPagination from "@/components/app-pagination/AppPagination";
 import AppContainer from "@/components/app-container/AppContainer";
@@ -14,6 +14,7 @@ import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
 import validatePage from "@/utils/validate-page/validatePage";
+import repeatComponent from "@/utils/repeat-component/repeatComponent";
 import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {
@@ -33,7 +34,8 @@ const ProductsPage = () => {
     <AppTypography translationKey="productsDefault.label" />
   );
 
-  const skeletonCards = createProductSkeletons(
+  const skeletonCards = repeatComponent(
+    <ProductSkeleton />,
     productsResponse?.content.length || 8
   );
 

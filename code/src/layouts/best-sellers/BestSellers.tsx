@@ -3,10 +3,12 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import ProductCard from "@/components/product-card/ProductCard";
-import createProductSkeletons from "@/utils/createSkeletonCards";
+import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
 import { Product } from "@/types/product.types";
 import { useGetProductsQuery } from "@/store/api/productsApi";
+
+import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
 import "@/layouts/best-sellers/BestSellers.scss";
 
@@ -16,7 +18,8 @@ const BestSellers = () => {
     size: 5
   });
 
-  const skeletonCards = createProductSkeletons(
+  const skeletonCards = repeatComponent(
+    <ProductSkeleton />,
     productsResponse?.content?.length || 5
   );
 
