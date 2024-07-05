@@ -16,9 +16,9 @@ Cypress.Commands.add("login", () => {
         "Accept-API-Version": "resource=2.0, protocol=1.0",
         "Content-Type": "application/json",
         "X-OpenAM-Password": PASSWORD,
-        "X-OpenAM-Username": USERNAME,
+        "X-OpenAM-Username": USERNAME
       },
-      method: httpMethod.post,
+      method: httpMethod.post
       // url: commonRoutes.global.authenticate,
     }).then((resp) => {
       cy.log(`${resp.status}`);
@@ -26,4 +26,12 @@ Cypress.Commands.add("login", () => {
       expect(resp.status).to.eq(httpStatusCode.ok);
     });
   }
+});
+
+Cypress.Commands.addQuery("getById", (id: string) => {
+  const getFn = cy.now(
+    "get",
+    `[data-cy="${id}"]`
+  ) as () => Promise<HTMLElement>;
+  return () => getFn();
 });

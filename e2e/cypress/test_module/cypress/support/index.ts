@@ -13,6 +13,10 @@ declare global {
       password: string;
       username: string;
     }
+
+    interface Chainable {
+      getById(id: string): Chainable<JQuery<HTMLElement>>;
+    }
   }
 }
 
