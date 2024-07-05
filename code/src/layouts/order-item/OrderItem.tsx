@@ -6,12 +6,14 @@ import {
 } from "@/components/app-accordion/AppAccordion";
 import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
+import AppBadge from "@/components/app-badge/AppBadge";
 import OrderItemDetails from "@/layouts/order-item/components/order-item-details/OrderItemDetails";
 
 import { Order } from "@/types/order.types";
 import { orderStatuses } from "@/constants/orderStatuses";
 import formatPrice from "@/utils/format-price/formatPrice";
 import formatDate from "@/utils/format-date/formatDate";
+import { orderBadgeVariants } from "@/layouts/order-item/OrderItem.constants";
 
 import "@/layouts/order-item/OrderItem.scss";
 
@@ -41,8 +43,12 @@ const OrderItem = ({ order }: OrderItemProps) => {
           >
             {formatDate(order.createdAt)}
           </AppTypography>
-          {/*@TODO: add badge component instead */}
-          <AppTypography variant="caption">{orderItemStatus}</AppTypography>
+          <AppBadge
+            variant={orderBadgeVariants[orderItemStatus]}
+            badgeContent={
+              <AppTypography variant="caption">{orderItemStatus}</AppTypography>
+            }
+          />
         </AppBox>
 
         <AppBox className="spa-order-item__payment-status">

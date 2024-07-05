@@ -13,9 +13,17 @@
     @include box(50px);
   }
 
-  &__status,
-  &__payment-status {
+  &__status {
     display: flex;
     flex-direction: column;
+    gap: spacing(2);
+  }
+
+  &__payment-status {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: spacing(1);
   }
 }
