@@ -21,7 +21,7 @@ type BaseQueryType = BaseQueryFn<
 >;
 
 const baseQuery: BaseQueryType = fetchBaseQuery({
-  baseUrl: "http://api.idxacademy.xyz/retail/",
+  baseUrl: process.env.API_BASE_PATH,
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState;
     const userDetails = state.user.userDetails;
