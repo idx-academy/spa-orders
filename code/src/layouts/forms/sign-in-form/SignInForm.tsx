@@ -83,6 +83,7 @@ const SignInForm = () => {
       >
         <AppTypography
           variant="subtitle2"
+          component="span"
           translationKey="signIn.button"
           fontWeight="extra-bold"
         />

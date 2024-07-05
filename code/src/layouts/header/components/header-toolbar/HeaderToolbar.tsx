@@ -62,7 +62,7 @@ const HeaderToolbar = () => {
     </AppButton>
   ) : (
     <AppButton onClick={handleOpenAuthModal} data-cy="auth-button">
-      <AppTypography translationKey="signIn.label" />
+      <AppTypography component="span" translationKey="signIn.label" />
     </AppButton>
   );
 

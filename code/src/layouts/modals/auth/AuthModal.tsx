@@ -32,25 +32,15 @@ const AuthModal = () => {
 
   const authModalContent = authModalForms[activeTab] as ReactNode;
 
-  const toggleText =
-    activeTab === "signIn" ? (
-      <AppTypography translationKey="authModal.toSignUp.text" />
-    ) : (
-      <AppTypography translationKey="authModal.toSignIn.text" />
-    );
+  const toggleTextTranslationKey =
+    activeTab === "signIn"
+      ? "authModal.toSignUp.text"
+      : "authModal.toSignIn.text";
 
-  const toggleButtonText =
-    activeTab === "signIn" ? (
-      <AppTypography
-        translationKey="authModal.toSignUp.button"
-        fontWeight="extra-bold"
-      />
-    ) : (
-      <AppTypography
-        translationKey="authModal.toSignIn.button"
-        fontWeight="extra-bold"
-      />
-    );
+  const toggleButtonTextTranslationKey =
+    activeTab === "signIn"
+      ? "authModal.toSignUp.button"
+      : "authModal.toSignIn.button";
 
   return (
     <AppBox className="spa-auth-modal">
@@ -73,9 +63,16 @@ const AuthModal = () => {
       </AppBox>
       {authModalContent}
       <AppBox className="spa-auth-modal__toggle">
-        {toggleText}
+        <AppTypography
+          component="span"
+          translationKey={toggleTextTranslationKey}
+        />
         <AppButton variant="text" size="small" onClick={toggleForm}>
-          {toggleButtonText}
+          <AppTypography
+            translationKey={toggleButtonTextTranslationKey}
+            component="span"
+            fontWeight="extra-bold"
+          />
         </AppButton>
       </AppBox>
     </AppBox>

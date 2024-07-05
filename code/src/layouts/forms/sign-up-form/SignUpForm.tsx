@@ -114,6 +114,7 @@ const SignUpForm = () => {
       >
         <AppTypography
           variant="subtitle2"
+          component="span"
           translationKey="signUp.button"
           fontWeight="extra-bold"
         />
