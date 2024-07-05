@@ -25,6 +25,7 @@
     "cypress-multi-reporters": "^1.6.4",
     "cypress-wait-until": "^3.0.1",
     "cypress-xpath": "^2.0.1",
+    "dotenv": "^16.4.5",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0"
   },
