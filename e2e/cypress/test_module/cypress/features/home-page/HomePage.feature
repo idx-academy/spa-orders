@@ -8,6 +8,11 @@ Feature: |User Home Page|
     When the user views the header
     Then the user should see the logo, Search input, basket, Login button and menu-list inside header
 
+  Scenario: Clear search-field text
+    When the user enter text in search field
+    And the user click on cleat button
+    Then the search field should be empty
+
   Scenario: Navigate to the Product Page
     When the user click on  on Shop All button
     Then the user should be redirected to All Products Page
@@ -31,7 +36,11 @@ Feature: |User Home Page|
   Scenario: View Best Sellers section
     When the user views the Best Sellers
     Then the user should see the title of section, five products, button and product card with img
- 
+
+  # Scenario: View description of a product
+  #   When the user hovers on Product Card img
+  #   Then the user should see the Product description
+
   Scenario: View Shop by category section
     When the user views the Shop by category
     Then the user should see the title and three category items within of Shop by category

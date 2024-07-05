@@ -1,10 +1,10 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
-import HomePageObject from "../page-objects/HomePage";
+import HomePageObject from "../page_objects/HomePage";
 
 const homePage = new HomePageObject();
 
 Given("the user is on home page", () => {
-  cy.visit("/");
+  homePage.navigateToHomePage();
 });
 
 When("the user views the header", () => {
@@ -25,6 +25,18 @@ Then(
     });
   }
 );
+
+When("the user enter text in search field", () => {
+  cy.get('input[placeholder="Search..."]').type('tablet')
+});
+
+When("the user click on cleat button", () => {
+  cy.get('[data-testid="ClearIcon"]').click()
+});
+
+Then("the search field should be empty", () => {
+  cy.get('input[placeholder="Search..."]').should('be.empty')
+});
 
 When("the user click on  on Shop All button", () => {
   homePage.clickOnShopAllButton();
@@ -111,6 +123,13 @@ Then(
   }
 );
 
+// When("the user hovers on Product Card img", () => {
+//   cy.get('[data-cy="product-card-img"]:first').trigger('mouseover');
+// });
+
+// Then("the user should see the Product description", () => {
+//   cy.get('[data-cy="product-card-description:first"]').should("be.visible");
+// });
 
 When("the user views the Shop by category", () => {
   cy.get('[data-cy="category-section"]').should("be.visible");
@@ -151,3 +170,7 @@ Then(
     });
   }
 );
+function And(arg0: string, arg1: () => void) {
+  throw new Error("Function not implemented.");
+}
+

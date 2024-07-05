@@ -3,7 +3,7 @@
 import BaseObject from "./Base";
 
 class HomePageObject extends BaseObject {
-  navigateHomePage() {
+  navigateToHomePage() {
     super.navigate("");
   }
 

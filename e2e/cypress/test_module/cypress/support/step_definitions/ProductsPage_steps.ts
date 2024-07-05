@@ -1,7 +1,10 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import ProductsPageObject from "../page_objects/ProductsPage";
+
+const productsPage = new ProductsPageObject();
 
 Given("the user is on Products Page", () => {
-  cy.visit("/products");
+  productsPage.navigateToProductsPage();
 });
 
 When("the user click on  on Logo button", () => {
