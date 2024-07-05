@@ -60,6 +60,7 @@ const SignInForm = () => {
           helperText={errors.email ? errors.email.message : undefined}
           labelTranslationKey="signIn.email.field"
           fullWidth
+          data-cy="auth-email"
         />
         <AppInput
           {...register("password")}
@@ -69,6 +70,7 @@ const SignInForm = () => {
           error={Boolean(errors.password)}
           helperText={errors.password ? errors.password.message : undefined}
           fullWidth
+          data-cy="auth-password"
         />
       </AppBox>
       <AppButton
@@ -77,6 +79,7 @@ const SignInForm = () => {
         className="spa-sign-in__button"
         fullWidth
         isLoading={isLoading}
+        data-cy="auth-signin-submit"
       >
         <AppTypography
           variant="subtitle2"
