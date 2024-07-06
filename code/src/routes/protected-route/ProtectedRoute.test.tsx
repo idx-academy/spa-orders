@@ -22,9 +22,10 @@ jest.mock("react-router-dom", () => ({
   Navigate: jest.fn(() => null)
 }));
 
-jest.mock("@/layouts/page-loading-fallback/PageLoadingFallback", () => () => (
-  <div>Loading...</div>
-));
+jest.mock("@/layouts/page-loading-fallback/PageLoadingFallback", () => ({
+  __esModule: true,
+  default: () => <div>Loading...</div>
+}));
 
 type RenderComponent = {
   isAuthenticated: boolean;
