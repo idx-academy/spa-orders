@@ -1,6 +1,13 @@
 import { orderStatuses } from "@/constants/orderStatuses";
+import {
+  OrderBadgeVariants,
+  OrderStatusesValue
+} from "@/layouts/order-item/OrderItems.types";
 
-export const orderBadgeVariants = {
+export const orderBadgeVariants: Record<
+  OrderStatusesValue,
+  OrderBadgeVariants
+> = {
   [orderStatuses.IN_PROGRESS]: "pending",
   [orderStatuses.COMPLETED]: "success",
   [orderStatuses.CANCELED]: "danger",

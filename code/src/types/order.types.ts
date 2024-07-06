@@ -1,10 +1,14 @@
 import { Pageable, Sort } from "@/types/common";
-import { orderStatuses } from "@/constants/orderStatuses";
 import { Product } from "@/types/product.types";
 import { PostAddress } from "@/types/delivery.types";
 import { User } from "@/types/user.types";
 
-export type OrderStatus = keyof typeof orderStatuses;
+export type OrderStatus =
+  | "IN_PROGRESS"
+  | "SHIPPED"
+  | "DELIVERED"
+  | "CANCELED"
+  | "COMPLETED";
 
 export type OrderItem = {
   price: number;
