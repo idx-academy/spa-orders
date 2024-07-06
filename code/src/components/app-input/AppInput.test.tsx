@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import AppInput from "@/components/app-input/AppInput";
 
 describe("AppInput", () => {

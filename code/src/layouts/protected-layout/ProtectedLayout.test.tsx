@@ -1,11 +1,13 @@
 import { screen } from "@testing-library/react";
-import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
 import ProtectedLayout from "@/layouts/protected-layout/ProtectedLayout";
+
+import routePaths from "@/constants/routes";
 import {
   useIsAuthLoadingSelector,
   useIsAuthSelector
 } from "@/store/slices/userSlice";
-import routePaths from "@/constants/routes";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,

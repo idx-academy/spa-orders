@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import AppSkeleton from "@/components/app-skeleton/AppSkeleton";
 
 describe("Test AppSkeleton", () => {

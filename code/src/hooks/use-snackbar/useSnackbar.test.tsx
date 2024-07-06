@@ -1,13 +1,14 @@
 import { renderHook } from "@testing-library/react";
+
+import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import {
-  useIsSnackbarOpenSelector,
-  useSnackbarConfigSelector,
+  closeSnackbar as closeSnackbarAction,
   openSnackbar as openSnackbarAction,
   openSnackbarWithTimeout as openSnackbarWithTimeoutAction,
-  closeSnackbar as closeSnackbarAction
+  useIsSnackbarOpenSelector,
+  useSnackbarConfigSelector
 } from "@/store/slices/snackbarSlice";
-import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import { SnackbarConfigWithTimeout } from "@/types/snackbar.types";
 
 jest.mock("@/store/slices/snackbarSlice", () => ({

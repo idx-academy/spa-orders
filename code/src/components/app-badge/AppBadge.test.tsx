@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import AppBadge from "@/components/app-badge/AppBadge";
 
 describe("AppBadge", () => {

@@ -1,8 +1,10 @@
-import { screen, fireEvent } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
+
 import AppSnackbar from "@/components/app-snackbar/AppSnackbar";
-import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { SnackbarConfigWithTimeout } from "@/types/snackbar.types";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
   __esModule: true,

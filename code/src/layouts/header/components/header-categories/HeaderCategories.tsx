@@ -1,9 +1,9 @@
+import { categories } from "@/layouts/header/components/header-categories/HeaderCategories.constants";
+
 import AppBox from "@/components/app-box/AppBox";
 import AppContainer from "@/components/app-container/AppContainer";
 import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
-
-import { categories } from "@/layouts/header/components/header-categories/HeaderCategories.constants";
 
 import "@/layouts/header/components/header-categories/HeaderCategories.scss";
 

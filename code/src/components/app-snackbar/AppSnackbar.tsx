@@ -1,7 +1,8 @@
-import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 import AppTypography from "@/components/app-typography/AppTypography";
+
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 
 import "@/components/app-snackbar/AppSnackbar.scss";

@@ -1,14 +1,17 @@
 import { forwardRef } from "react";
 import {
-  Link as ReactRouterDomLink,
   NavLink,
-  NavLinkProps
+  NavLinkProps,
+  Link as ReactRouterDomLink
 } from "react-router-dom";
+
 import MuiLink from "@mui/material/Link";
+
 import {
   AppLinkProps,
   NavLinkRenderProps
 } from "@/components/app-link/AppLink.types";
+
 import cn from "@/utils/cn/cn";
 
 import "@/components/app-link/AppLink.scss";

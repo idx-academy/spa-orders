@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
+
 import routePaths from "@/constants/routes";
 
 const HomePage = lazy(() => import("@/pages/home/HomePage"));

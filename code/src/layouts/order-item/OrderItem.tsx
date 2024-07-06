@@ -1,19 +1,21 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import { orderBadgeVariants } from "@/layouts/order-item/OrderItem.constants";
+import OrderItemDetails from "@/layouts/order-item/components/order-item-details/OrderItemDetails";
+
 import {
   AppAccordionContainer,
   AppAccordionDetails,
   AppAccordionSummary
 } from "@/components/app-accordion/AppAccordion";
-import AppTypography from "@/components/app-typography/AppTypography";
-import AppBox from "@/components/app-box/AppBox";
 import AppBadge from "@/components/app-badge/AppBadge";
-import OrderItemDetails from "@/layouts/order-item/components/order-item-details/OrderItemDetails";
+import AppBox from "@/components/app-box/AppBox";
+import AppTypography from "@/components/app-typography/AppTypography";
 
-import { Order } from "@/types/order.types";
 import { orderStatuses } from "@/constants/orderStatuses";
-import formatPrice from "@/utils/format-price/formatPrice";
+import { Order } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
-import { orderBadgeVariants } from "@/layouts/order-item/OrderItem.constants";
+import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/layouts/order-item/OrderItem.scss";
 

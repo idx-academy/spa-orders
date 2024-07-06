@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import AppLoader from "@/components/app-loader/AppLoader";
 
 describe("AppLoader", () => {

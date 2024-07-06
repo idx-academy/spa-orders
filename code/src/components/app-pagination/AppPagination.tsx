@@ -1,11 +1,11 @@
+import { useSearchParams } from "react-router-dom";
+
 import Pagination, {
   PaginationRenderItemParams
 } from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
-import { useSearchParams } from "react-router-dom";
 
 import AppLink from "@/components/app-link/AppLink";
-
 import { AppPaginationProps } from "@/components/app-pagination/AppPagination.types";
 
 const AppPagination = (props: AppPaginationProps) => {

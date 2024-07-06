@@ -1,8 +1,10 @@
 import { fireEvent, screen } from "@testing-library/react";
+
 import AuthModal from "@/layouts/modals/auth/AuthModal";
-import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-import useSignUp from "@/hooks/use-sign-up/useSignUp";
+
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
+import useSignUp from "@/hooks/use-sign-up/useSignUp";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/hooks/use-sign-up/useSignUp", () => ({
   __esModule: true,

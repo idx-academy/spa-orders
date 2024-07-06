@@ -2,9 +2,8 @@ import { fireEvent, screen } from "@testing-library/react";
 
 import ProductsPage from "@/pages/products/ProductsPage";
 import { useGetProductsQuery } from "@/store/api/productsApi";
-import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-
 import { PaginationParams, RTKQueryReturnState } from "@/types/common";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()

@@ -1,7 +1,8 @@
 import AppBox from "@/components/app-box/AppBox";
+import { AppLogoType } from "@/components/app-logo/AppLogo.types";
+
 import logo from "@/assets/images/logo.png";
 import cn from "@/utils/cn/cn";
-import { AppLogoType } from "@/components/app-logo/AppLogo.types";
 
 export const COMPONENT = "img";
 

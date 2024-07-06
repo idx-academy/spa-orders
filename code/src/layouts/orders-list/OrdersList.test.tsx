@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import OrdersList from "./OrdersList";
+
+import OrdersList from "@/layouts/orders-list/OrdersList";
+
 import { orderStatuses } from "@/constants/orderStatuses";
 import { Order } from "@/types/order.types";
 

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import AppAccordionSummary from "@/components/app-accordion/app-accordion-summary/AppAccordionSummary";
 
 describe("AppAccordionSummary", () => {

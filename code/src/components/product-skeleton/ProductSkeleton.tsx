@@ -1,5 +1,5 @@
-import AppSkeleton from "../app-skeleton/AppSkeleton";
 import AppBox from "@/components/app-box/AppBox";
+import AppSkeleton from "@/components/app-skeleton/AppSkeleton";
 
 import "@/components/product-skeleton/ProductSkeleton.scss";
 

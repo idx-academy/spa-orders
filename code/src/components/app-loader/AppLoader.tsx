@@ -1,5 +1,7 @@
 import CircularProgress from "@mui/material/CircularProgress";
+
 import { AppLoaderProps } from "@/components/app-loader/AppLoader.types";
+
 import cn from "@/utils/cn/cn";
 
 import "@/components/app-loader/AppLoader.scss";

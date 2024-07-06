@@ -1,5 +1,6 @@
 import subintroData from "@/layouts/subintro/Subintro.constants";
 import SubintroItem from "@/layouts/subintro/components/SubintroItem";
+
 import AppBox from "@/components/app-box/AppBox";
 
 import "@/layouts/subintro/Subintro.scss";

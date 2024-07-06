@@ -1,14 +1,14 @@
-import AppTypography from "@/components/app-typography/AppTypography";
-import AppBox from "@/components/app-box/AppBox";
-import AppLink from "@/components/app-link/AppLink";
-import AppContainer from "@/components/app-container/AppContainer";
-
 import {
   customerSupportFooterItems,
   locationFooterItems,
   policyFooterItems,
   socialsFooterItems
 } from "@/layouts/footer/Footer.constants";
+
+import AppBox from "@/components/app-box/AppBox";
+import AppContainer from "@/components/app-container/AppContainer";
+import AppLink from "@/components/app-link/AppLink";
+import AppTypography from "@/components/app-typography/AppTypography";
 
 import "@/layouts/footer/Footer.scss";
 

@@ -1,6 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import routePaths from "@/constants/routes";
+
 import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
+
+import routePaths from "@/constants/routes";
 import {
   useIsAuthLoadingSelector,
   useIsAuthSelector

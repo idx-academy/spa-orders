@@ -1,8 +1,8 @@
-import AppBox from "@/components/app-box/AppBox";
-
-import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 import HeaderCategories from "@/layouts/header/components/header-categories/HeaderCategories";
+import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 import useStickyHeader from "@/layouts/header/hooks/use-sticky-header/useStickyHeader";
+
+import AppBox from "@/components/app-box/AppBox";
 
 import "@/layouts/header/Header.scss";
 

@@ -1,4 +1,5 @@
 import { useRouteError } from "react-router-dom";
+
 import AppContainer from "@/components/app-container/AppContainer";
 
 const ErrorPage = () => {

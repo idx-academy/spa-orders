@@ -2,11 +2,11 @@ import { ForwardedRef, forwardRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import Button from "@mui/material/Button";
+
+import { AppButtonProps } from "@/components/app-button/AppButton.types";
 import AppLoader from "@/components/app-loader/AppLoader";
 
 import cn from "@/utils/cn/cn";
-
-import { AppButtonProps } from "@/components/app-button/AppButton.types";
 
 import "@/components/app-button/AppButton.scss";
 

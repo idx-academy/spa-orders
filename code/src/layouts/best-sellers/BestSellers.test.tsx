@@ -1,11 +1,11 @@
 import { screen } from "@testing-library/react";
-import BestSellers from "@/layouts/best-sellers/BestSellers";
-import { useGetProductsQuery } from "@/store/api/productsApi";
-import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
+import BestSellers from "@/layouts/best-sellers/BestSellers";
 import { mockData as mockItems } from "@/layouts/best-sellers/BestSellers.constants";
 
+import { useGetProductsQuery } from "@/store/api/productsApi";
 import { RTKQueryMockState, RTKQueryReturnState } from "@/types/common";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockData = {
   content: mockItems.slice(0, 5),

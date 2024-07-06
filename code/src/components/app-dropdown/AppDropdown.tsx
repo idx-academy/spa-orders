@@ -1,10 +1,13 @@
-import { useState, useRef, MouseEvent, FocusEvent, ReactNode } from "react";
+import { FocusEvent, MouseEvent, ReactNode, useRef, useState } from "react";
+
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
 import AppBox from "@/components/app-box/AppBox";
-import AppTypography from "@/components/app-typography/AppTypography";
-import AppDropdownOptions from "@/components/app-dropdown/components/AppDropdownOptions";
 import { AppDropdownProps } from "@/components/app-dropdown/AppDropdown.types";
+import AppDropdownOptions from "@/components/app-dropdown/components/AppDropdownOptions";
+import AppTypography from "@/components/app-typography/AppTypography";
+
 import cn from "@/utils/cn/cn";
 
 import "@/components/app-dropdown/AppDropdown.scss";

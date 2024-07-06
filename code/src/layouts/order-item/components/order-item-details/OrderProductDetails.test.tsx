@@ -1,5 +1,7 @@
-import { screen, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+
 import OrderProductDetails from "@/layouts/order-item/components/order-item-details/OrderItemDetails";
+
 import { Order } from "@/types/order.types";
 
 const mockOrder: Order = {

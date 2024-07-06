@@ -1,10 +1,11 @@
-import AppTypography from "@/components/app-typography/AppTypography";
-import AppContainer from "@/components/app-container/AppContainer";
-import AppButton from "@/components/app-button/AppButton";
-import AppBox from "@/components/app-box/AppBox";
-import AppBadge from "@/components/app-badge/AppBadge";
-
 import { introBannerImages } from "@/layouts/intro-banner/IntroBanner.constants";
+
+import AppBadge from "@/components/app-badge/AppBadge";
+import AppBox from "@/components/app-box/AppBox";
+import AppButton from "@/components/app-button/AppButton";
+import AppContainer from "@/components/app-container/AppContainer";
+import AppTypography from "@/components/app-typography/AppTypography";
+
 import useIntervalSwitcher from "@/hooks/use-interval-switcher/useIntervalSwitcher";
 
 import "@/layouts/intro-banner/IntroBanner.scss";

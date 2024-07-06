@@ -1,7 +1,8 @@
-import AppBox from "@/components/app-box/AppBox";
-import AppTypography from "@/components/app-typography/AppTypography";
 import categoryData from "@/layouts/category-section/CategorySection.constants";
 import CategoryItem from "@/layouts/category-section/components/CategoryItem";
+
+import AppBox from "@/components/app-box/AppBox";
+import AppTypography from "@/components/app-typography/AppTypography";
 
 import "@/layouts/category-section/CategorySection.scss";
 

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import IntroBanner from "@/layouts/intro-banner/IntroBanner";
 
 describe("IntroBanner", () => {

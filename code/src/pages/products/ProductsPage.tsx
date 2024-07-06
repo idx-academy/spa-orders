@@ -1,20 +1,21 @@
 import { useSearchParams } from "react-router-dom";
+
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
-import AppTypography from "@/components/app-typography/AppTypography";
+
 import AppBox from "@/components/app-box/AppBox";
-import ProductCard from "@/components/product-card/ProductCard";
+import AppContainer from "@/components/app-container/AppContainer";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
+import AppPagination from "@/components/app-pagination/AppPagination";
+import AppTypography from "@/components/app-typography/AppTypography";
+import ProductCard from "@/components/product-card/ProductCard";
 import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
-import { Product } from "@/types/product.types";
-
-import AppPagination from "@/components/app-pagination/AppPagination";
-import AppContainer from "@/components/app-container/AppContainer";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetProductsQuery } from "@/store/api/productsApi";
-
-import validatePage from "@/utils/validate-page/validatePage";
+import { Product } from "@/types/product.types";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
+import validatePage from "@/utils/validate-page/validatePage";
+
 import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {

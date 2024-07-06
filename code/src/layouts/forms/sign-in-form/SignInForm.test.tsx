@@ -1,5 +1,7 @@
-import { screen, fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+
 import SignInForm from "@/layouts/forms/sign-in-form/SignInForm";
+
 import { useModalContext } from "@/context/ModalContext";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";

@@ -1,12 +1,15 @@
 import { ElementType } from "react";
 import { FormattedMessage } from "react-intl";
+
 import Typography from "@mui/material/Typography";
-import cn from "@/utils/cn/cn";
+
 import {
-  HeadingVariant,
+  AppTypographyProps,
   AppTypographyVariant,
-  AppTypographyProps
+  HeadingVariant
 } from "@/components/app-typography/AppTypography.types";
+
+import cn from "@/utils/cn/cn";
 
 import "@/components/app-typography/AppTypography.scss";
 

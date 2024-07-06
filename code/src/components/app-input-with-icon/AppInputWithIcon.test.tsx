@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+
 import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
 
 const handleClear = jest.fn();

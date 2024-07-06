@@ -1,7 +1,9 @@
-import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import OrdersList from "@/layouts/orders-list/OrdersList";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
+
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
+
 import { useGetOrdersQuery } from "@/store/api/ordersApi";
 
 import "@/pages/orders/OrdersPage.scss";

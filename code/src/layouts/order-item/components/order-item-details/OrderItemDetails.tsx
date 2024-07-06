@@ -1,6 +1,7 @@
+import OrderProductItem from "@/layouts/order-item/components/order-product-item/OrderProductItem";
+
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
-import OrderProductItem from "@/layouts/order-item/components/order-product-item/OrderProductItem";
 
 import { PostAddress } from "@/types/delivery.types";
 import { Order } from "@/types/order.types";

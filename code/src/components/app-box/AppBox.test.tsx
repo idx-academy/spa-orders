@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import AppBox from "@/components/app-box/AppBox";
 
 describe("AppBox", () => {

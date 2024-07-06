@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import HomePage from "@/pages/home/HomePage";
 
 jest.mock("@/layouts/best-sellers/BestSellers", () =>

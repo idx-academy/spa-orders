@@ -1,5 +1,6 @@
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
+
 import { Product } from "@/types/product.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 

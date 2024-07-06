@@ -1,19 +1,20 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import AppInput from "@/components/app-input/AppInput";
 import AppBox from "@/components/app-box/AppBox";
-import AppContainer from "@/components/app-container/AppContainer";
 import AppButton from "@/components/app-button/AppButton";
+import AppContainer from "@/components/app-container/AppContainer";
+import AppInput from "@/components/app-input/AppInput";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useModalContext } from "@/context/ModalContext";
 import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import {
-  SignInVallidationScheme,
-  SignInValidatorType
+  SignInValidatorType,
+  SignInVallidationScheme
 } from "@/utils/validators/signInScheme";
 
 import "@/layouts/forms/sign-in-form/SignInForm.scss";

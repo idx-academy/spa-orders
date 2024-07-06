@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import Subintro from "@/layouts/subintro/Subintro";
 import subintroElements from "@/layouts/subintro/Subintro.constants";
 

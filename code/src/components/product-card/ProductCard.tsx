@@ -1,8 +1,10 @@
 import AddIcon from "@mui/icons-material/Add";
-import AppTypography from "@/components/app-typography/AppTypography";
+
 import AppBox from "@/components/app-box/AppBox";
-import AppLink from "@/components/app-link/AppLink";
 import AppButton from "@/components/app-button/AppButton";
+import AppLink from "@/components/app-link/AppLink";
+import AppTypography from "@/components/app-typography/AppTypography";
+
 import { Product } from "@/types/product.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 

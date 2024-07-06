@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
 
 describe("Test PageLoadingFallback", () => {

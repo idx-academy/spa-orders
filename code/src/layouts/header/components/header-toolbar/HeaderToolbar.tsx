@@ -1,24 +1,25 @@
 import { ChangeEvent, useState } from "react";
 
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import LogoutIcon from "@mui/icons-material/Logout";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import AuthModal from "@/layouts/modals/auth/AuthModal";
+
 import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppContainer from "@/components/app-container/AppContainer";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
-import AppLogo from "@/components/app-logo/AppLogo";
-import AppLink from "@/components/app-link/AppLink";
-import AppTypography from "@/components/app-typography/AppTypography";
 import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
+import AppLink from "@/components/app-link/AppLink";
+import AppLogo from "@/components/app-logo/AppLogo";
+import AppTypography from "@/components/app-typography/AppTypography";
 
-import { useModalContext } from "@/context/ModalContext";
-import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
-import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import routes from "@/constants/routes";
+import { useModalContext } from "@/context/ModalContext";
+import { useAppDispatch } from "@/hooks/use-redux/useRedux";
+import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 

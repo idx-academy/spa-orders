@@ -1,5 +1,5 @@
-import AppTypography from "@/components/app-typography/AppTypography";
 import AppBox from "@/components/app-box/AppBox";
+import AppTypography from "@/components/app-typography/AppTypography";
 
 type CategoryItemProps = {
   label: string;

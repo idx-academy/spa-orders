@@ -1,7 +1,7 @@
+import ClearIcon from "@mui/icons-material/Clear";
+import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import Paper from "@mui/material/Paper";
-import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
 
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import { InputWithIconProps } from "@/components/app-input-with-icon/AppInputWithIcon.types";

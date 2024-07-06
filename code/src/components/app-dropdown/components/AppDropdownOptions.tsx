@@ -1,4 +1,5 @@
 import { MouseEvent } from "react";
+
 import AppBox from "@/components/app-box/AppBox";
 import { AppDropdownOptionsProps } from "@/components/app-dropdown/AppDropdown.types";
 

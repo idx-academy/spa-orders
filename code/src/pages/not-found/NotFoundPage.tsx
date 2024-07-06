@@ -1,7 +1,8 @@
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
+
+import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
-import AppBox from "@/components/app-box/AppBox";
-import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
 import "@/pages/not-found/NotFoundPage.scss";
 

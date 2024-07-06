@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
 describe("Product Skeleton Card", () => {

@@ -1,5 +1,7 @@
-import AppBox from "@/components/app-box/AppBox";
 import OrderItem from "@/layouts/order-item/OrderItem";
+
+import AppBox from "@/components/app-box/AppBox";
+
 import { Order } from "@/types/order.types";
 
 import "@/layouts/orders-list/OrdersList.scss";

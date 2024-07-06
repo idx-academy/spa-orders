@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+
 import NotFoundPage from "@/pages/not-found/NotFoundPage";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import ErrorPage from "@/pages/error/ErrorPage";
 
 jest.mock("react-router-dom", () => ({

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import AppContainer from "@/components/app-container/AppContainer";
 
 describe("AppBox", () => {

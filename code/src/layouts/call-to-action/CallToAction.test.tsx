@@ -1,5 +1,7 @@
 import { screen } from "@testing-library/react";
+
 import CallToAction from "@/layouts/call-to-action/CallToAction";
+
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 describe("CallToAction", () => {
