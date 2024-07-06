@@ -1,0 +1,23 @@
+@import "@design-system";
+
+.spa-scroll-button {
+  @include layer("dropdown");
+  @include transition(opacity, visibility);
+
+  position: fixed;
+  bottom: spacing(10);
+  right: spacing(10);
+
+  border-radius: 50%;
+  background-color: var(--spa-scroll-button-bg, $white);
+  border: 1px solid var(--spa-scroll-button-border, $ghost-alpha);
+  box-shadow: var(--spa-scroll-button-shadow, $shadow-black);
+
+  opacity: 0;
+  visibility: hidden;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}

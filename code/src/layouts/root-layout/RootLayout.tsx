@@ -6,6 +6,7 @@ import Header from "@/layouts/header/Header";
 import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
 
 import AppBox from "@/components/app-box/AppBox";
+import ScrollToTopButton from "@/components/scroll-to-top-button/ScrollToTopButton";
 
 import "@/layouts/root-layout/RootLayout.scss";
 
@@ -19,6 +20,7 @@ const RootLayout = () => {
           <Outlet />
         </Suspense>
       </AppBox>
+      <ScrollToTopButton />
       <Footer />
     </AppBox>
   );
