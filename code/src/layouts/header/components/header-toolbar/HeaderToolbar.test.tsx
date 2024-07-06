@@ -8,6 +8,7 @@ import renderWithProviders from "@/utils/render-with-providers/renderWithProvide
 
 jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,
+  default: () => ({}),
   useIsAuthSelector: jest.fn(),
   logout: jest.fn()
 }));

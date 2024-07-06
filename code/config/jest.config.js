@@ -11,8 +11,10 @@ module.exports = {
 
   // Base URL for the jsdom environment
   testEnvironmentOptions: {
-    url: "http://localhost",
+    url: "http://localhost"
   },
+
+  roots: ["src"],
 
   rootDir: "../",
 
@@ -25,7 +27,7 @@ module.exports = {
 
   transform: {
     // Transform all js and jsx files with Babel
-    "\\.(t|j)sx?$": path.join(__dirname, "jest.transformer.js"),
+    "\\.(t|j)sx?$": path.join(__dirname, "jest.transformer.js")
   },
 
   // Do not transpile node_modules unless there are a ESM distributed
@@ -35,9 +37,7 @@ module.exports = {
   // Code search paths
   modulePaths: ["<rootDir>/src/", "<rootDir>/test/"],
 
-  setupFiles: [
-    getConfigPath("jest.polyfills.js"),
-  ],
+  setupFiles: [getConfigPath("jest.polyfills.js")],
 
   setupFilesAfterEnv: [
     getConfigPath("setup-tests.js"),
@@ -55,14 +55,14 @@ module.exports = {
     // Alias #/ imports
     "#/(.*)": "<rootDir>/test/$1",
     // Alias config/ imports
-    "@config/(.*)$": "<rootDir>/config/$1",
+    "@config/(.*)$": "<rootDir>/config/$1"
   },
 
   verbose: true,
 
   snapshotFormat: {
     escapeString: true,
-    printBasicPrototype: true,
+    printBasicPrototype: true
   },
 
   // Do not create coverage reports by default. Use the --coverage CLI option to override it
@@ -94,7 +94,7 @@ module.exports = {
     // Test Exclusions
     "!src/{fixtures,test,__tests__,testing}/**/*",
     "!src/**/*.test.*",
-    "!src/**/*.spec.*",
+    "!src/**/*.spec.*"
   ],
 
   // Generate coverage reports in textm HTML, lcov and clover format
@@ -103,5 +103,5 @@ module.exports = {
   // Use the default and Sonar reporters
   reporters: ["default"],
 
-  watchPathIgnorePatterns: ["<rootDir>/test-report.json"],
+  watchPathIgnorePatterns: ["<rootDir>/test-report.json"]
 };

@@ -7,9 +7,11 @@ import useSignUp from "@/hooks/use-sign-up/useSignUp";
 import { SignUpResponse } from "@/types/auth.types";
 
 jest.mock("@/store/api/authApi");
-jest.mock("@/store/slices/userSlice");
 jest.mock("@/hooks/use-snackbar/useSnackbar");
 jest.mock("@/hooks/use-redux/useRedux");
+jest.mock("@/store/slices/userSlice", () => ({
+  authenticate: () => {}
+}));
 
 const mockSignUp = jest.fn();
 const mockDispatch = jest.fn();

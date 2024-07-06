@@ -7,9 +7,11 @@ import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import { SignInResponse } from "@/types/auth.types";
 
 jest.mock("@/store/api/authApi");
-jest.mock("@/store/slices/userSlice");
 jest.mock("@/hooks/use-snackbar/useSnackbar");
 jest.mock("@/hooks/use-redux/useRedux");
+jest.mock("@/store/slices/userSlice", () => ({
+  authenticate: () => {}
+}));
 
 const mockSignIn = jest.fn();
 const mockDispatch = jest.fn();

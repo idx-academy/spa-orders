@@ -13,6 +13,10 @@ Object.defineProperty(global.self, "crypto", {
   }
 });
 
+Object.defineProperty(global.self, "fetch", {
+  value: () => new Promise()
+});
+
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useSelector: jest.fn()
