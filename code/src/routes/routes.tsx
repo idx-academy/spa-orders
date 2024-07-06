@@ -16,13 +16,7 @@ const routes: RouteObject[] = [
     path: routePaths.home.path,
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    children: [
-      ...guestRoutes,
-      {
-        element: <ProtectedLayout />,
-        children: protectedRoutes
-      }
-    ]
+    children: [...guestRoutes, ...protectedRoutes]
   },
   {
     path: "*",

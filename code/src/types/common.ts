@@ -1,4 +1,5 @@
 export type TimerId = ReturnType<typeof setTimeout>;
+export type NonEmptyArray<T> = [T, ...T[]];
 
 // utility to debug typescript. More: https://www.youtube.com/watch?v=2lCCKiWGlC0
 export type Prettify<T> = {

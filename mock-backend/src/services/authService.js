@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const generateToken = (payload) => {
-  return jwt.sign({ role: ["ADMIN"], ...payload }, "jwt-secret", {
+  return jwt.sign({ scope: "ROLE_ADMIN", ...payload }, "jwt-secret", {
     expiresIn: "10m",
   });
 };
