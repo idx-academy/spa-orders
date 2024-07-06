@@ -1,4 +1,17 @@
 {
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^(.*)react(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/App$",
+    "^@/layouts/(?!.*\\.scss$)(.*)$",
+    "^@/components/(?!.*\\.scss$)(.*)$",
+    "^@/(?!.*\\.scss$)(.*)$",
+    "^.+\\.scss$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
   "semi": true,
   "trailingComma": "none",
   "singleQuote": false,
