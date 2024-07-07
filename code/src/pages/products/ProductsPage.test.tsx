@@ -79,7 +79,7 @@ describe("ProductsPage", () => {
 
     const skeletons = container.getElementsByClassName("spa-product-skeleton");
 
-    expect(skeletons.length).toBe(8);
+    expect(skeletons.length).toBe(10);
   });
 
   test("Should apply selected sort criterai", () => {

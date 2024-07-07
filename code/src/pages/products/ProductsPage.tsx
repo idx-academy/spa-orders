@@ -7,13 +7,10 @@ import AppContainer from "@/components/app-container/AppContainer";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
 import AppPagination from "@/components/app-pagination/AppPagination";
 import AppTypography from "@/components/app-typography/AppTypography";
-import ProductCard from "@/components/product-card/ProductCard";
-import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
+import ProductsContainer from "@/components/products-container/ProductsContainer";
 
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetProductsQuery } from "@/store/api/productsApi";
-import { Product } from "@/types/product.types";
-import repeatComponent from "@/utils/repeat-component/repeatComponent";
 import validatePage from "@/utils/validate-page/validatePage";
 
 import "@/pages/products/ProductsPage.scss";
@@ -25,7 +22,11 @@ const ProductsPage = () => {
   const searchParamsPage = searchParams.get("page");
   const page = validatePage(searchParamsPage);
 
-  const { data: productsResponse, isLoading } = useGetProductsQuery({
+  const {
+    data: productsResponse,
+    isLoading,
+    isError
+  } = useGetProductsQuery({
     page: page - 1,
     size: 10,
     sort: sortOption
@@ -34,15 +35,6 @@ const ProductsPage = () => {
   const defaultDropdownText = (
     <AppTypography translationKey="productsDefault.label" />
   );
-
-  const skeletonCards = repeatComponent(
-    <ProductSkeleton />,
-    productsResponse?.content.length || 8
-  );
-
-  const productCards = productsResponse?.content.map((product: Product) => (
-    <ProductCard key={product.id} product={product} />
-  ));
 
   const handleSortChange = (value: string) => {
     setSearchParams({ sort: value });
@@ -81,9 +73,13 @@ const ProductsPage = () => {
             className="spa-products-page__sort"
           />
         </AppBox>
-        <AppBox className="spa-products-page__grid">
-          {isLoading ? skeletonCards : productCards}
-        </AppBox>
+        <ProductsContainer
+          className="spa-products-page__grid"
+          products={productsResponse?.content ?? []}
+          loadingItemsCount={10}
+          isLoading={isLoading}
+          isError={isError}
+        />
         {paginationBlock}
       </AppBox>
     </PageWrapper>

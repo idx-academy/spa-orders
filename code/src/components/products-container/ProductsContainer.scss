@@ -1,0 +1,17 @@
+@import "@design-system";
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: spacing(6);
+
+  &_error {
+    padding: spacing(40) 0;
+    display: block;
+  }
+
+  &__error-label {
+    font-size: var(--spa-h5-font-size, $fs-base);
+    text-align: center;
+  }
+}
