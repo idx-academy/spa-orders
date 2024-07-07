@@ -2,24 +2,24 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import ScrollToTopButton from "@/components/scroll-to-top-button/ScrollToTopButton";
 
-const SCROLL_THRESHOLD = 400;
+const SCROLL_THRESHOLD = 300;
 
 describe("ScrollToTopButton", () => {
   let scrollButton: HTMLElement;
-  window.scrollTo = jest.fn();
 
   beforeEach(() => {
     render(<ScrollToTopButton />);
     scrollButton = screen.getByTestId("scroll-button");
+    window.scrollTo = jest.fn();
   });
 
   test("is not visible on initial render", () => {
     expect(scrollButton).not.toHaveClass("visible");
   });
 
-  test("becomes visible after scrolling down past threshold", () => {
-    fireEvent.scroll(window, { target: { scrollY: SCROLL_THRESHOLD + 1 } });
-    expect(scrollButton.parentElement).toHaveClass("visible");
+  test("button shoud be visible when window is scrolled exactly to SCROLL_THRESHOLD", () => {
+    fireEvent.scroll(window, { target: { scrollY: SCROLL_THRESHOLD } });
+    expect(scrollButton).toHaveClass("visible");
   });
 
   test("scrolls to top when clicked", () => {
@@ -29,24 +29,16 @@ describe("ScrollToTopButton", () => {
       top: 0,
       behavior: "smooth"
     });
-    expect(scrollButton).not.toHaveClass("visible");
   });
 
   test("should set isVisible to false when scrollY is less than or equal to threshold", () => {
-    const { container } = render(<ScrollToTopButton />);
-    expect(container.querySelector(".spa-scroll-button")).not.toHaveClass(
-      "visible"
-    );
     window.scrollY = SCROLL_THRESHOLD;
     fireEvent.scroll(window);
-    expect(container.querySelector(".spa-scroll-button")).toHaveClass(
-      "visible"
-    );
+    expect(scrollButton).toHaveClass("visible");
+
     window.scrollY = SCROLL_THRESHOLD - 200;
     fireEvent.scroll(window);
-    expect(container.querySelector(".spa-scroll-button")).not.toHaveClass(
-      "visible"
-    );
+    expect(scrollButton).not.toHaveClass("visible");
   });
 
   test("adds and removes scroll event listener", () => {

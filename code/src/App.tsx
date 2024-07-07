@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import AppSnackbar from "@/components/app-snackbar/AppSnackbar";
+import ScrollToTopButton from "@/components/scroll-to-top-button/ScrollToTopButton";
 
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import routes from "@/routes/routes";
@@ -18,6 +19,7 @@ const App = () => {
     <>
       <RouterProvider router={createBrowserRouter(routes)} />
       <AppSnackbar />
+      <ScrollToTopButton />
     </>
   );
 };

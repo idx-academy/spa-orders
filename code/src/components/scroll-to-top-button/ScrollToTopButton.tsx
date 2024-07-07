@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { ArrowUpward } from "@mui/icons-material";
+import ArrowUpward from "@mui/icons-material/ArrowUpward";
 
-import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 
 import cn from "@/utils/cn/cn";
@@ -14,14 +13,6 @@ const SCROLL_THRESHOLD = 300;
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const toggleVisibility = () => {
-    if (window.scrollY >= SCROLL_THRESHOLD) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -31,26 +22,25 @@ const ScrollToTopButton = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      toggleVisibility();
+      setIsVisible(window.scrollY >= SCROLL_THRESHOLD);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [setIsVisible]);
 
   return (
-    <AppBox className={cn(`spa-scroll-button`, isVisible && "visible")}>
-      <AppIconButton
-        size="large"
-        onClick={scrollToTop}
-        data-testid="scroll-button"
-        role="button"
-      >
-        <ArrowUpward />
-      </AppIconButton>
-    </AppBox>
+    <AppIconButton
+      size="large"
+      onClick={scrollToTop}
+      data-testid="scroll-button"
+      role="button"
+      className={cn(`spa-scroll-button`, isVisible && "visible")}
+    >
+      <ArrowUpward />
+    </AppIconButton>
   );
 };
 
