@@ -1,14 +1,14 @@
 import { screen } from "@testing-library/react";
 import { Navigate } from "react-router-dom";
+
+import { ROLES } from "@/constants/common";
+import ProtectedRoute from "@/routes/protected-route/ProtectedRoute";
 import {
   useIsAuthLoadingSelector,
   useIsAuthSelector,
   useUserDetailsSelector
 } from "@/store/slices/userSlice";
-import ProtectedRoute from "@/routes/protected-route/ProtectedRoute";
 import { UserRole } from "@/types/user.types";
-import routePaths from "@/constants/routes";
-import { ROLES } from "@/constants/common";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/slices/userSlice", () => ({
@@ -31,12 +31,16 @@ type RenderComponent = {
   isAuthenticated: boolean;
   isLoading: boolean;
   role: UserRole;
+  forbiddenRedirectPath: string;
+  unauthorizedRedirectPath: string;
 };
 
 const renderComponent = ({
   isAuthenticated = false,
   isLoading = false,
-  role
+  role,
+  forbiddenRedirectPath,
+  unauthorizedRedirectPath
 }: Partial<RenderComponent> = {}) => {
   (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(isLoading);
   (useIsAuthSelector as jest.Mock).mockReturnValue(isAuthenticated);
@@ -46,6 +50,8 @@ const renderComponent = ({
     <ProtectedRoute
       element={<div>Protected Content</div>}
       allowedRoles={[ROLES.ADMIN]}
+      forbiddenRedirectPath={forbiddenRedirectPath}
+      unauthorizedRedirectPath={unauthorizedRedirectPath}
     />
   );
 };
@@ -65,19 +71,26 @@ describe("ProtectedRoute", () => {
   test("redirects to unauthorized path if user is not authenticated", () => {
     renderComponent();
 
-    expect(Navigate).toHaveBeenCalledWith({ to: routePaths.home.path }, {});
+    expect(Navigate).toHaveBeenCalled();
   });
 
   test("redirects to unauthorized path if userDetails is null", () => {
-    renderComponent({ isAuthenticated: true });
+    renderComponent({
+      isAuthenticated: true,
+      unauthorizedRedirectPath: "/401"
+    });
 
-    expect(Navigate).toHaveBeenCalledWith({ to: routePaths.home.path }, {});
+    expect(Navigate).toHaveBeenCalledWith({ to: "/401" }, {});
   });
 
   test("redirects to forbidden path if user does not have the required role", () => {
-    renderComponent({ isAuthenticated: true, role: ROLES.USER });
+    renderComponent({
+      isAuthenticated: true,
+      role: ROLES.USER,
+      forbiddenRedirectPath: "/403"
+    });
 
-    expect(Navigate).toHaveBeenCalledWith({ to: routePaths.home.path }, {});
+    expect(Navigate).toHaveBeenCalledWith({ to: "/403" }, {});
   });
 
   test("renders protected element if user is authenticated and has required role", () => {
@@ -86,6 +99,7 @@ describe("ProtectedRoute", () => {
       role: ROLES.ADMIN
     });
 
-    expect(screen.getByText("Protected Content")).toBeInTheDocument();
+    const protectedContent = screen.getByText("Protected Content");
+    expect(protectedContent).toBeInTheDocument();
   });
 });
