@@ -3,13 +3,17 @@ import { fireEvent, screen } from "@testing-library/react";
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
-import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
+import {
+  logout,
+  useIsAuthLoadingSelector,
+  useIsAuthSelector
+} from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,
-  default: () => ({}),
   useIsAuthSelector: jest.fn(),
+  useIsAuthLoadingSelector: jest.fn(),
   logout: jest.fn()
 }));
 
@@ -30,6 +34,7 @@ describe("HeaderToolbar", () => {
   describe("for guest users", () => {
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(false);
+      (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
       renderWithProviders(<HeaderToolbar />);
     });
 
@@ -52,8 +57,11 @@ describe("HeaderToolbar", () => {
 
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(true);
+      (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
       renderWithProviders(<HeaderToolbar />);
-      logoutButton = screen.getByTestId(/LogoutIcon/);
+      logoutButton = screen
+        .getByTestId("LogoutButton")
+        .closest("button") as HTMLButtonElement;
     });
 
     test("renders logout button correctly", () => {
@@ -69,14 +77,14 @@ describe("HeaderToolbar", () => {
   test("renders search field", () => {
     renderWithProviders(<HeaderToolbar />);
 
-    const searchField = screen.getByTestId(/SearchIcon/);
+    const searchField = screen.getByPlaceholderText("Search...");
     expect(searchField).toBeInTheDocument();
   });
 
   test("changes input value", () => {
     renderWithProviders(<HeaderToolbar />);
 
-    const searchField = screen.getByRole("textbox");
+    const searchField = screen.getByPlaceholderText("Search...");
     expect(searchField).toBeInTheDocument();
 
     fireEvent.change(searchField, { target: { value: "test" } });
@@ -87,18 +95,17 @@ describe("HeaderToolbar", () => {
   test("clears input value when clear button is clicked", () => {
     renderWithProviders(<HeaderToolbar />);
 
-    const searchField = screen.getByRole("textbox");
-    const clearButton = screen.getAllByRole("button")[0];
-
+    const searchField = screen.getByPlaceholderText("Search...");
     expect(searchField).toBeInTheDocument();
-    expect(clearButton).toBeInTheDocument();
 
-    fireEvent.change(searchField, { target: { value: "test" } });
+    const clearButton = screen
+      .getByTestId("ClearIcon")
+      .closest("button") as HTMLButtonElement;
 
-    expect(searchField).toHaveValue("test");
+    fireEvent.change(searchField, { target: { value: "Hello!" } });
+    expect(searchField).toHaveValue("Hello!");
 
     fireEvent.click(clearButton);
-
     expect(searchField).toHaveValue("");
   });
 });

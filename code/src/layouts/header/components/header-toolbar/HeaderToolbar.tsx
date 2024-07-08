@@ -67,7 +67,12 @@ const HeaderToolbar = () => {
   const loadingButton = isLoadingAuth ? <AppLoader /> : null;
 
   const logoutButton = isAuthenticated ? (
-    <AppButton onClick={handleLogout} variant="danger" size="small">
+    <AppButton
+      onClick={handleLogout}
+      variant="danger"
+      size="small"
+      data-testid="LogoutButton"
+    >
       <LogoutIcon />
     </AppButton>
   ) : (
