@@ -64,7 +64,7 @@ const HeaderToolbar = () => {
     <AppTypography variant="caption-small">{itemsInCartCount}</AppTypography>
   );
 
-  const loadingButton = isLoadingAuth ? <AppLoader /> : null;
+  const loadingButton = isLoadingAuth && <AppLoader />;
 
   const logoutButton = isAuthenticated ? (
     <AppButton
@@ -81,23 +81,21 @@ const HeaderToolbar = () => {
     </AppButton>
   );
 
-  const signInButton =
-    !isLoadingAuth && !isAuthenticated ? (
-      <AppButton onClick={handleOpenAuthModal}>
-        <AppTypography translationKey="signIn.label" />
-      </AppButton>
-    ) : null;
+  const signInButton = !isLoadingAuth && !isAuthenticated && (
+    <AppButton onClick={handleOpenAuthModal}>
+      <AppTypography translationKey="signIn.label" />
+    </AppButton>
+  );
 
   const authButton = loadingButton || logoutButton || signInButton;
 
-  const loadingOrdersButton = isLoadingAuth ? <AppLoader /> : null;
+  const loadingOrdersButton = isLoadingAuth && <AppLoader />;
 
-  const authenticatedOrdersButton =
-    isAuthenticated && !isLoadingAuth ? (
-      <AppIconButton to={routes.orders.path} component={AppLink}>
-        <ListAltIcon className="header__toolbar-icon" fontSize="large" />
-      </AppIconButton>
-    ) : null;
+  const authenticatedOrdersButton = isAuthenticated && !isLoadingAuth && (
+    <AppIconButton to={routes.orders.path} component={AppLink}>
+      <ListAltIcon className="header__toolbar-icon" fontSize="large" />
+    </AppIconButton>
+  );
 
   const ordersButton = loadingOrdersButton || authenticatedOrdersButton;
 
