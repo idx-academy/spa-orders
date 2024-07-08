@@ -20,6 +20,7 @@ const AppPagination = (props: AppPaginationProps) => {
       <PaginationItem
         component={AppLink}
         to={{ search: itemSearchParamsString }}
+        data-cy="pagination"
         {...itemProps}
       />
     );

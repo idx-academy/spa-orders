@@ -72,6 +72,7 @@ const ProductsPage = () => {
             onSelect={handleSortChange}
             defaultLabel={defaultDropdownText}
             className="spa-products-page__sort"
+            data-cy="products-dropdown"
           />
         </AppBox>
         <ProductsContainer

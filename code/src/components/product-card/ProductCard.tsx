@@ -45,6 +45,7 @@ const ProductCard = ({
           <AppBox
             alt={product.name}
             className="spa-product-card__img-name"
+            data-cy="product-card-img"
             component="img"
             src={product.image}
             data-cy="product-card-img"

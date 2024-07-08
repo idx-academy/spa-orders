@@ -18,6 +18,7 @@ const AppDropdownOptions = ({
           onClick={(event: MouseEvent) =>
             handleOptionClick(event, option.value, option.label)
           }
+          data-cy="dropdown-item"
         >
           {option.label}
         </AppBox>
