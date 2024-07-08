@@ -13,19 +13,25 @@ import AppContainer from "@/components/app-container/AppContainer";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
 import AppLink from "@/components/app-link/AppLink";
+import AppLoader from "@/components/app-loader/AppLoader";
 import AppLogo from "@/components/app-logo/AppLogo";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import routes from "@/constants/routes";
 import { useModalContext } from "@/context/ModalContext";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
-import { logout, useIsAuthSelector } from "@/store/slices/userSlice";
+import {
+  logout,
+  useIsAuthLoadingSelector,
+  useIsAuthSelector
+} from "@/store/slices/userSlice";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 
 const HeaderToolbar = () => {
   const { openModal } = useModalContext();
   const isAuthenticated = useIsAuthSelector();
+  const isLoadingAuth = useIsAuthLoadingSelector();
   const dispatch = useAppDispatch();
 
   const [searchValue, setSearchValue] = useState("");
@@ -42,9 +48,11 @@ const HeaderToolbar = () => {
   const handleSearch = () => {
     console.log("Search:", searchValue);
   };
+
   const handleOpenAuthModal = () => {
     openModal(<AuthModal />);
   };
+
   // @TODO: use dynamic value instead of hardcoded
   const itemsInCartCount = 10;
 
@@ -56,7 +64,9 @@ const HeaderToolbar = () => {
     <AppTypography variant="caption-small">{itemsInCartCount}</AppTypography>
   );
 
-  const AuthButton = isAuthenticated ? (
+  const loadingButton = isLoadingAuth ? <AppLoader /> : null;
+
+  const logoutButton = isAuthenticated ? (
     <AppButton onClick={handleLogout} variant="danger" size="small">
       <LogoutIcon />
     </AppButton>
@@ -66,9 +76,37 @@ const HeaderToolbar = () => {
     </AppButton>
   );
 
-  const OrdersButton = isAuthenticated && (
-    <AppIconButton to={routes.orders.path} component={AppLink}>
-      <ListAltIcon className="header__toolbar-icon" fontSize="large" />
+  const signInButton =
+    !isLoadingAuth && !isAuthenticated ? (
+      <AppButton onClick={handleOpenAuthModal}>
+        <AppTypography translationKey="signIn.label" />
+      </AppButton>
+    ) : null;
+
+  const authButton = loadingButton || logoutButton || signInButton;
+
+  const loadingOrdersButton = isLoadingAuth ? <AppLoader /> : null;
+
+  const authenticatedOrdersButton =
+    isAuthenticated && !isLoadingAuth ? (
+      <AppIconButton to={routes.orders.path} component={AppLink}>
+        <ListAltIcon className="header__toolbar-icon" fontSize="large" />
+      </AppIconButton>
+    ) : null;
+
+  const ordersButton = loadingOrdersButton || authenticatedOrdersButton;
+
+  const cartButton = isLoadingAuth ? (
+    <AppLoader />
+  ) : (
+    <AppIconButton>
+      <AppBadge
+        badgeContent={badgeContentTypography}
+        variant="dark"
+        size="small"
+      >
+        <ShoppingCartIcon className="header__toolbar-icon" fontSize="large" />
+      </AppBadge>
     </AppIconButton>
   );
 
@@ -88,21 +126,10 @@ const HeaderToolbar = () => {
           />
           <AppBox className="header__toolbar-action-icons">
             <AppBox>
-              {OrdersButton}
-              <AppIconButton>
-                <AppBadge
-                  badgeContent={badgeContentTypography}
-                  variant="dark"
-                  size="small"
-                >
-                  <ShoppingCartIcon
-                    className="header__toolbar-icon"
-                    fontSize="large"
-                  />
-                </AppBadge>
-              </AppIconButton>
+              {ordersButton}
+              {cartButton}
             </AppBox>
-            {AuthButton}
+            {authButton}
           </AppBox>
         </AppBox>
       </AppContainer>
