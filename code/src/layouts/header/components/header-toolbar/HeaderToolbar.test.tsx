@@ -9,9 +9,11 @@ import {
   useIsAuthSelector
 } from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
 jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,
+  default: () => ({}),
   useIsAuthSelector: jest.fn(),
   useIsAuthLoadingSelector: jest.fn(),
   logout: jest.fn()
@@ -81,18 +83,18 @@ describe("HeaderToolbar", () => {
     expect(searchField).toBeInTheDocument();
   });
 
-  test("changes input value", () => {
+  test("changes input value", async () => {
     renderWithProviders(<HeaderToolbar />);
 
     const searchField = screen.getByPlaceholderText("Search...");
     expect(searchField).toBeInTheDocument();
 
-    fireEvent.change(searchField, { target: { value: "test" } });
+    await typeIntoInput(searchField, "test");
 
     expect(searchField).toHaveValue("test");
   });
 
-  test("clears input value when clear button is clicked", () => {
+  test("clears input value when clear button is clicked", async () => {
     renderWithProviders(<HeaderToolbar />);
 
     const searchField = screen.getByPlaceholderText("Search...");
@@ -102,7 +104,7 @@ describe("HeaderToolbar", () => {
       .getByTestId("ClearIcon")
       .closest("button") as HTMLButtonElement;
 
-    fireEvent.change(searchField, { target: { value: "Hello!" } });
+    await typeIntoInput(searchField, "Hello!");
     expect(searchField).toHaveValue("Hello!");
 
     fireEvent.click(clearButton);
