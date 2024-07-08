@@ -1,8 +1,8 @@
 {
-  "callToAction.phones.caption": "Святкові пропозиції",
-  "callToAction.phones.title": "Знижки\nдо 30%",
-  "callToAction.phones.description": "Вибрані бренди смартфонів",
-  "callToAction.phones.buttonLabel": "Купити",
+  "callToAction.mobiles.caption": "Святкові пропозиції",
+  "callToAction.mobiles.title": "Знижки\nдо 30%",
+  "callToAction.mobiles.description": "Вибрані бренди смартфонів",
+  "callToAction.mobiles.buttonLabel": "Купити",
   "callToAction.computers.caption": "Новинки",
   "callToAction.computers.title": "Потужні\nмашини",
   "callToAction.computers.description": "Топові бренди комп'ютерів",

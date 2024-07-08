@@ -1,8 +1,8 @@
 {
-  "callToAction.phones.caption": "Holiday Deals",
-  "callToAction.phones.title": "Up to\n30% off",
-  "callToAction.phones.description": "Selected Smartphone Brands",
-  "callToAction.phones.buttonLabel": "Shop",
+  "callToAction.mobiles.caption": "Holiday Deals",
+  "callToAction.mobiles.title": "Up to\n30% off",
+  "callToAction.mobiles.description": "Selected Smartphone Brands",
+  "callToAction.mobiles.buttonLabel": "Shop",
   "callToAction.computers.caption": "Just In",
   "callToAction.computers.title": "Powerful\nmachines",
   "callToAction.computers.description": "Top Computer Brands",

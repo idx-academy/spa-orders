@@ -16,7 +16,7 @@ describe("CallToActionItem", () => {
   });
 
   test("renders correctly", () => {
-    const title = screen.getByText("callToAction.phones.title");
+    const title = screen.getByText("callToAction.mobiles.title");
     expect(title).toBeInTheDocument();
   });
 
