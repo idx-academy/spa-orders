@@ -3,6 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: path.join(__dirname, "..", "src", "main.tsx"),
@@ -11,6 +12,7 @@ module.exports = {
     publicPath: "/"
   },
   plugins: [
+    new Dotenv({ path: path.join(__dirname, "..", ".env") }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "index.html")
     }),

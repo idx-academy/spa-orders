@@ -6,8 +6,6 @@ module.exports = {
   ...baseConfig,
   plugins: [
     ...baseConfig.plugins,
-    new Dotenv({
-      path: path.join(__dirname, "..", ".env.development")
-    })
+    new Dotenv({ path: path.join(__dirname, "..", ".env.development") })
   ]
 };
