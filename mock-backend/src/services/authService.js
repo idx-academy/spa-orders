@@ -1,7 +1,15 @@
 const jwt = require("jsonwebtoken");
 
 const generateToken = (payload) => {
-  return jwt.sign({ scope: "ROLE_ADMIN", ...payload }, "jwt-secret", {
+  let role = "ROLE_USER";
+
+  if (payload.email.startsWith("admin")) {
+    role = "ROLE_ADMIN";
+  } else if (payload.email.startsWith("shopmanager")) {
+    role = "ROLE_SHOP_MANAGER";
+  }
+
+  return jwt.sign({ scope: role, ...payload }, "jwt-secret", {
     expiresIn: "10m",
   });
 };
