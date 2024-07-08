@@ -8,9 +8,9 @@ Cypress.Commands.addQuery("getById", (id: string) => {
   return () => getFn();
 });
 
-Cypress.Commands.add("login", () => {
-  const email = Cypress.env("email");
-  const password = Cypress.env("password");
+Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
+  const email = Cypress.env(`${role}_EMAIL`);
+  const password = Cypress.env(`${role}_PASSWORD`);
 
   cy.intercept("POST", "/api/auth/sign-in").as("loginRequest");
 
@@ -28,5 +28,8 @@ Cypress.Commands.add("login", () => {
     .then((value) => {
       const userDetails = JSON.parse(value);
       expect(userDetails.token).to.exist;
+      expect(userDetails.role).to.eq(role);
     });
+
+  cy.getById("snackbar").should("contain", "You successfully signed in");
 });

@@ -17,6 +17,7 @@ const AppSnackbar = () => {
       open={isOpen}
       onClose={closeSnackbar}
       className="spa-snackbar"
+      data-cy="snackbar"
     >
       <Alert
         onClose={closeSnackbar}

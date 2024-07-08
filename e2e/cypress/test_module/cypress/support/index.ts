@@ -5,6 +5,9 @@ import "cypress-commands";
 import "@cypress/code-coverage/support";
 
 import "@cypress-e2e/support/commands";
+import { ROLES } from "@cypress-e2e/fixtures/global-data";
+
+export type UserRole = (typeof ROLES)[keyof typeof ROLES];
 
 declare global {
   namespace Cypress {
@@ -15,7 +18,7 @@ declare global {
     }
 
     interface Chainable {
-      login(): Chainable<JQuery<void>>;
+      loginWithRole(role?: UserRole): Chainable<JQuery<void>>;
       getById(id: string): Chainable<JQuery<HTMLElement>>;
     }
   }
