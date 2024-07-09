@@ -20,7 +20,7 @@
   &__items {
     width: 825px;
 
-    h1 {
+    &--label {
       margin-bottom: spacing(5);
       font-size: $fs-h3;
       border-bottom: 1px solid
@@ -32,7 +32,7 @@
   &__order-summary {
     width: 490px;
 
-    h2 {
+    &--label {
       margin-bottom: spacing(5);
       font-size: $fs-h3;
       border-bottom: 1px solid
@@ -41,7 +41,7 @@
     }
 
     .spa-order-summary__details {
-      p {
+      .spa-order-summary__text {
         font-size: spacing(4);
         margin: spacing(3) 0;
       }

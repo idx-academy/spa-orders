@@ -67,6 +67,7 @@ const CartPage = () => {
       <AppBox className="spa-cart-page__content">
         <AppBox className="spa-cart-page__items">
           <AppTypography
+            className="spa-cart-page__items--label"
             variant="h3"
             component="h1"
             translationKey="myCart.label"
@@ -75,14 +76,23 @@ const CartPage = () => {
         </AppBox>
         <AppBox className="spa-cart-page__order-summary">
           <AppTypography
+            className="spa-cart-page__order-summary--label"
             variant="h1"
             component="h2"
             translationKey="orderSummary.label"
           />
           <AppBox className="spa-order-summary__details">
             <AppBox className="spa-order-summary__row">
-              <AppTypography component="p" translationKey="subtotal.label" />
-              <AppTypography component="p">
+              <AppTypography
+                component="p"
+                className="spa-order-summary__text"
+                translationKey="subtotal.label"
+              />
+              <AppTypography
+                component="p"
+                className="spa-order-summary__text"
+                variant="subtitle2"
+              >
                 {formatPrice(subtotalItems)}
               </AppTypography>
             </AppBox>
