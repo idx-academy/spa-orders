@@ -7,7 +7,7 @@
   border-bottom: 1px solid var(--spa-cart-item-border-color, $gray-light);
 
   &__image {
-    width: spacing(25);
+    width: 100px;
     margin-right: spacing(5);
   }
 
@@ -34,13 +34,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: spacing(8);
+    width: 32px;
     height: spacing(8);
     cursor: pointer;
   }
 
   &__quantity-input {
-    width: spacing(10);
+    width: 40px;
     text-align: center;
     border: none;
     outline: none;
@@ -51,7 +51,7 @@
     font-weight: var(--spa-cart-price-font-weight, $fw-extra-bold);
     font-size: spacing(5);
     margin-left: spacing(5);
-    min-width: spacing(20);
+    min-width: 80px;
   }
 
   &__delete-block {
@@ -59,8 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: spacing(8);
-    height: spacing(8);
+    @include box(32px);
     margin-left: spacing(5);
   }
 }
