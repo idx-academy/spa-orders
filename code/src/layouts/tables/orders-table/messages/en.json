@@ -1,0 +1,8 @@
+{
+  "ordersTable.columns.id": "ID",
+  "ordersTable.columns.status": "Status",
+  "ordersTable.columns.createdAt": "Created At",
+  "ordersTable.columns.receiver": "Receiver",
+  "ordersTable.columns.deliveryMethod": "Delivery method",
+  "ordersTable.columns.totalPrice": "Total price"
+}

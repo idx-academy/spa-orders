@@ -1,10 +1,6 @@
-import {
-  ordersContent,
-  tableHeadings
-} from "@/layouts/tables/orders-table/OrdersTable.constants";
-import OrderTableBody from "@/layouts/tables/orders-table/order-table-body/OrderTableBody";
-import OrderTableHead from "@/layouts/tables/orders-table/order-table-head/OrderTableHead";
-import "@/layouts/tables/orders-table/order-table-head/OrderTableHead";
+import { tableColumns } from "@/layouts/tables/orders-table/OrdersTable.constants";
+import OrdersTableBody from "@/layouts/tables/orders-table/components/orders-table-body/OrdersTableBody";
+import OrdersTableHead from "@/layouts/tables/orders-table/components/orders-table-head/OrdersTableHead";
 
 import AppTable from "@/components/app-table/AppTable";
 
@@ -12,27 +8,29 @@ import { Order } from "@/types/order.types";
 
 import "@/layouts/tables/orders-table/OrdersTable.scss";
 
-const OrdersTable = () => {
+type OrdersTableProps = {
+  orders: Order[];
+};
+
+const OrdersTable = ({ orders }: OrdersTableProps) => {
   const OrderTableBodyItem = (order: Order) => (
-    <OrderTableBody key={order.id} order={order} />
+    <OrdersTableBody key={order.id} order={order} />
   );
   const OrderTableHeadItem = (head: string) => (
-    <OrderTableHead key={head} head={head} />
+    <OrdersTableHead key={head} head={head} />
   );
 
   return (
-    <>
-      <AppTable
-        classNames={{
-          container: "spa-order-table",
-          body: "spa-order-table__body"
-        }}
-        headItems={tableHeadings}
-        renderHeadItem={OrderTableHeadItem}
-        bodyItems={ordersContent}
-        renderBodyItem={OrderTableBodyItem}
-      />
-    </>
+    <AppTable
+      classNames={{
+        container: "spa-order-table",
+        body: "spa-order-table__body"
+      }}
+      headItems={tableColumns}
+      renderHeadItem={OrderTableHeadItem}
+      bodyItems={orders}
+      renderBodyItem={OrderTableBodyItem}
+    />
   );
 };
 

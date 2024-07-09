@@ -9,13 +9,13 @@ import { Order } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
 
-import "@/layouts/tables/orders-table/order-table-body/OrderTableBody.scss";
+import "@/layouts/tables/orders-table/components/orders-table-body/OrdersTableBody.scss";
 
 type OrderTableBodyProps = {
   order: Order;
 };
 
-const OrderTableBody = ({ order }: OrderTableBodyProps) => {
+const OrdersTableBody = ({ order }: OrderTableBodyProps) => {
   const orderItemStatus = orderStatuses[order.orderStatus];
   const orderReciever = `${order.receiver.firstName} ${order.receiver.lastName}`;
 
@@ -47,4 +47,4 @@ const OrderTableBody = ({ order }: OrderTableBodyProps) => {
   );
 };
 
-export default OrderTableBody;
+export default OrdersTableBody;

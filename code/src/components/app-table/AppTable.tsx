@@ -10,27 +10,27 @@ import {
 
 import cn from "@/utils/cn/cn";
 
-type classNames = {
+type ClassNames = {
   container?: string;
   head?: string;
   body?: string;
 };
 
 type AppTableProps<T> = {
-  classNames?: classNames;
+  classNames?: ClassNames;
   bodyItems: T[];
   headItems: string[];
   renderBodyItem: (item: T) => ReactNode;
   renderHeadItem: (item: string) => ReactNode;
 };
 
-const AppTable = <T,>({
+const AppTable = <TableContent,>({
   classNames,
   bodyItems,
   headItems,
   renderBodyItem,
   renderHeadItem
-}: AppTableProps<T>) => {
+}: AppTableProps<TableContent>) => {
   return (
     <AppTableContainer className={cn(classNames?.container)}>
       <AppTableBox>
