@@ -9,6 +9,7 @@ import bannerMessages from "@/layouts/intro-banner/messages";
 import authModalMessages from "@/layouts/modals/auth/messages";
 import orderItemMessages from "@/layouts/order-item/messages";
 import subintroMessages from "@/layouts/subintro/messages";
+import ordersTableMessages from "@/layouts/tables/orders-table/messages";
 
 import dropDownMessages from "@/components/app-dropdown/messages";
 import productCardMessages from "@/components/product-card/messages";
@@ -38,7 +39,8 @@ const messages = {
     ...orderPageMessages.en,
     ...notFoundMessages.en,
     ...cartPageMessages.en,
-    ...cartDrawerMessages.en
+    ...cartDrawerMessages.en,
+    ...ordersTableMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -58,7 +60,8 @@ const messages = {
     ...signInFormMessages.uk,
     ...orderPageMessages.uk,
     ...cartPageMessages.uk,
-    ...cartDrawerMessages.uk
+    ...cartDrawerMessages.uk,
+    ...ordersTableMessages.uk
   }
 };
 
