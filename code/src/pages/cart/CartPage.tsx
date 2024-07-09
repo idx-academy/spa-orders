@@ -98,13 +98,13 @@ const CartPage = () => {
             <AppBox className="spa-order-summary__row spa-order-summary__total-line">
               <AppTypography
                 className="spa-order-summary__total"
-                variant="h1"
+                variant="subtitle2"
                 component="p"
                 translationKey="total.label"
               />
               <AppTypography
                 component="p"
-                variant="h1"
+                variant="subtitle2"
                 className="spa-order-summary__total"
               >
                 {formatPrice(subtotalItems)}

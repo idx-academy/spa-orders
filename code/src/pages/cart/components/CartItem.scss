@@ -18,7 +18,7 @@
   }
 
   &__title {
-    font-size: spacing(5);
+    font-size: $fs-lg;
     margin-bottom: spacing(3);
   }
 
@@ -44,12 +44,12 @@
     text-align: center;
     border: none;
     outline: none;
-    font-size: spacing(4);
+    font-size: $fs-base;
   }
 
   &__price {
     font-weight: var(--spa-cart-price-font-weight, $fw-extra-bold);
-    font-size: spacing(5);
+    font-size: $fs-lg;
     margin-left: spacing(5);
     min-width: 80px;
   }
