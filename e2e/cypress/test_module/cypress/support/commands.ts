@@ -9,6 +9,8 @@ Cypress.Commands.addQuery("getById", (id: string) => {
 });
 
 Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
+  cy.clearLocalStorage();
+
   const email = Cypress.env(`${role}_EMAIL`);
   const password = Cypress.env(`${role}_PASSWORD`);
 
