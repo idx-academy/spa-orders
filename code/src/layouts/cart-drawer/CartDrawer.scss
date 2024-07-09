@@ -1,0 +1,52 @@
+@import "@design-system";
+
+.cart-drawer {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+
+  &__header {
+    padding: spacing(5) spacing(2);
+    position: relative;
+    background-color: var(--spa-black-background-color, $black);
+    flex: 0 0 auto;
+    box-sizing: border-box;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--spa-black-background-color, $white);
+  }
+
+  &__title {
+    font-size: $fs-lg;
+    color: var(--spa-white-text-color, $white);
+    text-align: center;
+  }
+
+  &__items {
+    padding: 0 spacing(5);
+    flex: 3 1 auto;
+    overflow-y: auto;
+  }
+
+  &__footer {
+    flex: 0 0 auto;
+    padding: spacing(5);
+    box-sizing: border-box;
+    border-top: 1px solid var(--spa-light-border-color, $light);
+  }
+
+  &__price {
+    padding-left: spacing(2);
+    margin-bottom: spacing(6);
+    font-size: var(--cart-price-font-size, $fs-lg);
+  }
+
+  &__button {
+    border-radius: 5px !important; // To overwrite mui styles
+  }
+}

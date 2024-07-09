@@ -5,6 +5,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+import CartDrawer from "@/layouts/cart-drawer/CartDrawer";
 import AuthModal from "@/layouts/modals/auth/AuthModal";
 
 import AppBadge from "@/components/app-badge/AppBadge";
@@ -20,6 +21,7 @@ import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import routes from "@/constants/routes";
+import { useDrawerContext } from "@/context/DrawerContext";
 import { useModalContext } from "@/context/ModalContext";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {
@@ -33,6 +35,7 @@ import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
 
 const HeaderToolbar = () => {
   const { openModal } = useModalContext();
+  const { openDrawer } = useDrawerContext();
   const isAuthenticated = useIsAuthSelector();
   const isLoadingAuth = useIsAuthLoadingSelector();
   const userRole = useUserRoleSelector();
@@ -62,6 +65,10 @@ const HeaderToolbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+  };
+
+  const handleOpenCart = () => {
+    openDrawer(<CartDrawer />);
   };
 
   const badgeContentTypography = (
@@ -123,7 +130,7 @@ const HeaderToolbar = () => {
     <AppLoader />
   ) : (
     <AppTooltip titleTranslationKey="cart.tooltip">
-      <AppIconButton>
+      <AppIconButton onClick={handleOpenCart}>
         <AppBadge
           badgeContent={badgeContentTypography}
           variant="dark"

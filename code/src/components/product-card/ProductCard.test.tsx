@@ -20,7 +20,9 @@ const mockProduct: Product = {
 
 describe("ProductCard component", () => {
   beforeEach(() => {
-    renderWithProviders(<ProductCard product={mockProduct} />);
+    renderWithProviders(
+      <ProductCard product={mockProduct} onAddToCart={() => {}} />
+    );
   });
   test("should render product name", () => {
     const productName = screen.getByText(mockProduct.name);

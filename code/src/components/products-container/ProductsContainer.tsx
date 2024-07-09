@@ -4,11 +4,14 @@ import ProductCard from "@/components/product-card/ProductCard";
 import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 import { ProductsContainerProps } from "@/components/products-container/ProductsContainer.types";
 
+import { useDrawerContext } from "@/context/DrawerContext";
 import { Product } from "@/types/product.types";
 import cn from "@/utils/cn/cn";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
 import "@/components/products-container/ProductsContainer.scss";
+
+import CartDrawer from "../../layouts/cart-drawer/CartDrawer";
 
 const ProductsContainer = ({
   products,
@@ -18,6 +21,8 @@ const ProductsContainer = ({
   loadingItemsCount = 5,
   errorMessage = "errors.somethingWentWrong"
 }: ProductsContainerProps) => {
+  const { openDrawer } = useDrawerContext();
+
   if (isError) {
     return (
       <AppBox className={cn("products-container_error", className)}>
@@ -31,8 +36,16 @@ const ProductsContainer = ({
 
   const skeletonCards = repeatComponent(<ProductSkeleton />, loadingItemsCount);
 
+  const handleAddToCart = () => {
+    openDrawer(<CartDrawer />);
+  };
+
   const productCards = products.map((product: Product) => (
-    <ProductCard key={product.id} product={product} />
+    <ProductCard
+      key={product.id}
+      product={product}
+      onAddToCart={handleAddToCart}
+    />
   ));
 
   const gridItems = isLoading ? skeletonCards : productCards;

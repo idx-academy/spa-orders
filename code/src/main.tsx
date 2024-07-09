@@ -9,7 +9,6 @@ import App from "@/App";
 import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
 
 import I18nProivider from "@/context/I18nProvider";
-import { ModalProvider } from "@/context/ModalContext";
 import { store } from "@/store/store";
 
 import "@/styles/global.scss";
@@ -21,11 +20,9 @@ root.render(
   <Provider store={store}>
     <StyledEngineProvider injectFirst>
       <I18nProivider>
-        <ModalProvider>
-          <Suspense fallback={<PageLoadingFallback fullScreen />}>
-            <App />
-          </Suspense>
-        </ModalProvider>
+        <Suspense fallback={<PageLoadingFallback fullScreen />}>
+          <App />
+        </Suspense>
       </I18nProivider>
     </StyledEngineProvider>
   </Provider>

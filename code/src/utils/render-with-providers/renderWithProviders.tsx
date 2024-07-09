@@ -6,6 +6,7 @@ import { MemoryRouter } from "react-router-dom";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { StateFromReducersMapObject, configureStore } from "@reduxjs/toolkit";
 
+import { DrawerProvider } from "@/context/DrawerContext";
 import I18nProivider from "@/context/I18nProvider";
 import { ModalProvider } from "@/context/ModalContext";
 import { reducer } from "@/store/reducer";
@@ -33,7 +34,11 @@ const renderWithProviders = (
       <MemoryRouter initialEntries={initialEntries}>
         <I18nProivider>
           <ModalProvider>
-            <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
+            <DrawerProvider>
+              <StyledEngineProvider injectFirst>
+                {children}
+              </StyledEngineProvider>
+            </DrawerProvider>
           </ModalProvider>
         </I18nProivider>
       </MemoryRouter>

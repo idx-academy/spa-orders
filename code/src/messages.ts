@@ -1,5 +1,6 @@
 import bestSellersMessages from "@/layouts/best-sellers/messages";
 import callToActionSectionMessages from "@/layouts/call-to-action/messages";
+import cartDrawerMessages from "@/layouts/cart-drawer/message";
 import categorySectionMessages from "@/layouts/category-section/messages";
 import footerMessages from "@/layouts/footer/messages";
 import signInFormMessages from "@/layouts/forms/sign-in-form/messages";
@@ -36,7 +37,8 @@ const messages = {
     ...signInFormMessages.en,
     ...orderPageMessages.en,
     ...notFoundMessages.en,
-    ...cartPageMessages.en
+    ...cartPageMessages.en,
+    ...cartDrawerMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -55,7 +57,8 @@ const messages = {
     ...signupFormMessages.uk,
     ...signInFormMessages.uk,
     ...orderPageMessages.uk,
-    ...cartPageMessages.uk
+    ...cartPageMessages.uk,
+    ...cartDrawerMessages.uk
   }
 };
 
