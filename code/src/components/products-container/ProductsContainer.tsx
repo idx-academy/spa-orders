@@ -1,3 +1,5 @@
+import CartDrawer from "@/layouts/cart-drawer/CartDrawer";
+
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 import ProductCard from "@/components/product-card/ProductCard";
@@ -10,8 +12,6 @@ import cn from "@/utils/cn/cn";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
 import "@/components/products-container/ProductsContainer.scss";
-
-import CartDrawer from "../../layouts/cart-drawer/CartDrawer";
 
 const ProductsContainer = ({
   products,
