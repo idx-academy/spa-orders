@@ -39,7 +39,6 @@ describe("HeaderToolbar", () => {
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(false);
       (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-      // (useUserDetailsSelector as jest.Mock).mockReturnValue({});
       renderWithProviders(<HeaderToolbar />);
     });
 
