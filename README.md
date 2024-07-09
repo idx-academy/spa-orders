@@ -35,14 +35,16 @@ npm run start
 
 ## Scripts
 
-| Name                       | Description                              |
-| -------------------------- | ---------------------------------------- |
-| `npm run test`             | Runs unit tests                          |
-| `npm run test:coverage`    | Runs unit tests with collecting coverage |
-| `npm run test:mutation`    | Runs mutation tests                      |
-| `npm run typescript:check` | Checks the validity of types             |
-| `npm run lint`             | Lints the project files                  |
-| `npm run lint:fix`         | Fixes lint errors in the project         |
+| Name                       | Description                                                                  |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| `npm run start:prod`       | Start the project with production settings including envs                    |
+| `npm run start:test`       | Start the project with cypress testing settings                              |
+| `npm run test`             | Runs unit tests                                                              |
+| `npm run test:coverage`    | Runs unit tests with collecting coverage                                     |
+| `npm run test:mutation`    | Runs mutation tests                                                          |
+| `npm run typescript:check` | Checks the validity of types                                                 |
+| `npm run lint`             | Lints the project files                                                      |
+| `npm run lint:fix`         | Fixes lint errors in the project                                             |
 
 ## Git flow
 
