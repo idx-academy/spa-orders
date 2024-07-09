@@ -7,7 +7,7 @@ import "@/components/app-tooltip/AppTooltip.scss";
 
 const AppTooltip = ({
   titleTranslationKey,
-  children,
+  children, 
   ...props
 }: AppTooltipProps) => {
   const translatedTitle = titleTranslationKey ? (
@@ -18,7 +18,7 @@ const AppTooltip = ({
   ) : undefined;
 
   return (
-    <Tooltip placement="top" title={translatedTitle} arrow {...props}>
+    <Tooltip title={translatedTitle} arrow {...props}>
       {children}
     </Tooltip>
   );

@@ -25,7 +25,8 @@ import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {
   logout,
   useIsAuthLoadingSelector,
-  useIsAuthSelector, useIsShopManagerSelector
+  useIsAuthSelector,
+  useUserDetailsSelector
 } from "@/store/slices/userSlice";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
@@ -34,10 +35,12 @@ const HeaderToolbar = () => {
   const { openModal } = useModalContext();
   const isAuthenticated = useIsAuthSelector();
   const isLoadingAuth = useIsAuthLoadingSelector();
-  const isShopManeger = useIsShopManagerSelector();
+  const userDetails = useUserDetailsSelector();
   const dispatch = useAppDispatch();
 
   const [searchValue, setSearchValue] = useState("");
+
+  const { role } = userDetails || {};
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -90,7 +93,7 @@ const HeaderToolbar = () => {
     </AppButton>
   );
 
-  const DashboardButton = isShopManeger && (
+  const dashboardButton = role === "ROLE_SHOP_MANAGER" && (
     <AppTooltip titleTranslationKey="dashboard.tooltip">
       <AppIconButton to={routes.dashboard.path} component={AppLink}>
         <DashboardCustomizeIcon fontSize="large" />
@@ -115,15 +118,17 @@ const HeaderToolbar = () => {
   const cartButton = isLoadingAuth ? (
     <AppLoader />
   ) : (
-    <AppIconButton>
-      <AppBadge
-        badgeContent={badgeContentTypography}
-        variant="dark"
-        size="small"
-      >
-        <ShoppingCartIcon className="header__toolbar-icon" fontSize="large" />
-      </AppBadge>
-    </AppIconButton>
+    <AppTooltip titleTranslationKey="cart.tooltip">
+      <AppIconButton>
+        <AppBadge
+          badgeContent={badgeContentTypography}
+          variant="dark"
+          size="small"
+        >
+          <ShoppingCartIcon className="header__toolbar-icon" fontSize="large" />
+        </AppBadge>
+      </AppIconButton>
+    </AppTooltip>
   );
 
   return (
@@ -142,10 +147,9 @@ const HeaderToolbar = () => {
           />
           <AppBox className="header__toolbar-action-icons">
             <AppBox>
-              {DashboardButton}
-              {OrdersButton}
-              {CartButton}
-             
+              {dashboardButton}
+              {ordersButton}
+              {cartButton}
             </AppBox>
             {authButton}
           </AppBox>
