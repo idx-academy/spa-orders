@@ -93,13 +93,19 @@ const HeaderToolbar = () => {
     </AppButton>
   );
 
-  const dashboardButton = role === "ROLE_SHOP_MANAGER" && (
-    <AppTooltip titleTranslationKey="dashboard.tooltip">
-      <AppIconButton to={routes.dashboard.path} component={AppLink}>
-        <DashboardCustomizeIcon fontSize="large" />
-      </AppIconButton>
-    </AppTooltip>
-  );
+  const loadingDashboardButton = isLoadingAuth && <AppLoader />;
+
+  const authenticatedDashboardButton = role === "ROLE_SHOP_MANAGER" &&
+    !isLoadingAuth && (
+      <AppTooltip titleTranslationKey="dashboard.tooltip">
+        <AppIconButton to={routes.dashboard.path} component={AppLink}>
+          <DashboardCustomizeIcon fontSize="medium" />
+        </AppIconButton>
+      </AppTooltip>
+    );
+
+  const dashboardButton =
+    loadingDashboardButton || authenticatedDashboardButton;
 
   const authButton = loadingButton || logoutButton || signInButton;
 
@@ -108,7 +114,7 @@ const HeaderToolbar = () => {
   const authenticatedOrdersButton = isAuthenticated && !isLoadingAuth && (
     <AppTooltip titleTranslationKey="orders.tooltip">
       <AppIconButton to={routes.orders.path} component={AppLink}>
-        <ListAltIcon className="header__toolbar-icon" fontSize="large" />
+        <ListAltIcon className="header__toolbar-icon" fontSize="medium" />
       </AppIconButton>
     </AppTooltip>
   );
@@ -125,7 +131,10 @@ const HeaderToolbar = () => {
           variant="dark"
           size="small"
         >
-          <ShoppingCartIcon className="header__toolbar-icon" fontSize="large" />
+          <ShoppingCartIcon
+            className="header__toolbar-icon"
+            fontSize="medium"
+          />
         </AppBadge>
       </AppIconButton>
     </AppTooltip>
@@ -146,11 +155,9 @@ const HeaderToolbar = () => {
             onSearch={handleSearch}
           />
           <AppBox className="header__toolbar-action-icons">
-            <AppBox>
-              {dashboardButton}
-              {ordersButton}
-              {cartButton}
-            </AppBox>
+            {dashboardButton}
+            {ordersButton}
+            {cartButton}
             {authButton}
           </AppBox>
         </AppBox>
