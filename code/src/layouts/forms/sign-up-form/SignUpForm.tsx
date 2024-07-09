@@ -9,7 +9,7 @@ import AppContainer from "@/components/app-container/AppContainer";
 import AppInput from "@/components/app-input/AppInput";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { useModalContext } from "@/context/ModalContext";
+import { useModalContext } from "@/context/modal/ModalContext";
 import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility";
 import useSignUp from "@/hooks/use-sign-up/useSignUp";
 import {

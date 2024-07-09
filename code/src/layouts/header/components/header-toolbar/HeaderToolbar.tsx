@@ -22,7 +22,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 import routes from "@/constants/routes";
 import { useDrawerContext } from "@/context/DrawerContext";
-import { useModalContext } from "@/context/ModalContext";
+import { useModalContext } from "@/context/modal/ModalContext";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {
   logout,

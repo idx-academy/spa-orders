@@ -10,7 +10,7 @@ import AppButton from "@/components/app-button/AppButton";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { useModalContext } from "@/context/ModalContext";
+import { useModalContext } from "@/context/modal/ModalContext";
 
 import "@/layouts/modals/auth/AuthModal.scss";
 

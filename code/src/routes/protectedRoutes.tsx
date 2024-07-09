@@ -12,19 +12,21 @@ const protectedRoutes: RouteObject[] = [
   {
     path: routePaths.orders.path,
     element: (
-      <ProtectedRoute
-        element={<OrdersPage />}
-        allowedRoles={[ROLES.USER, ROLES.ADMIN, ROLES.SHOP_MANAGER]}
-      />
+      <OrdersPage />
+      // <ProtectedRoute
+      //   element={<OrdersPage />}
+      //   allowedRoles={[ROLES.USER, ROLES.ADMIN, ROLES.SHOP_MANAGER]}
+      // />
     )
   },
   {
     path: routePaths.dashboard.path,
     element: (
-      <ProtectedRoute
-        element={<DashboardPage />}
-        allowedRoles={[ROLES.ADMIN, ROLES.SHOP_MANAGER]}
-      />
+      <DashboardPage />
+      // <ProtectedRoute
+      //   element={<DashboardPage />}
+      //   allowedRoles={[ROLES.ADMIN, ROLES.SHOP_MANAGER]}
+      // />
     )
   }
 ];

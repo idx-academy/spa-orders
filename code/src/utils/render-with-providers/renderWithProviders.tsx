@@ -8,7 +8,7 @@ import { StateFromReducersMapObject, configureStore } from "@reduxjs/toolkit";
 
 import { DrawerProvider } from "@/context/DrawerContext";
 import I18nProivider from "@/context/I18nProvider";
-import { ModalProvider } from "@/context/ModalContext";
+import { ModalProvider } from "@/context/modal/ModalContext";
 import { reducer } from "@/store/reducer";
 
 type ExtendedRenderOptions = RenderOptions & {
