@@ -50,7 +50,10 @@ const DashboardTabs = () => {
             )}
           >
             {tab.icon}
-            <AppTypography translationKey={tab.labelTranslationKey} />
+            <AppTypography
+              component="span"
+              translationKey={tab.labelTranslationKey}
+            />
           </AppBox>
         ))}
       </AppBox>
