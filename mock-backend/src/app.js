@@ -14,13 +14,13 @@ app.use(
 
 app.use(express.json());
 
-app.use("/api", productRoutes);
+app.use("/api/v1", productRoutes);
 app.use("/api/auth", authRoutes);
-app.use(errorMiddleware);
-app.use("/api", orderRoutes);
+app.use("/api/v1", orderRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
+app.use(errorMiddleware);
 
 module.exports = app;
