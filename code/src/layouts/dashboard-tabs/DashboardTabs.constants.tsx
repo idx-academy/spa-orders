@@ -8,8 +8,6 @@ import OrdersTab from "@/layouts/dashboard-tabs/components/orders-tab/OrdersTab"
 import ProductsTab from "@/layouts/dashboard-tabs/components/products-tab/ProductsTab";
 import UsersTab from "@/layouts/dashboard-tabs/components/users-tab/UsersTab";
 
-export type DashboardTabName = "users" | "orders" | "products";
-
 type DashboardTab = {
   labelTranslationKey: string;
   name: DashboardTabName;
@@ -17,22 +15,31 @@ type DashboardTab = {
   content: ReactNode;
 };
 
+export const DASHBOARD_TAB_NAMES = {
+  USERS: "users",
+  ORDERS: "orders",
+  PRODUCTS: "products"
+} as const;
+
+export type DashboardTabName =
+  (typeof DASHBOARD_TAB_NAMES)[keyof typeof DASHBOARD_TAB_NAMES];
+
 export const dashboardTabs: DashboardTab[] = [
   {
     labelTranslationKey: "dashboardTabs.users.label",
-    name: "users",
+    name: DASHBOARD_TAB_NAMES.USERS,
     icon: <PeopleIcon />,
     content: <UsersTab />
   },
   {
     labelTranslationKey: "dashboardTabs.orders.label",
-    name: "orders",
+    name: DASHBOARD_TAB_NAMES.ORDERS,
     icon: <ReceiptLongIcon />,
     content: <OrdersTab />
   },
   {
     labelTranslationKey: "dashboardTabs.products.label",
-    name: "products",
+    name: DASHBOARD_TAB_NAMES.PRODUCTS,
     icon: <StorefrontIcon />,
     content: <ProductsTab />
   }

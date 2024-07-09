@@ -1,12 +1,18 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import DashboardPage from "@/pages/dashboard/DashboardPage";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
+jest.mock("@/layouts/dashboard-tabs/DashboardTabs", () => ({
+  __esModule: true,
+  default: () => <div>DashboardTabs</div>
+}));
 
 describe("DashboardPage", () => {
   test("renders correctly", () => {
-    render(<DashboardPage />);
+    renderWithProviders(<DashboardPage />);
 
-    const content = screen.getByText("Dashboard page");
+    const content = screen.getByText("DashboardTabs");
     expect(content).toBeInTheDocument();
   });
 });
