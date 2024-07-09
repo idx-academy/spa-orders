@@ -7,7 +7,9 @@ module.exports = {
   plugins: [
     ...baseConfig.plugins,
     new Dotenv({
-      path: path.join(__dirname, "..", ".env.production")
+      path: path.join(__dirname, "..", ".env.production"),
+      defaults: path.join(__dirname, "..", ".env"),
+      systemvars: true
     })
   ]
 };
