@@ -62,10 +62,10 @@ const Footer = () => {
               translationKey="footer.location.title"
               variant="h3"
             />
-            <AppBox component="ul" className="footer__list" data-cy="footer-location-info">
+            <AppBox component="ul" className="footer__list">
               {locationItems}
             </AppBox>
-            <AppBox className="footer__socials" component="ul" data-cy="footer-socials">
+            <AppBox className="footer__socials" component="ul">
               {socialsItems}
             </AppBox>
           </AppBox>
@@ -75,7 +75,7 @@ const Footer = () => {
               translationKey="footer.support.title"
               variant="h3"
             />
-            <AppBox component="ul" className="footer__list" data-cy="footer-customer-support-info">
+            <AppBox component="ul" className="footer__list">
               {customerSupportItems}
             </AppBox>
           </AppBox>
@@ -85,7 +85,7 @@ const Footer = () => {
               translationKey="footer.policy.title"
               variant="h3"
             />
-            <AppBox component="ul" className="footer__list" data-cy="footer-policy-info">
+            <AppBox component="ul" className="footer__list">
               {policyItems}
             </AppBox>
           </AppBox>

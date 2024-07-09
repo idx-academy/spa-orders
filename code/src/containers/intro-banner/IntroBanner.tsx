@@ -30,7 +30,6 @@ const IntroBanner = () => {
             size="large"
             isRounded={false}
             badgeContent={badgeContent}
-            data-cy="banner-bage"
           />
           <AppTypography
             className="spa-banner-intro__heading"

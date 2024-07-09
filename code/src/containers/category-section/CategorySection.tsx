@@ -22,7 +22,7 @@ const CategorySection = () => {
         variant="h3"
         className="spa-category-section__title"
       />
-      <AppBox className="spa-category-section__container" data-cy="category-section-container">
+      <AppBox className="spa-category-section__container">
         {categoryItems}
       </AppBox>
     </AppBox>

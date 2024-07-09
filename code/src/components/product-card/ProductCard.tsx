@@ -33,9 +33,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           </AppBox>
         </AppBox>
         <AppBox>
-          <AppTypography variant="caption" data-cy="product-card-caption">
-            {product.name}
-          </AppTypography>
+          <AppTypography variant="caption">{product.name}</AppTypography>
         </AppBox>
       </AppLink>
       <AppBox className="spa-product-card__footer">
