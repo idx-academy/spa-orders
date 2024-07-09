@@ -1,0 +1,10 @@
+{
+  "myCart.label": "Мій кошик",
+  "orderSummary.label": "Підсумок замовлення",
+  "subtotal.label": "Проміжний підсумок",
+  "delivery.label": "Доставка",
+  "country.label": "Україна",
+  "free.label": "БЕЗКОШТОВНО",
+  "total.label": "Загальна сума",
+  "createOrder.label": "Створити замовлення"
+}
