@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 
+import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -15,6 +16,7 @@ import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon"
 import AppLink from "@/components/app-link/AppLink";
 import AppLoader from "@/components/app-loader/AppLoader";
 import AppLogo from "@/components/app-logo/AppLogo";
+import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import routes from "@/constants/routes";
@@ -23,7 +25,7 @@ import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {
   logout,
   useIsAuthLoadingSelector,
-  useIsAuthSelector
+  useIsAuthSelector, useIsShopManagerSelector
 } from "@/store/slices/userSlice";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
@@ -32,6 +34,7 @@ const HeaderToolbar = () => {
   const { openModal } = useModalContext();
   const isAuthenticated = useIsAuthSelector();
   const isLoadingAuth = useIsAuthLoadingSelector();
+  const isShopManeger = useIsShopManagerSelector();
   const dispatch = useAppDispatch();
 
   const [searchValue, setSearchValue] = useState("");
@@ -87,14 +90,24 @@ const HeaderToolbar = () => {
     </AppButton>
   );
 
+  const DashboardButton = isShopManeger && (
+    <AppTooltip titleTranslationKey="dashboard.tooltip">
+      <AppIconButton to={routes.dashboard.path} component={AppLink}>
+        <DashboardCustomizeIcon fontSize="large" />
+      </AppIconButton>
+    </AppTooltip>
+  );
+
   const authButton = loadingButton || logoutButton || signInButton;
 
   const loadingOrdersButton = isLoadingAuth && <AppLoader />;
 
   const authenticatedOrdersButton = isAuthenticated && !isLoadingAuth && (
-    <AppIconButton to={routes.orders.path} component={AppLink}>
-      <ListAltIcon className="header__toolbar-icon" fontSize="large" />
-    </AppIconButton>
+    <AppTooltip titleTranslationKey="orders.tooltip">
+      <AppIconButton to={routes.orders.path} component={AppLink}>
+        <ListAltIcon className="header__toolbar-icon" fontSize="large" />
+      </AppIconButton>
+    </AppTooltip>
   );
 
   const ordersButton = loadingOrdersButton || authenticatedOrdersButton;
@@ -129,8 +142,10 @@ const HeaderToolbar = () => {
           />
           <AppBox className="header__toolbar-action-icons">
             <AppBox>
-              {ordersButton}
-              {cartButton}
+              {DashboardButton}
+              {OrdersButton}
+              {CartButton}
+             
             </AppBox>
             {authButton}
           </AppBox>

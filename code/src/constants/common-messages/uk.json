@@ -6,5 +6,8 @@
   "signIn.label": "Увійти",
   "signIn.success": "Ви успішно увійшли",
   "signUp.success": "Ви успішно зареєструвалися",
-  "logout.label": "Вийти"
+  "logout.label": "Вийти",
+  "dashboard.tooltip": "Адмін-панель",
+  "cart.tooltip": "Кошик",
+  "orders.tooltip": "Замовлення"
 }

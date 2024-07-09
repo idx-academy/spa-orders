@@ -6,5 +6,8 @@
   "signIn.success": "You successfully signed in",
   "signUp.success": "You successfully signed up",
   "signIn.label": "Sign In",
-  "logout.label": "Logout"
+  "logout.label": "Logout",
+  "dashboard.tooltip": "Dashboard",
+  "cart.tooltip": "Cart",
+  "orders.tooltip": "Orders"
 }

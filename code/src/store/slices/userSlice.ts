@@ -103,5 +103,7 @@ export const useIsAuthLoadingSelector = () =>
   useAppSelector((store) => store.user.isLoading);
 export const useUserDetailsSelector = () =>
   useAppSelector((store) => store.user.userDetails);
+export const useIsShopManagerSelector = () =>
+  useAppSelector((store) => store.user.userDetails?.role === "ROLE_SHOP_MANAGER");
 
 export default userSlice.reducer;
