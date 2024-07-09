@@ -8,22 +8,23 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 import "@/components/app-tooltip/AppTooltip.scss";
 
-const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(
-  function AppTooltip({ titleTranslationKey, children, ...props }, ref) {
-    const translatedTitle = titleTranslationKey ? (
-      <AppTypography
-        className="spa-app-tooltip"
-        translationKey={titleTranslationKey}
-      />
-    ) : undefined;
+const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(function (
+  { titleTranslationKey, children, ...props },
+  ref
+) {
+  const translatedTitle = titleTranslationKey ? (
+    <AppTypography
+      className="spa-app-tooltip"
+      translationKey={titleTranslationKey}
+    />
+  ) : undefined;
 
-    return (
-      <Tooltip title={translatedTitle} arrow {...props}>
-        <AppBox ref={ref}>{children}</AppBox>
-      </Tooltip>
-    );
-  }
-);
+  return (
+    <Tooltip title={translatedTitle} arrow {...props}>
+      <AppBox ref={ref}>{children}</AppBox>
+    </Tooltip>
+  );
+});
 
 AppTooltip.displayName = "AppTooltip";
 

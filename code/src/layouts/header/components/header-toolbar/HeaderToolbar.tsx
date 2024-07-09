@@ -26,7 +26,7 @@ import {
   logout,
   useIsAuthLoadingSelector,
   useIsAuthSelector,
-  useUserDetailsSelector
+  useUserRoleSelector
 } from "@/store/slices/userSlice";
 
 import "@/layouts/header/components/header-toolbar/HeaderToolbar.scss";
@@ -35,12 +35,10 @@ const HeaderToolbar = () => {
   const { openModal } = useModalContext();
   const isAuthenticated = useIsAuthSelector();
   const isLoadingAuth = useIsAuthLoadingSelector();
-  const userDetails = useUserDetailsSelector();
+  const userRole = useUserRoleSelector();
   const dispatch = useAppDispatch();
 
   const [searchValue, setSearchValue] = useState("");
-
-  const { role } = userDetails || {};
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -95,7 +93,7 @@ const HeaderToolbar = () => {
 
   const loadingDashboardButton = isLoadingAuth && <AppLoader />;
 
-  const authenticatedDashboardButton = role === "ROLE_SHOP_MANAGER" &&
+  const authenticatedDashboardButton = userRole === "ROLE_SHOP_MANAGER" &&
     !isLoadingAuth && (
       <AppTooltip titleTranslationKey="dashboard.tooltip">
         <AppIconButton to={routes.dashboard.path} component={AppLink}>

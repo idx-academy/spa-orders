@@ -104,5 +104,13 @@ export const useIsAuthLoadingSelector = () =>
   useAppSelector((store) => store.user.isLoading);
 export const useUserDetailsSelector = () =>
   useAppSelector((store) => store.user.userDetails);
+export const useUserRoleSelector = () =>
+  useAppSelector((store) => {
+    const userDetails = store.user.userDetails;
+    if (userDetails === null) {
+      return null;
+    }
+    return userDetails.role;
+  });
 
 export default userSlice.reducer;

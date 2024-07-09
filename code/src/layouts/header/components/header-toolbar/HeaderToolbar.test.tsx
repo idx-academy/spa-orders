@@ -7,7 +7,7 @@ import {
   logout,
   useIsAuthLoadingSelector,
   useIsAuthSelector,
-  useUserDetailsSelector
+  useUserRoleSelector
 } from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
@@ -17,7 +17,7 @@ jest.mock("@/store/slices/userSlice", () => ({
   default: () => ({}),
   useIsAuthSelector: jest.fn(),
   useIsAuthLoadingSelector: jest.fn(),
-  useUserDetailsSelector: jest.fn(),
+  useUserRoleSelector: jest.fn(),
   logout: jest.fn()
 }));
 
@@ -82,9 +82,7 @@ describe("HeaderToolbar", () => {
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(true);
       (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-      (useUserDetailsSelector as jest.Mock).mockReturnValue({
-        role: "ROLE_SHOP_MANAGER"
-      });
+      (useUserRoleSelector as jest.Mock).mockReturnValue("ROLE_SHOP_MANAGER");
       renderWithProviders(<HeaderToolbar />);
     });
 
