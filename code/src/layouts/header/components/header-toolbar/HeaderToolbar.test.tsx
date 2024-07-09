@@ -82,7 +82,7 @@ describe("HeaderToolbar", () => {
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(true);
       (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-      (useUserRoleSelector as jest.Mock).mockReturnValue("ROLE_SHOP_MANAGER");
+      (useUserRoleSelector as jest.Mock).mockReturnValue("ROLE_MANAGER");
       renderWithProviders(<HeaderToolbar />);
     });
 

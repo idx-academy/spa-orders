@@ -93,7 +93,7 @@ const HeaderToolbar = () => {
 
   const loadingDashboardButton = isLoadingAuth && <AppLoader />;
 
-  const authenticatedDashboardButton = userRole === "ROLE_SHOP_MANAGER" &&
+  const authenticatedDashboardButton = userRole === "ROLE_MANAGER" &&
     !isLoadingAuth && (
       <AppTooltip titleTranslationKey="dashboard.tooltip">
         <AppIconButton to={routes.dashboard.path} component={AppLink}>
