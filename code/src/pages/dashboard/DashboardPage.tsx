@@ -1,10 +1,13 @@
-import AppTypography from "@/components/app-typography/AppTypography";
+import DashboardTabs from "@/layouts/dashboard-tabs/DashboardTabs";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
+
+import "@/pages/dashboard/DashboardPage.scss";
 
 const DashboardPage = () => {
   return (
-    <>
-      <AppTypography>Dashboard page</AppTypography>
-    </>
+    <PageWrapper className="dashboard-page">
+      <DashboardTabs />
+    </PageWrapper>
   );
 };
 
