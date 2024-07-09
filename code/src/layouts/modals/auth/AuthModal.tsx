@@ -67,7 +67,12 @@ const AuthModal = () => {
           component="span"
           translationKey={toggleTextTranslationKey}
         />
-        <AppButton variant="text" size="small" onClick={toggleForm}>
+        <AppButton
+          variant="text"
+          size="small"
+          onClick={toggleForm}
+          data-cy="auth-toggle-tab"
+        >
           <AppTypography
             translationKey={toggleButtonTextTranslationKey}
             component="span"

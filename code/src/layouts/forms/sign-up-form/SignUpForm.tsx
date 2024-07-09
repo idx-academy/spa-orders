@@ -68,12 +68,14 @@ const SignUpForm = () => {
           error={Boolean(errors.firstName)}
           helperText={errors.firstName ? errors.firstName.message : undefined}
           labelTranslationKey="signUp.firstname.field"
+          data-cy="auth-firstname"
         />
         <AppInput
           {...register("lastName")}
           error={Boolean(errors.lastName)}
           helperText={errors.lastName ? errors.lastName.message : undefined}
           labelTranslationKey="signUp.lastname.field"
+          data-cy="auth-lastname"
         />
       </AppBox>
       <AppBox className="spa-sign-up__email-password-container">
@@ -83,6 +85,7 @@ const SignUpForm = () => {
           helperText={errors.email ? errors.email.message : undefined}
           labelTranslationKey="signUp.email.field"
           fullWidth
+          data-cy="auth-email"
         />
         <AppInput
           {...register("password")}
@@ -92,6 +95,7 @@ const SignUpForm = () => {
           helperText={errors.password ? errors.password.message : undefined}
           labelTranslationKey="signUp.password.field"
           fullWidth
+          data-cy="auth-password"
         />
         <AppInput
           {...register("confirmPassword")}
@@ -103,6 +107,7 @@ const SignUpForm = () => {
           }
           labelTranslationKey="signUp.confirmpassword.field"
           fullWidth
+          data-cy="auth-confirm-password"
         />
       </AppBox>
       <AppButton
@@ -111,6 +116,7 @@ const SignUpForm = () => {
         fullWidth
         type="submit"
         isLoading={isLoading}
+        data-cy="auth-signup-submit"
       >
         <AppTypography
           variant="subtitle2"

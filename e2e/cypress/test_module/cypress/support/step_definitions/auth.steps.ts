@@ -12,7 +12,7 @@ When("I see the header", () => {
 });
 
 When("I click eye icon", () => {
-  cy.get('[data-testid="VisibilityOffIcon"]').click();
+  cy.get('[data-testid="VisibilityOffIcon"]').first().click();
 });
 
 When("I click sign up button in the header", () => {
