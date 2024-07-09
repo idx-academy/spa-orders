@@ -16,10 +16,10 @@ type CartItemsType = {
   productPrice: number;
   quantity: number;
   calculatedPrice: number;
-}[];
+};
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState<CartItemsType>(items);
+  const [cartItems, setCartItems] = useState<CartItemsType[]>(items);
 
   const handleQuantityChange = (index: number, newQuantity: number) => {
     const updatedCartItems = cartItems.map((item, i) =>
@@ -55,7 +55,7 @@ const CartPage = () => {
 
   const cartItemsBlock = cartItems.map((item, index) => (
     <CartItem
-      key={index}
+      key={item.name}
       item={item}
       onQuantityChange={handleQuantityChangeWrapper(index)}
       onDelete={handleOnDeleteWrapper(index)}

@@ -11,20 +11,22 @@ import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/pages/cart/components/CartItem.scss";
 
+type ProductCartType = {
+  image: string;
+  name: string;
+  productPrice: number;
+  quantity: number;
+  calculatedPrice: number;
+};
+
 type CartItemProps = {
-  item: {
-    image: string;
-    name: string;
-    productPrice: number;
-    quantity: number;
-    calculatedPrice: number;
-  };
+  item: ProductCartType;
   onQuantityChange: (quantity: number) => void;
   onDelete: () => void;
 };
 
 const CartItem = ({ item, onQuantityChange, onDelete }: CartItemProps) => {
-  const [quantity, setQuantity] = useState<string>(item.quantity.toString());
+  const [quantity, setQuantity] = useState(item.quantity.toString());
 
   useEffect(() => {
     setQuantity(item.quantity.toString());
@@ -50,7 +52,11 @@ const CartItem = ({ item, onQuantityChange, onDelete }: CartItemProps) => {
 
   return (
     <AppBox className="spa-cart-item">
-      <img src={item.image} alt={item.name} className="spa-cart-item__image" />
+      <AppBox
+        component="img"
+        src={item.image}
+        className="spa-cart-item__image"
+      />
       <AppBox className="spa-cart-item__details">
         <AppTypography className="spa-cart-item__title" variant="h3">
           {item.name}
