@@ -10,7 +10,6 @@
     padding: spacing(5) spacing(2);
     position: relative;
     background-color: var(--spa-black-background-color, $black);
-    flex: 0 0 auto;
     box-sizing: border-box;
   }
 
@@ -34,7 +33,6 @@
   }
 
   &__footer {
-    flex: 0 0 auto;
     padding: spacing(5);
     box-sizing: border-box;
     border-top: 1px solid var(--spa-light-border-color, $light);
