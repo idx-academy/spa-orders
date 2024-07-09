@@ -11,11 +11,7 @@ const bodyItems: TableItem[] = [
 ];
 
 const renderHeadItem = (item: string) => <th key={item}>{item}</th>;
-const renderBodyItem = (item: TableItem) => (
-  <tr key={item.id}>
-    <td>{item.value}</td>
-  </tr>
-);
+const renderBodyItem = (item: TableItem) => <td key={item.id}>{item.value}</td>;
 
 describe("AppTable", () => {
   beforeEach(() => {
