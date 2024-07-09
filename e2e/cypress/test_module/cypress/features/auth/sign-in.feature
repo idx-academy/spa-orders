@@ -6,16 +6,24 @@ Feature: Sign In
         And I click sign up button in the header
 
     Scenario: Successfull sign in
-        And I type type an email 'test@mail.com'
+        And I type an email test@mail.com
         And I type a password 'Tomato1$'
         And I press sign in button inside modal
         Then I should receive a snackbar with message 'You successfully signed in'
 
-    Scenario: Sign in form validation
-        And I type type an email 'test@mail.com'
-        And I type a password 'password'
+    Scenario Outline: Sign in form validation
+        And I type an email '<email>'
+        And I type a password '<password>'
         And I press sign in button inside modal
-        Then I should see validation errors displayed
+        Then I should see validation error message '<message>'
+
+        Examples:
+            | email            | password      | message                                              |
+            | bad_email        | test_password | Please provide a valid email address                 |
+            | example@mail.com | 123           | Password must be at least 8 characters long          |
+            | example@mail.com | 12345678      | Password must contain at least one uppercase letter  |
+            | example@mail.com | 12345678A     | Password must contain at least one lowercase letter  |
+            | example@mail.com | 12345678Aa    | Password must contain at least one special character |
 
     Scenario: Show/hide password visibility
         And I type a password 'mypassword'
