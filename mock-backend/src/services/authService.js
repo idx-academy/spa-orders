@@ -6,7 +6,7 @@ const generateToken = (payload) => {
   if (payload.email.startsWith("admin")) {
     role = "ROLE_ADMIN";
   } else if (payload.email.startsWith("shopmanager")) {
-    role = "ROLE_SHOP_MANAGER";
+    role = "ROLE_MANAGER";
   }
 
   return jwt.sign({ scope: role, ...payload }, "jwt-secret", {

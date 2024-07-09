@@ -11,6 +11,6 @@ export const ERROR_MESSAGES_BY_STATUS_CODE = {
 
 export const ROLES = {
   USER: "ROLE_USER",
-  SHOP_MANAGER: "ROLE_SHOP_MANAGER",
+  SHOP_MANAGER: "ROLE_MANAGER",
   ADMIN: "ROLE_ADMIN"
 } as const;

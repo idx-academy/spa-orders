@@ -16,6 +16,6 @@ export const httpMethod = {
 
 export const ROLES = {
   USER: "ROLE_USER",
-  SHOP_MANAGER: "ROLE_SHOP_MANAGER",
+  SHOP_MANAGER: "ROLE_MANAGER",
   ADMIN: "ROLE_ADMIN"
 } as const;
