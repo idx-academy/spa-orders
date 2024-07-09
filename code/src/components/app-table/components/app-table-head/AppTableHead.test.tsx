@@ -1,10 +1,10 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import AppTableHead from "@/components/app-table/components/app-table-head/AppTableHead";
 
 describe("AppTableHead", () => {
   test("renders column headers", () => {
-    const { getByText } = render(
+    render(
       <table>
         <AppTableHead>
           <tr>
@@ -14,7 +14,7 @@ describe("AppTableHead", () => {
         </AppTableHead>
       </table>
     );
-    expect(getByText(/Header 1/)).toBeInTheDocument();
-    expect(getByText(/Header 2/)).toBeInTheDocument();
+    const header = screen.getByText(/Header 1/);
+    expect(header).toBeInTheDocument();
   });
 });

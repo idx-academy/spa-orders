@@ -1,10 +1,10 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import AppTableBody from "@/components/app-table/components/app-table-body/AppTableBody";
 
 describe("AppTableBody", () => {
   test("renders with children", () => {
-    const { getByText } = render(
+    render(
       <table>
         <AppTableBody>
           <tr>
@@ -13,6 +13,7 @@ describe("AppTableBody", () => {
         </AppTableBody>
       </table>
     );
-    expect(getByText(/Test/)).toBeInTheDocument();
+    const child = screen.getByText(/Test/);
+    expect(child).toBeInTheDocument();
   });
 });
