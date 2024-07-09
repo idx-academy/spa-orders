@@ -2,7 +2,6 @@
 
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 
-// Any means all pages with header
 Given("I am on any page", () => {
   cy.visit("/");
 });
