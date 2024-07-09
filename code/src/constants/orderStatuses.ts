@@ -1,7 +1,7 @@
 export const orderStatuses = {
-  IN_PROGRESS: "in progress",
-  SHIPPED: "shipped",
-  DELIVERED: "delivered",
-  CANCELED: "canceled",
-  COMPLETED: "completed"
+  IN_PROGRESS: "In progress",
+  SHIPPED: "Shipped",
+  DELIVERED: "Delivered",
+  CANCELED: "Canceled",
+  COMPLETED: "Completed"
 } as const;

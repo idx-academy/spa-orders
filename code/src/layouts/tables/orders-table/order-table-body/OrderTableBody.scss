@@ -1,0 +1,15 @@
+@import "@design-system";
+
+.spa-order-table__body {
+  @include transition((background-color));
+
+  background-color: var(--spa-order-table-body-bg-color, $white);
+
+  &:hover {
+    background-color: var(--spa-order-table-body-hover-bg-color, $light);
+  }
+
+  &-status {
+    width: 75px;
+  }
+}
