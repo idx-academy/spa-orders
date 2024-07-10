@@ -30,7 +30,7 @@ const ProductsContainer = ({
 
   const { openDrawer } = useDrawerContext();
 
-  const { openSnackbar } = useSnackbar();
+  const { openSnackbarWithTimeout } = useSnackbar();
 
   if (isError) {
     return (
@@ -51,8 +51,8 @@ const ProductsContainer = ({
         await addToCart({ productId: product.id, userId: user.id }).unwrap();
         openDrawer(<CartDrawer />);
       }
-    } catch (e) {
-      openSnackbar({
+    } catch {
+      openSnackbarWithTimeout({
         variant: "error",
         messageTranslationKey: "cart.itemAddition.fail"
       });

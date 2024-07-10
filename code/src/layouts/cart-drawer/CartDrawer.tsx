@@ -24,7 +24,7 @@ const CartDrawer = () => {
 
   const { closeDrawer } = useDrawerContext();
 
-  const { openSnackbar } = useSnackbar();
+  const { openSnackbarWithTimeout } = useSnackbar();
 
   const handleRemoveItem = async (product: CartItem) => {
     try {
@@ -34,8 +34,8 @@ const CartDrawer = () => {
           productId: product.productId
         }).unwrap();
       }
-    } catch (e) {
-      openSnackbar({
+    } catch {
+      openSnackbarWithTimeout({
         variant: "error",
         messageTranslationKey: "cart.itemDeletion.fail"
       });
