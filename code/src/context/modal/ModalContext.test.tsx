@@ -72,4 +72,12 @@ describe("ModalContext", () => {
       expect(modalContentAfterSecondClick).not.toBeInTheDocument();
     });
   });
+
+  describe("useModalContext", () => {
+    test("should throw an error when context in not within a provider", () => {
+      expect(() => render(<ContentPlayground />)).toThrow(
+        new Error("useModalContext must be used within a ModalProvider")
+      );
+    });
+  });
 });
