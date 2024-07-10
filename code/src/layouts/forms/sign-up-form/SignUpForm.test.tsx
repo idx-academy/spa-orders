@@ -12,8 +12,8 @@ jest.mock("@/hooks/use-sign-up/useSignUp", () => ({
   default: jest.fn()
 }));
 
-jest.mock("@/context/ModalContext", () => ({
-  ...jest.requireActual("@/context/ModalContext"),
+jest.mock("@/context/modal/ModalContext", () => ({
+  ...jest.requireActual("@/context/modal/ModalContext"),
   useModalContext: jest.fn()
 }));
 
