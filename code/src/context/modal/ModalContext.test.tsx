@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, renderHook, screen } from "@testing-library/react";
 
 import { ModalProvider, useModalContext } from "@/context/modal/ModalContext";
 
@@ -30,6 +30,20 @@ const ContentPlayground = () => {
   );
 };
 
+const findAndClickButton = (id: string) => {
+  const button = screen.getByTestId(id);
+  fireEvent.click(button);
+};
+
+const assertContentExistance = (shouldContentExist: boolean) => {
+  const modalContent = screen.queryByText("ModalContent");
+  if (shouldContentExist) {
+    expect(modalContent).toBeInTheDocument();
+  } else {
+    expect(modalContent).not.toBeInTheDocument();
+  }
+};
+
 describe("ModalContext", () => {
   describe("ModalProvider", () => {
     beforeEach(() => {
@@ -41,43 +55,35 @@ describe("ModalContext", () => {
     });
 
     test("renders content correctly when openModal is called", () => {
-      const openModalButton = screen.getByTestId("openModal");
-      fireEvent.click(openModalButton);
-
-      const modalContent = screen.getByText("ModalContent");
-      expect(modalContent).toBeInTheDocument();
+      findAndClickButton("openModal");
+      assertContentExistance(true);
     });
 
     test("closes modal correctly when it was previously opened", () => {
-      const openModalButton = screen.getByTestId("openModal");
-      fireEvent.click(openModalButton);
-
-      const closeModalButton = screen.getByTestId("closeModal");
-      fireEvent.click(closeModalButton);
-
-      const modalContent = screen.queryByText("ModalContent");
-      expect(modalContent).not.toBeInTheDocument();
+      findAndClickButton("openModal");
+      findAndClickButton("closeModal");
+      assertContentExistance(false);
     });
 
     test("toggles modal correctly", () => {
-      const toggleModalButton = screen.getByTestId("toggleModal");
-      fireEvent.click(toggleModalButton);
+      findAndClickButton("toggleModal");
+      assertContentExistance(true);
 
-      const modalContentAfterFirstClick = screen.getByText("ModalContent");
-      expect(modalContentAfterFirstClick).toBeInTheDocument();
-
-      fireEvent.click(toggleModalButton);
-
-      const modalContentAfterSecondClick = screen.queryByText("ModalContent");
-      expect(modalContentAfterSecondClick).not.toBeInTheDocument();
+      findAndClickButton("toggleModal");
+      assertContentExistance(false);
     });
   });
 
   describe("useModalContext", () => {
-    test("should throw an error when context in not within a provider", () => {
-      expect(() => render(<ContentPlayground />)).toThrow(
-        new Error("useModalContext must be used within a ModalProvider")
-      );
+    beforeEach(() => {
+      jest.spyOn(console, "error").mockImplementation(() => {});
+    });
+
+    test("throws an error when context in not within a provider", () => {
+      const errorMessage =
+        "useModalContext must be used within a ModalProvider";
+
+      expect(() => renderHook(() => useModalContext())).toThrow(errorMessage);
     });
   });
 });
