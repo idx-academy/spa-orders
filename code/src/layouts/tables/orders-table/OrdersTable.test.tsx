@@ -9,10 +9,12 @@ import {
 describe("OrdersTable", () => {
   test("renders correctly", () => {
     render(<OrdersTable orders={ordersContent} />);
+
     tableColumns.forEach((column) => {
       const columnElement = screen.getByText(column);
       expect(columnElement).toBeInTheDocument();
     });
+
     const ordersId = screen.getByText(ordersContent[0].id);
     expect(ordersId).toBeInTheDocument();
   });

@@ -3,10 +3,11 @@ import { render, screen } from "@testing-library/react";
 import OrdersList from "@/layouts/orders-list/OrdersList";
 
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
-import { Order } from "@/types/order.types";
+import { UserOrder } from "@/types/order.types";
 
-const mockOrder: Order = {
+const mockOrder: UserOrder = {
   id: "order-1",
+  total: 100,
   receiver: {
     firstName: "John",
     lastName: "Doe",

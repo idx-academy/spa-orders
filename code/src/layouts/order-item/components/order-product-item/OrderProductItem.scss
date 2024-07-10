@@ -1,9 +1,11 @@
 @import "@design-system";
 
+$divider-color: var(--spa-order-divider-color, $ghost-alpha);
+
 .spa-order-product {
   flex-grow: 1;
   &__items {
-    border-bottom: 1px solid $ghost-alpha;
+    border-bottom: 1px solid $divider-color;
   }
   &__container {
     width: 100%;

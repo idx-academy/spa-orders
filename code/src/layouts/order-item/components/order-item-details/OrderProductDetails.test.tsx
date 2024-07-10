@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 
 import OrderProductDetails from "@/layouts/order-item/components/order-item-details/OrderItemDetails";
 
-import { Order } from "@/types/order.types";
+import { UserOrder } from "@/types/order.types";
 
-const mockOrder: Order = {
+const mockOrder: UserOrder = {
   id: "order-1",
   receiver: {
     firstName: "John",
@@ -33,7 +33,8 @@ const mockOrder: Order = {
   ],
   isPaid: false,
   orderStatus: "IN_PROGRESS",
-  createdAt: "20.12.2020"
+  createdAt: "20.12.2020",
+  total: 0
 };
 
 describe("Test OrderProductDetails", () => {
@@ -47,7 +48,9 @@ describe("Test OrderProductDetails", () => {
     const deliveryMethodField = screen.getByText(
       /orderProductItem.details.deliveryMethod/
     );
+    const productName = screen.getByText(mockOrder.orderItems[0].product.name);
 
+    expect(productName).toBeInTheDocument();
     expect(cityField).toBeInTheDocument();
     expect(departmentField).toBeInTheDocument();
     expect(deliveryMethodField).toBeInTheDocument();

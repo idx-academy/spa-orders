@@ -1,7 +1,9 @@
 @import "@design-system";
 
+$divider-color: var(--spa-order-divider-color, $ghost-alpha);
+
 .spa-order-details {
-  border-top: 1px solid $ghost-alpha;
+  border-top: 1px solid $divider-color;
   display: flex;
   padding: spacing(5) spacing(12);
   gap: spacing(7);
@@ -17,7 +19,7 @@
   &__divider {
     width: 1px;
     min-height: 100%;
-    background-color: $ghost-alpha;
+    background-color: $divider-color;
   }
 
   &__receiver {

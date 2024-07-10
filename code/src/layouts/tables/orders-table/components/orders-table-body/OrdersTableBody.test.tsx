@@ -19,7 +19,9 @@ describe("OrdersTableBody", () => {
     const ordersReceiver = screen.getByText(
       `${ordersContent[0].receiver.firstName} ${ordersContent[0].receiver.lastName}`
     );
+    const doneIcon = screen.getByTestId(/DoneIcon/);
 
+    expect(doneIcon).toBeInTheDocument();
     expect(ordersId).toBeInTheDocument();
     expect(ordersReceiver).toBeInTheDocument();
   });

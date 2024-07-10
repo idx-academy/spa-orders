@@ -2,10 +2,10 @@ import { render, screen } from "@testing-library/react";
 
 import OrderItem from "@/layouts/order-item/OrderItem";
 
-import { Order } from "@/types/order.types";
+import { UserOrder } from "@/types/order.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
-const mockOrder: Order = {
+const mockOrder: UserOrder = {
   id: "order-1",
   receiver: {
     firstName: "John",
@@ -34,7 +34,8 @@ const mockOrder: Order = {
   ],
   isPaid: false,
   orderStatus: "IN_PROGRESS",
-  createdAt: "2024-06-27T12:35:14.396Z"
+  createdAt: "2024-06-27T12:35:14.396Z",
+  total: 123
 };
 
 describe("OrderItem", () => {
@@ -48,9 +49,7 @@ describe("OrderItem", () => {
     expect(receiverEmail).toBeInTheDocument();
   });
   test("renders total price correctly", () => {
-    const totalPrice = screen.getAllByText(
-      formatPrice(mockOrder.orderItems[0].price)
-    );
-    expect(totalPrice).toHaveLength(2);
+    const totalPrice = screen.getByText(formatPrice(mockOrder.total));
+    expect(totalPrice).toBeInTheDocument();
   });
 });
