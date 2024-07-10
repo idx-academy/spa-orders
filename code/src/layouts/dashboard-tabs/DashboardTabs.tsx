@@ -35,28 +35,28 @@ const DashboardTabs = () => {
     }
   }, []);
 
+  const tabLabels = dashboardTabs.map((tab) => (
+    <AppBox
+      key={tab.name}
+      onClick={() => handleSetActiveTab(tab.name)}
+      className={cn(
+        "dashboard-tabs__label-item",
+        tabFromQuery === tab.name && "dashboard-tabs__label-item--active"
+      )}
+    >
+      {tab.icon}
+      <AppTypography
+        component="span"
+        translationKey={tab.labelTranslationKey}
+      />
+    </AppBox>
+  ));
+
   const tabContent = dashboardTabs.find((tab) => tab.name === tabFromQuery);
 
   return (
     <AppBox className="dashboard-tabs">
-      <AppBox className="dashboard-tabs__label-container">
-        {dashboardTabs.map((tab) => (
-          <AppBox
-            key={tab.name}
-            onClick={() => handleSetActiveTab(tab.name)}
-            className={cn(
-              "dashboard-tabs__label-item",
-              tabFromQuery === tab.name && "dashboard-tabs__label-item--active"
-            )}
-          >
-            {tab.icon}
-            <AppTypography
-              component="span"
-              translationKey={tab.labelTranslationKey}
-            />
-          </AppBox>
-        ))}
-      </AppBox>
+      <AppBox className="dashboard-tabs__label-container">{tabLabels}</AppBox>
       <AppBox className="dashboard-tabs__content-container">
         {tabContent?.content}
       </AppBox>
