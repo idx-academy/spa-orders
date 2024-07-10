@@ -17,6 +17,10 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
 }));
 
+jest.mock("@/store/api/cartApi", () => ({
+  useAddToCartMutation: jest.fn(() => [jest.fn(), {}])
+}));
+
 const defaultOptions: RTKQueryReturnState<typeof mockData> = {
   data: mockData,
   isLoading: false,

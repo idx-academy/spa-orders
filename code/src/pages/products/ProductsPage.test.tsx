@@ -6,8 +6,9 @@ import { PaginationParams, RTKQueryReturnState } from "@/types/common";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/api/cartApi", () => ({
-  useAddToCartMutation: jest.fn()
+  useAddToCartMutation: jest.fn(() => [jest.fn(), {}])
 }));
+
 jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
 }));

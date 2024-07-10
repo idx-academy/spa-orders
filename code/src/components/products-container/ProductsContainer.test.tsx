@@ -64,6 +64,10 @@ const mockProducts: Product[] = [
   }
 ];
 
+jest.mock("@/store/api/cartApi", () => ({
+  useAddToCartMutation: jest.fn(() => [jest.fn(), {}])
+}));
+
 const renderProductsContainer = (
   extraProps: Partial<ProductsContainerProps> = {}
 ) => {
