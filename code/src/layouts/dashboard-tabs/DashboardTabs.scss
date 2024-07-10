@@ -30,7 +30,10 @@
 
     &--active {
       border-color: var(--spa-dashboard-tabs-active-color, $purple);
-      background-color: $ghost-alpha-active;
+      background-color: var(
+        --spa-dashboard-tabs-active-bg-color,
+        $ghost-alpha-active
+      );
     }
   }
 
