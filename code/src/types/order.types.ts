@@ -1,6 +1,6 @@
 import { Pageable, Sort } from "@/types/common";
-import { Product } from "@/types/product.types";
 import { PostAddress } from "@/types/delivery.types";
+import { Product } from "@/types/product.types";
 import { User } from "@/types/user.types";
 
 export type OrderStatus =
@@ -18,9 +18,10 @@ export type OrderItem = {
 
 type Receiver = Pick<User, "email" | "firstName" | "lastName">;
 
-export type Order = {
+type BaseOrder = {
   id: string;
   isPaid: boolean;
+  total: number;
   orderStatus: OrderStatus;
   createdAt: string;
   receiver: Receiver;
@@ -28,7 +29,7 @@ export type Order = {
   orderItems: OrderItem[];
 };
 
-export type OrderResponse = {
+type BaseOrderResponse = {
   totalElements: number;
   totalPages: number;
   sort: Sort;
@@ -39,7 +40,19 @@ export type OrderResponse = {
   numberOfElements: number;
   size: number;
   empty: boolean;
-  content: Order[];
+};
+
+//In the future, fields in the UserOrder and AdminOrder types may be different.
+export type UserOrder = BaseOrder;
+
+export type AdminOrder = BaseOrder;
+
+export type UserOrderResponse = BaseOrderResponse & {
+  content: UserOrder[];
+};
+
+export type AdminOrderResponse = BaseOrderResponse & {
+  content: AdminOrder[];
 };
 
 export type OrderRequest = { id: string };
