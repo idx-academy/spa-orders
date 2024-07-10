@@ -52,7 +52,7 @@ const CartDrawer = () => {
 
   return (
     <AppBox className="cart-drawer">
-      <AppBox className="cart-drawer__header">
+      <AppBox className="cart-drawer__header" data-cy="cart-drawer">
         <AppIconButton
           className="cart-drawer__close-button"
           onClick={closeDrawer}
