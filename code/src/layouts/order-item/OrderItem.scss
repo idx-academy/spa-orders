@@ -6,6 +6,7 @@
       padding-inline: spacing(5);
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
   }
 
@@ -19,11 +20,8 @@
     gap: spacing(2);
   }
 
-  &__payment-status {
-    width: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: spacing(1);
+  &__badge-status {
+    width: 75px;
+    text-align: center;
   }
 }

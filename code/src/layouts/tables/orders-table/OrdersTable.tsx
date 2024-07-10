@@ -4,16 +4,16 @@ import OrdersTableHead from "@/layouts/tables/orders-table/components/orders-tab
 
 import AppTable from "@/components/app-table/AppTable";
 
-import { Order } from "@/types/order.types";
+import { AdminOrder } from "@/types/order.types";
 
 import "@/layouts/tables/orders-table/OrdersTable.scss";
 
 type OrdersTableProps = {
-  orders: Order[];
+  orders: AdminOrder[];
 };
 
 const OrdersTable = ({ orders }: OrdersTableProps) => {
-  const OrderTableBodyItem = (order: Order) => (
+  const OrderTableBodyItem = (order: AdminOrder) => (
     <OrdersTableBody key={order.id} order={order} />
   );
   const OrderTableHeadItem = (head: string) => (

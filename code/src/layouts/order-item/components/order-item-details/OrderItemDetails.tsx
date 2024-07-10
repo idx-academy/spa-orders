@@ -4,12 +4,13 @@ import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { PostAddress } from "@/types/delivery.types";
-import { Order } from "@/types/order.types";
+import { UserOrder } from "@/types/order.types";
+import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/layouts/order-item/components/order-item-details/OrderItemDetails.scss";
 
 type OrderItemDetailsProps = {
-  order: Order;
+  order: UserOrder;
 };
 
 const postAddressFields: Record<keyof PostAddress, string> = {
@@ -19,29 +20,33 @@ const postAddressFields: Record<keyof PostAddress, string> = {
 };
 
 const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
-  const orderReciever = `${order.receiver.firstName} ${order.receiver.lastName}`;
+  const {
+    receiver: { firstName, lastName, email },
+    postAddress,
+    orderItems
+  } = order;
+
+  const orderReceiver = `${firstName} ${lastName}`;
 
   const postAddressFieldsList = Object.entries(postAddressFields).map(
     ([key, label]) => (
       <AppBox key={key} className="spa-order-details__address-fields">
         <AppTypography variant="caption" translationKey={label} />
         <AppTypography variant="caption" fontWeight="extra-bold">
-          {order.postAddress[key as keyof typeof order.postAddress]}
+          {postAddress[key as keyof typeof postAddress]}
         </AppTypography>
       </AppBox>
     )
   );
 
-  const orderProductItems = order.orderItems.map(
-    ({ product, quantity, price }) => (
-      <OrderProductItem
-        key={product.id}
-        product={product}
-        quantity={quantity}
-        price={price}
-      />
-    )
-  );
+  const orderProductItems = orderItems.map(({ product, quantity, price }) => (
+    <OrderProductItem
+      key={product.id}
+      product={product}
+      quantity={quantity}
+      price={price}
+    />
+  ));
 
   return (
     <AppBox className="spa-order-details">
@@ -50,29 +55,50 @@ const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
           <AppTypography
             variant="caption-small"
             component="p"
-            translationKey="orderProductItem.details.orderReciever"
+            translationKey="orderProductItem.details.orderReceiver"
           />
-          <AppTypography
-            variant="caption"
-            component="p"
-            fontWeight="extra-bold"
-          >
-            {orderReciever}
-            <br />
-            {order.receiver.email}
-          </AppTypography>
+          <AppBox className="spa-order-details__receiver">
+            <AppTypography
+              className="spa-order-details__receiver-item"
+              variant="caption"
+              fontWeight="extra-bold"
+            >
+              {orderReceiver}
+            </AppTypography>
+            <AppTypography
+              className="spa-order-details__receiver-item"
+              variant="caption"
+              fontWeight="extra-bold"
+            >
+              {email}
+            </AppTypography>
+          </AppBox>
         </AppBox>
         <AppBox className="spa-order-details__address">
           <AppTypography
             variant="caption-small"
             component="p"
             className="spa-order-details__address-label"
-            translationKey="orderProductItem.details.recieverAddress"
+            translationKey="orderProductItem.details.receiverAddress"
           />
           {postAddressFieldsList}
         </AppBox>
       </AppBox>
-      <AppBox className="spa-order-product">{orderProductItems}</AppBox>
+      <AppBox className="spa-order-details__divider"></AppBox>
+      <AppBox className="spa-order-product">
+        <AppBox className="spa-order-product__items">
+          {orderProductItems}
+        </AppBox>
+        <AppBox className="spa-order-details__total">
+          <AppTypography
+            variant="subtitle1"
+            translationKey="orderProductItem.details.totalPrice"
+          />
+          <AppTypography variant="subtitle2" fontWeight="extra-bold">
+            {formatPrice(order.total)}
+          </AppTypography>
+        </AppBox>
+      </AppBox>
     </AppBox>
   );
 };

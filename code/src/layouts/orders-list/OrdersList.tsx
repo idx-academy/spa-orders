@@ -2,12 +2,12 @@ import OrderItem from "@/layouts/order-item/OrderItem";
 
 import AppBox from "@/components/app-box/AppBox";
 
-import { Order } from "@/types/order.types";
+import { UserOrder } from "@/types/order.types";
 
 import "@/layouts/orders-list/OrdersList.scss";
 
 type OrderListProps = {
-  orders: Order[];
+  orders: UserOrder[];
 };
 
 const OrdersList = ({ orders }: OrderListProps) => {

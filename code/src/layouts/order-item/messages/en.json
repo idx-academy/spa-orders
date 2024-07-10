@@ -1,8 +1,10 @@
 {
-  "orderProductItem.isPaid": "Paid",
+  "orderProductItem.payed": "Payed",
+  "orderProductItem.notPayed": "Not payed",
   "orderProductItem.details.city": "City:",
   "orderProductItem.details.department": "Department:",
   "orderProductItem.details.deliveryMethod": "Delivery method:",
-  "orderProductItem.details.orderReciever": "Order reciever",
-  "orderProductItem.details.recieverAddress": "Receiver address"
+  "orderProductItem.details.orderReceiver": "Order reciever",
+  "orderProductItem.details.receiverAddress": "Receiver address",
+  "orderProductItem.details.totalPrice": "Total price:"
 }

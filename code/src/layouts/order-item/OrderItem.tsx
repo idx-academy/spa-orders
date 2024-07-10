@@ -13,22 +13,35 @@ import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
-import { Order } from "@/types/order.types";
+import { UserOrder } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
-import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/layouts/order-item/OrderItem.scss";
 
 type OrderItemProps = {
-  order: Order;
+  order: UserOrder;
 };
 
 const OrderItem = ({ order }: OrderItemProps) => {
-  const orderItemStatus = orderStatusesTranslationKeys[order.orderStatus];
+  const { createdAt, orderStatus, isPaid } = order;
 
-  const orderTotalPrice = order.orderItems.reduce(
-    (accumulator, orderItem) => accumulator + orderItem.price,
-    0
+  const orderDeliveryStatus = orderStatusesTranslationKeys[orderStatus];
+
+  const orderPaymentStatusContent = (
+    <AppTypography
+      className="spa-order-item__badge-status"
+      variant="caption"
+      translationKey={
+        isPaid ? "orderProductItem.payed" : "orderProductItem.notPayed"
+      }
+    />
+  );
+  const orderDeliveryStatusContent = (
+    <AppTypography
+      variant="caption"
+      className="spa-order-item__badge-status"
+      translationKey={orderDeliveryStatus}
+    />
   );
 
   return (
@@ -43,29 +56,17 @@ const OrderItem = ({ order }: OrderItemProps) => {
             variant="caption"
             fontWeight="extra-bold"
           >
-            {formatDate(order.createdAt)}
+            {formatDate(createdAt)}
           </AppTypography>
           <AppBadge
-            variant={orderBadgeVariants[orderItemStatus]}
-            badgeContent={
-              <AppTypography variant="caption">{orderItemStatus}</AppTypography>
-            }
+            variant={orderBadgeVariants[orderDeliveryStatus]}
+            badgeContent={orderDeliveryStatusContent}
           />
         </AppBox>
-
-        <AppBox className="spa-order-item__payment-status">
-          <AppTypography
-            variant="caption"
-            translationKey="orderProductItem.isPaid"
-          />
-          <AppTypography
-            className="spa-order-item__payment-status"
-            variant="body"
-            fontWeight="extra-bold"
-          >
-            {formatPrice(orderTotalPrice)}
-          </AppTypography>
-        </AppBox>
+        <AppBadge
+          variant={isPaid ? "success" : "danger"}
+          badgeContent={orderPaymentStatusContent}
+        />
       </AppAccordionSummary>
       <AppAccordionDetails>
         <OrderItemDetails order={order} />

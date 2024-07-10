@@ -1,4 +1,4 @@
-import { Order } from "@/types/order.types";
+import { AdminOrder } from "@/types/order.types";
 
 export const tableColumns = [
   "ordersTable.columns.id",
@@ -11,11 +11,12 @@ export const tableColumns = [
 ];
 
 //@TODO: will be replaced with real data from the server
-export const ordersContent: Order[] = [
+export const ordersContent: AdminOrder[] = [
   {
     id: "3fa85f64-5717-4562-b3fc-2c963f6фівфі6afa6",
     isPaid: true,
-    orderStatus: "IN_PROGRESS",
+    total: 12499,
+    orderStatus: "CANCELED",
     createdAt: "2024-06-27T12:35:14.396Z",
     receiver: {
       firstName: "Eugene",
@@ -64,6 +65,7 @@ export const ordersContent: Order[] = [
     id: "3fa85f64-5717-4562-b33fc-2c963f66afa6",
     isPaid: false,
     orderStatus: "IN_PROGRESS",
+    total: 5999,
     createdAt: "2024-06-27T12:35:14.396Z",
     receiver: {
       firstName: "Eugene",
@@ -111,6 +113,7 @@ export const ordersContent: Order[] = [
   {
     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     isPaid: true,
+    total: 8999,
     orderStatus: "IN_PROGRESS",
     createdAt: "2024-06-27T12:35:14.396Z",
     receiver: {

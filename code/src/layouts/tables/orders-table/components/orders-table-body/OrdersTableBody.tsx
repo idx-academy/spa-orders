@@ -7,21 +7,21 @@ import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
-import { Order } from "@/types/order.types";
+import { AdminOrder } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/layouts/tables/orders-table/components/orders-table-body/OrdersTableBody.scss";
 
 type OrderTableBodyProps = {
-  order: Order;
+  order: AdminOrder;
 };
 
 const OrdersTableBody = ({ order }: OrderTableBodyProps) => {
   const {
     id,
     createdAt,
-    orderItems,
+    total,
     orderStatus,
     receiver: { firstName, lastName },
     postAddress: { deliveryMethod },
@@ -30,11 +30,6 @@ const OrdersTableBody = ({ order }: OrderTableBodyProps) => {
 
   const orderItemStatus = orderStatusesTranslationKeys[orderStatus];
   const orderReceiver = `${firstName} ${lastName}`;
-
-  const ordersTotalPrice = orderItems.reduce(
-    (total, item) => total + item.quantity * item.product.price,
-    0
-  );
 
   const orderBadgeItemStatus = (
     <AppTypography
@@ -56,7 +51,7 @@ const OrdersTableBody = ({ order }: OrderTableBodyProps) => {
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>{orderReceiver}</AppTableCell>
       <AppTableCell>{deliveryMethod}</AppTableCell>
-      <AppTableCell>{formatPrice(ordersTotalPrice)}</AppTableCell>
+      <AppTableCell>{formatPrice(total)}</AppTableCell>
       <AppTableCell>{isPaid && <DoneIcon color="success" />}</AppTableCell>
     </>
   );

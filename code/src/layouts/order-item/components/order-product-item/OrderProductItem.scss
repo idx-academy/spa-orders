@@ -1,8 +1,10 @@
 @import "@design-system";
 
 .spa-order-product {
-  flex: 1;
-
+  flex-grow: 1;
+  &__items {
+    border-bottom: 1px solid $ghost-alpha;
+  }
   &__container {
     width: 100%;
     display: flex;
@@ -22,13 +24,15 @@
   }
 
   &__description {
-    max-width: 350px;
+    width: 350px;
 
-    &--title {
+    &-title {
       @include line-clamp(1);
     }
-    &--caption {
-      @include line-clamp(3);
+
+    &-caption {
+      line-height: 1.3;
+      @include line-clamp(2);
     }
   }
 

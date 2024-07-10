@@ -1,8 +1,10 @@
 {
-  "orderProductItem.isPaid": "Сплачено",
+  "orderProductItem.payed": "Сплачено",
+  "orderProductItem.notPayed": "Не сплачено",
   "orderProductItem.details.city": "Місто:",
   "orderProductItem.details.department": "Відділ:",
   "orderProductItem.details.deliveryMethod": "Метод доставки:",
-  "orderProductItem.details.orderReciever": "Отримувач замовлення",
-  "orderProductItem.details.recieverAddress": "Адреса отримувача"
+  "orderProductItem.details.orderReceiver": "Отримувач замовлення",
+  "orderProductItem.details.receiverAddress": "Адреса отримувача",
+  "orderProductItem.details.totalPrice": "Загальна вартість:"
 }

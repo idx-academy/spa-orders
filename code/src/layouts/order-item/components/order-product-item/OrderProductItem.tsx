@@ -6,13 +6,17 @@ import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/layouts/order-item/components/order-product-item/OrderProductItem.scss";
 
-type OrderProductItem = {
+type OrderProductItemProps = {
   product: Product;
   quantity: number;
   price: number;
 };
 
-const OrderProductItem = ({ product, quantity, price }: OrderProductItem) => {
+const OrderProductItem = ({
+  product,
+  quantity,
+  price
+}: OrderProductItemProps) => {
   return (
     <AppBox className="spa-order-product__container">
       <AppBox className="spa-order-product__info">
@@ -24,7 +28,7 @@ const OrderProductItem = ({ product, quantity, price }: OrderProductItem) => {
         />
         <AppBox className="spa-order-product__description">
           <AppTypography
-            className="spa-order-product__description--title"
+            className="spa-order-product__description-title"
             variant="body"
             fontWeight="extra-bold"
             component="p"
@@ -34,7 +38,7 @@ const OrderProductItem = ({ product, quantity, price }: OrderProductItem) => {
           <AppTypography
             variant="caption-small"
             component="p"
-            className="spa-order-product__description--caption"
+            className="spa-order-product__description-caption"
           >
             {product.description}
           </AppTypography>
@@ -45,7 +49,7 @@ const OrderProductItem = ({ product, quantity, price }: OrderProductItem) => {
           component="p"
           fontWeight="extra-bold"
         >
-          {formatPrice(product.price)}$ x {quantity}
+          {formatPrice(product.price)} x {quantity}
         </AppTypography>
       </AppBox>
 
