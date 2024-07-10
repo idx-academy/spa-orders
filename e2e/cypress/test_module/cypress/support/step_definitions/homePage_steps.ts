@@ -38,17 +38,19 @@ Then("I should see Sign In dialog", () => {
 });
 
 When("I click on Shop All button", () => {
-  cy.get('[data-cy="header-menu"]>[data-testid="menu-item"]:first').click();
+  cy.get('[data-testid="menu-item"]').contains("Shop All").click();
 });
 
 Then("I should be redirected to All Products Page", () => {
-  cy.visit("/products").contains("All Products");
+  cy.get("h1").contains("All Products");
 });
 
-// When("the user hovers on Product Card img", () => {
-//   cy.get('[data-cy="product-card-img"]:first').trigger('mouseover');
+// When("I am hovering on Product Card img", () => {
+//   cy.get('[data-cy="product-card-img"]').first().trigger("mouseover");
+
 // });
 
-// Then("the user should see the Product description", () => {
-//   cy.get('[data-cy="product-card-description:first"]').should("be.visible");
+// Then("I should see the Product description", () => {
+//   cy.get('[data-cy="product-card-description"]').should('be.visible');
+
 // });

@@ -37,15 +37,3 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
 });
 
 
-Cypress.Commands.add(
-  "clickAndOpenLink",
-  (itemSelector: string, containerSelector?: string) => {
-    if (containerSelector) {
-      cy.get(containerSelector).within(() => {
-        cy.get(itemSelector).click();
-      });
-    } else {
-      cy.get(itemSelector).click();
-    }
-  }
-);

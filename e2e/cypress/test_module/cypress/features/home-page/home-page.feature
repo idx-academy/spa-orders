@@ -20,9 +20,9 @@ Feature: Guest Home Page
     Then I should be redirected to All Products Page
 
 
-# Scenario: View description of a product
-#   When the user hovers on Product Card img
-#   Then the user should see the Product description
+  # Scenario: View description of a product
+  #   When I am hovering on Product Card img
+  #   Then I should see the Product description
 
 
 

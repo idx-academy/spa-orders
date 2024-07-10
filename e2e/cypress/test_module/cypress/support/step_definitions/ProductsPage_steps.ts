@@ -1,18 +1,13 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
-import ProductsPageObject from "../page_objects/ProductsPage";
-import HomePageObject from "../page_objects/HomePage";
 
-const productsPage = new ProductsPageObject();
-const homePage = new HomePageObject()
-
-Given("the user is on Products Page", () => {
-  productsPage.navigateToProductsPage();
+Given("I am on a Products Page", () => {
+  cy.visit("/products");
 });
 
-When("the user click on Logo button", () => {
-  cy.clickAndOpenLink('[data-cy="logo"]');
+When("I click on Logo button", () => {
+  cy.get('[data-cy="logo"]').click();
 });
 
-Then("the user should be redirected to Home Page", () => {
-  homePage.navigateToHomePage();
+Then("I should be redirected to Home Page and see the banner", () => {
+  cy.get('[data-cy="banner"]').should("be.visible");
 });
