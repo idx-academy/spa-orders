@@ -70,14 +70,14 @@ describe("BestSellers component", () => {
   test("Should render product cards when data is available", async () => {
     renderAndMock();
 
-    const productCards = await screen.findAllByRole("link");
+    const productCards = await screen.findAllByTestId("product-card");
     expect(productCards.length).toBe(5);
   });
 
   test("Should render no product cards when data is empty", async () => {
     renderAndMock({ data: null });
 
-    const productCards = screen.queryAllByRole("link");
+    const productCards = screen.queryAllByTestId("product-card");
     expect(productCards.length).toBe(0);
   });
 

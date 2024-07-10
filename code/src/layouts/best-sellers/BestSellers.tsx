@@ -5,6 +5,7 @@ import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 import ProductsContainer from "@/components/products-container/ProductsContainer";
 
+import routes from "@/constants/routes";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 
 import "@/layouts/best-sellers/BestSellers.scss";
@@ -32,7 +33,7 @@ const BestSellers = () => {
         products={productsResponse?.content ?? []}
       />
       <AppBox className="spa-best-sellers__button">
-        <AppButton size="extra-large">
+        <AppButton to={routes.products.path} size="extra-large">
           <AppTypography translationKey="bestSellers.button" />
         </AppButton>
       </AppBox>

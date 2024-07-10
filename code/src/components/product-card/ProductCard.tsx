@@ -16,7 +16,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   };
 
   return (
-    <AppBox className="spa-product-card">
+    <AppBox data-testid="product-card" className="spa-product-card">
       <AppLink className="spa-product-card__link-wrapper" to="/">
         <AppBox className="spa-product-card__img">
           <AppBox

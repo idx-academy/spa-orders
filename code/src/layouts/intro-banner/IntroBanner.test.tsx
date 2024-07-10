@@ -1,10 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import IntroBanner from "@/layouts/intro-banner/IntroBanner";
 
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
 describe("IntroBanner", () => {
   beforeEach(() => {
-    render(<IntroBanner />);
+    renderWithProviders(<IntroBanner />);
   });
 
   test("should render IntroBanner title", () => {

@@ -6,6 +6,7 @@ import AppButton from "@/components/app-button/AppButton";
 import AppContainer from "@/components/app-container/AppContainer";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import routes from "@/constants/routes";
 import useIntervalSwitcher from "@/hooks/use-interval-switcher/useIntervalSwitcher";
 
 import "@/layouts/intro-banner/IntroBanner.scss";
@@ -39,7 +40,11 @@ const IntroBanner = () => {
             translationKey="introBanner.paragraphfirst"
             className="spa-banner-intro__desctiption"
           />
-          <AppButton size="large" className="spa-banner-intro__button">
+          <AppButton
+            to={routes.products.path}
+            size="large"
+            className="spa-banner-intro__button"
+          >
             <AppTypography variant="body" translationKey="introBanner.button" />
           </AppButton>
         </AppBox>
