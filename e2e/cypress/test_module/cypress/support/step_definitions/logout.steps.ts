@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 

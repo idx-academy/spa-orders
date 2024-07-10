@@ -19,10 +19,13 @@ Feature: Guest Home Page
     When I click on Shop All button
     Then I should be redirected to All Products Page
 
+  Scenario: Best Sellers section
+    When I look throw Best Sellers section
+    Then I should see only five products on it
 
-  # Scenario: View description of a product
-  #   When I am hovering on Product Card img
-  #   Then I should see the Product description
+  Scenario: View description of a product
+    When I am hovering on Product Card img
+    Then I should see the Product description
 
 
 

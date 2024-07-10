@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 
 Given("I am on a Products Page", () => {
@@ -5,9 +7,9 @@ Given("I am on a Products Page", () => {
 });
 
 When("I click on Logo button", () => {
-  cy.get('[data-cy="logo"]').click();
+  cy.getById("logo").click();
 });
 
 Then("I should be redirected to Home Page and see the banner", () => {
-  cy.get('[data-cy="banner"]').should("be.visible");
+  cy.getById("banner").should("be.visible");
 });

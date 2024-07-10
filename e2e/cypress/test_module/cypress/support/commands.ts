@@ -22,18 +22,16 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
   cy.getById("auth-password").click().type(password, { log: false });
   cy.getById("auth-signin-submit").click();
 
-  cy.wait("@loginRequest");
+  cy.wait("@loginRequest").then(() => {
+    cy.window()
+      .its("localStorage")
+      .invoke("getItem", "spa-user-details")
+      .then((value) => {
+        const userDetails = JSON.parse(value);
+        expect(userDetails.token).to.exist;
+        expect(userDetails.role).to.eq(role);
+      });
 
-  cy.window()
-    .its("localStorage")
-    .invoke("getItem", "spa-user-details")
-    .then((value) => {
-      const userDetails = JSON.parse(value);
-      expect(userDetails.token).to.exist;
-      expect(userDetails.role).to.eq(role);
-    });
-
-  cy.getById("snackbar").should("contain", "You successfully signed in");
+    cy.getById("snackbar").should("contain", "You successfully signed in");
+  });
 });
-
-

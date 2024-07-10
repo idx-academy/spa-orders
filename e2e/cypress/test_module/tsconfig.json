@@ -1,9 +1,5 @@
 {
-  "include": [
-    "cypress/**/*.ts",
-    "cypress/support/step_definitions/HomePage_steps.ts",
-    "cypress/support/step_definitions/ProductsPage_steps.ts"
-  ],
+  "include": ["cypress/**/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "types": ["cypress", "node", "cypress-wait-until"],

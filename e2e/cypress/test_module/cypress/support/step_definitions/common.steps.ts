@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import { Then, When, Given } from "@badeball/cypress-cucumber-preprocessor";
 import { UserRole } from "..";
