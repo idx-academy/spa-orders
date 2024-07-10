@@ -41,7 +41,7 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
     }
   };
 
-  const modalContent = Boolean(modal) && (
+  const modalContent = isModalOpen && (
     <Dialog open={isModalOpen} onClose={toggleModal}>
       <AppBox>{modal}</AppBox>
     </Dialog>
