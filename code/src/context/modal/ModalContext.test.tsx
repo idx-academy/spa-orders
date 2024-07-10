@@ -86,7 +86,10 @@ describe("ModalContext", () => {
       const errorMessage =
         "useModalContext must be used within a ModalProvider";
 
-      expect(() => renderHook(() => useModalContext())).toThrow(errorMessage);
+      const renderUseModalContextHookWrapper = () =>
+        renderHook(() => useModalContext());
+
+      expect(renderUseModalContextHookWrapper).toThrow(errorMessage);
     });
   });
 });
