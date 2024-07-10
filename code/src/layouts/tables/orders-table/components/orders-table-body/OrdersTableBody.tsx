@@ -1,10 +1,12 @@
+import DoneIcon from "@mui/icons-material/Done";
+
 import { orderBadgeVariants } from "@/layouts/order-item/OrderItem.constants";
 
 import AppBadge from "@/components/app-badge/AppBadge";
 import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { orderStatuses } from "@/constants/orderStatuses";
+import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { Order } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
@@ -16,33 +18,46 @@ type OrderTableBodyProps = {
 };
 
 const OrdersTableBody = ({ order }: OrderTableBodyProps) => {
-  const orderItemStatus = orderStatuses[order.orderStatus];
-  const orderReciever = `${order.receiver.firstName} ${order.receiver.lastName}`;
+  const {
+    id,
+    createdAt,
+    orderItems,
+    orderStatus,
+    receiver: { firstName, lastName },
+    postAddress: { deliveryMethod },
+    isPaid
+  } = order;
 
-  const ordersTotalPrice = order.orderItems.reduce(
+  const orderItemStatus = orderStatusesTranslationKeys[orderStatus];
+  const orderReceiver = `${firstName} ${lastName}`;
+
+  const ordersTotalPrice = orderItems.reduce(
     (total, item) => total + item.quantity * item.product.price,
     0
   );
 
   const orderBadgeItemStatus = (
-    <AppTypography className="spa-order-table__body-status" variant="caption">
-      {orderItemStatus}
-    </AppTypography>
+    <AppTypography
+      className="spa-order-table__body-status"
+      variant="caption"
+      translationKey={orderItemStatus}
+    />
   );
 
   return (
     <>
-      <AppTableCell>{order.id}</AppTableCell>
+      <AppTableCell>{id}</AppTableCell>
       <AppTableCell>
         <AppBadge
           variant={orderBadgeVariants[orderItemStatus]}
           badgeContent={orderBadgeItemStatus}
         />
       </AppTableCell>
-      <AppTableCell>{formatDate(order.createdAt)}</AppTableCell>
-      <AppTableCell>{orderReciever}</AppTableCell>
-      <AppTableCell>{order.postAddress.deliveryMethod}</AppTableCell>
+      <AppTableCell>{formatDate(createdAt)}</AppTableCell>
+      <AppTableCell>{orderReceiver}</AppTableCell>
+      <AppTableCell>{deliveryMethod}</AppTableCell>
       <AppTableCell>{formatPrice(ordersTotalPrice)}</AppTableCell>
+      <AppTableCell>{isPaid && <DoneIcon color="success" />}</AppTableCell>
     </>
   );
 };

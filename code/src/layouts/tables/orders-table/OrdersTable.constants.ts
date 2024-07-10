@@ -6,7 +6,8 @@ export const tableColumns = [
   "ordersTable.columns.createdAt",
   "ordersTable.columns.receiver",
   "ordersTable.columns.deliveryMethod",
-  "ordersTable.columns.totalPrice"
+  "ordersTable.columns.totalPrice",
+  "ordersTable.columns.isPaid"
 ];
 
 //@TODO: will be replaced with real data from the server
@@ -61,7 +62,7 @@ export const ordersContent: Order[] = [
   },
   {
     id: "3fa85f64-5717-4562-b33fc-2c963f66afa6",
-    isPaid: true,
+    isPaid: false,
     orderStatus: "IN_PROGRESS",
     createdAt: "2024-06-27T12:35:14.396Z",
     receiver: {

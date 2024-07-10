@@ -9,5 +9,10 @@
   "logout.label": "Вийти",
   "dashboard.tooltip": "Адмін-панель",
   "cart.tooltip": "Кошик",
-  "orders.tooltip": "Замовлення"
+  "orders.tooltip": "Замовлення",
+  "orders.statuses.inProgress": "В процесі",
+  "orders.statuses.shipped": "Відправлено",
+  "orders.statuses.delivered": "Доставлено",
+  "orders.statuses.canceled": "Скасовано",
+  "orders.statuses.completed": "Завершено"
 }

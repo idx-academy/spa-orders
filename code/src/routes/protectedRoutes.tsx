@@ -23,7 +23,7 @@ const protectedRoutes: RouteObject[] = [
     element: (
       <ProtectedRoute
         element={<DashboardPage />}
-        allowedRoles={[ROLES.ADMIN, ROLES.SHOP_MANAGER, ROLES.USER]}
+        allowedRoles={[ROLES.ADMIN, ROLES.SHOP_MANAGER]}
       />
     )
   }

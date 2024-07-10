@@ -12,7 +12,7 @@ import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { orderStatuses } from "@/constants/orderStatuses";
+import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { Order } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
@@ -24,7 +24,7 @@ type OrderItemProps = {
 };
 
 const OrderItem = ({ order }: OrderItemProps) => {
-  const orderItemStatus = orderStatuses[order.orderStatus];
+  const orderItemStatus = orderStatusesTranslationKeys[order.orderStatus];
 
   const orderTotalPrice = order.orderItems.reduce(
     (accumulator, orderItem) => accumulator + orderItem.price,

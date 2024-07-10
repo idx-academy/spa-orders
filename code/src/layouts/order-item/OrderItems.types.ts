@@ -1,4 +1,4 @@
-import { orderStatuses } from "@/constants/orderStatuses";
+import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { OrderStatus } from "@/types/order.types";
 
 export type OrderBadgeVariants =
@@ -8,4 +8,5 @@ export type OrderBadgeVariants =
   | "contained"
   | "info";
 
-export type OrderStatusesValue = (typeof orderStatuses)[OrderStatus];
+export type OrderStatusesValue =
+  (typeof orderStatusesTranslationKeys)[OrderStatus];

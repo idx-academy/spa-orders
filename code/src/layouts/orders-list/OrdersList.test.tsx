@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import OrdersList from "@/layouts/orders-list/OrdersList";
 
-import { orderStatuses } from "@/constants/orderStatuses";
+import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { Order } from "@/types/order.types";
 
 const mockOrder: Order = {
@@ -42,7 +42,7 @@ describe("Test OrdersList", () => {
     render(<OrdersList orders={[mockOrder]} />);
 
     const emailElements = screen.getByText(
-      orderStatuses[mockOrder.orderStatus]
+      orderStatusesTranslationKeys[mockOrder.orderStatus]
     );
 
     expect(emailElements).toBeInTheDocument();

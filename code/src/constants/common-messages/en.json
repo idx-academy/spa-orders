@@ -9,5 +9,10 @@
   "logout.label": "Logout",
   "dashboard.tooltip": "Dashboard",
   "cart.tooltip": "Cart",
-  "orders.tooltip": "Orders"
+  "orders.tooltip": "Orders",
+  "orders.statuses.inProgress": "In progress",
+  "orders.statuses.shipped": "Shipped",
+  "orders.statuses.delivered": "Delivered",
+  "orders.statuses.canceled": "Canceled",
+  "orders.statuses.completed": "Completed"
 }
