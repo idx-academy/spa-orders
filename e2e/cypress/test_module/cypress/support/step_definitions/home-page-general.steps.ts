@@ -32,6 +32,22 @@ Then("I can see empty search field again", () => {
   cy.get('input[placeholder="Search..."]').should("be.empty");
 });
 
+When("I click on Cart button", () => {
+  cy.get('[data-testid="ShoppingCartIcon"]').click();
+});
+
+Then("I should see a Cart drawer", () => {
+  cy.getById("cart-drawer").contains("Cart").should("be.visible");
+});
+
+When("I click on close Cart icon", () => {
+  cy.get('[data-testid="KeyboardArrowLeftIcon"]').click();
+});
+
+Then("I should not see a Cart drawer", () => {
+  cy.getById("cart-drawer").contains("Cart").should("not.be.visible");
+});
+
 When("I click on Sign In button", () => {
   cy.getById("auth-button").click();
 });
@@ -66,4 +82,12 @@ When("I am hovering on Product Card img", () => {
 
 Then("I should see the Product description", () => {
   cy.getById("product-card-description").first().should("be.visible");
+});
+
+When("I click on Add to cart button", () => {
+  cy.get("button").contains("Add to cart").first().click();
+});
+
+Then("I should see a Cart", () => {
+  cy.getById("cart-drawer").should("be.visible");
 });

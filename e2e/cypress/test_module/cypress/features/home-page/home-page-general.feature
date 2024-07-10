@@ -11,6 +11,12 @@ Feature: Guest Home Page
     And I click on clear button
     Then I can see empty search field again
 
+  Scenario: Open and Close user Cart
+    When I click on Cart button
+    Then I should see a Cart drawer
+    When I click on close Cart icon
+    Then I should not see a Cart drawer
+
   Scenario: Navigate to the SignIn dialog
     When I click on Sign In button
     Then I should see Sign In dialog
@@ -19,13 +25,15 @@ Feature: Guest Home Page
     When I click on Shop All button
     Then I should be redirected to All Products Page
 
-  Scenario: Best Sellers section
+  Scenario: Interacting with the Best Sellers section
     When I look throw Best Sellers section
     Then I should see only five products on it
-
-  Scenario: View description of a product
     When I am hovering on Product Card img
     Then I should see the Product description
+    When I click on Add to cart button
+    Then I should see a Cart
+
+
 
 
 
