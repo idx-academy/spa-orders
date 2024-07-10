@@ -4,7 +4,7 @@
   width: 400px;
   display: flex;
   flex-direction: column;
-  height: 100svh;
+  height: $screen-height;
 
   &__header {
     padding: spacing(5) spacing(2);
@@ -21,7 +21,6 @@
   }
 
   &__title {
-    font-size: $fs-lg;
     color: var(--spa-white-text-color, $white);
     text-align: center;
   }

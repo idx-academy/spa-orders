@@ -33,15 +33,16 @@ const DrawerProvider = ({ children }: DrawerProviderProps) => {
   };
 
   const toggleDrawer = (component: ReactElement) => {
-    if (drawer) {
-      closeDrawer();
-    } else {
-      openDrawer(component);
-    }
+    drawer ? closeDrawer() : openDrawer(component);
   };
 
   const drawerContent = (
-    <Drawer open={isOpen} onClose={toggleDrawer} anchor="right">
+    <Drawer
+      open={isOpen}
+      onClose={toggleDrawer}
+      anchor="right"
+      transitionDuration={400}
+    >
       {drawer}
     </Drawer>
   );

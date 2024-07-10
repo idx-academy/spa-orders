@@ -1,4 +1,4 @@
-import en from "./en.json";
-import uk from "./uk.json";
+import en from "@/layouts/cart-drawer/message/en.json";
+import uk from "@/layouts/cart-drawer/message/uk.json";
 
 export default { uk, en };

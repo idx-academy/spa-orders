@@ -31,8 +31,10 @@ const CartDrawer = () => {
         </AppIconButton>
         <AppTypography
           className="cart-drawer__title"
-          variant="h2"
+          variant="subtitle2"
           translationKey="cart.tooltip"
+          component="h2"
+          fontWeight="extra-bold"
         />
       </AppBox>
       <AppBox className="cart-drawer__items">{cartItems}</AppBox>
