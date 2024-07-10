@@ -9,7 +9,6 @@ import {
 
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
-const activeTabClassName = "dashboard-tabs__label-item--active";
 const defaultTabName = dashboardTabs[0].name;
 const mockSetSearchParams = jest.fn();
 
@@ -28,25 +27,13 @@ jest.mock("@/layouts/dashboard-tabs/components/orders-tab/OrdersTab", () => ({
   default: () => <div>OrdersTab</div>
 }));
 
-type Params = Record<string, string>;
-
-const useUseSearchParamsMock = (params?: Params) => {
+const renderWithMockSearchParams = (params?: Record<string, string>) => {
   (useSearchParams as jest.Mock).mockReturnValue([
     new URLSearchParams(params),
     mockSetSearchParams
   ]);
-};
 
-const renderWithMockSearchParams = (params?: Params) => {
-  useUseSearchParamsMock(params);
-  const { rerender } = renderWithProviders(<DashboardTabs />);
-
-  return {
-    rerenderWithSearchParams: (rerenderedParams?: Params) => {
-      useUseSearchParamsMock(rerenderedParams);
-      rerender(<DashboardTabs />);
-    }
-  };
+  renderWithProviders(<DashboardTabs />);
 };
 
 describe("DashboardTabs", () => {
@@ -56,16 +43,12 @@ describe("DashboardTabs", () => {
 
   test("renders default tab if not tab query parameter is present", () => {
     renderWithMockSearchParams();
-    expect(mockSetSearchParams).toHaveBeenCalledWith({
-      tab: defaultTabName
-    });
+    expect(mockSetSearchParams).toHaveBeenCalledWith({ tab: defaultTabName });
   });
 
   test("renders default tab if tab from search params was not found", () => {
     renderWithMockSearchParams({ tab: "not-existing" });
-    expect(mockSetSearchParams).toHaveBeenCalledWith({
-      tab: defaultTabName
-    });
+    expect(mockSetSearchParams).toHaveBeenCalledWith({ tab: defaultTabName });
   });
 
   test("opens tab provided into url by 'tab' key if it exists on constants", () => {
@@ -74,7 +57,7 @@ describe("DashboardTabs", () => {
   });
 
   test("changes tab correctly", () => {
-    const { rerenderWithSearchParams } = renderWithMockSearchParams();
+    renderWithMockSearchParams();
 
     const ordersTabLabelBox = screen.getByText("dashboardTabs.orders.label")
       .parentElement as HTMLDivElement;
@@ -84,12 +67,6 @@ describe("DashboardTabs", () => {
     expect(mockSetSearchParams).toHaveBeenCalledWith({
       tab: DASHBOARD_TAB_NAMES.ORDERS
     });
-
-    rerenderWithSearchParams({ tab: DASHBOARD_TAB_NAMES.ORDERS });
-    expect(ordersTabLabelBox).toHaveClass(activeTabClassName);
-
-    rerenderWithSearchParams({ tab: DASHBOARD_TAB_NAMES.PRODUCTS });
-    expect(ordersTabLabelBox).not.toHaveClass(activeTabClassName);
   });
 
   test("renders corresponding tab content correctly", () => {

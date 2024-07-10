@@ -10,7 +10,7 @@ import UsersTab from "@/layouts/dashboard-tabs/components/users-tab/UsersTab";
 
 import { ExtractValues } from "@/types/common";
 
-type DashboardTab = {
+export type DashboardTab = {
   labelTranslationKey: string;
   name: DashboardTabName;
   icon: ReactNode;

@@ -6,29 +6,30 @@ import {
   DashboardTabName,
   dashboardTabs
 } from "@/layouts/dashboard-tabs/DashboardTabs.constants";
+import DashboardTab from "@/layouts/dashboard-tabs/components/dashboard-tab/DashboardTab";
 
 import AppBox from "@/components/app-box/AppBox";
-import AppTypography from "@/components/app-typography/AppTypography";
-
-import cn from "@/utils/cn/cn";
 
 import "@/layouts/dashboard-tabs/DashboardTabs.scss";
 
-type TabSearchParam = DashboardTabName | null;
+export type DashboardTabSearchParam = DashboardTabName | null;
 
 const TAB_QUERY_KEY = "tab";
 
 const DashboardTabs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const tabFromQuery = searchParams.get(TAB_QUERY_KEY) as TabSearchParam;
+  const tabFromQuery = searchParams.get(
+    TAB_QUERY_KEY
+  ) as DashboardTabSearchParam;
 
   const handleSetActiveTab = (tab: DashboardTabName) => {
     setSearchParams({ [TAB_QUERY_KEY]: tab });
   };
 
   useLayoutEffect(() => {
-    const tabNames = Object.values<TabSearchParam>(DASHBOARD_TAB_NAMES);
+    const tabNames =
+      Object.values<DashboardTabSearchParam>(DASHBOARD_TAB_NAMES);
 
     if (!tabNames.includes(tabFromQuery)) {
       handleSetActiveTab(dashboardTabs[0].name);
@@ -36,20 +37,12 @@ const DashboardTabs = () => {
   }, []);
 
   const tabLabels = dashboardTabs.map((tab) => (
-    <AppBox
+    <DashboardTab
       key={tab.name}
-      onClick={() => handleSetActiveTab(tab.name)}
-      className={cn(
-        "dashboard-tabs__label-item",
-        tabFromQuery === tab.name && "dashboard-tabs__label-item--active"
-      )}
-    >
-      {tab.icon}
-      <AppTypography
-        component="span"
-        translationKey={tab.labelTranslationKey}
-      />
-    </AppBox>
+      tab={tab}
+      onActive={handleSetActiveTab}
+      isTabActive={tabFromQuery === tab.name}
+    />
   ));
 
   const tabContent = dashboardTabs.find((tab) => tab.name === tabFromQuery);
