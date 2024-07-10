@@ -1,6 +1,7 @@
 import { fireEvent, render, renderHook, screen } from "@testing-library/react";
 
 import { ModalProvider, useModalContext } from "@/context/modal/ModalContext";
+import assertErrorThrow from "@/utils/assert-error-throw/assertErrorThrow";
 
 const TestModalContent = () => {
   return <div>ModalContent</div>;
@@ -37,6 +38,7 @@ const findAndClickButton = (id: string) => {
 
 const assertContentExistance = (shouldContentExist: boolean) => {
   const modalContent = screen.queryByText("ModalContent");
+  
   if (shouldContentExist) {
     expect(modalContent).toBeInTheDocument();
   } else {
@@ -75,15 +77,13 @@ describe("ModalContext", () => {
   });
 
   describe("useModalContext", () => {
-    beforeEach(() => {
-      jest.spyOn(console, "error").mockImplementation(() => {});
-    });
-
     test("throws an error when context in not within a provider", () => {
       const errorMessage =
         "useModalContext must be used within a ModalProvider";
 
-      expect(() => renderHook(() => useModalContext())).toThrow(errorMessage);
+      assertErrorThrow(() => {
+        renderHook(() => useModalContext());
+      }, errorMessage);
     });
   });
 });
