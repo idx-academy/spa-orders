@@ -9,6 +9,7 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useDrawerContext } from "@/context/DrawerContext";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useRemoveFromCartMutation } from "@/store/api/cartApi";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
@@ -23,9 +24,21 @@ const CartDrawer = () => {
 
   const { closeDrawer } = useDrawerContext();
 
-  const handleRemoveItem = (product: CartItem) => {
-    if (user?.id) {
-      removeItem({ userId: user.id, productId: product.productId });
+  const { openSnackbar } = useSnackbar();
+
+  const handleRemoveItem = async (product: CartItem) => {
+    try {
+      if (user?.id) {
+        await removeItem({
+          userId: user.id,
+          productId: product.productId
+        }).unwrap();
+      }
+    } catch (e) {
+      openSnackbar({
+        variant: "error",
+        messageTranslationKey: "cart.itemDeletion.fail"
+      });
     }
   };
 

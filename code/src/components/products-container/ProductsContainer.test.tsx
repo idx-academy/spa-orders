@@ -64,6 +64,11 @@ const mockProducts: Product[] = [
   }
 ];
 
+jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({ openSnackbar: () => {} }))
+}));
+
 jest.mock("@/store/api/cartApi", () => ({
   useAddToCartMutation: jest.fn(() => [jest.fn(), {}])
 }));

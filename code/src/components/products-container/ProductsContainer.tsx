@@ -7,6 +7,7 @@ import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 import { ProductsContainerProps } from "@/components/products-container/ProductsContainer.types";
 
 import { useDrawerContext } from "@/context/DrawerContext";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useAddToCartMutation } from "@/store/api/cartApi";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { Product } from "@/types/product.types";
@@ -29,6 +30,8 @@ const ProductsContainer = ({
 
   const { openDrawer } = useDrawerContext();
 
+  const { openSnackbar } = useSnackbar();
+
   if (isError) {
     return (
       <AppBox className={cn("products-container_error", className)}>
@@ -42,10 +45,17 @@ const ProductsContainer = ({
 
   const skeletonCards = repeatComponent(<ProductSkeleton />, loadingItemsCount);
 
-  const handleAddToCart = (product: Product) => {
-    if (user?.id) {
-      openDrawer(<CartDrawer />);
-      addToCart({ productId: product.id, userId: user.id });
+  const handleAddToCart = async (product: Product) => {
+    try {
+      if (user?.id) {
+        await addToCart({ productId: product.id, userId: user.id }).unwrap();
+        openDrawer(<CartDrawer />);
+      }
+    } catch (e) {
+      openSnackbar({
+        variant: "error",
+        messageTranslationKey: "cart.itemAddition.fail"
+      });
     }
   };
 
