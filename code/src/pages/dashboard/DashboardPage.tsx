@@ -6,7 +6,7 @@ import "@/pages/dashboard/DashboardPage.scss";
 
 const DashboardPage = () => {
   return (
-    <PageWrapper className="dashboard-page">
+    <PageWrapper className="dashboard-page" data-cy="dashboard-page">>
       <DashboardTabs />
     </PageWrapper>
   );

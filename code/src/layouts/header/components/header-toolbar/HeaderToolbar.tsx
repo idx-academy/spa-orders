@@ -103,7 +103,7 @@ const HeaderToolbar = () => {
   const authenticatedDashboardButton = userRole === "ROLE_MANAGER" &&
     !isLoadingAuth && (
       <AppTooltip titleTranslationKey="dashboard.tooltip">
-        <AppIconButton to={routes.dashboard.path} component={AppLink}>
+        <AppIconButton to={routes.dashboard.path} component={AppLink} data-cy="dashboard-button">
           <DashboardCustomizeIcon fontSize="medium" />
         </AppIconButton>
       </AppTooltip>
@@ -118,7 +118,7 @@ const HeaderToolbar = () => {
 
   const authenticatedOrdersButton = isAuthenticated && !isLoadingAuth && (
     <AppTooltip titleTranslationKey="orders.tooltip">
-      <AppIconButton to={routes.orders.path} component={AppLink}>
+      <AppIconButton to={routes.orders.path} component={AppLink} data-cy="orders-button">
         <ListAltIcon className="header__toolbar-icon" fontSize="medium" />
       </AppIconButton>
     </AppTooltip>
