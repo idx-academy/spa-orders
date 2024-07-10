@@ -9,6 +9,12 @@
   position: relative;
   overflow: hidden;
 
+  &__link-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(2);
+  }
+
   &__img {
     position: relative;
     overflow: hidden;

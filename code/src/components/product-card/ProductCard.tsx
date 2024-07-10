@@ -17,22 +17,22 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
 
   return (
     <AppBox className="spa-product-card">
-      <AppBox className="spa-product-card__img">
-        <AppBox
-          alt={product.name}
-          className="spa-product-card__img-name"
-          component="img"
-          src={product.image}
-        />
-        <AppBox className="spa-product-card__description">
-          <AppTypography>{product.description}</AppTypography>
+      <AppLink className="spa-product-card__link-wrapper" to="/">
+        <AppBox className="spa-product-card__img">
+          <AppBox
+            alt={product.name}
+            className="spa-product-card__img-name"
+            component="img"
+            src={product.image}
+          />
+          <AppBox className="spa-product-card__description">
+            <AppTypography>{product.description}</AppTypography>
+          </AppBox>
         </AppBox>
-      </AppBox>
-      <AppBox>
-        <AppTypography component={AppLink} to="/" variant="caption">
-          {product.name}
-        </AppTypography>
-      </AppBox>
+        <AppBox>
+          <AppTypography variant="caption">{product.name}</AppTypography>
+        </AppBox>
+      </AppLink>
       <AppBox className="spa-product-card__footer">
         <AppTypography className="spa-product-card__footer-price">
           {formatPrice(product.price)}
