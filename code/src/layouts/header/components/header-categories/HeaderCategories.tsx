@@ -9,7 +9,7 @@ import "@/layouts/header/components/header-categories/HeaderCategories.scss";
 
 const HeaderCategories = () => {
   return (
-    <AppBox className="menu" data-cy="header-menu">
+    <AppBox className="menu">
       <AppContainer maxWidth="xl" className="menu__container">
         {categories.map((category) => (
           <AppLink

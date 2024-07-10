@@ -11,7 +11,7 @@ export const URLS = {
     signIn: "/auth/sign-in"
   },
   products: {
-    get: "/products",
+    get: "/v1/products",
     post: "/v1/products",
     put: "/v1/products",
     delete: "/v1/products"
