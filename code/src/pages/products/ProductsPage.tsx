@@ -17,7 +17,7 @@ import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const sortOption = searchParams.get("sort") || "";
+  const sortOption = searchParams.get("sort");
 
   const searchParamsPage = searchParams.get("page");
   const page = validatePage(searchParamsPage);
@@ -29,7 +29,7 @@ const ProductsPage = () => {
   } = useGetProductsQuery({
     page: page - 1,
     size: 10,
-    sort: sortOption
+    sort: sortOption ?? "recommended"
   });
 
   const defaultDropdownText = (

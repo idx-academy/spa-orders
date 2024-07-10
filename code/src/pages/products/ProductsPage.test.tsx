@@ -25,7 +25,7 @@ const mockData = { content: mockProducts, totalPages: 2, totalElements: 8 };
 const defaultQueryArguments = {
   size: 10,
   page: 0,
-  sort: ""
+  sort: "recommended"
 };
 
 const testQueryArguments = (args: Partial<PaginationParams> = {}) => {
