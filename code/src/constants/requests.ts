@@ -1,3 +1,5 @@
+import { CartManagementParams } from "@/types/cart.types";
+
 export const URLS = {
   auth: {
     signUp: "/auth/sign-up",
@@ -12,5 +14,11 @@ export const URLS = {
   orders: {
     get: "/v1/orders/user",
     post: "/v1/orders"
+  },
+  cart: {
+    post: ({ userId, productId }: CartManagementParams) =>
+      `/v1/users/${userId}/cart/${productId}`,
+    delete: ({ userId, productId }: CartManagementParams) =>
+      `/v1/users/${userId}/cart/items/${productId}`
   }
 } as const;

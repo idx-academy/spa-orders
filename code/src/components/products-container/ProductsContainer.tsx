@@ -7,6 +7,8 @@ import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 import { ProductsContainerProps } from "@/components/products-container/ProductsContainer.types";
 
 import { useDrawerContext } from "@/context/DrawerContext";
+import { useAddToCartMutation } from "@/store/api/cartApi";
+import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { Product } from "@/types/product.types";
 import cn from "@/utils/cn/cn";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
@@ -21,6 +23,10 @@ const ProductsContainer = ({
   loadingItemsCount = 5,
   errorMessage = "errors.somethingWentWrong"
 }: ProductsContainerProps) => {
+  const user = useUserDetailsSelector();
+
+  const [addToCart] = useAddToCartMutation();
+
   const { openDrawer } = useDrawerContext();
 
   if (isError) {
@@ -36,8 +42,11 @@ const ProductsContainer = ({
 
   const skeletonCards = repeatComponent(<ProductSkeleton />, loadingItemsCount);
 
-  const handleAddToCart = () => {
-    openDrawer(<CartDrawer />);
+  const handleAddToCart = (product: Product) => {
+    if (user?.id) {
+      openDrawer(<CartDrawer />);
+      addToCart({ productId: product.id, userId: user.id });
+    }
   };
 
   const productCards = products.map((product: Product) => (

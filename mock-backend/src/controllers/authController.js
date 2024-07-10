@@ -21,7 +21,7 @@ const signUp = async (req, res, next) => {
       return next(createConflictError());
     }
 
-    const payload = { email, password, firstName, lastName };
+    const payload = { email, password, firstName, lastName, id: 1525258  };
     const userDetails = await authService.signUp(payload);
     res.json(userDetails);
   } catch (error) {
@@ -43,7 +43,7 @@ const signIn = async (req, res, next) => {
       return next(createUnauthorizedError());
     }
 
-    const payload = { email, password };
+    const payload = { email, password, id: 1525258  };
     const userDetails = await authService.signIn(payload);
     res.json(userDetails);
   } catch (error) {

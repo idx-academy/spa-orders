@@ -9,16 +9,33 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useDrawerContext } from "@/context/DrawerContext";
+import { useRemoveFromCartMutation } from "@/store/api/cartApi";
+import { useUserDetailsSelector } from "@/store/slices/userSlice";
+import { CartItem } from "@/types/cart.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/layouts/cart-drawer/CartDrawer.scss";
 
 const CartDrawer = () => {
-  const cartItems = mockCartItems.map((item) => (
-    <CartDrawerItem key={item.productId} {...item} />
-  ));
+  const user = useUserDetailsSelector();
+
+  const [removeItem] = useRemoveFromCartMutation();
 
   const { closeDrawer } = useDrawerContext();
+
+  const handleRemoveItem = (product: CartItem) => {
+    if (user?.id) {
+      removeItem({ userId: user.id, productId: product.productId });
+    }
+  };
+
+  const cartItems = mockCartItems.map((item) => (
+    <CartDrawerItem
+      key={item.productId}
+      onRemove={handleRemoveItem}
+      {...item}
+    />
+  ));
 
   return (
     <AppBox className="cart-drawer">

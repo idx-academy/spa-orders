@@ -6,3 +6,8 @@ export type CartItem = {
   quantity: number;
   calculatedPrice: number;
 };
+
+export type CartManagementParams = {
+  productId: string;
+  userId: number;
+};

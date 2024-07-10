@@ -5,6 +5,8 @@ import {
   createApi,
   fetchBaseQuery
 } from "@reduxjs/toolkit/query/react";
+
+import { rtkQueryTagsArray } from "@/constants/api-tags";
 import { apiNames } from "@/store/constants";
 import { RootState } from "@/store/store";
 
@@ -37,5 +39,6 @@ const baseQuery: BaseQueryType = fetchBaseQuery({
 export const appApi = createApi({
   baseQuery,
   reducerPath: apiNames.app,
-  endpoints: () => ({})
+  endpoints: () => ({}),
+  tagTypes: rtkQueryTagsArray
 });
