@@ -9,6 +9,8 @@
 
   &__img {
     @include box(85px);
+    object-fit: cover;
+    flex-shrink: 0;
   }
 
   &__content {
@@ -16,9 +18,12 @@
   }
 
   &__title {
+    @include text-truncate(3);
+
     font-size: var(--cart-item-title-size, $fs-sm);
     margin-bottom: spacing(2);
     padding-right: spacing(8);
+    overflow: hidden;
   }
 
   &__price {
@@ -30,9 +35,8 @@
     transition: opacity ease 0.25s;
     position: absolute;
     right: 0;
-    top: spacing(5);
-    bottom: spacing(5);
-    border-radius: 5px !important; // To overwrite mui styles
+    top: 50%;
+    transform: translateY(-50%);
 
     &:hover {
       color: var(--spa-danger-color, $red);

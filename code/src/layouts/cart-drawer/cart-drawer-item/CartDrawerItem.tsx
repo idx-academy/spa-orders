@@ -1,4 +1,4 @@
-import CloseIcon from "@mui/icons-material/DeleteForever";
+import CloseIcon from "@mui/icons-material/Close";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
@@ -24,12 +24,7 @@ const CartDrawerItem = ({ name, image, calculatedPrice }: CartItem) => {
           {formatPrice(calculatedPrice)}
         </AppTypography>
       </AppBox>
-      <AppIconButton
-        color="default"
-        className="cart-item__remove-button"
-        disableTouchRipple
-        disableFocusRipple
-      >
+      <AppIconButton color="default" className="cart-item__remove-button">
         <CloseIcon />
       </AppIconButton>
     </AppBox>
