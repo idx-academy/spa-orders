@@ -23,6 +23,7 @@ const orders = {
       isPaid: true,
       orderStatus: "IN_PROGRESS",
       createdAt: "2024-06-27T12:35:14.396Z",
+      total: 4796,
       receiver: {
         firstName: "Eugene",
         lastName: "Hetsyanyn",
@@ -68,7 +69,7 @@ const orders = {
     },
     {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa61",
-      isPaid: true,
+      isPaid: false,
       orderStatus: "COMPLETED",
       createdAt: "2024-06-30T14:25:15.396Z",
       receiver: {
@@ -81,6 +82,7 @@ const orders = {
         city: "Kyiv",
         department: "№7",
       },
+      total: 4995,
       orderItems: [
         {
           price: 2997,
