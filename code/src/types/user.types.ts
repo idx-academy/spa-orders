@@ -1,6 +1,7 @@
 import { ROLES } from "@/constants/common";
+import { ExtractValues } from "@/types/common";
 
-export type UserRole = (typeof ROLES)[keyof typeof ROLES];
+export type UserRole = ExtractValues<typeof ROLES>;
 
 type BaseUser = {
   id: number;

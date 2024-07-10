@@ -8,6 +8,8 @@ import OrdersTab from "@/layouts/dashboard-tabs/components/orders-tab/OrdersTab"
 import ProductsTab from "@/layouts/dashboard-tabs/components/products-tab/ProductsTab";
 import UsersTab from "@/layouts/dashboard-tabs/components/users-tab/UsersTab";
 
+import { ExtractValues } from "@/types/common";
+
 type DashboardTab = {
   labelTranslationKey: string;
   name: DashboardTabName;
@@ -21,8 +23,7 @@ export const DASHBOARD_TAB_NAMES = {
   PRODUCTS: "products"
 } as const;
 
-export type DashboardTabName =
-  (typeof DASHBOARD_TAB_NAMES)[keyof typeof DASHBOARD_TAB_NAMES];
+export type DashboardTabName = ExtractValues<typeof DASHBOARD_TAB_NAMES>;
 
 export const dashboardTabs: DashboardTab[] = [
   {
