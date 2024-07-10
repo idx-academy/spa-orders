@@ -31,7 +31,7 @@ const DashboardTabs = () => {
     const tabNames = Object.values<TabSearchParam>(DASHBOARD_TAB_NAMES);
 
     if (!tabNames.includes(tabFromQuery)) {
-      handleSetActiveTab(DASHBOARD_TAB_NAMES.USERS);
+      handleSetActiveTab(dashboardTabs[0].name);
     }
   }, []);
 

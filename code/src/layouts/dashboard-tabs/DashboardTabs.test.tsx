@@ -2,11 +2,15 @@ import { fireEvent, screen } from "@testing-library/react";
 import { useSearchParams } from "react-router-dom";
 
 import DashboardTabs from "@/layouts/dashboard-tabs/DashboardTabs";
-import { DASHBOARD_TAB_NAMES } from "@/layouts/dashboard-tabs/DashboardTabs.constants";
+import {
+  DASHBOARD_TAB_NAMES,
+  dashboardTabs
+} from "@/layouts/dashboard-tabs/DashboardTabs.constants";
 
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const activeTabClassName = "dashboard-tabs__label-item--active";
+const defaultTabName = dashboardTabs[0].name;
 const mockSetSearchParams = jest.fn();
 
 jest.mock("react-router-dom", () => ({
@@ -53,14 +57,14 @@ describe("DashboardTabs", () => {
   test("renders default tab if not tab query parameter is present", () => {
     renderWithMockSearchParams();
     expect(mockSetSearchParams).toHaveBeenCalledWith({
-      tab: DASHBOARD_TAB_NAMES.USERS
+      tab: defaultTabName
     });
   });
 
   test("renders default tab if tab from search params was not found", () => {
     renderWithMockSearchParams({ tab: "not-existing" });
     expect(mockSetSearchParams).toHaveBeenCalledWith({
-      tab: DASHBOARD_TAB_NAMES.USERS
+      tab: defaultTabName
     });
   });
 
@@ -89,12 +93,12 @@ describe("DashboardTabs", () => {
   });
 
   test("renders corresponding tab content correctly", () => {
-    renderWithMockSearchParams({ tab: DASHBOARD_TAB_NAMES.ORDERS });
+    renderWithMockSearchParams({ tab: DASHBOARD_TAB_NAMES.USERS });
 
-    const ordersTabContent = screen.getByText("OrdersTab");
-    expect(ordersTabContent).toBeInTheDocument();
+    const usersTabContent = screen.getByText("UsersTab");
+    expect(usersTabContent).toBeInTheDocument();
 
-    const usersTabContent = screen.queryByText("UsersTab");
-    expect(usersTabContent).not.toBeInTheDocument();
+    const ordersTabContent = screen.queryByText("OrdersTab");
+    expect(ordersTabContent).not.toBeInTheDocument();
   });
 });

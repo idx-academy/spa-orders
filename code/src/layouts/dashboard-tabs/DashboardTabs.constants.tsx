@@ -27,12 +27,6 @@ export type DashboardTabName = ExtractValues<typeof DASHBOARD_TAB_NAMES>;
 
 export const dashboardTabs: DashboardTab[] = [
   {
-    labelTranslationKey: "dashboardTabs.users.label",
-    name: DASHBOARD_TAB_NAMES.USERS,
-    icon: <PeopleIcon />,
-    content: <UsersTab />
-  },
-  {
     labelTranslationKey: "dashboardTabs.orders.label",
     name: DASHBOARD_TAB_NAMES.ORDERS,
     icon: <ReceiptLongIcon />,
@@ -43,5 +37,11 @@ export const dashboardTabs: DashboardTab[] = [
     name: DASHBOARD_TAB_NAMES.PRODUCTS,
     icon: <StorefrontIcon />,
     content: <ProductsTab />
+  },
+  {
+    labelTranslationKey: "dashboardTabs.users.label",
+    name: DASHBOARD_TAB_NAMES.USERS,
+    icon: <PeopleIcon />,
+    content: <UsersTab />
   }
 ];
