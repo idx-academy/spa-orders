@@ -100,10 +100,13 @@ export const { authenticate, logout } = userSlice.actions;
 
 export const useIsAuthSelector = () =>
   useAppSelector((store) => store.user.userDetails !== null);
+
 export const useIsAuthLoadingSelector = () =>
   useAppSelector((store) => store.user.isLoading);
+
 export const useUserDetailsSelector = () =>
   useAppSelector((store) => store.user.userDetails);
+
 export const useUserRoleSelector = () =>
   useAppSelector((store) => {
     const userDetails = store.user.userDetails;

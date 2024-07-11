@@ -1,14 +1,21 @@
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
-import { OrderRequest, UserOrderResponse } from "@/types/order.types";
-import createUrlPath from "@/utils/create-url-path/createUrlPath";
+import {
+  AdminOrder,
+  AdminOrderResponse,
+  OrderParams,
+  UserOrderResponse
+} from "@/types/order.types";
 
 const ordersApi = appApi.injectEndpoints({
   endpoints: (build) => ({
-    getOrders: build.query<UserOrderResponse, OrderRequest>({
-      query: ({ id }) => createUrlPath(URLS.orders.get, id)
+    getUserOrders: build.query<UserOrderResponse, OrderParams>({
+      query: ({ userId }) => URLS.orders.getForUser({ userId })
+    }),
+    getAdminOrders: build.query<AdminOrderResponse, void>({
+      query: () => URLS.orders.getForAdmin
     })
   })
 });
 
-export const { useGetOrdersQuery } = ordersApi;
+export const { useGetUserOrdersQuery, useGetAdminOrdersQuery } = ordersApi;
