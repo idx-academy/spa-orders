@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "start": "webpack serve --config ./config/webpack.development.config.js --mode development",
-    "start:prod": "webpack serve --config ./config/webpack.production.config.js --mode production",
-    "start:test": "webpack serve --config ./config/webpack.test.config.js --mode test",
+    "start:prod": "webpack serve --config ./config/webpack.production.config.js --mode development",
+    "start:test": "webpack serve --config ./config/webpack.test.config.js --mode development",
     "build": "webpack --config ./config/webpack.production.config.js --mode production",
     "test": "jest --config config/jest.config.js --rootDir ./ --maxWorkers=25% --passWithNoTests --colors -u",
     "test:coverage": "npm run test -- --collectCoverage",
