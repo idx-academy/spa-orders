@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
 import OrdersPage from "@/pages/orders/OrdersPage";
-import { useGetOrdersQuery } from "@/store/api/ordersApi";
+import { useGetUserOrdersQuery } from "@/store/api/ordersApi";
 import { RTKQueryMockState } from "@/types/common";
 
 const mockOrders = {
@@ -62,7 +62,7 @@ const mockOrders = {
 };
 
 jest.mock("@/store/api/ordersApi", () => ({
-  useGetOrdersQuery: jest.fn()
+  useGetUserOrdersQuery: jest.fn()
 }));
 
 jest.mock("@/containers/orders-list/OrdersList", () =>
@@ -70,7 +70,7 @@ jest.mock("@/containers/orders-list/OrdersList", () =>
 );
 
 const renderAndMock = (response: RTKQueryMockState<typeof mockOrders> = {}) => {
-  (useGetOrdersQuery as jest.Mock).mockReturnValue({
+  (useGetUserOrdersQuery as jest.Mock).mockReturnValueOnce({
     isLoading: false,
     data: mockOrders,
     ...response

@@ -1,0 +1,7 @@
+@import "@design-system";
+
+.tab-container {
+  display: flex;
+  flex-direction: column;
+  gap: spacing(4);
+}

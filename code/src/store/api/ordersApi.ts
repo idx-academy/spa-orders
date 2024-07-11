@@ -1,7 +1,6 @@
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
 import {
-  AdminOrder,
   AdminOrderResponse,
   OrderParams,
   UserOrderResponse

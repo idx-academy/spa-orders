@@ -8,7 +8,7 @@ describe("OrderTableHead", () => {
       <table>
         <tbody>
           <tr>
-            <OrdersTableHead head={"test"} />
+            <OrdersTableHead head="test" />
           </tr>
         </tbody>
       </table>

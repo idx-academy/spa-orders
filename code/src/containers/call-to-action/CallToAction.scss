@@ -3,7 +3,6 @@
 .call-to-action {
   display: flex;
   gap: spacing(10);
-  margin: spacing(10) 0;
   flex-direction: column;
 
   @include breakpoint("lg") {

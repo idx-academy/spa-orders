@@ -2,4 +2,12 @@
 
 .spa-order-table {
   box-shadow: var(--spa-order-table-shadow, $shadow-black);
+
+  &__fallback {
+    background-color: var(--spa-order-fallback-bg-color, $white);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { ordersContent } from "@/containers/tables/orders-table/OrdersTable.constants";
+import { mockOrders } from "@/containers/tables/orders-table/OrdersTable.constants";
 import OrdersTableBody from "@/containers/tables/orders-table/components/orders-table-body/OrdersTableBody";
 
 describe("OrdersTableBody", () => {
@@ -9,15 +9,15 @@ describe("OrdersTableBody", () => {
       <table>
         <tbody>
           <tr>
-            <OrdersTableBody order={ordersContent[0]} />
+            <OrdersTableBody order={mockOrders[0]} />
           </tr>
         </tbody>
       </table>
     );
 
-    const ordersId = screen.getByText(ordersContent[0].id);
+    const ordersId = screen.getByText(mockOrders[0].id);
     const ordersReceiver = screen.getByText(
-      `${ordersContent[0].receiver.firstName} ${ordersContent[0].receiver.lastName}`
+      `${mockOrders[0].receiver.firstName} ${mockOrders[0].receiver.lastName}`
     );
     const doneIcon = screen.getByTestId(/DoneIcon/);
 

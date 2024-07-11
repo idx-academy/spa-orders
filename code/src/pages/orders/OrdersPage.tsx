@@ -5,13 +5,18 @@ import OrdersList from "@/containers/orders-list/OrdersList";
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { useGetOrdersQuery } from "@/store/api/ordersApi";
+import { useGetUserOrdersQuery } from "@/store/api/ordersApi";
+import { useUserDetailsSelector } from "@/store/slices/userSlice";
 
 import "@/pages/orders/OrdersPage.scss";
 
 const OrdersPage = () => {
-  //@TODO: use id from slice
-  const { data: orderResponse, isLoading } = useGetOrdersQuery({ id: "123" });
+  const userDetails = useUserDetailsSelector();
+
+  const { data: orderResponse, isLoading } = useGetUserOrdersQuery({
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+    userId: userDetails?.id! //we are sure that userDetails is not null because we are using this page inside protected route
+  });
 
   if (isLoading) return <AppTypography>Loading...</AppTypography>;
 

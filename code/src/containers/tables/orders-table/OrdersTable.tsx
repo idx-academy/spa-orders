@@ -3,6 +3,7 @@ import OrdersTableBody from "@/containers/tables/orders-table/components/orders-
 import OrdersTableHead from "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead";
 
 import AppTable from "@/components/app-table/AppTable";
+import AppTypography from "@/components/app-typography/AppTypography";
 
 import { AdminOrder } from "@/types/order.types";
 
@@ -20,16 +21,26 @@ const OrdersTable = ({ orders }: OrdersTableProps) => {
     <OrdersTableHead key={head} head={head} />
   );
 
+  const ordersTableFallback = (
+    <AppTypography
+      textAlign="center"
+      variant="subtitle1"
+      translationKey="ordersTable.fallback"
+    />
+  );
+
   return (
     <AppTable
       classNames={{
         container: "spa-order-table",
-        body: "spa-order-table__body"
+        body: "spa-order-table__body",
+        fallback: "spa-order-table__fallback"
       }}
       headItems={tableColumns}
       renderHeadItem={OrderTableHeadItem}
       bodyItems={orders}
       renderBodyItem={OrderTableBodyItem}
+      fallback={ordersTableFallback}
     />
   );
 };
