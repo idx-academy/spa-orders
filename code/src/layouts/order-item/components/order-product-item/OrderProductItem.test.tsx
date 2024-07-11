@@ -15,7 +15,7 @@ const mockProduct: Product = {
 };
 
 describe("OrderProductItem", () => {
-  it("renders product information correctly", () => {
+  test("renders product information correctly", () => {
     const quantity = 2;
     const price = mockProduct.price * quantity;
 
