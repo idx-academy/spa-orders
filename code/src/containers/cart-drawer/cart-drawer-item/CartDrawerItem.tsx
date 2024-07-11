@@ -1,6 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
 
-import { CartDrawerItemProps } from "@/layouts/cart-drawer/cart-drawer-item/CartDrawerItem.types";
+import { CartDrawerItemProps } from "@/containers/cart-drawer/cart-drawer-item/CartDrawerItem.types";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
