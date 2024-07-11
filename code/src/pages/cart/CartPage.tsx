@@ -38,11 +38,25 @@ const CartPage = () => {
     return <AppTypography translationKey="error.label" />;
   }
 
-  const cartItemsBlock = cartItems?.items.map((item: CartItem) => (
+  if (!cartItems?.items?.length) {
+    return (
+      <PageWrapper>
+        <AppBox className="spa-cart-page">
+          <AppTypography
+            className="spa-cart-page__empty"
+            variant="h3"
+            translationKey="cartEmpty.label"
+          />
+        </AppBox>
+      </PageWrapper>
+    );
+  }
+
+  const cartItemsBlock = cartItems.items.map((item: CartItem) => (
     <CartItem key={item.productId} item={item} />
   ));
 
-  const totalPrice = formatPrice(cartItems?.totalPrice ?? 0);
+  const totalPrice = formatPrice(cartItems.totalPrice ?? 0);
 
   return (
     <PageWrapper>
@@ -62,7 +76,7 @@ const CartPage = () => {
             <AppTypography
               className="spa-cart-page__order-summary--label"
               variant="h1"
-              component="h2"
+              component="h1"
               translationKey="orderSummary.label"
               data-testid="orderSummaryLabel"
             />

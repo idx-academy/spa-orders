@@ -8,8 +8,7 @@ const cartApi = appApi.injectEndpoints({
   endpoints: (build) => ({
     getCartItems: build.query<CartType, number>({
       query: (userId) => ({
-        url: URLS.cart.get({ userId }),
-        method: httpMethods.get
+        url: URLS.cart.get({ userId })
       }),
       providesTags: [rtkQueryTags.CART]
     }),

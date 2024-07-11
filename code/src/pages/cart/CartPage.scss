@@ -71,4 +71,10 @@
       margin-top: spacing(5);
     }
   }
+
+  &__empty {
+    padding: spacing(5);
+    color: var(--spa-empty-cart-color, $gray);
+    font-size: $fs-h3;
+  }
 }

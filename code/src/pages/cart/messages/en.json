@@ -7,5 +7,6 @@
   "free.label": "FREE",
   "total.label": "Total",
   "createOrder.label": "Create an order",
-  "error.label": "An error occurred while fetching cart items"
+  "error.label": "An error occurred while fetching cart items",
+  "cartEmpty.label": "The cart is empty!"
 }
