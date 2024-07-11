@@ -6,5 +6,6 @@
   "country.label": "Україна",
   "free.label": "БЕЗКОШТОВНО",
   "total.label": "Загальна сума",
-  "createOrder.label": "Створити замовлення"
+  "createOrder.label": "Створити замовлення",
+  "error.label": "Під час отримання елементів кошика сталася помилка"
 }

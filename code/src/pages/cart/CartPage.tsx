@@ -1,16 +1,19 @@
-import { useState } from "react";
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
+import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { items } from "@/pages/cart/CartPage.constants";
 import CartItem from "@/pages/cart/components/CartItem";
+import { useGetCartItemsQuery } from "@/store/api/cartApi";
+import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/pages/cart/CartPage.scss";
 
-type CartItemsType = {
+type CartItem = {
+  productId: string;
   image: string;
   name: string;
   productPrice: number;
@@ -19,118 +22,113 @@ type CartItemsType = {
 };
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState<CartItemsType[]>(items);
+  const { id: userId } = useUserDetailsSelector() || {};
+  const {
+    data: cartItems,
+    error,
+    isLoading: cartItemsLoading
+  } = useGetCartItemsQuery(userId!);
 
-  const handleQuantityChange = (index: number, newQuantity: number) => {
-    const updatedCartItems = cartItems.map((item, i) =>
-      i === index
-        ? {
-            ...item,
-            quantity: newQuantity,
-            calculatedPrice: item.productPrice * newQuantity
-          }
-        : item
-    );
-    setCartItems(updatedCartItems);
-  };
+  //@TODO Implement Skeleton for loading items
+  if (cartItemsLoading) {
+    return <AppLoader />;
+  }
 
-  const handleDeleteItem = (index: number) => {
-    const updatedCartItems = cartItems.filter((_, i) => i !== index);
-    setCartItems(updatedCartItems);
-  };
+  if (error) {
+    return <AppTypography translationKey="error.label" />;
+  }
 
-  const subtotalItems = cartItems.reduce(
-    (acc, item) => acc + item.calculatedPrice,
-    0
-  );
-
-  const handleQuantityChangeWrapper =
-    (index: number) => (newQuantity: number) => {
-      handleQuantityChange(index, newQuantity);
-    };
-
-  const handleOnDeleteWrapper = (index: number) => () => {
-    handleDeleteItem(index);
-  };
-
-  const cartItemsBlock = cartItems.map((item, index) => (
-    <CartItem
-      key={item.name}
-      item={item}
-      onQuantityChange={handleQuantityChangeWrapper(index)}
-      onDelete={handleOnDeleteWrapper(index)}
-    />
+  const cartItemsBlock = cartItems?.items.map((item: CartItem) => (
+    <CartItem key={item.productId} item={item} />
   ));
 
+  const totalPrice = formatPrice(cartItems?.totalPrice ?? 0);
+
   return (
-    <AppBox className="spa-cart-page">
-      <AppBox className="spa-cart-page__content">
-        <AppBox className="spa-cart-page__items">
-          <AppTypography
-            className="spa-cart-page__items--label"
-            variant="h3"
-            component="h1"
-            translationKey="myCart.label"
-          />
-          {cartItemsBlock}
-        </AppBox>
-        <AppBox className="spa-cart-page__order-summary">
-          <AppTypography
-            className="spa-cart-page__order-summary--label"
-            variant="h1"
-            component="h2"
-            translationKey="orderSummary.label"
-          />
-          <AppBox className="spa-order-summary__details">
-            <AppBox className="spa-order-summary__row">
-              <AppTypography
-                component="p"
-                className="spa-order-summary__text"
-                translationKey="subtotal.label"
-              />
-              <AppTypography
-                component="p"
-                className="spa-order-summary__text"
-                variant="subtitle2"
-              >
-                {formatPrice(subtotalItems)}
-              </AppTypography>
-            </AppBox>
-            <AppBox className="spa-order-summary__row">
-              <AppTypography component="p" translationKey="delivery.label" />
-              <AppTypography component="p" translationKey="free.label" />
-            </AppBox>
+    <PageWrapper>
+      <AppBox className="spa-cart-page">
+        <AppBox className="spa-cart-page__content">
+          <AppBox className="spa-cart-page__items">
             <AppTypography
-              component="p"
-              className="spa-order-summary__underline-text"
-              translationKey="country.label"
+              className="spa-cart-page__items--label"
+              variant="h3"
+              component="h1"
+              translationKey="myCart.label"
+              data-testid="myCartLabel"
             />
-            <AppBox className="spa-order-summary__row spa-order-summary__total-line">
-              <AppTypography
-                className="spa-order-summary__total"
-                variant="subtitle2"
-                component="p"
-                translationKey="total.label"
-              />
-              <AppTypography
-                component="p"
-                variant="subtitle2"
-                className="spa-order-summary__total"
-              >
-                {formatPrice(subtotalItems)}
-              </AppTypography>
-            </AppBox>
+            {cartItemsBlock}
           </AppBox>
-          <AppButton
-            className="spa-order-summary__button"
-            variant="contained"
-            size="medium"
-          >
-            <AppTypography translationKey="createOrder.label" />
-          </AppButton>
+          <AppBox className="spa-cart-page__order-summary">
+            <AppTypography
+              className="spa-cart-page__order-summary--label"
+              variant="h1"
+              component="h2"
+              translationKey="orderSummary.label"
+              data-testid="orderSummaryLabel"
+            />
+            <AppBox className="spa-order-summary__details">
+              <AppBox className="spa-order-summary__row">
+                <AppTypography
+                  component="p"
+                  className="spa-order-summary__text"
+                  translationKey="subtotal.label"
+                  data-testid="subtotalLabel"
+                />
+                <AppTypography
+                  component="p"
+                  className="spa-order-summary__text"
+                  variant="subtitle2"
+                >
+                  {totalPrice}
+                </AppTypography>
+              </AppBox>
+              <AppBox className="spa-order-summary__row">
+                <AppTypography
+                  component="p"
+                  translationKey="delivery.label"
+                  data-testid="deliveryLabel"
+                />
+                <AppTypography
+                  component="p"
+                  translationKey="free.label"
+                  data-testid="freeLabel"
+                />
+              </AppBox>
+              <AppTypography
+                component="p"
+                className="spa-order-summary__underline-text"
+                translationKey="country.label"
+                data-testid="countryLabel"
+              />
+              <AppBox className="spa-order-summary__row spa-order-summary__total-line">
+                <AppTypography
+                  className="spa-order-summary__total"
+                  variant="subtitle2"
+                  component="p"
+                  translationKey="total.label"
+                  data-testid="totalLabel"
+                />
+                <AppTypography
+                  component="p"
+                  variant="subtitle2"
+                  className="spa-order-summary__total"
+                >
+                  {totalPrice}
+                </AppTypography>
+              </AppBox>
+            </AppBox>
+            <AppButton
+              className="spa-order-summary__button"
+              variant="contained"
+              size="medium"
+              data-testid="createOrderButton"
+            >
+              <AppTypography translationKey="createOrder.label" />
+            </AppButton>
+          </AppBox>
         </AppBox>
       </AppBox>
-    </AppBox>
+    </PageWrapper>
   );
 };
 

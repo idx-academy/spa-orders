@@ -6,5 +6,6 @@
   "country.label": "Ukraine",
   "free.label": "FREE",
   "total.label": "Total",
-  "createOrder.label": "Create an order"
+  "createOrder.label": "Create an order",
+  "error.label": "An error occurred while fetching cart items"
 }

@@ -11,3 +11,8 @@ export type CartItem = {
   quantity: number;
   calculatedPrice: number;
 };
+
+export type CartType = {
+  items: CartItem[];
+  totalPrice: number;
+};

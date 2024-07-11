@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
@@ -21,35 +19,9 @@ type ProductCartType = {
 
 type CartItemProps = {
   item: ProductCartType;
-  onQuantityChange: (quantity: number) => void;
-  onDelete: () => void;
 };
 
-const CartItem = ({ item, onQuantityChange, onDelete }: CartItemProps) => {
-  const [quantity, setQuantity] = useState(item.quantity.toString());
-
-  useEffect(() => {
-    setQuantity(item.quantity.toString());
-  }, [item.quantity]);
-
-  const handleDecrement = () => {
-    if (item.quantity > 1) {
-      onQuantityChange(item.quantity - 1);
-    }
-  };
-
-  const handleIncrement = () => {
-    onQuantityChange(item.quantity + 1);
-  };
-
-  const handleInputBlur = () => {
-    if (quantity === "") {
-      setQuantity(item.quantity.toString());
-    } else {
-      onQuantityChange(parseInt(quantity, 10));
-    }
-  };
-
+const CartItem = ({ item }: CartItemProps) => {
   return (
     <AppBox className="spa-cart-item">
       <AppBox
@@ -66,29 +38,23 @@ const CartItem = ({ item, onQuantityChange, onDelete }: CartItemProps) => {
         </AppTypography>
       </AppBox>
       <AppBox className="spa-cart-item__quantity-selector">
-        <AppBox
-          onClick={handleDecrement}
-          className="spa-cart-item__quantity-block"
-        >
+        <AppBox className="spa-cart-item__quantity-block">
           <RemoveCircleOutlineIcon />
         </AppBox>
         <input
           type="text"
-          value={quantity}
-          onBlur={handleInputBlur}
+          value={item.quantity}
           className="spa-cart-item__quantity-input"
+          onChange={() => {}}
         />
-        <AppBox
-          onClick={handleIncrement}
-          className="spa-cart-item__quantity-block"
-        >
+        <AppBox className="spa-cart-item__quantity-block">
           <AddCircleOutlineIcon />
         </AppBox>
       </AppBox>
       <AppTypography component="p" className="spa-cart-item__price">
         {formatPrice(item.calculatedPrice)}
       </AppTypography>
-      <AppBox onClick={onDelete} className="spa-cart-item__delete-block">
+      <AppBox className="spa-cart-item__delete-block">
         <DeleteIcon />
       </AppBox>
     </AppBox>

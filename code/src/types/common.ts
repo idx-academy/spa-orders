@@ -42,3 +42,7 @@ export type PaginationParams = {
 export type RTKQueryMockState<TData = null, TError = null> = Partial<
   RTKQueryReturnState<TData, TError>
 >;
+
+export type UserIdType = {
+  userId: number;
+};
