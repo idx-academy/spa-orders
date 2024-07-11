@@ -5,8 +5,8 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-import CartDrawer from "@/layouts/cart-drawer/CartDrawer";
-import AuthModal from "@/layouts/modals/auth/AuthModal";
+import CartDrawer from "@/containers/cart-drawer/CartDrawer";
+import AuthModal from "@/containers/modals/auth/AuthModal";
 
 import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";

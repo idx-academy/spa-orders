@@ -3,7 +3,7 @@ import { Outlet, ScrollRestoration } from "react-router-dom";
 
 import Footer from "@/layouts/footer/Footer";
 import Header from "@/layouts/header/Header";
-import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
+import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 
 import AppBox from "@/components/app-box/AppBox";
 

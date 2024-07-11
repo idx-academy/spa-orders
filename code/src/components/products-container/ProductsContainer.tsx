@@ -1,4 +1,4 @@
-import CartDrawer from "@/layouts/cart-drawer/CartDrawer";
+import CartDrawer from "@/containers/cart-drawer/CartDrawer";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";

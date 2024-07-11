@@ -2,19 +2,19 @@ import { render, screen } from "@testing-library/react";
 
 import HomePage from "@/pages/home/HomePage";
 
-jest.mock("@/layouts/best-sellers/BestSellers", () =>
+jest.mock("@/containers/best-sellers/BestSellers", () =>
   jest.fn(() => <div>BestSellers</div>)
 );
-jest.mock("@/layouts/intro-banner/IntroBanner", () =>
+jest.mock("@/containers/intro-banner/IntroBanner", () =>
   jest.fn(() => <div>IntroBanner</div>)
 );
-jest.mock("@/layouts/subintro/Subintro", () =>
+jest.mock("@/containers/subintro/Subintro", () =>
   jest.fn(() => <div>Subintro</div>)
 );
-jest.mock("@/layouts/category-section/CategorySection", () =>
+jest.mock("@/containers/category-section/CategorySection", () =>
   jest.fn(() => <div>CategorySection</div>)
 );
-jest.mock("@/layouts/call-to-action/CallToAction", () =>
+jest.mock("@/containers/call-to-action/CallToAction", () =>
   jest.fn(() => <div>CallToAction</div>)
 );
 

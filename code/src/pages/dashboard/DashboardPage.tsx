@@ -1,4 +1,4 @@
-import DashboardTabs from "@/layouts/dashboard-tabs/DashboardTabs";
+import DashboardTabs from "@/containers/dashboard-tabs/DashboardTabs";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
 import "@/pages/dashboard/DashboardPage.scss";

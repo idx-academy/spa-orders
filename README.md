@@ -304,7 +304,7 @@ import { Ref, forwardRef, PropsWithChildren } from "react";
 import { FormattedMessage } from "react-intl";
 import Typography, { TypographyProps } from "@mui/material/Typography";
 
-import PageWrapper from "@/layouts/app-wrapper/PageWrapper";
+import PageWrapper from "@/containers/app-wrapper/PageWrapper";
 
 import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";

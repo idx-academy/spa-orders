@@ -21,7 +21,7 @@ jest.mock("@/store/slices/userSlice", () => ({
   logout: jest.fn()
 }));
 
-jest.mock("@/layouts/modals/auth/AuthModal", () => ({
+jest.mock("@/containers/modals/auth/AuthModal", () => ({
   __esModule: true,
   default: () => "ModalContent"
 }));

@@ -65,7 +65,7 @@ jest.mock("@/store/api/ordersApi", () => ({
   useGetOrdersQuery: jest.fn()
 }));
 
-jest.mock("@/layouts/orders-list/OrdersList", () =>
+jest.mock("@/containers/orders-list/OrdersList", () =>
   jest.fn(() => <div>OrdersList</div>)
 );
 

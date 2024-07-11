@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import routePaths from "@/constants/routes";
-import PageLoadingFallback from "@/layouts/page-loading-fallback/PageLoadingFallback";
+import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 import {
   useIsAuthLoadingSelector,
   useIsAuthSelector,

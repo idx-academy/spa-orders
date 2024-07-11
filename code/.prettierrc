@@ -4,6 +4,7 @@
     "^(.*)react(.*)$",
     "<THIRD_PARTY_MODULES>",
     "^@/App$",
+    "^@/containers/(?!.*\\.scss$)(.*)$",
     "^@/layouts/(?!.*\\.scss$)(.*)$",
     "^@/components/(?!.*\\.scss$)(.*)$",
     "^@/(?!.*\\.scss$)(.*)$",
