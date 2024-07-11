@@ -28,23 +28,26 @@ npm install
 3. Start the project
 
 ```
-npm run start
+npm start
 ```
 
 4. Open [http://localhost:3030](http://localhost:3000) with your browser to see the result.
 
 ## Scripts
 
-| Name                       | Description                                                                  |
-| -------------------------- | ---------------------------------------------------------------------------- |
-| `npm run start:prod`       | Start the project with production settings including envs                    |
-| `npm run start:test`       | Start the project with cypress testing settings                              |
-| `npm run test`             | Runs unit tests                                                              |
-| `npm run test:coverage`    | Runs unit tests with collecting coverage                                     |
-| `npm run test:mutation`    | Runs mutation tests                                                          |
-| `npm run typescript:check` | Checks the validity of types                                                 |
-| `npm run lint`             | Lints the project files                                                      |
-| `npm run lint:fix`         | Fixes lint errors in the project                                             |
+| Name                       | Description                                                  |
+| -------------------------- | ------------------------------------------------------------ |
+| `npm run start`            | Start the project in development mode                        |
+| `npm run start:prod`       | Start the project with production settings including envs    |
+| `npm run start:test`       | Start the project with cypress testing settings              |
+| `npm run test`             | Runs unit tests                                              |
+| `npm run test:coverage`    | Runs unit tests with collecting coverage                     |
+| `npm run test:mutation`    | Runs mutation tests                                          |
+| `npm run typescript:check` | Checks the validity of types                                 |
+| `npm run lint`             | Lints the project files                                      |
+| `npm run lint:fix`         | Fixes lint errors in the project                             |
+| `npm run format:check`     | Checks if there are prettier formatting errors in src folder |
+| `npm run format:fix`       | Fixes all prettier format error inside src folder            |
 
 ## Git flow
 
@@ -147,9 +150,12 @@ Do until conflicts are resolved for all files
       - `/assets` - for assets ('.png', '.svg', '.jpg', 'webp', ...)
       - `/components` - for shared components
       - `/constants` - for shared constants
+      - `/containers` - for bigger than components and smaller than pages components
+      - `/constants` - for react contexts
       - `/hooks` - for reusable hooks
       - `/layouts` - for reusable relatively large page parts (headers, footers, sidebars, navbars, containers, etc.)
       - `/pages` - for project pages
+      - `/routes` - for app routing
       - `/store` - for globally managed application state
       - `/styles` - for global styling and defining design system constants
       - `/types` - for global types (utility types, business model types etc)
@@ -214,7 +220,7 @@ font-weight: var(--spa-typography-subtitle1-font-weight, $fw-extra-bold);
 4. If you want to use media query, use mixin `breakpoint` like following:
 
 ```scss
-@include breakpoint('md') {
+@include breakpoint("md") {
   border-radius: spacing(1);
 }
 ```
@@ -242,21 +248,22 @@ gap: spacing(4);
 ```tsx
 type ComponentProps = {
   // ...
-}
+};
 
 const Component = ({ prop1 }: ComponentProps) => {
   // ...
-}
+};
 
-export default Component
+export default Component;
 ```
 
 - Handlers should be arrow functions and start from prefix `handle`, for instance `handleButtonClick`, `handlePositionChange`
 - Use modular structure for our components. Tests, translations, styles etc should be on the same level with the component. Also we can use same folders, used on the root level of our project. Folder should be named in kebab case, component in camel case. For example:
 
 ```
-  i18n
+  messages
     en.json
+    index.ts
     uk.json
   components
     navbar
@@ -269,6 +276,7 @@ export default Component
       useBurgerMenu.test.tsx
   Header.tsx
   Header.test.tsx
+  Header.types.tsx
   Header.scss
 
 ```
@@ -287,36 +295,40 @@ export default Component
 
 ### Imports organization
 
-1. Imports from `React`
-2. Imports from other packages
-3. Import from the layouts folder
-4. Imports from the component folder
-5. Hooks
-6. Utility functions
-7. Constants
-8. Images
-9. Styles
+1. Imports from packages, that include word `react`
+2. Imports from third party imports
+3. Imports from `App`
+4. Imports from `layouts`
+5. Imports from `containers`
+6. Imports from `components`
+7. Other folders including `@/`
+8. `scss` files
+9. Relative imports
 
 You can see provided examples of correctly organized imports:
 
-```
+```jsx
 import { Ref, forwardRef, PropsWithChildren } from "react";
-import { FormattedMessage } from "react-intl";
-import Typography, { TypographyProps } from "@mui/material/Typography";
 
-import PageWrapper from "@/containers/app-wrapper/PageWrapper";
+import PeopleIcon from "@mui/icons-material/People";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 
-import AppButton from "@/components/app-button/AppButton";
+import App from "@/App";
+
+import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
+
+import callToActionItems from "@/containers/call-to-action/CallToAction.constants";
+
+import AppContainer from "@/components/app-container/AppContainer";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { useAppSelector } from "@/hooks/use-redux";
-import createUrlPath from "@/utils/create-url-path/createUrlPath";
-
-import { URLS } from "@/constants/requests";
-
-import Banner from "@/assets/images/banner.jpg";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
+import { SnackbarConfigWithTimeout } from "@/types/snackbar.types";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 import "@/components/app-button/AppButton.scss";
+
+import "./AppSnackbar.constants"
 ```
 
 ## Testing
