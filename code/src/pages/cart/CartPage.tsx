@@ -83,13 +83,11 @@ const CartPage = () => {
             <AppBox className="spa-order-summary__details">
               <AppBox className="spa-order-summary__row">
                 <AppTypography
-                  component="p"
                   className="spa-order-summary__text"
                   translationKey="subtotal.label"
                   data-testid="subtotalLabel"
                 />
                 <AppTypography
-                  component="p"
                   className="spa-order-summary__text"
                   variant="subtitle2"
                 >
@@ -98,18 +96,15 @@ const CartPage = () => {
               </AppBox>
               <AppBox className="spa-order-summary__row">
                 <AppTypography
-                  component="p"
                   translationKey="delivery.label"
                   data-testid="deliveryLabel"
                 />
                 <AppTypography
-                  component="p"
                   translationKey="free.label"
                   data-testid="freeLabel"
                 />
               </AppBox>
               <AppTypography
-                component="p"
                 className="spa-order-summary__underline-text"
                 translationKey="country.label"
                 data-testid="countryLabel"
@@ -118,12 +113,10 @@ const CartPage = () => {
                 <AppTypography
                   className="spa-order-summary__total"
                   variant="subtitle2"
-                  component="p"
                   translationKey="total.label"
                   data-testid="totalLabel"
                 />
                 <AppTypography
-                  component="p"
                   variant="subtitle2"
                   className="spa-order-summary__total"
                 >

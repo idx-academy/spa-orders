@@ -33,9 +33,7 @@ const CartItem = ({ item }: CartItemProps) => {
         <AppTypography className="spa-cart-item__title" variant="h3">
           {item.name}
         </AppTypography>
-        <AppTypography component="p">
-          {formatPrice(item.productPrice)}
-        </AppTypography>
+        <AppTypography>{formatPrice(item.productPrice)}</AppTypography>
       </AppBox>
       <AppBox className="spa-cart-item__quantity-selector">
         <AppBox className="spa-cart-item__quantity-block">
@@ -51,7 +49,7 @@ const CartItem = ({ item }: CartItemProps) => {
           <AddCircleOutlineIcon />
         </AppBox>
       </AppBox>
-      <AppTypography component="p" className="spa-cart-item__price">
+      <AppTypography className="spa-cart-item__price">
         {formatPrice(item.calculatedPrice)}
       </AppTypography>
       <AppBox className="spa-cart-item__delete-block">
