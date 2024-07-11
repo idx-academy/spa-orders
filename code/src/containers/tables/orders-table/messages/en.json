@@ -5,5 +5,6 @@
   "ordersTable.columns.receiver": "Receiver",
   "ordersTable.columns.deliveryMethod": "Delivery method",
   "ordersTable.columns.totalPrice": "Total price",
-  "ordersTable.columns.isPaid": "Is paid"
+  "ordersTable.columns.isPaid": "Is paid",
+  "ordersTable.fallback": "No orders found"
 }

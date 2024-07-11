@@ -1,5 +1,6 @@
 {
   "dashboardTabs.users.label": "Користувачі",
   "dashboardTabs.orders.label": "Замовлення",
-  "dashboardTabs.products.label": "Товари"
+  "dashboardTabs.products.label": "Товари",
+  "dashboardTabs.orders.title": "Замовлення"
 }
