@@ -1,5 +1,6 @@
 import { ComponentProps, ElementType, ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
+
 import { TypographyProps } from "@mui/material/Typography";
 
 export type HeadingVariant = "h1" | "h2" | "h3";

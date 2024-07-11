@@ -1,8 +1,8 @@
+import { useAppDispatch } from "@/hooks/use-redux/useRedux";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useSignInMutation } from "@/store/api/authApi";
 import { authenticate } from "@/store/slices/userSlice";
 import { SignInCredentials } from "@/types/auth.types";
-import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
-import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 
 const useSignIn = () => {
   const [signIn, options] = useSignInMutation();

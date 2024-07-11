@@ -1,8 +1,8 @@
-import { appApi } from "@/store/api/appApi";
-import createUrlPath from "@/utils/create-url-path/createUrlPath";
 import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
+import { appApi } from "@/store/api/appApi";
 import { Product } from "@/types/product.types";
+import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
 type GetProductsResponse = {
   content: Product[];

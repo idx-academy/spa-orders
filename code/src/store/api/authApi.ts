@@ -1,7 +1,6 @@
-import { appApi } from "@/store/api/appApi";
-
 import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
+import { appApi } from "@/store/api/appApi";
 import {
   SignInCredentials,
   SignInResponse,

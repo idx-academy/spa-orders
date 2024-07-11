@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 
+import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
+
 import Footer from "@/layouts/footer/Footer";
 import Header from "@/layouts/header/Header";
-import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 
 import AppBox from "@/components/app-box/AppBox";
 

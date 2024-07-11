@@ -1,13 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { sliceNames } from "@/store/constants";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
 import { useAppSelector } from "@/hooks/use-redux/useRedux";
+import { sliceNames } from "@/store/constants";
+import { AppDispatch } from "@/store/store";
 import { TimerId } from "@/types/common";
 import {
   BaseSnackbarConfig,
   SnackbarConfigWithTimeout,
   SnackbarVariant
 } from "@/types/snackbar.types";
-import { AppDispatch } from "@/store/store";
 
 const DEFAULT_AUTOHIDE_DURATION = 3000;
 const DEFAULT_VARIANT: SnackbarVariant = "error";

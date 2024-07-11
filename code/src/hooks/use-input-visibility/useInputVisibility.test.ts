@@ -1,4 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
+
 import useInputVisibility from "@/hooks/use-input-visibility/useInputVisibility";
 
 describe("useInputVisibility custom hook", () => {

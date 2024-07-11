@@ -13,7 +13,7 @@ describe("AppButton", () => {
 
   test("renders as NavLink if isNavLink and to props are passed", () => {
     const path = "/example";
-    
+
     renderWithProviders(
       <AppButton to={path} isNavLink>
         Test Button

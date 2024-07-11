@@ -1,14 +1,15 @@
 import {
-  isRejectedWithValue,
   Middleware,
-  PayloadAction
+  PayloadAction,
+  isRejectedWithValue
 } from "@reduxjs/toolkit";
-import { store } from "@/store/store";
-import { openSnackbarWithTimeout } from "@/store/slices/snackbarSlice";
-import { APIError } from "@/types/common";
+import { BaseQueryApi } from "@reduxjs/toolkit/query";
+
 import { ERROR_MESSAGES_BY_STATUS_CODE } from "@/constants/common";
 import { SnackbarPayload } from "@/store/api/appApi";
-import { BaseQueryApi } from "@reduxjs/toolkit/query";
+import { openSnackbarWithTimeout } from "@/store/slices/snackbarSlice";
+import { store } from "@/store/store";
+import { APIError } from "@/types/common";
 
 type ErrorPayload = {
   status: number;

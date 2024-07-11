@@ -1,8 +1,8 @@
-import { useSignUpMutation } from "@/store/api/authApi";
-import { SignUpCredentials } from "@/types/auth.types";
-import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
-import { authenticate } from "@/store/slices/userSlice";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
+import { useSignUpMutation } from "@/store/api/authApi";
+import { authenticate } from "@/store/slices/userSlice";
+import { SignUpCredentials } from "@/types/auth.types";
 
 const useSignUp = () => {
   const [signUp, options] = useSignUpMutation();

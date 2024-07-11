@@ -1,9 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
+import { appApi } from "@/store/api/appApi";
 import snackbarReducer from "@/store/slices/snackbarSlice";
 import userReducer from "@/store/slices/userSlice";
-
-import { appApi } from "@/store/api/appApi";
 
 export const reducer = combineReducers({
   snackbar: snackbarReducer,

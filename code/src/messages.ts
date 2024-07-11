@@ -1,9 +1,3 @@
-import footerMessages from "@/layouts/footer/messages";
-
-import dropDownMessages from "@/components/app-dropdown/messages";
-import productCardMessages from "@/components/product-card/messages";
-
-import commonMessages from "@/constants/common-messages";
 import bestSellersMessages from "@/containers/best-sellers/messages";
 import callToActionSectionMessages from "@/containers/call-to-action/messages";
 import cartDrawerMessages from "@/containers/cart-drawer/message";
@@ -16,6 +10,13 @@ import authModalMessages from "@/containers/modals/auth/messages";
 import orderItemMessages from "@/containers/order-item/messages";
 import subintroMessages from "@/containers/subintro/messages";
 import ordersTableMessages from "@/containers/tables/orders-table/messages";
+
+import footerMessages from "@/layouts/footer/messages";
+
+import dropDownMessages from "@/components/app-dropdown/messages";
+import productCardMessages from "@/components/product-card/messages";
+
+import commonMessages from "@/constants/common-messages";
 import cartPageMessages from "@/pages/cart/messages";
 import notFoundMessages from "@/pages/not-found/messages";
 import orderPageMessages from "@/pages/orders/messages";

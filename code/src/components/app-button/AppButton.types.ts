@@ -1,4 +1,5 @@
 import { To } from "react-router-dom";
+
 import { ButtonProps } from "@mui/material/Button";
 
 import { AppLinkWithNavLinkProps } from "@/components/app-link/AppLink.types";

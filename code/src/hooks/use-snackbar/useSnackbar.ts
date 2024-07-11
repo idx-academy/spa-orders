@@ -1,8 +1,8 @@
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {
+  closeSnackbar as closeSnackbarAction,
   openSnackbar as openSnackbarAction,
   openSnackbarWithTimeout as openSnackbarWithTimeoutAction,
-  closeSnackbar as closeSnackbarAction,
   useIsSnackbarOpenSelector,
   useSnackbarConfigSelector
 } from "@/store/slices/snackbarSlice";

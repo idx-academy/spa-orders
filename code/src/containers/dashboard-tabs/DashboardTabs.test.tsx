@@ -22,10 +22,13 @@ jest.mock("@/containers/dashboard-tabs/components/users-tab/UsersTab", () => ({
   default: () => <div>UsersTab</div>
 }));
 
-jest.mock("@/containers/dashboard-tabs/components/orders-tab/OrdersTab", () => ({
-  __esModule: true,
-  default: () => <div>OrdersTab</div>
-}));
+jest.mock(
+  "@/containers/dashboard-tabs/components/orders-tab/OrdersTab",
+  () => ({
+    __esModule: true,
+    default: () => <div>OrdersTab</div>
+  })
+);
 
 const renderWithMockSearchParams = (params?: Record<string, string>) => {
   (useSearchParams as jest.Mock).mockReturnValue([

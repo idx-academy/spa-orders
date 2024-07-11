@@ -1,9 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 
-import { errorMiddleware } from "@/store/errorMiddleware";
+import { configureStore } from "@reduxjs/toolkit";
 import { GetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+
 import { appApi } from "@/store/api/appApi";
+import { errorMiddleware } from "@/store/errorMiddleware";
 import { reducer } from "@/store/reducer";
 
 const middleware = <State>(

@@ -1,13 +1,15 @@
 import { Navigate } from "react-router-dom";
-import routePaths from "@/constants/routes";
+
 import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
+
+import routePaths from "@/constants/routes";
 import {
   useIsAuthLoadingSelector,
   useIsAuthSelector,
   useUserDetailsSelector
 } from "@/store/slices/userSlice";
-import { UserRole } from "@/types/user.types";
 import { NonEmptyArray } from "@/types/common";
+import { UserRole } from "@/types/user.types";
 
 type ProtectedRouteProps = {
   element: JSX.Element;

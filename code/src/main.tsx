@@ -7,6 +7,7 @@ import { StyledEngineProvider } from "@mui/material";
 import App from "@/App";
 
 import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
+
 import I18nProivider from "@/context/I18nProvider";
 import { store } from "@/store/store";
 

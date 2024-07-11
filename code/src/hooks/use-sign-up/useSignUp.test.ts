@@ -1,9 +1,10 @@
-import { renderHook, act } from "@testing-library/react";
-import { useSignUpMutation } from "@/store/api/authApi";
-import { authenticate } from "@/store/slices/userSlice";
-import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
+import { act, renderHook } from "@testing-library/react";
+
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import useSignUp from "@/hooks/use-sign-up/useSignUp";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
+import { useSignUpMutation } from "@/store/api/authApi";
+import { authenticate } from "@/store/slices/userSlice";
 import { SignUpResponse } from "@/types/auth.types";
 
 jest.mock("@/store/api/authApi");

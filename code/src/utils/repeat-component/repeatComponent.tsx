@@ -1,4 +1,4 @@
-import { cloneElement, ReactElement } from "react";
+import { ReactElement, cloneElement } from "react";
 
 const repeatComponent = (component: ReactElement, copiesCount: number) => {
   return Array.from({ length: copiesCount }, (_, index) =>
