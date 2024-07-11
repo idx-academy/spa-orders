@@ -14,28 +14,47 @@ const renderHeadItem = (item: string) => <th key={item}>{item}</th>;
 const renderBodyItem = (item: TableItem) => <td key={item.id}>{item.value}</td>;
 
 describe("AppTable", () => {
-  beforeEach(() => {
-    render(
-      <AppTable
-        headItems={headItems}
-        bodyItems={bodyItems}
-        renderBodyItem={renderBodyItem}
-        renderHeadItem={renderHeadItem}
-      />
-    );
-  });
+  describe("AppTable with body items", () => {
+    beforeEach(() => {
+      render(
+        <AppTable
+          headItems={headItems}
+          bodyItems={bodyItems}
+          renderBodyItem={renderBodyItem}
+          renderHeadItem={renderHeadItem}
+        />
+      );
+    });
 
-  test("renders head items correctly", () => {
-    headItems.forEach((item) => {
-      const headItem = screen.getByText(item);
-      expect(headItem).toBeInTheDocument();
+    test("renders head items correctly", () => {
+      headItems.forEach((item) => {
+        const headItem = screen.getByText(item);
+        expect(headItem).toBeInTheDocument();
+      });
+    });
+
+    test("renders body items correctly", () => {
+      bodyItems.forEach((item) => {
+        const bodyItem = screen.getByText(item.value);
+        expect(bodyItem).toBeInTheDocument();
+      });
     });
   });
 
-  test("renders body items correctly", () => {
-    bodyItems.forEach((item) => {
-      const bodyItem = screen.getByText(item.value);
-      expect(bodyItem).toBeInTheDocument();
+  describe("AppTable without body items", () => {
+    test("renders fallback correctly when bodyItems is empty", () => {
+      render(
+        <AppTable
+          headItems={headItems}
+          bodyItems={[]}
+          renderBodyItem={renderBodyItem}
+          renderHeadItem={renderHeadItem}
+          fallback={<div>Fallback Content</div>}
+        />
+      );
+
+      const fallbackContent = screen.getByText("Fallback Content");
+      expect(fallbackContent).toBeInTheDocument();
     });
   });
 });
