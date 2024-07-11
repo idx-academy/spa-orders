@@ -1,8 +1,12 @@
 const express = require("express");
-const { getAllOrders } = require("../controllers/orderConroller");
+const {
+  getAdminOrders,
+  getUserOrders,
+} = require("../controllers/orderConroller");
 
 const router = express.Router();
 
-router.get("/orders/user/:userId", getAllOrders);
+router.get("/users/:userId/orders", getUserOrders);
+router.get("/management/orders", getAdminOrders);
 
 module.exports = router;

@@ -1,7 +1,11 @@
-const orders = require("../data/mokedOrders");
+const { userOrders, adminOrders } = require("../data/mokedOrders");
 
-const getAllOrders = (req, res) => {
-  res.json(orders);
+const getUserOrders = (req, res) => {
+  res.json(userOrders);
 };
 
-module.exports = { getAllOrders };
+const getAdminOrders = (req, res) => {
+  res.json(adminOrders);
+};
+
+module.exports = { getUserOrders, getAdminOrders };
