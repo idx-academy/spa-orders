@@ -61,7 +61,7 @@ describe("OrdersTab Component", () => {
     expect(orderId).toBeInTheDocument();
   });
 
-  test("should handle undefined ordersResponse gracefully", () => {
+  test("should handle undefined ordersResponse", () => {
     renderAndMock({ isLoading: false, data: null });
 
     const noOrdersText = screen.getByText(/ordersTable.fallback/);
