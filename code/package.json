@@ -12,7 +12,9 @@
     "test:mutation": "stryker run",
     "typescript:check": "tsc --noEmit",
     "lint": "eslint \"./src/**/*.{js,ts,jsx,tsx}\" --max-warnings 0",
-    "lint:fix": "eslint \"./src/**/*.{js,ts,jsx,tsx}\" --fix --max-warnings 0"
+    "lint:fix": "eslint \"./src/**/*.{js,ts,jsx,tsx}\" --fix --max-warnings 0",
+    "format:check": "prettier --check ./src/",
+    "format:fix": "prettier --write ./src/"
   },
   "author": "",
   "license": "ISC",
