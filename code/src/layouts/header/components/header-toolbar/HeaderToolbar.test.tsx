@@ -18,7 +18,13 @@ jest.mock("@/store/slices/userSlice", () => ({
   useIsAuthSelector: jest.fn(),
   useIsAuthLoadingSelector: jest.fn(),
   useUserRoleSelector: jest.fn(),
+  useUserDetailsSelector: jest.fn(),
   logout: jest.fn()
+}));
+
+jest.mock("@/store/api/cartApi", () => ({
+  __esModule: true,
+  useLazyGetCartItemsQuery: jest.fn(() => [jest.fn(), { data: { items: [] } }])
 }));
 
 jest.mock("@/containers/modals/auth/AuthModal", () => ({
