@@ -5,7 +5,11 @@ import "@/components/product-skeleton/ProductSkeleton.scss";
 
 const ProductSkeleton = () => {
   return (
-    <AppBox className="spa-product-skeleton" data-testid="spa-product-skeleton">
+    <AppBox
+      className="spa-product-skeleton"
+      data-testid="spa-product-skeleton"
+      data-cy="product-skeleton"
+    >
       <AppSkeleton variant="rectangular" height={264} width={254} />
       <AppSkeleton variant="text" width={254} />
       <AppSkeleton variant="text" width={254} />

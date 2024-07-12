@@ -34,10 +34,11 @@ const ProductsContainer = ({
 
   if (isError) {
     return (
-      <AppBox className={cn("products-container_error", className)}>
+      <AppBox className={cn("products-container_error", className)} data-cy="best-sellers-products-error">
         <AppTypography
           translationKey={errorMessage}
           className="products-container__error-label"
+          data-cy="best-sellers-products-error-label"
         />
       </AppBox>
     );

@@ -1,3 +1,4 @@
+import { httpMethod, httpStatusCode } from "@cypress-e2e/fixtures/global-data";
 import "cypress-wait-until";
 
 Cypress.Commands.addQuery("getById", (id: string) => {

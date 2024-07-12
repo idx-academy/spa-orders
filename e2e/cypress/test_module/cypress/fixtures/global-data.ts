@@ -1,5 +1,3 @@
-export const mockData = {};
-
 export const httpStatusCode = {
   forbidden: 403,
   gatewayTimeout: 504,
@@ -18,4 +16,8 @@ export const ROLES = {
   USER: "ROLE_USER",
   SHOP_MANAGER: "ROLE_MANAGER",
   ADMIN: "ROLE_ADMIN"
+} as const;
+
+export const ERRORS = {
+  somethingWentWrong: "Something went wrong. Please try again later"
 } as const;

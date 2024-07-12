@@ -33,6 +33,16 @@ Feature: Guest Home Page
     When I click on Add to cart button
     Then I should see a Cart
 
+  Scenario: Best Sellers section bed products request
+    Given I am on a home page - products server error
+    When I look throw Best Sellers section with error
+    Then I should see an error message
+
+  Scenario: Best Sellers section products skeletons
+    Given I am on a home page - Products are loading
+    When I look throw Best Sellers section with skeletons
+    Then I should see five skeletons loading components
+
 
 
 

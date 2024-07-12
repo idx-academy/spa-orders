@@ -1,9 +1,39 @@
 /// <reference types="cypress" />
 
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { homePage } from "../page_objects/home-pages";
+import {
+  ERRORS,
+  httpMethod,
+  httpStatusCode
+} from "@cypress-e2e/fixtures/global-data";
 
 Given("I am on a home page", () => {
-  cy.intercept("GET", "/api/v1/products?page=0&size=5").as("getProducts");
+  cy.intercept(httpMethod.get, "/api/v1/products?page=0&size=5").as(
+    "getProducts"
+  );
+  cy.visit("/");
+});
+
+Given("I am on a home page - products server error", () => {
+  cy.intercept(httpMethod.get, "/api/v1/products?page=0&size=5", {
+    statusCode: httpStatusCode.internalServerError
+  }).as("getProductsServerError");
+  cy.visit("/");
+});
+
+Given("I am on a home page - Products are loading", () => {
+  cy.intercept(httpMethod.get, "/api/v1/products?page=0&size=5", (req) => {
+    req.continue((res) => {
+      res.send({
+        statusCode: httpStatusCode.ok,
+        body: {
+          products: []
+        }
+      });
+    });
+  }).as("getProductsLoading");
+
   cy.visit("/");
 });
 
@@ -25,7 +55,7 @@ When("I type text Mobile in search field", () => {
 });
 
 When("I click on clear button", () => {
-  cy.get('[data-testid="ClearIcon"]').click();
+  cy.get(homePage.headerSearchFieldClearIcon).click();
 });
 
 Then("I can see empty search field again", () => {
@@ -33,7 +63,7 @@ Then("I can see empty search field again", () => {
 });
 
 When("I click on Cart button", () => {
-  cy.get('[data-testid="ShoppingCartIcon"]').click();
+  cy.get(homePage.headerShopingCartIcon).click();
 });
 
 Then("I should see a Cart drawer", () => {
@@ -41,7 +71,7 @@ Then("I should see a Cart drawer", () => {
 });
 
 When("I click on close Cart icon", () => {
-  cy.get('[data-testid="KeyboardArrowLeftIcon"]').click();
+  cy.get(homePage.cartDrawerCloseIcon).click();
 });
 
 Then("I should not see a Cart drawer", () => {
@@ -57,7 +87,7 @@ Then("I should see Sign In dialog", () => {
 });
 
 When("I click on Shop All button", () => {
-  cy.get('[data-testid="menu-item"]').contains("Shop All").click();
+  cy.get(homePage.headerMenuList).contains("Shop All").click();
 });
 
 Then("I should be redirected to All Products Page", () => {
@@ -78,10 +108,18 @@ Then("I should see only five products on it", () => {
 
 When("I am hovering on Product Card img", () => {
   cy.getById("product-card-img").first().trigger("mouseover");
+  cy.getById("product-card-description").first().as("firstProductDescription");
+  cy.get("@firstProductDescription")
+    .should("be.hidden")
+    .then((el) => {
+      el.css("visibility", "visible");
+      el.css("opacity", "1");
+      el.css("transform", "translateY(0)");
+    });
 });
 
 Then("I should see the Product description", () => {
-  cy.getById("product-card-description").first().should("be.visible");
+  cy.get("@firstProductDescription").should("be.visible");
 });
 
 When("I click on Add to cart button", () => {
@@ -90,4 +128,29 @@ When("I click on Add to cart button", () => {
 
 Then("I should see a Cart", () => {
   cy.getById("cart-drawer").should("be.visible");
+});
+
+When("I look throw Best Sellers section with error", () => {
+  cy.getById("best-sellers").should("be.visible");
+});
+
+Then("I should see an error message", () => {
+  cy.wait("@getProductsServerError").then(() => {
+    cy.getById("best-sellers-products-error").should("be.visible");
+    cy.getById("best-sellers-products-error-label")
+      .contains(ERRORS.somethingWentWrong)
+      .should("be.visible");
+  });
+});
+
+When("I look throw Best Sellers section with skeletons", () => {
+  cy.getById("best-sellers").should("be.visible");
+});
+
+Then("I should see five skeletons loading components", () => {
+  cy.wait("@getProductsLoading").then(() => {
+    cy.getById("best-sellers").within(() => {
+      cy.getById("product-skeleton").should("have.length", 5);
+    });
+  });
 });
