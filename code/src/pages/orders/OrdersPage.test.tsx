@@ -105,4 +105,11 @@ describe("Test order page", () => {
 
     expect(messageElement).toBeInTheDocument();
   });
+  test("Should display loading indicator when data is being fetched", () => {
+    renderAndMock({ isLoading: true });
+
+    const loaderElement = screen.getByRole("progressbar");
+
+    expect(loaderElement).toBeInTheDocument();
+  });
 });

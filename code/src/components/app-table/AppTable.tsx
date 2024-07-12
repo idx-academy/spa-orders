@@ -1,6 +1,5 @@
-import { ReactNode } from "react";
-
 import AppBox from "@/components/app-box/AppBox";
+import { AppTableProps } from "@/components/app-table/AppTable.types";
 import {
   AppTableBody,
   AppTableBox,
@@ -10,22 +9,6 @@ import {
 } from "@/components/app-table/components";
 
 import cn from "@/utils/cn/cn";
-
-type ClassNames = {
-  container?: string;
-  head?: string;
-  body?: string;
-  fallback?: string;
-};
-
-type AppTableProps<T> = {
-  classNames?: ClassNames;
-  bodyItems: T[];
-  headItems: string[];
-  renderBodyItem: (item: T) => ReactNode;
-  renderHeadItem: (item: string) => ReactNode;
-  fallback?: ReactNode;
-};
 
 const AppTable = <TableContent,>({
   classNames,

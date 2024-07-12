@@ -1,6 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import AppTable from "@/components/app-table/AppTable";
+
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 type TableItem = { id: number; value: string };
 
@@ -16,7 +18,7 @@ const renderBodyItem = (item: TableItem) => <td key={item.id}>{item.value}</td>;
 describe("AppTable", () => {
   describe("AppTable with body items", () => {
     beforeEach(() => {
-      render(
+      renderWithProviders(
         <AppTable
           headItems={headItems}
           bodyItems={bodyItems}
@@ -43,7 +45,7 @@ describe("AppTable", () => {
 
   describe("AppTable without body items", () => {
     test("renders fallback correctly when bodyItems is empty", () => {
-      render(
+      renderWithProviders(
         <AppTable
           headItems={headItems}
           bodyItems={[]}

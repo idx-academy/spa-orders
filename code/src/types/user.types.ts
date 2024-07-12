@@ -3,8 +3,10 @@ import { ExtractValues } from "@/types/common";
 
 export type UserRole = ExtractValues<typeof ROLES>;
 
+export type UserId = number;
+
 type BaseUser = {
-  id: number;
+  id: UserId;
   firstName: string;
   lastName: string;
 };

@@ -1,7 +1,7 @@
 import { Pageable, Sort } from "@/types/common";
 import { PostAddress } from "@/types/delivery.types";
 import { Product } from "@/types/product.types";
-import { User } from "@/types/user.types";
+import { User, UserId } from "@/types/user.types";
 
 export type OrderStatus =
   | "IN_PROGRESS"
@@ -55,4 +55,4 @@ export type AdminOrderResponse = BaseOrderResponse & {
   content: AdminOrder[];
 };
 
-export type OrderParams = { userId: number };
+export type OrderParams = { userId: UserId };
