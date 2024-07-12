@@ -7,6 +7,7 @@ import ProtectedRoute from "@/routes/protected-route/ProtectedRoute";
 
 const OrdersPage = lazy(() => import("@/pages/orders/OrdersPage"));
 const DashboardPage = lazy(() => import("@/pages/dashboard/DashboardPage"));
+const CartPage = lazy(() => import("@/pages/cart/CartPage"));
 
 const protectedRoutes: RouteObject[] = [
   {
@@ -24,6 +25,15 @@ const protectedRoutes: RouteObject[] = [
       <ProtectedRoute
         element={<DashboardPage />}
         allowedRoles={[ROLES.ADMIN, ROLES.SHOP_MANAGER]}
+      />
+    )
+  },
+  {
+    path: routePaths.cart.path,
+    element: (
+      <ProtectedRoute
+        element={<CartPage />}
+        allowedRoles={[ROLES.ADMIN, ROLES.SHOP_MANAGER, ROLES.USER]}
       />
     )
   }

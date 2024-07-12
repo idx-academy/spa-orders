@@ -28,6 +28,7 @@ const CartPage = () => {
     isLoading: cartItemsLoading
   } = useGetCartItemsQuery({ userId: id });
 
+  //@TODO Implement Skeleton for loading items
   if (cartItemsLoading) {
     return <AppLoader />;
   }
