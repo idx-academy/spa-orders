@@ -9,31 +9,17 @@ import {
 } from "@cypress-e2e/fixtures/global-data";
 
 Given("I am on a home page", () => {
-  cy.intercept(httpMethod.get, "/api/v1/products?page=0&size=5").as(
-    "getProducts"
-  );
+  cy.getProductsWithQuantity(5);
   cy.visit("/");
 });
 
 Given("I am on a home page - products server error", () => {
-  cy.intercept(httpMethod.get, "/api/v1/products?page=0&size=5", {
-    statusCode: httpStatusCode.internalServerError
-  }).as("getProductsServerError");
+  cy.getProductsServerError(5);
   cy.visit("/");
 });
 
 Given("I am on a home page - Products are loading", () => {
-  cy.intercept(httpMethod.get, "/api/v1/products?page=0&size=5", (req) => {
-    req.continue((res) => {
-      res.send({
-        statusCode: httpStatusCode.ok,
-        body: {
-          products: []
-        }
-      });
-    });
-  }).as("getProductsLoading");
-
+  cy.getProductsLoading(5);
   cy.visit("/");
 });
 
@@ -91,17 +77,25 @@ When("I click on Shop All button", () => {
 });
 
 Then("I should be redirected to All Products Page", () => {
-  cy.get("h1").contains("All Products");
+  cy.getById("products-page").should("be.visible");
+});
+
+When("I click on Shop Now button", () => {
+  cy.getById("banner-intro-button").click();
+});
+
+Then("I should be redirected to Products Page", () => {
+  cy.getById("products-page").should("be.visible");
 });
 
 When("I look throw Best Sellers section", () => {
   cy.getById("best-sellers").should("be.visible");
 });
 
-Then("I should see only five products on it", () => {
-  cy.wait("@getProducts").then(() => {
+Then("I should see only {int} products on it", (productsCount) => {
+  cy.wait("@getProductsWithQuantityRequest").then(() => {
     cy.getById("best-sellers").within(() => {
-      cy.getById("product-card").should("have.length", 5);
+      cy.getById("product-card").should("have.length", productsCount);
     });
   });
 });
@@ -122,12 +116,12 @@ Then("I should see the Product description", () => {
   cy.get("@firstProductDescription").should("be.visible");
 });
 
-When("I click on Add to cart button", () => {
-  cy.get("button").contains("Add to cart").first().click();
+When("I click on View All button", () => {
+  cy.getById("best-sellers-button").click();
 });
 
-Then("I should see a Cart", () => {
-  cy.getById("cart-drawer").should("be.visible");
+Then("I should be redirected to Products Page immediately", () => {
+  cy.getById("products-page").should("be.visible");
 });
 
 When("I look throw Best Sellers section with error", () => {
@@ -135,7 +129,7 @@ When("I look throw Best Sellers section with error", () => {
 });
 
 Then("I should see an error message", () => {
-  cy.wait("@getProductsServerError").then(() => {
+  cy.wait("@getProductsRequestServerError").then(() => {
     cy.getById("best-sellers-products-error").should("be.visible");
     cy.getById("best-sellers-products-error-label")
       .contains(ERRORS.somethingWentWrong)
@@ -147,10 +141,10 @@ When("I look throw Best Sellers section with skeletons", () => {
   cy.getById("best-sellers").should("be.visible");
 });
 
-Then("I should see five skeletons loading components", () => {
-  cy.wait("@getProductsLoading").then(() => {
+Then("I should see {int} skeletons loading components", (sceletonsCount) => {
+  cy.wait("@getProductsRequestLoading").then(() => {
     cy.getById("best-sellers").within(() => {
-      cy.getById("product-skeleton").should("have.length", 5);
+      cy.getById("product-skeleton").should("have.length", sceletonsCount);
     });
   });
 });

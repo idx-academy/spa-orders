@@ -52,7 +52,7 @@ const ProductsPage = () => {
 
   return (
     <PageWrapper>
-      <AppBox className="spa-products-page">
+      <AppBox className="spa-products-page" data-cy="products-page">
         <AppTypography
           variant="h3"
           className="spa-products-page__header"

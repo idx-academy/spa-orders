@@ -36,3 +36,32 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
     cy.getById("snackbar").should("contain", "You successfully signed in");
   });
 });
+
+Cypress.Commands.add("getProductsWithQuantity", (quantity) => {
+  cy.intercept(httpMethod.get, `/api/v1/products?page=0&size=${quantity}`).as(
+    "getProductsWithQuantityRequest"
+  );
+});
+
+Cypress.Commands.add("getProductsServerError", (quantity) => {
+  cy.intercept(httpMethod.get, `/api/v1/products?page=0&size=${quantity}`, {
+    statusCode: httpStatusCode.internalServerError
+  }).as("getProductsRequestServerError");
+});
+
+Cypress.Commands.add("getProductsLoading", (quantity) => {
+  cy.intercept(
+    httpMethod.get,
+    `/api/v1/products?page=0&size=${quantity}`,
+    (req) => {
+      req.continue((res) => {
+        res.send({
+          statusCode: httpStatusCode.ok,
+          body: {
+            products: []
+          }
+        });
+      });
+    }
+  ).as("getProductsRequestLoading");
+});

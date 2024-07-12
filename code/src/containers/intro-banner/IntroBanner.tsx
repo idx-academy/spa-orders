@@ -45,6 +45,7 @@ const IntroBanner = () => {
             to={routes.products.path}
             size="large"
             className="spa-banner-intro__button"
+            data-cy="banner-intro-button"
           >
             <AppTypography variant="body" translationKey="introBanner.button" />
           </AppButton>

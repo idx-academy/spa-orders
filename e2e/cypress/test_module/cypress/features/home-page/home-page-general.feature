@@ -25,13 +25,17 @@ Feature: Guest Home Page
     When I click on Shop All button
     Then I should be redirected to All Products Page
 
+ Scenario: Navigate from banner to Product Page
+    When I click on Shop Now button
+    Then I should be redirected to Products Page
+
   Scenario: Interacting with the Best Sellers section
     When I look throw Best Sellers section
-    Then I should see only five products on it
+    Then I should see only 5 products on it
     When I am hovering on Product Card img
     Then I should see the Product description
-    When I click on Add to cart button
-    Then I should see a Cart
+    When I click on View All button
+    Then I should be redirected to Products Page immediately
 
   Scenario: Best Sellers section bed products request
     Given I am on a home page - products server error
@@ -41,7 +45,7 @@ Feature: Guest Home Page
   Scenario: Best Sellers section products skeletons
     Given I am on a home page - Products are loading
     When I look throw Best Sellers section with skeletons
-    Then I should see five skeletons loading components
+    Then I should see 5 skeletons loading components
 
 
 

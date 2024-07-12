@@ -20,6 +20,9 @@ declare global {
     interface Chainable {
       loginWithRole(role?: UserRole): Chainable<JQuery<void>>;
       getById(id: string): Chainable<JQuery<HTMLElement>>;
+      getProductsWithQuantity(quantity: number): Chainable<void>;
+      getProductsServerError(quantity: number): Chainable<void>;
+      getProductsLoading(quantity: number): Chainable<void>;
     }
   }
 }
