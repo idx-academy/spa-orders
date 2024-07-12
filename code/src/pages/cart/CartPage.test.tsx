@@ -5,6 +5,12 @@ import { useGetCartItemsQuery } from "@/store/api/cartApi";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
+type RenderWithMockParams = {
+  data?: typeof mockedCartItems | null;
+  isLoading?: boolean;
+  error?: boolean;
+};
+
 jest.mock("@/store/slices/userSlice", () => ({
   useUserDetailsSelector: jest.fn()
 }));
@@ -32,6 +38,20 @@ const mockedCartItems = {
   totalPrice: 1000.45
 };
 
+const renderWithMockParams = ({
+  data = null,
+  isLoading = false,
+  error = false
+}: RenderWithMockParams) => {
+  mockUseGetCartItemsQuery.mockReturnValue({
+    data,
+    isLoading,
+    error
+  });
+
+  renderWithProviders(<CartPage />);
+};
+
 describe("CartPage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -39,39 +59,21 @@ describe("CartPage", () => {
   });
 
   test("renders loading state", () => {
-    mockUseGetCartItemsQuery.mockReturnValue({
-      data: null,
-      isLoading: true,
-      error: false
-    });
-
-    renderWithProviders(<CartPage />);
+    renderWithMockParams({ isLoading: true });
 
     const progressbar = screen.getByRole("progressbar");
     expect(progressbar).toBeInTheDocument();
   });
 
   test("renders error state when there is an error fetching cart items", () => {
-    mockUseGetCartItemsQuery.mockReturnValue({
-      data: null,
-      isLoading: false,
-      error: true
-    });
-
-    renderWithProviders(<CartPage />);
+    renderWithMockParams({ error: true });
 
     const errorMessage = screen.getByText(/error.label/);
     expect(errorMessage).toBeInTheDocument();
   });
 
   test("renders cart items and order summary correctly", () => {
-    mockUseGetCartItemsQuery.mockReturnValue({
-      data: mockedCartItems,
-      isLoading: false,
-      error: false
-    });
-
-    renderWithProviders(<CartPage />);
+    renderWithMockParams({ data: mockedCartItems });
 
     const myCartLabel = screen.getByTestId("myCartLabel");
     expect(myCartLabel).toBeInTheDocument();
