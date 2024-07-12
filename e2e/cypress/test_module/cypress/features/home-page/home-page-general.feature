@@ -37,13 +37,13 @@ Feature: Guest Home Page
     When I click on View All button
     Then I should be redirected to Products Page immediately
 
-  Scenario: Best Sellers section bed products request
-    Given I am on a home page - products server error
+  Scenario: Best Sellers section with bed products request
+    Given I am on a home page and receive products server error
     When I look throw Best Sellers section with error
     Then I should see an error message
 
   Scenario: Best Sellers section products skeletons
-    Given I am on a home page - Products are loading
+    Given I am on a home page and Products are loading
     When I look throw Best Sellers section with skeletons
     Then I should see 5 skeletons loading components
 

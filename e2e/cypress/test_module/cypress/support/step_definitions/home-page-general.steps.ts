@@ -2,25 +2,20 @@
 
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import { homePage } from "../page_objects/home-pages";
-import {
-  ERRORS,
-  httpMethod,
-  httpStatusCode
-} from "@cypress-e2e/fixtures/global-data";
+import { ERRORS } from "@cypress-e2e/fixtures/global-data";
 
 Given("I am on a home page", () => {
   cy.getProductsWithQuantity(5);
   cy.visit("/");
 });
 
-Given("I am on a home page - products server error", () => {
+Given("I am on a home page and receive products server error", () => {
   cy.getProductsServerError(5);
-  cy.visit("/");
+  // cy.visit("/");
 });
 
-Given("I am on a home page - Products are loading", () => {
+Given("I am on a home page and Products are loading", () => {
   cy.getProductsLoading(5);
-  cy.visit("/");
 });
 
 When(
