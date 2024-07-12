@@ -8,7 +8,7 @@ import AppButton from "@/components/app-button/AppButton";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { useDrawerContext } from "@/context/DrawerContext";
+import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useRemoveFromCartMutation } from "@/store/api/cartApi";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";

@@ -21,7 +21,7 @@ import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import routes from "@/constants/routes";
-import { useDrawerContext } from "@/context/DrawerContext";
+import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import { useModalContext } from "@/context/modal/ModalContext";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {

@@ -6,7 +6,7 @@ import ProductCard from "@/components/product-card/ProductCard";
 import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 import { ProductsContainerProps } from "@/components/products-container/ProductsContainer.types";
 
-import { useDrawerContext } from "@/context/DrawerContext";
+import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useAddToCartMutation } from "@/store/api/cartApi";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";

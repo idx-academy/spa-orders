@@ -8,7 +8,7 @@ import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingF
 
 import AppBox from "@/components/app-box/AppBox";
 
-import { DrawerProvider } from "@/context/DrawerContext";
+import { DrawerProvider } from "@/context/drawer/DrawerContext";
 import { ModalProvider } from "@/context/modal/ModalContext";
 
 import "@/layouts/root-layout/RootLayout.scss";

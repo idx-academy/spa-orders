@@ -8,9 +8,9 @@ import {
 
 import Drawer from "@mui/material/Drawer";
 
-type DrawerContextType = {
+export type DrawerContextType = {
   openDrawer: (component: ReactElement) => void;
-  toggleDrawer: (component: ReactElement) => void;
+  toggleDrawer: (component?: ReactElement) => void;
   closeDrawer: () => void;
 };
 
@@ -32,14 +32,14 @@ const DrawerProvider = ({ children }: DrawerProviderProps) => {
     setIsOpen(false);
   };
 
-  const toggleDrawer = (component: ReactElement) => {
-    drawer ? closeDrawer() : openDrawer(component);
+  const toggleDrawer = (component?: ReactElement) => {
+    component ? openDrawer(component) : closeDrawer();
   };
 
   const drawerContent = (
     <Drawer
       open={isOpen}
-      onClose={toggleDrawer}
+      onClose={closeDrawer}
       anchor="right"
       transitionDuration={400}
     >
