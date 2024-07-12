@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 
+import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import CartPage from "@/pages/cart/CartPage";
 import { useGetCartItemsQuery } from "@/store/api/cartApi";
-import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 type RenderWithMockParams = {
@@ -11,8 +11,9 @@ type RenderWithMockParams = {
   error?: boolean;
 };
 
-jest.mock("@/store/slices/userSlice", () => ({
-  useUserDetailsSelector: jest.fn()
+jest.mock("@/hooks/use-get-user-details/useGetUserDetails", () => ({
+  __esModule: true,
+  default: jest.fn()
 }));
 
 jest.mock("@/store/api/cartApi", () => ({
@@ -21,7 +22,7 @@ jest.mock("@/store/api/cartApi", () => ({
 
 jest.mock("@/utils/format-price/formatPrice");
 
-const mockUseUserDetailsSelector = useUserDetailsSelector as jest.Mock;
+const mockUseGetUserDetails = useGetUserDetails as jest.Mock;
 const mockUseGetCartItemsQuery = useGetCartItemsQuery as jest.Mock;
 
 const mockedCartItems = {
@@ -37,6 +38,8 @@ const mockedCartItems = {
   ],
   totalPrice: 1000.45
 };
+
+const userId = { id: 3 };
 
 const renderWithMockParams = ({
   data = null,
@@ -55,7 +58,7 @@ const renderWithMockParams = ({
 describe("CartPage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockUseUserDetailsSelector.mockReturnValue({ id: "4455667788" });
+    mockUseGetUserDetails.mockReturnValue(userId);
   });
 
   test("renders loading state", () => {

@@ -1,8 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
+import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import OrdersPage from "@/pages/orders/OrdersPage";
 import { useGetUserOrdersQuery } from "@/store/api/ordersApi";
 import { RTKQueryMockState } from "@/types/common";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
+const userId = { id: 3 };
 
 const mockOrders = {
   totalElements: 0,
@@ -69,6 +73,13 @@ jest.mock("@/containers/orders-list/OrdersList", () =>
   jest.fn(() => <div>OrdersList</div>)
 );
 
+jest.mock("@/hooks/use-get-user-details/useGetUserDetails", () => ({
+  __esModule: true,
+  default: jest.fn()
+}));
+
+const mockUseGetUserDetails = useGetUserDetails as jest.Mock;
+
 const renderAndMock = (response: RTKQueryMockState<typeof mockOrders> = {}) => {
   (useGetUserOrdersQuery as jest.Mock).mockReturnValueOnce({
     isLoading: false,
@@ -76,7 +87,9 @@ const renderAndMock = (response: RTKQueryMockState<typeof mockOrders> = {}) => {
     ...response
   });
 
-  render(<OrdersPage />);
+  mockUseGetUserDetails.mockReturnValue(userId);
+
+  renderWithProviders(<OrdersPage />);
 };
 
 describe("Test order page", () => {
@@ -105,6 +118,7 @@ describe("Test order page", () => {
 
     expect(messageElement).toBeInTheDocument();
   });
+
   test("Should display loading indicator when data is being fetched", () => {
     renderAndMock({ isLoading: true });
 

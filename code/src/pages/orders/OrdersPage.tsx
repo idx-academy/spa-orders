@@ -6,21 +6,20 @@ import AppBox from "@/components/app-box/AppBox";
 import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import { useGetUserOrdersQuery } from "@/store/api/ordersApi";
-import { useUserDetailsSelector } from "@/store/slices/userSlice";
 
 import "@/pages/orders/OrdersPage.scss";
 
 const OrdersPage = () => {
-  const userDetails = useUserDetailsSelector();
+  const { id } = useGetUserDetails();
 
   const {
     data: orderResponse,
     isLoading,
     error
   } = useGetUserOrdersQuery({
-    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-    userId: userDetails?.id! //we are sure that userDetails is not null because we are using this page inside protected route
+    userId: id
   });
 
   const orders = orderResponse?.content ?? [];

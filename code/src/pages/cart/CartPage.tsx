@@ -5,9 +5,9 @@ import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 import OrderSummary from "@/components/order-summary/OrderSummary";
 
+import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import CartItem from "@/pages/cart/components/CartItem";
 import { useGetCartItemsQuery } from "@/store/api/cartApi";
-import { useUserDetailsSelector } from "@/store/slices/userSlice";
 
 import "@/pages/cart/CartPage.scss";
 
@@ -21,14 +21,13 @@ type CartItem = {
 };
 
 const CartPage = () => {
-  const { id: userId } = useUserDetailsSelector() || {};
+  const { id } = useGetUserDetails();
   const {
     data: cartItems,
     error,
     isLoading: cartItemsLoading
-  } = useGetCartItemsQuery(userId!);
+  } = useGetCartItemsQuery({ userId: id });
 
-  //@TODO Implement Skeleton for loading items
   if (cartItemsLoading) {
     return <AppLoader />;
   }
