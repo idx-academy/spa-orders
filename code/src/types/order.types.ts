@@ -55,4 +55,4 @@ export type AdminOrderResponse = BaseOrderResponse & {
   content: AdminOrder[];
 };
 
-export type OrderParams = { userId: UserId };
+export type OrderGetParams = { userId: UserId };

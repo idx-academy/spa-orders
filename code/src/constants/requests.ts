@@ -1,6 +1,9 @@
-import { CartManagementParams } from "@/types/cart.types";
-import { OrderParams } from "@/types/order.types";
-import { UserIdType } from "@/types/user.types";
+import {
+  CartManagementDeleteParams,
+  CartManagementGetParams,
+  CartManagementPostParams
+} from "@/types/cart.types";
+import { OrderGetParams } from "@/types/order.types";
 
 export const URLS = {
   auth: {
@@ -14,15 +17,16 @@ export const URLS = {
     delete: "/v1/products"
   },
   orders: {
-    getForUser: ({ userId }: OrderParams) => `/v1/users/${userId}/orders`,
+    getForUser: ({ userId }: OrderGetParams) => `/v1/users/${userId}/orders`,
     getForAdmin: "/v1/management/orders",
     post: "/v1/orders"
   },
   cart: {
-    get: ({ userId }: UserIdType) => `/v1/users/${userId}/cart/items`,
-    post: ({ userId, productId }: CartManagementParams) =>
+    get: ({ userId }: CartManagementGetParams) =>
+      `/v1/users/${userId}/cart/items`,
+    post: ({ userId, productId }: CartManagementPostParams) =>
       `/v1/users/${userId}/cart/${productId}`,
-    delete: ({ userId, productId }: CartManagementParams) =>
+    delete: ({ userId, productId }: CartManagementDeleteParams) =>
       `/v1/users/${userId}/cart/items/${productId}`
   }
 } as const;

@@ -1,6 +1,17 @@
-export type CartManagementParams = {
+import { UserId } from "@/types/user.types";
+
+export type CartManagementPostParams = {
   productId: string;
-  userId: number;
+  userId: UserId;
+};
+
+export type CartManagementDeleteParams = {
+  productId: string;
+  userId: UserId;
+};
+
+export type CartManagementGetParams = {
+  userId: UserId;
 };
 
 export type CartItem = {

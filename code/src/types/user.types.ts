@@ -25,7 +25,3 @@ export type TokenPayload = {
 };
 
 export type UserDetails = User & TokenPayload;
-
-export type UserIdType = {
-  userId: number;
-};
