@@ -10,11 +10,18 @@ import checkJWTExpiration from "@/utils/check-jwt-expiration/checkJWTExpiration"
 type UserState = {
   userDetails: UserDetails | null;
   isLoading: boolean;
+  isFirstSessionAfterAuth: boolean;
+};
+
+type AuthenticatePayload = {
+  token: string;
+  isFirstSessionAfterAuth: boolean;
 };
 
 const initialState: UserState = {
   userDetails: null,
-  isLoading: true
+  isLoading: true,
+  isFirstSessionAfterAuth: false
 };
 
 export const checkAuth = createAsyncThunk(
@@ -43,7 +50,7 @@ export const checkAuth = createAsyncThunk(
         throw new Error("Token expired");
       }
 
-      dispatch(authenticate(token));
+      dispatch(authenticate({ token, isFirstSessionAfterAuth: false }));
       return null;
     } catch {
       dispatch(logout());
@@ -56,8 +63,8 @@ const userSlice = createSlice({
   name: sliceNames.user,
   initialState,
   reducers: {
-    authenticate: (state, action: PayloadAction<string>) => {
-      const token = action.payload;
+    authenticate: (state, action: PayloadAction<AuthenticatePayload>) => {
+      const token = action.payload.token;
       const user = jwtDecode<UserFromServer>(token);
 
       const userDetails: UserDetails = {
@@ -70,6 +77,7 @@ const userSlice = createSlice({
       };
 
       state.userDetails = userDetails;
+      state.isFirstSessionAfterAuth = action.payload.isFirstSessionAfterAuth;
 
       const serializedUserDetails = JSON.stringify(userDetails);
       window.localStorage.setItem(
@@ -106,6 +114,9 @@ export const useIsAuthLoadingSelector = () =>
 
 export const useUserDetailsSelector = () =>
   useAppSelector((store) => store.user.userDetails);
+
+export const useIsFirstSessionAfterAuthSelector = () =>
+  useAppSelector((store) => store.user.isFirstSessionAfterAuth);
 
 export const useUserRoleSelector = () =>
   useAppSelector((store) => {

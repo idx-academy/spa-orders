@@ -18,6 +18,9 @@
   "orders.create.success": "Замовлення успішно створено. Ви можете відстежувати його на сторінці замовлень.",
   "cart.itemAddition.fail": "Не вдалося додати продукт у кошик.",
   "cart.itemDeletion.fail": "Не вдалося видалити продукт з кошика.",
+  "cart.itemAddition.success": "Продукт успішно додано у кошик.",
+  "cart.itemDeletion.success": "Продукт успішно видалено з кошика.",
+  "cart.itemAdditionToRemote.fail": "Не вдалося додати продукт у кошик, пов'язаний з вашим обліковим записом.",
   "filters.from": "Від",
   "filters.to": "до"
 }

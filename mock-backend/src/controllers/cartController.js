@@ -14,7 +14,12 @@ const getCartItems = (req, res) => {
 };
 
 const addToCart = (req, res) => {
+ 
   const item = products.find((product) => product.id === req.params.productId);
+
+  if (store.find(item => item.productId === req.params.productId)) {
+    return res.status(409).json();
+  }
 
   store.push({
     productId: item.id,
@@ -29,6 +34,7 @@ const addToCart = (req, res) => {
 };
 
 const removeFromCart = (req, res) => {
+   
   store = store.filter((item) => item.productId !== req.params.productId);
 
   res.json();

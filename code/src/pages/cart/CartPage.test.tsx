@@ -1,12 +1,11 @@
 import { screen } from "@testing-library/react";
 
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
+import useUserDetailsSelector from "@/hooks/use-get-user-details/useGetUserDetails";
+import useRemoveFromCart from "@/hooks/use-remove-from-cart/useRemoveFromCart";
 import CartPage from "@/pages/cart/CartPage";
-import {
-  useGetCartItemsQuery,
-  useRemoveFromCartMutation
-} from "@/store/api/cartApi";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 type RenderWithMockParams = {
@@ -26,15 +25,21 @@ jest.mock("@/hooks/use-create-order/useCreateOrder", () => ({
 }));
 
 jest.mock("@/store/api/cartApi", () => ({
-  useGetCartItemsQuery: jest.fn(),
-  useRemoveFromCartMutation: jest.fn()
+  endpoints: {
+    getCartItems: {
+      matchFulfilled: jest.fn()
+    }
+  }
 }));
+
+jest.mock("@/hooks/use-get-cart/useGetCart");
+jest.mock("@/hooks/use-remove-from-cart/useRemoveFromCart");
 
 jest.mock("@/utils/format-price/formatPrice");
 
-const mockUseGetUserDetails = useGetUserDetails as jest.Mock;
-const mockUseGetCartItemsQuery = useGetCartItemsQuery as jest.Mock;
-const mockUseRemoveFromCartMutation = useRemoveFromCartMutation as jest.Mock;
+const mockUseGetUserDetails = useUserDetailsSelector as jest.Mock;
+const mockUseGetCart = useGetCart as jest.Mock;
+const mockuseRemoveFromCart = useRemoveFromCart as jest.Mock;
 
 const mockCreateOrder = jest.fn();
 
@@ -58,12 +63,12 @@ const renderWithMockParams = ({
   data = null,
   error = false
 }: RenderWithMockParams) => {
-  mockUseGetCartItemsQuery.mockReturnValue({
+  mockUseGetCart.mockReturnValue({
     data,
     error
   });
 
-  mockUseRemoveFromCartMutation.mockReturnValue([jest.fn()]);
+  mockuseRemoveFromCart.mockReturnValue([jest.fn()]);
 
   renderWithProviders(<CartPage />);
 };

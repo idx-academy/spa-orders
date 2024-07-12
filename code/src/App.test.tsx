@@ -27,6 +27,11 @@ jest.mock("@/store/slices/userSlice", () => ({
   checkAuth: jest.fn()
 }));
 
+jest.mock("@/hooks/use-synchronize-cart/useSynchronizeCart", () => ({
+  __esModule: true,
+  default: jest.fn()
+}));
+
 jest.mock("@/hooks/use-redux/useRedux", () => ({
   __esModule: true,
   useAppDispatch: jest.fn()

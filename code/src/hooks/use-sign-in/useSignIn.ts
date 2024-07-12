@@ -1,5 +1,6 @@
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
+import useSynchronizeCart from "@/hooks/use-synchronize-cart/useSynchronizeCart";
 import { useSignInMutation } from "@/store/api/authApi";
 import { authenticate } from "@/store/slices/userSlice";
 import { SignInCredentials } from "@/types/auth.types";
@@ -17,7 +18,9 @@ const useSignIn = () => {
       return;
     }
 
-    dispatch(authenticate(userDetails.token));
+    dispatch(
+      authenticate({ token: userDetails.token, isFirstSessionAfterAuth: true })
+    );
     openSnackbarWithTimeout({
       messageTranslationKey: "signIn.success",
       variant: "success"

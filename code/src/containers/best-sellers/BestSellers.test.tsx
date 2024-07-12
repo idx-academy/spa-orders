@@ -27,7 +27,12 @@ jest.mock("@/store/slices/userSlice", () => ({
 jest.mock("@/store/api/cartApi", () => ({
   useAddToCartMutation: jest.fn(() => [jest.fn(), {}]),
   useRemoveFromCartMutation: jest.fn(() => [jest.fn(), {}]),
-  useLazyGetCartItemsQuery: jest.fn(() => [jest.fn(), {}])
+  useLazyGetCartItemsQuery: jest.fn(() => [jest.fn(), {}]),
+  endpoints: {
+    getCartItems: {
+      matchFulfilled: jest.fn()
+    }
+  }
 }));
 
 jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({

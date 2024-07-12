@@ -40,3 +40,5 @@ export const {
   useRemoveFromCartMutation,
   useLazyGetCartItemsQuery
 } = cartApi;
+
+export default cartApi;

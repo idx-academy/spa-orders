@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import ListAltIcon from "@mui/icons-material/ListAlt";
@@ -24,13 +24,14 @@ import { ROLES } from "@/constants/common";
 import routes from "@/constants/routes";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import { useModalContext } from "@/context/modal/ModalContext";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
-import { useLazyGetCartItemsQuery } from "@/store/api/cartApi";
+import cartApi from "@/store/api/cartApi";
+import { clearLocalCart } from "@/store/slices/localCart";
 import {
   logout,
   useIsAuthLoadingSelector,
   useIsAuthSelector,
-  useUserDetailsSelector,
   useUserRoleSelector
 } from "@/store/slices/userSlice";
 
@@ -44,9 +45,7 @@ const HeaderToolbar = () => {
   const userRole = useUserRoleSelector();
   const dispatch = useAppDispatch();
 
-  const [fetchCartItems, { data }] = useLazyGetCartItemsQuery();
-
-  const user = useUserDetailsSelector();
+  const { data } = useGetCart();
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -69,17 +68,13 @@ const HeaderToolbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(clearLocalCart());
+    dispatch(cartApi.util.resetApiState());
   };
 
   const handleOpenCart = () => {
     openDrawer(<CartDrawer />);
   };
-
-  useEffect(() => {
-    if (user?.id && isAuthenticated) {
-      fetchCartItems({ userId: user.id });
-    }
-  }, [user?.id]);
 
   const cartItemsCount = data?.items.reduce(
     (total, item) => total + item.quantity,
@@ -95,19 +90,18 @@ const HeaderToolbar = () => {
     </AppTypography>
   );
 
-  const badge =
-    displayedCartItemsCount && isAuthenticated ? (
-      <AppBadge
-        badgeContent={badgeContent}
-        variant="contained"
-        size="small"
-        className="header__toolbar-cart-badge"
-      >
-        <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
-      </AppBadge>
-    ) : (
+  const badge = displayedCartItemsCount ? (
+    <AppBadge
+      badgeContent={badgeContent}
+      variant="contained"
+      size="small"
+      className="header__toolbar-cart-badge"
+    >
       <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
-    );
+    </AppBadge>
+  ) : (
+    <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
+  );
 
   const loadingButton = isLoadingAuth && <AppLoader />;
 

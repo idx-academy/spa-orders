@@ -1,7 +1,6 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 import CartDrawer from "@/containers/cart-drawer/CartDrawer";
-import AuthModal from "@/containers/modals/auth/AuthModal";
 import {
   HandleCartIconClickParam,
   ProductsContainerProps
@@ -13,12 +12,8 @@ import ProductCard from "@/components/product-card/ProductCard";
 import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
-import { useModalContext } from "@/context/modal/ModalContext";
-import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
-import {
-  useAddToCartMutation,
-  useLazyGetCartItemsQuery
-} from "@/store/api/cartApi";
+import useAddToCart from "@/hooks/use-add-to-cart/useAddToCart";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import {
   useIsAuthLoadingSelector,
   useUserDetailsSelector
@@ -37,34 +32,28 @@ const ProductsContainer = ({
   loadingItemsCount = 5,
   errorMessage = "errors.somethingWentWrong"
 }: ProductsContainerProps) => {
+  const [addToCart] = useAddToCart();
+
   const user = useUserDetailsSelector();
   const isAuthLoading = useIsAuthLoadingSelector();
 
   const userId = user?.id;
 
-  const [
-    fetchCart,
-    { data: cartData, isLoading: isCartLoading, isFetching: isCartFetching }
-  ] = useLazyGetCartItemsQuery();
-
-  useEffect(() => {
-    if (userId) {
-      fetchCart({ userId });
-    }
-  }, [userId]);
+  const {
+    data: cartData,
+    isLoading: isCartLoading,
+    isFetching: isCartFetching
+  } = useGetCart();
 
   const { openDrawer } = useDrawerContext();
-  const { openModal } = useModalContext();
-  const { openSnackbarWithTimeout } = useSnackbar();
 
-  const [addToCart] = useAddToCartMutation();
+  const cartLength = cartData?.items.length;
 
   // For now isInCart calculating is implemented on a client side
   const cartProductsIds = useMemo(() => {
-    const cartProductsIds =
-      userId && cartData ? cartData?.items.map((item) => item.productId) : [];
+    const cartProductsIds = cartData?.items.map((item) => item.productId);
     return new Set(cartProductsIds);
-  }, [isCartFetching, userId]);
+  }, [isCartFetching, userId, cartLength]);
 
   if (isError) {
     return (
@@ -81,28 +70,20 @@ const ProductsContainer = ({
     );
   }
 
-  const handleCartIconClick = async (product: HandleCartIconClickParam) => {
-    if (!userId) {
-      openModal(<AuthModal />);
+  const handleCartIconClick = (product: HandleCartIconClickParam) => {
+    if (product.isInCart) {
+      openDrawer(<CartDrawer />);
       return;
     }
 
-    try {
-      if (product.isInCart) {
-        openDrawer(<CartDrawer />);
-        return;
-      }
-
-      await addToCart({
-        productId: product.id,
-        userId: user.id
-      }).unwrap();
-    } catch {
-      openSnackbarWithTimeout({
-        variant: "error",
-        messageTranslationKey: "cart.itemAddition.fail"
-      });
-    }
+    addToCart({
+      productId: product.id,
+      name: product.name,
+      image: product.image,
+      productPrice: product.price,
+      quantity: 1,
+      calculatedPrice: product.price
+    });
   };
 
   const productCards = products.map((product: Product) => {

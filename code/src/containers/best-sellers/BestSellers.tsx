@@ -34,7 +34,11 @@ const BestSellers = () => {
         products={productsResponse?.content ?? []}
       />
       <AppBox className="spa-best-sellers__button">
-        <AppButton to={routes.products.path} size="extra-large" data-cy="best-sellers-button">
+        <AppButton
+          to={routes.products.path}
+          size="extra-large"
+          data-cy="best-sellers-button"
+        >
           <AppTypography translationKey="bestSellers.button" />
         </AppButton>
       </AppBox>

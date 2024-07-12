@@ -17,27 +17,21 @@ import "@/containers/cart-drawer/CartDrawer.scss";
 
 const CartDrawer = () => {
   const { closeDrawer } = useDrawerContext();
-  const { user, cartItems, cartItemsLoading, error, handleRemoveItem } =
+  const { cartItems, cartItemsLoading, error, handleRemoveItem } =
     useCartItems();
-
-  //@TODO Create interaction with unauthorization user
-  if (!user) {
-    return null;
-  }
 
   // @TODO Implement Skeleton for loading items
   if (cartItemsLoading) return <AppLoader />;
 
   if (error) return <AppTypography translationKey="error.label" />;
 
-  const cartItemsList =
-    cartItems?.items.map((item: CartItem) => (
-      <CartDrawerItem
-        key={item.productId}
-        onRemove={handleRemoveItem}
-        {...item}
-      />
-    )) ?? [];
+  const cartItemsList = cartItems.items.map((item: CartItem) => (
+    <CartDrawerItem
+      key={item.productId}
+      onRemove={handleRemoveItem}
+      {...item}
+    />
+  ));
 
   const cartItemsContent =
     cartItemsList.length > 0 ? (

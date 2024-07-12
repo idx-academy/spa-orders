@@ -1,22 +1,22 @@
 import { renderHook } from "@testing-library/react";
 
 import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
-import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
+import useRemoveFromCart from "@/hooks/use-remove-from-cart/useRemoveFromCart";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
-import {
-  useGetCartItemsQuery,
-  useRemoveFromCartMutation
-} from "@/store/api/cartApi";
+import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
 
-jest.mock("@/hooks/use-get-user-details/useGetUserDetails");
+jest.mock("@/store/slices/userSlice");
 jest.mock("@/hooks/use-snackbar/useSnackbar");
 jest.mock("@/store/api/cartApi");
+jest.mock("@/hooks/use-get-cart/useGetCart");
+jest.mock("@/hooks/use-remove-from-cart/useRemoveFromCart");
 
-const mockUseGetUserDetails = useGetUserDetails as jest.Mock;
+const mockUseUserDetailsSelector = useUserDetailsSelector as jest.Mock;
 const mockUseSnackbar = useSnackbar as jest.Mock;
-const mockUseGetCartItemsQuery = useGetCartItemsQuery as jest.Mock;
-const mockUseRemoveFromCartMutation = useRemoveFromCartMutation as jest.Mock;
+const mockUseGetCart = useGetCart as jest.Mock;
+const mockuseRemoveFromCart = useRemoveFromCart as jest.Mock;
 
 type RenderWithMockParams = {
   data?: CartItem[] | null;
@@ -29,14 +29,14 @@ const renderWithMockParams = ({
   isLoading = false,
   error = false
 }: RenderWithMockParams) => {
-  mockUseGetUserDetails.mockReturnValue({ id: "user1" });
+  mockUseUserDetailsSelector.mockReturnValue({ id: "user1" });
   mockUseSnackbar.mockReturnValue({ openSnackbarWithTimeout: jest.fn() });
-  mockUseGetCartItemsQuery.mockReturnValue({
+  mockUseGetCart.mockReturnValue({
     data,
     isLoading,
     error: error ? new Error("Failed to fetch") : null
   });
-  mockUseRemoveFromCartMutation.mockReturnValue([jest.fn()]);
+  mockuseRemoveFromCart.mockReturnValue([jest.fn()]);
 
   return renderHook(() => useCartItems());
 };

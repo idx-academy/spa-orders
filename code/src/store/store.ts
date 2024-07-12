@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { GetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 import { appApi } from "@/store/api/appApi";
+import cartLocalSavingMiddleware from "@/store/cartLocalSavingMiddleware";
 import { errorMiddleware } from "@/store/errorMiddleware";
 import { reducer } from "@/store/reducer";
 
@@ -12,7 +13,8 @@ const middleware = <State>(
 ) => {
   return getDefaultMiddleware()
     .concat(appApi.middleware)
-    .concat(errorMiddleware);
+    .concat(errorMiddleware)
+    .concat(cartLocalSavingMiddleware);
 };
 
 export const store = configureStore({

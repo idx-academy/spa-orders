@@ -1,41 +1,21 @@
-import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
-import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
-import {
-  useGetCartItemsQuery,
-  useRemoveFromCartMutation
-} from "@/store/api/cartApi";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
+import useRemoveFromCart from "@/hooks/use-remove-from-cart/useRemoveFromCart";
+import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
 
 const useCartItems = () => {
-  const user = useGetUserDetails();
-  const { openSnackbarWithTimeout } = useSnackbar();
+  const user = useUserDetailsSelector();
 
-  const {
-    data: cartItems,
-    error,
-    isLoading: cartItemsLoading
-  } = useGetCartItemsQuery({ userId: user.id });
+  const { data: cartItems, error, isLoading: cartItemsLoading } = useGetCart();
 
-  const [removeItem] = useRemoveFromCartMutation();
+  const [removeItem] = useRemoveFromCart();
 
   const handleRemoveItem = async (product: CartItem) => {
-    try {
-      if (user) {
-        await removeItem({
-          userId: user.id,
-          productId: product.productId
-        }).unwrap();
-      }
-    } catch {
-      openSnackbarWithTimeout({
-        variant: "error",
-        messageTranslationKey: "cart.itemDeletion.fail"
-      });
-    }
+    removeItem(product);
   };
 
   return {
-    user,
+    user: user,
     cartItems,
     cartItemsLoading,
     error,

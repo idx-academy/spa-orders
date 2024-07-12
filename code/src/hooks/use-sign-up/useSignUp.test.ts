@@ -59,7 +59,10 @@ describe("useSignIn", () => {
 
     expect(mockSignUp).toHaveBeenCalledWith(credentials);
     expect(mockDispatch).toHaveBeenCalledWith(
-      authenticate(signUpResponse.token)
+      authenticate({
+        token: signUpResponse.token,
+        isFirstSessionAfterAuth: false
+      })
     );
     expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({
       messageTranslationKey: "signUp.success",

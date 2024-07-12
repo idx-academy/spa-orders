@@ -7,20 +7,17 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
+import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import CartItem from "@/pages/cart/components/CartItem";
 import { CartItem as CartItemType } from "@/types/cart.types";
 
 import "@/pages/cart/CartPage.scss";
 
 const CartPage = () => {
-  const { user, cartItems, error, handleRemoveItem } =
-    useCartItems();
+  const user = useGetUserDetails();
+  const { cartItems, error, handleRemoveItem } = useCartItems();
+
   const [createOrder, { isLoading }] = useCreateOrder();
-  
-  //@TODO Create interaction with unauthorization user
-  if (!user) {
-    return null;
-  }
 
   if (error) return <AppTypography translationKey="error.label" />;
 

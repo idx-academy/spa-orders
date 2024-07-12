@@ -17,7 +17,9 @@ const useSignUp = () => {
       return;
     }
 
-    dispatch(authenticate(userDetails.token));
+    dispatch(
+      authenticate({ token: userDetails.token, isFirstSessionAfterAuth: true })
+    );
     openSnackbarWithTimeout({
       messageTranslationKey: "signUp.success",
       variant: "success"
