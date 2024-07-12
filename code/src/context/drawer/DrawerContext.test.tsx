@@ -10,7 +10,7 @@ import {
   DrawerContextType,
   DrawerProvider,
   useDrawerContext
-} from "./DrawerContext";
+} from "@/context/drawer/DrawerContext";
 
 const testDrawerText = "I am drawer content!";
 const TestComponent = () => <p>{testDrawerText}</p>;
