@@ -39,16 +39,16 @@ const mockOrder: UserOrder = {
 };
 
 describe("OrderItem", () => {
-  beforeEach(() => {
-    render(<OrderItem order={mockOrder} />);
-  });
-
   test("renders order receiver details", () => {
+    render(<OrderItem order={mockOrder} />);
+
     const receiverEmail = screen.getByText(/john.doe@example.com/);
 
     expect(receiverEmail).toBeInTheDocument();
   });
   test("renders total price correctly", () => {
+    render(<OrderItem order={{ ...mockOrder, isPaid: true }} />);
+
     const totalPrice = screen.getByText(formatPrice(mockOrder.total));
     expect(totalPrice).toBeInTheDocument();
   });
