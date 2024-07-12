@@ -1,14 +1,13 @@
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
 import AppBox from "@/components/app-box/AppBox";
-import AppButton from "@/components/app-button/AppButton";
 import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
+import OrderSummary from "@/components/order-summary/OrderSummary";
 
 import CartItem from "@/pages/cart/components/CartItem";
 import { useGetCartItemsQuery } from "@/store/api/cartApi";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
-import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/pages/cart/CartPage.scss";
 
@@ -56,7 +55,7 @@ const CartPage = () => {
     <CartItem key={item.productId} item={item} />
   ));
 
-  const totalPrice = formatPrice(cartItems.totalPrice ?? 0);
+  const totalPrice = cartItems.totalPrice ?? 0;
 
   return (
     <PageWrapper>
@@ -72,67 +71,7 @@ const CartPage = () => {
             />
             {cartItemsBlock}
           </AppBox>
-          <AppBox className="spa-cart-page__order-summary">
-            <AppTypography
-              className="spa-cart-page__order-summary--label"
-              variant="h1"
-              component="h1"
-              translationKey="orderSummary.label"
-              data-testid="orderSummaryLabel"
-            />
-            <AppBox className="spa-order-summary__details">
-              <AppBox className="spa-order-summary__row">
-                <AppTypography
-                  className="spa-order-summary__text"
-                  translationKey="subtotal.label"
-                  data-testid="subtotalLabel"
-                />
-                <AppTypography
-                  className="spa-order-summary__text"
-                  variant="subtitle2"
-                >
-                  {totalPrice}
-                </AppTypography>
-              </AppBox>
-              <AppBox className="spa-order-summary__row">
-                <AppTypography
-                  translationKey="delivery.label"
-                  data-testid="deliveryLabel"
-                />
-                <AppTypography
-                  translationKey="free.label"
-                  data-testid="freeLabel"
-                />
-              </AppBox>
-              <AppTypography
-                className="spa-order-summary__underline-text"
-                translationKey="country.label"
-                data-testid="countryLabel"
-              />
-              <AppBox className="spa-order-summary__row spa-order-summary__total-line">
-                <AppTypography
-                  className="spa-order-summary__total"
-                  variant="subtitle2"
-                  translationKey="total.label"
-                  data-testid="totalLabel"
-                />
-                <AppTypography
-                  variant="subtitle2"
-                  className="spa-order-summary__total"
-                >
-                  {totalPrice}
-                </AppTypography>
-              </AppBox>
-            </AppBox>
-            <AppButton
-              className="spa-order-summary__button"
-              variant="contained"
-              size="medium"
-              data-testid="createOrderButton"
-            >
-              <AppTypography translationKey="createOrder.label" />
-            </AppButton>
-          </AppBox>
+          <OrderSummary totalPrice={totalPrice} />
         </AppBox>
       </AppBox>
     </PageWrapper>
