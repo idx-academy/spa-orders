@@ -91,18 +91,19 @@ const HeaderToolbar = () => {
     </AppTypography>
   );
 
-  const badge = displayedCartItemsCount ? (
-    <AppBadge
-      badgeContent={badgeContent}
-      variant="contained"
-      size="small"
-      className="header__toolbar-cart-badge"
-    >
+  const badge =
+    displayedCartItemsCount && isAuthenticated ? (
+      <AppBadge
+        badgeContent={badgeContent}
+        variant="contained"
+        size="small"
+        className="header__toolbar-cart-badge"
+      >
+        <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
+      </AppBadge>
+    ) : (
       <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
-    </AppBadge>
-  ) : (
-    <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
-  );
+    );
 
   const loadingButton = isLoadingAuth && <AppLoader />;
 
