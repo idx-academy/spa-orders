@@ -1,4 +1,4 @@
-Feature: Guest Home Page
+Feature: | Guest Home Page |
 
   Background: Before each
     Given I am on a home page

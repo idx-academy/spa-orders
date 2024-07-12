@@ -1,4 +1,4 @@
-Feature: Products Page
+Feature: | Products Page |
 
   Background: Before each
     Given I am on a Products Page

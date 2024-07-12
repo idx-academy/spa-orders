@@ -1,4 +1,4 @@
-Feature: Manager Home Page
+Feature: | Manager Home Page |
 
     Scenario: Dashboard button visibility for login user
         Given I authenticate to the system under role ROLE_MANAGER

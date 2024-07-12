@@ -1,4 +1,4 @@
-Feature: Sign In
+Feature: | Sign In |
 
     Background: Before each
         Given I am on any page

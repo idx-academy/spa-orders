@@ -1,4 +1,4 @@
-Feature: User Home Page
+Feature: | User Home Page |
 
     Scenario: Orders button visibility for login user
         Given I authenticate to the system under role ROLE_USER
