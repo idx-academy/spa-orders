@@ -2,9 +2,11 @@ FROM node:18.20.3-alpine AS builder
 WORKDIR "/build"
 COPY . .
 
+ENV API_BASE_PATH=http://api.idxacademy.xyz/retail/
+
 RUN npm ci; \
-    npm run build; \
-    npm prune --omit-dev
+        npm run build; \
+        npm prune --omit-dev
 
 FROM nginx:1.27-alpine
 RUN rm /etc/nginx/conf.d/default.conf
