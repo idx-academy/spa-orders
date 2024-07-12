@@ -11,7 +11,6 @@ Given("I am on a home page", () => {
 
 Given("I am on a home page and receive products server error", () => {
   cy.getProductsServerError(5);
-  // cy.visit("/");
 });
 
 Given("I am on a home page and Products are loading", () => {
