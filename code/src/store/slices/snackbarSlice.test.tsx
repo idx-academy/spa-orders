@@ -54,7 +54,7 @@ describe("snackbarSlice reducers", () => {
     expect(nextState.isOpen).toBe(false);
   });
 
-  test("should handle openSnackbarWithTimeout", async () => {
+  test("should handle openSnackbarWithTimeout", () => {
     const config: SnackbarConfigWithTimeout = {
       messageTranslationKey: "Test message",
       autohideDuration: 1000
@@ -117,7 +117,6 @@ describe("snackbarSlice reducers", () => {
 });
 
 describe("snackbarSlice selectors", () => {
-
   test("useIsSnackbarOpenSelector should return isOpen state", () => {
     mockedUseAppSelector.mockReturnValue(true);
     const { result } = renderHook(() => useIsSnackbarOpenSelector());
