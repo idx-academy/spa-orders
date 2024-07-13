@@ -1,9 +1,10 @@
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
+import ProductsContainer from "@/containers/products-container/ProductsContainer";
+
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
-import ProductsContainer from "@/components/products-container/ProductsContainer";
 
 import routes from "@/constants/routes";
 import { useGetProductsQuery } from "@/store/api/productsApi";

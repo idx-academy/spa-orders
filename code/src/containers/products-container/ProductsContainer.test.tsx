@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 
-import ProductsContainer from "@/components/products-container/ProductsContainer";
-import { ProductsContainerProps } from "@/components/products-container/ProductsContainer.types";
+import ProductsContainer from "@/containers/products-container/ProductsContainer";
+import { ProductsContainerProps } from "@/containers/products-container/ProductsContainer.types";
 
 import { Product } from "@/types/product.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
