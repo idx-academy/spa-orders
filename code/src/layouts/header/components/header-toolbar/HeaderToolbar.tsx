@@ -83,7 +83,7 @@ const HeaderToolbar = () => {
   const cartItemsCount = data?.items.length;
 
   const displayedCartItemsCount =
-    cartItemsCount && cartItemsCount > 99 ? 99 + "+" : cartItemsCount;
+    cartItemsCount && cartItemsCount > 99 ? "99+" : cartItemsCount;
 
   const badgeContent = (
     <AppTypography variant="caption-small">
