@@ -43,7 +43,7 @@ const HeaderToolbar = () => {
   const userRole = useUserRoleSelector();
   const dispatch = useAppDispatch();
 
-  const [fetch, { data }] = useLazyGetCartItemsQuery();
+  const [fetchCartItems, { data }] = useLazyGetCartItemsQuery();
 
   const user = useUserDetailsSelector();
 
@@ -76,7 +76,7 @@ const HeaderToolbar = () => {
 
   useEffect(() => {
     if (user?.id && isAuthenticated) {
-      fetch(user.id);
+      fetchCartItems(user.id);
     }
   }, [user?.id]);
 
