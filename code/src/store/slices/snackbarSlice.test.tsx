@@ -71,7 +71,7 @@ describe("snackbarSlice reducers", () => {
     expect(store.getState().snackbar.isOpen).toBe(false);
   });
 
-  test("should handle openSnackbarWithTimeout with default timer", async () => {
+  test("should handle openSnackbarWithTimeout with default timer", () => {
     const config: SnackbarConfigWithTimeout = {
       messageTranslationKey: "Test message"
     };
