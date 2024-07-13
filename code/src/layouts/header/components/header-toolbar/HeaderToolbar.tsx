@@ -76,7 +76,7 @@ const HeaderToolbar = () => {
 
   useEffect(() => {
     if (user?.id && isAuthenticated) {
-      fetchCartItems(user.id);
+      fetchCartItems({ userId: user.id });
     }
   }, [user?.id]);
 
