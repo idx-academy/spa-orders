@@ -133,14 +133,17 @@ const HeaderToolbar = () => {
 
   const loadingDashboardButton = isLoadingAuth && <AppLoader />;
 
-  const authenticatedDashboardButton = userRole === "ROLE_MANAGER" &&
-    !isLoadingAuth && (
-      <AppTooltip titleTranslationKey="dashboard.tooltip">
-        <AppIconButton to={routes.dashboard.path} component={AppLink} data-cy="dashboard-button">
-          <DashboardCustomizeIcon fontSize="medium" />
-        </AppIconButton>
-      </AppTooltip>
-    );
+  const isDashboardAvailable =
+    (userRole === "ROLE_MANAGER" || userRole === "ROLE_ADMIN") &&
+    !isLoadingAuth;
+
+  const authenticatedDashboardButton = isDashboardAvailable && (
+    <AppTooltip titleTranslationKey="dashboard.tooltip">
+      <AppIconButton to={routes.dashboard.path} component={AppLink}>
+        <DashboardCustomizeIcon fontSize="medium" />
+      </AppIconButton>
+    </AppTooltip>
+  );
 
   const dashboardButton =
     loadingDashboardButton || authenticatedDashboardButton;
@@ -149,13 +152,14 @@ const HeaderToolbar = () => {
 
   const loadingOrdersButton = isLoadingAuth && <AppLoader />;
 
-  const authenticatedOrdersButton = isAuthenticated && !isLoadingAuth && (
-    <AppTooltip titleTranslationKey="orders.tooltip">
-      <AppIconButton to={routes.orders.path} component={AppLink} data-cy="orders-button">
-        <ListAltIcon className="header__toolbar-icon" fontSize="medium" />
-      </AppIconButton>
-    </AppTooltip>
-  );
+  const authenticatedOrdersButton = userRole === "ROLE_USER" &&
+    !isLoadingAuth && (
+      <AppTooltip titleTranslationKey="orders.tooltip">
+        <AppIconButton to={routes.orders.path} component={AppLink}>
+          <ListAltIcon className="header__toolbar-icon" fontSize="medium" />
+        </AppIconButton>
+      </AppTooltip>
+    );
 
   const ordersButton = loadingOrdersButton || authenticatedOrdersButton;
 

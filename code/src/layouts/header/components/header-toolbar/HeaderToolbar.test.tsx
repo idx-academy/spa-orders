@@ -68,6 +68,7 @@ describe("HeaderToolbar", () => {
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(true);
       (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
+      (useUserRoleSelector as jest.Mock).mockReturnValue("ROLE_USER");
       renderWithProviders(<HeaderToolbar />);
       logoutButton = screen
         .getByTestId("LogoutButton")
@@ -82,6 +83,11 @@ describe("HeaderToolbar", () => {
       fireEvent.click(logoutButton);
       expect(mockDispatch).toHaveBeenCalledWith(logout());
     });
+
+    test("renders orders button", () => {
+      const ordersButton = screen.getByTestId("ListAltIcon");
+      expect(ordersButton).toBeInTheDocument();
+    });
   });
 
   describe("for shop maneger", () => {
@@ -95,6 +101,30 @@ describe("HeaderToolbar", () => {
     test("renders dashboard button", () => {
       const dashboardButton = screen.getByTestId("DashboardCustomizeIcon");
       expect(dashboardButton).toBeInTheDocument();
+    });
+
+    test("does not render orders button", () => {
+      const ordersButton = screen.queryByTestId("ListAltIcon");
+      expect(ordersButton).not.toBeInTheDocument();
+    });
+  });
+
+  describe("for admin", () => {
+    beforeEach(() => {
+      (useIsAuthSelector as jest.Mock).mockReturnValue(true);
+      (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
+      (useUserRoleSelector as jest.Mock).mockReturnValue("ROLE_ADMIN");
+      renderWithProviders(<HeaderToolbar />);
+    });
+
+    test("renders dashboard button", () => {
+      const dashboardButton = screen.getByTestId("DashboardCustomizeIcon");
+      expect(dashboardButton).toBeInTheDocument();
+    });
+
+    test("does not render orders button", () => {
+      const ordersButton = screen.queryByTestId("ListAltIcon");
+      expect(ordersButton).not.toBeInTheDocument();
     });
   });
 
