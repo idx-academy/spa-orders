@@ -80,7 +80,10 @@ const HeaderToolbar = () => {
     }
   }, [user?.id]);
 
-  const cartItemsCount = data?.items.length;
+  const cartItemsCount = data?.items.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   const displayedCartItemsCount =
     cartItemsCount && cartItemsCount > 99 ? "99+" : cartItemsCount;
