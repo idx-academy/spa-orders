@@ -90,44 +90,6 @@ describe("HeaderToolbar", () => {
     });
   });
 
-  // describe("for shop maneger", () => {
-  //   beforeEach(() => {
-  //     (useIsAuthSelector as jest.Mock).mockReturnValue(true);
-  //     (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-  //     (useUserRoleSelector as jest.Mock).mockReturnValue("ROLE_MANAGER");
-  //     renderWithProviders(<HeaderToolbar />);
-  //   });
-
-  //   test("renders dashboard button", () => {
-  //     const dashboardButton = screen.getByTestId("DashboardCustomizeIcon");
-  //     expect(dashboardButton).toBeInTheDocument();
-  //   });
-
-  //   test("does not render orders button", () => {
-  //     const ordersButton = screen.queryByTestId("ListAltIcon");
-  //     expect(ordersButton).not.toBeInTheDocument();
-  //   });
-  // });
-
-  // describe("for admin", () => {
-  //   beforeEach(() => {
-  //     (useIsAuthSelector as jest.Mock).mockReturnValue(true);
-  //     (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-  //     (useUserRoleSelector as jest.Mock).mockReturnValue("ROLE_ADMIN");
-  //     renderWithProviders(<HeaderToolbar />);
-  //   });
-
-  //   test("renders dashboard button", () => {
-  //     const dashboardButton = screen.getByTestId("DashboardCustomizeIcon");
-  //     expect(dashboardButton).toBeInTheDocument();
-  //   });
-
-  //   test("does not render orders button", () => {
-  //     const ordersButton = screen.queryByTestId("ListAltIcon");
-  //     expect(ordersButton).not.toBeInTheDocument();
-  //   });
-  // });
-
   describe("HeaderToolbar for roles manager and admin", () => {
     const roles = [
       { role: "ROLE_MANAGER", shouldRenderDashboard: true, shouldRenderOrders: false },
