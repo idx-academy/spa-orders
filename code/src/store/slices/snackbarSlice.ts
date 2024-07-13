@@ -50,7 +50,12 @@ const snackbarSlice = createSlice({
   }
 });
 
-export const { closeSnackbar, openSnackbar } = snackbarSlice.actions;
+export const {
+  closeSnackbar,
+  openSnackbar,
+  _clearTimeout,
+  _setSnackbarTimerId
+} = snackbarSlice.actions;
 
 export const openSnackbarWithTimeout =
   (config: SnackbarConfigWithTimeout) => (dispatch: AppDispatch) => {
