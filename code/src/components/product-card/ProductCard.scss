@@ -61,10 +61,10 @@
   }
 
   &__cart-button {
-    color: $gray;
+    color: var(--spa-best-sellers-cart-color, $gray);
   }
 
   &__cart-button_active {
-    color: $purple !important;
+    color: var(--spa-best-sellers-cart-active-color, $purple);
   }
 }
