@@ -8,7 +8,7 @@ const products = [
     tags: ["category:mobile"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_2-tTDYhyoyqsEkwPzySFdXflYCe7TkUb.jpg",
-    price: 500
+    price: 500,
   },
   {
     id: "124",
@@ -19,7 +19,7 @@ const products = [
     tags: ["category:mobile"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
-    price: 999
+    price: 999,
   },
   {
     id: "125",
@@ -30,7 +30,7 @@ const products = [
     tags: ["category:tablet"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_1-PpRl76SFgEv3Zig14ygkiiabH9f8qS.png",
-    price: 799
+    price: 799,
   },
   {
     id: "126",
@@ -41,7 +41,7 @@ const products = [
     tags: ["category:tablet"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_2-ayF4QQ9ilJtRKlpBLCvwlJkBYddhPO.png",
-    price: 999
+    price: 999,
   },
   {
     id: "127",
@@ -52,7 +52,7 @@ const products = [
     tags: ["category:computer"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg",
-    price: 1999
+    price: 1999,
   },
   {
     id: "128",
@@ -63,7 +63,7 @@ const products = [
     tags: ["category:computer"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_2-KjjXijfL9U0rd3P4Jfk06KwUHkSRRl.webp",
-    price: 1399
+    price: 1399,
   },
   {
     id: "129",
@@ -74,7 +74,7 @@ const products = [
     tags: ["category:mobile"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
-    price: 899
+    price: 899,
   },
   {
     id: "130",
@@ -85,7 +85,7 @@ const products = [
     tags: ["category:computer"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg",
-    price: 1799
+    price: 1799,
   },
   {
     id: "131",
@@ -96,7 +96,7 @@ const products = [
     tags: ["category:mobile"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_2-tTDYhyoyqsEkwPzySFdXflYCe7TkUb.jpg",
-    price: 500
+    price: 500,
   },
   {
     id: "132",
@@ -107,7 +107,7 @@ const products = [
     tags: ["category:mobile"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
-    price: 999
+    price: 999,
   },
   {
     id: "133",
@@ -118,7 +118,7 @@ const products = [
     tags: ["category:tablet"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_1-PpRl76SFgEv3Zig14ygkiiabH9f8qS.png",
-    price: 799
+    price: 799,
   },
   {
     id: "134",
@@ -129,7 +129,7 @@ const products = [
     tags: ["category:tablet"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_2-ayF4QQ9ilJtRKlpBLCvwlJkBYddhPO.png",
-    price: 999
+    price: 999,
   },
   {
     id: "135",
@@ -140,7 +140,7 @@ const products = [
     tags: ["category:computer"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg",
-    price: 1999
+    price: 1999,
   },
   {
     id: "136",
@@ -151,7 +151,7 @@ const products = [
     tags: ["category:computer"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_2-KjjXijfL9U0rd3P4Jfk06KwUHkSRRl.webp",
-    price: 1399
+    price: 1399,
   },
   {
     id: "137",
@@ -162,7 +162,7 @@ const products = [
     tags: ["category:mobile"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
-    price: 899
+    price: 899,
   },
   {
     id: "138",
@@ -173,8 +173,140 @@ const products = [
     tags: ["category:computer"],
     image:
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg",
-    price: 1799
-  }
+    price: 1799,
+  },
+  {
+    id: "139",
+    name: 'Laptop ASUS ZenBook 14" OLED (2023) Intel Core i5 512GB SSD Pine Grey',
+    description:
+      'Screen: 14" OLED, 2880x1800 / Intel Core i5-1240P / RAM 16 GB / 512 GB SSD / Wi-Fi 6 / Bluetooth 5.2 / Windows 11 Home / 67 Wh battery',
+    status: "AVAILABLE",
+    tags: ["category:computer"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer-copy-0-wlgCGUS3SKMFcugVqvFYYzVGrY5OGh.png",
+    price: 1299,
+  },
+  {
+    id: "140",
+    name: "Laptop Lenovo ThinkPad X1 Carbon Gen 10 (2023) Intel Core i7 1TB SSD Black",
+    description:
+      'Screen: 14" IPS, 1920x1200 / Intel Core i7-1260P / RAM 16 GB / 1TB SSD / Wi-Fi 6E / Bluetooth 5.2 / Windows 11 Pro / 57 Wh battery',
+    status: "AVAILABLE",
+    tags: ["category:computer"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer-wDPU7h0cjIZoXklhV0kykrFYJqKAjT.png",
+    price: 1899,
+  },
+  {
+    id: "141",
+    name: "Desktop PC HP Envy TE01 Intel Core i7 16GB RAM 1TB SSD",
+    description:
+      "Intel Core i7-12700F / RAM 16 GB / 1TB SSD / NVIDIA GeForce GTX 1660 Super / Wi-Fi 6 / Bluetooth 5.0 / Windows 11 Home",
+    status: "AVAILABLE",
+    tags: ["category:computer"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_12-2vHs9x57ghOvfYNKflGt3OsCnjh1t4.jpg",
+    price: 1499,
+  },
+  {
+    id: "142",
+    name: "Desktop PC Dell Inspiron 3880 Intel Core i5 8GB RAM 512GB SSD",
+    description:
+      "Intel Core i5-10400 / RAM 8 GB / 512GB SSD / Intel UHD Graphics 630 / Wi-Fi 6 / Bluetooth 4.2 / Windows 11 Home",
+    status: "AVAILABLE",
+    tags: ["category:computer"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_123-vFhjVe72eSdlxP1dud18rVGEcvwvWw.jpg",
+    price: 999,
+  },
+  {
+    id: "143",
+    name: "Desktop PC Apple Mac Mini M2 512GB Silver",
+    description:
+      "Apple M2 chip / RAM 8 GB / 512GB SSD / Wi-Fi 6 / Bluetooth 5.3 / macOS Ventura",
+    status: "AVAILABLE",
+    tags: ["category:computer"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1234-C7SqWgUuxFBZruIxRO4sKOWmzdWsV4.jpg",
+    price: 1099,
+  },
+  {
+    id: "144",
+    name: "Mobile Phone OnePlus 11 5G 256GB Titan Black",
+    description:
+      'Screen: 6.7" Fluid AMOLED, 3216x1440 / Snapdragon 8 Gen 2 / Main Triple Camera: 50 MP + 48 MP + 32 MP, Front Camera: 16 MP / RAM 12 GB / 256 GB internal storage / 3G / LTE / 5G / GPS / GLONASS / Dual SIM support (Nano-SIM) / Android 13 / 5000 mAh',
+    status: "AVAILABLE",
+    tags: ["category:mobile"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/mobile-5LJz3MWmzUWUPOq6wT3Zw4UPKSBYb1.jpg",
+    price: 799,
+  },
+  {
+    id: "145",
+    name: "Mobile Phone Xiaomi Mi 12 5G 128GB Black",
+    description:
+      'Screen: 6.28" AMOLED, 2400x1080 / Snapdragon 8 Gen 1 / Main Triple Camera: 50 MP + 13 MP + 5 MP, Front Camera: 32 MP / RAM 8 GB / 128 GB internal storage / 3G / LTE / 5G / GPS / GLONASS / Dual SIM support (Nano-SIM) / Android 12 / 4500 mAh',
+    status: "AVAILABLE",
+    tags: ["category:mobile"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/mobile_12-xE79HUHk1WLuloB7jNfNIeBN0yq5NH.jpg",
+    price: 699,
+  },
+  {
+    id: "146",
+    name: "Mobile Phone Sony Xperia 1 IV 256GB Black",
+    description:
+      'Screen: 6.5" OLED, 3840x1644 / Snapdragon 8 Gen 1 / Main Triple Camera: 12 MP + 12 MP + 12 MP, Front Camera: 8 MP / RAM 12 GB / 256 GB internal storage / 3G / LTE / 5G / GPS / GLONASS / Dual SIM support (Nano-SIM) / Android 12 / 5000 mAh',
+    status: "AVAILABLE",
+    tags: ["category:mobile"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/mobile_123-ABvXorqrch3nhTP6ycbmt13t29EuKs.jpg",
+    price: 1099,
+  },
+  {
+    id: "147",
+    name: "Mobile Phone Motorola Edge 30 Pro 256GB Blue",
+    description:
+      'Screen: 6.7" OLED, 2400x1080 / Snapdragon 8 Gen 1 / Main Triple Camera: 50 MP + 50 MP + 2 MP, Front Camera: 60 MP / RAM 12 GB / 256 GB internal storage / 3G / LTE / 5G / GPS / GLONASS / Dual SIM support (Nano-SIM) / Android 12 / 4800 mAh',
+    status: "AVAILABLE",
+    tags: ["category:mobile"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/mobile_1234-2xIucM8hgLayGS23HoLYzJ27c4SigN.jpg",
+    price: 899,
+  },
+  {
+    id: "148",
+    name: "Mobile Phone Huawei P50 Pro 256GB Black",
+    description:
+      'Screen: 6.6" OLED, 2700x1228 / Kirin 9000 / Main Quad Camera: 50 MP + 40 MP + 13 MP + 64 MP, Front Camera: 13 MP / RAM 8 GB / 256 GB internal storage / 3G / LTE / 5G / GPS / GLONASS / Dual SIM support (Nano-SIM) / HarmonyOS 2.0 / 4360 mAh',
+    status: "AVAILABLE",
+    tags: ["category:mobile"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/mobile_12345-WASAxiPaRLLT3EHgRIlP47A0YaQdBJ.jpg",
+    price: 899,
+  },
+  {
+    id: "149",
+    name: 'Tablet Acer Swift 3 14" Intel Core i5 512GB SSD Silver',
+    description:
+      'Screen: 14" IPS, 1920x1080 / Intel Core i5-1135G7 / RAM 8 GB / 512 GB SSD / Wi-Fi 6 / Bluetooth 5.1 / Windows 11 Home / 56 Wh battery',
+    status: "AVAILABLE",
+    tags: ["category:tablet"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_123-K40mc0f8xHjEtLRuJ5dmc95PcBK3Cf.png",
+    price: 999,
+  },
+  {
+    id: "150",
+    name: 'Tablet Microsoft Surface Laptop 5 13.5" Intel Core i7 512GB SSD Black',
+    description:
+      'Screen: 13.5", 1920x1080 / Intel Core i5-1135G7 / RAM 8 GB / 512 GB SSD / Wi-Fi 6 / Bluetooth 5.1 / Windows 11 Home / 56 Wh battery',
+    status: "AVAILABLE",
+    tags: ["category:tablet"],
+    image:
+      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_12345-8pInISBpW8ZsixocpZnZ1nTMpgLCyv.png",
+    price: 777,
+  },
 ];
 
 module.exports = products;
