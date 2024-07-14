@@ -20,8 +20,11 @@ const AppRangeSlider = ({
   value,
   ...props
 }: AppRangeSliderProps) => {
-  const [rangeStart, setRangeStart] = useState(value?.[0] ?? min);
-  const [rangeEnd, setRangeEnd] = useState(value?.[1] ?? max);
+  const initialRangeStart = value?.[0] ?? min;
+  const initialRangeEnd = value?.[1] ?? max
+
+  const [rangeStart, setRangeStart] = useState(initialRangeStart);
+  const [rangeEnd, setRangeEnd] = useState(initialRangeEnd);
 
   const commonRangeProps = useMemo(
     () => ({ min, max, step }),
