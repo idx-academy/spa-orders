@@ -4,6 +4,7 @@ import {
   policyFooterItems,
   socialsFooterItems
 } from "@/layouts/footer/Footer.constants";
+import FooterBanner from "@/layouts/footer/components/footer-banner/FooterBanner";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppContainer from "@/components/app-container/AppContainer";
@@ -53,44 +54,47 @@ const Footer = () => {
   ));
 
   return (
-    <AppBox className="footer" component="footer" data-cy="footer">
-      <AppContainer maxWidth="lg">
-        <AppBox className="footer__container">
-          <AppBox>
-            <AppTypography
-              className="footer__list-title"
-              translationKey="footer.location.title"
-              variant="h3"
-            />
-            <AppBox component="ul" className="footer__list">
-              {locationItems}
+    <AppBox component="footer" data-cy="footer">
+      <FooterBanner />
+      <AppBox className="footer">
+        <AppContainer maxWidth="lg">
+          <AppBox className="footer__container">
+            <AppBox>
+              <AppTypography
+                className="footer__list-title"
+                translationKey="footer.location.title"
+                variant="h3"
+              />
+              <AppBox component="ul" className="footer__list">
+                {locationItems}
+              </AppBox>
+              <AppBox className="footer__socials" component="ul">
+                {socialsItems}
+              </AppBox>
             </AppBox>
-            <AppBox className="footer__socials" component="ul">
-              {socialsItems}
+            <AppBox>
+              <AppTypography
+                className="footer__list-title"
+                translationKey="footer.support.title"
+                variant="h3"
+              />
+              <AppBox component="ul" className="footer__list">
+                {customerSupportItems}
+              </AppBox>
+            </AppBox>
+            <AppBox>
+              <AppTypography
+                className="footer__list-title"
+                translationKey="footer.policy.title"
+                variant="h3"
+              />
+              <AppBox component="ul" className="footer__list">
+                {policyItems}
+              </AppBox>
             </AppBox>
           </AppBox>
-          <AppBox>
-            <AppTypography
-              className="footer__list-title"
-              translationKey="footer.support.title"
-              variant="h3"
-            />
-            <AppBox component="ul" className="footer__list">
-              {customerSupportItems}
-            </AppBox>
-          </AppBox>
-          <AppBox>
-            <AppTypography
-              className="footer__list-title"
-              translationKey="footer.policy.title"
-              variant="h3"
-            />
-            <AppBox component="ul" className="footer__list">
-              {policyItems}
-            </AppBox>
-          </AppBox>
-        </AppBox>
-      </AppContainer>
+        </AppContainer>
+      </AppBox>
     </AppBox>
   );
 };

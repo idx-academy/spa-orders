@@ -3,7 +3,6 @@
 .footer {
   padding: spacing(18) 0;
   background-color: var(--spa-foreground-background-color, $white);
-
   &__container {
     display: flex;
     justify-content: space-between;

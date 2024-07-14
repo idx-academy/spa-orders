@@ -14,11 +14,11 @@ describe("Test Footer component", () => {
     expect(footerElement).toBeInTheDocument();
   });
 
-  test("Should render three sections and links lists", () => {
+  test("Should render three sections, banner title and links lists", () => {
     const sections = screen.getAllByRole("heading");
     const lists = screen.getAllByRole("list");
 
-    expect(sections.length).toBe(3);
+    expect(sections.length).toBe(4);
     expect(lists.length).toBe(4);
   });
 
