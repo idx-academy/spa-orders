@@ -53,20 +53,23 @@ const ProductsContainer = ({
 
   const { openDrawer } = useDrawerContext();
   const { openModal } = useModalContext();
+  const { openSnackbarWithTimeout } = useSnackbar();
 
   const [addToCart] = useAddToCartMutation();
 
-  const { openSnackbarWithTimeout } = useSnackbar();
-
   // For now isInCart calculating is implemented on a client side
   const cartProductsIds = useMemo(() => {
-    const cartProductsIds = cartData?.items.map((item) => item.productId) || [];
+    const cartProductsIds =
+      user?.id && cartData ? cartData?.items.map((item) => item.productId) : [];
     return new Set(cartProductsIds);
-  }, [isCartFetching]);
+  }, [isCartFetching, user?.id]);
 
   if (isError) {
     return (
-      <AppBox className={cn("products-container_error", className)} data-cy="best-sellers-products-error">
+      <AppBox
+        className={cn("products-container_error", className)}
+        data-cy="best-sellers-products-error"
+      >
         <AppTypography
           translationKey={errorMessage}
           className="products-container__error-label"
