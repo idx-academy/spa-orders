@@ -2,6 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 
+import { ROLES } from "@/constants/common";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {
   logout,
@@ -68,7 +69,7 @@ describe("HeaderToolbar", () => {
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(true);
       (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-      (useUserRoleSelector as jest.Mock).mockReturnValue("ROLE_USER");
+      (useUserRoleSelector as jest.Mock).mockReturnValue(ROLES.USER);
       renderWithProviders(<HeaderToolbar />);
       logoutButton = screen
         .getByTestId("LogoutButton")
@@ -92,29 +93,39 @@ describe("HeaderToolbar", () => {
 
   describe("HeaderToolbar for roles manager and admin", () => {
     const roles = [
-      { role: "ROLE_MANAGER", shouldRenderDashboard: true, shouldRenderOrders: false },
-      { role: "ROLE_ADMIN", shouldRenderDashboard: true, shouldRenderOrders: false }
+      {
+        role: ROLES.SHOP_MANAGER,
+        shouldRenderDashboard: true,
+        shouldRenderOrders: false
+      },
+      {
+        role: ROLES.ADMIN,
+        shouldRenderDashboard: true,
+        shouldRenderOrders: false
+      }
     ];
-  
+
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(true);
       (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
     });
-  
+
     roles.forEach(({ role, shouldRenderDashboard, shouldRenderOrders }) => {
       describe(`for ${role}`, () => {
         beforeEach(() => {
           (useUserRoleSelector as jest.Mock).mockReturnValue(role);
           renderWithProviders(<HeaderToolbar />);
         });
-  
+
         if (shouldRenderDashboard) {
           test("renders dashboard button", () => {
-            const dashboardButton = screen.getByTestId("DashboardCustomizeIcon");
+            const dashboardButton = screen.getByTestId(
+              "DashboardCustomizeIcon"
+            );
             expect(dashboardButton).toBeInTheDocument();
           });
         }
-  
+
         if (!shouldRenderOrders) {
           test("does not render orders button", () => {
             const ordersButton = screen.queryByTestId("ListAltIcon");

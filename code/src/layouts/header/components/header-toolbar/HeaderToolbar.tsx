@@ -20,6 +20,7 @@ import AppLogo from "@/components/app-logo/AppLogo";
 import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { ROLES } from "@/constants/common";
 import routes from "@/constants/routes";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import { useModalContext } from "@/context/modal/ModalContext";
@@ -134,7 +135,7 @@ const HeaderToolbar = () => {
   const loadingDashboardButton = isLoadingAuth && <AppLoader />;
 
   const isDashboardAvailable =
-    (userRole === "ROLE_MANAGER" || userRole === "ROLE_ADMIN") &&
+    (userRole === ROLES.SHOP_MANAGER || userRole === ROLES.ADMIN) &&
     !isLoadingAuth;
 
   const authenticatedDashboardButton = isDashboardAvailable && (
@@ -152,7 +153,7 @@ const HeaderToolbar = () => {
 
   const loadingOrdersButton = isLoadingAuth && <AppLoader />;
 
-  const authenticatedOrdersButton = userRole === "ROLE_USER" &&
+  const authenticatedOrdersButton = userRole === ROLES.USER &&
     !isLoadingAuth && (
       <AppTooltip titleTranslationKey="orders.tooltip">
         <AppIconButton to={routes.orders.path} component={AppLink}>
