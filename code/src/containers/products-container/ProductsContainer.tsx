@@ -1,23 +1,29 @@
 import { useEffect, useMemo } from "react";
 
-import { ProductsContainerProps } from "@/containers/products-container/ProductsContainer.types";
+import CartDrawer from "@/containers/cart-drawer/CartDrawer";
+import AuthModal from "@/containers/modals/auth/AuthModal";
+import {
+  HandleCartIconClickParam,
+  ProductsContainerProps
+} from "@/containers/products-container/ProductsContainer.types";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 import ProductCard from "@/components/product-card/ProductCard";
 import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
+import { useDrawerContext } from "@/context/drawer/DrawerContext";
+import { useModalContext } from "@/context/modal/ModalContext";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import {
   useAddToCartMutation,
-  useLazyGetCartItemsQuery,
-  useRemoveFromCartMutation
+  useLazyGetCartItemsQuery
 } from "@/store/api/cartApi";
 import {
   useIsAuthLoadingSelector,
   useUserDetailsSelector
 } from "@/store/slices/userSlice";
-import { Product, ProductWithIsInCart } from "@/types/product.types";
+import { Product } from "@/types/product.types";
 import cn from "@/utils/cn/cn";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
@@ -34,8 +40,10 @@ const ProductsContainer = ({
   const user = useUserDetailsSelector();
   const isAuthLoading = useIsAuthLoadingSelector();
 
-  const [fetchCart, { data: cartData, isLoading: isCartLoading, isFetching }] =
-    useLazyGetCartItemsQuery();
+  const [
+    fetchCart,
+    { data: cartData, isLoading: isCartLoading, isFetching: isCartFetching }
+  ] = useLazyGetCartItemsQuery();
 
   useEffect(() => {
     if (user?.id) {
@@ -43,10 +51,18 @@ const ProductsContainer = ({
     }
   }, [user?.id]);
 
+  const { openDrawer } = useDrawerContext();
+  const { openModal } = useModalContext();
+
   const [addToCart] = useAddToCartMutation();
-  const [removeFromCart] = useRemoveFromCartMutation();
 
   const { openSnackbarWithTimeout } = useSnackbar();
+
+  // For now isInCart calculating is implemented on a client side
+  const cartProductsIds = useMemo(() => {
+    const cartProductsIds = cartData?.items.map((item) => item.productId) || [];
+    return new Set(cartProductsIds);
+  }, [isCartFetching]);
 
   if (isError) {
     return (
@@ -60,41 +76,27 @@ const ProductsContainer = ({
     );
   }
 
-  const handleCartIconClick = async (product: ProductWithIsInCart) => {
+  const handleCartIconClick = async (product: HandleCartIconClickParam) => {
     if (user?.id) {
-      if (!product.isInCart) {
-        try {
+      try {
+        if (!product.isInCart) {
           await addToCart({
             productId: product.id,
             userId: user.id
           }).unwrap();
-        } catch {
-          openSnackbarWithTimeout({
-            variant: "error",
-            messageTranslationKey: "cart.itemAddition.fail"
-          });
+        } else {
+          openDrawer(<CartDrawer />);
         }
-      } else {
-        try {
-          await removeFromCart({
-            productId: product.id,
-            userId: user.id
-          }).unwrap();
-        } catch {
-          openSnackbarWithTimeout({
-            variant: "error",
-            messageTranslationKey: "cart.itemDeleletion.fail"
-          });
-        }
+      } catch {
+        openSnackbarWithTimeout({
+          variant: "error",
+          messageTranslationKey: "cart.itemAddition.fail"
+        });
       }
+    } else {
+      openModal(<AuthModal />);
     }
   };
-
-  // For now this is implemented on a client side
-  const cartProductsIds = useMemo(
-    () => new Set(cartData?.items.map((item) => item.productId) || []),
-    [isFetching]
-  );
 
   const productCards = products.map((product: Product) => {
     const isInCart = cartProductsIds.has(product.id);
@@ -102,7 +104,9 @@ const ProductsContainer = ({
     return (
       <ProductCard
         key={product.id}
-        product={{ isInCart, ...product }}
+        product={product}
+        isInCart={isInCart}
+        isUserAuthorized={Boolean(user)}
         onCartIconClick={handleCartIconClick}
       />
     );

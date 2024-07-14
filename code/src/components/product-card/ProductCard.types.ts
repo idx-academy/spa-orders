@@ -1,6 +1,10 @@
-import { ProductWithIsInCart } from "@/types/product.types";
+import { HandleCartIconClickParam } from "@/containers/products-container/ProductsContainer.types";
+
+import { Product } from "@/types/product.types";
 
 export type ProductCardProps = {
-  product: ProductWithIsInCart;
-  onCartIconClick: (item: ProductWithIsInCart) => void;
+  product: Product;
+  isInCart: boolean;
+  isUserAuthorized: boolean;
+  onCartIconClick: (item: HandleCartIconClickParam) => void;
 };

@@ -2,11 +2,11 @@ import { screen } from "@testing-library/react";
 
 import ProductCard from "@/components/product-card/ProductCard";
 
-import { ProductWithIsInCart } from "@/types/product.types";
+import { Product } from "@/types/product.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
-const mockProduct: ProductWithIsInCart = {
+const mockProduct: Product = {
   id: "123",
   name: "Mobile Phone Samsung Galaxy A55 5G 8/256GB Lilac",
   description:
@@ -15,14 +15,18 @@ const mockProduct: ProductWithIsInCart = {
   tags: ["category:mobile"],
   image:
     "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_2-tTDYhyoyqsEkwPzySFdXflYCe7TkUb.jpg",
-  price: 500,
-  isInCart: true
+  price: 500
 };
 
 describe("ProductCard component", () => {
   beforeEach(() => {
     renderWithProviders(
-      <ProductCard product={mockProduct} onCartIconClick={() => {}} />
+      <ProductCard
+        product={mockProduct}
+        onCartIconClick={() => {}}
+        isUserAuthorized
+        isInCart
+      />
     );
   });
   test("should render product name", () => {

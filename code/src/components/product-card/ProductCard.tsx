@@ -13,19 +13,24 @@ import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/components/product-card/ProductCard.scss";
 
-const ProductCard = ({ product, onCartIconClick }: ProductCardProps) => {
-  const [isInCart, setIsInCart] = useState(product.isInCart);
+const ProductCard = ({
+  product,
+  isInCart,
+  isUserAuthorized,
+  onCartIconClick
+}: ProductCardProps) => {
+  const [isProductInCart, setIsProductInCart] = useState(isInCart);
 
   useEffect(() => {
-    setIsInCart(product.isInCart);
-  }, [product.isInCart]);
+    setIsProductInCart(isInCart);
+  }, [isInCart]);
 
   const handleCartIconClick = () => {
-    setIsInCart((prev) => !prev);
-    onCartIconClick(product);
+    isUserAuthorized && setIsProductInCart(true);
+    onCartIconClick({ ...product, isInCart });
   };
 
-  const carticon = isInCart ? <CartWithCheck /> : <OutlinedCart />;
+  const carticon = isProductInCart ? <CartWithCheck /> : <OutlinedCart />;
 
   return (
     <AppBox data-testid="product-card" className="spa-product-card" data-cy="product-card">
@@ -57,7 +62,7 @@ const ProductCard = ({ product, onCartIconClick }: ProductCardProps) => {
           onClick={handleCartIconClick}
           className={cn(
             "spa-product-card__cart-button",
-            isInCart && "spa-product-card__cart-button_active"
+            isProductInCart && "spa-product-card__cart-button_active"
           )}
         >
           {carticon}

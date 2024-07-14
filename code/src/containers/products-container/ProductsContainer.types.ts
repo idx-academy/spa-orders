@@ -8,3 +8,5 @@ export type ProductsContainerProps = {
   isError?: boolean;
   errorMessage?: string;
 };
+
+export type HandleCartIconClickParam = Product & { isInCart: boolean };
