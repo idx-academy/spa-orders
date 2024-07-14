@@ -1,0 +1,29 @@
+@import "@design-system";
+
+.spa-range-slider {
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    gap: spacing(3);
+    padding: spacing(3) 0;
+
+    & > .MuiBox-root {
+      flex-grow: 1;
+    }
+  }
+
+  &__range {
+    & .MuiSlider-rail {
+      color: var(--spa-slider-range-rail-color, $purple-light);
+      opacity: 1;
+    }
+
+    & .MuiSlider-track {
+      color: var(--spa-slider-range-track-color, $purple);
+    }
+
+    & .MuiSlider-thumb {
+      color: var(--spa-slider-range-thumb-color, $purple);
+    }
+  }
+}

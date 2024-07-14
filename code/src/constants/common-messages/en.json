@@ -16,5 +16,7 @@
   "orders.statuses.canceled": "Canceled",
   "orders.statuses.completed": "Completed",
   "cart.itemAddition.fail": "Failed to add the product to the cart.",
-  "cart.itemDeletion.fail": "Failed to remove the product from the cart."
+  "cart.itemDeletion.fail": "Failed to remove the product from the cart.",
+  "filters.from": "From",
+  "filters.to": "to"
 }

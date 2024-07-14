@@ -16,5 +16,7 @@
   "orders.statuses.canceled": "Скасовано",
   "orders.statuses.completed": "Завершено",
   "cart.itemAddition.fail": "Не вдалося додати продукт у кошик.",
-  "cart.itemDeletion.fail": "Не вдалося видалити продукт з кошика."
+  "cart.itemDeletion.fail": "Не вдалося видалити продукт з кошика.",
+  "filters.from": "Від",
+  "filters.to": "до"
 }
