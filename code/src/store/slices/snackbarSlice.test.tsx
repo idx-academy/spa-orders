@@ -22,34 +22,33 @@ const mockedUseAppSelector = useAppSelector as jest.MockedFunction<
 
 jest.useFakeTimers();
 
-describe("snackbarSlice reducers", () => {
-  const initialState = {
-    isOpen: false,
-    config: {} as BaseSnackbarConfig
-  };
+const mockedInitialState = {
+  isOpen: false,
+  config: {} as BaseSnackbarConfig
+};
 
+describe("snackbarSlice reducers", () => {
   afterEach(() => {
     jest.clearAllMocks();
     jest.clearAllTimers();
   });
 
   test("should return the initial state", () => {
-    expect(snackbarReducer(undefined, { type: "unknown" })).toEqual(
-      initialState
-    );
+    const initState = snackbarReducer(undefined, { type: "unknown" });
+    expect(initState).toEqual(mockedInitialState);
   });
 
   test("should handle openSnackbar", () => {
     const config: BaseSnackbarConfig = {
       messageTranslationKey: "Test message"
     };
-    const nextState = snackbarReducer(initialState, openSnackbar(config));
+    const nextState = snackbarReducer(mockedInitialState, openSnackbar(config));
     expect(nextState.isOpen).toBe(true);
     expect(nextState.config).toEqual({ variant: "error", ...config });
   });
 
   test("should handle closeSnackbar", () => {
-    const prevState = { ...initialState, isOpen: true };
+    const prevState = { ...mockedInitialState, isOpen: true };
     const nextState = snackbarReducer(prevState, closeSnackbar());
     expect(nextState.isOpen).toBe(false);
   });
@@ -93,13 +92,13 @@ describe("snackbarSlice reducers", () => {
   test("should handle _setSnackbarTimerId", () => {
     const timerId = setTimeout(() => {}, 1000);
     const action = { type: _setSnackbarTimerId.type, payload: timerId };
-    const nextState = snackbarReducer(initialState, action);
+    const nextState = snackbarReducer(mockedInitialState, action);
     expect(nextState._timerId).toBe(timerId);
   });
 
   test("should handle _clearTimeout with an existing timerId", () => {
     const timerId = setTimeout(() => {}, 1000);
-    const prevState = { ...initialState, _timerId: timerId };
+    const prevState = { ...mockedInitialState, _timerId: timerId };
     jest.spyOn(global, "clearTimeout");
     const action = { type: _clearTimeout.type };
     const nextState = snackbarReducer(prevState, action);
@@ -110,7 +109,7 @@ describe("snackbarSlice reducers", () => {
   test("should handle _clearTimeout without an existing timerId", () => {
     jest.spyOn(global, "clearTimeout");
     const action = { type: _clearTimeout.type };
-    const nextState = snackbarReducer(initialState, action);
+    const nextState = snackbarReducer(mockedInitialState, action);
     expect(clearTimeout).not.toHaveBeenCalled();
     expect(nextState._timerId).toBeUndefined();
   });
