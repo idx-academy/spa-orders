@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import Slider from "@mui/material/Slider";
 
@@ -21,15 +21,12 @@ const AppRangeSlider = ({
   ...props
 }: AppRangeSliderProps) => {
   const initialRangeStart = value?.[0] ?? min;
-  const initialRangeEnd = value?.[1] ?? max
+  const initialRangeEnd = value?.[1] ?? max;
 
   const [rangeStart, setRangeStart] = useState(initialRangeStart);
   const [rangeEnd, setRangeEnd] = useState(initialRangeEnd);
 
-  const commonRangeProps = useMemo(
-    () => ({ min, max, step }),
-    [min, max, step]
-  );
+  const commonRangeProps = { min, max, step };
 
   const handleRangeStartChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
