@@ -177,7 +177,7 @@ const products = [
   },
   {
     id: "139",
-    name: 'Laptop ASUS ZenBook 14" OLED (2023) Intel Core i5 512GB SSD Pine Grey',
+    name: 'Laptop ASUS ZenBook 14" Intel Core i5 512GB SSD Pine Grey',
     description:
       'Screen: 14" OLED, 2880x1800 / Intel Core i5-1240P / RAM 16 GB / 512 GB SSD / Wi-Fi 6 / Bluetooth 5.2 / Windows 11 Home / 67 Wh battery',
     status: "AVAILABLE",
