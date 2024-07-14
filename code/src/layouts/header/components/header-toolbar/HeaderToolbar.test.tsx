@@ -41,6 +41,19 @@ jest.mock("@/hooks/use-redux/useRedux", () => ({
 const mockDispatch = jest.fn();
 (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch);
 
+const mockedRoles = [
+  {
+    role: ROLES.SHOP_MANAGER,
+    shouldRenderDashboard: true,
+    shouldRenderOrders: false
+  },
+  {
+    role: ROLES.ADMIN,
+    shouldRenderDashboard: true,
+    shouldRenderOrders: false
+  }
+];
+
 describe("HeaderToolbar", () => {
   describe("for guest users", () => {
     beforeEach(() => {
@@ -92,48 +105,37 @@ describe("HeaderToolbar", () => {
   });
 
   describe("HeaderToolbar for roles manager and admin", () => {
-    const roles = [
-      {
-        role: ROLES.SHOP_MANAGER,
-        shouldRenderDashboard: true,
-        shouldRenderOrders: false
-      },
-      {
-        role: ROLES.ADMIN,
-        shouldRenderDashboard: true,
-        shouldRenderOrders: false
-      }
-    ];
-
     beforeEach(() => {
       (useIsAuthSelector as jest.Mock).mockReturnValue(true);
       (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
     });
 
-    roles.forEach(({ role, shouldRenderDashboard, shouldRenderOrders }) => {
-      describe(`for ${role}`, () => {
-        beforeEach(() => {
-          (useUserRoleSelector as jest.Mock).mockReturnValue(role);
-          renderWithProviders(<HeaderToolbar />);
+    mockedRoles.forEach(
+      ({ role, shouldRenderDashboard, shouldRenderOrders }) => {
+        describe(`for ${role}`, () => {
+          beforeEach(() => {
+            (useUserRoleSelector as jest.Mock).mockReturnValue(role);
+            renderWithProviders(<HeaderToolbar />);
+          });
+
+          if (shouldRenderDashboard) {
+            test("renders dashboard button", () => {
+              const dashboardButton = screen.getByTestId(
+                "DashboardCustomizeIcon"
+              );
+              expect(dashboardButton).toBeInTheDocument();
+            });
+          }
+
+          if (!shouldRenderOrders) {
+            test("does not render orders button", () => {
+              const ordersButton = screen.queryByTestId("ListAltIcon");
+              expect(ordersButton).not.toBeInTheDocument();
+            });
+          }
         });
-
-        if (shouldRenderDashboard) {
-          test("renders dashboard button", () => {
-            const dashboardButton = screen.getByTestId(
-              "DashboardCustomizeIcon"
-            );
-            expect(dashboardButton).toBeInTheDocument();
-          });
-        }
-
-        if (!shouldRenderOrders) {
-          test("does not render orders button", () => {
-            const ordersButton = screen.queryByTestId("ListAltIcon");
-            expect(ordersButton).not.toBeInTheDocument();
-          });
-        }
-      });
-    });
+      }
+    );
   });
 
   test("renders search field", () => {
