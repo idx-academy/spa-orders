@@ -1,4 +1,5 @@
-import CartDrawer from "@/containers/cart-drawer/CartDrawer";
+import { useEffect, useMemo } from "react";
+
 import { ProductsContainerProps } from "@/containers/products-container/ProductsContainer.types";
 
 import AppBox from "@/components/app-box/AppBox";
@@ -6,11 +7,17 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import ProductCard from "@/components/product-card/ProductCard";
 import ProductSkeleton from "@/components/product-skeleton/ProductSkeleton";
 
-import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
-import { useAddToCartMutation } from "@/store/api/cartApi";
-import { useUserDetailsSelector } from "@/store/slices/userSlice";
-import { Product } from "@/types/product.types";
+import {
+  useAddToCartMutation,
+  useLazyGetCartItemsQuery,
+  useRemoveFromCartMutation
+} from "@/store/api/cartApi";
+import {
+  useIsAuthLoadingSelector,
+  useUserDetailsSelector
+} from "@/store/slices/userSlice";
+import { Product, ProductWithIsInCart } from "@/types/product.types";
 import cn from "@/utils/cn/cn";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
@@ -25,10 +32,19 @@ const ProductsContainer = ({
   errorMessage = "errors.somethingWentWrong"
 }: ProductsContainerProps) => {
   const user = useUserDetailsSelector();
+  const isAuthLoading = useIsAuthLoadingSelector();
+
+  const [fetchCart, { data: cartData, isLoading: isCartLoading, isFetching }] =
+    useLazyGetCartItemsQuery();
+
+  useEffect(() => {
+    if (user?.id) {
+      fetchCart({ userId: user.id });
+    }
+  }, [user?.id]);
 
   const [addToCart] = useAddToCartMutation();
-
-  const { openDrawer } = useDrawerContext();
+  const [removeFromCart] = useRemoveFromCartMutation();
 
   const { openSnackbarWithTimeout } = useSnackbar();
 
@@ -44,31 +60,59 @@ const ProductsContainer = ({
     );
   }
 
-  const skeletonCards = repeatComponent(<ProductSkeleton />, loadingItemsCount);
-
-  const handleAddToCart = async (product: Product) => {
-    try {
-      if (user?.id) {
-        await addToCart({ productId: product.id, userId: user.id }).unwrap();
-        openDrawer(<CartDrawer />);
+  const handleCartIconClick = async (product: ProductWithIsInCart) => {
+    if (user?.id) {
+      if (!product.isInCart) {
+        try {
+          await addToCart({
+            productId: product.id,
+            userId: user.id
+          }).unwrap();
+        } catch {
+          openSnackbarWithTimeout({
+            variant: "error",
+            messageTranslationKey: "cart.itemAddition.fail"
+          });
+        }
+      } else {
+        try {
+          await removeFromCart({
+            productId: product.id,
+            userId: user.id
+          }).unwrap();
+        } catch {
+          openSnackbarWithTimeout({
+            variant: "error",
+            messageTranslationKey: "cart.itemDeleletion.fail"
+          });
+        }
       }
-    } catch {
-      openSnackbarWithTimeout({
-        variant: "error",
-        messageTranslationKey: "cart.itemAddition.fail"
-      });
     }
   };
 
-  const productCards = products.map((product: Product) => (
-    <ProductCard
-      key={product.id}
-      product={product}
-      onAddToCart={handleAddToCart}
-    />
-  ));
+  // For now this is implemented on a client side
+  const cartProductsIds = useMemo(
+    () => new Set(cartData?.items.map((item) => item.productId) || []),
+    [isFetching]
+  );
 
-  const gridItems = isLoading ? skeletonCards : productCards;
+  const productCards = products.map((product: Product) => {
+    const isInCart = cartProductsIds.has(product.id);
+
+    return (
+      <ProductCard
+        key={product.id}
+        product={{ isInCart, ...product }}
+        onCartIconClick={handleCartIconClick}
+      />
+    );
+  });
+
+  const skeletonCards = repeatComponent(<ProductSkeleton />, loadingItemsCount);
+
+  const isLoadingInProgress = isLoading || isAuthLoading || isCartLoading;
+
+  const gridItems = isLoadingInProgress ? skeletonCards : productCards;
 
   return (
     <AppBox className={cn("products-container", className)}>{gridItems}</AppBox>

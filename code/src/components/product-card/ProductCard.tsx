@@ -1,19 +1,31 @@
-import AddIcon from "@mui/icons-material/Add";
+import { useEffect, useState } from "react";
 
 import AppBox from "@/components/app-box/AppBox";
-import AppButton from "@/components/app-button/AppButton";
+import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
 import { ProductCardProps } from "@/components/product-card/ProductCard.types";
 
+import OutlinedCart from "@/assets/icons/CartOutlined";
+import CartWithCheck from "@/assets/icons/CartWithCheck";
+import cn from "@/utils/cn/cn";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/components/product-card/ProductCard.scss";
 
-const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
-  const handleAddToCart = () => {
-    onAddToCart(product);
+const ProductCard = ({ product, onCartIconClick }: ProductCardProps) => {
+  const [isInCart, setIsInCart] = useState(product.isInCart);
+
+  useEffect(() => {
+    setIsInCart(product.isInCart);
+  }, [product.isInCart]);
+
+  const handleCartIconClick = () => {
+    setIsInCart((prev) => !prev);
+    onCartIconClick(product);
   };
+
+  const carticon = isInCart ? <CartWithCheck /> : <OutlinedCart />;
 
   return (
     <AppBox data-testid="product-card" className="spa-product-card" data-cy="product-card">
@@ -41,10 +53,15 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         <AppTypography className="spa-product-card__footer-price">
           {formatPrice(product.price)}
         </AppTypography>
-        <AppButton size="small" variant="shadow" onClick={handleAddToCart}>
-          <AddIcon />
-          <AppTypography translationKey="productCard.add" />
-        </AppButton>
+        <AppIconButton
+          onClick={handleCartIconClick}
+          className={cn(
+            "spa-product-card__cart-button",
+            isInCart && "spa-product-card__cart-button_active"
+          )}
+        >
+          {carticon}
+        </AppIconButton>
       </AppBox>
     </AppBox>
   );

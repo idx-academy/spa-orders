@@ -17,13 +17,22 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
 }));
 
-jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
+jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,
-  default: jest.fn(() => ({ openSnackbar: () => {} }))
+  default: () => ({}),
+  useUserDetailsSelector: jest.fn(() => ({ id: "123" })),
+  useIsAuthLoadingSelector: jest.fn(() => false)
 }));
 
 jest.mock("@/store/api/cartApi", () => ({
-  useAddToCartMutation: jest.fn(() => [jest.fn(), {}])
+  useAddToCartMutation: jest.fn(() => [jest.fn(), {}]),
+  useRemoveFromCartMutation: jest.fn(() => [jest.fn(), {}]),
+  useLazyGetCartItemsQuery: jest.fn(() => [jest.fn(), {}])
+}));
+
+jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({ openSnackbar: () => {} }))
 }));
 
 const defaultOptions: RTKQueryReturnState<typeof mockData> = {

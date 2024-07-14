@@ -5,13 +5,22 @@ import { useGetProductsQuery } from "@/store/api/productsApi";
 import { PaginationParams, RTKQueryReturnState } from "@/types/common";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
-jest.mock("@/store/api/cartApi", () => ({
-  useAddToCartMutation: jest.fn(() => [jest.fn(), {}])
-}));
-
 jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
   __esModule: true,
   default: jest.fn(() => ({ openSnackbar: () => {} }))
+}));
+
+jest.mock("@/store/slices/userSlice", () => ({
+  __esModule: true,
+  default: () => ({}),
+  useUserDetailsSelector: jest.fn(() => ({ id: "123" })),
+  useIsAuthLoadingSelector: jest.fn(() => false)
+}));
+
+jest.mock("@/store/api/cartApi", () => ({
+  useAddToCartMutation: jest.fn(() => [jest.fn(), {}]),
+  useRemoveFromCartMutation: jest.fn(() => [jest.fn(), {}]),
+  useLazyGetCartItemsQuery: jest.fn(() => [jest.fn(), {}])
 }));
 
 jest.mock("@/store/api/productsApi", () => ({

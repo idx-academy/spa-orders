@@ -69,8 +69,17 @@ jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
   default: jest.fn(() => ({ openSnackbar: () => {} }))
 }));
 
+jest.mock("@/store/slices/userSlice", () => ({
+  __esModule: true,
+  default: () => ({}),
+  useUserDetailsSelector: jest.fn(() => ({ id: "123" })),
+  useIsAuthLoadingSelector: jest.fn(() => false)
+}));
+
 jest.mock("@/store/api/cartApi", () => ({
-  useAddToCartMutation: jest.fn(() => [jest.fn(), {}])
+  useAddToCartMutation: jest.fn(() => [jest.fn(), {}]),
+  useRemoveFromCartMutation: jest.fn(() => [jest.fn(), {}]),
+  useLazyGetCartItemsQuery: jest.fn(() => [jest.fn(), {}])
 }));
 
 const renderProductsContainer = (
