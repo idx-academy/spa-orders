@@ -1,7 +1,7 @@
-import boxIcon from "@/assets/images/subintro/box-icon.jpg";
-import clockIcon from "@/assets/images/subintro/clock-icon.jpg";
-import mopedIcon from "@/assets/images/subintro/moped-icon.jpg";
-import percentIcon from "@/assets/images/subintro/percent-icon.jpg";
+import boxIcon from "@/assets/images/home-page/subintro/box-icon.jpg";
+import clockIcon from "@/assets/images/home-page/subintro/clock-icon.jpg";
+import mopedIcon from "@/assets/images/home-page/subintro/moped-icon.jpg";
+import percentIcon from "@/assets/images/home-page/subintro/percent-icon.jpg";
 
 const subintroData = [
   {
