@@ -1,14 +1,14 @@
 @import "@design-system";
 
 .footer-banner {
-  color: $white;
+  color: var(--spa-footer-banner-text-color, $white);
   background-image: url("@/assets/images/footer/footer-banner-bg.webp");
   background-size: 65%;
   background-position: right;
   background-repeat: no-repeat;
 
   &__container {
-    background-color: var(--spa-footer-baner-bg-color, $black);
+    background-color: var(--spa-footer-banner-bg-color, $gray);
     padding-block: spacing(20);
     clip-path: polygon(0% 0%, 75% 0%, 86% 45%, 100% 100%, 0% 100%);
     width: 55%;
