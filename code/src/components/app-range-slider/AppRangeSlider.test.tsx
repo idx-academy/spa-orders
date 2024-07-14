@@ -1,7 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import AppRangeSlider from "@/components/app-range-slider/AppRangeSlider";
 
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
 const mockHandleChange = jest.fn();
@@ -9,7 +10,7 @@ const mockHandleChange = jest.fn();
 describe("AppRangeSlider", () => {
   describe("with default props", () => {
     test("uses default props correctly", () => {
-      render(<AppRangeSlider />);
+      renderWithProviders(<AppRangeSlider />);
 
       const rangeStartInput = screen.getByTestId("range-start");
       expect(rangeStartInput).toHaveAttribute("min", "0");
@@ -20,7 +21,7 @@ describe("AppRangeSlider", () => {
 
   describe("with ordinary props", () => {
     beforeEach(() => {
-      render(
+      renderWithProviders(
         <AppRangeSlider
           value={[10, 40]}
           min={0}
@@ -31,7 +32,7 @@ describe("AppRangeSlider", () => {
       );
     });
 
-    test("renders correctly", () => {
+    test("renderWithProviderss correctly", () => {
       const rangeStartInput = screen.getByTestId("range-start");
       expect(rangeStartInput).toBeInTheDocument();
 
