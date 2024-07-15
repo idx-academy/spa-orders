@@ -1,0 +1,29 @@
+@import "@design-system";
+
+.order-tab-filters {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  height: $screen-height;
+
+  &__header {
+    padding-block: spacing(4);
+    background-color: var(
+      --spa-orders-tab-filters-header-background-color,
+      $black
+    );
+    color: var(--spa-orders-tab-filters-header-color, $white);
+    text-align: center;
+  }
+
+  &__items {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+
+  &__footer {
+    padding: spacing(5);
+    border-top: 1px solid
+      var(--spa-orders-tab-filters-footer-border-color, $light);
+  }
+}

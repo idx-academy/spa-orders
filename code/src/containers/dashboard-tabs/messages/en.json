@@ -2,5 +2,7 @@
   "dashboardTabs.users.label": "Users",
   "dashboardTabs.orders.label": "Orders",
   "dashboardTabs.products.label": "Products",
-  "dashboardTabs.orders.title": "Orders"
+  "dashboardTabs.orders.title": "Orders",
+  "dashboardTabs.orders.filters.title": "Filters",
+  "dashboardTabs.orders.filters.applyFiltersButton": "Apply"
 }
