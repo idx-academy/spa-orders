@@ -2,18 +2,14 @@ import { ChangeEvent } from "react";
 
 import { SliderProps } from "@mui/material/Slider";
 
-type AppRangeClassNames = {
-  root: string;
-  range: string;
-  toolbar: string;
-  toolbarInput: string;
-};
+type AppRangeClassName = "root" | "range" | "toolbar" | "toolbarInput";
+type AppRangeClassNames = Partial<Record<AppRangeClassName, string>>;
 
 export type AppRangeSliderProps = Omit<
   SliderProps,
   "className" | "value" | "onChange"
 > & {
-  className?: Partial<AppRangeClassNames>;
+  className?: AppRangeClassNames;
   value?: number[];
   onChange?: (event: Event, value: number[], activeThumb?: number) => void;
 };
