@@ -1,0 +1,34 @@
+@import "@design-system";
+
+$spa-select-colors: (
+  "contained": var(--spa-select-contained-color, $purple),
+  "success": var(--spa-select-success-color, $green),
+  "danger": var(--spa-select-danger-color, $red),
+  "light": var(--spa-select-light-color, $white),
+  "dark": var(--spa-select-dark-color, $black)
+);
+
+@mixin apply-spa-select-color($color) {
+  .MuiOutlinedInput-notchedOutline {
+    border-color: #{$color} !important;
+  }
+}
+
+@mixin generate-spa-select-styles($colors) {
+  @each $name, $color in $colors {
+    &--#{$name} {
+      &.Mui-focused {
+        @include apply-spa-select-color($color);
+      }
+    }
+    &__label {
+      &--#{$name}.Mui-focused {
+        color: $color;
+      }
+    }
+  }
+}
+
+.spa-select {
+  @include generate-spa-select-styles($spa-select-colors);
+}
