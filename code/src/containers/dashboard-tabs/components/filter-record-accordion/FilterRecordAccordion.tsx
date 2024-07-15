@@ -1,4 +1,5 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 import { FilterRecordAccordionProps } from "@/containers/dashboard-tabs/components/filter-record-accordion/FilterAccordion.types";
 
@@ -20,8 +21,9 @@ const FilterRecordAccordion = ({
   children,
   className
 }: FilterRecordAccordionProps) => {
-  // @TODO: Add active filter indicator icon (from mui for example)
-  const activeFilterIndicator = isFilterActive && <div></div>;
+  const activeFilterIndicator = isFilterActive && (
+    <FiberManualRecordIcon className="filter-record-accordion--filter-active-icon" />
+  );
 
   return (
     <AppAccordionContainer
@@ -32,11 +34,11 @@ const FilterRecordAccordion = ({
         className={cn("filter-record-accordion__summary", className?.summary)}
         expandIcon={<ExpandMoreIcon />}
       >
-        {activeFilterIndicator}
         <AppTypography
           fontWeight="extra-bold"
           translationKey={sectionCaptionTranslationKey}
         />
+        {activeFilterIndicator}
       </AppAccordionSummary>
       <AppAccordionDetails
         className={cn("filter-record-accordion__details", className?.summary)}

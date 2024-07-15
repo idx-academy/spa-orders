@@ -15,6 +15,12 @@
 
   &__summary {
     padding: 0 spacing(5);
+
+    & > .MuiAccordionSummary-content {
+      display: inline-flex;
+      align-items: center;
+      gap: spacing(2);
+    }
   }
 
   &__summary.Mui-expanded {
@@ -28,5 +34,11 @@
   &__details {
     padding: spacing(4) spacing(5);
     box-sizing: border-box;
+  }
+
+  &--filter-active-icon {
+    width: 12px;
+    height: 12px;
+    fill: $purple-light;
   }
 }

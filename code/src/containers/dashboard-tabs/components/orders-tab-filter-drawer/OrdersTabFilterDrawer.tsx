@@ -56,6 +56,7 @@ const OrdersTabFilterDrawer = ({
       </AppBox>
       <AppBox className="order-tab-filters__items">
         <FilterRecordAccordion
+          isFilterActive
           className={{
             container: "order-tab-filters__delivery-method-container"
           }}
@@ -84,7 +85,10 @@ const OrdersTabFilterDrawer = ({
             }
           />
         </FilterRecordAccordion>
-        <FilterRecordAccordion sectionCaptionTranslationKey="dashboardTabs.orders.filters.status">
+        <FilterRecordAccordion
+          sectionCaptionTranslationKey="dashboardTabs.orders.filters.status"
+          isFilterActive
+        >
           {orderStatusesCheckboxes}
         </FilterRecordAccordion>
         <FilterRecordAccordion sectionCaptionTranslationKey="dashboardTabs.orders.filters.price">
