@@ -1,0 +1,32 @@
+@import "@design-system";
+
+.filter-record-accordion {
+  border: 0;
+  border-radius: 0 !important; // to override mui styles
+  border-bottom: 1px solid $ghost-alpha;
+
+  &.Mui-expanded .filter-record-accordion__details {
+    border-top: 1px solid $ghost-alpha;
+  }
+
+  &::before {
+    content: none;
+  }
+
+  &__summary {
+    padding: 0 spacing(5);
+  }
+
+  &__summary.Mui-expanded {
+    min-height: 0;
+
+    & .MuiAccordionSummary-content.Mui-expanded {
+      margin: spacing(3) 0;
+    }
+  }
+
+  &__details {
+    padding: spacing(4) spacing(5);
+    box-sizing: border-box;
+  }
+}
