@@ -3,6 +3,6 @@
   "dashboardTabs.orders.label": "Orders",
   "dashboardTabs.products.label": "Products",
   "dashboardTabs.orders.title": "Orders",
-  "dashboardTabs.orders.filters.title": "Filters",
+  "dashboardTabs.orders.filters.title": "Filters ({count})",
   "dashboardTabs.orders.filters.applyFiltersButton": "Apply"
 }

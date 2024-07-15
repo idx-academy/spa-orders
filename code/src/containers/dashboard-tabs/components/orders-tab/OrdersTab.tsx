@@ -25,6 +25,15 @@ const OrdersTab = () => {
     openDrawer(<OrdersTabFilterDrawer />);
   };
 
+  // @TODO: implement filtersCount
+  const filtersCount = 2;
+
+  const filtersTitleTranslationProps = {
+    values: {
+      count: filtersCount
+    }
+  };
+
   return (
     <TabContainer>
       <AppBox className="dashboard-tabs__toolbar">
@@ -34,7 +43,10 @@ const OrdersTab = () => {
           translationKey="dashboardTabs.orders.title"
         />
         <AppButton variant="dark" onClick={handleOpenFilterDrawer}>
-          <AppTypography translationKey="dashboardTabs.orders.filters.title" />
+          <AppTypography
+            translationKey="dashboardTabs.orders.filters.title"
+            translationProps={filtersTitleTranslationProps}
+          />
           <FilterListIcon />
         </AppButton>
       </AppBox>

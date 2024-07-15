@@ -3,6 +3,6 @@
   "dashboardTabs.orders.label": "Замовлення",
   "dashboardTabs.products.label": "Товари",
   "dashboardTabs.orders.title": "Замовлення",
-  "dashboardTabs.orders.filters.title": "Фільтри",
+  "dashboardTabs.orders.filters.title": "Фільтри ({count})",
   "dashboardTabs.orders.filters.applyFiltersButton": "Застосувати"
 }
