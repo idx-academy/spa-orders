@@ -2,7 +2,10 @@ import { screen } from "@testing-library/react";
 
 import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import CartPage from "@/pages/cart/CartPage";
-import { useGetCartItemsQuery } from "@/store/api/cartApi";
+import {
+  useGetCartItemsQuery,
+  useRemoveFromCartMutation
+} from "@/store/api/cartApi";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 type RenderWithMockParams = {
@@ -17,13 +20,15 @@ jest.mock("@/hooks/use-get-user-details/useGetUserDetails", () => ({
 }));
 
 jest.mock("@/store/api/cartApi", () => ({
-  useGetCartItemsQuery: jest.fn()
+  useGetCartItemsQuery: jest.fn(),
+  useRemoveFromCartMutation: jest.fn()
 }));
 
 jest.mock("@/utils/format-price/formatPrice");
 
 const mockUseGetUserDetails = useGetUserDetails as jest.Mock;
 const mockUseGetCartItemsQuery = useGetCartItemsQuery as jest.Mock;
+const mockUseRemoveFromCartMutation = useRemoveFromCartMutation as jest.Mock;
 
 const mockedCartItems = {
   items: [
@@ -51,6 +56,8 @@ const renderWithMockParams = ({
     isLoading,
     error
   });
+
+  mockUseRemoveFromCartMutation.mockReturnValue([jest.fn()]);
 
   renderWithProviders(<CartPage />);
 };

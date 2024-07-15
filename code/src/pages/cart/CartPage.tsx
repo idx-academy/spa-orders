@@ -5,37 +5,25 @@ import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 import OrderSummary from "@/components/order-summary/OrderSummary";
 
-import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
+import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
 import CartItem from "@/pages/cart/components/CartItem";
-import { useGetCartItemsQuery } from "@/store/api/cartApi";
+import { CartItem as CartItemType } from "@/types/cart.types";
 
 import "@/pages/cart/CartPage.scss";
 
-type CartItem = {
-  productId: string;
-  image: string;
-  name: string;
-  productPrice: number;
-  quantity: number;
-  calculatedPrice: number;
-};
-
 const CartPage = () => {
-  const { id } = useGetUserDetails();
-  const {
-    data: cartItems,
-    error,
-    isLoading: cartItemsLoading
-  } = useGetCartItemsQuery({ userId: id });
+  const { id, cartItems, cartItemsLoading, error, handleRemoveItem } =
+    useCartItems();
+
+  //@TODO Create interaction with unauthorization user
+  if (!id) {
+    return null;
+  }
 
   //@TODO Implement Skeleton for loading items
-  if (cartItemsLoading) {
-    return <AppLoader />;
-  }
+  if (cartItemsLoading) return <AppLoader />;
 
-  if (error) {
-    return <AppTypography translationKey="error.label" />;
-  }
+  if (error) return <AppTypography translationKey="error.label" />;
 
   if (!cartItems?.items?.length) {
     return (
@@ -51,8 +39,8 @@ const CartPage = () => {
     );
   }
 
-  const cartItemsBlock = cartItems.items.map((item: CartItem) => (
-    <CartItem key={item.productId} item={item} />
+  const cartItemsBlock = cartItems.items.map((item: CartItemType) => (
+    <CartItem key={item.productId} item={item} onRemove={handleRemoveItem} />
   ));
 
   const totalPrice = cartItems.totalPrice ?? 0;

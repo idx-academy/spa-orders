@@ -1,54 +1,54 @@
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 import CartDrawerItem from "@/containers/cart-drawer/cart-drawer-item/CartDrawerItem";
-import { mockCartItems } from "@/containers/cart-drawer/constants";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
+import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
-import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
-import { useRemoveFromCartMutation } from "@/store/api/cartApi";
-import { useUserDetailsSelector } from "@/store/slices/userSlice";
+import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
 import { CartItem } from "@/types/cart.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/containers/cart-drawer/CartDrawer.scss";
 
 const CartDrawer = () => {
-  const user = useUserDetailsSelector();
-
-  const [removeItem] = useRemoveFromCartMutation();
-
   const { closeDrawer } = useDrawerContext();
+  const { id, cartItems, cartItemsLoading, error, handleRemoveItem } =
+    useCartItems();
 
-  const { openSnackbarWithTimeout } = useSnackbar();
+  //@TODO Create interaction with unauthorization user
+  if (!id) {
+    return null;
+  }
 
-  const handleRemoveItem = async (product: CartItem) => {
-    try {
-      if (user?.id) {
-        await removeItem({
-          userId: user.id,
-          productId: product.productId
-        }).unwrap();
-      }
-    } catch {
-      openSnackbarWithTimeout({
-        variant: "error",
-        messageTranslationKey: "cart.itemDeletion.fail"
-      });
-    }
+  // @TODO Implement Skeleton for loading items
+  if (cartItemsLoading) return <AppLoader />;
+
+  if (error) return <AppTypography translationKey="error.label" />;
+
+  const cartItemsList =
+    cartItems?.items.map((item: CartItem) => (
+      <CartDrawerItem
+        key={item.productId}
+        onRemove={handleRemoveItem}
+        {...item}
+      />
+    )) ?? [];
+
+  const renderCartItems =
+    cartItemsList.length > 0 ? (
+      cartItemsList
+    ) : (
+      <AppTypography variant="subtitle2" translationKey="cart.emptyItem" />
+    );
+
+  const translationCartDrawerProps = {
+    values: { price: formatPrice(cartItems?.totalPrice ?? 0) }
   };
-
-  const cartItems = mockCartItems.map((item) => (
-    <CartDrawerItem
-      key={item.productId}
-      onRemove={handleRemoveItem}
-      {...item}
-    />
-  ));
 
   return (
     <AppBox className="cart-drawer">
@@ -67,13 +67,13 @@ const CartDrawer = () => {
           fontWeight="extra-bold"
         />
       </AppBox>
-      <AppBox className="cart-drawer__items">{cartItems}</AppBox>
+      <AppBox className="cart-drawer__items">{renderCartItems}</AppBox>
       <AppBox className="cart-drawer__footer">
         <AppTypography
           className="cart-drawer__price"
           variant="subtitle2"
           translationKey="cart.subtotal"
-          translationProps={{ values: { price: formatPrice(50) } }}
+          translationProps={translationCartDrawerProps}
         />
         <AppButton
           className="cart-drawer__button"

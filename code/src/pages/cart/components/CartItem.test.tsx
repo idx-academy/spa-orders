@@ -13,9 +13,11 @@ const mockedItem = {
   calculatedPrice: 200.9
 };
 
+const mockOnRemove = jest.fn();
+
 describe("CartItem", () => {
   test("should render the CartItem component with correct data", () => {
-    renderWithProviders(<CartItem item={mockedItem} />);
+    renderWithProviders(<CartItem item={mockedItem} onRemove={mockOnRemove} />);
 
     const imageElement = screen.getByRole("img");
     expect(imageElement).toHaveAttribute("src", mockedItem.image);

@@ -27,3 +27,10 @@ export type CartType = {
   items: CartItem[];
   totalPrice: number;
 };
+
+export type CartItemProps = {
+  item: CartItem;
+  onRemove: (product: CartItem) => void;
+};
+
+export type CartDrawerItemProps = Pick<CartItemProps, "onRemove"> & CartItem;

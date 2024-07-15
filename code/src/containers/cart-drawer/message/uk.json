@@ -1,4 +1,5 @@
 {
   "cart.subtotal": "Підсумок: {price}",
-  "cart.viewCart": "Переглянути кошик"
+  "cart.viewCart": "Переглянути кошик",
+  "cart.emptyItem": "Немає елементів"
 }

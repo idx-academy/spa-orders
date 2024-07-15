@@ -1,4 +1,5 @@
 {
   "cart.subtotal": "Subtotal: {price}",
-  "cart.viewCart": "View cart"
+  "cart.viewCart": "View cart",
+  "cart.emptyItem": "No items"
 }

@@ -1,11 +1,10 @@
 import CloseIcon from "@mui/icons-material/Close";
 
-import { CartDrawerItemProps } from "@/containers/cart-drawer/cart-drawer-item/CartDrawerItem.types";
-
 import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { CartDrawerItemProps } from "@/types/cart.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/containers/cart-drawer/cart-drawer-item/CartDrawerItem.scss";

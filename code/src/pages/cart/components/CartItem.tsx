@@ -5,23 +5,16 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { CartItemProps } from "@/types/cart.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/pages/cart/components/CartItem.scss";
 
-type ProductCartType = {
-  image: string;
-  name: string;
-  productPrice: number;
-  quantity: number;
-  calculatedPrice: number;
-};
+const CartItem = ({ item, onRemove }: CartItemProps) => {
+  const handleRemoveCartItem = () => {
+    onRemove(item);
+  };
 
-type CartItemProps = {
-  item: ProductCartType;
-};
-
-const CartItem = ({ item }: CartItemProps) => {
   return (
     <AppBox className="spa-cart-item">
       <AppBox
@@ -52,7 +45,10 @@ const CartItem = ({ item }: CartItemProps) => {
       <AppTypography className="spa-cart-item__price">
         {formatPrice(item.calculatedPrice)}
       </AppTypography>
-      <AppBox className="spa-cart-item__delete-block">
+      <AppBox
+        className="spa-cart-item__delete-block"
+        onClick={handleRemoveCartItem}
+      >
         <DeleteIcon />
       </AppBox>
     </AppBox>
