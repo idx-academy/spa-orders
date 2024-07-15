@@ -10,9 +10,21 @@ const ProductSkeleton = () => {
       data-testid="spa-product-skeleton"
       data-cy="product-skeleton"
     >
-      <AppSkeleton variant="rectangular" height={264} width={254} />
-      <AppSkeleton variant="text" width={254} />
-      <AppSkeleton variant="text" width={254} />
+      <AppSkeleton
+        variant="rectangular"
+        height={300}
+        width={254}
+        animation="pulse"
+      />
+      <AppBox className="spa-product-skeleton__footer">
+        <AppSkeleton variant="text" width={54} animation="pulse" />
+        <AppSkeleton
+          variant="circular"
+          height={25}
+          width={25}
+          animation="pulse"
+        />
+      </AppBox>
     </AppBox>
   );
 };

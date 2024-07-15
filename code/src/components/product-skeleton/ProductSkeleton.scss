@@ -1,5 +1,12 @@
+@import "@design-system";
+
 .spa-product-skeleton {
   display: flex;
   flex-direction: column;
-  gap: spacing(10);
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: spacing(3);
+  }
 }

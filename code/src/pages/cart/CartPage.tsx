@@ -3,7 +3,6 @@ import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import OrderSummary from "@/containers/order-summary/OrderSummary";
 
 import AppBox from "@/components/app-box/AppBox";
-import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
