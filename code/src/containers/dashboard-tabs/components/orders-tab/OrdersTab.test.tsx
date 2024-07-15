@@ -1,9 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import OrdersTab from "@/containers/dashboard-tabs/components/orders-tab/OrdersTab";
 
+import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
 import { RTKQueryMockState } from "@/types/common";
+
+const mockOpenDrawer = jest.fn();
 
 const mockAdminOrders = {
   content: [
@@ -31,6 +34,10 @@ jest.mock("@/store/api/ordersApi", () => ({
   useGetAdminOrdersQuery: jest.fn()
 }));
 
+jest.mock("@/context/drawer/DrawerContext", () => ({
+  useDrawerContext: jest.fn()
+}));
+
 const renderAndMock = (
   response: RTKQueryMockState<typeof mockAdminOrders> = {}
 ) => {
@@ -40,6 +47,9 @@ const renderAndMock = (
   };
 
   (useGetAdminOrdersQuery as jest.Mock).mockReturnValueOnce(defaultResponse);
+  (useDrawerContext as jest.Mock).mockReturnValueOnce({
+    openDrawer: mockOpenDrawer
+  });
   render(<OrdersTab />);
 };
 
@@ -66,5 +76,16 @@ describe("OrdersTab Component", () => {
 
     const noOrdersText = screen.getByText(/ordersTable.fallback/);
     expect(noOrdersText).toBeInTheDocument();
+  });
+
+  test("should open a drawer when we click filters button", () => {
+    renderAndMock({ isLoading: false, data: null });
+
+    const filtersButton = screen.getByRole("button", {
+      name: "dashboardTabs.orders.filters.title"
+    });
+    fireEvent.click(filtersButton);
+
+    expect(mockOpenDrawer).toHaveBeenCalled();
   });
 });
