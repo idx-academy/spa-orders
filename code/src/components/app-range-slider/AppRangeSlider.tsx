@@ -11,6 +11,21 @@ import cn from "@/utils/cn/cn";
 
 import "@/components/app-range-slider/AppRangeSlider.scss";
 
+const parseRangePositionValue = (
+  event: ChangeEvent<HTMLInputElement>,
+  limiterFn: typeof Math.max | typeof Math.min,
+  edgeValue: number
+) => {
+  const value = event.target.value;
+  const numericValue = parseInt(value);
+  const limitedNewValue = limiterFn(edgeValue, numericValue);
+
+  // needed for typescript, we don't need to pass first parameter at all
+  const typedEvent = event as unknown as Event;
+
+  return { typedEvent, limitedNewValue };
+};
+
 const AppRangeSlider = ({
   className,
   onChange,
@@ -29,24 +44,22 @@ const AppRangeSlider = ({
   const commonRangeProps = { min, max, step };
 
   const handleRangeStartChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    const numericValue = parseInt(value);
-    const limitedNewValue = Math.max(min, numericValue);
-
-    // needed for typescript, we don't need to pass first parameter at all
-    const typedEvent = event as unknown as Event;
+    const { limitedNewValue, typedEvent } = parseRangePositionValue(
+      event,
+      Math.max,
+      min
+    );
 
     setRangeStart(limitedNewValue);
     onChange?.(typedEvent, [limitedNewValue, rangeEnd]);
   };
 
   const handleRangeEndChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    const numericValue = parseInt(value);
-    const limitedNewValue = Math.min(max, numericValue);
-
-    // needed for typescript, we don't need to pass first parameter at all
-    const typedEvent = event as unknown as Event;
+    const { limitedNewValue, typedEvent } = parseRangePositionValue(
+      event,
+      Math.min,
+      max
+    );
 
     setRangeEnd(limitedNewValue);
     onChange?.(typedEvent, [rangeStart, limitedNewValue]);
