@@ -3,10 +3,12 @@
 .filter-record-accordion {
   border: 0;
   border-radius: 0 !important; // to override mui styles
-  border-bottom: 1px solid $ghost-alpha;
+  border-bottom: 1px solid
+    var(--filter-record-accordion-border-color, $ghost-alpha);
 
   &.Mui-expanded .filter-record-accordion__details {
-    border-top: 1px solid $ghost-alpha;
+    border-top: 1px solid
+      var(--filter-record-accordion-border-color, $ghost-alpha);
   }
 
   &::before {
@@ -39,6 +41,9 @@
   &--filter-active-icon {
     width: 12px;
     height: 12px;
-    fill: $purple-light;
+    fill: var(
+      --filter-record-accordion-filter-active-icon-fill-color,
+      $purple-light
+    );
   }
 }
