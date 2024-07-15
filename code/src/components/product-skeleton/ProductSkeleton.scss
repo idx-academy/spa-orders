@@ -7,6 +7,7 @@
   &__footer {
     display: flex;
     justify-content: space-between;
-    padding-top: spacing(3);
+    align-items: center;
+    padding: spacing(3) spacing(3) 0 spacing(3);
   }
 }

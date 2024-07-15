@@ -121,7 +121,7 @@ const ProductsContainer = ({
 
   const skeletonCards = repeatComponent(<ProductSkeleton />, loadingItemsCount);
 
-  const isLoadingInProgress = isLoading || isAuthLoading || isCartLoading;
+  const isLoadingInProgress = true
 
   const gridItems = isLoadingInProgress ? skeletonCards : productCards;
 
