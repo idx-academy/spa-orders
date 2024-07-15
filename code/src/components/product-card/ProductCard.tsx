@@ -68,7 +68,7 @@ const ProductCard = ({
           onClick={handleCartIconClick}
           className={cn(
             "spa-product-card__cart-button",
-            isProductInCart && "spa-product-card__cart-button_active"
+            isProductInCart && "spa-product-card__cart-button--active"
           )}
         >
           <svg>
