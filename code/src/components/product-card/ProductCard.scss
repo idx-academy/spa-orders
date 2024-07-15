@@ -61,6 +61,8 @@
   }
 
   &__cart-button {
+    @include box(40px, 40px);
+
     color: var(--spa-best-sellers-cart-color, $gray);
   }
 

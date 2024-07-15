@@ -40,16 +40,18 @@ const ProductsContainer = ({
   const user = useUserDetailsSelector();
   const isAuthLoading = useIsAuthLoadingSelector();
 
+  const userId = user?.id;
+
   const [
     fetchCart,
     { data: cartData, isLoading: isCartLoading, isFetching: isCartFetching }
   ] = useLazyGetCartItemsQuery();
 
   useEffect(() => {
-    if (user?.id) {
-      fetchCart({ userId: user.id });
+    if (userId) {
+      fetchCart({ userId });
     }
-  }, [user?.id]);
+  }, [userId]);
 
   const { openDrawer } = useDrawerContext();
   const { openModal } = useModalContext();
@@ -60,9 +62,9 @@ const ProductsContainer = ({
   // For now isInCart calculating is implemented on a client side
   const cartProductsIds = useMemo(() => {
     const cartProductsIds =
-      user?.id && cartData ? cartData?.items.map((item) => item.productId) : [];
+      userId && cartData ? cartData?.items.map((item) => item.productId) : [];
     return new Set(cartProductsIds);
-  }, [isCartFetching, user?.id]);
+  }, [isCartFetching, userId]);
 
   if (isError) {
     return (
@@ -80,24 +82,26 @@ const ProductsContainer = ({
   }
 
   const handleCartIconClick = async (product: HandleCartIconClickParam) => {
-    if (user?.id) {
-      try {
-        if (!product.isInCart) {
-          await addToCart({
-            productId: product.id,
-            userId: user.id
-          }).unwrap();
-        } else {
-          openDrawer(<CartDrawer />);
-        }
-      } catch {
-        openSnackbarWithTimeout({
-          variant: "error",
-          messageTranslationKey: "cart.itemAddition.fail"
-        });
-      }
-    } else {
+    if (!userId) {
       openModal(<AuthModal />);
+      return;
+    }
+
+    try {
+      if (product.isInCart) {
+        openDrawer(<CartDrawer />);
+        return;
+      }
+
+      await addToCart({
+        productId: product.id,
+        userId: user.id
+      }).unwrap();
+    } catch {
+      openSnackbarWithTimeout({
+        variant: "error",
+        messageTranslationKey: "cart.itemAddition.fail"
+      });
     }
   };
 
