@@ -1,0 +1,26 @@
+@import "@design-system";
+
+.spa-checkbox {
+  width: fit-content;
+  user-select: none;
+
+  &__contained {
+    & .MuiCheckbox-root svg {
+      fill: $purple;
+    }
+
+    & .spa-typography {
+      color: $purple;
+    }
+  }
+
+  &__dark {
+    & .MuiCheckbox-root svg {
+      fill: $black;
+    }
+
+    & .spa-typography {
+      color: $black;
+    }
+  }
+}
