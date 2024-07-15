@@ -14,6 +14,11 @@ export type TextVariant =
 export type AppFontWeightVariant = "regular" | "extra-bold";
 export type AppTypographyVariant = HeadingVariant | TextVariant;
 
+export type TranslationProps = Omit<
+  ComponentProps<typeof FormattedMessage>,
+  "id"
+>;
+
 export type AppTypographyProps<T extends ElementType = "span"> = Omit<
   TypographyProps<T>,
   "variant" | "children" | "fontWeight"
@@ -24,7 +29,7 @@ export type AppTypographyProps<T extends ElementType = "span"> = Omit<
 } & (
     | {
         translationKey: string;
-        translationProps?: Omit<ComponentProps<typeof FormattedMessage>, "id">;
+        translationProps?: TranslationProps;
         children?: never;
       }
     | {
