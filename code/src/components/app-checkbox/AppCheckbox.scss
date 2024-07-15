@@ -4,6 +4,16 @@
   width: fit-content;
   user-select: none;
 
+  & .MuiFormControlLabel-label {
+    display: flex;
+  }
+
+  & .spa-checkbox__label {
+    display: inline-flex;
+    align-items: center;
+    gap: spacing(3);
+  }
+
   &__contained {
     & .MuiCheckbox-root svg {
       fill: $purple;

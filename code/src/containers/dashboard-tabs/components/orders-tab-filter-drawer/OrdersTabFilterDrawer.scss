@@ -26,4 +26,14 @@
     border-top: 1px solid
       var(--spa-orders-tab-filters-footer-border-color, $light);
   }
+
+  &__delivery-method-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__delivery-method-image {
+    width: 22px;
+    height: 22px;
+  }
 }

@@ -21,10 +21,6 @@ const OrdersTab = () => {
 
   const orders = ordersResponse?.content ?? [];
 
-  const handleOpenFilterDrawer = () => {
-    openDrawer(<OrdersTabFilterDrawer />);
-  };
-
   // @TODO: implement filtersCount
   const filtersCount = 2;
 
@@ -32,6 +28,14 @@ const OrdersTab = () => {
     values: {
       count: filtersCount
     }
+  };
+
+  const handleOpenFilterDrawer = () => {
+    openDrawer(
+      <OrdersTabFilterDrawer
+        filtersTitleTranslationProps={filtersTitleTranslationProps}
+      />
+    );
   };
 
   return (

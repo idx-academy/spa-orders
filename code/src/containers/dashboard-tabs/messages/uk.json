@@ -4,5 +4,12 @@
   "dashboardTabs.products.label": "Товари",
   "dashboardTabs.orders.title": "Замовлення",
   "dashboardTabs.orders.filters.title": "Фільтри ({count})",
+  "dashboardTabs.orders.filters.deliveryMethod": "Метод доставки",
+  "dashboardTabs.orders.filters.ukrPost": "Укрпошта",
+  "dashboardTabs.orders.filters.novaPost": "Нова пошта",
+  "dashboardTabs.orders.filters.status": "Статус замовлення",
+  "dashboardTabs.orders.filters.price": "Ціна ($)",
+  "dashboardTabs.orders.filters.other": "Інше",
+  "dashboardTabs.orders.filters.isPaid": "Оплачено",
   "dashboardTabs.orders.filters.applyFiltersButton": "Застосувати"
 }

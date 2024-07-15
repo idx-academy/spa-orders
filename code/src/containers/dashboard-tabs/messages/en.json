@@ -4,5 +4,12 @@
   "dashboardTabs.products.label": "Products",
   "dashboardTabs.orders.title": "Orders",
   "dashboardTabs.orders.filters.title": "Filters ({count})",
+  "dashboardTabs.orders.filters.deliveryMethod": "Delivery method",
+  "dashboardTabs.orders.filters.ukrPost": "Ukr Post",
+  "dashboardTabs.orders.filters.novaPost": "Nova Post",
+  "dashboardTabs.orders.filters.status": "Order status",
+  "dashboardTabs.orders.filters.price": "Price ($)",
+  "dashboardTabs.orders.filters.other": "Other",
+  "dashboardTabs.orders.filters.isPaid": "Is paid",
   "dashboardTabs.orders.filters.applyFiltersButton": "Apply"
 }
