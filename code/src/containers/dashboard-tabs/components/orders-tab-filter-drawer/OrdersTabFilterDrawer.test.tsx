@@ -6,7 +6,11 @@ import renderWithProviders from "@/utils/render-with-providers/renderWithProvide
 
 describe("OrdersTabFilterDrawer", () => {
   test("renders correctly", () => {
-    renderWithProviders(<OrdersTabFilterDrawer />);
+    renderWithProviders(
+      <OrdersTabFilterDrawer
+        filtersTitleTranslationProps={{ values: { count: 2 } }}
+      />
+    );
 
     const applyFiltersButton = screen.getByRole("button", {
       name: "dashboardTabs.orders.filters.applyFiltersButton"

@@ -1,7 +1,5 @@
 import FilterRecordAccordion from "@/containers/dashboard-tabs/components/filter-record-accordion/FilterRecordAccordion";
-import { statuses } from "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer.constants";
 
-import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppCheckbox from "@/components/app-checkbox/AppCheckbox";
@@ -11,6 +9,7 @@ import { TranslationProps } from "@/components/app-typography/AppTypography.type
 
 import novaPostaImage from "@/assets/images/dashboard/nova-posta.webp";
 import ukrPostaImage from "@/assets/images/dashboard/ukr-posta.png";
+import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 
 import "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer.scss";
@@ -29,16 +28,13 @@ const OrdersTabFilterDrawer = ({
     closeDrawer();
   };
 
-  const orderStatusesCheckboxes = statuses.map((status) => (
+  const orderStatusesCheckboxes = Object.values(
+    orderStatusesTranslationKeys
+  ).map((translationKey) => (
     <AppCheckbox
-      key={status.badgeLabelTranslationKey}
+      key={translationKey}
       variant="dark"
-      label={
-        <AppBadge
-          badgeContent={status.badgeLabelTranslationKey}
-          variant={status.badgeVariant}
-        />
-      }
+      labelTranslationKey={translationKey}
     />
   ));
 
@@ -57,33 +53,34 @@ const OrdersTabFilterDrawer = ({
       <AppBox className="order-tab-filters__items">
         <FilterRecordAccordion
           isFilterActive
-          className={{
-            container: "order-tab-filters__delivery-method-container"
-          }}
           sectionCaptionTranslationKey="dashboardTabs.orders.filters.deliveryMethod"
         >
-          <AppCheckbox
-            variant="dark"
-            labelTranslationKey="dashboardTabs.orders.filters.novaPost"
-            icon={
-              <AppBox
-                component="img"
-                className="order-tab-filters__delivery-method-image"
-                src={novaPostaImage}
-              />
-            }
-          />
-          <AppCheckbox
-            variant="dark"
-            labelTranslationKey="dashboardTabs.orders.filters.ukrPost"
-            icon={
-              <AppBox
-                component="img"
-                className="order-tab-filters__delivery-method-image"
-                src={ukrPostaImage}
-              />
-            }
-          />
+          <AppBox>
+            <AppCheckbox
+              variant="dark"
+              labelTranslationKey="dashboardTabs.orders.filters.novaPost"
+              icon={
+                <AppBox
+                  component="img"
+                  className="order-tab-filters__delivery-method-image"
+                  src={novaPostaImage}
+                />
+              }
+            />
+          </AppBox>
+          <AppBox>
+            <AppCheckbox
+              variant="dark"
+              labelTranslationKey="dashboardTabs.orders.filters.ukrPost"
+              icon={
+                <AppBox
+                  component="img"
+                  className="order-tab-filters__delivery-method-image"
+                  src={ukrPostaImage}
+                />
+              }
+            />
+          </AppBox>
         </FilterRecordAccordion>
         <FilterRecordAccordion
           sectionCaptionTranslationKey="dashboardTabs.orders.filters.status"
