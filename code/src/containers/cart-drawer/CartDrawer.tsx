@@ -39,7 +39,7 @@ const CartDrawer = () => {
       />
     )) ?? [];
 
-  const renderCartItems =
+  const cartItemsContent =
     cartItemsList.length > 0 ? (
       cartItemsList
     ) : (
@@ -67,7 +67,7 @@ const CartDrawer = () => {
           fontWeight="extra-bold"
         />
       </AppBox>
-      <AppBox className="cart-drawer__items">{renderCartItems}</AppBox>
+      <AppBox className="cart-drawer__items">{cartItemsContent}</AppBox>
       <AppBox className="cart-drawer__footer">
         <AppTypography
           className="cart-drawer__price"
