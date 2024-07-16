@@ -17,11 +17,11 @@ import "@/containers/cart-drawer/CartDrawer.scss";
 
 const CartDrawer = () => {
   const { closeDrawer } = useDrawerContext();
-  const { id, cartItems, cartItemsLoading, error, handleRemoveItem } =
+  const { user, cartItems, cartItemsLoading, error, handleRemoveItem } =
     useCartItems();
 
   //@TODO Create interaction with unauthorization user
-  if (!id) {
+  if (!user) {
     return null;
   }
 

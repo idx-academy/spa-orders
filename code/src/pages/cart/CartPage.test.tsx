@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 
+import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import CartPage from "@/pages/cart/CartPage";
 import {
@@ -19,6 +20,11 @@ jest.mock("@/hooks/use-get-user-details/useGetUserDetails", () => ({
   default: jest.fn()
 }));
 
+jest.mock("@/hooks/use-create-order/useCreateOrder", () => ({
+  __esModule: true,
+  default: jest.fn()
+}));
+
 jest.mock("@/store/api/cartApi", () => ({
   useGetCartItemsQuery: jest.fn(),
   useRemoveFromCartMutation: jest.fn()
@@ -29,6 +35,8 @@ jest.mock("@/utils/format-price/formatPrice");
 const mockUseGetUserDetails = useGetUserDetails as jest.Mock;
 const mockUseGetCartItemsQuery = useGetCartItemsQuery as jest.Mock;
 const mockUseRemoveFromCartMutation = useRemoveFromCartMutation as jest.Mock;
+
+const mockCreateOrder = jest.fn();
 
 const mockedCartItems = {
   items: [
@@ -66,6 +74,7 @@ describe("CartPage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockUseGetUserDetails.mockReturnValue(userId);
+    (useCreateOrder as jest.Mock).mockReturnValue([mockCreateOrder, {}]);
   });
 
   test("renders loading state", () => {

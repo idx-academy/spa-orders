@@ -15,6 +15,7 @@
   "orders.statuses.delivered": "Delivered",
   "orders.statuses.canceled": "Canceled",
   "orders.statuses.completed": "Completed",
+  "orders.create.success": "Order was successfully created. You can track it on the orders page.",
   "cart.itemAddition.fail": "Failed to add the product to the cart.",
   "cart.itemDeletion.fail": "Failed to remove the product from the cart.",
   "filters.from": "From",

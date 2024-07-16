@@ -15,6 +15,7 @@
   "orders.statuses.delivered": "Доставлено",
   "orders.statuses.canceled": "Скасовано",
   "orders.statuses.completed": "Завершено",
+  "orders.create.success": "Замовлення успішно створено. Ви можете відстежувати його на сторінці замовлень.",
   "cart.itemAddition.fail": "Не вдалося додати продукт у кошик.",
   "cart.itemDeletion.fail": "Не вдалося видалити продукт з кошика.",
   "filters.from": "Від",
