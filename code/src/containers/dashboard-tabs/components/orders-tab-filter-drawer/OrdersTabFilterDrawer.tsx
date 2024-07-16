@@ -7,10 +7,8 @@ import AppRangeSlider from "@/components/app-range-slider/AppRangeSlider";
 import AppTypography from "@/components/app-typography/AppTypography";
 import { TranslationProps } from "@/components/app-typography/AppTypography.types";
 
-import {
-  deliveryMethods,
-  orderStatusesTranslationKeys
-} from "@/constants/orderStatuses";
+import { deliveryMethods } from "@/constants/deliveryMethods";
+import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 
 import "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer.scss";
