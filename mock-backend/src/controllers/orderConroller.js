@@ -6,7 +6,61 @@ const getUserOrders = (req, res) => {
 };
 
 const getAdminOrders = (req, res) => {
-  res.json(adminOrders);
+  const {
+    deliveryMethods,
+    statuses,
+    totalMore,
+    totalLess,
+    createdBefore,
+    createdAfter,
+    isPaid,
+  } = req.query;
+
+  const filteredOrders = {
+    ...adminOrders,
+    content: adminOrders.content.filter((item) => {
+      if (isPaid !== undefined && item.isPaid !== Boolean(isPaid)) {
+        return false;
+      }
+
+      const createdAtDate = new Date(item.createdAt);
+      const createdBeforeDate = new Date(createdBefore);
+      const createdAfterDate = new Date(createdAfter);
+
+      if (
+        createdBefore !== undefined &&
+        createdAfter !== undefined &&
+        (createdAtDate > createdBeforeDate || createdAtDate < createdAfterDate)
+      ) {
+        return false;
+      }
+
+      if (
+        totalLess !== undefined &&
+        totalMore !== undefined &&
+        (item.total > Number(totalLess) || item.total < Number(totalMore))
+      ) {
+        return false;
+      }
+
+      console.log(statuses, item.orderStatus);
+
+      if (statuses !== undefined && !statuses.includes(item.orderStatus)) {
+        return false;
+      }
+
+      if (
+        deliveryMethods !== undefined &&
+        !deliveryMethods.includes(item.postAddress.deliveryMethod)
+      ) {
+        return false;
+      }
+
+      return true;
+    }),
+  };
+
+  res.json(filteredOrders);
 };
 
 const changeOrderStatus = (req, res) => {
@@ -20,7 +74,7 @@ const createOrder = async (req, res) => {
     ...body,
   };
 
-  await  wait(1000)
+  await wait(1000);
 
   res.json(newOrder.id);
 };
