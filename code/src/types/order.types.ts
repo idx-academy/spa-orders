@@ -16,10 +16,12 @@ export type OrderItem = {
   product: Product;
 };
 
+type OrderId = string;
+
 type Receiver = Pick<User, "email" | "firstName" | "lastName">;
 
 type BaseOrder = {
-  id: string;
+  id: OrderId;
   isPaid: boolean;
   total: number;
   orderStatus: OrderStatus;
@@ -55,4 +57,17 @@ export type AdminOrderResponse = BaseOrderResponse & {
   content: AdminOrder[];
 };
 
-export type OrderGetParams = { userId: UserId };
+export type OrderGetParams = {
+  userId: UserId;
+};
+
+export type OrderPostParams = PostAddress & {
+  userId: UserId;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
+export type OrderPostResponse = {
+  orderId: OrderId;
+};

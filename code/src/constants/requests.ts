@@ -3,7 +3,7 @@ import {
   CartManagementGetParams,
   CartManagementPostParams
 } from "@/types/cart.types";
-import { OrderGetParams } from "@/types/order.types";
+import { OrderGetParams, OrderPostParams } from "@/types/order.types";
 
 export const URLS = {
   auth: {
@@ -19,7 +19,7 @@ export const URLS = {
   orders: {
     getForUser: ({ userId }: OrderGetParams) => `/v1/users/${userId}/orders`,
     getForAdmin: "/v1/management/orders",
-    post: "/v1/orders"
+    post: (userId: OrderPostParams["userId"]) => `/v1/users/${userId}/orders`
   },
   cart: {
     get: ({ userId }: CartManagementGetParams) =>
