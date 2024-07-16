@@ -13,16 +13,18 @@ import { CartItem as CartItemType } from "@/types/cart.types";
 import "@/pages/cart/CartPage.scss";
 
 const CartPage = () => {
+<<<<<<< HEAD
   const { user, cartItems, cartItemsLoading, error, handleRemoveItem } =
     useCartItems();
   const [createOrder, { isLoading }] = useCreateOrder();
+=======
+  const { id, cartItems, error, handleRemoveItem } = useCartItems();
+
+>>>>>>> 74574a0 (rebase conflicts)
   //@TODO Create interaction with unauthorization user
   if (!user) {
     return null;
   }
-
-  //@TODO Implement Skeleton for loading items
-  if (cartItemsLoading) return <AppLoader />;
 
   if (error) return <AppTypography translationKey="error.label" />;
 
