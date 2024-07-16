@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import CartDrawerItem from "@/containers/cart-drawer/cart-drawer-item/CartDrawerItem";
 
@@ -70,7 +70,7 @@ const CartDrawer = () => {
           className="cart-drawer__close-button"
           onClick={closeDrawer}
         >
-          <KeyboardArrowLeftIcon fontSize="large" />
+          <KeyboardArrowRightIcon fontSize="large" />
         </AppIconButton>
         <AppTypography
           className="cart-drawer__title"
