@@ -73,7 +73,7 @@ const userSlice = createSlice({
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.sub,
-        role: user.scope
+        role: "ROLE_ADMIN"
       };
 
       state.userDetails = userDetails;

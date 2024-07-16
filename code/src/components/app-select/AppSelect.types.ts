@@ -8,6 +8,6 @@ type AppSelectColoVariants =
   | "dark";
 
 export type AppSelectProps = Omit<SelectProps, "color" | "label"> & {
-  label: string;
+  label?: string;
   color?: AppSelectColoVariants;
 };

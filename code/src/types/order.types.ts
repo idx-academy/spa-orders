@@ -71,3 +71,8 @@ export type OrderPostParams = PostAddress & {
 export type OrderPostResponse = {
   orderId: OrderId;
 };
+
+export type OrderPatchParams = {
+  orderId: OrderId;
+  orderStatus: OrderStatus;
+};

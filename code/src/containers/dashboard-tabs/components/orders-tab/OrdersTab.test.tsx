@@ -31,7 +31,8 @@ const mockAdminOrders = {
 };
 
 jest.mock("@/store/api/ordersApi", () => ({
-  useGetAdminOrdersQuery: jest.fn()
+  useGetAdminOrdersQuery: jest.fn(),
+  useChangeOrderStatusMutation: jest.fn(() => [jest.fn()])
 }));
 
 jest.mock("@/context/drawer/DrawerContext", () => ({

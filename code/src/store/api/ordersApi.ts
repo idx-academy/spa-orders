@@ -5,6 +5,7 @@ import { appApi } from "@/store/api/appApi";
 import {
   AdminOrderResponse,
   OrderGetParams,
+  OrderPatchParams,
   OrderPostParams,
   OrderPostResponse,
   UserOrderResponse
@@ -26,7 +27,19 @@ const ordersApi = appApi.injectEndpoints({
         method: httpMethods.post,
         body: body
       }),
-      invalidatesTags: [rtkQueryTags.CART, rtkQueryTags.ADMIN_ORDERS, rtkQueryTags.USER_ORDERS]
+      invalidatesTags: [
+        rtkQueryTags.CART,
+        rtkQueryTags.ADMIN_ORDERS,
+        rtkQueryTags.USER_ORDERS
+      ]
+    }),
+    changeOrderStatus: build.mutation<void, OrderPatchParams>({
+      query: ({ orderStatus, ...params }) => ({
+        url: URLS.orders.patch(params),
+        method: httpMethods.post,
+        params: { status: orderStatus }
+      }),
+      invalidatesTags: [rtkQueryTags.ADMIN_ORDERS]
     })
   })
 });
@@ -34,5 +47,6 @@ const ordersApi = appApi.injectEndpoints({
 export const {
   useGetUserOrdersQuery,
   useGetAdminOrdersQuery,
-  useCreateOrderMutation
+  useCreateOrderMutation,
+  useChangeOrderStatusMutation
 } = ordersApi;

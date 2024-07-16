@@ -6,6 +6,10 @@ import {
   tableColumns
 } from "@/containers/tables/orders-table/OrdersTable.constants";
 
+jest.mock("@/store/api/ordersApi", () => ({
+  useChangeOrderStatusMutation: jest.fn(() => [jest.fn()])
+}));
+
 describe("OrdersTable", () => {
   test("renders correctly", () => {
     render(<OrdersTable orders={mockOrders} />);

@@ -9,6 +9,10 @@ const getAdminOrders = (req, res) => {
   res.json(adminOrders);
 };
 
+const changeOrderStatus = (req, res) => {
+  return res.json();  
+}
+
 const createOrder = async (req, res) => {
   const { body } = req;
   const newOrder = {
@@ -21,4 +25,4 @@ const createOrder = async (req, res) => {
   res.json(newOrder.id);
 };
 
-module.exports = { getUserOrders, getAdminOrders, createOrder };
+module.exports = { getUserOrders, getAdminOrders, createOrder, changeOrderStatus };

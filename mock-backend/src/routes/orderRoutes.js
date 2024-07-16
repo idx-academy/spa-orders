@@ -3,6 +3,7 @@ const {
   getAdminOrders,
   getUserOrders,
   createOrder,
+  changeOrderStatus,
 } = require("../controllers/orderConroller");
 
 const router = express.Router();
@@ -10,5 +11,6 @@ const router = express.Router();
 router.get("/users/:userId/orders", getUserOrders);
 router.get("/management/orders", getAdminOrders);
 router.post("/users/:userId/orders", createOrder);
+router.post("/orders/:orderId/status", changeOrderStatus);
 
 module.exports = router;

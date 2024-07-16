@@ -5,7 +5,8 @@ import OrdersTableHead from "@/containers/tables/orders-table/components/orders-
 import AppTable from "@/components/app-table/AppTable";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import { AdminOrder } from "@/types/order.types";
+import { useChangeOrderStatusMutation } from "@/store/api/ordersApi";
+import { AdminOrder, OrderStatus } from "@/types/order.types";
 
 import "@/containers/tables/orders-table/OrdersTable.scss";
 
@@ -14,9 +15,22 @@ type OrdersTableProps = {
 };
 
 const OrdersTable = ({ orders }: OrdersTableProps) => {
-  const OrderTableBodyItem = (order: AdminOrder) => (
-    <OrdersTableBody key={order.id} order={order} />
-  );
+  const [changeOrderStatus] = useChangeOrderStatusMutation();
+
+  const OrderTableBodyItem = (order: AdminOrder) => {
+    const handleChangeOrderStatus = (orderStatus: OrderStatus) => {
+      changeOrderStatus({ orderId: order.id, orderStatus });
+    };
+
+    return (
+      <OrdersTableBody
+        key={order.id}
+        order={order}
+        onStatusChange={handleChangeOrderStatus}
+      />
+    );
+  };
+
   const OrderTableHeadItem = (head: string) => (
     <OrdersTableHead key={head} head={head} />
   );

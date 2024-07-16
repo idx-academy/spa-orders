@@ -9,7 +9,7 @@ describe("OrdersTableBody", () => {
       <table>
         <tbody>
           <tr>
-            <OrdersTableBody order={mockOrders[0]} />
+            <OrdersTableBody onStatusChange={() => {}} order={mockOrders[0]} />
           </tr>
         </tbody>
       </table>

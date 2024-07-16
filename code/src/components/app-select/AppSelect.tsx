@@ -16,12 +16,14 @@ const AppSelect = ({
 }: AppSelectProps) => {
   return (
     <FormControl fullWidth>
-      <InputLabel
-        className={cn("spa-select__label", `spa-select__label--${color}`)}
-        id={`spa-select-label-${label}`}
-      >
-        <AppTypography translationKey={label} />
-      </InputLabel>
+      {label && (
+        <InputLabel
+          className={cn("spa-select__label", `spa-select__label--${color}`)}
+          id={`spa-select-label-${label}`}
+        >
+          <AppTypography translationKey={label} />
+        </InputLabel>
+      )}
       <Select
         className={cn("spa-select", `spa-select--${color}`)}
         labelId={`spa-select-label-${label}`}

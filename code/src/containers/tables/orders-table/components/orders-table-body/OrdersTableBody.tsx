@@ -1,13 +1,15 @@
 import DoneIcon from "@mui/icons-material/Done";
+import { MenuItem } from "@mui/material";
 
 import { orderBadgeVariants } from "@/containers/order-item/OrderItem.constants";
 
 import AppBadge from "@/components/app-badge/AppBadge";
+import AppSelect from "@/components/app-select/AppSelect";
 import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
-import { AdminOrder } from "@/types/order.types";
+import { AdminOrder, OrderStatus } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
 
@@ -15,9 +17,10 @@ import "@/containers/tables/orders-table/components/orders-table-body/OrdersTabl
 
 type OrderTableBodyProps = {
   order: AdminOrder;
+  onStatusChange: (status: OrderStatus) => void;
 };
 
-const OrdersTableBody = ({ order }: OrderTableBodyProps) => {
+const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
   const {
     id,
     createdAt,
@@ -28,26 +31,61 @@ const OrdersTableBody = ({ order }: OrderTableBodyProps) => {
     isPaid
   } = order;
 
-  const orderItemStatus = orderStatusesTranslationKeys[orderStatus];
   const orderReceiver = `${firstName} ${lastName}`;
 
-  const orderBadgeItemStatus = (
-    <AppTypography
-      className="spa-order-table__body-status"
-      variant="caption"
-      translationKey={orderItemStatus}
-    />
+  const statusBlock = (
+    <AppSelect
+      defaultValue={orderStatus}
+      value={orderStatus}
+      IconComponent={() => null}
+      className="spa-order-table__body-status-select"
+      MenuProps={{
+        PaperProps: {
+          className: "spa-order-table__body-status-select"
+        }
+      }}
+      inputProps={{
+        className: "spa-order-table__body-status-select-input"
+      }}
+    >
+      {Object.keys(orderStatusesTranslationKeys).map((status) => {
+        const orderBadgeItemStatus = (
+          <AppTypography
+            className="spa-order-table__body-status"
+            variant="caption"
+            translationKey={orderStatusesTranslationKeys[status as OrderStatus]}
+          />
+        );
+
+        const handleStatusChange = () => {
+          onStatusChange(status as OrderStatus);
+        };
+
+        return (
+          <MenuItem
+            className="status-menu-item"
+            value={status}
+            key={status}
+            onClick={handleStatusChange}
+          >
+            <AppBadge
+              variant={
+                orderBadgeVariants[
+                  orderStatusesTranslationKeys[status as OrderStatus]
+                ]
+              }
+              badgeContent={orderBadgeItemStatus}
+            />
+          </MenuItem>
+        );
+      })}
+    </AppSelect>
   );
 
   return (
     <>
       <AppTableCell>{id}</AppTableCell>
-      <AppTableCell>
-        <AppBadge
-          variant={orderBadgeVariants[orderItemStatus]}
-          badgeContent={orderBadgeItemStatus}
-        />
-      </AppTableCell>
+      <AppTableCell className="status-select">{statusBlock}</AppTableCell>
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>{orderReceiver}</AppTableCell>
       <AppTableCell>{deliveryMethod}</AppTableCell>
