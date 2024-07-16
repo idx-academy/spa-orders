@@ -1,9 +1,6 @@
-import {
-  CartManagementDeleteParams,
-  CartManagementGetParams,
-  CartManagementPostParams
-} from "@/types/cart.types";
+import { CartManagementDeleteParams, CartManagementGetParams, CartManagementPostParams } from "@/types/cart.types";
 import { OrderGetParams, OrderPostParams } from "@/types/order.types";
+
 
 export const URLS = {
   auth: {
@@ -19,7 +16,8 @@ export const URLS = {
   orders: {
     getForUser: ({ userId }: OrderGetParams) => `/v1/users/${userId}/orders`,
     getForAdmin: "/v1/management/orders",
-    post: (userId: OrderPostParams["userId"]) => `/v1/users/${userId}/orders`
+    post: ({ userId }: Pick<OrderPostParams, "userId">) =>
+      `/v1/users/${userId}/orders`
   },
   cart: {
     get: ({ userId }: CartManagementGetParams) =>
