@@ -7,22 +7,22 @@ import {
 import { CartItem } from "@/types/cart.types";
 
 const useCartItems = () => {
-  const { id } = useGetUserDetails();
+  const user = useGetUserDetails();
   const { openSnackbarWithTimeout } = useSnackbar();
 
   const {
     data: cartItems,
     error,
     isLoading: cartItemsLoading
-  } = useGetCartItemsQuery({ userId: id });
+  } = useGetCartItemsQuery({ userId: user.id });
 
   const [removeItem] = useRemoveFromCartMutation();
 
   const handleRemoveItem = async (product: CartItem) => {
     try {
-      if (id) {
+      if (user) {
         await removeItem({
-          userId: id,
+          userId: user.id,
           productId: product.productId
         }).unwrap();
       }
@@ -35,7 +35,7 @@ const useCartItems = () => {
   };
 
   return {
-    id,
+    user,
     cartItems,
     cartItemsLoading,
     error,
