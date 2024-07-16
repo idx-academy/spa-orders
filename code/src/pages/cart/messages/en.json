@@ -8,5 +8,6 @@
   "total.label": "Total",
   "createOrder.label": "Create an order",
   "error.label": "An error occurred while fetching cart items",
-  "cartEmpty.label": "The cart is empty!"
+  "cartEmpty.label": "Your cart is empty",
+  "cartEmpty.subtitle": "Looks like you haven't added enything to your cart... Go ahead & explore top products!"
 }

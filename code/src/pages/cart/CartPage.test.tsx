@@ -79,6 +79,20 @@ describe("CartPage", () => {
     (useCreateOrder as jest.Mock).mockReturnValue([mockCreateOrder, {}]);
   });
 
+  test("renders empty view", () => {
+    renderWithMockParams({});
+
+    const linkToProducts = screen.getByRole("link");
+    expect(linkToProducts).toHaveAttribute("href", "/products");
+  });
+
+  test("renders loading state", () => {
+    renderWithMockParams({ isLoading: true });
+
+    const progressbar = screen.getByRole("progressbar");
+    expect(progressbar).toBeInTheDocument();
+  });
+
   test("renders error state when there is an error fetching cart items", () => {
     renderWithMockParams({ error: true });
 
