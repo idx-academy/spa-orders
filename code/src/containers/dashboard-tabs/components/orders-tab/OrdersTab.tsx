@@ -21,7 +21,7 @@ const OrdersTab = () => {
   const orders = ordersResponse?.content ?? [];
 
   // @TODO: implement filtersCount
-  const filtersCount = 2;
+  // const filtersCount = 2;
 
   // const filtersTitleTranslationProps = {
   //   values: {
