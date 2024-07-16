@@ -10,10 +10,10 @@
     padding-top: spacing(5);
     padding: spacing(5);
     color: var(--spa-empty-cart-color, $gray);
-    font-size: $fs-h3;
   }
 
   &__img {
+    @include box(100px, 100px);
     padding-top: spacing(10);
     color: var(--spa-empty-cart-img-color, $gray);
     :hover {

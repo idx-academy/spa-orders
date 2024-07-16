@@ -23,6 +23,7 @@ const EmptyCart = () => {
         <AppTypography translationKey="cartEmpty.subtitle" />
         <AppIconButton
           className="empty-cart__img"
+          disableRipple
           component={AppLink}
           to={routes.products.path}
         >
