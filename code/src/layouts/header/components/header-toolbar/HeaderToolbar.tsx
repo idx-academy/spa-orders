@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, ReactNode, useState } from "react";
 
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import ListAltIcon from "@mui/icons-material/ListAlt";
@@ -158,13 +158,17 @@ const HeaderToolbar = () => {
 
   const ordersButton = loadingOrdersButton || authenticatedOrdersButton;
 
-  const cartButton = isLoadingAuth ? (
-    <AppLoader />
-  ) : (
-    <AppTooltip titleTranslationKey="cart.tooltip">
-      <AppIconButton onClick={handleOpenCart}>{badge}</AppIconButton>
-    </AppTooltip>
-  );
+  let cartButton: ReactNode = null;
+
+  if (isLoadingAuth) {
+    cartButton = <AppLoader />;
+  } else if (userRole === ROLES.USER) {
+    cartButton = (
+      <AppTooltip titleTranslationKey="cart.tooltip">
+        <AppIconButton onClick={handleOpenCart}>{badge}</AppIconButton>
+      </AppTooltip>
+    );
+  }
 
   return (
     <AppBox className="header__wrapper" data-cy="header-toolbar">

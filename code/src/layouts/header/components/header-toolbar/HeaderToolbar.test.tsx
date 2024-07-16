@@ -63,12 +63,14 @@ const mockedRoles = [
   {
     role: ROLES.SHOP_MANAGER,
     shouldRenderDashboard: true,
-    shouldRenderOrders: false
+    shouldRenderOrders: false,
+    shouldRenderCart: false
   },
   {
     role: ROLES.ADMIN,
     shouldRenderDashboard: true,
-    shouldRenderOrders: false
+    shouldRenderOrders: false,
+    shouldRenderCart: false
   }
 ];
 
@@ -129,7 +131,12 @@ describe("HeaderToolbar", () => {
     });
 
     mockedRoles.forEach(
-      ({ role, shouldRenderDashboard, shouldRenderOrders }) => {
+      ({
+        role,
+        shouldRenderDashboard,
+        shouldRenderOrders,
+        shouldRenderCart
+      }) => {
         describe(`for ${role}`, () => {
           beforeEach(() => {
             (useUserRoleSelector as jest.Mock).mockReturnValue(role);
@@ -142,6 +149,13 @@ describe("HeaderToolbar", () => {
                 "DashboardCustomizeIcon"
               );
               expect(dashboardButton).toBeInTheDocument();
+            });
+          }
+
+          if (!shouldRenderCart) {
+            test("does not render cart button", () => {
+              const cartIcon = screen.queryByTestId("ShoppingCartIcon");
+              expect(cartIcon).not.toBeInTheDocument();
             });
           }
 
