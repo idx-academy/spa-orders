@@ -1,8 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
 
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import { useModalContext } from "@/context/modal/ModalContext";
 import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
