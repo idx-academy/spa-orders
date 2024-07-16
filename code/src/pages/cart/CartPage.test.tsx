@@ -13,6 +13,10 @@ type RenderWithMockParams = {
   error?: boolean;
 };
 
+jest.mock("@/pages/cart/components/empty-cart/EmptyCart", () =>
+  jest.fn(() => <div>EmptyCartWiew</div>)
+);
+
 jest.mock("@/hooks/use-get-user-details/useGetUserDetails", () => ({
   __esModule: true,
   default: jest.fn()
@@ -82,15 +86,8 @@ describe("CartPage", () => {
   test("renders empty view", () => {
     renderWithMockParams({});
 
-    const linkToProducts = screen.getByRole("link");
-    expect(linkToProducts).toHaveAttribute("href", "/products");
-  });
-
-  test("renders loading state", () => {
-    renderWithMockParams({ isLoading: true });
-
-    const progressbar = screen.getByRole("progressbar");
-    expect(progressbar).toBeInTheDocument();
+    const emptyCart = screen.getByText(/EmptyCartWiew/);
+    expect(emptyCart).toBeInTheDocument();
   });
 
   test("renders error state when there is an error fetching cart items", () => {

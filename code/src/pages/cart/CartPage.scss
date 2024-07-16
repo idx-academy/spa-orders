@@ -26,26 +26,4 @@
       padding-bottom: spacing(3);
     }
   }
-
-  &__empty-cart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: spacing(10);
-  }
-
-  &__empty-title {
-    padding-top: spacing(5);
-    padding: spacing(5);
-    color: var(--spa-empty-cart-color, $gray);
-    font-size: $fs-h3;
-  }
-
-  &__empty-img {
-    padding-top: spacing(10);
-    color: var(--spa-empty-cart-img-color, $gray);
-    :hover {
-      color: var(--spa-empty-cart-img-hover-color, $purple);
-    }
-  }
 }

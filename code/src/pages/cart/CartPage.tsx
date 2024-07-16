@@ -3,17 +3,13 @@ import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import OrderSummary from "@/containers/order-summary/OrderSummary";
 
 import AppBox from "@/components/app-box/AppBox";
-import AppIconButton from "@/components/app-icon-button/AppIconButton";
-import AppLink from "@/components/app-link/AppLink";
-import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import cartIconWithPlus from "@/assets/icons/cart-with-plus.svg";
-import routes from "@/constants/routes";
 import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
-import CartItem from "@/pages/cart/components/CartItem";
+import CartItem from "@/pages/cart/components/cart-item/CartItem";
+import EmptyCart from "@/pages/cart/components/empty-cart/EmptyCart";
 import { CartItem as CartItemType } from "@/types/cart.types";
 
 import "@/pages/cart/CartPage.scss";
@@ -27,28 +23,9 @@ const CartPage = () => {
   if (error) return <AppTypography translationKey="error.label" />;
 
   if (!cartItems?.items?.length) {
-    return (
-      <PageWrapper>
-        <AppBox className="spa-cart-page__empty-cart">
-          <AppTypography
-            className="spa-cart-page__empty-title"
-            variant="h3"
-            translationKey="cartEmpty.label"
-          />
-          <AppTypography translationKey="cartEmpty.subtitle" />
-          <AppIconButton
-            className="spa-cart-page__empty-img"
-            component={AppLink}
-            to={routes.products.path}
-          >
-            <svg>
-              <use href={`${cartIconWithPlus}#cart-with-plus`} />
-            </svg>
-          </AppIconButton>
-        </AppBox>
-      </PageWrapper>
-    );
+    return <EmptyCart />;
   }
+
   const handleCreateOrder = () => {
     createOrder({
       userId: user.id,

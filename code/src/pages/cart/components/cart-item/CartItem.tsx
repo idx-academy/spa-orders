@@ -8,7 +8,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import { CartItemProps } from "@/types/cart.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
-import "@/pages/cart/components/CartItem.scss";
+import "@/pages/cart/components/cart-item/CartItem.scss";
 
 const CartItem = ({ item, onRemove }: CartItemProps) => {
   const handleRemoveCartItem = () => {
