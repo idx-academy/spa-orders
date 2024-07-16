@@ -9,26 +9,23 @@
     background-color: var(--spa-order-table-body-hover-bg-color, $light);
   }
 
-  &-status {
+  &-status-select {
+    .MuiOutlinedInput-notchedOutline {
+      border: none !important; // To overwrite mui styles
+    }
+
+    & > div {
+      padding: 0;
+    }
+  }
+
+  &-status-text {
     width: 75px;
+    text-align: center;
+    padding: 0;
   }
 
   &-status-select-input {
-    padding-right: 14px !important;
-  }
-
-  &-status-select {
-    width: fit-content !important;
-    min-width: auto !important;
-  }
-}
-
-.status-select {
-  padding: 0 !important;
-
-  * {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+    padding-right: 0 !important; // To overwrite mui styles
   }
 }

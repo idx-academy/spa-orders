@@ -51,7 +51,7 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
       {Object.keys(orderStatusesTranslationKeys).map((status) => {
         const orderBadgeItemStatus = (
           <AppTypography
-            className="spa-order-table__body-status"
+            className="spa-order-table__body-status-text"
             variant="caption"
             translationKey={orderStatusesTranslationKeys[status as OrderStatus]}
           />
@@ -62,12 +62,7 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
         };
 
         return (
-          <MenuItem
-            className="status-menu-item"
-            value={status}
-            key={status}
-            onClick={handleStatusChange}
-          >
+          <MenuItem value={status} key={status} onClick={handleStatusChange}>
             <AppBadge
               variant={
                 orderBadgeVariants[
@@ -85,7 +80,7 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
   return (
     <>
       <AppTableCell>{id}</AppTableCell>
-      <AppTableCell className="status-select">{statusBlock}</AppTableCell>
+      <AppTableCell>{statusBlock}</AppTableCell>
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>{orderReceiver}</AppTableCell>
       <AppTableCell>{deliveryMethod}</AppTableCell>
