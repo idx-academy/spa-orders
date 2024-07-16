@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
 
+import CartDrawer from "@/containers/cart-drawer/CartDrawer";
+
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import { useModalContext } from "@/context/modal/ModalContext";
 import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
 import { UserDetails } from "@/types/user.types";
 import formatPrice from "@/utils/format-price/formatPrice";
-
-import CartDrawer from "./CartDrawer";
 
 jest.mock("@/utils/format-price/formatPrice", () => ({
   __esModule: true,

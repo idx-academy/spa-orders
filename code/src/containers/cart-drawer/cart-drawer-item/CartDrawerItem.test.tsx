@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import CartDrawerItem from "./CartDrawerItem";
+import CartDrawerItem from "@/containers/cart-drawer/cart-drawer-item/CartDrawerItem";
 
 const mockCartItem = {
   productId: "2",

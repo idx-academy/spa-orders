@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import CartDrawerItem from "@/containers/cart-drawer/cart-drawer-item/CartDrawerItem";
+import AuthModal from "@/containers/modals/auth/AuthModal";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
@@ -18,8 +19,6 @@ import { CartItem } from "@/types/cart.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/containers/cart-drawer/CartDrawer.scss";
-
-import AuthModal from "../modals/auth/AuthModal";
 
 const CartDrawer = () => {
   const { openModal } = useModalContext();

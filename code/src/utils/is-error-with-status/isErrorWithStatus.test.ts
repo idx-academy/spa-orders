@@ -1,4 +1,4 @@
-import isErrorWithStatus from "./isErrorWithStatus";
+import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus";
 
 describe("Test isErrorWithStatus", () => {
   test("should return false if it is not an object", () => {

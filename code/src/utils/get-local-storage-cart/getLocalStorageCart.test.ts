@@ -1,6 +1,5 @@
 import { LOCAL_STORAGE_KEYS } from "@/constants/common";
-
-import getLocalStorageCart from "./getLocalStorageCart";
+import getLocalStorageCart from "@/utils/get-local-storage-cart/getLocalStorageCart";
 
 describe("Test getLocalStorageCart", () => {
   beforeAll(() => {

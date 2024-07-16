@@ -1,12 +1,11 @@
 import { renderHook } from "@testing-library/react";
 
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
+import useRemoveFromCart from "@/hooks/use-remove-from-cart/useRemoveFromCart";
 import { useRemoveFromCartMutation } from "@/store/api/cartApi";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
 import { UserDetails } from "@/types/user.types";
-
-import useRemoveFromCart from "./useRemoveFromCart";
 
 jest.mock("@/hooks/use-redux/useRedux", () => ({
   __esModule: true,
