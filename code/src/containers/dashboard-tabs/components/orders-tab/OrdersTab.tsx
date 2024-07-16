@@ -30,13 +30,13 @@ const OrdersTab = () => {
     }
   };
 
-  const handleOpenFilterDrawer = () => {
-    openDrawer(
-      <OrdersTabFilterDrawer
-        filtersTitleTranslationProps={filtersTitleTranslationProps}
-      />
-    );
-  };
+  // const handleOpenFilterDrawer = () => {
+  //   openDrawer(
+  //     <OrdersTabFilterDrawer
+  //       filtersTitleTranslationProps={filtersTitleTranslationProps}
+  //     />
+  //   );
+  // };
 
   return (
     <TabContainer>

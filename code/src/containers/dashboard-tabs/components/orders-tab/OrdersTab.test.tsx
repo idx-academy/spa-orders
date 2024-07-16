@@ -78,14 +78,14 @@ describe("OrdersTab Component", () => {
     expect(noOrdersText).toBeInTheDocument();
   });
 
-  test("should open a drawer when we click filters button", () => {
-    renderAndMock({ isLoading: false, data: null });
+  // test("should open a drawer when we click filters button", () => {
+  //   renderAndMock({ isLoading: false, data: null });
 
-    const filtersButton = screen.getByRole("button", {
-      name: "dashboardTabs.orders.filters.title"
-    });
-    fireEvent.click(filtersButton);
+  //   const filtersButton = screen.getByRole("button", {
+  //     name: "dashboardTabs.orders.filters.title"
+  //   });
+  //   fireEvent.click(filtersButton);
 
-    expect(mockOpenDrawer).toHaveBeenCalled();
-  });
+  //   expect(mockOpenDrawer).toHaveBeenCalled();
+  // });
 });
