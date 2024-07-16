@@ -8,7 +8,7 @@ import App from "@/App";
 
 import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 
-import I18nProivider from "@/context/I18nProvider";
+import I18nProvider from "@/context/I18nProvider";
 import { store } from "@/store/store";
 
 import "@/styles/global.scss";
@@ -19,11 +19,11 @@ const root = createRoot(domNode);
 root.render(
   <Provider store={store}>
     <StyledEngineProvider injectFirst>
-      <I18nProivider>
+      <I18nProvider>
         <Suspense fallback={<PageLoadingFallback fullScreen />}>
           <App />
         </Suspense>
-      </I18nProivider>
+      </I18nProvider>
     </StyledEngineProvider>
   </Provider>
 );
