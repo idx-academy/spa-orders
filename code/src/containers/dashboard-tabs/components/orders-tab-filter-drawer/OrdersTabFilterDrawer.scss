@@ -28,7 +28,6 @@
   }
 
   &__delivery-method-image {
-    width: 22px;
-    height: 22px;
+    @include box(22px);
   }
 }
