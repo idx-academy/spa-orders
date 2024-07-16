@@ -1,5 +1,6 @@
 export const rtkQueryTags = {
-  CART: "CART"
+  CART: "CART",
+  ORDERS: "ORDERS"
 } as const;
 
 export const rtkQueryTagsArray = Object.values(rtkQueryTags);
