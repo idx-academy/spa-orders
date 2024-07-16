@@ -4,10 +4,12 @@ import {
   CartManagementPostParams
 } from "@/types/cart.types";
 import {
-  OrderGetParams,
+  GetAdminOrderParams,
+  GetUserOrderParams,
   OrderPatchParams,
   OrderPostParams
 } from "@/types/order.types";
+import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
 export const URLS = {
   auth: {
@@ -21,8 +23,10 @@ export const URLS = {
     delete: "/v1/products"
   },
   orders: {
-    getForUser: ({ userId }: OrderGetParams) => `/v1/users/${userId}/orders`,
-    getForAdmin: "/v1/management/orders",
+    getForUser: ({ userId }: GetUserOrderParams) =>
+      `/v1/users/${userId}/orders`,
+    getForAdmin: (queryParams: GetAdminOrderParams) =>
+      createUrlPath("/v1/management/orders", undefined, queryParams),
     post: ({ userId }: Pick<OrderPostParams, "userId">) =>
       `/v1/users/${userId}/orders`,
     patch: ({ orderId }: Pick<OrderPatchParams, "orderId">) =>

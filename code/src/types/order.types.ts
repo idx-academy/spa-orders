@@ -1,5 +1,5 @@
 import { Pageable, Sort } from "@/types/common";
-import { PostAddress } from "@/types/delivery.types";
+import { DeliveryMethod, PostAddress } from "@/types/delivery.types";
 import { Product } from "@/types/product.types";
 import { User, UserId } from "@/types/user.types";
 
@@ -57,10 +57,6 @@ export type AdminOrderResponse = BaseOrderResponse & {
   content: AdminOrder[];
 };
 
-export type OrderGetParams = {
-  userId: UserId;
-};
-
 export type OrderPostParams = PostAddress & {
   userId: UserId;
   firstName: string;
@@ -76,3 +72,18 @@ export type OrderPatchParams = {
   orderId: OrderId;
   orderStatus: OrderStatus;
 };
+
+export type GetUserOrderParams = {
+  userId: UserId;
+};
+
+export type GetAdminOrderParams = Partial<
+  Pick<BaseOrder, "isPaid"> & {
+    deliveryMethods: DeliveryMethod[];
+    statuses: OrderStatus[];
+    totalMore: number;
+    totalLess: number;
+    createdBefore: string;
+    createdAfter: string;
+  }
+>;

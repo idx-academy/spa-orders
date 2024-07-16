@@ -2,7 +2,7 @@ const createQueryParamsString = (query: Record<string, string>) => {
   const queryParams = new URLSearchParams();
 
   Object.entries(query).forEach(([key, value]) => {
-    if (value) {
+    if (value !== undefined) {
       queryParams.append(key, value);
     }
   });
