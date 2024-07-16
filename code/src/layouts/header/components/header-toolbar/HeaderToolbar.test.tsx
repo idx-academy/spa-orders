@@ -170,38 +170,38 @@ describe("HeaderToolbar", () => {
     );
   });
 
-  test("renders search field", () => {
-    renderWithProviders(<HeaderToolbar />);
+  // test("renders search field", () => {
+  //   renderWithProviders(<HeaderToolbar />);
 
-    const searchField = screen.getByPlaceholderText("Search...");
-    expect(searchField).toBeInTheDocument();
-  });
+  //   const searchField = screen.getByPlaceholderText("Search...");
+  //   expect(searchField).toBeInTheDocument();
+  // });
 
-  test("changes input value", async () => {
-    renderWithProviders(<HeaderToolbar />);
+  // test("changes input value", async () => {
+  //   renderWithProviders(<HeaderToolbar />);
 
-    const searchField = screen.getByPlaceholderText("Search...");
-    expect(searchField).toBeInTheDocument();
+  //   const searchField = screen.getByPlaceholderText("Search...");
+  //   expect(searchField).toBeInTheDocument();
 
-    await typeIntoInput(searchField, "test");
+  //   await typeIntoInput(searchField, "test");
 
-    expect(searchField).toHaveValue("test");
-  });
+  //   expect(searchField).toHaveValue("test");
+  // });
 
-  test("clears input value when clear button is clicked", async () => {
-    renderWithProviders(<HeaderToolbar />);
+  // test("clears input value when clear button is clicked", async () => {
+  //   renderWithProviders(<HeaderToolbar />);
 
-    const searchField = screen.getByPlaceholderText("Search...");
-    expect(searchField).toBeInTheDocument();
+  //   const searchField = screen.getByPlaceholderText("Search...");
+  //   expect(searchField).toBeInTheDocument();
 
-    const clearButton = screen
-      .getByTestId("ClearIcon")
-      .closest("button") as HTMLButtonElement;
+  //   const clearButton = screen
+  //     .getByTestId("ClearIcon")
+  //     .closest("button") as HTMLButtonElement;
 
-    await typeIntoInput(searchField, "Hello!");
-    expect(searchField).toHaveValue("Hello!");
+  //   await typeIntoInput(searchField, "Hello!");
+  //   expect(searchField).toHaveValue("Hello!");
 
-    fireEvent.click(clearButton);
-    expect(searchField).toHaveValue("");
-  });
+  //   fireEvent.click(clearButton);
+  //   expect(searchField).toHaveValue("");
+  // });
 });

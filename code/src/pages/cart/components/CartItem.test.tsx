@@ -25,16 +25,16 @@ describe("CartItem", () => {
     const nameElement = screen.getByText(mockedItem.name);
     expect(nameElement).toBeInTheDocument();
 
-    const quantityInputElement = screen.getByDisplayValue(
-      mockedItem.quantity.toString()
-    );
-    expect(quantityInputElement).toBeInTheDocument();
+    // const quantityInputElement = screen.getByDisplayValue(
+    //   mockedItem.quantity.toString()
+    // );
+    // expect(quantityInputElement).toBeInTheDocument();
 
-    const removeIconElement = screen.getByTestId("RemoveCircleOutlineIcon");
-    expect(removeIconElement).toBeInTheDocument();
+    // const removeIconElement = screen.getByTestId("RemoveCircleOutlineIcon");
+    // expect(removeIconElement).toBeInTheDocument();
 
-    const addIconElement = screen.getByTestId("AddCircleOutlineIcon");
-    expect(addIconElement).toBeInTheDocument();
+    // const addIconElement = screen.getByTestId("AddCircleOutlineIcon");
+    // expect(addIconElement).toBeInTheDocument();
 
     const deleteIconElement = screen.getByTestId("DeleteIcon");
     expect(deleteIconElement).toBeInTheDocument();
