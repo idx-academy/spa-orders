@@ -65,7 +65,9 @@ describe("useCreateOrder", () => {
       variant: "success",
       autohideDuration: 5000
     });
-    expect(mockNavigate).toHaveBeenCalledWith(routes.home.path);
+    expect(mockNavigate).toHaveBeenCalledWith(routes.home.path, {
+      replace: true
+    });
   });
 
   test("should handle create order error without navigating", async () => {
