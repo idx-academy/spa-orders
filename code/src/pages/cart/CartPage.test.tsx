@@ -2,7 +2,6 @@ import { screen } from "@testing-library/react";
 
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
-import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import useUserDetailsSelector from "@/hooks/use-get-user-details/useGetUserDetails";
 import useRemoveFromCart from "@/hooks/use-remove-from-cart/useRemoveFromCart";
 import CartPage from "@/pages/cart/CartPage";
