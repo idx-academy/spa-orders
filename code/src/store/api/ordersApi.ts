@@ -1,3 +1,4 @@
+import { rtkQueryTags } from "@/constants/api-tags";
 import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
@@ -22,7 +23,8 @@ const ordersApi = appApi.injectEndpoints({
         url: URLS.orders.post(userId),
         method: httpMethods.post,
         body: body
-      })
+      }),
+      invalidatesTags: [rtkQueryTags.CART]
     })
   })
 });

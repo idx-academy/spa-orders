@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 import CartDrawerItem from "@/containers/cart-drawer/cart-drawer-item/CartDrawerItem";
@@ -8,16 +10,22 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import routes from "@/constants/routes";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
+import { useModalContext } from "@/context/modal/ModalContext";
 import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
 import { CartItem } from "@/types/cart.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/containers/cart-drawer/CartDrawer.scss";
 
+import AuthModal from "../modals/auth/AuthModal";
+
 const CartDrawer = () => {
+  const { openModal } = useModalContext();
+  const navigate = useNavigate();
   const { closeDrawer } = useDrawerContext();
-  const { cartItems, cartItemsLoading, error, handleRemoveItem } =
+  const { user, cartItems, cartItemsLoading, error, handleRemoveItem } =
     useCartItems();
 
   // @TODO Implement Skeleton for loading items
@@ -33,11 +41,22 @@ const CartDrawer = () => {
     />
   ));
 
+  const handleOpenCartPage = () => {
+    if (user) {
+      navigate(routes.cart.path);
+      closeDrawer();
+    } else {
+      openModal(<AuthModal />);
+    }
+  };
+
   const cartItemsContent =
     cartItemsList.length > 0 ? (
       cartItemsList
     ) : (
-      <AppTypography variant="subtitle2" translationKey="cart.emptyItem" />
+      <AppBox className="cart-drawer__empty-label">
+        <AppTypography variant="subtitle2" translationKey="cart.emptyItem" />
+      </AppBox>
     );
 
   const translationCartDrawerProps = {
@@ -71,8 +90,7 @@ const CartDrawer = () => {
         />
         <AppButton
           className="cart-drawer__button"
-          onClick={closeDrawer}
-          to="/cart"
+          onClick={handleOpenCartPage}
           fullWidth
         >
           <AppTypography translationKey="cart.viewCart" />

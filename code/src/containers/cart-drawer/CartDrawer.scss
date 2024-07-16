@@ -46,4 +46,11 @@
   &__button {
     border-radius: 5px !important; // To overwrite mui styles
   }
+
+  &__empty-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 }
