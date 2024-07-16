@@ -1,0 +1,24 @@
+import { LOCAL_STORAGE_KEYS } from "@/constants/common";
+
+import setLocalStorageCart from "./setLocalStorageCart";
+
+describe("Test setLocalStorageCart", () => {
+  beforeAll(() => {
+    jest.spyOn(window.localStorage.__proto__, "setItem");
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test("Should set local storage cart", () => {
+    const mockCart = { items: [], totalPrice: 0 };
+
+    setLocalStorageCart(mockCart);
+
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      LOCAL_STORAGE_KEYS.localCart,
+      JSON.stringify(mockCart)
+    );
+  });
+});

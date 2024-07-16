@@ -31,6 +31,7 @@ const CartDrawerItem = ({ onRemove, ...props }: CartDrawerItemProps) => {
       <AppIconButton
         color="default"
         className="cart-item__remove-button"
+        data-testid="remove-item-from-cart-button"
         onClick={handleRemove}
       >
         <CloseIcon />
