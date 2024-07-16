@@ -1,6 +1,6 @@
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+// import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+// import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
@@ -28,7 +28,7 @@ const CartItem = ({ item, onRemove }: CartItemProps) => {
         </AppTypography>
         <AppTypography>{formatPrice(item.productPrice)}</AppTypography>
       </AppBox>
-      <AppBox className="spa-cart-item__quantity-selector">
+      {/* <AppBox className="spa-cart-item__quantity-selector">
         <AppBox className="spa-cart-item__quantity-block">
           <RemoveCircleOutlineIcon />
         </AppBox>
@@ -41,7 +41,7 @@ const CartItem = ({ item, onRemove }: CartItemProps) => {
         <AppBox className="spa-cart-item__quantity-block">
           <AddCircleOutlineIcon />
         </AppBox>
-      </AppBox>
+      </AppBox> */}
       <AppTypography className="spa-cart-item__price">
         {formatPrice(item.calculatedPrice)}
       </AppTypography>

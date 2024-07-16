@@ -1,11 +1,11 @@
-import FilterListIcon from "@mui/icons-material/FilterList";
+// import FilterListIcon from "@mui/icons-material/FilterList";
 
 import OrdersTabFilterDrawer from "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer";
 import TabContainer from "@/containers/dashboard-tabs/components/tab-container/TabContainer";
 import OrdersTable from "@/containers/tables/orders-table/OrdersTable";
 
 import AppBox from "@/components/app-box/AppBox";
-import AppButton from "@/components/app-button/AppButton";
+// import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
@@ -46,13 +46,13 @@ const OrdersTab = () => {
           variant="h3"
           translationKey="dashboardTabs.orders.title"
         />
-        <AppButton variant="dark" onClick={handleOpenFilterDrawer}>
+        {/* <AppButton variant="dark" onClick={handleOpenFilterDrawer}>
           <AppTypography
             translationKey="dashboardTabs.orders.filters.title"
             translationProps={filtersTitleTranslationProps}
           />
           <FilterListIcon />
-        </AppButton>
+        </AppButton> */}
       </AppBox>
       <OrdersTable orders={orders} />
     </TabContainer>
