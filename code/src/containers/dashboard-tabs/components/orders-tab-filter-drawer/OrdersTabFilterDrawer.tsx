@@ -7,9 +7,10 @@ import AppRangeSlider from "@/components/app-range-slider/AppRangeSlider";
 import AppTypography from "@/components/app-typography/AppTypography";
 import { TranslationProps } from "@/components/app-typography/AppTypography.types";
 
-import novaPostaImage from "@/assets/images/dashboard/nova-posta.webp";
-import ukrPostaImage from "@/assets/images/dashboard/ukr-posta.png";
-import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
+import {
+  deliveryMethods,
+  orderStatusesTranslationKeys
+} from "@/constants/orderStatuses";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 
 import "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer.scss";
@@ -27,6 +28,24 @@ const OrdersTabFilterDrawer = ({
     // @TODO: add logic of applying filters
     closeDrawer();
   };
+
+  const deliveryMethodsCheckboxes = Object.entries(deliveryMethods).map(
+    ([key, deliveryMethod]) => (
+      <AppBox key={key}>
+        <AppCheckbox
+          variant="dark"
+          labelTranslationKey={deliveryMethod.translationKey}
+          icon={
+            <AppBox
+              component="img"
+              className="order-tab-filters__delivery-method-image"
+              src={deliveryMethod.image}
+            />
+          }
+        />
+      </AppBox>
+    )
+  );
 
   const orderStatusesCheckboxes = Object.values(
     orderStatusesTranslationKeys
@@ -55,32 +74,7 @@ const OrdersTabFilterDrawer = ({
           isFilterActive
           sectionCaptionTranslationKey="dashboardTabs.orders.filters.deliveryMethod"
         >
-          <AppBox>
-            <AppCheckbox
-              variant="dark"
-              labelTranslationKey="dashboardTabs.orders.filters.novaPost"
-              icon={
-                <AppBox
-                  component="img"
-                  className="order-tab-filters__delivery-method-image"
-                  src={novaPostaImage}
-                />
-              }
-            />
-          </AppBox>
-          <AppBox>
-            <AppCheckbox
-              variant="dark"
-              labelTranslationKey="dashboardTabs.orders.filters.ukrPost"
-              icon={
-                <AppBox
-                  component="img"
-                  className="order-tab-filters__delivery-method-image"
-                  src={ukrPostaImage}
-                />
-              }
-            />
-          </AppBox>
+          {deliveryMethodsCheckboxes}
         </FilterRecordAccordion>
         <FilterRecordAccordion
           sectionCaptionTranslationKey="dashboardTabs.orders.filters.status"
