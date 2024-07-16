@@ -1,4 +1,5 @@
 const { userOrders, adminOrders } = require("../data/mokedOrders");
+const wait = require("../utils/wait");
 
 const getUserOrders = (req, res) => {
   res.json(userOrders);
@@ -8,16 +9,16 @@ const getAdminOrders = (req, res) => {
   res.json(adminOrders);
 };
 
-const createOrder = (req, res) => {
+const createOrder = async (req, res) => {
   const { body } = req;
   const newOrder = {
-    id: Math.floor(Math.random() * 1000),
+    id: Date.now(),
     ...body,
   };
 
-  setTimeout(() => {
-    res.json(newOrder.id);
-  }, 1000);
+  await  wait(1000)
+
+  res.json(newOrder.id);
 };
 
 module.exports = { getUserOrders, getAdminOrders, createOrder };

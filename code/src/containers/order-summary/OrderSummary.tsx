@@ -23,7 +23,7 @@ const OrderSummary = ({
     <AppBox className="spa-cart-page__order-summary">
       <AppTypography
         className="spa-cart-page__order-summary--label"
-        variant="h1"
+        variant="h3"
         component="h1"
         translationKey="orderSummary.label"
         data-testid="orderSummaryLabel"
@@ -63,7 +63,6 @@ const OrderSummary = ({
           />
           <AppTypography
             variant="subtitle2"
-            className="spa-order-summary__total"
           >
             {formattedTotalPrice}
           </AppTypography>

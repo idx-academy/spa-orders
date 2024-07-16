@@ -23,7 +23,8 @@ const useCreateOrder = () => {
       variant: "success",
       autohideDuration: 5000
     });
-    navigate(routes.home.path);
+
+    navigate(routes.home.path, {replace: true});
   };
 
   return [handleCreateOrder, options] as const;
