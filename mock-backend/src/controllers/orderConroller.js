@@ -8,4 +8,16 @@ const getAdminOrders = (req, res) => {
   res.json(adminOrders);
 };
 
-module.exports = { getUserOrders, getAdminOrders };
+const createOrder = (req, res) => {
+  const { body } = req;
+  const newOrder = {
+    id: Math.floor(Math.random() * 1000),
+    ...body,
+  };
+
+  setTimeout(() => {
+    res.json(newOrder.id);
+  }, 1000);
+};
+
+module.exports = { getUserOrders, getAdminOrders, createOrder };

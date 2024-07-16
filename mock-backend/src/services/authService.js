@@ -9,9 +9,13 @@ const generateToken = (payload) => {
     role = "ROLE_MANAGER";
   }
 
-  return jwt.sign({ scope: role, ...payload }, "jwt-secret", {
-    expiresIn: "10m",
-  });
+  return jwt.sign(
+    { scope: role, sub: payload.email, ...payload },
+    "jwt-secret",
+    {
+      expiresIn: "10m",
+    }
+  );
 };
 
 const signUp = async (payload) => {
