@@ -11,7 +11,7 @@ import {
   useUserRoleSelector
 } from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
+// import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
 jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,
