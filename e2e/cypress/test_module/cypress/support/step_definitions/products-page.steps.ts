@@ -1,30 +1,47 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import { sortingNameParamMap } from "@cypress-e2e/fixtures/constants";
+import { httpMethod } from "@cypress-e2e/fixtures/global-data";
 
 Given("The user is on the products page", () => {
-  cy.visit("http://localhost:3000/products");
-  cy.intercept("GET", /\/api\/v1\/products/).as("productsPageRequest");
+  cy.visit("/products");
+  cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
 });
 
+Given("The user is on the products page and his connection is bad", () => {
+  cy.visit("/products");
+  cy.getProductsServerError(10)
+});
 
 When("The user clicks on Logo button", () => {
   cy.getById("logo").click();
 });
+
+Given("The loading fails", () => {
+  cy.wait("@getProductsRequestServerError")
+})
+
+Then("The user should see error message", () => {
+  cy.getById("products-error-label").should("be.visible");
+})
+
+When("The user waits until products will be loaded", () => {
+  cy.getById("product-skeleton").should("have.length", 10);
+})
 
 Then("The user should be redirected to Home Page and see the banner", () => {
   cy.getById("banner").should("be.visible");
 })
 
 Given("The user is on the first page of products", () => {
-  cy.visit("http://localhost:3000/products?page=1");
-  cy.intercept("GET", /\/api\/v1\/products/).as("productsPageRequest");
+  cy.visit("/products?page=1");
+  cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
 });
 
 Given("The user is on the second page of products", () => {
-  cy.visit("http://localhost:3000/products?page=2");
-  cy.intercept("GET", /\/api\/v1\/products/).as("productsPageRequest");
+  cy.visit("/products?page=2");
+  cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
 });
 
 When("The user looks at the pagination", () => {
@@ -67,7 +84,7 @@ When("The user opens sorting dropdown", () => {
 });
 
 When("The user clicks {int} page", (page: number) => {
-  cy.intercept("GET", new RegExp("page=" + page)).as("productsPageRequest");
+  cy.intercept(httpMethod.get, new RegExp("page=" + page)).as("productsPageRequest");
   cy.get(`[aria-label="Go to page ${page}"]`).click();
 });
 
@@ -75,7 +92,7 @@ When("The user clicks next page button", () => {
   cy.get(`[aria-current="true"]`)
     .invoke("text")
     .then((text) => {
-      cy.intercept("GET", new RegExp("page=" + (Number(text) + 1))).as(
+      cy.intercept(httpMethod.get, new RegExp("page=" + (Number(text) + 1))).as(
         "productsPageRequest"
       );
     });
@@ -86,7 +103,7 @@ When("The user clicks previous page button", () => {
   cy.get(`[aria-current="true"]`)
     .invoke("text")
     .then((text) => {
-      cy.intercept("GET", new RegExp("page=" + (Number(text) - 1))).as(
+      cy.intercept(httpMethod.get, new RegExp("page=" + (Number(text) - 1))).as(
         "productsPageRequest"
       );
     });
@@ -95,7 +112,7 @@ When("The user clicks previous page button", () => {
 
 When("The user chooses sorting by {string}", (criteria: string) => {
   cy.intercept(
-    "GET",
+    httpMethod.get,
     new RegExp("sort=" + encodeURIComponent(sortingNameParamMap[criteria]))
   ).as("productsRequest");
 

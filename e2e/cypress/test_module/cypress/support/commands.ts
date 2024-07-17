@@ -44,7 +44,7 @@ Cypress.Commands.add("getProductsWithQuantity", (quantity) => {
 });
 
 Cypress.Commands.add("getProductsServerError", (quantity) => {
-  cy.intercept(httpMethod.get, `/api/v1/products?page=0&size=${quantity}`, {
+  cy.intercept(httpMethod.get,  new RegExp(`\/api\/v1\/products\\?page=0&size=${quantity}(?:&.*)?`), {
     statusCode: httpStatusCode.internalServerError
   }).as("getProductsRequestServerError");
 });

@@ -124,8 +124,8 @@ When("I look throw Best Sellers section with error", () => {
 
 Then("I should see an error message", () => {
   cy.wait("@getProductsRequestServerError").then(() => {
-    cy.getById("best-sellers-products-error").should("be.visible");
-    cy.getById("best-sellers-products-error-label")
+    cy.getById("products-error").should("be.visible");
+    cy.getById("products-error-label")
       .contains(ERRORS.somethingWentWrong)
       .should("be.visible");
   });

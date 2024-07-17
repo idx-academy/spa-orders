@@ -8,9 +8,16 @@ Feature: | Products |
         When The user clicks on Logo button
         Then The user should be redirected to Home Page and see the banner
 
-    Scenario: User sees list of products
+    Scenario: User sees list of products after loading
         When The user looks at the products section
+        And The user waits until products will be loaded
         Then The user should see 10 products
+
+    Scenario: Request for products fails and user sees error message
+        Given The user is on the products page and his connection is bad
+        When The user waits until products will be loaded
+        And The loading fails
+        Then The user should see error message
 
     Scenario: User sees specific product description
         When The user looks at the product
@@ -51,4 +58,3 @@ Feature: | Products |
             | Price (high to low) |
             | Name A-Z            |
             | Name Z-A            |
->>>>>>> 817b758 (Added tests for products page)

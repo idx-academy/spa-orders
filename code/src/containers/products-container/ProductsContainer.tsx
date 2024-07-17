@@ -59,12 +59,12 @@ const ProductsContainer = ({
     return (
       <AppBox
         className={cn("products-container_error", className)}
-        data-cy="best-sellers-products-error"
+        data-cy="products-error"
       >
         <AppTypography
           translationKey={errorMessage}
           className="products-container__error-label"
-          data-cy="best-sellers-products-error-label"
+          data-cy="products-error-label"
         />
       </AppBox>
     );
@@ -107,7 +107,12 @@ const ProductsContainer = ({
   const gridItems = isLoadingInProgress ? skeletonCards : productCards;
 
   return (
-    <AppBox className={cn("products-container", className)}>{gridItems}</AppBox>
+    <AppBox
+      className={cn("products-container", className)}
+      data-cy="products-container"
+    >
+      {gridItems}
+    </AppBox>
   );
 };
 
