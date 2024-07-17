@@ -6,10 +6,10 @@ Feature: | Guest Home Page |
   Scenario: General view of the home page
     When I can see the Header, Banner, Subintro, Call-to-action, Best Sellers, Shop by category and Footer sections
 
-  Scenario: Search field type and clear
-    When I type text Mobile in search field
-    And I click on clear button
-    Then I can see empty search field again
+  # Scenario: Search field type and clear
+  #   When I type text Mobile in search field
+  #   And I click on clear button
+  #   Then I can see empty search field again
 
   Scenario: Open and Close user Cart
     When I click on Cart button

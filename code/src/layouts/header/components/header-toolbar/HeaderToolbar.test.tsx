@@ -3,6 +3,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 
 import { ROLES } from "@/constants/common";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {
   logout,
@@ -10,8 +11,18 @@ import {
   useIsAuthSelector,
   useUserRoleSelector
 } from "@/store/slices/userSlice";
+import { CartItem } from "@/types/cart.types";
+import { UserRole } from "@/types/user.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
 // import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
+
+const mockOpenDrawer = jest.fn();
+
+jest.mock("@/context/drawer/DrawerContext", () => ({
+  ...jest.requireActual("@/context/drawer/DrawerContext"),
+  useDrawerContext: jest.fn(() => ({ openDrawer: mockOpenDrawer }))
+}));
 
 jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,
@@ -43,7 +54,7 @@ jest.mock("@/store/slices/localCart", () => ({
 
 jest.mock("@/hooks/use-get-cart/useGetCart", () => ({
   __esModule: true,
-  default: jest.fn(() => ({ data: { items: [] } }))
+  default: jest.fn()
 }));
 
 jest.mock("@/containers/modals/auth/AuthModal", () => ({
@@ -74,25 +85,140 @@ const mockedRoles = [
   }
 ];
 
+const mockCartItems = [
+  {
+    productId: "1",
+    name: "Product 1",
+    productPrice: 20,
+    quantity: 99,
+    image: "some image 1",
+    calculatedPrice: 20
+  },
+  {
+    productId: "2",
+    name: "Product 2",
+    productPrice: 20,
+    quantity: 3,
+    image: "some image 2",
+    calculatedPrice: 60
+  }
+];
+
+const cartItemsTestCases = [
+  {
+    name: "Renders quantity correctly when total quantity < 99",
+    cartItems: [mockCartItems[0]],
+    expectedContent: mockCartItems[0].quantity
+  },
+  {
+    name: "Renders quantity correctly when total quantity equals 99",
+    cartItems: [mockCartItems[1]],
+    expectedContent: mockCartItems[1].quantity
+  },
+  {
+    name: "Renders quantity correctly when total quantity > 99",
+    cartItems: mockCartItems,
+    expectedContent: "99+"
+  }
+];
+
+type SetupMocks = {
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  role: UserRole;
+  cartItems: CartItem[];
+};
+
+const mockAndRender = ({
+  isAuthenticated = false,
+  isLoading = false,
+  role,
+  cartItems = []
+}: Partial<SetupMocks> = {}) => {
+  (useIsAuthSelector as jest.Mock).mockReturnValue(isAuthenticated);
+  (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(isLoading);
+  (useGetCart as jest.Mock).mockReturnValue({ data: { items: cartItems } });
+
+  if (role) {
+    (useUserRoleSelector as jest.Mock).mockReturnValue(role);
+  }
+
+  renderWithProviders(<HeaderToolbar />);
+};
+
+const doesNotRenderCartButtonTest = () => {
+  test("does not render cart button", () => {
+    const cartIcon = screen.queryByTestId("ShoppingCartIcon");
+    expect(cartIcon).not.toBeInTheDocument();
+  });
+};
+
+const doesNotRenderOrdersButtonTest = () => {
+  test("does not render orders button", () => {
+    const ordersButton = screen.queryByTestId("ListAltIcon");
+    expect(ordersButton).not.toBeInTheDocument();
+  });
+};
+
 describe("HeaderToolbar", () => {
   describe("for guest users", () => {
+    describe("without cart items", () => {
+      beforeEach(() => {
+        mockAndRender();
+      });
+
+      test("renders the logo", () => {
+        const logo = screen.getByAltText("App logo");
+        expect(logo).toBeInTheDocument();
+      });
+
+      test("opens modal when login button is clicked", () => {
+        const signInButton = screen.getByRole("button", {
+          name: "signIn.label"
+        });
+        fireEvent.click(signInButton);
+
+        const modalContent = screen.getByText("ModalContent");
+        expect(modalContent).toBeInTheDocument();
+      });
+
+      test("renders the cart icon", () => {
+        const cartIcon = screen.getByTestId("ShoppingCartIcon");
+        expect(cartIcon).toBeInTheDocument();
+      });
+
+      test("opens the drawer when we click cart icon", () => {
+        const cartIcon = screen.getByTestId("ShoppingCartIcon");
+        fireEvent.click(cartIcon);
+        expect(mockOpenDrawer).toHaveBeenCalled();
+      });
+    });
+
+    describe("with cart items", () => {
+      cartItemsTestCases.forEach((testCase) => {
+        test(testCase.name, () => {
+          mockAndRender({ cartItems: testCase.cartItems });
+
+          const cartItemsCountBadge = screen.getByTestId("cart-items-count");
+          expect(cartItemsCountBadge).toHaveTextContent(
+            testCase.expectedContent.toString()
+          );
+        });
+      });
+    });
+  });
+
+  describe("loading states", () => {
     beforeEach(() => {
-      (useIsAuthSelector as jest.Mock).mockReturnValue(false);
-      (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-      renderWithProviders(<HeaderToolbar />);
+      mockAndRender({ isLoading: true });
     });
 
-    test("renders the logo", () => {
-      const logo = screen.getByAltText("App logo");
-      expect(logo).toBeInTheDocument();
-    });
+    doesNotRenderCartButtonTest();
+    doesNotRenderOrdersButtonTest();
 
-    test("opens modal when login button is clicked", () => {
-      const signInButton = screen.getByRole("button", { name: "signIn.label" });
-      fireEvent.click(signInButton);
-
-      const modalContent = screen.getByText("ModalContent");
-      expect(modalContent).toBeInTheDocument();
+    test("does not render dashboard button", () => {
+      const dashboardButton = screen.queryByTestId("DashboardCustomizeIcon");
+      expect(dashboardButton).not.toBeInTheDocument();
     });
   });
 
@@ -100,10 +226,7 @@ describe("HeaderToolbar", () => {
     let logoutButton: HTMLButtonElement;
 
     beforeEach(() => {
-      (useIsAuthSelector as jest.Mock).mockReturnValue(true);
-      (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-      (useUserRoleSelector as jest.Mock).mockReturnValue(ROLES.USER);
-      renderWithProviders(<HeaderToolbar />);
+      mockAndRender({ isAuthenticated: true, role: ROLES.USER });
       logoutButton = screen
         .getByTestId("LogoutButton")
         .closest("button") as HTMLButtonElement;
@@ -125,11 +248,6 @@ describe("HeaderToolbar", () => {
   });
 
   describe("HeaderToolbar for roles manager and admin", () => {
-    beforeEach(() => {
-      (useIsAuthSelector as jest.Mock).mockReturnValue(true);
-      (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(false);
-    });
-
     mockedRoles.forEach(
       ({
         role,
@@ -139,8 +257,7 @@ describe("HeaderToolbar", () => {
       }) => {
         describe(`for ${role}`, () => {
           beforeEach(() => {
-            (useUserRoleSelector as jest.Mock).mockReturnValue(role);
-            renderWithProviders(<HeaderToolbar />);
+            mockAndRender({ isAuthenticated: true, role });
           });
 
           if (shouldRenderDashboard) {
@@ -153,17 +270,11 @@ describe("HeaderToolbar", () => {
           }
 
           if (!shouldRenderCart) {
-            test("does not render cart button", () => {
-              const cartIcon = screen.queryByTestId("ShoppingCartIcon");
-              expect(cartIcon).not.toBeInTheDocument();
-            });
+            doesNotRenderCartButtonTest();
           }
 
           if (!shouldRenderOrders) {
-            test("does not render orders button", () => {
-              const ordersButton = screen.queryByTestId("ListAltIcon");
-              expect(ordersButton).not.toBeInTheDocument();
-            });
+            doesNotRenderOrdersButtonTest();
           }
         });
       }

@@ -86,7 +86,7 @@ const HeaderToolbar = () => {
     cartItemsCount && cartItemsCount > 99 ? "99+" : cartItemsCount;
 
   const badgeContent = (
-    <AppTypography variant="caption-small">
+    <AppTypography variant="caption-small" data-testid="cart-items-count">
       {displayedCartItemsCount}
     </AppTypography>
   );
@@ -106,7 +106,7 @@ const HeaderToolbar = () => {
 
   const loadingButton = isLoadingAuth && <AppLoader />;
 
-  const logoutButton = isAuthenticated ? (
+  const logoutButton = isAuthenticated && (
     <AppButton
       onClick={handleLogout}
       variant="danger"
@@ -115,15 +115,11 @@ const HeaderToolbar = () => {
     >
       <LogoutIcon />
     </AppButton>
-  ) : (
-    <AppButton onClick={handleOpenAuthModal} data-cy="auth-button">
-      <AppTypography component="span" translationKey="signIn.label" />
-    </AppButton>
   );
 
-  const signInButton = !isLoadingAuth && !isAuthenticated && (
-    <AppButton onClick={handleOpenAuthModal}>
-      <AppTypography translationKey="signIn.label" />
+  const signInButton = (
+    <AppButton onClick={handleOpenAuthModal} data-cy="auth-button">
+      <AppTypography component="span" translationKey="signIn.label" />
     </AppButton>
   );
 
@@ -135,7 +131,11 @@ const HeaderToolbar = () => {
 
   const authenticatedDashboardButton = isDashboardAvailable && (
     <AppTooltip titleTranslationKey="dashboard.tooltip">
-      <AppIconButton to={routes.dashboard.path} component={AppLink}>
+      <AppIconButton
+        to={routes.dashboard.path}
+        component={AppLink}
+        data-cy="dashboard-button"
+      >
         <DashboardCustomizeIcon fontSize="medium" />
       </AppIconButton>
     </AppTooltip>
@@ -151,7 +151,11 @@ const HeaderToolbar = () => {
   const authenticatedOrdersButton = userRole === ROLES.USER &&
     !isLoadingAuth && (
       <AppTooltip titleTranslationKey="orders.tooltip">
-        <AppIconButton to={routes.orders.path} component={AppLink}>
+        <AppIconButton
+          to={routes.orders.path}
+          component={AppLink}
+          data-cy="orders-button"
+        >
           <ListAltIcon className="header__toolbar-icon" fontSize="medium" />
         </AppIconButton>
       </AppTooltip>
@@ -163,7 +167,7 @@ const HeaderToolbar = () => {
 
   if (isLoadingAuth) {
     cartButton = <AppLoader />;
-  } else if (userRole === ROLES.USER) {
+  } else if (userRole === ROLES.USER || !isAuthenticated) {
     cartButton = (
       <AppTooltip titleTranslationKey="cart.tooltip">
         <AppIconButton onClick={handleOpenCart}>{badge}</AppIconButton>
