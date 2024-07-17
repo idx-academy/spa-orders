@@ -11,6 +11,6 @@ const router = express.Router();
 router.get("/users/:userId/orders", getUserOrders);
 router.get("/management/orders", getAdminOrders);
 router.post("/users/:userId/orders", createOrder);
-router.post("/orders/:orderId/status", changeOrderStatus);
+router.patch("/orders/:orderId/status", changeOrderStatus);
 
 module.exports = router;

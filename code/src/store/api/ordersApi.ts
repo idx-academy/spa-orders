@@ -36,7 +36,7 @@ const ordersApi = appApi.injectEndpoints({
     changeOrderStatus: build.mutation<void, OrderPatchParams>({
       query: ({ orderStatus, ...params }) => ({
         url: URLS.orders.patch(params),
-        method: httpMethods.post,
+        method: httpMethods.patch,
         params: { status: orderStatus }
       }),
       invalidatesTags: [rtkQueryTags.ADMIN_ORDERS]
