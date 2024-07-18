@@ -13,9 +13,9 @@ import messages from "@/messages";
 
 type I18nProviderProps = Required<PropsWithChildren>;
 
-export type Locale = "en" | "uk";
+const SUPPORTED_LOCALES = ["en", "uk"] as const;
 
-const SUPPORTED_LOCALES: Locale[] = ["en", "uk"];
+export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 type LocaleContextType = {
   locale: Locale;
@@ -25,15 +25,20 @@ type LocaleContextType = {
 const LocaleContext = createContext<LocaleContextType | null>(null);
 
 const getInitialLocale = (): Locale => {
-  const storedLocale = window.localStorage.getItem(LOCAL_STORAGE_KEYS.locale);
+  const storedLocale = window.localStorage.getItem(
+    LOCAL_STORAGE_KEYS.locale
+  ) as Locale;
+
+  if (SUPPORTED_LOCALES.includes(storedLocale)) {
+    return storedLocale;
+  }
+
   const browserLocale = window.navigator.language.split("-")[0] as Locale;
 
-  if (SUPPORTED_LOCALES.includes(storedLocale as Locale)) {
-    return storedLocale as Locale;
-  }
   if (SUPPORTED_LOCALES.includes(browserLocale)) {
     return browserLocale;
   }
+
   return "en";
 };
 
