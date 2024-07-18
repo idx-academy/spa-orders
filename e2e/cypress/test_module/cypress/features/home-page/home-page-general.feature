@@ -6,10 +6,10 @@ Feature: | Guest Home Page |
   Scenario: General view of the home page
     When I can see the Header, Banner, Subintro, Call-to-action, Best Sellers, Shop by category and Footer sections
 
-  # Scenario: Search field type and clear
-  #   When I type text Mobile in search field
-  #   And I click on clear button
-  #   Then I can see empty search field again
+  Scenario: Search field type and clear
+    When I type text Mobile in search field
+    And I click on clear button
+    Then I can see empty search field again
 
   Scenario: Open and Close user Cart
     When I click on Cart button
@@ -25,7 +25,7 @@ Feature: | Guest Home Page |
     When I click on Shop All button
     Then I should be redirected to All Products Page
 
- Scenario: Navigate from banner to Product Page
+  Scenario: Navigate from banner to Product Page
     When I click on Shop Now button
     Then I should be redirected to Products Page
 
