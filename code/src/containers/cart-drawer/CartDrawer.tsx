@@ -27,7 +27,7 @@ const CartDrawer = () => {
 
   if (isError) return <AppTypography translationKey="error.label" />;
 
-  const cartItemsList = cartItems.items.map((item: CartItem) => (
+  const cartItemsList = cartItems?.items.map((item: CartItem) => (
     <CartDrawerItem
       key={item.productId}
       onRemove={handleRemoveItem}
@@ -45,7 +45,7 @@ const CartDrawer = () => {
   };
 
   const cartItemsContent =
-    cartItemsList.length > 0 ? (
+    cartItemsList?.length > 0 ? (
       cartItemsList
     ) : (
       <AppBox className="cart-drawer__empty-label">
@@ -54,7 +54,7 @@ const CartDrawer = () => {
     );
 
   const translationCartDrawerProps = {
-    values: { price: formatPrice(cartItems.totalPrice ?? 0) }
+    values: { price: formatPrice(cartItems?.totalPrice ?? 0) }
   };
 
   return (
