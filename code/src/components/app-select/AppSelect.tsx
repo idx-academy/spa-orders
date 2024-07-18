@@ -11,23 +11,25 @@ import "@/components/app-select/AppSelect.scss";
 
 const AppSelect = ({
   label,
+  labelId,
   color = "contained",
+  className,
   ...props
 }: AppSelectProps) => {
   return (
-    <FormControl fullWidth>
+    <FormControl>
       {label && (
         <InputLabel
           className={cn("spa-select__label", `spa-select__label--${color}`)}
-          id={`spa-select-label-${label}`}
+          id={`spa-select-label-${labelId}`}
         >
           <AppTypography translationKey={label} />
         </InputLabel>
       )}
       <Select
-        className={cn("spa-select", `spa-select--${color}`)}
-        labelId={`spa-select-label-${label}`}
-        id={`spa-select-${label}`}
+        className={cn("spa-select", `spa-select--${color}`, className)}
+        labelId={`spa-select-label-${labelId}`}
+        id={`spa-select-${labelId}`}
         label={label}
         {...props}
       />

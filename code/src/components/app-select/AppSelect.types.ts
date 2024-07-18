@@ -10,4 +10,5 @@ type AppSelectColoVariants =
 export type AppSelectProps = Omit<SelectProps, "color" | "label"> & {
   label?: string;
   color?: AppSelectColoVariants;
+  labelId: string;
 };

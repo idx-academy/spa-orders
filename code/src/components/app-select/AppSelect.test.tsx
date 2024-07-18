@@ -5,7 +5,7 @@ import AppSelect from "@/components/app-select/AppSelect";
 describe("AppSelect", () => {
   it("renders with default props", () => {
     render(
-      <AppSelect label="Select an option">
+      <AppSelect labelId="test" label="Select an option">
         <li>1</li>
         <li>2</li>
         <li>3</li>

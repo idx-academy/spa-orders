@@ -17,12 +17,15 @@ import dropDownMessages from "@/components/app-dropdown/messages";
 import productCardMessages from "@/components/product-card/messages";
 
 import commonMessages from "@/constants/common-messages";
+import { Locale } from "@/context/I18nProvider";
 import cartPageMessages from "@/pages/cart/messages";
 import notFoundMessages from "@/pages/not-found/messages";
 import orderPageMessages from "@/pages/orders/messages";
 import productsItemsMessages from "@/pages/products/messages";
 
-const messages = {
+type MessagesType = Record<Locale, Record<string, string>>;
+
+const messages: MessagesType = {
   en: {
     ...commonMessages.en,
     ...footerMessages.en,

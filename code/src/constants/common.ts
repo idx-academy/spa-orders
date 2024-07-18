@@ -1,6 +1,7 @@
 export const LOCAL_STORAGE_KEYS = {
   userDetails: "spa-user-details",
-  localCart: "spa-local-cart"
+  localCart: "spa-local-cart",
+  locale: "spa-locale"
 } as const;
 
 // status code (key) - translation key (value)

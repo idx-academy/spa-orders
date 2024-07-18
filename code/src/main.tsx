@@ -8,7 +8,7 @@ import App from "@/App";
 
 import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 
-import I18nProvider from "@/context/I18nProvider";
+import { I18nProvider } from "@/context/I18nProvider";
 import { store } from "@/store/store";
 
 import "@/styles/global.scss";
