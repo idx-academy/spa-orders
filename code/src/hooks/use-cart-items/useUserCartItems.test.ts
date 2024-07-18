@@ -21,20 +21,20 @@ const mockuseRemoveFromCart = useRemoveFromCart as jest.Mock;
 type RenderWithMockParams = {
   data?: CartItem[] | null;
   isLoading?: boolean;
-  error?: boolean;
+  isError?: boolean;
 };
 
 const renderWithMockParams = ({
   data = null,
   isLoading = false,
-  error = false
+  isError = false
 }: RenderWithMockParams) => {
   mockUseUserDetailsSelector.mockReturnValue({ id: "user1" });
   mockUseSnackbar.mockReturnValue({ openSnackbarWithTimeout: jest.fn() });
   mockUseGetCart.mockReturnValue({
     data,
     isLoading,
-    error: error ? new Error("Failed to fetch") : null
+    isError
   });
   mockuseRemoveFromCart.mockReturnValue([jest.fn()]);
 
@@ -56,10 +56,10 @@ describe("useCartItems", () => {
   });
 
   test("should return error state when fetching cart items fails", () => {
-    const { result } = renderWithMockParams({ error: true });
+    const { result } = renderWithMockParams({ isError: true });
 
-    const errorStateFetch = result.current.error;
-    expect(errorStateFetch).toEqual(new Error("Failed to fetch"));
+    const errorStateFetch = result.current.isError;
+    expect(errorStateFetch).toBe(true);
   });
 
   test("should return cart items when fetching is successful", () => {

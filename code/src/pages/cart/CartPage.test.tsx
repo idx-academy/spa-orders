@@ -10,7 +10,7 @@ import renderWithProviders from "@/utils/render-with-providers/renderWithProvide
 type RenderWithMockParams = {
   data?: typeof mockedCartItems | null;
   isLoading?: boolean;
-  error?: boolean;
+  isError?: boolean;
 };
 
 jest.mock("@/pages/cart/components/empty-cart/EmptyCart", () =>
@@ -64,11 +64,11 @@ const userId = { id: 3 };
 
 const renderWithMockParams = ({
   data = null,
-  error = false
+  isError = false
 }: RenderWithMockParams) => {
   mockUseGetCart.mockReturnValue({
     data,
-    error
+    isError
   });
 
   mockuseRemoveFromCart.mockReturnValue([jest.fn()]);
@@ -91,7 +91,7 @@ describe("CartPage", () => {
   });
 
   test("renders error state when there is an error fetching cart items", () => {
-    renderWithMockParams({ error: true });
+    renderWithMockParams({ isError: true });
 
     const errorMessage = screen.getByText(/error.label/);
     expect(errorMessage).toBeInTheDocument();

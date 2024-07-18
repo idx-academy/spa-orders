@@ -6,7 +6,7 @@ import { CartItem } from "@/types/cart.types";
 const useCartItems = () => {
   const user = useUserDetailsSelector();
 
-  const { data: cartItems, error, isLoading: cartItemsLoading } = useGetCart();
+  const { data: cartItems, isError, isLoading: cartItemsLoading } = useGetCart();
 
   const [removeItem] = useRemoveFromCart();
 
@@ -18,7 +18,7 @@ const useCartItems = () => {
     user: user,
     cartItems,
     cartItemsLoading,
-    error,
+    isError,
     handleRemoveItem
   };
 };

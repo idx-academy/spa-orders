@@ -16,11 +16,11 @@ import "@/pages/cart/CartPage.scss";
 
 const CartPage = () => {
   const user = useGetUserDetails();
-  const { cartItems, error, handleRemoveItem } = useCartItems();
+  const { cartItems, isError, handleRemoveItem } = useCartItems();
 
   const [createOrder, { isLoading }] = useCreateOrder();
 
-  if (error) return <AppTypography translationKey="error.label" />;
+  if (isError) return <AppTypography translationKey="error.label" />;
 
   if (!cartItems?.items?.length) {
     return <EmptyCart />;
