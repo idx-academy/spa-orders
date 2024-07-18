@@ -35,6 +35,7 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
 
   const statusBlock = (
     <AppSelect
+      labelId="order-status"
       defaultValue={orderStatus}
       value={orderStatus}
       IconComponent={() => null}

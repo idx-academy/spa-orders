@@ -6,6 +6,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 import CartDrawer from "@/containers/cart-drawer/CartDrawer";
+import LanguageSelect from "@/containers/language-select/LanguageSelect";
 import AuthModal from "@/containers/modals/auth/AuthModal";
 
 import AppBadge from "@/components/app-badge/AppBadge";
@@ -189,6 +190,7 @@ const HeaderToolbar = () => {
             onSearch={handleSearch}
           />
           <AppBox className="header__toolbar-action-icons">
+            <LanguageSelect />
             {dashboardButton}
             {ordersButton}
             {cartButton}
