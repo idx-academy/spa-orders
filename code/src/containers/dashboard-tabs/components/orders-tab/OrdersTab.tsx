@@ -9,34 +9,51 @@ import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
+import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
 import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
+import { GetAdminOrderParams } from "@/types/order.types";
 
 import "@/containers/dashboard-tabs/components/orders-tab/OrdersTab.scss";
 
+export type OrderFilters = Pick<
+  GetAdminOrderParams,
+  "isPaid" | "createdBefore" | "createdAfter" | "totalLess" | "totalMore"
+>;
+
 const OrdersTab = () => {
-  const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery();
+  const { filters, appliedFilters, activeFiltersCount, actions } =
+    useFiltersWithApply<OrderFilters>({
+      isPaid: false,
+      totalMore: 0,
+      totalLess: 20000,
+      createdBefore: "",
+      createdAfter: ""
+    });
+
+  const { data: ordersResponse, isLoading } =
+    useGetAdminOrdersQuery(appliedFilters);
+
   const { openDrawer } = useDrawerContext();
 
   if (isLoading) return <div>Loading...</div>;
-
-  const orders = ordersResponse?.content ?? [];
-
-  // @TODO: implement filtersCount
-  const filtersCount = 2;
-
-  const filtersTitleTranslationProps = {
-    values: {
-      count: filtersCount
-    }
-  };
 
   const handleOpenFilterDrawer = () => {
     openDrawer(
       <OrdersTabFilterDrawer
         filtersTitleTranslationProps={filtersTitleTranslationProps}
+        filters={filters}
+        filterActions={actions}
       />
     );
   };
+
+  const filtersTitleTranslationProps = {
+    values: {
+      count: activeFiltersCount
+    }
+  };
+
+  const orders = ordersResponse?.content ?? [];
 
   return (
     <TabContainer>

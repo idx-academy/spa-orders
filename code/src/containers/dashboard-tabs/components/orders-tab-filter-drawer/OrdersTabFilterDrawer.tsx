@@ -1,4 +1,7 @@
+import { SyntheticEvent } from "react";
+
 import FilterRecordAccordion from "@/containers/dashboard-tabs/components/filter-record-accordion/FilterRecordAccordion";
+import { OrderFilters } from "@/containers/dashboard-tabs/components/orders-tab/OrdersTab";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
@@ -10,20 +13,25 @@ import { TranslationProps } from "@/components/app-typography/AppTypography.type
 import { deliveryMethods } from "@/constants/deliveryMethods";
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
+import { FilterActions } from "@/hooks/use-filters-with-apply/useFiltersWithApply";
 
 import "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer.scss";
 
 type OrdersTabFilterDrawerProps = {
   filtersTitleTranslationProps: TranslationProps;
+  filters: OrderFilters;
+  filterActions: FilterActions<OrderFilters>;
 };
 
 const OrdersTabFilterDrawer = ({
-  filtersTitleTranslationProps
+  filtersTitleTranslationProps,
+  filters,
+  filterActions
 }: OrdersTabFilterDrawerProps) => {
   const { closeDrawer } = useDrawerContext();
 
   const handleApplyFilters = () => {
-    // @TODO: add logic of applying filters
+    filterActions.applyFilters();
     closeDrawer();
   };
 
@@ -55,6 +63,10 @@ const OrdersTabFilterDrawer = ({
     />
   ));
 
+  const handleIsPaidChange = (event: SyntheticEvent, checked: boolean) => {
+    filterActions.updateFilterByKey("isPaid", checked);
+  };
+
   // @TODO: improve ui
   return (
     <AppBox className="order-tab-filters">
@@ -85,6 +97,8 @@ const OrdersTabFilterDrawer = ({
         </FilterRecordAccordion>
         <FilterRecordAccordion sectionCaptionTranslationKey="dashboardTabs.orders.filters.other">
           <AppCheckbox
+            checked={filters.isPaid}
+            onChange={handleIsPaidChange}
             variant="dark"
             labelTranslationKey="dashboardTabs.orders.filters.isPaid"
           />
