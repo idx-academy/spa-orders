@@ -41,9 +41,11 @@ const mockDispatch = jest.fn();
 (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch);
 
 describe("App", () => {
-  test("renders correctly", () => {
+  beforeEach(() => {
     renderWithProviders(<App />);
+  });
 
+  test("renders correctly", () => {
     const router = screen.getByText("Router");
     expect(router).toBeInTheDocument();
 
@@ -55,7 +57,6 @@ describe("App", () => {
   });
 
   test("checks auth on initial render", () => {
-    renderWithProviders(<App />);
     expect(mockDispatch).toHaveBeenCalledWith(checkAuth());
   });
 });
