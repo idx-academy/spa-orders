@@ -22,5 +22,7 @@
   "cart.itemDeletion.success": "The product was successfully removed from the cart.",
   "cart.itemAdditionToRemote.fail": "Failed to add the product to the cart associated with your account.",
   "filters.from": "From",
-  "filters.to": "to"
+  "filters.to": "to",
+  "language.ukrainian": "UK",
+  "language.english": "EN"
 }

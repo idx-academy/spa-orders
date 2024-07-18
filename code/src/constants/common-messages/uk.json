@@ -22,5 +22,7 @@
   "cart.itemDeletion.success": "Продукт успішно видалено з кошика.",
   "cart.itemAdditionToRemote.fail": "Не вдалося додати продукт у кошик, пов'язаний з вашим обліковим записом.",
   "filters.from": "Від",
-  "filters.to": "до"
+  "filters.to": "до",
+  "language.ukrainian": "УКР",
+  "language.english": "АНГ"
 }
