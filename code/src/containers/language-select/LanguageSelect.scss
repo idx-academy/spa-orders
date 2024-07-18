@@ -1,0 +1,24 @@
+@import "@design-system";
+
+.language-select {
+  display: flex;
+  gap: spacing(2);
+  padding-block: spacing(2);
+  padding-inline: spacing(2) spacing(4) !important; //to override MUI styles
+  align-items: center;
+
+  &__item {
+    display: flex;
+    gap: spacing(2);
+
+    &-icon {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+    }
+  }
+
+  &__container {
+    border-radius: 40px;
+  }
+}
