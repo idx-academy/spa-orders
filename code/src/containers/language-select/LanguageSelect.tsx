@@ -2,6 +2,7 @@ import AppMenuItem from "@/components/app-menu-item/AppMenuItem";
 import AppSelect from "@/components/app-select/AppSelect";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import locales from "@/constants/locales";
 import { useLocaleContext } from "@/context/I18nProvider";
 
@@ -13,6 +14,7 @@ const LanguageSelect = () => {
   const localesItems = locales.map(({ translationKey, key, icon }) => {
     const handleLocaleChange = () => {
       setLocale(key);
+      window.localStorage.setItem(LOCAL_STORAGE_KEYS.locale, key);
     };
     return (
       <AppMenuItem
@@ -33,7 +35,6 @@ const LanguageSelect = () => {
     <AppSelect
       className="language-select__container"
       labelId="language-select"
-      IconComponent={() => null}
       inputProps={{
         className: "language-select"
       }}

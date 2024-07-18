@@ -11,7 +11,7 @@ describe("LanguageSelect", () => {
     renderWithProviders(<LanguageSelect />);
     select = screen.getByRole("combobox");
   });
-  test("renders without crashing", async () => {
+  test("renders without crashing", () => {
     expect(select).toBeInTheDocument();
   });
 
@@ -21,7 +21,7 @@ describe("LanguageSelect", () => {
     const optionText = locales[1].translationKey;
     const optionToSelect = screen.getByRole("option", { name: optionText });
 
-    await act(async () => {
+    act(() => {
       fireEvent.click(optionToSelect);
     });
 
