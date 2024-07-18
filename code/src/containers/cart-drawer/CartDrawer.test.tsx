@@ -155,12 +155,10 @@ describe("CartDrawer", () => {
 
   test("Should render the cart items with undefined cartItems", () => {
     renderAndMock({ cartItems: undefined });
-  
-    // Verify that the component handles undefined cartItems gracefully
+
     const emptyCartMessageElement = screen.getByText("cart.emptyItem");
     expect(emptyCartMessageElement).toBeInTheDocument();
-  
-    // Ensure that formatPrice is called with 0 when cartItems is undefined
+
     expect(mockFormatPrice).toHaveBeenCalledWith(0);
   });
 });
