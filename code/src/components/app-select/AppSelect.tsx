@@ -22,6 +22,7 @@ const AppSelect = ({
         <InputLabel
           className={cn("spa-select__label", `spa-select__label--${color}`)}
           id={`spa-select-label-${labelId}`}
+          data-testid="spa-select-label"
         >
           <AppTypography translationKey={label} />
         </InputLabel>

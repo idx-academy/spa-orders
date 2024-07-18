@@ -20,7 +20,7 @@ describe("Test isErrorWithStatus", () => {
   });
 
   test("should return false if status is not a number", () => {
-    const res = isErrorWithStatus("400");
+    const res = isErrorWithStatus({ status: "400" });
 
     expect(res).toBe(false);
   });

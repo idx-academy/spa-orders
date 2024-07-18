@@ -4,6 +4,8 @@ import AppTable from "@/components/app-table/AppTable";
 
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
+import { AppTableProps } from "./AppTable.types";
+
 type TableItem = { id: number; value: string };
 
 const headItems = ["Header 1", "Header 2"];
@@ -14,6 +16,18 @@ const bodyItems: TableItem[] = [
 
 const renderHeadItem = (item: string) => <th key={item}>{item}</th>;
 const renderBodyItem = (item: TableItem) => <td key={item.id}>{item.value}</td>;
+const renderTable = (props: Partial<AppTableProps<TableItem>>) => {
+  renderWithProviders(
+    <AppTable
+      headItems={headItems}
+      bodyItems={[]}
+      renderBodyItem={renderBodyItem}
+      renderHeadItem={renderHeadItem}
+      fallback={<div>Fallback Content</div>}
+      {...props}
+    />
+  );
+};
 
 describe("AppTable", () => {
   describe("AppTable with body items", () => {
@@ -41,22 +55,32 @@ describe("AppTable", () => {
         expect(bodyItem).toBeInTheDocument();
       });
     });
+
+    test("Does not render fallback if body items passed", () => {
+      const fallbackContent = screen.queryByTestId("table-fallback");
+      expect(fallbackContent).not.toBeInTheDocument();
+    });
   });
 
   describe("AppTable without body items", () => {
     test("renders fallback correctly when bodyItems is empty", () => {
-      renderWithProviders(
-        <AppTable
-          headItems={headItems}
-          bodyItems={[]}
-          renderBodyItem={renderBodyItem}
-          renderHeadItem={renderHeadItem}
-          fallback={<div>Fallback Content</div>}
-        />
-      );
+      renderTable({
+        headItems: headItems,
+        bodyItems: [],
+        renderBodyItem: renderBodyItem,
+        renderHeadItem: renderHeadItem,
+        fallback: <div>Fallback Content</div>
+      });
 
       const fallbackContent = screen.getByText("Fallback Content");
       expect(fallbackContent).toBeInTheDocument();
+    });
+
+    test("Should display nothing when there is no fallback and body items", () => {
+      renderTable({ bodyItems: [], fallback: undefined });
+
+      const fallbackContent = screen.queryByTestId("table-fallback");
+      expect(fallbackContent).not.toBeInTheDocument();
     });
   });
 });
