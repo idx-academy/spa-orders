@@ -43,8 +43,6 @@ const getAdminOrders = (req, res) => {
         return false;
       }
 
-      console.log(statuses, item.orderStatus);
-
       if (statuses !== undefined && !statuses.includes(item.orderStatus)) {
         return false;
       }
