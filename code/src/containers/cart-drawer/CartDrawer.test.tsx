@@ -41,7 +41,7 @@ const mockCartItems = {
       productPrice: 10,
       quantity: 1,
       image: "some image",
-      calculatedPrice: 20
+      calculatedPrice: 10
     },
     {
       productId: "2",
@@ -63,7 +63,7 @@ const renderAndMock = (data: Partial<ReturnType<typeof useCartItems>> = {}) => {
   (useCartItems as jest.Mock).mockReturnValue({
     cartItems: data.cartItems || mockCartItems,
     cartItemsLoading: false,
-    error: null,
+    isError: false,
     handleRemoveItem: jest.fn(),
     ...data
   });
@@ -90,6 +90,10 @@ describe("CartDrawer", () => {
     const productNameElement = screen.getByText("Product 1");
     expect(productNameElement).toBeInTheDocument();
 
+    const subtotal = screen.getByText(/cart.subtotal/);
+    expect(subtotal).toBeInTheDocument();
+
+    expect(mockFormatPrice).toHaveBeenCalledTimes(3);
     expect(mockFormatPrice).toHaveBeenCalledWith(30);
   });
 
@@ -118,7 +122,7 @@ describe("CartDrawer", () => {
     expect(openModal).toHaveBeenCalled();
   });
 
-  it("Should close the cart drawer when the close button is clicked", () => {
+  test("Should close the cart drawer when the close button is clicked", () => {
     renderAndMock();
 
     const closeDrawerButton = screen.getAllByRole("button")[0];
@@ -138,5 +142,13 @@ describe("CartDrawer", () => {
     fireEvent.click(removeButton);
 
     expect(mockRemove).toHaveBeenCalled();
+  });
+
+  
+  test("Should show an error message", () => {
+    renderAndMock({ isError: true });
+
+    const errorMessage = screen.getByText(/error.label/);
+    expect(errorMessage).toBeInTheDocument();
   });
 });
