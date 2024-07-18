@@ -1,5 +1,4 @@
-// import { useState } from "react";
-import { ReactNode } from "react";
+import { ChangeEvent, ReactNode, useState } from "react";
 
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import ListAltIcon from "@mui/icons-material/ListAlt";
@@ -14,7 +13,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppContainer from "@/components/app-container/AppContainer";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
-// import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
+import AppInputWithIcon from "@/components/app-input-with-icon/AppInputWithIcon";
 import AppLink from "@/components/app-link/AppLink";
 import AppLoader from "@/components/app-loader/AppLoader";
 import AppLogo from "@/components/app-logo/AppLogo";
@@ -48,20 +47,20 @@ const HeaderToolbar = () => {
 
   const { data } = useGetCart();
 
-  // const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
-  // const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setSearchValue(event.target.value);
-  // };
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
 
-  // const handleClearSearch = () => {
-  //   setSearchValue("");
-  // };
+  const handleClearSearch = () => {
+    setSearchValue("");
+  };
 
   // @TODO: add logic to search product
-  // const handleSearch = () => {
-  //   console.log("Search:", searchValue);
-  // };
+  const handleSearch = () => {
+    console.log("Search:", searchValue);
+  };
 
   const handleOpenAuthModal = () => {
     openModal(<AuthModal />);
@@ -182,13 +181,13 @@ const HeaderToolbar = () => {
           <AppLogo className="header__toolbar-logo-image" data-cy="logo" />
         </AppLink>
         <AppBox className="header__toolbar-action">
-          {/* <AppInputWithIcon
+          <AppInputWithIcon
             placeholder="Search..."
             value={searchValue}
             onChange={handleSearchChange}
             onClear={handleClearSearch}
             onSearch={handleSearch}
-          /> */}
+          />
           <AppBox className="header__toolbar-action-icons">
             {dashboardButton}
             {ordersButton}

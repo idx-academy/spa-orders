@@ -19,6 +19,7 @@ describe("CartItem", () => {
   beforeEach(() => {
     renderWithProviders(<CartItem item={mockedItem} onRemove={mockOnRemove} />);
   });
+
   test("should render the CartItem component with correct data", () => {
     const imageElement = screen.getByRole("img");
     expect(imageElement).toHaveAttribute("src", mockedItem.image);
@@ -26,16 +27,16 @@ describe("CartItem", () => {
     const nameElement = screen.getByText(mockedItem.name);
     expect(nameElement).toBeInTheDocument();
 
-    // const quantityInputElement = screen.getByDisplayValue(
-    //   mockedItem.quantity.toString()
-    // );
-    // expect(quantityInputElement).toBeInTheDocument();
+    const quantityInputElement = screen.getByDisplayValue(
+      mockedItem.quantity.toString()
+    );
+    expect(quantityInputElement).toBeInTheDocument();
 
-    // const removeIconElement = screen.getByTestId("RemoveCircleOutlineIcon");
-    // expect(removeIconElement).toBeInTheDocument();
+    const removeIconElement = screen.getByTestId("RemoveCircleOutlineIcon");
+    expect(removeIconElement).toBeInTheDocument();
 
-    // const addIconElement = screen.getByTestId("AddCircleOutlineIcon");
-    // expect(addIconElement).toBeInTheDocument();
+    const addIconElement = screen.getByTestId("AddCircleOutlineIcon");
+    expect(addIconElement).toBeInTheDocument();
 
     const deleteIconElement = screen.getByTestId("DeleteIcon");
     expect(deleteIconElement).toBeInTheDocument();
