@@ -1,0 +1,6 @@
+@import "@design-system";
+
+.products-table__head {
+  background-color: var(--products-table-head-bg-color, $light-alpha);
+  color: var(--products-table-head-color, $white);
+}

@@ -1,0 +1,23 @@
+@import "@design-system";
+
+.products-table__body {
+  @include transition((background-color));
+
+  background-color: var(--products-table-body-bg-color, $white);
+
+  &:hover {
+    background-color: var(--products-table-body-hover-bg-color, $light);
+  }
+
+  &-name {
+    @include text-truncate($line-clamp: 2);
+
+    overflow: hidden;
+  }
+
+  &-image {
+    @include box(80px);
+
+    object-fit: cover;
+  }
+}

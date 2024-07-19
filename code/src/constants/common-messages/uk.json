@@ -29,5 +29,8 @@
   "timespan.last7Days": "Останні 7 днів",
   "timespan.last14Days": "Останні 14 днів",
   "timespan.lastMonth": "Останній місяць",
-  "select.defaultOption": "Виберіть елемент зі списку..."
+  "select.defaultOption": "Виберіть елемент зі списку...",
+  "product.status.visible": "Видимий",
+  "product.status.hidden": "Прихований",
+  "category:computer": "Комп'ютери"
 }

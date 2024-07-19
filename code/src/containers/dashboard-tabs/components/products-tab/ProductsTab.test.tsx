@@ -8,7 +8,12 @@ describe("ProductsTab", () => {
   test("renders correctly", () => {
     renderWithProviders(<ProductsTab />);
 
-    const content = screen.getByText("ProductsTab");
-    expect(content).toBeInTheDocument();
+    const title = screen.getByText("dashboardTabs.products.label");
+    const addProductButton = screen.getByText(
+      "dashboardTabs.add-product.label"
+    );
+
+    expect(title).toBeInTheDocument();
+    expect(addProductButton).toBeInTheDocument();
   });
 });

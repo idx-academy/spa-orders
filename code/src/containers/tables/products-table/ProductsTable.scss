@@ -1,0 +1,13 @@
+@import "@design-system";
+
+.products-table {
+  box-shadow: var(--products-table-shadow, $shadow-black);
+
+  &__fallback {
+    background-color: var(--products-fallback-bg-color, $white);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

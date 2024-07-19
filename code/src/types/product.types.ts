@@ -9,3 +9,17 @@ export type Product = {
   image: string;
   price: number;
 };
+
+export type ManagerProductStatus = "VISIBLE" | "HIDDEN";
+
+export type ManagerProduct = {
+  id: string;
+  name: string;
+  description: string;
+  imageLink: string;
+  quantity: number;
+  price: number;
+  createdAt: string;
+  status: ManagerProductStatus;
+  tags: string[];
+};

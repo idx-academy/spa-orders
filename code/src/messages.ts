@@ -13,6 +13,7 @@ import authModalMessages from "@/containers/modals/auth/messages";
 import orderItemMessages from "@/containers/order-item/messages";
 import subintroMessages from "@/containers/subintro/messages";
 import ordersTableMessages from "@/containers/tables/orders-table/messages";
+import productsTableMessages from "@/containers/tables/products-table/messages";
 
 import dropDownMessages from "@/components/app-dropdown/messages";
 import productCardMessages from "@/components/product-card/messages";
@@ -49,7 +50,8 @@ const messages: MessagesType = {
     ...ordersTableMessages.en,
     ...cartPageMessages.en,
     ...dashboardTabsMessages.en,
-    ...deliveryFormMessages.en
+    ...deliveryFormMessages.en,
+    ...productsTableMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -73,7 +75,8 @@ const messages: MessagesType = {
     ...ordersTableMessages.uk,
     ...cartPageMessages.uk,
     ...dashboardTabsMessages.uk,
-    ...deliveryFormMessages.uk
+    ...deliveryFormMessages.uk,
+    ...productsTableMessages.uk
   }
 };
 

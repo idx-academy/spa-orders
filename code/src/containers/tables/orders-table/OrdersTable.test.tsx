@@ -34,8 +34,6 @@ describe("OrdersTable", () => {
   test("renders fallback", () => {
     render(<OrdersTable orders={[]} />);
 
-    screen.debug();
-
     const fallbackText = screen.getByText(/ordersTable.fallback/);
     expect(fallbackText).toBeInTheDocument();
 
