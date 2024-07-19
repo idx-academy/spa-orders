@@ -1,11 +1,10 @@
-import { timeSpans } from "@/constants/timeSpans";
 import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
 import { RangeFilter } from "@/hooks/use-filters-with-apply/useFiltersWithApply.types";
 import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
+import { TimeSpan } from "@/types/common";
 import { DeliveryMethod } from "@/types/delivery.types";
 import { GetAdminOrderParams, OrderStatus } from "@/types/order.types";
-
-export type TimeSpan = keyof typeof timeSpans;
+import timeSpanToDateRange from "@/utils/time-span-to-date-range/timeSpanToDateRange";
 
 export type OrderFilters = {
   paid: boolean;
@@ -18,7 +17,7 @@ export type OrderFilters = {
 const useFilteredAdminOrders = () => {
   const {
     filters,
-    appliedFilters: { paid, price, statuses, ...rest },
+    appliedFilters: { paid, price, statuses, timespan, ...rest },
     activeFiltersCount,
     actions: filterActions
   } = useFiltersWithApply<OrderFilters>({
@@ -29,13 +28,17 @@ const useFilteredAdminOrders = () => {
     timespan: ""
   });
 
+  const dateRange = timespan ? timeSpanToDateRange(timespan) : undefined;
+
   const transformedFilters: GetAdminOrderParams = {
     isPaid: paid,
     totalLess: price?.end,
     totalMore: price?.start,
     statuses: statuses && Array.from(statuses),
     deliveryMethods:
-      rest["delivery-methods"] && Array.from(rest["delivery-methods"])
+      rest["delivery-methods"] && Array.from(rest["delivery-methods"]),
+    createdBefore: dateRange?.end.toJSON(),
+    createdAfter: dateRange?.start.toJSON()
   };
 
   const { data: ordersResponse, isLoading } =

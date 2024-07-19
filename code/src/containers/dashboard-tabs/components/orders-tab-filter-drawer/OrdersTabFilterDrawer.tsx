@@ -4,10 +4,7 @@ import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import { SelectChangeEvent } from "@mui/material";
 
 import FilterRecordAccordion from "@/containers/dashboard-tabs/components/filter-record-accordion/FilterRecordAccordion";
-import {
-  OrderFilters,
-  TimeSpan
-} from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
+import { OrderFilters } from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
 
 import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
@@ -24,7 +21,7 @@ import { deliveryMethods } from "@/constants/deliveryMethods";
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { timeSpans } from "@/constants/timeSpans";
 import { FilterActions } from "@/hooks/use-filters-with-apply/useFiltersWithApply.types";
-import { ExtractSetValue } from "@/types/common";
+import { ExtractSetValue, TimeSpan } from "@/types/common";
 import { DeliveryMethod } from "@/types/delivery.types";
 import { OrderStatus } from "@/types/order.types";
 

@@ -1,3 +1,5 @@
+import { timeSpans } from "@/constants/timeSpans";
+
 export type TimerId = ReturnType<typeof setTimeout>;
 export type NonEmptyArray<T> = [T, ...T[]];
 export type ExtractValues<T> = T[keyof T];
@@ -43,3 +45,5 @@ export type PaginationParams = {
 export type RTKQueryMockState<TData = null, TError = null> = Partial<
   RTKQueryReturnState<TData, TError>
 >;
+
+export type TimeSpan = keyof typeof timeSpans;
