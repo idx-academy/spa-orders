@@ -59,6 +59,7 @@ const SignInForm = () => {
           error={Boolean(errors.email)}
           helperText={errors.email ? errors.email.message : undefined}
           labelTranslationKey="signIn.email.field"
+          autoComplete="email"
           fullWidth
           data-cy="auth-email"
         />
@@ -69,6 +70,7 @@ const SignInForm = () => {
           labelTranslationKey="signIn.password.field"
           error={Boolean(errors.password)}
           helperText={errors.password ? errors.password.message : undefined}
+          autoComplete="current-password"
           fullWidth
           data-cy="auth-password"
         />

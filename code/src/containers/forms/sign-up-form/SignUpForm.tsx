@@ -68,6 +68,7 @@ const SignUpForm = () => {
           error={Boolean(errors.firstName)}
           helperText={errors.firstName ? errors.firstName.message : undefined}
           labelTranslationKey="signUp.firstname.field"
+          autoComplete="given-name"
           data-cy="auth-firstname"
         />
         <AppInput
@@ -75,6 +76,7 @@ const SignUpForm = () => {
           error={Boolean(errors.lastName)}
           helperText={errors.lastName ? errors.lastName.message : undefined}
           labelTranslationKey="signUp.lastname.field"
+          autoComplete="family-name"
           data-cy="auth-lastname"
         />
       </AppBox>
@@ -84,6 +86,7 @@ const SignUpForm = () => {
           error={Boolean(errors.email)}
           helperText={errors.email ? errors.email.message : undefined}
           labelTranslationKey="signUp.email.field"
+          autoComplete="email"
           fullWidth
           data-cy="auth-email"
         />
@@ -94,6 +97,7 @@ const SignUpForm = () => {
           error={Boolean(errors.password)}
           helperText={errors.password ? errors.password.message : undefined}
           labelTranslationKey="signUp.password.field"
+          autoComplete="new-password"
           fullWidth
           data-cy="auth-password"
         />
@@ -106,6 +110,7 @@ const SignUpForm = () => {
             errors.confirmPassword ? errors.confirmPassword.message : undefined
           }
           labelTranslationKey="signUp.confirmpassword.field"
+          autoComplete="new-password"
           fullWidth
           data-cy="auth-confirm-password"
         />
