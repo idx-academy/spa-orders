@@ -144,8 +144,6 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
   const activeFiltersRef = useRef(defaultActiveFilters);
   const [localFilters, setLocalFilters] = useState(defaultFiltersFromParams);
 
-  console.log(localFilters);
-
   const updateFilterByKey: FilterActions<Filters>["updateFilterByKey"] = (
     key,
     value
