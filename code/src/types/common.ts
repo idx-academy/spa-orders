@@ -1,6 +1,7 @@
 export type TimerId = ReturnType<typeof setTimeout>;
 export type NonEmptyArray<T> = [T, ...T[]];
 export type ExtractValues<T> = T[keyof T];
+export type ExtractSetValue<T> = T extends Set<infer U> ? U : never;
 
 // utility to debug typescript. More: https://www.youtube.com/watch?v=2lCCKiWGlC0
 export type Prettify<T> = {

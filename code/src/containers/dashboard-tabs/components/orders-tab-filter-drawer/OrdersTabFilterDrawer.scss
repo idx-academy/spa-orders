@@ -14,6 +14,26 @@
     );
     color: var(--spa-orders-tab-filters-header-color, $white);
     text-align: center;
+    position: relative;
+  }
+
+  &__clear-filters-tooltip {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: spacing(4);
+
+    .MuiTouchRipple-child {
+      color: var(--spa-orders-tab-filters-header-color, $white);
+    }
+
+    .spa-icon-button {
+      padding: spacing(1);
+    }
+
+    svg {
+      color: var(--spa-orders-tab-filters-header-color, $white);
+    }
   }
 
   &__items {
