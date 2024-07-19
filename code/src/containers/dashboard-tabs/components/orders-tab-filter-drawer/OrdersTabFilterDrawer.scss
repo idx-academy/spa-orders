@@ -50,4 +50,9 @@
   &__delivery-method-image {
     @include box(22px);
   }
+
+  &__date-period-select {
+    padding-block: spacing(2);
+    padding-inline: spacing(4) spacing(8) !important; //to override MUI styles
+  }
 }

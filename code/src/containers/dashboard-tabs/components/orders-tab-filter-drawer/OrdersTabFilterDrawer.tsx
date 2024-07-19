@@ -1,21 +1,28 @@
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useId } from "react";
 
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
+import { SelectChangeEvent } from "@mui/material";
 
 import FilterRecordAccordion from "@/containers/dashboard-tabs/components/filter-record-accordion/FilterRecordAccordion";
-import { OrderFilters } from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
+import {
+  OrderFilters,
+  TimeSpan
+} from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
 
 import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppCheckbox from "@/components/app-checkbox/AppCheckbox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
+import AppMenuItem from "@/components/app-menu-item/AppMenuItem";
 import AppRangeSlider from "@/components/app-range-slider/AppRangeSlider";
+import AppSelect from "@/components/app-select/AppSelect";
 import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { deliveryMethods } from "@/constants/deliveryMethods";
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
+import { timeSpans } from "@/constants/timeSpans";
 import { FilterActions } from "@/hooks/use-filters-with-apply/useFiltersWithApply.types";
 import { ExtractSetValue } from "@/types/common";
 import { DeliveryMethod } from "@/types/delivery.types";
@@ -34,7 +41,7 @@ type OrdersTabFilterDrawerProps = {
   closeFilterDrawer: () => void;
 };
 
-type FiltersWithSets = Pick<OrderFilters, "deliveryMethods" | "statuses">;
+type FiltersWithSets = Pick<OrderFilters, "delivery-methods" | "statuses">;
 
 const OrdersTabFilterDrawer = ({
   filtersTitleTranslationProps,
@@ -42,6 +49,8 @@ const OrdersTabFilterDrawer = ({
   filterActions,
   closeFilterDrawer
 }: OrdersTabFilterDrawerProps) => {
+  const selectLabelId = useId();
+
   const {
     applyFilters,
     checkFilterActive,
@@ -71,11 +80,11 @@ const OrdersTabFilterDrawer = ({
     ([deliveryMethodKey, deliveryMethod]) => (
       <AppBox key={deliveryMethodKey}>
         <AppCheckbox
-          checked={filters.deliveryMethods.has(
+          checked={filters["delivery-methods"].has(
             deliveryMethodKey as DeliveryMethod
           )}
           onChange={handleCheckboxListChange(
-            "deliveryMethods",
+            "delivery-methods",
             deliveryMethodKey as DeliveryMethod
           )}
           variant="dark"
@@ -92,10 +101,10 @@ const OrdersTabFilterDrawer = ({
     )
   );
 
-  const isDeliveryMethodFilterActive = checkFilterActive("deliveryMethods");
+  const isDeliveryMethodFilterActive = checkFilterActive("delivery-methods");
 
   const handleDeliveryMethodFilterReset = () => {
-    resetFilterByKey("deliveryMethods");
+    resetFilterByKey("delivery-methods");
   };
 
   const orderStatusesCheckboxes = Object.entries(
@@ -126,14 +135,21 @@ const OrdersTabFilterDrawer = ({
     resetFilterByKey("price");
   };
 
-  const isPaidFilterActive = checkFilterActive("isPaid");
+  const isPaidFilterActive = checkFilterActive("paid");
 
   const handleIsPaidFilterReset = () => {
-    resetFilterByKey("isPaid");
+    resetFilterByKey("paid");
   };
 
   const handleIsPaidChange = (event: SyntheticEvent, checked: boolean) => {
-    updateFilterByKey("isPaid", checked);
+    updateFilterByKey("paid", checked);
+  };
+
+  const isTimespanFilterActive = checkFilterActive("timespan");
+
+  const handleTimespanFilterChange = () => {
+    updateFilterByKey("timespan", "");
+    resetFilterByKey("timespan");
   };
 
   const activeFiltersCount = filtersTitleTranslationProps.values.count;
@@ -150,6 +166,32 @@ const OrdersTabFilterDrawer = ({
         </AppIconButton>
       </AppBadge>
     </AppTooltip>
+  );
+
+  const handleTimespanSelectChange = (event: SelectChangeEvent<unknown>) => {
+    updateFilterByKey("timespan", event.target.value as TimeSpan);
+  };
+
+  const datePeriodSelect = (
+    <AppSelect
+      inputProps={{
+        className: "order-tab-filters__date-period-select"
+      }}
+      displayEmpty
+      defaultValue=""
+      value={filters.timespan}
+      onChange={handleTimespanSelectChange}
+      labelId={selectLabelId}
+    >
+      <AppMenuItem value="" disabled>
+        <AppTypography translationKey="select.defaultOption" />
+      </AppMenuItem>
+      {Object.entries(timeSpans).map(([datePeriod, translationKey]) => (
+        <AppMenuItem value={datePeriod} key={datePeriod}>
+          <AppTypography translationKey={translationKey} />
+        </AppMenuItem>
+      ))}
+    </AppSelect>
   );
 
   const handleApplyFilters = () => {
@@ -170,18 +212,25 @@ const OrdersTabFilterDrawer = ({
       </AppBox>
       <AppBox className="order-tab-filters__items">
         <FilterRecordAccordion
-          isFilterActive={isDeliveryMethodFilterActive}
-          resetFilter={handleDeliveryMethodFilterReset}
-          sectionCaptionTranslationKey="dashboardTabs.orders.filters.deliveryMethod"
-        >
-          {deliveryMethodsCheckboxes}
-        </FilterRecordAccordion>
-        <FilterRecordAccordion
           isFilterActive={isOrdersStatusFilterActive}
           resetFilter={handleOrderStatusFilterReset}
           sectionCaptionTranslationKey="dashboardTabs.orders.filters.status"
         >
           {orderStatusesCheckboxes}
+        </FilterRecordAccordion>
+        <FilterRecordAccordion
+          isFilterActive={isTimespanFilterActive}
+          resetFilter={handleTimespanFilterChange}
+          sectionCaptionTranslationKey="dashboardTabs.orders.filters.timespan"
+        >
+          {datePeriodSelect}
+        </FilterRecordAccordion>
+        <FilterRecordAccordion
+          isFilterActive={isDeliveryMethodFilterActive}
+          resetFilter={handleDeliveryMethodFilterReset}
+          sectionCaptionTranslationKey="dashboardTabs.orders.filters.deliveryMethod"
+        >
+          {deliveryMethodsCheckboxes}
         </FilterRecordAccordion>
         <FilterRecordAccordion
           isFilterActive={isPriceFilterActive}
@@ -199,7 +248,7 @@ const OrdersTabFilterDrawer = ({
           sectionCaptionTranslationKey="dashboardTabs.orders.filters.other"
         >
           <AppCheckbox
-            checked={filters.isPaid}
+            checked={filters.paid}
             onChange={handleIsPaidChange}
             variant="dark"
             labelTranslationKey="dashboardTabs.orders.filters.isPaid"

@@ -1,43 +1,41 @@
+import { timeSpans } from "@/constants/timeSpans";
 import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
+import { RangeFilter } from "@/hooks/use-filters-with-apply/useFiltersWithApply.types";
 import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
 import { DeliveryMethod } from "@/types/delivery.types";
 import { GetAdminOrderParams, OrderStatus } from "@/types/order.types";
 
-type RangeFilter<T> = {
-  start: T;
-  end: T;
-};
+export type TimeSpan = keyof typeof timeSpans;
 
-export type OrderFilters = Pick<
-  Required<GetAdminOrderParams>,
-  "isPaid" | "createdBefore" | "createdAfter"
-> & {
+export type OrderFilters = {
+  paid: boolean;
   statuses: Set<OrderStatus>;
-  deliveryMethods: Set<DeliveryMethod>;
+  "delivery-methods": Set<DeliveryMethod>;
+  timespan: "" | TimeSpan;
   price: RangeFilter<number>;
 };
 
 const useFilteredAdminOrders = () => {
   const {
     filters,
-    appliedFilters: { isPaid, price, statuses, deliveryMethods },
+    appliedFilters: { paid, price, statuses, ...rest },
     activeFiltersCount,
     actions: filterActions
   } = useFiltersWithApply<OrderFilters>({
-    isPaid: false,
+    paid: false,
     price: { start: 0, end: 20000 },
-    createdBefore: "",
-    createdAfter: "",
     statuses: new Set(),
-    deliveryMethods: new Set()
+    "delivery-methods": new Set(),
+    timespan: ""
   });
 
   const transformedFilters: GetAdminOrderParams = {
-    isPaid: isPaid,
+    isPaid: paid,
     totalLess: price?.end,
     totalMore: price?.start,
     statuses: statuses && Array.from(statuses),
-    deliveryMethods: deliveryMethods && Array.from(deliveryMethods)
+    deliveryMethods:
+      rest["delivery-methods"] && Array.from(rest["delivery-methods"])
   };
 
   const { data: ordersResponse, isLoading } =

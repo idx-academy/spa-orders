@@ -1,3 +1,8 @@
+export type RangeFilter<T> = {
+  start: T;
+  end: T;
+};
+
 export type UpdateFilterByKey<Filters> = <Key extends keyof Filters>(
   key: Key,
   value: Filters[Key]
