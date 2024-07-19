@@ -24,5 +24,10 @@
   "filters.from": "Від",
   "filters.to": "до",
   "language.ukrainian": "УКР",
-  "language.english": "АНГ"
+  "language.english": "АНГ",
+  "timespan.yesterday": "Вчора",
+  "timespan.last7Days": "Останні 7 днів",
+  "timespan.last14Days": "Останні 14 днів",
+  "timespan.lastMonth": "Останній місяць",
+  "select.defaultOption": "Виберіть елемент зі списку..."
 }

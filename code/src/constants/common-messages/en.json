@@ -24,5 +24,10 @@
   "filters.from": "From",
   "filters.to": "to",
   "language.ukrainian": "UK",
-  "language.english": "EN"
+  "language.english": "EN",
+  "timespan.yesterday": "Yesterday",
+  "timespan.last7Days": "Last 7 days",
+  "timespan.last14Days": "Last 14 days",
+  "timespan.lastMonth": "Last month",
+  "select.defaultOption": "Select an option..."
 }
