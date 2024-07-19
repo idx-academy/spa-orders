@@ -9,13 +9,14 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import "@/components/app-tooltip/AppTooltip.scss";
 
 const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(function (
-  { titleTranslationKey, children, ...props },
+  { titleTranslationKey, titleTranslationProps, children, ...props },
   ref
 ) {
   const translatedTitle = titleTranslationKey ? (
     <AppTypography
       className="spa-app-tooltip"
       translationKey={titleTranslationKey}
+      translationProps={titleTranslationProps}
     />
   ) : undefined;
 
