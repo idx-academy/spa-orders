@@ -1,6 +1,14 @@
 import { useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
+import {
+  ApplyFilters,
+  CheckFilterActive,
+  ResetFilterByKey,
+  ResetFilters,
+  UpdateFilterByKey
+} from "@/hooks/use-filters-with-apply/useFiltersWithApply.types";
+
 const parseSerializedSet = (value: string) => {
   const match = value.match(/^{((?:\w+(?:,\w+)*)?)}$/);
 
@@ -119,17 +127,6 @@ const parseFiltersFromParams = <Filters>(
   };
 };
 
-export type FilterActions<Filters> = {
-  updateFilterByKey: <Key extends keyof Filters>(
-    key: Key,
-    value: Filters[Key]
-  ) => void;
-  resetFilterByKey: <Key extends keyof Filters>(key: Key) => void;
-  resetFilters: () => void;
-  checkFilterActive: <Key extends keyof Filters>(key: Key) => boolean;
-  applyFilters: () => void;
-};
-
 const useFiltersWithApply = <Filters extends Record<string, unknown>>(
   defaultFilters: Filters
 ) => {
@@ -144,10 +141,7 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
   const activeFiltersRef = useRef(defaultActiveFilters);
   const [localFilters, setLocalFilters] = useState(defaultFiltersFromParams);
 
-  const updateFilterByKey: FilterActions<Filters>["updateFilterByKey"] = (
-    key,
-    value
-  ) => {
+  const updateFilterByKey: UpdateFilterByKey<Filters> = (key, value) => {
     setLocalFilters((prevFilters) => ({
       ...prevFilters,
       [key]: value
@@ -156,9 +150,7 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
     activeFiltersRef.current.add(key);
   };
 
-  const resetFilterByKey: FilterActions<Filters>["resetFilterByKey"] = (
-    key
-  ) => {
+  const resetFilterByKey: ResetFilterByKey<Filters> = (key) => {
     setLocalFilters((prevFilters) => ({
       ...prevFilters,
       [key]: defaultFiltersRef.current[key]
@@ -167,7 +159,7 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
     activeFiltersRef.current.delete(key);
   };
 
-  const resetFilters: FilterActions<Filters>["resetFilters"] = () => {
+  const resetFilters: ResetFilters = () => {
     const resetFilters = {} as Filters;
 
     for (const key in localFilters) {
@@ -178,13 +170,11 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
     activeFiltersRef.current.clear();
   };
 
-  const checkFilterActive: FilterActions<Filters>["checkFilterActive"] = (
-    key
-  ) => {
+  const checkFilterActive: CheckFilterActive<Filters> = (key) => {
     return activeFiltersRef.current.has(key);
   };
 
-  const applyFilters: FilterActions<Filters>["applyFilters"] = () => {
+  const applyFilters: ApplyFilters = () => {
     const params = new URLSearchParams(searchParams);
 
     for (const [filterKey, filterValue] of Object.entries(localFilters)) {
