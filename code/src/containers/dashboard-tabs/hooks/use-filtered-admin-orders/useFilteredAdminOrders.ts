@@ -1,6 +1,5 @@
 import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
 import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
-import { Prettify } from "@/types/common";
 import { DeliveryMethod } from "@/types/delivery.types";
 import { GetAdminOrderParams, OrderStatus } from "@/types/order.types";
 
