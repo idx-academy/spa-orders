@@ -59,7 +59,7 @@
     padding: 0;
 
     &:hover {
-      color: $red;
+      color: var(--filter-reset-button-color, $red);
     }
   }
 }
