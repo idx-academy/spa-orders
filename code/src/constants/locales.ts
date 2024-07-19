@@ -1,6 +1,6 @@
 import enIcon from "@/assets/icons/en.svg";
 import ukIcon from "@/assets/icons/uk.svg";
-import { Locale } from "@/context/I18nProvider";
+import { Locale } from "@/context/i18n/I18nProvider";
 
 type LocalesType = {
   key: Locale;

@@ -4,7 +4,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import locales from "@/constants/locales";
-import { useLocaleContext } from "@/context/I18nProvider";
+import { useLocaleContext } from "@/context/i18n/I18nProvider";
 
 import "@/containers/language-select/LanguageSelect.scss";
 
