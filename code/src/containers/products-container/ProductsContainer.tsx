@@ -37,8 +37,6 @@ const ProductsContainer = ({
   const user = useUserDetailsSelector();
   const isAuthLoading = useIsAuthLoadingSelector();
 
-  const userId = user?.id;
-
   const {
     data: cartData,
     isLoading: isCartLoading,
@@ -53,7 +51,7 @@ const ProductsContainer = ({
   const cartProductsIds = useMemo(() => {
     const cartProductsIds = cartData?.items.map((item) => item.productId);
     return new Set(cartProductsIds);
-  }, [isCartFetching, userId, cartLength]);
+  }, [isCartFetching, cartLength]);
 
   if (isError) {
     return (

@@ -1,68 +1,20 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
+import { mockProducts } from "@/containers/products-container/ProductContainer.constants";
 import ProductsContainer from "@/containers/products-container/ProductsContainer";
 import { ProductsContainerProps } from "@/containers/products-container/ProductsContainer.types";
 
-import { Product } from "@/types/product.types";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
+import { useUserDetailsSelector } from "@/store/slices/userSlice";
+import { CartItem } from "@/types/cart.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
-const mockProducts: Product[] = [
-  {
-    id: "123",
-    name: "Mobile Phone Samsung Galaxy A55 5G 8/256GB Lilac",
-    description:
-      'Screen: 6.6" Super AMOLED, 2340x1080 / Samsung Exynos 1480 (4 x 2.75 GHz + 4 x 2.0 GHz) / Main Triple Camera: 50 MP + 12 MP + 5 MP, Front Camera: 32 MP / RAM 8 GB / 256 GB internal storage + microSD (up to 1 TB) / 3G / LTE / 5G / GPS / A-GPS / GLONASS / BDS / Dual SIM support (Nano-SIM) / Android 14 / 5000 mAh',
-    status: "AVAILABLE",
-    tags: ["category:mobile"],
-    image:
-      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_2-tTDYhyoyqsEkwPzySFdXflYCe7TkUb.jpg",
-    price: 500
-  },
-  {
-    id: "124",
-    name: "Mobile Phone Apple iPhone 14 Pro 128GB Space Gray",
-    description:
-      'Screen: 6.1" Super Retina XDR, 2532x1170 / A16 Bionic chip / Main Triple Camera: 48 MP + 12 MP + 12 MP, Front Camera: 12 MP / RAM 6 GB / 128 GB internal storage / 3G / LTE / 5G / GPS / GLONASS / Dual SIM support (Nano-SIM and eSIM) / iOS 16 / 3200 mAh',
-    status: "AVAILABLE",
-    tags: ["category:mobile"],
-    image:
-      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
-    price: 999
-  },
-  {
-    id: "125",
-    name: 'Tablet Apple iPad Pro 11" (2022) 128GB Wi-Fi Space Gray',
-    description:
-      'Screen: 11" Liquid Retina, 2388x1668 / M2 chip / Main Camera: 12 MP, Front Camera: 12 MP / RAM 8 GB / 128 GB internal storage / Wi-Fi / Bluetooth 5.3 / iPadOS 16 / 7538 mAh',
-    status: "AVAILABLE",
-    tags: ["category:tablet"],
-    image:
-      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_1-PpRl76SFgEv3Zig14ygkiiabH9f8qS.png",
-    price: 799
-  },
-  {
-    id: "126",
-    name: "Tablet Samsung Galaxy Tab S8+ 256GB Wi-Fi Silver",
-    description:
-      'Screen: 12.4" Super AMOLED, 2800x1752 / Snapdragon 8 Gen 1 / Main Camera: 13 MP, Front Camera: 12 MP / RAM 8 GB / 256 GB internal storage + microSD (up to 1 TB) / Wi-Fi / Bluetooth 5.2 / Android 12 / 10090 mAh',
-    status: "AVAILABLE",
-    tags: ["category:tablet"],
-    image:
-      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/tablet_2-ayF4QQ9ilJtRKlpBLCvwlJkBYddhPO.png",
-    price: 999
-  },
-  {
-    id: "127",
-    name: 'Laptop Apple MacBook Pro 14" (2023) M2 Pro 512GB Space Gray',
-    description:
-      'Screen: 14.2" Liquid Retina XDR, 3024x1964 / M2 Pro chip / RAM 16 GB / 512 GB SSD / Wi-Fi 6 / Bluetooth 5.3 / macOS Ventura / 70 Wh battery',
-    status: "AVAILABLE",
-    tags: ["category:computer"],
-    image:
-      "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg",
-    price: 1999
-  }
-];
+const mockAddToCart = jest.fn();
+
+jest.mock("@/hooks/use-add-to-cart/useAddToCart", () => ({
+  __esModule: true,
+  default: jest.fn(() => [mockAddToCart, {}])
+}));
 
 jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
   __esModule: true,
@@ -72,11 +24,12 @@ jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
 jest.mock("@/store/slices/userSlice", () => ({
   __esModule: true,
   default: () => ({}),
-  useUserDetailsSelector: jest.fn(() => ({ id: "123" })),
+  useUserDetailsSelector: jest.fn(),
   useIsAuthLoadingSelector: jest.fn(() => false)
 }));
 
 jest.mock("@/store/api/cartApi", () => ({
+  useGetCartItemsQuery: jest.fn(() => [jest.fn(), {}]),
   useAddToCartMutation: jest.fn(() => [jest.fn(), {}]),
   useRemoveFromCartMutation: jest.fn(() => [jest.fn(), {}]),
   useLazyGetCartItemsQuery: jest.fn(() => [jest.fn(), {}]),
@@ -87,21 +40,53 @@ jest.mock("@/store/api/cartApi", () => ({
   }
 }));
 
-const renderProductsContainer = (
-  extraProps: Partial<ProductsContainerProps> = {}
-) => {
+const mockOpenDrawer = jest.fn();
+
+jest.mock("@/context/drawer/DrawerContext", () => ({
+  ...jest.requireActual("@/context/drawer/DrawerContext"),
+  useDrawerContext: jest.fn(() => ({ openDrawer: mockOpenDrawer }))
+}));
+
+jest.mock("@/hooks/use-get-cart/useGetCart", () => ({
+  __esModule: true,
+  default: jest.fn()
+}));
+
+const mockCartItem = (items: any) => {
+  (useGetCart as jest.Mock).mockReturnValue({
+    data: {
+      items
+    },
+    isLoading: false,
+    isFetching: false
+  });
+};
+
+type RenderProductsContainer = ProductsContainerProps & {
+  items: Partial<CartItem>[];
+};
+
+const renderProductsContainer = ({
+  items = [],
+  ...extraProps
+}: Partial<RenderProductsContainer> = {}) => {
+  mockCartItem(items);
+  (useUserDetailsSelector as jest.Mock).mockReturnValue({ id: "123" });
   return renderWithProviders(
-    <ProductsContainer products={mockProducts} {...extraProps} />
+    <ProductsContainer products={mockProducts.slice(0, 10)} {...extraProps} />
   );
 };
 
 describe("Test ProductsContainer", () => {
-  test("Should render all 5 products", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  test("Should render 10 products", () => {
     renderProductsContainer();
 
     const productsElements = screen.getAllByRole("link");
 
-    expect(productsElements.length).toBe(5);
+    expect(productsElements.length).toBe(10);
   });
 
   test("Should render correct amount of skeletons", () => {
@@ -140,5 +125,36 @@ describe("Test ProductsContainer", () => {
     const errorElement = screen.getByText("error");
 
     expect(errorElement).toBeInTheDocument();
+  });
+
+  test("Should open drawer when product is in cart and add-to-cart button is clicked", () => {
+    renderProductsContainer({
+      items: [{ productId: mockProducts[0].id, name: mockProducts[0].name }]
+    });
+
+    const addToCartButton = screen.getAllByTestId("add-to-cart-button")[0];
+
+    fireEvent.click(addToCartButton);
+
+    expect(mockOpenDrawer).toHaveBeenCalled();
+    expect(mockAddToCart).not.toHaveBeenCalled();
+  });
+
+  test("Should add product to the cart when add-to-cart button is clicked", () => {
+    renderProductsContainer();
+
+    const addToCartButton = screen.getAllByTestId("add-to-cart-button")[1];
+
+    fireEvent.click(addToCartButton);
+
+    expect(mockAddToCart).toHaveBeenCalledWith({
+      productId: mockProducts[1].id,
+      name: mockProducts[1].name,
+      image: mockProducts[1].image,
+      productPrice: mockProducts[1].price,
+      quantity: 1,
+      calculatedPrice: mockProducts[1].price
+    });
+    expect(mockOpenDrawer).not.toHaveBeenCalled();
   });
 });

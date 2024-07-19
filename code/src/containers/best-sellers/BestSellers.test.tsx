@@ -1,68 +1,52 @@
 import { screen } from "@testing-library/react";
 
 import BestSellers from "@/containers/best-sellers/BestSellers";
-import { mockData as mockItems } from "@/containers/best-sellers/BestSellers.constants";
 
 import { useGetProductsQuery } from "@/store/api/productsApi";
-import { RTKQueryMockState, RTKQueryReturnState } from "@/types/common";
+import { Product } from "@/types/product.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-
-const mockData = {
-  content: mockItems.slice(0, 5),
-  totalPages: 5,
-  totalItems: 20
-};
 
 jest.mock("@/store/api/productsApi", () => ({
   useGetProductsQuery: jest.fn()
 }));
 
-jest.mock("@/store/slices/userSlice", () => ({
-  __esModule: true,
-  default: () => ({}),
-  useUserDetailsSelector: jest.fn(() => ({ id: "123" })),
-  useIsAuthLoadingSelector: jest.fn(() => false)
-}));
-
-jest.mock("@/store/api/cartApi", () => ({
-  useAddToCartMutation: jest.fn(() => [jest.fn(), {}]),
-  useRemoveFromCartMutation: jest.fn(() => [jest.fn(), {}]),
-  useLazyGetCartItemsQuery: jest.fn(() => [jest.fn(), {}]),
-  endpoints: {
-    getCartItems: {
-      matchFulfilled: jest.fn()
-    }
-  }
-}));
-
-jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
-  __esModule: true,
-  default: jest.fn(() => ({ openSnackbar: () => {} }))
-}));
-
-const defaultOptions: RTKQueryReturnState<typeof mockData> = {
-  data: mockData,
-  isLoading: false,
-  isSuccess: true,
-  isError: false,
-  error: null
+const mockProductsResponse = {
+  content: [
+    { id: 1, name: "Product 1" },
+    { id: 2, name: "Product 2" }
+  ]
 };
 
+type ProductsContainerType = {
+  products: Product[];
+  isLoading?: boolean;
+  isError?: boolean;
+};
+
+jest.mock("@/containers/products-container/ProductsContainer", () => ({
+  __esModule: true,
+  default: ({ isLoading, isError, products }: ProductsContainerType) => (
+    <div data-testid="products-container">
+      {isLoading && <div>Loading...</div>}
+      {isError && <div>Error!</div>}
+      {products.length > 0 && <div>Products List</div>}
+    </div>
+  )
+}));
+
 const renderAndMock = (
-  extraOptions: RTKQueryMockState<typeof mockData> = {}
+  mockData: Partial<ReturnType<typeof useGetProductsQuery>> = {}
 ) => {
-  (useGetProductsQuery as jest.Mock).mockReturnValueOnce({
-    ...defaultOptions,
-    ...extraOptions
+  (useGetProductsQuery as jest.Mock).mockReturnValue({
+    data: mockData.data || null,
+    isLoading: mockData.isLoading || false,
+    isError: mockData.isError || false
   });
+
   renderWithProviders(<BestSellers />);
 };
 
-describe("BestSellers component", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
+describe("BestSellers", () => {
   test("Should render bestSellers header", () => {
     renderAndMock();
 
@@ -71,33 +55,35 @@ describe("BestSellers component", () => {
     expect(bestSellersHeader).toBeInTheDocument();
   });
 
-  test("Should render product skeletons if isLoading", () => {
+  test("should pass the correct size to the query and render ProductsContainer with correct props", () => {
+    renderAndMock({ data: mockProductsResponse });
+
+    expect(useGetProductsQuery).toHaveBeenCalledWith({
+      page: 0,
+      size: 5
+    });
+    const productsContainer = screen.getByTestId("products-container");
+    expect(productsContainer).toBeInTheDocument();
+    const productsList = screen.getByText("Products List");
+    expect(productsList).toBeInTheDocument();
+  });
+
+  test("should render loading state", () => {
     renderAndMock({ isLoading: true });
-
-    const productSkeletonElement = screen.getAllByTestId(
-      "spa-product-skeleton"
-    );
-
-    expect(productSkeletonElement[0]).toBeInTheDocument();
+    const loading = screen.getByText("Loading...");
+    expect(loading).toBeInTheDocument();
   });
 
-  test("Should render product cards when data is available", async () => {
+  test("should render error state", () => {
+    renderAndMock({ isError: true });
+    const error = screen.getByText("Error!");
+    expect(error).toBeInTheDocument();
+  });
+
+  test("should render the button with correct props", () => {
     renderAndMock();
 
-    const productCards = await screen.findAllByTestId("product-card");
-    expect(productCards.length).toBe(5);
-  });
-
-  test("Should render no product cards when data is empty", async () => {
-    renderAndMock({ data: null });
-
-    const productCards = screen.queryAllByTestId("product-card");
-    expect(productCards.length).toBe(0);
-  });
-
-  test("Should call useGetProductsQuery with correct params", () => {
-    renderAndMock();
-
-    expect(useGetProductsQuery).toHaveBeenCalledWith({ size: 5, page: 0 });
+    const button = screen.getByRole("link", { name: /bestSellers.button/i });
+    expect(button).toHaveAttribute("href", "/products");
   });
 });
