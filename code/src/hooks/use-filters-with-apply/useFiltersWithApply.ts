@@ -1,6 +1,8 @@
 import { useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
+import parseFiltersFromParams from "@/hooks/use-filters-with-apply/parse-filters-from-params/parseFiltersFromParams";
+import serializeToQueryString from "@/hooks/use-filters-with-apply/serialize-to-query-string/serializeToQueryString";
 import {
   ApplyFilters,
   CheckFilterActive,
@@ -8,124 +10,6 @@ import {
   ResetFilters,
   UpdateFilterByKey
 } from "@/hooks/use-filters-with-apply/useFiltersWithApply.types";
-
-const parseSerializedSet = (value: string) => {
-  const match = value.match(/^{((?:\w+(?:,\w+)*)?)}$/);
-
-  const arrayMatch = match?.[1];
-
-  if (arrayMatch === "") {
-    return new Set();
-  }
-
-  if (arrayMatch !== undefined) {
-    const array = arrayMatch
-      .split(",")
-      .map((item) => deserializeFromSearchParam(item));
-
-    return new Set(array);
-  }
-
-  return undefined;
-};
-
-const checkSupportedType = (value: unknown) => {
-  return (
-    ["number", "string", "boolean"].includes(typeof value) ||
-    value === null ||
-    value === undefined ||
-    value instanceof Set
-  );
-};
-
-const serializeToQueryString = <Value>(value: Value): string => {
-  if (value === null) {
-    return "null";
-  }
-
-  switch (typeof value) {
-    case "number":
-    case "string":
-    case "boolean":
-      return value.toString();
-    case "object":
-      if (value instanceof Set) {
-        const serializedList = Array.from(value)
-          .map((item) => serializeToQueryString(item))
-          .join(",");
-
-        return `{${serializedList}}`;
-      }
-
-      throw new Error(`Type is not supported`);
-    default:
-      throw new Error(`Type is not supported`);
-  }
-};
-
-const deserializeFromSearchParam = <Value>(queryString: string): Value => {
-  if (queryString === "null") {
-    return null as Value;
-  }
-
-  if (queryString === "true") {
-    return true as Value;
-  }
-
-  if (queryString === "false") {
-    return false as Value;
-  }
-
-  const numericValue = parseInt(queryString);
-
-  if (!isNaN(numericValue)) {
-    return numericValue as Value;
-  }
-
-  const parsedSet = parseSerializedSet(queryString);
-
-  if (parsedSet) {
-    return parsedSet as Value;
-  }
-
-  if (typeof queryString === "string") {
-    return queryString as Value;
-  }
-
-  throw new Error(`Type is not supported`);
-};
-
-const parseFiltersFromParams = <Filters>(
-  defaultFilters: Filters,
-  searchParams: URLSearchParams
-) => {
-  const activeFilters = new Set<keyof Filters>();
-  const filters = {} as Filters;
-
-  for (const key in defaultFilters) {
-    const paramValue = searchParams.get(key);
-
-    const defaultFilterValue = defaultFilters[key];
-
-    if (!checkSupportedType(defaultFilterValue)) {
-      throw new Error(
-        "Serialization for this type of value is not supported! Supported types are: number, string, boolean, null or Set"
-      );
-    }
-
-    if (paramValue !== null) {
-      filters[key] = deserializeFromSearchParam(paramValue);
-      activeFilters.add(key);
-    } else {
-      filters[key] = defaultFilterValue;
-    }
-  }
-
-  return {
-    defaultFiltersFromParams: filters,
-    defaultActiveFilters: activeFilters
-  };
-};
 
 const useFiltersWithApply = <Filters extends Record<string, unknown>>(
   defaultFilters: Filters

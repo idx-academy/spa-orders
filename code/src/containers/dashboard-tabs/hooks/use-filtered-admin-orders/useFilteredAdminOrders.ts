@@ -3,24 +3,29 @@ import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
 import { DeliveryMethod } from "@/types/delivery.types";
 import { GetAdminOrderParams, OrderStatus } from "@/types/order.types";
 
+type RangeFilter<T> = {
+  start: T;
+  end: T;
+};
+
 export type OrderFilters = Pick<
   Required<GetAdminOrderParams>,
-  "isPaid" | "createdBefore" | "createdAfter" | "totalLess" | "totalMore"
+  "isPaid" | "createdBefore" | "createdAfter"
 > & {
   statuses: Set<OrderStatus>;
   deliveryMethods: Set<DeliveryMethod>;
+  price: RangeFilter<number>;
 };
 
 const useFilteredAdminOrders = () => {
   const {
     filters,
-    appliedFilters,
+    appliedFilters: { isPaid, price, statuses, deliveryMethods },
     activeFiltersCount,
     actions: filterActions
   } = useFiltersWithApply<OrderFilters>({
     isPaid: false,
-    totalMore: 0,
-    totalLess: 20000,
+    price: { start: 0, end: 20000 },
     createdBefore: "",
     createdAfter: "",
     statuses: new Set(),
@@ -28,13 +33,11 @@ const useFilteredAdminOrders = () => {
   });
 
   const transformedFilters: GetAdminOrderParams = {
-    isPaid: appliedFilters.isPaid,
-    totalLess: appliedFilters.totalLess,
-    totalMore: appliedFilters.totalMore,
-    statuses: appliedFilters.statuses && Array.from(appliedFilters.statuses),
-    deliveryMethods:
-      appliedFilters?.deliveryMethods &&
-      Array.from(appliedFilters.deliveryMethods)
+    isPaid: isPaid,
+    totalLess: price?.end,
+    totalMore: price?.start,
+    statuses: statuses && Array.from(statuses),
+    deliveryMethods: deliveryMethods && Array.from(deliveryMethods)
   };
 
   const { data: ordersResponse, isLoading } =

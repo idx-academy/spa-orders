@@ -117,16 +117,13 @@ const OrdersTabFilterDrawer = ({
   };
 
   const handlePriceRangeChange = (event: Event, value: number[]) => {
-    updateFilterByKey("totalMore", value[0]);
-    updateFilterByKey("totalLess", value[1]);
+    updateFilterByKey("price", { start: value[0], end: value[1] });
   };
 
-  const isPriceFilterActive =
-    checkFilterActive("totalLess") && checkFilterActive("totalMore");
+  const isPriceFilterActive = checkFilterActive("price");
 
   const handlePriceFilterReset = () => {
-    resetFilterByKey("totalLess");
-    resetFilterByKey("totalMore");
+    resetFilterByKey("price");
   };
 
   const isPaidFilterActive = checkFilterActive("isPaid");
@@ -192,7 +189,7 @@ const OrdersTabFilterDrawer = ({
           sectionCaptionTranslationKey="dashboardTabs.orders.filters.price"
         >
           <AppRangeSlider
-            value={[filters.totalMore, filters.totalLess]}
+            value={[filters.price.start, filters.price.end]}
             onChange={handlePriceRangeChange}
           />
         </FilterRecordAccordion>
