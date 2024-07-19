@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import { mockProducts } from "@/containers/products-container/ProductContainer.constants";
 import ProductsContainer from "@/containers/products-container/ProductsContainer";
@@ -6,7 +6,6 @@ import { ProductsContainerProps } from "@/containers/products-container/Products
 
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
-import { CartItem } from "@/types/cart.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockAddToCart = jest.fn();
@@ -52,7 +51,12 @@ jest.mock("@/hooks/use-get-cart/useGetCart", () => ({
   default: jest.fn()
 }));
 
-const mockCartItem = (items: any) => {
+type CartItem = {
+  productId: string;
+  name: string;
+};
+
+const mockCartItem = (items: CartItem[]) => {
   (useGetCart as jest.Mock).mockReturnValue({
     data: {
       items
@@ -63,7 +67,7 @@ const mockCartItem = (items: any) => {
 };
 
 type RenderProductsContainer = ProductsContainerProps & {
-  items: Partial<CartItem>[];
+  items: CartItem[];
 };
 
 const renderProductsContainer = ({
