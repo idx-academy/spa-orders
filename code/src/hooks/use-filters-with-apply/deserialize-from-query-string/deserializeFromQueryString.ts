@@ -1,6 +1,10 @@
 import parseSerializedRange from "@/hooks/use-filters-with-apply/parse-serialized-range/parseSerializedRange";
 import parseSerializedSet from "@/hooks/use-filters-with-apply/parse-serialized-set/parseSerializedSet";
 
+const checkNumber = (value: unknown) => {
+  return Number(value) === value;
+};
+
 const deserializeFromQueryString = <Value>(queryString: string): Value => {
   if (queryString === "null") {
     return null as Value;
@@ -14,8 +18,7 @@ const deserializeFromQueryString = <Value>(queryString: string): Value => {
     return false as Value;
   }
 
-  //@ts-ignore
-  const isNumber = Number(queryString) === queryString;
+  const isNumber = checkNumber(queryString);
 
   if (isNumber) {
     return Number(queryString) as Value;
