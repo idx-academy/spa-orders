@@ -11,5 +11,6 @@
   "dashboardTabs.orders.filters.price": "Ціна ($)",
   "dashboardTabs.orders.filters.other": "Інше",
   "dashboardTabs.orders.filters.isPaid": "Оплачено",
+  "dashboardTabs.orders.filters.clearFilterTooltip": "Очистити фільтр {filterName}",
   "dashboardTabs.orders.filters.applyFiltersButton": "Застосувати"
 }

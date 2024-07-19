@@ -19,7 +19,14 @@
     padding: 0 spacing(5);
 
     & > .MuiAccordionSummary-content {
-      display: inline-flex;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: spacing(2);
+    }
+
+    &-group {
+      display: flex;
       align-items: center;
       gap: spacing(2);
     }
@@ -45,5 +52,14 @@
       --filter-record-accordion-filter-active-icon-fill-color,
       $purple-light
     );
+  }
+
+  &__reset-filter-button {
+    @include transition((color, "fast"));
+    padding: 0;
+
+    &:hover {
+      color: $red;
+    }
   }
 }

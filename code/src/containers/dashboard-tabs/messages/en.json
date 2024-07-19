@@ -11,5 +11,6 @@
   "dashboardTabs.orders.filters.price": "Price ($)",
   "dashboardTabs.orders.filters.other": "Other",
   "dashboardTabs.orders.filters.isPaid": "Is paid",
+  "dashboardTabs.orders.filters.clearFilterTooltip": "Clear {filterName} filter",
   "dashboardTabs.orders.filters.applyFiltersButton": "Apply"
 }

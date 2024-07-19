@@ -10,4 +10,5 @@ export type FilterRecordAccordionProps = Required<PropsWithChildren> & {
   sectionCaptionTranslationKey: string;
   className?: FilterRecordAccordionClassNames;
   isFilterActive?: boolean;
+  resetFilter: () => void;
 };
