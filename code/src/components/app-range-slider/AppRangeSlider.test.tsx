@@ -9,9 +9,11 @@ const mockHandleChange = jest.fn();
 
 describe("AppRangeSlider", () => {
   describe("with default props", () => {
-    test("uses default props correctly", async () => {
+    beforeEach(() => {
       renderWithProviders(<AppRangeSlider />);
+    });
 
+    test("uses default props correctly", async () => {
       const rangeStartInput = screen.getByTestId("range-start");
       expect(rangeStartInput).toHaveAttribute("min", "0");
       expect(rangeStartInput).toHaveAttribute("max", "20000");
@@ -19,11 +21,10 @@ describe("AppRangeSlider", () => {
 
       const rangeEndInput = screen.getByTestId("range-end");
       await typeIntoInput(rangeEndInput, 90);
+      expect(rangeEndInput).toHaveValue(90);
     });
 
     test("changes input with default props correctly", async () => {
-      renderWithProviders(<AppRangeSlider />);
-
       const rangeEndInput = screen.getByTestId("range-end");
       const rangeStartInput = screen.getByTestId("range-start");
 

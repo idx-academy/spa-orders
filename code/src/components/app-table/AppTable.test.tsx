@@ -1,10 +1,9 @@
 import { screen } from "@testing-library/react";
 
 import AppTable from "@/components/app-table/AppTable";
+import { AppTableProps } from "@/components/app-table/AppTable.types";
 
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-
-import { AppTableProps } from "./AppTable.types";
 
 type TableItem = { id: number; value: string };
 

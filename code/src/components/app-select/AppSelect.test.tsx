@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
 import AppSelect from "@/components/app-select/AppSelect";
-
-import { AppSelectProps } from "./AppSelect.types";
+import { AppSelectProps } from "@/components/app-select/AppSelect.types";
 
 const renderComponent = (params?: Partial<AppSelectProps>) => {
   return render(

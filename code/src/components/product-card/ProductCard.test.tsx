@@ -20,18 +20,15 @@ const mockProduct: Product = {
 };
 
 const mockCartIconClickHandler = jest.fn();
+const mockSetState = jest.fn();
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
-  useState: jest.fn(() => [true, () => {}])
+  useState: jest.fn((init) => [init, mockSetState])
 }));
-
-const mockSetState = jest.fn();
 
 describe("ProductCard component", () => {
   beforeEach(() => {
-    (useState as jest.Mock).mockImplementation((init) => [init, mockSetState]);
-
     renderWithProviders(
       <ProductCard
         product={mockProduct}
@@ -77,11 +74,11 @@ describe("ProductCard component", () => {
   });
 
   test("Should call functions on cart icon click", () => {
-    const cartIcon = screen.getByRole("button");
+    const cartIcon = screen.getByTestId("add-to-cart-button");
 
     fireEvent.click(cartIcon);
 
-    expect(mockSetState).toHaveBeenNthCalledWith(3, true);
+    expect(mockSetState).toHaveBeenNthCalledWith(3, true); // 3 times becase mui button internally calls it once
     expect(mockCartIconClickHandler).toHaveBeenCalledWith({
       ...mockProduct,
       isInCart: true
@@ -89,7 +86,7 @@ describe("ProductCard component", () => {
   });
 
   test("should render cart icon with right class if product is in cart", () => {
-    const cartIcon = screen.getByRole("button");
+    const cartIcon = screen.getByTestId("add-to-cart-button");
 
     expect(cartIcon).toHaveClass("spa-product-card__cart-button--active");
   });

@@ -70,6 +70,7 @@ const ProductCard = ({
             "spa-product-card__cart-button",
             isProductInCart && "spa-product-card__cart-button--active"
           )}
+          data-testid="add-to-cart-button"
         >
           <svg>
             <use href={cartIconFullLink} />

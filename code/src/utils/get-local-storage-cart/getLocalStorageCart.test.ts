@@ -15,6 +15,8 @@ const mockAndGetCart = (mockCart: unknown) => {
   return getLocalStorageCart();
 };
 
+const mockJsonParse = jest.fn();
+
 describe("Test getLocalStorageCart", () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -52,8 +54,6 @@ describe("Test getLocalStorageCart", () => {
   });
 
   test("Should return initial cart if there is no local storage value and do not use json parsing", () => {
-    const mockJsonParse = jest.fn();
-
     jest.spyOn(JSON, "parse").mockImplementationOnce(mockJsonParse);
 
     const result = getLocalStorageCart();
