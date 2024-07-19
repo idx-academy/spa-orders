@@ -81,7 +81,7 @@ describe("I18nProvider", () => {
 
       renderWithProviders(<I18nPlayground />);
 
-      const localeDisplay = screen.getByTestId("localeDisplay");
+      localeDisplay = screen.getByTestId("localeDisplay");
       expect(localeDisplay).toHaveTextContent("uk");
     });
 
@@ -100,7 +100,7 @@ describe("I18nProvider", () => {
 
       mockAndRender(null);
 
-      const localeDisplay = screen.getByTestId("localeDisplay");
+      localeDisplay = screen.getByTestId("localeDisplay");
       expect(localeDisplay).toHaveTextContent("en");
     });
   });
