@@ -6,7 +6,7 @@ import {
   useState
 } from "react";
 
-import Drawer from "@mui/material/Drawer";
+import AppDrawer from "@/components/app-drawer/AppDrawer";
 
 export type DrawerContextType = {
   openDrawer: (component: ReactElement) => void;
@@ -37,14 +37,9 @@ const DrawerProvider = ({ children }: DrawerProviderProps) => {
   };
 
   const drawerContent = (
-    <Drawer
-      open={isOpen}
-      onClose={closeDrawer}
-      anchor="right"
-      transitionDuration={400}
-    >
+    <AppDrawer isOpen={isOpen} onClose={closeDrawer}>
       {drawer}
-    </Drawer>
+    </AppDrawer>
   );
 
   return (
