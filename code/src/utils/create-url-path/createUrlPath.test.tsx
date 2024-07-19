@@ -42,7 +42,7 @@ describe("createUrlPath", () => {
 
   test("should handle empty query parameters correctly", () => {
     const query = { key1: "", key2: "value2" };
-    const expectedUrlWithQuery = `${baseUrl}?key2=value2`;
+    const expectedUrlWithQuery = `${baseUrl}?key1=&key2=value2`;
     expect(createUrlPath(baseUrl, "", query)).toBe(expectedUrlWithQuery);
   });
 
