@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 
 import BestSellers from "@/containers/best-sellers/BestSellers";
+import { ProductsContainerProps } from "@/containers/products-container/ProductsContainer.types";
 
 import { useGetProductsQuery } from "@/store/api/productsApi";
-import { Product } from "@/types/product.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/api/productsApi", () => ({
@@ -17,15 +17,9 @@ const mockProductsResponse = {
   ]
 };
 
-type ProductsContainerType = {
-  products: Product[];
-  isLoading?: boolean;
-  isError?: boolean;
-};
-
 jest.mock("@/containers/products-container/ProductsContainer", () => ({
   __esModule: true,
-  default: ({ isLoading, isError, products }: ProductsContainerType) => (
+  default: ({ isLoading, isError, products }: ProductsContainerProps) => (
     <div data-testid="products-container">
       {isLoading && <div>Loading...</div>}
       {isError && <div>Error!</div>}

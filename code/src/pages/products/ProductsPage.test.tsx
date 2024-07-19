@@ -1,16 +1,11 @@
 import { fireEvent, screen } from "@testing-library/react";
 
+import { ProductsContainerProps } from "@/containers/products-container/ProductsContainer.types";
+
 import ProductsPage from "@/pages/products/ProductsPage";
 import { useGetProductsQuery } from "@/store/api/productsApi";
 import { PaginationParams, RTKQueryReturnState } from "@/types/common";
-import { Product } from "@/types/product.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-
-type ProductsContainerType = {
-  products: Product[];
-  isLoading?: boolean;
-  isError?: boolean;
-};
 
 const mockProducts = [
   { id: 1, name: "Product 1", price: 100 },
@@ -27,7 +22,7 @@ const mockData = { content: mockProducts, totalPages: 2, totalElements: 8 };
 
 jest.mock("@/containers/products-container/ProductsContainer", () => ({
   __esModule: true,
-  default: ({ isLoading, isError, products }: ProductsContainerType) => (
+  default: ({ isLoading, isError, products }: ProductsContainerProps) => (
     <div data-testid="products-container">
       {isLoading && <div>Loading...</div>}
       {isError && <div>Error!</div>}
