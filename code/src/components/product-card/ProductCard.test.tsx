@@ -1,5 +1,4 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { useState } from "react";
 
 import ProductCard from "@/components/product-card/ProductCard";
 
