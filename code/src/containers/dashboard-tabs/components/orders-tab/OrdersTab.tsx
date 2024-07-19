@@ -36,6 +36,16 @@ const OrdersTab = () => {
     }
   };
 
+  const titleTypography =
+    activeFiltersCount > 0 ? (
+      <AppTypography
+        translationKey="dashboardTabs.orders.filters.titleWithCount"
+        translationProps={filtersTitleTranslationProps}
+      />
+    ) : (
+      <AppTypography translationKey="dashboardTabs.orders.filters.title" />
+    );
+
   return (
     <TabContainer>
       <AppBox className="dashboard-tabs__toolbar">
@@ -45,10 +55,7 @@ const OrdersTab = () => {
           translationKey="dashboardTabs.orders.title"
         />
         <AppButton variant="dark" onClick={handleOpenFilterDrawer}>
-          <AppTypography
-            translationKey="dashboardTabs.orders.filters.titleWithCount"
-            translationProps={filtersTitleTranslationProps}
-          />
+          {titleTypography}
           <FilterListIcon />
         </AppButton>
       </AppBox>
