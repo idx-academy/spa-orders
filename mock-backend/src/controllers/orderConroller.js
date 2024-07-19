@@ -19,7 +19,9 @@ const getAdminOrders = (req, res) => {
   const filteredOrders = {
     ...adminOrders,
     content: adminOrders.content.filter((item) => {
-      if (isPaid !== undefined && item.isPaid !== Boolean(isPaid)) {
+      const parsedIsPaid = isPaid === "true";
+
+      if (isPaid !== undefined && item.isPaid !== parsedIsPaid) {
         return false;
       }
 
@@ -62,8 +64,8 @@ const getAdminOrders = (req, res) => {
 };
 
 const changeOrderStatus = (req, res) => {
-  return res.json();  
-}
+  return res.json();
+};
 
 const createOrder = async (req, res) => {
   const { body } = req;
@@ -77,4 +79,9 @@ const createOrder = async (req, res) => {
   res.json(newOrder.id);
 };
 
-module.exports = { getUserOrders, getAdminOrders, createOrder, changeOrderStatus };
+module.exports = {
+  getUserOrders,
+  getAdminOrders,
+  createOrder,
+  changeOrderStatus,
+};
