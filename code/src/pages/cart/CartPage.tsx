@@ -1,13 +1,11 @@
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
-import OrderSummary from "@/containers/order-summary/OrderSummary";
+import DeliveryForm from "@/containers/forms/delivery-form/DeliveryForm";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import useUserCartItems from "@/hooks/use-user-cart-items/useUserCartItems";
-import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
-import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import CartItem from "@/pages/cart/components/cart-item/CartItem";
 import EmptyCart from "@/pages/cart/components/empty-cart/EmptyCart";
 import { CartItem as CartItemType } from "@/types/cart.types";
@@ -15,28 +13,12 @@ import { CartItem as CartItemType } from "@/types/cart.types";
 import "@/pages/cart/CartPage.scss";
 
 const CartPage = () => {
-  const user = useGetUserDetails();
   const { cartItems, isError, handleRemoveItem } = useUserCartItems();
 
-  const [createOrder, { isLoading }] = useCreateOrder();
-
   if (isError) return <AppTypography translationKey="error.label" />;
-
   if (!cartItems?.items?.length) {
     return <EmptyCart />;
   }
-
-  const handleCreateOrder = () => {
-    createOrder({
-      userId: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      deliveryMethod: "NOVA", //For now it's just hardcoded data
-      city: "Lviv",
-      department: "№1 Franka street, 7"
-    });
-  };
 
   const cartItemsBlock = cartItems.items.map((item: CartItemType) => (
     <CartItem key={item.productId} item={item} onRemove={handleRemoveItem} />
@@ -58,11 +40,8 @@ const CartPage = () => {
             />
             {cartItemsBlock}
           </AppBox>
-          <OrderSummary
-            isLoading={isLoading}
-            handleCreateOrder={handleCreateOrder}
-            totalPrice={totalPrice}
-          />
+
+          <DeliveryForm totalPrice={totalPrice} />
         </AppBox>
       </AppBox>
     </PageWrapper>

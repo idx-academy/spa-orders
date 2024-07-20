@@ -18,7 +18,7 @@ const AppSelect = forwardRef(
       className,
       ...props
     }: AppSelectProps,
-    ref // Add ref here
+    ref
   ) => {
     return (
       <FormControl>
@@ -32,7 +32,7 @@ const AppSelect = forwardRef(
           </InputLabel>
         )}
         <Select
-          ref={ref} // Pass ref to Select
+          ref={ref}
           className={cn("spa-select", `spa-select--${color}`, className)}
           labelId={`spa-select-label-${labelId}`}
           id={`spa-select-${labelId}`}
