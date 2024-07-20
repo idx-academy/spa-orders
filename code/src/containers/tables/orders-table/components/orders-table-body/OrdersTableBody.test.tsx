@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { mockOrders } from "@/containers/tables/orders-table/OrdersTable.constants";
 import OrdersTableBody from "@/containers/tables/orders-table/components/orders-table-body/OrdersTableBody";
