@@ -1,68 +1,126 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import useAddToCart from "@/hooks/use-add-to-cart/useAddToCart";
 import { useAppDispatch } from "@/hooks/use-redux/useRedux";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useAddToCartMutation } from "@/store/api/cartApi";
+import { addToLocalCart } from "@/store/slices/localCart";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
 import { UserDetails } from "@/types/user.types";
 
 jest.mock("@/hooks/use-redux/useRedux", () => ({
   __esModule: true,
-  useAppDispatch: jest.fn(() => jest.fn(() => ({ unwrap: () => {} })))
+  useAppDispatch: jest.fn()
 }));
 
 jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
   __esModule: true,
-  default: jest.fn(() => ({
-    openSnackbarWithTimeout: jest.fn()
-  }))
+  default: jest.fn()
 }));
 
 jest.mock("@/store/api/cartApi", () => ({
-  useAddToCartMutation: jest.fn(() => [jest.fn(), {}])
+  useAddToCartMutation: jest.fn()
 }));
 
 jest.mock("@/store/slices/localCart", () => ({
   __esModule: true,
-  addToLocalCart: jest.fn(() => ({}))
+  addToLocalCart: jest.fn()
 }));
 
 jest.mock("@/store/slices/userSlice", () => ({
-  useUserDetailsSelector: jest.fn(() => ({}))
+  useUserDetailsSelector: jest.fn()
 }));
 
-const dispatch = jest.fn(() => ({ unwrap: () => {} }));
-const addToCartMutation = jest.fn(() => ({ unwrap: () => {} }));
+const successSnackbarConfig = {
+  variant: "success",
+  messageTranslationKey: "cart.itemAddition.success"
+};
+
+const errorSnackbarConfig = {
+  variant: "error",
+  messageTranslationKey: "cart.itemAddition.fail"
+};
+
+const mockUnwrap = jest.fn();
+const mockOpenSnackbarWithTimeout = jest.fn();
+
+const mockDispatch = jest.fn(() => ({ unwrap: mockUnwrap }));
+const mockAddToCartMutation = jest.fn(() => ({ unwrap: mockUnwrap }));
 
 const renderAndMock = (user?: Partial<UserDetails>) => {
-  (useAppDispatch as jest.Mock).mockReturnValue(dispatch);
-
-  (useAddToCartMutation as jest.Mock).mockReturnValue([addToCartMutation, {}]);
-
+  (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch);
+  (useAddToCartMutation as jest.Mock).mockReturnValue([
+    mockAddToCartMutation,
+    {}
+  ]);
   (useUserDetailsSelector as jest.Mock).mockReturnValue(user);
+  (useSnackbar as jest.Mock).mockReturnValue({
+    openSnackbarWithTimeout: mockOpenSnackbarWithTimeout
+  });
 
   return renderHook(() => useAddToCart());
 };
 
 describe("useAddToCart", () => {
-  afterEach(() => {
+  beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  test("Should call dispatch if there is no user", () => {
+  test("shows success snackbar when adding to local cart is successful", async () => {
     const { result } = renderAndMock();
 
-    result.current[0]({
+    const data = {
       productId: "1"
-    } as unknown as CartItem);
+    } as unknown as CartItem;
 
-    expect(dispatch).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      result.current[0](data);
+    });
+
+    expect(mockDispatch).toHaveBeenCalledWith(addToLocalCart(data));
+
+    expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith(
+      successSnackbarConfig
+    );
   });
 
-  test("Should call useAddToCartMutation if there is user", () => {
-    renderAndMock({ id: 5 });
+  test("shows success snackbar when adding to server cart is successful", async () => {
+    const userId = 5;
+    const productId = 1;
+    const { result } = renderAndMock({ id: userId });
 
-    expect(useAddToCartMutation).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      result.current[0]({
+        productId
+      } as unknown as CartItem);
+    });
+
+    expect(mockAddToCartMutation).toHaveBeenCalledWith({
+      userId,
+      productId
+    });
+
+    expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith(
+      successSnackbarConfig
+    );
+  });
+
+  test("shows error snackbar when adding to server cart failed", async () => {
+    mockUnwrap.mockImplementationOnce(() => {
+      throw new Error("Error adding to cart");
+    });
+
+    const { result } = renderAndMock({ id: 5 });
+
+    await waitFor(() => {
+      result.current[0]({
+        productId: "1"
+      } as unknown as CartItem);
+    });
+
+    expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith(
+      errorSnackbarConfig
+    );
   });
 });
