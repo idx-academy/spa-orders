@@ -1,0 +1,45 @@
+@import "@design-system";
+
+.delivery-form {
+  display: flex;
+  flex-direction: column;
+  gap: spacing(4);
+
+  &__body {
+    width: 490px;
+    background: var(--spa-devivery-form-bg, $white);
+    padding: spacing(5) spacing(4);
+    border-radius: spacing(1);
+    display: flex;
+    flex-direction: column;
+    gap: spacing(4);
+
+    &-input {
+      width: 100%;
+    }
+
+    &-title {
+      border-bottom: 1px solid var(--spa-devivery-form-divider-color, $gray-light);
+      padding-bottom: spacing(3);
+    }
+
+    &-item {
+      display: flex;
+      gap: spacing(2);
+    }
+  }
+
+  &__method {
+    &-select-input {
+      display: flex;
+      gap: spacing(3);
+      align-items: center;
+      padding-block: spacing(3);
+
+    }
+
+    &-image {
+      @include box(25px)
+    }
+  }
+}
