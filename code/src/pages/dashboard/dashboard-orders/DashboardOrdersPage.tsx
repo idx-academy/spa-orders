@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { useSearchParams } from "react-router-dom";
+
 import FilterListIcon from "@mui/icons-material/FilterList";
 
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
@@ -25,8 +27,46 @@ const DashboardOrdersPage = () => {
     return <div>Loading...</div>;
   }
 
-  const handleCloseFilterDrawer = () => {
-    setIsFilterDrawerOpen(false);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // const sortOption = useMemo(
+  //   () => searchParams.get("sort") || "createdAt,asc",
+  //   [searchParams]
+  // );
+
+  const sortOption = searchParams.get("sort");
+
+  const {
+    data: adminOrderResponse,
+    isLoading,
+    error
+  } = useGetAdminOrdersQuery({
+    sort: sortOption ?? "createdAt,asc"
+  });
+
+  console.log(adminOrderResponse)
+
+  const ordersData = adminOrderResponse?.content ?? [];
+
+  console.log(ordersData)
+  console.log(adminOrderResponse?.content)
+
+  // @TODO: add more logic to error and loading
+
+  if (error) return <div>Error loading orders</div>;
+  if (isLoading) return <div>Loading...</div>;
+  const handleSortChange = (value: string) => {
+    setSearchParams({ sort: value });
+  };
+
+  // @TODO: implement filtersCount
+  const filtersCount = 2;
+
+  const filtersTitleTranslationProps = {
+    values: {
+      count: filtersCount
+    }
   };
 
   const handleOpenFilterDrawer = () => {
@@ -64,7 +104,7 @@ const DashboardOrdersPage = () => {
           <FilterListIcon />
         </AppButton>
       </AppBox>
-      <OrdersTable orders={orders} />
+      <OrdersTable ordersData={ordersData} onSortChange={handleSortChange} />
       <AppDrawer isOpen={isFilterDrawerOpen} onClose={handleCloseFilterDrawer}>
         <OrdersTabFilterDrawer
           filters={filters}

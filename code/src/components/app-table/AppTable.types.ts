@@ -14,4 +14,6 @@ export type AppTableProps<T> = {
   renderBodyItem: (item: T) => ReactNode;
   renderHeadItem: (item: string) => ReactNode;
   fallback?: ReactNode;
+  sortable?: boolean;
+  onSortChange: (value: string) => void;
 };

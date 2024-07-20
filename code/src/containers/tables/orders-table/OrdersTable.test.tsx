@@ -12,9 +12,13 @@ jest.mock("@/store/api/ordersApi", () => ({
   useChangeOrderStatusMutation: jest.fn(() => [mockSetStatus])
 }));
 
+const mockSortChange = jest.fn();
+
 describe("OrdersTable", () => {
   test("renders correctly", () => {
-    const { container } = render(<OrdersTable orders={mockOrders} />);
+    const { container } = render(
+      <OrdersTable ordersData={mockOrders} onSortChange={mockSortChange} />
+    );
 
     tableColumns.forEach((column) => {
       const columnElement = screen.getByText(column);
@@ -32,7 +36,7 @@ describe("OrdersTable", () => {
   });
 
   test("renders fallback", () => {
-    render(<OrdersTable orders={[]} />);
+    render(<OrdersTable ordersData={[]} onSortChange={mockSortChange}/>);
 
     const fallbackText = screen.getByText(/ordersTable.fallback/);
     expect(fallbackText).toBeInTheDocument();

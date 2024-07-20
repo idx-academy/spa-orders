@@ -79,6 +79,7 @@ export type GetUserOrderParams = {
 
 export type GetAdminOrderParams = Partial<
   Pick<BaseOrder, "isPaid"> & {
+    sort?: string;
     deliveryMethods: DeliveryMethod[];
     statuses: OrderStatus[];
     totalMore: number;
