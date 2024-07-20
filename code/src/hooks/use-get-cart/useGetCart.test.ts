@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import { useLazyGetCartItemsQuery } from "@/store/api/cartApi";
 import { useLocalCartSelector } from "@/store/slices/localCart";
 import {
@@ -7,14 +8,14 @@ import {
   useUserDetailsSelector
 } from "@/store/slices/userSlice";
 
-import useGetCart from "./useGetCart";
-
 jest.mock("@/store/api/cartApi", () => ({
   useLazyGetCartItemsQuery: jest.fn()
 }));
+
 jest.mock("@/store/slices/localCart", () => ({
   useLocalCartSelector: jest.fn()
 }));
+
 jest.mock("@/store/slices/userSlice", () => ({
   useUserDetailsSelector: jest.fn(),
   useIsAuthLoadingSelector: jest.fn()
@@ -23,60 +24,86 @@ jest.mock("@/store/slices/userSlice", () => ({
 const mockFetchCart = jest.fn();
 
 type ExtraParams = {
-  id: number;
-  isLoading: boolean;
-  isUninitialized: boolean;
+  user: { id: number } | null;
   isAuthLoading: boolean;
+  isUninitialized: boolean;
+  isLoading: boolean;
 };
 
-const renderAndMock = (params: Partial<ExtraParams> = {}) => {
+const defaultParams: ExtraParams = {
+  user: null,
+  isAuthLoading: false,
+  isUninitialized: false,
+  isLoading: false
+};
+
+const renderAndMock = (
+  paramsFromArgs: Partial<ExtraParams> = defaultParams
+) => {
+  const params = { ...defaultParams, ...paramsFromArgs };
+
   (useLazyGetCartItemsQuery as jest.Mock).mockReturnValueOnce([
     mockFetchCart,
-    params
+    { isUninitialized: params.isUninitialized, isLoading: params.isLoading }
   ]);
   (useLocalCartSelector as jest.Mock).mockReturnValueOnce({});
   (useIsAuthLoadingSelector as jest.Mock).mockReturnValueOnce(
-    params?.isAuthLoading || false
+    params.isAuthLoading
   );
-  (useUserDetailsSelector as jest.Mock).mockReturnValueOnce(params);
+  (useUserDetailsSelector as jest.Mock).mockReturnValueOnce(params.user);
 
   return renderHook(() => useGetCart());
 };
 
-describe("Test useGetCart", () => {
-  test("Should return false if request is loading", () => {
-    const { result } = renderAndMock({ isLoading: true });
+describe("useGetCart", () => {
+  describe("isLoading", () => {
+    test("returns true if auth is loading", () => {
+      const { result } = renderAndMock({ isAuthLoading: true });
 
-    expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isLoading).toBe(true);
+    });
+
+    test("returns true if request for getting cart items from server is loading", () => {
+      const { result } = renderAndMock({ isLoading: true });
+
+      expect(result.current.isLoading).toBe(true);
+    });
+
+    test("returns true if user is authorized and request is uninitialized", () => {
+      const { result } = renderAndMock({
+        isUninitialized: true,
+        user: { id: 1 }
+      });
+
+      expect(result.current.isLoading).toBe(true);
+    });
+
+    test("returns false if user is authorized but request is not ununitialized", () => {
+      const { result } = renderAndMock({ user: { id: 1 } });
+
+      expect(result.current.isLoading).toBe(false);
+    });
+
+    test("returns false if user is unauthorized and request is ununitialized", () => {
+      const { result } = renderAndMock({ isUninitialized: true });
+
+      expect(result.current.isLoading).toBe(false);
+    });
   });
 
-  test("Should return true if auth is loading", () => {
-    const { result } = renderAndMock({ isAuthLoading: true });
+  describe("communicating with server", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
 
-    expect(result.current.isLoading).toBeTruthy();
-  });
+    test("calls fetchCart when user is authorized", () => {
+      renderAndMock({ user: { id: 1 } });
+      expect(mockFetchCart).toHaveBeenCalledWith({ userId: 1 });
+    });
 
-  test("Should return true if user is authorized and isUninitialized", () => {
-    const { result } = renderAndMock({ isUninitialized: true, id: 5 });
-
-    expect(result.current.isLoading).toBeTruthy();
-  });
-
-  test("Should return false if nothing is loading", () => {
-    const { result } = renderAndMock();
-
-    expect(result.current.isLoading).toBeFalsy();
-  });
-
-  test("Should call fetchCart when userId is available", () => {
-    renderAndMock({ id: 5 });
-
-    expect(mockFetchCart).toHaveBeenCalledWith({ userId: 5 });
-  });
-
-  test("Shouldn't call fetchCart when userId is unauthorized", () => {
-    renderAndMock();
-
-    expect(mockFetchCart).not.toHaveBeenCalledWith();
+    test("does not call fetchCart when user is unauthorized", () => {
+      renderAndMock();
+      expect(mockFetchCart).not.toHaveBeenCalled();
+    });
   });
 });

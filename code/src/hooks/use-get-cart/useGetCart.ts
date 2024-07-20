@@ -23,7 +23,7 @@ const useGetCart = () => {
   const isLoading =
     isAuthLoading ||
     requestState.isLoading ||
-    (user?.id && requestState.isUninitialized);
+    (Boolean(user?.id) && requestState.isUninitialized);
 
   return {
     ...requestState,
