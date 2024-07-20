@@ -45,11 +45,11 @@ const ProductsContainer = ({
 
   const { openDrawer } = useDrawerContext();
 
-  const cartLength = cartData?.items.length;
+  const cartLength = cartData.items.length;
 
   // For now isInCart calculating is implemented on a client side
   const cartProductsIds = useMemo(() => {
-    const cartProductsIds = cartData?.items.map((item) => item.productId);
+    const cartProductsIds = cartData.items.map((item) => item.productId);
     return new Set(cartProductsIds);
   }, [isCartFetching, cartLength]);
 

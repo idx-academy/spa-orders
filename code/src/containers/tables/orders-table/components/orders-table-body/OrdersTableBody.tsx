@@ -40,13 +40,16 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
       value={orderStatus}
       IconComponent={() => null}
       className="spa-order-table__body-status-select"
+      data-testid="order-status"
       MenuProps={{
         PaperProps: {
-          className: "spa-order-table__body-status-select"
+          className: "spa-order-table__body-status-select",
+          "data-testid": "order-status-menu"
         }
       }}
       inputProps={{
-        className: "spa-order-table__body-status-select-input"
+        className: "spa-order-table__body-status-select-input",
+        "data-testid": "order-status-input"
       }}
     >
       {Object.keys(orderStatusesTranslationKeys).map((status) => {
