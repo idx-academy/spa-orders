@@ -16,7 +16,10 @@
 
     &-input {
       width: 100%;
-      display: flex;
+
+      .MuiFormLabel-root {
+        padding-top: spacing(1);
+      }
 
       .MuiInputBase-input {
         padding-block: spacing(3);
