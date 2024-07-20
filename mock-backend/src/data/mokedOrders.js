@@ -22,7 +22,7 @@ const userOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       isPaid: true,
       orderStatus: "IN_PROGRESS",
-      createdAt: "2024-06-27T12:35:14.396Z",
+      createdAt: "2024-07-05T12:35:14.396Z",
       total: 4796,
       receiver: {
         firstName: "Eugene",
@@ -71,7 +71,7 @@ const userOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa61",
       isPaid: false,
       orderStatus: "COMPLETED",
-      createdAt: "2024-06-30T14:25:15.396Z",
+      createdAt: "2024-07-15T14:25:15.396Z",
       receiver: {
         firstName: "Eugene",
         lastName: "Hetsyanyn",
@@ -189,7 +189,7 @@ const adminOrders = {
       ],
     },
     {
-      id: "3fa85f64-5717-4562-b3fc-2c963f66afa61",
+      id: "3fa85f64-5717-4562-b3fc-2c963f66afa62",
       isPaid: false,
       orderStatus: "COMPLETED",
       createdAt: "2024-07-15T14:25:15.396Z",
