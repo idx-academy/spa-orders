@@ -24,7 +24,7 @@ const parseFiltersFromParams = <Filters>(
 
     if (!checkSupportedType(defaultFilterValue)) {
       throw new Error(
-        "Serialization for this type of value is not supported! Supported types are: number, string, boolean, null or Set"
+        "Serialization for this type of value is not supported! Supported types are: number, string, boolean, null, Set and FilterRange"
       );
     }
 
