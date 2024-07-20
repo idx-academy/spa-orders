@@ -14,7 +14,9 @@ type UseInputVisibilityProps = {
   isError?: boolean;
 };
 
-const useInputVisibility = ({ isError }: UseInputVisibilityProps = {}) => {
+const useInputVisibility = ({
+  isError = false
+}: UseInputVisibilityProps = {}) => {
   const [shouldShowInputText, setShouldShowInputText] = useState(false);
 
   let errorClass: string | undefined;
@@ -26,6 +28,7 @@ const useInputVisibility = ({ isError }: UseInputVisibilityProps = {}) => {
     endAdornment: (
       <InputAdornment position="end">
         <AppIconButton
+          data-testid="visibility-button"
           onClick={() => setShouldShowInputText(!shouldShowInputText)}
         >
           {shouldShowInputText ? (
