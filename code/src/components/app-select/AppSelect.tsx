@@ -1,6 +1,8 @@
-import React, { forwardRef } from "react";
+import { forwardRef, useId } from "react";
 
-import { FormControl, InputLabel, Select } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
 
 import { AppSelectProps } from "@/components/app-select/AppSelect.types";
 import AppTypography from "@/components/app-typography/AppTypography";
@@ -11,15 +13,10 @@ import "@/components/app-select/AppSelect.scss";
 
 const AppSelect = forwardRef(
   (
-    {
-      label,
-      labelId,
-      color = "contained",
-      className,
-      ...props
-    }: AppSelectProps,
+    { label, color = "contained", className, ...props }: AppSelectProps,
     ref
   ) => {
+    const labelId = useId();
     return (
       <FormControl>
         {label && (

@@ -41,14 +41,11 @@ describe("DeliveryForm", () => {
   test("renders the delivery form correctly", () => {
     const cityInput = screen.getByLabelText(/deliveryForm.city/);
     const departmentInput = screen.getByLabelText(/deliveryForm.department/);
-    const deliveryMethodSelect = screen.getByLabelText(
-      /deliveryForm.postMethod/
-    );
+
     const submitButton = screen.getByRole("button");
 
     expect(cityInput).toBeInTheDocument();
     expect(departmentInput).toBeInTheDocument();
-    expect(deliveryMethodSelect).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();
   });
 

@@ -16,6 +16,11 @@
 
     &-input {
       width: 100%;
+      display: flex;
+
+      .MuiInputBase-input {
+        padding-block: spacing(3);
+      }
     }
 
     &-title {

@@ -1,6 +1,8 @@
 import { z } from "zod";
 
-const DeliveryMethod = z.enum(["NOVA", "UKRPOSHTA"]);
+import { deliveryMethodValues } from "@/constants/deliveryMethods";
+
+const DeliveryMethod = z.enum(deliveryMethodValues);
 
 export const PostAddressValidationScheme = z.object({
   deliveryMethod: DeliveryMethod.default("NOVA"),

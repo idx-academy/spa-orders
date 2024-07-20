@@ -1,4 +1,4 @@
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -28,13 +28,9 @@ const DeliveryForm = ({ totalPrice }: DeliveryFormProps) => {
   const {
     handleSubmit,
     register,
-    control,
     formState: { errors, isValid }
   } = useForm<PostAddress>({
-    resolver: zodResolver(PostAddressValidationScheme),
-    defaultValues: {
-      deliveryMethod: deliveryMethods.NOVA_POST.value
-    }
+    resolver: zodResolver(PostAddressValidationScheme)
   });
 
   const [createOrder, { isLoading }] = useCreateOrder();
@@ -89,25 +85,20 @@ const DeliveryForm = ({ totalPrice }: DeliveryFormProps) => {
           data-cy="delivery-department"
           className="delivery-form__body-input"
         />
-        <Controller
-          name="deliveryMethod"
-          control={control}
-          render={({ field }) => (
-            <AppSelect
-              {...field}
-              labelId="delivery-method"
-              label="deliveryForm.postMethod"
-              error={Boolean(errors.deliveryMethod)}
-              data-cy="delivery-method"
-              className="delivery-form__method-select"
-              inputProps={{
-                className: "delivery-form__method-select-input"
-              }}
-            >
-              {deliveryMethodItems}
-            </AppSelect>
-          )}
-        />
+        <AppSelect
+          {...register("deliveryMethod")}
+          defaultValue={deliveryMethods.NOVA_POST.value}
+          labelId="delivery-method"
+          label="deliveryForm.postMethod"
+          error={Boolean(errors.deliveryMethod)}
+          data-cy="delivery-method"
+          className="delivery-form__method-select"
+          inputProps={{
+            className: "delivery-form__method-select-input"
+          }}
+        >
+          {deliveryMethodItems}
+        </AppSelect>
       </AppBox>
       <OrderSummary
         isDisabled={!isValid}
