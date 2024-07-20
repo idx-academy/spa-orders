@@ -8,13 +8,13 @@ import "@/containers/order-summary/OrderSummary.scss";
 
 type OrderSummaryProps = {
   totalPrice: number;
-  handleCreateOrder: () => void;
+  isDisabled: boolean;
   isLoading: boolean;
 };
 
 const OrderSummary = ({
   totalPrice,
-  handleCreateOrder,
+  isDisabled,
   isLoading
 }: OrderSummaryProps) => {
   const formattedTotalPrice = formatPrice(totalPrice);
@@ -61,16 +61,15 @@ const OrderSummary = ({
             translationKey="total.label"
             data-testid="totalLabel"
           />
-          <AppTypography
-            variant="subtitle2"
-          >
+          <AppTypography variant="subtitle2">
             {formattedTotalPrice}
           </AppTypography>
         </AppBox>
       </AppBox>
       <AppButton
+        disabled={isDisabled}
         isLoading={isLoading}
-        onClick={handleCreateOrder}
+        type="submit"
         className="spa-order-summary__button"
         variant="contained"
         size="medium"

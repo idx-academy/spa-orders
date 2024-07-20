@@ -16,7 +16,7 @@ describe("OrderSummary", () => {
     renderWithProviders(
       <OrderSummary
         isLoading={false}
-        handleCreateOrder={jest.fn}
+        isDisabled={false}
         totalPrice={totalPrice}
       />
     );
