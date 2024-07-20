@@ -107,7 +107,8 @@ describe("SignUpForm", () => {
     });
 
     test("Passes correct params to useInputVisibility", () => {
-      expect(useInputVisibility).toHaveBeenCalledWith({ isError: false });
+      expect(useInputVisibility).toHaveBeenNthCalledWith(1, { isError: false });
+      expect(useInputVisibility).toHaveBeenNthCalledWith(2, { isError: false });
     });
   });
 
