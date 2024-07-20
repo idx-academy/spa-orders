@@ -21,8 +21,16 @@ const LocaleChanger = () => {
     </>
   );
 };
-const mockAndRender = (locale: string | null) => {
+
+const mockAndRender = (locale: string | null, navigatorLanguage?: string) => {
   Storage.prototype.getItem = jest.fn(() => locale);
+
+  if (navigatorLanguage) {
+    Object.defineProperty(navigator, "language", {
+      value: navigatorLanguage,
+      configurable: true
+    });
+  }
 
   render(<I18nPlayground />);
 };
@@ -74,31 +82,21 @@ describe("I18nProvider", () => {
     });
 
     test("sets the locale correctly based on browser locale", () => {
-      Object.defineProperty(navigator, "language", {
-        value: "uk-UA",
-        configurable: true
-      });
-
-      renderWithProviders(<I18nPlayground />);
+      mockAndRender(null, "uk");
 
       localeDisplay = screen.getByTestId("localeDisplay");
       expect(localeDisplay).toHaveTextContent("uk");
     });
 
     test("initially sets the locale correctly based on localStorage locale", () => {
-      mockAndRender("uk");
-      localeDisplay = screen.getByTestId("localeDisplay");
+      mockAndRender("uk", "en-US");
 
+      localeDisplay = screen.getByTestId("localeDisplay");
       expect(localeDisplay).toHaveTextContent("uk");
     });
 
     test("falls back to 'en' when no matching locale is found", () => {
-      Object.defineProperty(navigator, "language", {
-        value: "fr-FR",
-        configurable: true
-      });
-
-      mockAndRender(null);
+      mockAndRender(null, "fr");
 
       localeDisplay = screen.getByTestId("localeDisplay");
       expect(localeDisplay).toHaveTextContent("en");
