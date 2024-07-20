@@ -106,7 +106,7 @@ describe("SignUpForm", () => {
       expect(showVisibilityIcon).toHaveLength(2);
     });
 
-    test("Passes correct params to useInputVisibility", async () => {
+    test("Passes correct params to useInputVisibility", () => {
       expect(useInputVisibility).toHaveBeenCalledWith({ isError: false });
     });
   });
