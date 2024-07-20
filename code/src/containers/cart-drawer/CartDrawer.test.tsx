@@ -5,7 +5,7 @@ import CartDrawer from "@/containers/cart-drawer/CartDrawer";
 
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import { useModalContext } from "@/context/modal/ModalContext";
-import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
+import useUserCartItems from "@/hooks/use-user-cart-items/useUserCartItems";
 import { UserDetails } from "@/types/user.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
@@ -26,7 +26,7 @@ jest.mock("@/context/drawer/DrawerContext", () => ({
   useDrawerContext: jest.fn()
 }));
 
-jest.mock("@/hooks/use-cart-items/useUserCartItems", () => jest.fn());
+jest.mock("@/hooks/use-user-cart-items/useUserCartItems", () => jest.fn());
 
 const closeDrawer = jest.fn();
 const openModal = jest.fn();
@@ -55,12 +55,12 @@ const mockCartItems = {
   totalPrice: 30
 };
 
-const renderAndMock = (data: Partial<ReturnType<typeof useCartItems>> = {}) => {
+const renderAndMock = (data: Partial<ReturnType<typeof useUserCartItems>> = {}) => {
   (formatPrice as jest.Mock).mockImplementation(mockFormatPrice);
   (useNavigate as jest.Mock).mockReturnValue(navigate);
   (useDrawerContext as jest.Mock).mockReturnValue({ closeDrawer });
   (useModalContext as jest.Mock).mockReturnValue({ openModal });
-  (useCartItems as jest.Mock).mockReturnValue({
+  (useUserCartItems as jest.Mock).mockReturnValue({
     cartItems: data.cartItems || mockCartItems,
     cartItemsLoading: false,
     isError: false,

@@ -13,7 +13,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import routes from "@/constants/routes";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import { useModalContext } from "@/context/modal/ModalContext";
-import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
+import useUserCartItems from "@/hooks/use-user-cart-items/useUserCartItems";
 import { CartItem } from "@/types/cart.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 
@@ -23,7 +23,7 @@ const CartDrawer = () => {
   const { openModal } = useModalContext();
   const navigate = useNavigate();
   const { closeDrawer } = useDrawerContext();
-  const { user, cartItems, isError, handleRemoveItem } = useCartItems();
+  const { user, cartItems, isError, handleRemoveItem } = useUserCartItems();
 
   if (isError) return <AppTypography translationKey="error.label" />;
 

@@ -5,7 +5,7 @@ import OrderSummary from "@/containers/order-summary/OrderSummary";
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-import useCartItems from "@/hooks/use-cart-items/useUserCartItems";
+import useUserCartItems from "@/hooks/use-user-cart-items/useUserCartItems";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import CartItem from "@/pages/cart/components/cart-item/CartItem";
@@ -16,7 +16,7 @@ import "@/pages/cart/CartPage.scss";
 
 const CartPage = () => {
   const user = useGetUserDetails();
-  const { cartItems, isError, handleRemoveItem } = useCartItems();
+  const { cartItems, isError, handleRemoveItem } = useUserCartItems();
 
   const [createOrder, { isLoading }] = useCreateOrder();
 
