@@ -5,6 +5,7 @@ import callToActionSectionMessages from "@/containers/call-to-action/messages";
 import cartDrawerMessages from "@/containers/cart-drawer/message";
 import categorySectionMessages from "@/containers/category-section/messages";
 import dashboardTabsMessages from "@/containers/dashboard-tabs/messages";
+import deliveryFormMessages from "@/containers/forms/delivery-form/messages";
 import signInFormMessages from "@/containers/forms/sign-in-form/messages";
 import signupFormMessages from "@/containers/forms/sign-up-form/messages";
 import bannerMessages from "@/containers/intro-banner/messages";
@@ -47,7 +48,8 @@ const messages: MessagesType = {
     ...cartDrawerMessages.en,
     ...ordersTableMessages.en,
     ...cartPageMessages.en,
-    ...dashboardTabsMessages.en
+    ...dashboardTabsMessages.en,
+    ...deliveryFormMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -70,7 +72,8 @@ const messages: MessagesType = {
     ...cartDrawerMessages.uk,
     ...ordersTableMessages.uk,
     ...cartPageMessages.uk,
-    ...dashboardTabsMessages.uk
+    ...dashboardTabsMessages.uk,
+    ...deliveryFormMessages.uk
   }
 };
 
