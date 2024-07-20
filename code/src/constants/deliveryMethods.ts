@@ -9,7 +9,7 @@ export const deliveryMethods = {
     image: novaPostaImage,
     value: deliveryMethodValues[0]
   },
-  UKR_POST: {
+  UKRPOSHTA: {
     translationKey: "dashboardTabs.orders.filters.ukrPost",
     image: ukrPostaImage,
     value: deliveryMethodValues[1]

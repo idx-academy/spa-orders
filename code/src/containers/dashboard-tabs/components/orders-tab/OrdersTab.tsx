@@ -20,7 +20,9 @@ const OrdersTab = () => {
 
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   const handleCloseFilterDrawer = () => {
     setIsFilterDrawerOpen(false);
@@ -30,17 +32,15 @@ const OrdersTab = () => {
     setIsFilterDrawerOpen(true);
   };
 
-  const filtersTitleTranslationProps = {
-    values: {
-      count: activeFiltersCount
-    }
-  };
-
   const titleTypography =
     activeFiltersCount > 0 ? (
       <AppTypography
         translationKey="dashboardTabs.orders.filters.titleWithCount"
-        translationProps={filtersTitleTranslationProps}
+        translationProps={{
+          values: {
+            count: activeFiltersCount
+          }
+        }}
       />
     ) : (
       <AppTypography translationKey="dashboardTabs.orders.filters.title" />
@@ -64,7 +64,7 @@ const OrdersTab = () => {
         <OrdersTabFilterDrawer
           filters={filters}
           filterActions={filterActions}
-          filtersTitleTranslationProps={filtersTitleTranslationProps}
+          activeFiltersCount={activeFiltersCount}
           closeFilterDrawer={handleCloseFilterDrawer}
         />
       </AppDrawer>

@@ -6,15 +6,16 @@ const timeSpanToDateRange = (timeSpan: TimeSpan): RangeFilter<Date> => {
   const start = new Date(now);
   const end = new Date(now);
 
+  // avoid unsync data
+  start.setMilliseconds(0);
+  end.setMilliseconds(0);
+
   switch (timeSpan) {
     case "yesterday":
       start.setDate(now.getDate() - 1);
-      end.setDate(now.getDate() - 1);
       break;
     case "last-month":
       start.setMonth(now.getMonth() - 1);
-      start.setDate(1);
-      end.setDate(0);
       break;
     case "last-two-weeks":
       start.setDate(now.getDate() - 14);

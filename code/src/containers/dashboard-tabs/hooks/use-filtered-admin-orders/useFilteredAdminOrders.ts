@@ -1,18 +1,8 @@
-import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
-import { RangeFilter } from "@/hooks/use-filters-with-apply/useFiltersWithApply.types";
-import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
-import { TimeSpan } from "@/types/common";
-import { DeliveryMethod } from "@/types/delivery.types";
-import { GetAdminOrderParams, OrderStatus } from "@/types/order.types";
-import timeSpanToDateRange from "@/utils/time-span-to-date-range/timeSpanToDateRange";
+import { defaultAdminOrderFilters } from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders.constants";
 
-export type OrderFilters = {
-  paid: boolean;
-  statuses: Set<OrderStatus>;
-  "delivery-methods": Set<DeliveryMethod>;
-  timespan: "" | TimeSpan;
-  price: RangeFilter<number>;
-};
+import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
+import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
+import timeSpanToDateRange from "@/utils/time-span-to-date-range/timeSpanToDateRange";
 
 const useFilteredAdminOrders = () => {
   const {
@@ -20,29 +10,22 @@ const useFilteredAdminOrders = () => {
     appliedFilters: { paid, price, statuses, timespan, ...rest },
     activeFiltersCount,
     actions: filterActions
-  } = useFiltersWithApply<OrderFilters>({
-    paid: false,
-    price: { start: 0, end: 20000 },
-    statuses: new Set(),
-    "delivery-methods": new Set(),
-    timespan: ""
-  });
+  } = useFiltersWithApply(defaultAdminOrderFilters);
 
   const dateRange = timespan ? timeSpanToDateRange(timespan) : undefined;
 
-  const transformedFilters: GetAdminOrderParams = {
+  const deliveryMethods =
+    rest["delivery-methods"] && Array.from(rest["delivery-methods"]);
+
+  const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
     isPaid: paid,
     totalLess: price?.end,
     totalMore: price?.start,
     statuses: statuses && Array.from(statuses),
-    deliveryMethods:
-      rest["delivery-methods"] && Array.from(rest["delivery-methods"]),
-    createdBefore: dateRange?.end.toJSON(),
-    createdAfter: dateRange?.start.toJSON()
-  };
-
-  const { data: ordersResponse, isLoading } =
-    useGetAdminOrdersQuery(transformedFilters);
+    deliveryMethods,
+    createdBefore: dateRange?.end.toISOString(),
+    createdAfter: dateRange?.start.toISOString()
+  });
 
   const orders = ordersResponse?.content ?? [];
 
