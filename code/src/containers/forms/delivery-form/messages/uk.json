@@ -2,5 +2,5 @@
   "deliveryForm.title": "Деталі доставки",
   "deliveryForm.city": "Місто",
   "deliveryForm.department": "Відділення",
-  "deliveryForm.postMethod": "Поштовий метод"
+  "deliveryForm.postMethod": "Метод доставки"
 }
