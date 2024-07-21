@@ -29,7 +29,7 @@ describe("Test ProductsTable", () => {
     const statusElement = screen.getByText(
       productStatuToTranslationKeyMap[mockProducts[0].status]
     );
-    const categoryElement = screen.getByText(categoryTag);
+    const categoryElement = screen.getByText(categoryTag.replace(":", "."));
 
     expect(imageElement).toBeInTheDocument();
     expect(nameElement).toBeInTheDocument();

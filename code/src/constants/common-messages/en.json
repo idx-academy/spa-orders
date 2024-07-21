@@ -32,5 +32,5 @@
   "select.defaultOption": "Select an option...",
   "product.status.visible": "Visible",
   "product.status.hidden": "Hidden",
-  "category:computer": "Computers"
+  "category.computer": "Computers"
 }

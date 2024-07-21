@@ -25,7 +25,10 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
   );
 
   const category = (
-    <AppTypography translationKey={categoryTag} variant="caption" />
+    <AppTypography
+      translationKey={categoryTag.replace(":", ".")}
+      variant="caption"
+    />
   );
 
   const nameElement = (
