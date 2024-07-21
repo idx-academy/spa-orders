@@ -91,6 +91,14 @@ const OrdersTabFilterDrawer = ({
     updateFilterByKey("timespan", event.target.value as TimeSpan);
   };
 
+  const timespanSelectNonDefaultOptions = Object.entries(timeSpans).map(
+    ([datePeriod, translationKey]) => (
+      <AppMenuItem value={datePeriod} key={datePeriod}>
+        <AppTypography translationKey={translationKey} />
+      </AppMenuItem>
+    )
+  );
+
   const timespanSelect = (
     <AppSelect
       inputProps={{
@@ -105,11 +113,7 @@ const OrdersTabFilterDrawer = ({
       <AppMenuItem value="" disabled>
         <AppTypography translationKey="select.defaultOption" />
       </AppMenuItem>
-      {Object.entries(timeSpans).map(([datePeriod, translationKey]) => (
-        <AppMenuItem value={datePeriod} key={datePeriod}>
-          <AppTypography translationKey={translationKey} />
-        </AppMenuItem>
-      ))}
+      {timespanSelectNonDefaultOptions}
     </AppSelect>
   );
 
