@@ -17,8 +17,9 @@ const AppSelect = forwardRef(
     ref
   ) => {
     const labelId = useId();
+
     return (
-      <FormControl>
+      <FormControl fullWidth>
         {label && (
           <InputLabel
             className={cn("spa-select__label", `spa-select__label--${color}`)}

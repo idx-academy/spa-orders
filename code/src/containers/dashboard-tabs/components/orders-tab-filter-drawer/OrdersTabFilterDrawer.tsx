@@ -1,4 +1,4 @@
-import { SyntheticEvent, useId } from "react";
+import { SyntheticEvent } from "react";
 
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import { SelectChangeEvent } from "@mui/material/Select";
@@ -42,8 +42,6 @@ const OrdersTabFilterDrawer = ({
   filterActions,
   closeFilterDrawer
 }: OrdersTabFilterDrawerProps) => {
-  const selectLabelId = useId();
-
   const {
     applyFilters,
     checkFilterActive,
@@ -108,7 +106,6 @@ const OrdersTabFilterDrawer = ({
       defaultValue=""
       value={filters.timespan}
       onChange={handleTimespanSelectChange}
-      labelId={selectLabelId}
     >
       <AppMenuItem value="" disabled>
         <AppTypography translationKey="select.defaultOption" />
