@@ -9,7 +9,7 @@ const mockCart = {
 
 const mockAndGetCart = (mockCart: unknown) => {
   jest
-    .spyOn(window.localStorage.__proto__, "getItem")
+    .spyOn(Storage.prototype, "getItem")
     .mockImplementation(jest.fn(() => JSON.stringify(mockCart)));
 
   return getLocalStorageCart();

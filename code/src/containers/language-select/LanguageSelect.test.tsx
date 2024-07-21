@@ -6,7 +6,7 @@ import { LOCAL_STORAGE_KEYS } from "@/constants/common";
 import locales from "@/constants/locales";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
-jest.spyOn(window.localStorage.__proto__, "setItem");
+jest.spyOn(Storage.prototype, "setItem");
 
 describe("LanguageSelect", () => {
   let select: HTMLElement;

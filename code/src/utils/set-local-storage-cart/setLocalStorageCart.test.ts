@@ -3,7 +3,7 @@ import setLocalStorageCart from "@/utils/set-local-storage-cart/setLocalStorageC
 
 describe("Test setLocalStorageCart", () => {
   beforeAll(() => {
-    jest.spyOn(window.localStorage.__proto__, "setItem");
+    jest.spyOn(Storage.prototype, "setItem");
   });
 
   afterEach(() => {
