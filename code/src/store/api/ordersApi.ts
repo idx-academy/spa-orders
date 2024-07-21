@@ -20,20 +20,15 @@ const ordersApi = appApi.injectEndpoints({
 
     getAdminOrders: build.query<AdminOrderResponse, GetAdminOrderParams>({
       query: (params) => {
-        const { sort, ...filters } = params;
-
-        const sortedParams = {
-          sort,
-          ...filters
-        };
-
         return {
           url: URLS.orders.getForAdmin,
-          params: sortedParams ?? {}
+          params: params ?? {}
         };
       },
-      providesTags: [rtkQueryTags.ADMIN_ORDERS]
+
+      providesTags: [rtkQueryTags.USER_ORDERS]
     }),
+
     createOrder: build.mutation<OrderPostResponse, OrderPostParams>({
       query: ({ userId, ...body }) => ({
         url: URLS.orders.post({ userId }),

@@ -30,11 +30,6 @@ const DashboardOrdersPage = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // const sortOption = useMemo(
-  //   () => searchParams.get("sort") || "createdAt,asc",
-  //   [searchParams]
-  // );
-
   const sortOption = searchParams.get("sort");
 
   const {
@@ -45,19 +40,22 @@ const DashboardOrdersPage = () => {
     sort: sortOption ?? "createdAt,asc"
   });
 
-  console.log(adminOrderResponse)
+  console.log(sortOption)
 
-  const ordersData = adminOrderResponse?.content ?? [];
-
-  console.log(ordersData)
-  console.log(adminOrderResponse?.content)
+  console.log(adminOrderResponse);
 
   // @TODO: add more logic to error and loading
 
   if (error) return <div>Error loading orders</div>;
   if (isLoading) return <div>Loading...</div>;
+  const ordersData = adminOrderResponse?.content ?? [];
+
+  console.log(ordersData);
+
   const handleSortChange = (value: string) => {
-    setSearchParams({ sort: value });
+    const params = new URLSearchParams(searchParams)
+    params.set('sort', value)
+    setSearchParams(params);
   };
 
   // @TODO: implement filtersCount

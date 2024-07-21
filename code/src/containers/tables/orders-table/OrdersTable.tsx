@@ -35,7 +35,15 @@ const OrdersTable = ({ ordersData, onSortChange }: OrdersTableProps) => {
   };
 
   const OrderTableHeadItem = (head: string) => (
-    <OrdersTableHead key={head} head={head} />
+    <OrdersTableHead
+      key={head}
+      head={head}
+      onSortChange={onSortChange}
+      sortable={[
+        "ordersTable.columns.createdAt",
+        "ordersTable.columns.totalPrice"
+      ].includes(head)}
+    />
   );
 
   const ordersTableFallback = (
@@ -58,11 +66,6 @@ const OrdersTable = ({ ordersData, onSortChange }: OrdersTableProps) => {
       bodyItems={ordersData}
       renderBodyItem={OrderTableBodyItem}
       fallback={ordersTableFallback}
-      onSortChange={onSortChange}
-      // sortable={[
-      //   "ordersTable.columns.createdAt",
-      //   "ordersTable.columns.totalPrice"
-      // ]}
     />
   );
 };
