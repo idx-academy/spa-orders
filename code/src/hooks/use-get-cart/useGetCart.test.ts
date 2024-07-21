@@ -8,18 +8,9 @@ import {
   useUserDetailsSelector
 } from "@/store/slices/userSlice";
 
-jest.mock("@/store/api/cartApi", () => ({
-  useLazyGetCartItemsQuery: jest.fn()
-}));
-
-jest.mock("@/store/slices/localCart", () => ({
-  useLocalCartSelector: jest.fn()
-}));
-
-jest.mock("@/store/slices/userSlice", () => ({
-  useUserDetailsSelector: jest.fn(),
-  useIsAuthLoadingSelector: jest.fn()
-}));
+jest.mock("@/store/api/cartApi");
+jest.mock("@/store/slices/localCart");
+jest.mock("@/store/slices/userSlice");
 
 const mockFetchCart = jest.fn();
 

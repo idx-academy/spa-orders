@@ -10,28 +10,11 @@ import { UserDetails } from "@/types/user.types";
 
 import useRemoveFromCart from "./useRemoveFromCart";
 
-jest.mock("@/hooks/use-redux/useRedux", () => ({
-  __esModule: true,
-  useAppDispatch: jest.fn()
-}));
-
-jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
-  __esModule: true,
-  default: jest.fn()
-}));
-
-jest.mock("@/store/api/cartApi", () => ({
-  useRemoveFromCartMutation: jest.fn()
-}));
-
-jest.mock("@/store/slices/localCart", () => ({
-  __esModule: true,
-  removeFromLocalCart: jest.fn()
-}));
-
-jest.mock("@/store/slices/userSlice", () => ({
-  useUserDetailsSelector: jest.fn()
-}));
+jest.mock("@/hooks/use-redux/useRedux");
+jest.mock("@/hooks/use-snackbar/useSnackbar");
+jest.mock("@/store/api/cartApi");
+jest.mock("@/store/slices/localCart");
+jest.mock("@/store/slices/userSlice");
 
 const successSnackbarConfig = {
   messageTranslationKey: "cart.itemDeletion.success",

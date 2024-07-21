@@ -11,19 +11,8 @@ import {
 } from "@/store/slices/snackbarSlice";
 import { SnackbarConfigWithTimeout } from "@/types/snackbar.types";
 
-jest.mock("@/store/slices/snackbarSlice", () => ({
-  __esModule: true,
-  useIsSnackbarOpenSelector: jest.fn(),
-  useSnackbarConfigSelector: jest.fn(),
-  openSnackbar: jest.fn(),
-  openSnackbarWithTimeout: jest.fn(),
-  closeSnackbar: jest.fn()
-}));
-
-jest.mock("@/hooks/use-redux/useRedux", () => ({
-  __esModule: true,
-  useAppDispatch: jest.fn()
-}));
+jest.mock("@/store/slices/snackbarSlice");
+jest.mock("@/hooks/use-redux/useRedux");
 
 (useIsSnackbarOpenSelector as jest.Mock).mockReturnValue(true);
 (useSnackbarConfigSelector as jest.Mock).mockReturnValue({

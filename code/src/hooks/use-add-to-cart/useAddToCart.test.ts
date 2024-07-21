@@ -9,28 +9,11 @@ import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
 import { UserDetails } from "@/types/user.types";
 
-jest.mock("@/hooks/use-redux/useRedux", () => ({
-  __esModule: true,
-  useAppDispatch: jest.fn()
-}));
-
-jest.mock("@/hooks/use-snackbar/useSnackbar", () => ({
-  __esModule: true,
-  default: jest.fn()
-}));
-
-jest.mock("@/store/api/cartApi", () => ({
-  useAddToCartMutation: jest.fn()
-}));
-
-jest.mock("@/store/slices/localCart", () => ({
-  __esModule: true,
-  addToLocalCart: jest.fn()
-}));
-
-jest.mock("@/store/slices/userSlice", () => ({
-  useUserDetailsSelector: jest.fn()
-}));
+jest.mock("@/hooks/use-redux/useRedux");
+jest.mock("@/hooks/use-snackbar/useSnackbar");
+jest.mock("@/store/api/cartApi");
+jest.mock("@/store/slices/localCart");
+jest.mock("@/store/slices/userSlice");
 
 const successSnackbarConfig = {
   variant: "success",

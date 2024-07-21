@@ -14,9 +14,7 @@ const mockUserDetails: UserDetails = {
   token: "test"
 };
 
-jest.mock("@/store/slices/userSlice", () => ({
-  useUserDetailsSelector: jest.fn()
-}));
+jest.mock("@/store/slices/userSlice");
 
 const mockUseUserDetailsSelector = useUserDetailsSelector as jest.Mock;
 
