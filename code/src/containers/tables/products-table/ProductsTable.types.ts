@@ -7,3 +7,7 @@ export type ProductsTableBodyProps = {
 export type ProductsTableProps = {
   products: ManagerProduct[];
 };
+
+export type ProductsTableHeadProps = {
+  head: string;
+};
