@@ -14,7 +14,7 @@ import { deliveryMethods } from "@/constants/deliveryMethods";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import { PostAddress } from "@/types/delivery.types";
-import { PostAddressValidationScheme } from "@/utils/validators/deliverySheme";
+import { PostAddressValidationScheme } from "@/utils/validators/deliveryScheme";
 
 import "@/containers/forms/delivery-form/DeliveryForm.scss";
 
