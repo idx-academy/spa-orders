@@ -19,7 +19,7 @@ const ProductsTab = () => {
         />
         <AppButton variant="contained">
           <AddIcon />
-          <AppTypography translationKey="dashboardTabs.add-product.label" />
+          <AppTypography translationKey="dashboardTabs.addProduct.label" />
         </AppButton>
       </AppBox>
       <ProductsTable products={mockProducts} />

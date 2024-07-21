@@ -9,9 +9,7 @@ describe("ProductsTab", () => {
     renderWithProviders(<ProductsTab />);
 
     const title = screen.getByText("dashboardTabs.products.label");
-    const addProductButton = screen.getByText(
-      "dashboardTabs.add-product.label"
-    );
+    const addProductButton = screen.getByText("dashboardTabs.addProduct.label");
 
     expect(title).toBeInTheDocument();
     expect(addProductButton).toBeInTheDocument();

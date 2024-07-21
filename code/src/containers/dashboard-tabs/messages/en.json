@@ -2,7 +2,7 @@
   "dashboardTabs.users.label": "Users",
   "dashboardTabs.orders.label": "Orders",
   "dashboardTabs.products.label": "Products",
-  "dashboardTabs.add-product.label": "New Product",
+  "dashboardTabs.addProduct.label": "New Product",
   "dashboardTabs.orders.title": "Orders",
   "dashboardTabs.orders.filters.title": "Filters",
   "dashboardTabs.orders.filters.titleWithCount": "Filters ({count})",
