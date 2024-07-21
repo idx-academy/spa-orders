@@ -13,7 +13,7 @@ const generateToken = (payload) => {
     { scope: role, sub: payload.email, ...payload },
     "jwt-secret",
     {
-      expiresIn: "10m",
+      expiresIn: "10d",
     }
   );
 };

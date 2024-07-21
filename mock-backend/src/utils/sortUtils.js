@@ -30,8 +30,10 @@ const sortProducts = (products, sort) => {
 };
 
 const sortOrders = (orders, sort) => {
+  console.log(orders)
   let sortedOrders = [...orders];
   const [sortKey, sortOrder] = sort.split(",");
+
 
   sortedOrders.sort((a, b) => {
     let aValue = a[sortKey];
