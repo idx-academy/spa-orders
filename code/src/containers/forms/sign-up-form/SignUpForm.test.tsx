@@ -26,6 +26,7 @@ const mockCloseModal = jest.fn();
   closeModal: mockCloseModal
 });
 
+// Needed to mock import and at the same time use the actual implementation because spy.on does not work here for some reason
 jest.mock("@/hooks/use-input-visibility/useInputVisibility", () => ({
   __esModule: true,
   default: jest
