@@ -1,4 +1,5 @@
 import { timeSpans } from "@/constants/timeSpans";
+import { Locale } from "@/context/i18n/I18nProvider";
 
 export type TimerId = ReturnType<typeof setTimeout>;
 export type NonEmptyArray<T> = [T, ...T[]];
@@ -23,6 +24,9 @@ export type Sort = {
 };
 
 export type SortOrder = "asc" | "desc";
+export type Lang = {
+  lang: Locale;
+};
 
 export type APIError = {
   status: number;
