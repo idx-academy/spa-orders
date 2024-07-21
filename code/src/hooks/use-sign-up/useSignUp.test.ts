@@ -10,12 +10,9 @@ import { SignUpResponse } from "@/types/auth.types";
 jest.mock("@/store/api/authApi");
 jest.mock("@/hooks/use-snackbar/useSnackbar");
 jest.mock("@/hooks/use-redux/useRedux");
-jest.mock("@/store/slices/userSlice", () => ({
-  authenticate: () => {}
-}));
+jest.mock("@/store/slices/userSlice");
 
 const mockSignUp = jest.fn();
-const mockDispatch = jest.fn();
 const mockOpenSnackbarWithTimeout = jest.fn();
 
 const credentials = {
@@ -44,7 +41,7 @@ const setupWithMockSignInReturnValue = async (
 describe("useSignIn", () => {
   beforeEach(() => {
     (useSignUpMutation as jest.Mock).mockReturnValue([mockSignUp, {}]);
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch);
+    (useAppDispatch as jest.Mock).mockReturnValue(jest.fn());
     (useSnackbar as jest.Mock).mockReturnValue({
       openSnackbarWithTimeout: mockOpenSnackbarWithTimeout
     });
@@ -58,12 +55,10 @@ describe("useSignIn", () => {
     await setupWithMockSignInReturnValue({ data: signUpResponse });
 
     expect(mockSignUp).toHaveBeenCalledWith(credentials);
-    expect(mockDispatch).toHaveBeenCalledWith(
-      authenticate({
-        token: signUpResponse.token,
-        isFirstSessionAfterAuth: false
-      })
-    );
+    expect(authenticate).toHaveBeenCalledWith({
+      token: signUpResponse.token,
+      isFirstSessionAfterAuth: true
+    });
     expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({
       messageTranslationKey: "signUp.success",
       variant: "success"
@@ -74,7 +69,7 @@ describe("useSignIn", () => {
     await setupWithMockSignInReturnValue({ error: "Error" });
 
     expect(mockSignUp).toHaveBeenCalledWith(credentials);
-    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(authenticate).not.toHaveBeenCalled();
     expect(mockOpenSnackbarWithTimeout).not.toHaveBeenCalled();
   });
 });
