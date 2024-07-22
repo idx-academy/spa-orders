@@ -9,13 +9,14 @@ import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import formatPrice from "@/utils/format-price/formatPrice";
+import getCategoryFromTags from "@/utils/get-category-from-tags/GetCategoryFromTags";
 
 import "@/containers/tables/products-table/components/products-table-body/ProductsTableBody.scss";
 
 const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
-  const { name, imageLink, price, quantity, status } = product;
+  const { name, imageLink, price, quantity, status, tags } = product;
 
-  const categoryTag = product.tags.find((tag) => /category/.test(tag)) || "-";
+  const categoryName = getCategoryFromTags(tags) || "-";
 
   const productStatus = (
     <AppTypography
@@ -26,7 +27,7 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
 
   const category = (
     <AppTypography
-      translationKey={categoryTag.replace(":", ".")}
+      translationKey={`category.${categoryName}`}
       variant="caption"
     />
   );

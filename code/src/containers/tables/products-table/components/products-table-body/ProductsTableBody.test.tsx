@@ -7,9 +7,9 @@ import {
 import ProductsTableBody from "@/containers/tables/products-table/components/products-table-body/ProductsTableBody";
 
 import formatPrice from "@/utils/format-price/formatPrice";
+import getCategoryFromTags from "@/utils/get-category-from-tags/GetCategoryFromTags";
 
-const categoryTag =
-  mockProducts[0].tags.find((tag) => /category/.test(tag)) || "-";
+const categoryTag = getCategoryFromTags(mockProducts[0].tags) || "-";
 
 describe("Test ProductsTable", () => {
   test("Should be rendered correctly", () => {
@@ -29,7 +29,7 @@ describe("Test ProductsTable", () => {
     const statusElement = screen.getByText(
       productStatuToTranslationKeyMap[mockProducts[0].status]
     );
-    const categoryElement = screen.getByText(categoryTag.replace(":", "."));
+    const categoryElement = screen.getByText(`category.${categoryTag}`);
 
     expect(imageElement).toBeInTheDocument();
     expect(nameElement).toBeInTheDocument();
