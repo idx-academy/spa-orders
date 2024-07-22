@@ -21,12 +21,12 @@ $spa-input-colors: (
     &--#{$variant} {
       .MuiOutlinedInput-root {
         &.Mui-focused .MuiOutlinedInput-notchedOutline {
-          border-color: $color !important;
+          border-color: $color !important; //To override the MUI styles
         }
       }
 
       .MuiInputLabel-root.Mui-focused {
-        color: $color !important;
+        color: $color !important; //To override the MUI styles
       }
     }
   }
