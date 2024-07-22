@@ -14,7 +14,7 @@ $spa-input-colors: (
   }
 
   .MuiFormLabel-root {
-    padding-top: 3px;
+    padding-top: spacing(1);
   }
 
   @each $variant, $color in $spa-input-colors {
