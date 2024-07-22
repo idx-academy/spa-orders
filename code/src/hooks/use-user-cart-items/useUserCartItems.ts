@@ -20,7 +20,7 @@ const useUserCartItems = () => {
     isError: updateError
   } = useUpdateCartItemQuantity();
 
-  const handleRemoveItem = async (product: CartItem) => {
+  const handleRemoveItem = (product: CartItem) => {
     removeItem(product);
   };
 
