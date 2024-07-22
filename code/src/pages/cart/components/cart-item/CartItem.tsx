@@ -54,6 +54,8 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
     }
   };
 
+  const disableMinusQuantity = quantity === 1 && "disabled";
+
   return (
     <AppBox className="spa-cart-item">
       <AppBox
@@ -69,9 +71,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
       </AppBox>
       <AppBox className="spa-cart-item__quantity-selector">
         <AppBox
-          className={cn("spa-cart-item__quantity-block", {
-            disabled: quantity === 1
-          })}
+          className={cn("spa-cart-item__quantity-block", disableMinusQuantity)}
           onClick={handleDecreaseQuantity}
         >
           <RemoveCircleOutlineIcon />
