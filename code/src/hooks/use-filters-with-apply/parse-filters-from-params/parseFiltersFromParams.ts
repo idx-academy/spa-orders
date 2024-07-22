@@ -1,14 +1,5 @@
+import checkSupportedSerializedFilter from "@/hooks/use-filters-with-apply/check-supported-serialized-filter/checkSupportedSerializedFilter";
 import deserializeFromQueryString from "@/hooks/use-filters-with-apply/deserialize-from-query-string/deserializeFromQueryString";
-
-const checkSupportedType = (value: unknown) => {
-  return (
-    ["number", "string", "boolean"].includes(typeof value) ||
-    value === null ||
-    value === undefined ||
-    value instanceof Set ||
-    (typeof value === "object" && "start" in value && "end" in value)
-  );
-};
 
 const parseFiltersFromParams = <Filters>(
   defaultFilters: Filters,
@@ -22,7 +13,7 @@ const parseFiltersFromParams = <Filters>(
 
     const defaultFilterValue = defaultFilters[key];
 
-    if (!checkSupportedType(defaultFilterValue)) {
+    if (!checkSupportedSerializedFilter(defaultFilterValue)) {
       throw new Error(
         "Serialization for this type of value is not supported! Supported types are: number, string, boolean, null, Set and FilterRange"
       );
