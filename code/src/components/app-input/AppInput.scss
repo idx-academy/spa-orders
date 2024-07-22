@@ -1,12 +1,33 @@
 @import "@design-system";
 
-.spa-app-input {
-  &__textfield {
-    .MuiInputBase-input {
-      padding: spacing(3) spacing(4);
-    }
-    .MuiFormLabel-root {
-      padding-top: 3px;
+$spa-input-colors: (
+  "contained": var(--spa-input-contained-color, $purple),
+  "success": var(--spa-input-success-color, $green),
+  "danger": var(--spa-input-danger-color, $red),
+  "light": var(--spa-input-light-color, $white),
+  "dark": var(--spa-input-dark-color, $black)
+);
+
+.spa-input {
+  .MuiInputBase-input {
+    padding: spacing(3) spacing(4);
+  }
+
+  .MuiFormLabel-root {
+    padding-top: 3px;
+  }
+
+  @each $variant, $color in $spa-input-colors {
+    &--#{$variant} {
+      .MuiOutlinedInput-root {
+        &.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border-color: $color !important;
+        }
+      }
+
+      .MuiInputLabel-root.Mui-focused {
+        color: $color !important;
+      }
     }
   }
 }
