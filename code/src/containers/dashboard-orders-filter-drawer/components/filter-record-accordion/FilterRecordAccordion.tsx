@@ -54,6 +54,7 @@ const FilterRecordAccordion = ({
         className="filter-record-accordion__reset-filter-button"
         onClick={handleResetFilter}
         disableRipple
+        data-testid="reset-filter-button"
       >
         <FilterAltOffIcon />
       </AppIconButton>
@@ -85,6 +86,7 @@ const FilterRecordAccordion = ({
         </AppBox>
       </AppAccordionSummary>
       <AppAccordionDetails
+        data-testid="accordion-content-wrapper"
         className={cn("filter-record-accordion__details", className?.summary)}
       >
         {children}
