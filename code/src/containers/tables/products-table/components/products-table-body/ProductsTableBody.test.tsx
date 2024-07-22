@@ -6,8 +6,9 @@ import {
 } from "@/containers/tables/products-table/ProductsTable.constants";
 import ProductsTableBody from "@/containers/tables/products-table/components/products-table-body/ProductsTableBody";
 
+import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
-import getCategoryFromTags from "@/utils/get-category-from-tags/GetCategoryFromTags";
+import getCategoryFromTags from "@/utils/get-category-from-tags/getCategoryFromTags";
 
 const categoryTag = getCategoryFromTags(mockProducts[0].tags) || "-";
 
@@ -30,11 +31,13 @@ describe("Test ProductsTable", () => {
       productStatuToTranslationKeyMap[mockProducts[0].status]
     );
     const categoryElement = screen.getByText(`category.${categoryTag}`);
+    const dateElement = screen.getByText(formatDate(mockProducts[0].createdAt));
 
     expect(imageElement).toBeInTheDocument();
     expect(nameElement).toBeInTheDocument();
     expect(priceElement).toBeInTheDocument();
     expect(statusElement).toBeInTheDocument();
     expect(categoryElement).toBeInTheDocument();
+    expect(dateElement).toBeInTheDocument();
   });
 });

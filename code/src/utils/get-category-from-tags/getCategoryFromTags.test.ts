@@ -1,4 +1,4 @@
-import getCategoryFromTags from "./GetCategoryFromTags";
+import getCategoryFromTags from "@/utils/get-category-from-tags/getCategoryFromTags";
 
 describe("Test getCategoryFromTags", () => {
   test("should return category tag", () => {

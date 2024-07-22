@@ -22,7 +22,7 @@ describe("Test ProductsTable", () => {
     const bodyElement = container.querySelector(".products-table__body");
     const containerElement = container.querySelector(".products-table");
 
-    expect(tableCells.length).toBe(7 * 2);
+    expect(tableCells.length).toBe(8 * 2);
     expect(bodyElement).toBeInTheDocument();
     expect(containerElement).toBeInTheDocument();
   });

@@ -8,13 +8,14 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
-import getCategoryFromTags from "@/utils/get-category-from-tags/GetCategoryFromTags";
+import getCategoryFromTags from "@/utils/get-category-from-tags/getCategoryFromTags";
 
 import "@/containers/tables/products-table/components/products-table-body/ProductsTableBody.scss";
 
 const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
-  const { name, imageLink, price, quantity, status, tags } = product;
+  const { name, imageLink, price, quantity, status, tags, createdAt } = product;
 
   const categoryName = getCategoryFromTags(tags) || "-";
 
@@ -52,6 +53,7 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
       <AppTableCell>{category}</AppTableCell>
       <AppTableCell>{quantity}</AppTableCell>
       <AppTableCell>{formatPrice(price)}</AppTableCell>
+      <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>
         <AppIconButton>
           <MoreHorizIcon />

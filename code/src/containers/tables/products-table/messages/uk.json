@@ -5,5 +5,6 @@
   "productsTable.columns.category": "Категорія",
   "productsTable.columns.quantity": "Кількість",
   "productsTable.columns.price": "Ціна",
+  "productsTable.columns.date": "Дата створення",
   "productsTable.fallback": "Продуктів не знайдено"
 }

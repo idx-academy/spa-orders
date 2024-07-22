@@ -7,6 +7,7 @@ export const productsTableColumns = [
   "productsTable.columns.category",
   "productsTable.columns.quantity",
   "productsTable.columns.price",
+  "productsTable.columns.date",
   ""
 ];
 
