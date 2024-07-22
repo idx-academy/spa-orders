@@ -10,13 +10,13 @@ const useUserCartItems = () => {
   const {
     data: cartItems,
     isError,
-    isLoading: cartItemsLoading
+    isLoading: isCartItemsLoading
   } = useGetCart();
 
   const [removeItem] = useRemoveFromCart();
   const {
     updateQuantity,
-    isLoading: updating,
+    isLoading: isUpdating,
     isError: updateError
   } = useUpdateCartItemQuantity();
 
@@ -44,11 +44,11 @@ const useUserCartItems = () => {
   return {
     user,
     cartItems,
-    cartItemsLoading,
+    isCartItemsLoading,
     isError,
     handleRemoveItem,
     handleQuantityChange,
-    updating,
+    isUpdating,
     updateError
   };
 };

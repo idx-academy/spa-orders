@@ -55,14 +55,16 @@ const mockCartItems = {
   totalPrice: 30
 };
 
-const renderAndMock = (data: Partial<ReturnType<typeof useUserCartItems>> = {}) => {
+const renderAndMock = (
+  data: Partial<ReturnType<typeof useUserCartItems>> = {}
+) => {
   (formatPrice as jest.Mock).mockImplementation(mockFormatPrice);
   (useNavigate as jest.Mock).mockReturnValue(navigate);
   (useDrawerContext as jest.Mock).mockReturnValue({ closeDrawer });
   (useModalContext as jest.Mock).mockReturnValue({ openModal });
   (useUserCartItems as jest.Mock).mockReturnValue({
     cartItems: data.cartItems || mockCartItems,
-    cartItemsLoading: false,
+    isCartItemsLoading: false,
     isError: false,
     handleRemoveItem: jest.fn(),
     ...data

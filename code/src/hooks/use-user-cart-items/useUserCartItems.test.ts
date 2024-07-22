@@ -25,7 +25,7 @@ type RenderWithMockParams = {
   isLoading?: boolean;
   isError?: boolean;
   updateError?: boolean;
-  updating?: boolean;
+  isUpdating?: boolean;
   user?: { id: string } | null;
 };
 
@@ -34,7 +34,7 @@ const renderWithMockParams = ({
   isLoading = false,
   isError = false,
   updateError = false,
-  updating = false,
+  isUpdating = false,
   user = { id: "user1" }
 }: RenderWithMockParams) => {
   mockUseUserDetailsSelector.mockReturnValue(user);
@@ -46,7 +46,7 @@ const renderWithMockParams = ({
   mockUseRemoveFromCart.mockReturnValue([mockRemoveItem]);
   mockUseUpdateCartItemQuantity.mockReturnValue({
     updateQuantity: mockUpdateQuantity,
-    isLoading: updating,
+    isLoading: isUpdating,
     isError: updateError
   });
 
@@ -64,8 +64,8 @@ describe("useUserCartItems", () => {
   test("should return loading state when fetching cart items", () => {
     const { result } = renderWithMockParams({ isLoading: true });
 
-    const cartItemsLoadingResult = result.current.cartItemsLoading;
-    expect(cartItemsLoadingResult).toBe(true);
+    const isCartItemsLoadingResult = result.current.isCartItemsLoading;
+    expect(isCartItemsLoadingResult).toBe(true);
   });
 
   test("should return error state when fetching cart items fails", () => {
@@ -82,21 +82,21 @@ describe("useUserCartItems", () => {
     expect(cartItemsResult).toEqual(cartItems);
   });
 
-  test("should call removeItem when handleRemoveItem is invoked", async () => {
+  test("should call removeItem when handleRemoveItem is invoked", () => {
     const { result } = renderWithMockParams({ data: cartItems });
 
-    await act(async () => {
-      await result.current.handleRemoveItem(cartItems[0]);
+    act(() => {
+      result.current.handleRemoveItem(cartItems[0]);
     });
 
     expect(mockRemoveItem).toHaveBeenCalledWith(cartItems[0]);
   });
 
-  test("should call updateQuantity when handleQuantityChange is invoked", async () => {
+  test("should call updateQuantity when handleQuantityChange is invoked", () => {
     const { result } = renderWithMockParams({ data: cartItems });
 
-    await act(async () => {
-      await result.current.handleQuantityChange(cartItems[0], 2);
+    act(() => {
+      result.current.handleQuantityChange(cartItems[0], 2);
     });
 
     expect(mockUpdateQuantity).toHaveBeenCalledWith({
@@ -106,14 +106,14 @@ describe("useUserCartItems", () => {
     });
   });
 
-  test("should handle updating state when updating quantity", () => {
+  test("should handle isUpdating state when updating quantity", () => {
     const { result } = renderWithMockParams({
       data: cartItems,
-      updating: true
+      isUpdating: true
     });
 
-    const updatingResult = result.current.updating;
-    expect(updatingResult).toBe(true);
+    const isUpdatingResult = result.current.isUpdating;
+    expect(isUpdatingResult).toBe(true);
   });
 
   test("should handle update error state when updating quantity fails", () => {
@@ -134,11 +134,11 @@ describe("useUserCartItems", () => {
     expect(mockRemoveItem).toHaveBeenCalledWith(product);
   });
 
-  test("should not call updateQuantity if user is not logged in", async () => {
+  test("should not call updateQuantity if user is not logged in", () => {
     const { result } = renderWithMockParams({ data: cartItems, user: null });
 
-    await act(async () => {
-      await result.current.handleQuantityChange(cartItems[0], 2);
+    act(() => {
+      result.current.handleQuantityChange(cartItems[0], 2);
     });
 
     expect(mockUpdateQuantity).not.toHaveBeenCalled();
@@ -150,8 +150,8 @@ describe("useUserCartItems", () => {
 
     const { result } = renderWithMockParams({ data: cartItems });
 
-    await act(async () => {
-      await result.current.handleQuantityChange(cartItems[0], 2);
+    await act(() => {
+      result.current.handleQuantityChange(cartItems[0], 2);
     });
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
