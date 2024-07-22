@@ -1,23 +1,27 @@
 import deserializeFromQueryString from "@/hooks/use-filters-with-apply/deserialize-from-query-string/deserializeFromQueryString";
 
-const parseSerializedSet = (value: string) => {
-  const match = value.match(/^{((?:\w+(?:,\w+)*)?)}$/);
+// matches list of values, separated by comma and wrapped into brackets
+// Examples: {1,2,3}, {delivered,completed}, {}, {value}
+const serializedSetPattern = /^{((?:\w+(?:,\w+)*)?)}$/;
+
+const parseSerializedSet = <Value>(value: string) => {
+  const match = value.match(serializedSetPattern);
 
   const arrayMatch = match?.[1];
 
+  if (arrayMatch === undefined) {
+    return null;
+  }
+
   if (arrayMatch === "") {
-    return new Set();
+    return new Set<Value>();
   }
 
-  if (arrayMatch !== undefined) {
-    const array = arrayMatch
-      .split(",")
-      .map((item) => deserializeFromQueryString(item));
+  const array = arrayMatch
+    .split(",")
+    .map((item) => deserializeFromQueryString(item)) as Value[];
 
-    return new Set(array);
-  }
-
-  return undefined;
+  return new Set(array);
 };
 
 export default parseSerializedSet;
