@@ -1,3 +1,5 @@
+import { ChangeEvent, useState } from "react";
+
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
@@ -10,9 +12,45 @@ import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/pages/cart/components/cart-item/CartItem.scss";
 
-const CartItem = ({ item, onRemove }: CartItemProps) => {
+const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
+  const [quantity, setQuantity] = useState(item.quantity);
+
   const handleRemoveCartItem = () => {
     onRemove(item);
+  };
+
+  const handleIncreaseQuantity = () => {
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    onQuantityChange(item, newQuantity);
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      onQuantityChange(item, newQuantity);
+    }
+  };
+
+  const handleQuantityInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    if (value === "") {
+      setQuantity(0);
+    } else {
+      const numberValue = parseInt(value, 10);
+      if (!isNaN(numberValue) && numberValue >= 1) {
+        setQuantity(numberValue);
+        onQuantityChange(item, numberValue);
+      }
+    }
+  };
+
+  const handleBlur = () => {
+    if (quantity === 0) {
+      setQuantity(item.quantity);
+    }
   };
 
   return (
@@ -29,16 +67,22 @@ const CartItem = ({ item, onRemove }: CartItemProps) => {
         <AppTypography>{formatPrice(item.productPrice)}</AppTypography>
       </AppBox>
       <AppBox className="spa-cart-item__quantity-selector">
-        <AppBox className="spa-cart-item__quantity-block">
+        <AppBox
+          className="spa-cart-item__quantity-block"
+          onClick={handleDecreaseQuantity}
+        >
           <RemoveCircleOutlineIcon />
         </AppBox>
         <input
-          type="text"
-          value={item.quantity}
+          value={quantity || ""}
           className="spa-cart-item__quantity-input"
-          onChange={() => {}}
+          onChange={handleQuantityInputChange}
+          onBlur={handleBlur}
         />
-        <AppBox className="spa-cart-item__quantity-block">
+        <AppBox
+          className="spa-cart-item__quantity-block"
+          onClick={handleIncreaseQuantity}
+        >
           <AddCircleOutlineIcon />
         </AppBox>
       </AppBox>

@@ -1,6 +1,7 @@
 import {
   CartManagementDeleteParams,
   CartManagementGetParams,
+  CartManagementPatchParams,
   CartManagementPostParams
 } from "@/types/cart.types";
 import {
@@ -38,6 +39,12 @@ export const URLS = {
     post: ({ userId, productId }: CartManagementPostParams) =>
       `/v1/users/${userId}/cart/${productId}`,
     delete: ({ userId, productId }: CartManagementDeleteParams) =>
-      `/v1/users/${userId}/cart/items/${productId}`
+      `/v1/users/${userId}/cart/items/${productId}`,
+    patchQuantity: ({
+      userId,
+      productId,
+      quantity
+    }: CartManagementPatchParams) =>
+      `/v1/users/${userId}/cart/${productId}/setquantity?quantity=${quantity}`
   }
 } as const;

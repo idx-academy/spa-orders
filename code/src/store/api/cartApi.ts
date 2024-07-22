@@ -5,6 +5,7 @@ import { appApi } from "@/store/api/appApi";
 import {
   CartManagementDeleteParams,
   CartManagementGetParams,
+  CartManagementPatchParams,
   CartManagementPostParams,
   CartType
 } from "@/types/cart.types";
@@ -30,6 +31,13 @@ const cartApi = appApi.injectEndpoints({
         method: httpMethods.delete
       }),
       invalidatesTags: [rtkQueryTags.CART]
+    }),
+    updateCartItemQuantity: build.mutation<void, CartManagementPatchParams>({
+      query: ({ userId, productId, quantity }) => ({
+        url: URLS.cart.patchQuantity({ userId, productId, quantity }),
+        method: httpMethods.patch
+      }),
+      invalidatesTags: [rtkQueryTags.CART]
     })
   })
 });
@@ -38,6 +46,7 @@ export const {
   useGetCartItemsQuery,
   useAddToCartMutation,
   useRemoveFromCartMutation,
+  useUpdateCartItemQuantityMutation,
   useLazyGetCartItemsQuery
 } = cartApi;
 

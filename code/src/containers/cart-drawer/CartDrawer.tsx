@@ -27,13 +27,14 @@ const CartDrawer = () => {
 
   if (isError) return <AppTypography translationKey="error.label" />;
 
-  const cartItemsList = cartItems?.items.map((item: CartItem) => (
-    <CartDrawerItem
-      key={item.productId}
-      onRemove={handleRemoveItem}
-      {...item}
-    />
-  ));
+  const cartItemsList =
+    cartItems?.items.map((item: CartItem) => (
+      <CartDrawerItem
+        key={item.productId}
+        onRemove={handleRemoveItem}
+        {...item}
+      />
+    )) ?? [];
 
   const handleOpenCartPage = () => {
     if (user) {

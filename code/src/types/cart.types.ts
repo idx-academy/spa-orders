@@ -10,6 +10,12 @@ export type CartManagementDeleteParams = {
   userId: UserId;
 };
 
+export type CartManagementPatchParams = {
+  productId: string;
+  userId: UserId;
+  quantity: number;
+};
+
 export type CartManagementGetParams = {
   userId: UserId;
 };
@@ -31,6 +37,7 @@ export type CartType = {
 export type CartItemProps = {
   item: CartItem;
   onRemove: (product: CartItem) => void;
+  onQuantityChange: (product: CartItem, newQuantity: number) => void;
 };
 
 export type CartDrawerItemProps = Pick<CartItemProps, "onRemove"> & CartItem;

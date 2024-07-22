@@ -13,15 +13,20 @@ import { CartItem as CartItemType } from "@/types/cart.types";
 import "@/pages/cart/CartPage.scss";
 
 const CartPage = () => {
-  const { cartItems, isError, handleRemoveItem } = useUserCartItems();
-
+  const { cartItems, isError, handleRemoveItem, handleQuantityChange } =
+    useUserCartItems();
   if (isError) return <AppTypography translationKey="error.label" />;
   if (!cartItems?.items?.length) {
     return <EmptyCart />;
   }
 
   const cartItemsBlock = cartItems.items.map((item: CartItemType) => (
-    <CartItem key={item.productId} item={item} onRemove={handleRemoveItem} />
+    <CartItem
+      key={item.productId}
+      item={item}
+      onRemove={handleRemoveItem}
+      onQuantityChange={handleQuantityChange}
+    />
   ));
 
   const totalPrice = cartItems.totalPrice ?? 0;

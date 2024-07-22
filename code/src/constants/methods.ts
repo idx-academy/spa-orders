@@ -2,6 +2,6 @@ export const httpMethods = {
   get: "GET",
   post: "POST",
   put: "PUT",
-  delete: "DELETE",
-  patch: "PATCH"
+  patch: "PATCH",
+  delete: "DELETE"
 } as const;
