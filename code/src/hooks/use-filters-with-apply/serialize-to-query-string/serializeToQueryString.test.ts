@@ -1,4 +1,4 @@
-import serializeToQueryString from "./serializeToQueryString";
+import serializeToQueryString from "@/hooks/use-filters-with-apply/serialize-to-query-string/serializeToQueryString";
 
 describe("serializeToQueryString", () => {
   test("serializes null correctly", () => {
