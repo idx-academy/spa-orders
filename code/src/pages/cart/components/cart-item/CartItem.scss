@@ -37,6 +37,10 @@
     width: 32px;
     height: spacing(8);
     cursor: pointer;
+
+    &.disabled {
+      opacity: 0.5;
+    }
   }
 
   &__quantity-input {

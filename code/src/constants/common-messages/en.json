@@ -20,6 +20,7 @@
   "cart.itemDeletion.fail": "Failed to remove the product from the cart.",
   "cart.itemAddition.success": "The product was successfully added to the cart.",
   "cart.itemDeletion.success": "The product was successfully removed from the cart.",
+  "cart.itemQuantityUpdate.fail": "Failed to change quantity of the product.",
   "cart.itemAdditionToRemote.fail": "Failed to add the product to the cart associated with your account.",
   "filters.from": "From",
   "filters.to": "to",

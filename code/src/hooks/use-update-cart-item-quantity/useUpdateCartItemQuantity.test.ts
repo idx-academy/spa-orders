@@ -1,18 +1,21 @@
 import { act, renderHook } from "@testing-library/react";
 
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import useUpdateCartItemQuantity from "@/hooks/use-update-cart-item-quantity/useUpdateCartItemQuantity";
 import { useUpdateCartItemQuantityMutation } from "@/store/api/cartApi";
 import { CartManagementPatchParams } from "@/types/cart.types";
 
 jest.mock("@/store/api/cartApi");
+jest.mock("@/hooks/use-snackbar/useSnackbar");
 
+const mockOpenSnackbarWithTimeout = jest.fn();
 const mockUseUpdateCartItemQuantityMutation =
   useUpdateCartItemQuantityMutation as jest.Mock;
-
 const mockUnwrap = jest.fn();
 const mockUpdateCartItemQuantity = jest.fn(() => ({
   unwrap: mockUnwrap
 }));
+
 const mockDataSuccess = { success: true };
 
 const params: CartManagementPatchParams = {
@@ -21,14 +24,14 @@ const params: CartManagementPatchParams = {
   quantity: 2
 };
 
-const renderAndMock = (
-  mockParams?: Partial<{
-    isLoading: boolean;
-    isError: boolean;
-    data: typeof mockDataSuccess;
-    error: string;
-  }>
-) => {
+type MockParams = {
+  isLoading: boolean;
+  isError: boolean;
+  data: typeof mockDataSuccess;
+  error: string;
+};
+
+const renderAndMock = (mockParams?: Partial<MockParams>) => {
   mockUseUpdateCartItemQuantityMutation.mockReturnValue([
     mockUpdateCartItemQuantity,
     {
@@ -45,19 +48,18 @@ const renderAndMock = (
 describe("useUpdateCartItemQuantity", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.spyOn(console, "error").mockImplementation(() => {});
+    (useSnackbar as jest.Mock).mockReturnValue({
+      openSnackbarWithTimeout: mockOpenSnackbarWithTimeout
+    });
   });
 
-  afterEach(() => {
-    (console.error as jest.Mock).mockRestore();
-  });
-
-  test("should call updateCartItemQuantity with correct parameters and unwrap the result", async () => {
+  test("should call updateCartItemQuantity with correct parameters and unwrap the result", () => {
     const { result } = renderAndMock();
+
     mockUnwrap.mockResolvedValue(mockDataSuccess);
 
-    await act(async () => {
-      await result.current.updateQuantity(params);
+    act(() => {
+      result.current.updateQuantity(params);
     });
 
     expect(mockUpdateCartItemQuantity).toHaveBeenCalledWith(params);
@@ -87,18 +89,19 @@ describe("useUpdateCartItemQuantity", () => {
 
   test("should handle error state correctly when updateQuantity fails", async () => {
     const error = new Error("Failed to update");
+
     mockUnwrap.mockRejectedValue(error);
 
     const { result } = renderAndMock();
 
-    await act(async () => {
-      await result.current.updateQuantity(params);
+    await act(() => {
+      result.current.updateQuantity(params);
     });
 
-    expect(console.error).toHaveBeenCalledWith(
-      "Failed to update cart item quantity:",
-      error
-    );
+    expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({
+      messageTranslationKey: "cart.itemQuantityUpdate.fail",
+      variant: "error"
+    });
   });
 
   test("should handle error state from mutation correctly", () => {

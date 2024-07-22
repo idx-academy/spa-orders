@@ -20,6 +20,7 @@
   "cart.itemDeletion.fail": "Не вдалося видалити продукт з кошика.",
   "cart.itemAddition.success": "Продукт успішно додано у кошик.",
   "cart.itemDeletion.success": "Продукт успішно видалено з кошика.",
+  "cart.itemQuantityUpdate.fail": "Не вдалося змінити кількість товару.",
   "cart.itemAdditionToRemote.fail": "Не вдалося додати продукт у кошик, пов'язаний з вашим обліковим записом.",
   "filters.from": "Від",
   "filters.to": "до",

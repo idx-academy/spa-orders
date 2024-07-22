@@ -8,6 +8,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { CartItemProps } from "@/types/cart.types";
+import cn from "@/utils/cn/cn";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/pages/cart/components/cart-item/CartItem.scss";
@@ -68,7 +69,9 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
       </AppBox>
       <AppBox className="spa-cart-item__quantity-selector">
         <AppBox
-          className="spa-cart-item__quantity-block"
+          className={cn("spa-cart-item__quantity-block", {
+            disabled: quantity === 1
+          })}
           onClick={handleDecreaseQuantity}
         >
           <RemoveCircleOutlineIcon />
