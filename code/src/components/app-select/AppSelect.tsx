@@ -13,13 +13,19 @@ import "@/components/app-select/AppSelect.scss";
 
 const AppSelect = forwardRef(
   (
-    { label, color = "contained", className, ...props }: AppSelectProps,
+    {
+      label,
+      color = "contained",
+      className,
+      fullWidth = false,
+      ...props
+    }: AppSelectProps,
     ref
   ) => {
     const labelId = useId();
 
     return (
-      <FormControl fullWidth>
+      <FormControl fullWidth={fullWidth}>
         {label && (
           <InputLabel
             className={cn("spa-select__label", `spa-select__label--${color}`)}

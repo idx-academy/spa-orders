@@ -99,6 +99,7 @@ const OrdersTabFilterDrawer = ({
 
   const timespanSelect = (
     <AppSelect
+      fullWidth
       inputProps={{
         className: "order-tab-filters__date-period-select"
       }}
