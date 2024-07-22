@@ -1,7 +1,8 @@
 import React from "react";
+
+import "@testing-library/jest-dom";
 import crypto from "crypto";
 import failOnConsole from "jest-fail-on-console";
-import "@testing-library/jest-dom";
 
 global.React = React;
 
@@ -30,9 +31,16 @@ jest.mock("react-router-dom", () => ({
   })
 }));
 
+const mockTranslationImplementation = jest
+  .fn()
+  .mockImplementation(({ id }) => id);
+
 jest.mock("react-intl", () => ({
   ...jest.requireActual("react-intl"),
-  FormattedMessage: jest.fn().mockImplementation(({ id }) => id)
+  FormattedMessage: mockTranslationImplementation,
+  useIntl: jest.fn().mockImplementation(() => ({
+    formatMessage: mockTranslationImplementation
+  }))
 }));
 
 window.URL.createObjectURL = function () {};
