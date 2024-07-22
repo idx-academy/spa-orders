@@ -31,16 +31,9 @@ jest.mock("react-router-dom", () => ({
   })
 }));
 
-const mockTranslationImplementation = jest
-  .fn()
-  .mockImplementation(({ id }) => id);
-
 jest.mock("react-intl", () => ({
   ...jest.requireActual("react-intl"),
-  FormattedMessage: mockTranslationImplementation,
-  useIntl: jest.fn().mockImplementation(() => ({
-    formatMessage: mockTranslationImplementation
-  }))
+  FormattedMessage: jest.fn().mockImplementation(({ id }) => id)
 }));
 
 window.URL.createObjectURL = function () {};

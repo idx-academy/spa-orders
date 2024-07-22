@@ -1,0 +1,97 @@
+import { fireEvent, screen } from "@testing-library/react";
+
+import { FilterRecordAccordionProps } from "@/containers/dashboard-orders-filter-drawer/components/filter-record-accordion/FilterAccordion.types";
+import FilterRecordAccordion from "@/containers/dashboard-orders-filter-drawer/components/filter-record-accordion/FilterRecordAccordion";
+
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
+const mockResetFilter = jest.fn();
+const sectionCaptionTranslationKey = "translation.key";
+
+// overriding global translation mock to accept nested translations
+jest.mock("react-intl", () => ({
+  ...jest.requireActual("react-intl"),
+  FormattedMessage: jest.fn(({ id, values }) => {
+    if (values) {
+      return `${id}/${values.filterName}`;
+    }
+
+    return id;
+  }),
+  useIntl: jest.fn(() => ({
+    formatMessage: jest.fn(({ id }) => id)
+  }))
+}));
+
+const renderFilterRecordAccordion = ({
+  isFilterActive
+}: Partial<FilterRecordAccordionProps> = {}) => {
+  return renderWithProviders(
+    <FilterRecordAccordion
+      sectionCaptionTranslationKey={sectionCaptionTranslationKey}
+      resetFilter={mockResetFilter}
+      isFilterActive={isFilterActive}
+    >
+      <div>Children</div>
+    </FilterRecordAccordion>
+  );
+};
+
+describe("FilterRecordAccordion", () => {
+  test("does not expand when defaultExpanded is set to false", () => {
+    renderFilterRecordAccordion({ defaultExpanded: false });
+
+    const accordionContentWrapper = screen
+      .getByTestId("accordion-content-wrapper")
+      .closest(".MuiCollapse-root");
+
+    expect(accordionContentWrapper).toHaveStyle({ minHeight: "0px" });
+  });
+
+  describe("with default props", () => {
+    beforeEach(() => {
+      renderFilterRecordAccordion();
+    });
+
+    test("is expanded by default", () => {
+      const accordionContentWrapper = screen
+        .getByTestId("accordion-content-wrapper")
+        .closest(".MuiCollapse-root");
+
+      expect(accordionContentWrapper).toHaveStyle({ visibility: "visible" });
+    });
+
+    test("does not render active filter indicator when isFilterActive is false", () => {
+      const filterIndicatorIcon = screen.queryByTestId("FiberManualRecordIcon");
+      expect(filterIndicatorIcon).not.toBeInTheDocument();
+    });
+  });
+
+  describe("with isFilterActive equals true", () => {
+    beforeEach(() => {
+      renderFilterRecordAccordion({ isFilterActive: true });
+    });
+
+    test("shows tooltip for reset filter button on hover", async () => {
+      const resetFilterButton = screen.getByTestId("reset-filter-button");
+      fireEvent.mouseOver(resetFilterButton);
+
+      const tooltip = await screen.findByText(
+        "dashboardTabs.orders.filters.clearFilterTooltip/translation.key" // match nested translation by key, that was mocked
+      );
+      expect(tooltip).toBeInTheDocument();
+    });
+
+    test("renders active filter indicator", () => {
+      const filterIndicatorIcon = screen.getByTestId("FiberManualRecordIcon");
+      expect(filterIndicatorIcon).toBeInTheDocument();
+    });
+
+    test("calls resetFilter when we click reset filter button", () => {
+      const resetFilterButton = screen.getByTestId("reset-filter-button");
+      fireEvent.click(resetFilterButton);
+
+      expect(mockResetFilter).toHaveBeenCalled();
+    });
+  });
+});
