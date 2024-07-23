@@ -24,7 +24,6 @@ describe("timeSpanToDateRange", () => {
     "returns correct date range for %s",
     (timeSpan, expectedStart) => {
       const { start, end } = timeSpanToDateRange(timeSpan as TimeSpan);
-      console.log({ start, end });
       expect(start).toEqual(expectedStart);
       expect(end).toEqual(mockDate);
     }
