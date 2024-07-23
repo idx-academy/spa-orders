@@ -8,6 +8,7 @@ import renderWithProviders from "@/utils/render-with-providers/renderWithProvide
 const mockResetFilter = jest.fn();
 const sectionCaptionTranslationKey = "translation.key";
 const textWithFilterName = `dashboardTabs.orders.filters.clearFilterTooltip/filterName:${sectionCaptionTranslationKey}`;
+const filterButtonTestId = `reset-filter-button-${sectionCaptionTranslationKey}`;
 
 const renderFilterRecordAccordion = ({
   isFilterActive
@@ -59,7 +60,7 @@ describe("FilterRecordAccordion", () => {
     });
 
     test("shows tooltip for reset filter button on hover", async () => {
-      const resetFilterButton = screen.getByTestId("reset-filter-button");
+      const resetFilterButton = screen.getByTestId(filterButtonTestId);
       fireEvent.mouseOver(resetFilterButton);
 
       const tooltip = await screen.findByText(textWithFilterName);
@@ -72,7 +73,7 @@ describe("FilterRecordAccordion", () => {
     });
 
     test("calls resetFilter when we click reset filter button", () => {
-      const resetFilterButton = screen.getByTestId("reset-filter-button");
+      const resetFilterButton = screen.getByTestId(filterButtonTestId);
       fireEvent.click(resetFilterButton);
 
       expect(mockResetFilter).toHaveBeenCalled();

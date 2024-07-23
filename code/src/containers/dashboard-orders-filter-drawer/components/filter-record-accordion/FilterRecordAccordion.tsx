@@ -54,7 +54,7 @@ const FilterRecordAccordion = ({
         className="filter-record-accordion__reset-filter-button"
         onClick={handleResetFilter}
         disableRipple
-        data-testid="reset-filter-button"
+        data-testid={`reset-filter-button-${sectionCaptionTranslationKey}`}
       >
         <FilterAltOffIcon />
       </AppIconButton>
