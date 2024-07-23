@@ -15,7 +15,7 @@ import {
 const ordersApi = appApi.injectEndpoints({
   endpoints: (build) => ({
     getUserOrders: build.query<UserOrderResponse, GetUserOrderParams>({
-      query: ({ userId }) => URLS.orders.getForUser({ userId })
+      query: (params) => URLS.orders.getForUser(params)
     }),
 
     getAdminOrders: build.query<AdminOrderResponse, GetAdminOrderParams>({

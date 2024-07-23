@@ -27,8 +27,8 @@ export const URLS = {
     delete: "/v1/products"
   },
   orders: {
-    getForUser: ({ userId }: GetUserOrderParams) =>
-      `/v1/users/${userId}/orders`,
+    getForUser: ({ userId, lang }: GetUserOrderParams) =>
+      `/v1/users/${userId}/orders?lang=${lang}`,
     getForAdmin: (queryParams: GetAdminOrderParams) =>
       createUrlPath("/v1/management/orders", undefined, queryParams),
     post: ({ userId }: Pick<OrderPostParams, "userId">) =>

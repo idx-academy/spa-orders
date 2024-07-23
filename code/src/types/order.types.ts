@@ -73,7 +73,7 @@ export type OrderPatchParams = {
   orderStatus: OrderStatus;
 };
 
-export type GetUserOrderParams = {
+export type GetUserOrderParams = Lang & {
   userId: UserId;
 };
 

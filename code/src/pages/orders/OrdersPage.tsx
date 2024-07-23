@@ -6,6 +6,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
 import { useGetUserOrdersQuery } from "@/store/api/ordersApi";
 
@@ -13,13 +14,15 @@ import "@/pages/orders/OrdersPage.scss";
 
 const OrdersPage = () => {
   const { id } = useGetUserDetails();
+  const { locale } = useLocaleContext();
 
   const {
     data: orderResponse,
     isLoading,
     error
   } = useGetUserOrdersQuery({
-    userId: id
+    userId: id,
+    lang: locale
   });
 
   const orders = orderResponse?.content ?? [];
