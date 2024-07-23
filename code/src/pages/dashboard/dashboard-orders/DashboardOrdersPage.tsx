@@ -55,7 +55,11 @@ const DashboardOrdersPage = () => {
           variant="h3"
           translationKey="dashboardTabs.orders.title"
         />
-        <AppButton variant="dark" onClick={handleOpenFilterDrawer}>
+        <AppButton
+          variant="dark"
+          onClick={handleOpenFilterDrawer}
+          data-testid="filter-button"
+        >
           {titleTypography}
           <FilterListIcon />
         </AppButton>
