@@ -1,5 +1,7 @@
 import serializeToQueryString from "@/hooks/use-filters-with-apply/serialize-to-query-string/serializeToQueryString";
 
+const mockSet = new Set(["value1", "value2"]);
+
 describe("serializeToQueryString", () => {
   test("serializes null correctly", () => {
     const serializationResult = serializeToQueryString(null);
@@ -22,9 +24,7 @@ describe("serializeToQueryString", () => {
   });
 
   test("serializes 'Set' type correctly", () => {
-    const serializationResult = serializeToQueryString(
-      new Set(["value1", "value2"])
-    );
+    const serializationResult = serializeToQueryString(mockSet);
 
     expect(serializationResult).toBe("{value1,value2}");
   });
