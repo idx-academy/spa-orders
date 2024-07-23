@@ -7,21 +7,7 @@ import renderWithProviders from "@/utils/render-with-providers/renderWithProvide
 
 const mockResetFilter = jest.fn();
 const sectionCaptionTranslationKey = "translation.key";
-
-// overriding global translation mock to accept nested translations
-jest.mock("react-intl", () => ({
-  ...jest.requireActual("react-intl"),
-  FormattedMessage: jest.fn(({ id, values }) => {
-    if (values) {
-      return `${id}/${values.filterName}`;
-    }
-
-    return id;
-  }),
-  useIntl: jest.fn(() => ({
-    formatMessage: jest.fn(({ id }) => id)
-  }))
-}));
+const textWithFilterName = `dashboardTabs.orders.filters.clearFilterTooltip/filterName:${sectionCaptionTranslationKey}`;
 
 const renderFilterRecordAccordion = ({
   isFilterActive
@@ -76,9 +62,7 @@ describe("FilterRecordAccordion", () => {
       const resetFilterButton = screen.getByTestId("reset-filter-button");
       fireEvent.mouseOver(resetFilterButton);
 
-      const tooltip = await screen.findByText(
-        "dashboardTabs.orders.filters.clearFilterTooltip/translation.key" // match nested translation by key, that was mocked
-      );
+      const tooltip = await screen.findByText(textWithFilterName);
       expect(tooltip).toBeInTheDocument();
     });
 

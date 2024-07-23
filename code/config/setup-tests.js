@@ -31,9 +31,32 @@ jest.mock("react-router-dom", () => ({
   })
 }));
 
+const mockNestedTranslations = jest
+  .fn()
+  .mockImplementation(({ id, values }) => {
+    if (!values) {
+      return id;
+    }
+
+    const nestedTranslations = Object.entries(values);
+
+    if (nestedTranslations.length > 0) {
+      const stringifiedValues = nestedTranslations.map(
+        ([key, value]) => `${key}:${value}`
+      );
+
+      return `${id}/${stringifiedValues}`;
+    }
+
+    return id;
+  });
+
 jest.mock("react-intl", () => ({
   ...jest.requireActual("react-intl"),
-  FormattedMessage: jest.fn().mockImplementation(({ id }) => id)
+  FormattedMessage: mockNestedTranslations,
+  useIntl: jest.fn(() => ({
+    formatMessage: mockNestedTranslations
+  }))
 }));
 
 window.URL.createObjectURL = function () {};
