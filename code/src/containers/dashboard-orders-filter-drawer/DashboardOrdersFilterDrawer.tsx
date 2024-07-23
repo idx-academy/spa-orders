@@ -81,12 +81,12 @@ const DashboardOrdersFilterDrawer = ({
 
   const isOrdersStatusFilterActive = checkFilterActive("statuses");
 
-  const handleOrderStatusFilterReset = () => {
-    resetFilterByKey("statuses");
-  };
-
   const handleTimespanSelectChange = (event: SelectChangeEvent<unknown>) => {
     updateFilterByKey("timespan", event.target.value as TimeSpan);
+  };
+
+  const handleOrderStatusFilterReset = () => {
+    resetFilterByKey("statuses");
   };
 
   const timespanSelectNonDefaultOptions = Object.entries(timeSpans).map(
@@ -117,7 +117,7 @@ const DashboardOrdersFilterDrawer = ({
 
   const isTimespanFilterActive = checkFilterActive("timespan");
 
-  const handleTimespanFilterChange = () => {
+  const handleTimespanFilterReset = () => {
     updateFilterByKey("timespan", "");
     resetFilterByKey("timespan");
   };
@@ -213,7 +213,7 @@ const DashboardOrdersFilterDrawer = ({
         </FilterRecordAccordion>
         <FilterRecordAccordion
           isFilterActive={isTimespanFilterActive}
-          resetFilter={handleTimespanFilterChange}
+          resetFilter={handleTimespanFilterReset}
           sectionCaptionTranslationKey="dashboardTabs.orders.filters.timespan"
         >
           {timespanSelect}
