@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useSearchParams } from "react-router-dom";
-
+// import { useSearchParams } from "react-router-dom";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
@@ -23,52 +22,49 @@ const DashboardOrdersPage = () => {
 
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  console.log(sortFilters);
+  console.log(orders);
 
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const sortOption = searchParams.get("sort");
-
-  const {
-    data: adminOrderResponse,
-    isLoading,
-    error
-  } = useGetAdminOrdersQuery({
-    sort: sortOption ?? "createdAt,asc"
-  });
-
-  console.log(sortOption)
-
-  console.log(adminOrderResponse);
-
-  // @TODO: add more logic to error and loading
-
-  if (error) return <div>Error loading orders</div>;
-  if (isLoading) return <div>Loading...</div>;
-  const ordersData = adminOrderResponse?.content ?? [];
-
-  console.log(ordersData);
-
-  const handleSortChange = (value: string) => {
-    const params = new URLSearchParams(searchParams)
-    params.set('sort', value)
-    setSearchParams(params);
-  };
-
-  // @TODO: implement filtersCount
-  const filtersCount = 2;
-
-  const filtersTitleTranslationProps = {
-    values: {
-      count: filtersCount
-    }
+  const handleCloseFilterDrawer = () => {
+    setIsFilterDrawerOpen(false);
   };
 
   const handleOpenFilterDrawer = () => {
     setIsFilterDrawerOpen(true);
+  };
+
+  useEffect(() => {
+    sortFilterActions.applyFilters();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  // const [searchParams, setSearchParams] = useSearchParams();
+
+  // const sortOption = searchParams.get("sort");
+
+  // const {
+  //   data: adminOrderResponse,
+  //   isLoading,
+  //   error
+  // } = useGetAdminOrdersQuery({
+  //   sort: sortOption ?? "createdAt,asc"
+  // });
+
+  // console.log(sortOption)
+
+  // console.log(adminOrderResponse);
+
+  // if (error) return <div>Error loading orders</div>;
+
+  // const ordersData = adminOrderResponse?.content ?? [];
+
+  // console.log(ordersData);
+
+  const handleSortChange = (value: string) => {
+    sortFilterActions.updateFilterByKey("sort", value);
+    sortFilterActions.applyFilters();
   };
 
   const titleTypography =
@@ -102,7 +98,7 @@ const DashboardOrdersPage = () => {
           <FilterListIcon />
         </AppButton>
       </AppBox>
-      <OrdersTable ordersData={ordersData} onSortChange={handleSortChange} />
+      <OrdersTable ordersData={orders} onSortChange={handleSortChange} />
       <AppDrawer isOpen={isFilterDrawerOpen} onClose={handleCloseFilterDrawer}>
         <OrdersTabFilterDrawer
           filters={filters}

@@ -23,8 +23,6 @@ const OrdersTable = ({ ordersData, onSortChange }: OrdersTableProps) => {
       changeOrderStatus({ orderId: order.id, orderStatus });
     };
 
-    console.log(ordersData);
-
     return (
       <OrdersTableBody
         key={order.id}
@@ -35,15 +33,7 @@ const OrdersTable = ({ ordersData, onSortChange }: OrdersTableProps) => {
   };
 
   const OrderTableHeadItem = (head: string) => (
-    <OrdersTableHead
-      key={head}
-      head={head}
-      onSortChange={onSortChange}
-      sortable={[
-        "ordersTable.columns.createdAt",
-        "ordersTable.columns.totalPrice"
-      ].includes(head)}
-    />
+    <OrdersTableHead key={head} head={head} onSortChange={onSortChange} />
   );
 
   const ordersTableFallback = (

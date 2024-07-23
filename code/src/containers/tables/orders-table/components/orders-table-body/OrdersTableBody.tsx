@@ -31,7 +31,7 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
     isPaid
   } = order;
 
-  const orderReceiver = `${firstName} ${lastName}`;
+  const orderReceiver = `${lastName} ${firstName}`;
 
   const statusBlock = (
     <AppSelect

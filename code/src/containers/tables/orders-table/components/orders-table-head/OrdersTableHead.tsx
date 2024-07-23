@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import TableSortLabel from "@mui/material/TableSortLabel";
-
 import { AppTableCell } from "@/components/app-table/components";
+import AppTableSortLabel from "@/components/app-table/components/app-table-sort-label/AppTableSortLabel";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead.scss";
@@ -13,27 +12,39 @@ type OrderTableHeadProps = {
   onSortChange: (newSort: string) => void;
 };
 
-const OrdersTableHead = ({
-  head,
-  sortable = false,
-  onSortChange
-}: OrderTableHeadProps) => {
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+const OrdersTableHead = ({ head, onSortChange }: OrderTableHeadProps) => {
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+
+  const getSortKey = () => {
+    switch (head) {
+      case "ordersTable.columns.createdAt":
+        return "createdAt";
+      case "ordersTable.columns.totalPrice":
+        return "total";
+      default:
+        return null;
+    }
+  };
+  const sortKey = getSortKey();
 
   const handleSort = () => {
-    if (sortable) {
-      const newSort = `createdAt,${sortDirection}`;
+    if (sortKey !== null) {
+      const newSort = `${sortKey},${sortDirection}`;
       onSortChange(newSort);
-      setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
+      setSortDirection((prev) => (prev === "desc" ? "asc" : "desc"));
     }
   };
 
   return (
     <AppTableCell className="spa-order-table__head">
-      {sortable ? (
-        <TableSortLabel active direction={sortDirection} onClick={handleSort}>
+      {sortKey !== null ? (
+        <AppTableSortLabel
+          active
+          direction={sortDirection}
+          onClick={handleSort}
+        >
           <AppTypography translationKey={head} variant="caption" />
-        </TableSortLabel>
+        </AppTableSortLabel>
       ) : (
         <AppTypography translationKey={head} variant="caption" />
       )}

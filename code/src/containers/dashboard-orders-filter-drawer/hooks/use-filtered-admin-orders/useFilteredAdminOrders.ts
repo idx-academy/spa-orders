@@ -12,6 +12,12 @@ const useFilteredAdminOrders = () => {
     actions: filterActions
   } = useFiltersWithApply(defaultAdminOrderFilters);
 
+  const {
+    filters: sortFilters,
+    appliedFilters: { sort },
+    actions: sortFilterActions
+  } = useFiltersWithApply({ sort: "createdAt,desc" });
+
   const dateRange = timespan ? timeSpanToDateRange(timespan) : undefined;
 
   const deliveryMethods =
@@ -24,8 +30,11 @@ const useFilteredAdminOrders = () => {
     statuses: statuses && Array.from(statuses),
     deliveryMethods,
     createdBefore: dateRange?.end.toISOString(),
-    createdAfter: dateRange?.start.toISOString()
+    createdAfter: dateRange?.start.toISOString(),
+    sort
   });
+
+  console.log(ordersResponse)
 
   const orders = ordersResponse?.content ?? [];
 
@@ -34,7 +43,9 @@ const useFilteredAdminOrders = () => {
     filterActions,
     activeFiltersCount,
     orders,
-    isLoading
+    isLoading,
+    sortFilters,
+    sortFilterActions
   } as const;
 };
 
