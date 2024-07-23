@@ -10,7 +10,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import "@/layouts/header/components/header-categories/HeaderCategories.scss";
 
 const HeaderCategories = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const categoryType = searchParams.get("category");
 
   return (

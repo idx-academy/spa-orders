@@ -5,7 +5,6 @@ import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import ProductsContainer from "@/containers/products-container/ProductsContainer";
 
 import AppBox from "@/components/app-box/AppBox";
-import AppContainer from "@/components/app-container/AppContainer";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
 import AppTypography from "@/components/app-typography/AppTypography";
 
