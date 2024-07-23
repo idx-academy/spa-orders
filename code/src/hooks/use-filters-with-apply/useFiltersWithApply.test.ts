@@ -17,23 +17,46 @@ jest.mock(
 );
 
 const mockSetSearchParams = jest.fn();
-const defaultFilters = { filter1: "default1", filter2: "default2" };
+
+const filterKeys = {
+  filter1: "filter1",
+  filter2: "filter2"
+};
+
+const defaultFilters = {
+  [filterKeys.filter1]: "default1",
+  [filterKeys.filter2]: "default2"
+};
+
+const updatedFilters = {
+  [filterKeys.filter1]: "updated1",
+  [filterKeys.filter2]: "updated2"
+};
+
+const renderAndMock = () => {
+  (useSearchParams as jest.Mock).mockReturnValue([
+    new URLSearchParams(),
+    mockSetSearchParams
+  ]);
+
+  (parseFiltersFromParams as jest.Mock).mockReturnValue({
+    defaultActiveFilters: new Set(),
+    defaultFiltersFromParams: defaultFilters
+  });
+
+  (serializeToQueryString as jest.Mock).mockImplementation((value: object) =>
+    value.toString()
+  );
+
+  const { result } = renderHook(() => useFiltersWithApply(defaultFilters));
+  return result;
+};
 
 describe("useFiltersWithApply", () => {
+  let result: ReturnType<typeof renderAndMock>;
+
   beforeEach(() => {
-    (useSearchParams as jest.Mock).mockReturnValue([
-      new URLSearchParams(),
-      mockSetSearchParams
-    ]);
-
-    (parseFiltersFromParams as jest.Mock).mockReturnValue({
-      defaultActiveFilters: new Set(),
-      defaultFiltersFromParams: defaultFilters
-    });
-
-    (serializeToQueryString as jest.Mock).mockImplementation((value: object) =>
-      value.toString()
-    );
+    result = renderAndMock();
   });
 
   afterEach(() => {
@@ -41,42 +64,46 @@ describe("useFiltersWithApply", () => {
   });
 
   test("initializes with default filters correctly", () => {
-    const { result } = renderHook(() => useFiltersWithApply(defaultFilters));
-
     expect(result.current.filters).toEqual(defaultFilters);
     expect(result.current.appliedFilters).toEqual({});
     expect(result.current.activeFiltersCount).toBe(0);
   });
 
   test("updates a filter by key correctly", () => {
-    const { result } = renderHook(() => useFiltersWithApply(defaultFilters));
-
     act(() => {
-      result.current.actions.updateFilterByKey("filter1", "updated1");
+      result.current.actions.updateFilterByKey(
+        "filter1",
+        updatedFilters.filter1
+      );
     });
 
-    expect(result.current.filters.filter1).toBe("updated1");
+    expect(result.current.filters.filter1).toBe(updatedFilters.filter1);
     expect(result.current.activeFiltersCount).toBe(1);
   });
 
   test("resets a filter by key correctly", () => {
-    const { result } = renderHook(() => useFiltersWithApply(defaultFilters));
-
     act(() => {
-      result.current.actions.updateFilterByKey("filter1", "updated1");
-      result.current.actions.resetFilterByKey("filter1");
+      result.current.actions.updateFilterByKey(
+        "filter1",
+        updatedFilters.filter1
+      );
+      result.current.actions.resetFilterByKey(filterKeys.filter1);
     });
 
-    expect(result.current.filters.filter1).toBe("default1");
+    expect(result.current.filters.filter1).toBe(defaultFilters.filter1);
     expect(result.current.activeFiltersCount).toBe(0);
   });
 
   test("resets all filters correctly", () => {
-    const { result } = renderHook(() => useFiltersWithApply(defaultFilters));
-
     act(() => {
-      result.current.actions.updateFilterByKey("filter1", "updated1");
-      result.current.actions.updateFilterByKey("filter2", "updated2");
+      result.current.actions.updateFilterByKey(
+        "filter1",
+        updatedFilters.filter1
+      );
+      result.current.actions.updateFilterByKey(
+        "filter2",
+        updatedFilters.filter2
+      );
       result.current.actions.resetFilters();
     });
 
@@ -85,11 +112,15 @@ describe("useFiltersWithApply", () => {
   });
 
   test("applies filters correctly", () => {
-    const { result } = renderHook(() => useFiltersWithApply(defaultFilters));
-
     act(() => {
-      result.current.actions.updateFilterByKey("filter1", "updated1");
-      result.current.actions.updateFilterByKey("filter2", "updated2");
+      result.current.actions.updateFilterByKey(
+        "filter1",
+        updatedFilters.filter1
+      );
+      result.current.actions.updateFilterByKey(
+        "filter2",
+        updatedFilters.filter2
+      );
     });
 
     act(() => {
@@ -102,17 +133,17 @@ describe("useFiltersWithApply", () => {
       .mockImplementationOnce(mockDelete);
 
     expect(mockSetSearchParams).toHaveBeenCalledWith(
-      new URLSearchParams({ filter1: "updated1", filter2: "updated2" })
+      new URLSearchParams(updatedFilters)
     );
     expect(mockDelete).not.toHaveBeenCalled();
 
     (parseFiltersFromParams as jest.Mock).mockReturnValue({
-      defaultActiveFilters: new Set(["filter1"]),
-      defaultFiltersFromParams: { filter1: "updated1" }
+      defaultActiveFilters: new Set([filterKeys.filter1]),
+      defaultFiltersFromParams: { filter1: updatedFilters.filter1 }
     });
 
     act(() => {
-      result.current.actions.resetFilterByKey("filter1");
+      result.current.actions.resetFilterByKey(filterKeys.filter1);
     });
 
     act(() => {
@@ -120,38 +151,46 @@ describe("useFiltersWithApply", () => {
     });
 
     expect(mockSetSearchParams).toHaveBeenCalledWith(
-      new URLSearchParams({ filter2: "updated2" })
+      new URLSearchParams({ filter2: updatedFilters.filter2 })
     );
     expect(mockDelete).toHaveBeenCalled();
   });
 
   test("checks if a filter is active correctly", () => {
-    const { result } = renderHook(() => useFiltersWithApply(defaultFilters));
-
     act(() => {
-      result.current.actions.updateFilterByKey("filter1", "updated1");
+      result.current.actions.updateFilterByKey(
+        filterKeys.filter1,
+        updatedFilters.filter1
+      );
     });
 
-    expect(result.current.actions.checkFilterActive("filter1")).toBe(true);
-    expect(result.current.actions.checkFilterActive("filter2")).toBe(false);
+    expect(result.current.actions.checkFilterActive(filterKeys.filter1)).toBe(
+      true
+    );
+    expect(result.current.actions.checkFilterActive(filterKeys.filter2)).toBe(
+      false
+    );
   });
 
   test("populates appliedFilters correctly", () => {
     (parseFiltersFromParams as jest.Mock).mockReturnValueOnce({
-      defaultActiveFilters: new Set(["filter1", "filter2"]),
-      defaultFiltersFromParams: { filter1: "updated1", filter2: "updated2" }
+      defaultActiveFilters: new Set([filterKeys.filter1, filterKeys.filter2]),
+      defaultFiltersFromParams: updatedFilters
     });
 
     const { result } = renderHook(() => useFiltersWithApply(defaultFilters));
 
     act(() => {
-      result.current.actions.updateFilterByKey("filter1", "updated1");
-      result.current.actions.updateFilterByKey("filter2", "updated2");
+      result.current.actions.updateFilterByKey(
+        filterKeys.filter1,
+        updatedFilters.filter1
+      );
+      result.current.actions.updateFilterByKey(
+        filterKeys.filter2,
+        updatedFilters.filter2
+      );
     });
 
-    expect(result.current.appliedFilters).toEqual({
-      filter1: "updated1",
-      filter2: "updated2"
-    });
+    expect(result.current.appliedFilters).toEqual(updatedFilters);
   });
 });
