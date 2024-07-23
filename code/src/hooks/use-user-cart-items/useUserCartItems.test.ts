@@ -2,6 +2,7 @@ import { act, renderHook } from "@testing-library/react";
 
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import useRemoveFromCart from "@/hooks/use-remove-from-cart/useRemoveFromCart";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import useUpdateCartItemQuantity from "@/hooks/use-update-cart-item-quantity/useUpdateCartItemQuantity";
 import useUserCartItems from "@/hooks/use-user-cart-items/useUserCartItems";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
@@ -11,11 +12,13 @@ jest.mock("@/store/slices/userSlice");
 jest.mock("@/hooks/use-get-cart/useGetCart");
 jest.mock("@/hooks/use-remove-from-cart/useRemoveFromCart");
 jest.mock("@/hooks/use-update-cart-item-quantity/useUpdateCartItemQuantity");
+jest.mock("@/hooks/use-snackbar/useSnackbar");
 
 const mockUseUserDetailsSelector = useUserDetailsSelector as jest.Mock;
 const mockUseGetCart = useGetCart as jest.Mock;
 const mockUseRemoveFromCart = useRemoveFromCart as jest.Mock;
 const mockUseUpdateCartItemQuantity = useUpdateCartItemQuantity as jest.Mock;
+const mockOpenSnackbarWithTimeout = jest.fn();
 
 const mockRemoveItem = jest.fn();
 const mockUpdateQuantity = jest.fn();
@@ -48,6 +51,9 @@ const renderWithMockParams = ({
     updateQuantity: mockUpdateQuantity,
     isLoading: isUpdating,
     isError: updateError
+  });
+  (useSnackbar as jest.Mock).mockReturnValue({
+    openSnackbarWithTimeout: mockOpenSnackbarWithTimeout
   });
 
   return renderHook(() => useUserCartItems());
@@ -144,9 +150,8 @@ describe("useUserCartItems", () => {
     expect(mockUpdateQuantity).not.toHaveBeenCalled();
   });
 
-  test("should handle error when updateQuantity fails", async () => {
+  test("should handle error when updateQuantity fails and call snackbar", async () => {
     mockUpdateQuantity.mockRejectedValue(new Error("Failed to update"));
-    const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
 
     const { result } = renderWithMockParams({ data: cartItems });
 
@@ -154,11 +159,9 @@ describe("useUserCartItems", () => {
       result.current.handleQuantityChange(cartItems[0], 2);
     });
 
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      "Failed to update cart item quantity:",
-      expect.any(Error)
-    );
-
-    consoleErrorSpy.mockRestore();
+    expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({
+      messageTranslationKey: "cart.itemQuantityUpdate.fail",
+      variant: "error"
+    });
   });
 });

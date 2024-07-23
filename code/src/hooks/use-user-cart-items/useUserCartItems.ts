@@ -1,11 +1,13 @@
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import useRemoveFromCart from "@/hooks/use-remove-from-cart/useRemoveFromCart";
+import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import useUpdateCartItemQuantity from "@/hooks/use-update-cart-item-quantity/useUpdateCartItemQuantity";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
 
 const useUserCartItems = () => {
   const user = useUserDetailsSelector();
+  const { openSnackbarWithTimeout } = useSnackbar();
 
   const {
     data: cartItems,
@@ -35,8 +37,11 @@ const useUserCartItems = () => {
           productId: product.productId,
           quantity: newQuantity
         });
-      } catch (error) {
-        console.error("Failed to update cart item quantity:", error);
+      } catch {
+        openSnackbarWithTimeout({
+          messageTranslationKey: "cart.itemQuantityUpdate.fail",
+          variant: "error"
+        });
       }
     }
   };
