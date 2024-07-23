@@ -1,97 +1,116 @@
-// import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
+import React, { useState } from "react";
 
-// import OrdersTab from "@/containers/dashboard-tabs/components/orders-tab/OrdersTab";
+import OrdersTab from "@/containers/dashboard-tabs/components/orders-tab/OrdersTab";
+import useFilteredAdminOrders from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
 
-// import { useDrawerContext } from "@/context/drawer/DrawerContext";
-// import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
-// import { RTKQueryMockState } from "@/types/common";
-// import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import { AdminOrder } from "@/types/order.types";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
-// const mockOpenDrawer = jest.fn();
+const mockSetIsFilterDrawerOpen = jest.fn();
 
-// const mockAdminOrders = {
-//   content: [
-//     {
-//       id: "1",
-//       isPaid: true,
-//       orderStatus: "IN_PROGRESS",
-//       createdAt: "2024-06-27T12:35:14.396Z",
-//       receiver: {
-//         firstName: "John",
-//         lastName: "Doe",
-//         email: "john.doe@example.com"
-//       },
-//       postAddress: {
-//         deliveryMethod: "UPS",
-//         city: "New York",
-//         department: "123"
-//       },
-//       orderItems: []
-//     }
-//   ]
-// };
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useState: jest.fn()
+}));
 
-// jest.mock("@/store/api/ordersApi", () => ({
-//   useGetAdminOrdersQuery: jest.fn(),
-//   useChangeOrderStatusMutation: jest.fn(() => [jest.fn()])
-// }));
+jest.mock(
+  "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders"
+);
 
-// jest.mock("@/context/drawer/DrawerContext", () => ({
-//   useDrawerContext: jest.fn()
-// }));
+jest.mock("@/containers/tables/orders-table/OrdersTable", () => ({
+  __esModule: true,
+  default: () => <div>OrdersTable</div>
+}));
 
-// const renderAndMock = (
-//   response: RTKQueryMockState<typeof mockAdminOrders> = {}
-// ) => {
-//   const defaultResponse = {
-//     data: { content: [] },
-//     ...response
-//   };
+jest.mock(
+  "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer",
+  () => ({
+    __esModule: true,
+    default: () => <div>OrdersTabFilterDrawer</div>
+  })
+);
 
-//   (useGetAdminOrdersQuery as jest.Mock).mockReturnValueOnce(defaultResponse);
-//   (useDrawerContext as jest.Mock).mockReturnValueOnce({
-//     openDrawer: mockOpenDrawer
-//   });
-//   renderWithProviders(<OrdersTab />);
-// };
+type RenderAndMock = {
+  isLoading?: boolean;
+  orders?: AdminOrder;
+  activeFiltersCount?: number;
+};
 
-describe("OrdersTab Component", () => {
-  test("should render correctly", () => {
-    // @TODO: Write tests
+const defaultArgs = {
+  filters: {},
+  filterActions: {},
+  activeFiltersCount: 0,
+  orders: [],
+  isLoading: false
+};
+
+const renderAndMock = (args: RenderAndMock = {}) => {
+  (useState as jest.Mock).mockImplementation((init) => [
+    init,
+    mockSetIsFilterDrawerOpen
+  ]);
+
+  (useFilteredAdminOrders as jest.Mock).mockReturnValue({
+    ...defaultArgs,
+    ...args
   });
 
-  // test("should display loading state correctly", () => {
-  //   renderAndMock({ isLoading: true });
+  renderWithProviders(<OrdersTab />);
+};
 
-  //   const loadingText = screen.getByText(/Loading.../);
-  //   expect(loadingText).toBeInTheDocument();
-  // });
+describe("OrdersTab", () => {
+  test("renders loading element correctly", () => {
+    renderAndMock({ isLoading: true });
 
-  // test("should display orders when data is available", () => {
-  //   renderAndMock({ isLoading: false, data: mockAdminOrders });
+    const loadingElement = screen.getByText("Loading...");
+    expect(loadingElement).toBeInTheDocument();
+  });
 
-  //   const ordersTitle = screen.getByText(/dashboardTabs.orders.title/);
-  //   const orderId = screen.getByText(mockAdminOrders.content[0].id);
+  test("renders typography with filters count when activeFiltersCount is greater than zero", () => {
+    const activeFiltersCount = 2;
+    renderAndMock({ activeFiltersCount });
 
-  //   expect(ordersTitle).toBeInTheDocument();
-  //   expect(orderId).toBeInTheDocument();
-  // });
+    const buttonTypography = screen.getByText(
+      `dashboardTabs.orders.filters.titleWithCount/count:${activeFiltersCount}`
+    );
+    expect(buttonTypography).toBeInTheDocument();
+  });
 
-  // test("should handle undefined ordersResponse", () => {
-  //   renderAndMock({ isLoading: false, data: null });
+  test("renders typography without active filters count", () => {
+    renderAndMock();
 
-  //   const noOrdersText = screen.getByText(/ordersTable.fallback/);
-  //   expect(noOrdersText).toBeInTheDocument();
-  // });
+    const buttonTypography = screen.getByText(
+      "dashboardTabs.orders.filters.title"
+    );
+    expect(buttonTypography).toBeInTheDocument();
+  });
 
-  // test("should open a drawer when we click filters button", () => {
-  //   renderAndMock({ isLoading: false, data: null });
+  test("opens filter drawer correctly", () => {
+    renderAndMock();
 
-  //   const filtersButton = screen.getByRole("button", {
-  //     name: "dashboardTabs.orders.filters.title"
-  //   });
-  //   fireEvent.click(filtersButton);
+    const filterButton = screen.getByTestId("filter-button");
+    fireEvent.click(filterButton);
 
-  //   expect(mockOpenDrawer).toHaveBeenCalled();
-  // });
+    expect(mockSetIsFilterDrawerOpen).toHaveBeenCalledWith(true);
+  });
+
+  test.skip("closes filter drawer correctly", async () => {
+    jest
+      .spyOn(React, "useState")
+      .mockImplementationOnce(() => [false, mockSetIsFilterDrawerOpen])
+      .mockImplementationOnce(() => [true, mockSetIsFilterDrawerOpen]);
+
+    renderAndMock();
+
+    const filterButton = screen.getByTestId("filter-button");
+    fireEvent.click(filterButton);
+
+    const drawerContent = await screen.findByText("OrdersTabFilterDrawer");
+    expect(drawerContent).toBeInTheDocument();
+
+    // @TODO: close drawer
+
+    expect(mockSetIsFilterDrawerOpen).toHaveBeenCalledWith(false);
+  });
 });
