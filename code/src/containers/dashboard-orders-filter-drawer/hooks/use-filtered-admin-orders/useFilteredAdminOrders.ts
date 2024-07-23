@@ -2,11 +2,13 @@ import { useSearchParams } from "react-router-dom";
 
 import { defaultAdminOrderFilters } from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders.constants";
 
+import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
 import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
 import timeSpanToDateRange from "@/utils/time-span-to-date-range/timeSpanToDateRange";
 
 const useFilteredAdminOrders = () => {
+  const { locale } = useLocaleContext();
   const {
     filters,
     appliedFilters: { paid, price, statuses, timespan, ...rest },
@@ -22,6 +24,7 @@ const useFilteredAdminOrders = () => {
   const [searchParams] = useSearchParams();
 
   const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
+    lang: locale,
     isPaid: paid,
     totalLess: price?.end,
     totalMore: price?.start,
