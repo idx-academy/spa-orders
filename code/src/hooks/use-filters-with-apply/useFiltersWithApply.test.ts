@@ -17,13 +17,10 @@ jest.mock(
 );
 
 const mockSetSearchParams = jest.fn();
+const defaultFilters = { filter1: "default1", filter2: "default2" };
 
 describe("useFiltersWithApply", () => {
-  let defaultFilters: Record<string, unknown>;
-
   beforeEach(() => {
-    defaultFilters = { filter1: "default1", filter2: "default2" };
-
     (useSearchParams as jest.Mock).mockReturnValue([
       new URLSearchParams(),
       mockSetSearchParams
