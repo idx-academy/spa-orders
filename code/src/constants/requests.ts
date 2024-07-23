@@ -37,8 +37,8 @@ export const URLS = {
       `/v1/orders/${orderId}/status`
   },
   cart: {
-    get: ({ userId }: CartManagementGetParams) =>
-      `/v1/users/${userId}/cart/items`,
+    get: ({ userId, lang }: CartManagementGetParams) =>
+      `/v1/users/${userId}/cart/items?lang=${lang}`,
     post: ({ userId, productId }: CartManagementPostParams) =>
       `/v1/users/${userId}/cart/${productId}`,
     delete: ({ userId, productId }: CartManagementDeleteParams) =>

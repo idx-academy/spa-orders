@@ -1,3 +1,4 @@
+import { Lang } from "@/types/common";
 import { UserId } from "@/types/user.types";
 
 export type CartManagementPostParams = {
@@ -16,7 +17,7 @@ export type CartManagementPatchParams = {
   quantity: number;
 };
 
-export type CartManagementGetParams = {
+export type CartManagementGetParams = Lang & {
   userId: UserId;
 };
 

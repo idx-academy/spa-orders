@@ -12,6 +12,11 @@ jest.mock("@/store/api/cartApi");
 jest.mock("@/store/slices/localCart");
 jest.mock("@/store/slices/userSlice");
 
+jest.mock("@/context/i18n/I18nProvider", () => ({
+  ...jest.requireActual("@/context/i18n/I18nProvider"),
+  useLocaleContext: jest.fn(() => ({ locale: "en" }))
+}));
+
 const mockFetchCart = jest.fn();
 
 type ExtraParams = {
@@ -89,7 +94,7 @@ describe("useGetCart", () => {
 
     test("calls fetchCart when user is authorized", () => {
       renderAndMock({ user: { id: 1 } });
-      expect(mockFetchCart).toHaveBeenCalledWith({ userId: 1 });
+      expect(mockFetchCart).toHaveBeenCalledWith({ userId: 1, lang: "en" });
     });
 
     test("does not call fetchCart when user is unauthorized", () => {

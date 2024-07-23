@@ -13,8 +13,8 @@ import {
 const cartApi = appApi.injectEndpoints({
   endpoints: (build) => ({
     getCartItems: build.query<CartType, CartManagementGetParams>({
-      query: ({ userId }) => ({
-        url: URLS.cart.get({ userId })
+      query: (params) => ({
+        url: URLS.cart.get(params)
       }),
       providesTags: [rtkQueryTags.CART]
     }),
