@@ -7,11 +7,11 @@ import ProductsContainer from "@/containers/products-container/ProductsContainer
 import AppBox from "@/components/app-box/AppBox";
 import AppContainer from "@/components/app-container/AppContainer";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
-import AppPagination from "@/components/app-pagination/AppPagination";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetProductsQuery } from "@/store/api/productsApi";
+import categoryFilter from "@/utils/filter-products-by-category/categoryFilter";
 import validatePage from "@/utils/validate-page/validatePage";
 
 import "@/pages/products/ProductsPage.scss";
@@ -19,6 +19,8 @@ import "@/pages/products/ProductsPage.scss";
 const ProductsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const sortOption = searchParams.get("sort");
+
+  const categoryType = searchParams.get("category");
 
   const searchParamsPage = searchParams.get("page");
   const page = validatePage(searchParamsPage);
@@ -29,9 +31,15 @@ const ProductsPage = () => {
     isError
   } = useGetProductsQuery({
     page: page - 1,
-    size: 10,
+    size: Infinity,
     sort: sortOption ?? "recommended"
   });
+
+  console.log(productsResponse);
+
+  const productsList = productsResponse?.content;
+
+  const filteredProductsList = categoryFilter(categoryType, productsList);
 
   const defaultDropdownText = (
     <AppTypography translationKey="productsDefault.label" />
@@ -41,14 +49,7 @@ const ProductsPage = () => {
     setSearchParams({ sort: value });
   };
 
-  const pagesCount = productsResponse?.totalPages ?? 1;
-  const productsCount = productsResponse?.totalElements ?? 0;
-
-  const paginationBlock = pagesCount > 1 && (
-    <AppContainer className="spa-products-page__pagination">
-      <AppPagination page={page} count={pagesCount} size="large" />
-    </AppContainer>
-  );
+  const productsCount = filteredProductsList?.length ?? 0;
 
   return (
     <PageWrapper>
@@ -77,12 +78,11 @@ const ProductsPage = () => {
         </AppBox>
         <ProductsContainer
           className="spa-products-page__grid"
-          products={productsResponse?.content ?? []}
+          products={filteredProductsList ?? []}
           loadingItemsCount={10}
           isLoading={isLoading}
           isError={isError}
         />
-        {paginationBlock}
       </AppBox>
     </PageWrapper>
   );

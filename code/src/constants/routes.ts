@@ -9,13 +9,13 @@ const routes = {
     path: "/cart"
   },
   computers: {
-    path: "/computers"
+    path: "/products?category=computer"
   },
   tablets: {
-    path: "/tablets"
+    path: "/products?category=tablet"
   },
   mobiles: {
-    path: "/mobiles"
+    path: "/products?category=mobile"
   },
   orders: {
     path: "/orders"

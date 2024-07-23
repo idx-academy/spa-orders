@@ -1,3 +1,5 @@
+import { useSearchParams } from "react-router-dom";
+
 import { categories } from "@/layouts/header/components/header-categories/HeaderCategories.constants";
 
 import AppBox from "@/components/app-box/AppBox";
@@ -8,14 +10,21 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import "@/layouts/header/components/header-categories/HeaderCategories.scss";
 
 const HeaderCategories = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryType = searchParams.get("category");
+
   return (
     <AppBox className="menu">
       <AppContainer maxWidth="xl" className="menu__container">
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <AppLink
             to={category.href}
             variant="colored"
-            isNavLink
+            isNavLink={
+              categoryType === null
+                ? index === 0
+                : category.href.includes(`${categoryType}`)
+            }
             key={category.label}
           >
             <AppTypography variant="caption" data-testid="menu-item">
