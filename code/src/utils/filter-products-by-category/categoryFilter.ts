@@ -4,15 +4,12 @@ const categoryFilter = (
   category: string | null,
   productsList: Product[] | undefined
 ) => {
-  let filteredProductsList;
-  if (category) {
-    filteredProductsList = productsList?.filter((product) => {
-      return product.tags.includes(`category:${category}`);
-    });
-  } else {
-    filteredProductsList = productsList;
+  if (!category) {
+    return productsList;
   }
-  return filteredProductsList;
+  return productsList?.filter((product) => {
+    return product.tags.includes(`category:${category}`);
+  });
 };
 
 export default categoryFilter;

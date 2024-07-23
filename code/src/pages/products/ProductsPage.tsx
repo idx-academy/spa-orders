@@ -34,8 +34,6 @@ const ProductsPage = () => {
     sort: sortOption ?? "recommended"
   });
 
-  console.log(productsResponse);
-
   const productsList = productsResponse?.content;
 
   const filteredProductsList = categoryFilter(categoryType, productsList);
