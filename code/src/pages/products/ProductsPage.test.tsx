@@ -40,10 +40,16 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetUserProductsQuery: jest.fn()
 }));
 
+jest.mock("@/context/i18n/I18nProvider", () => ({
+  ...jest.requireActual("@/context/i18n/I18nProvider"),
+  useLocaleContext: jest.fn(() => ({ locale: "en" }))
+}));
+
 const defaultQueryArguments = {
   size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
   page: 0,
-  sort: "recommended"
+  sort: "recommended",
+  lang: "en"
 };
 
 const testQueryArguments = (args: Partial<PaginationParams> = {}) => {

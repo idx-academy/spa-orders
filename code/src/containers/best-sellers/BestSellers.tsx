@@ -8,17 +8,20 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 import routes from "@/constants/routes";
 import { useGetUserProductsQuery } from "@/store/api/productsApi";
+import { useLocaleContext } from "@/context/i18n/I18nProvider";
 
 import "@/containers/best-sellers/BestSellers.scss";
 
 const BestSellers = () => {
+  const { locale } = useLocaleContext();
   const {
     data: productsResponse,
     isLoading,
     isError
   } = useGetUserProductsQuery({
     page: 0,
-    size: 5
+    size: 5,
+    lang: locale
   });
 
   return (

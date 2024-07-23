@@ -8,6 +8,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetUserProductsQuery } from "@/store/api/productsApi";
 import categoryFilter from "@/utils/filter-products-by-category/categoryFilter";
@@ -16,6 +17,7 @@ import validatePage from "@/utils/validate-page/validatePage";
 import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {
+  const { locale } = useLocaleContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const sortOption = searchParams.get("sort");
 
@@ -31,7 +33,8 @@ const ProductsPage = () => {
   } = useGetUserProductsQuery({
     page: page - 1,
     size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
-    sort: sortOption ?? "recommended"
+    sort: sortOption ?? "recommended",
+    lang: locale
   });
 
   const productsList = productsResponse?.content;
