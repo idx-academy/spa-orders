@@ -21,7 +21,19 @@ const routes = {
     path: "/orders"
   },
   dashboard: {
-    path: "/dashboard"
+    path: "/dashboard",
+    orders: {
+      path: "/dashboard/orders"
+    },
+    products: {
+      path: "/dashboard/products",
+      new: {
+        path: "/dashboard/products/new"
+      }
+    },
+    users: {
+      path: "/dashboard/users"
+    }
   },
   any: {
     path: "*"

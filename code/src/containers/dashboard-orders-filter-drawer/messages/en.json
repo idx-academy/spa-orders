@@ -1,0 +1,15 @@
+{
+  "dashboardTabs.orders.filters.title": "Filters",
+  "dashboardTabs.orders.filters.titleWithCount": "Filters ({count})",
+  "dashboardTabs.orders.filters.timespan": "Creation date",
+  "dashboardTabs.orders.filters.deliveryMethod": "Delivery method",
+  "dashboardTabs.orders.filters.ukrPost": "Ukr Post",
+  "dashboardTabs.orders.filters.novaPost": "Nova Post",
+  "dashboardTabs.orders.filters.status": "Order status",
+  "dashboardTabs.orders.filters.price": "Price ($)",
+  "dashboardTabs.orders.filters.other": "Other",
+  "dashboardTabs.orders.filters.isPaid": "Is paid?",
+  "dashboardTabs.orders.filters.clearFilterTooltip": "Clear {filterName} filter",
+  "dashboardTabs.orders.filters.clearAllFiltersTooltip": "Clear filters",
+  "dashboardTabs.orders.filters.applyFiltersButton": "Apply"
+}

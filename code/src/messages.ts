@@ -1,10 +1,11 @@
+import dashboardLayoutMessages from "@/layouts/dashboard-layout/messages";
 import footerMessages from "@/layouts/footer/messages";
 
 import bestSellersMessages from "@/containers/best-sellers/messages";
 import callToActionSectionMessages from "@/containers/call-to-action/messages";
 import cartDrawerMessages from "@/containers/cart-drawer/message";
 import categorySectionMessages from "@/containers/category-section/messages";
-import dashboardTabsMessages from "@/containers/dashboard-tabs/messages";
+import dashboardOrdersFilterMessages from "@/containers/dashboard-orders-filter-drawer/messages";
 import deliveryFormMessages from "@/containers/forms/delivery-form/messages";
 import signInFormMessages from "@/containers/forms/sign-in-form/messages";
 import signupFormMessages from "@/containers/forms/sign-up-form/messages";
@@ -21,6 +22,9 @@ import productCardMessages from "@/components/product-card/messages";
 import commonMessages from "@/constants/common-messages";
 import { Locale } from "@/context/i18n/I18nProvider";
 import cartPageMessages from "@/pages/cart/messages";
+import dashboardOrdersPageMessages from "@/pages/dashboard/dashboard-orders/messages";
+import dashboardProductsPageMessages from "@/pages/dashboard/dashboard-orders/messages";
+import dashboardNewProductPageMessages from "@/pages/dashboard/dashboard-products/messages";
 import notFoundMessages from "@/pages/not-found/messages";
 import orderPageMessages from "@/pages/orders/messages";
 import productsItemsMessages from "@/pages/products/messages";
@@ -49,9 +53,13 @@ const messages: MessagesType = {
     ...cartDrawerMessages.en,
     ...ordersTableMessages.en,
     ...cartPageMessages.en,
-    ...dashboardTabsMessages.en,
     ...deliveryFormMessages.en,
-    ...productsTableMessages.en
+    ...productsTableMessages.en,
+    ...dashboardLayoutMessages.en,
+    ...dashboardOrdersFilterMessages.en,
+    ...dashboardOrdersPageMessages.en,
+    ...dashboardProductsPageMessages.en,
+    ...dashboardNewProductPageMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -74,9 +82,13 @@ const messages: MessagesType = {
     ...cartDrawerMessages.uk,
     ...ordersTableMessages.uk,
     ...cartPageMessages.uk,
-    ...dashboardTabsMessages.uk,
     ...deliveryFormMessages.uk,
-    ...productsTableMessages.uk
+    ...productsTableMessages.uk,
+    ...dashboardLayoutMessages.uk,
+    ...dashboardOrdersFilterMessages.uk,
+    ...dashboardOrdersPageMessages.uk,
+    ...dashboardProductsPageMessages.uk,
+    ...dashboardNewProductPageMessages.uk
   }
 };
 

@@ -1,0 +1,53 @@
+@import "@design-system";
+
+.dashboard-tabs {
+  display: flex;
+  gap: spacing(8);
+
+  &__label-container {
+    display: flex;
+    flex-shrink: 0;
+    flex-basis: 270px;
+    flex-direction: column;
+    gap: spacing(2);
+  }
+
+  &__label-item {
+    @include transition((background-color));
+    display: flex;
+    align-items: center;
+    gap: spacing(3);
+    padding: spacing(4) 0 spacing(4) spacing(4);
+    cursor: pointer;
+    border-left: 3px solid $transparent;
+
+    &:hover {
+      background-color: var(
+        --spa-dashboard-tabs-hover-background-color,
+        $ghost-alpha
+      );
+    }
+
+    &.spa-link--active {
+      border-color: var(--spa-dashboard-tabs-active-color, $purple);
+      background-color: var(
+        --spa-dashboard-tabs-active-background-color,
+        $ghost-alpha-active
+      );
+      color: var(--spa-dashboard-tabs-active-text-color, $black);
+    }
+  }
+
+  &__content-container {
+    flex-grow: 1;
+  }
+
+  &__loading-fallback {
+    height: 400px;
+  }
+}
+
+.dashboard-page {
+  padding: spacing(10);
+  min-height: $screen-height;
+}

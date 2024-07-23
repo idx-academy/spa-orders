@@ -1,15 +1,9 @@
-import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
+import { Navigate } from "react-router-dom";
 
-import DashboardTabs from "@/containers/dashboard-tabs/DashboardTabs";
-
-import "@/pages/dashboard/DashboardPage.scss";
+import routePaths from "@/constants/routes";
 
 const DashboardPage = () => {
-  return (
-    <PageWrapper className="dashboard-page" data-cy="dashboard-page">
-      <DashboardTabs />
-    </PageWrapper>
-  );
+  return <Navigate to={routePaths.dashboard.orders.path} />; // Redirect to default dashboard tab
 };
 
 export default DashboardPage;
