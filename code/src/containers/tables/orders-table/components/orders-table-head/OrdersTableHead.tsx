@@ -8,12 +8,12 @@ import "@/containers/tables/orders-table/components/orders-table-head/OrdersTabl
 
 type OrderTableHeadProps = {
   head: string;
-  sortable?: boolean;
+  // sortable?: boolean;
   onSortChange: (newSort: string) => void;
 };
 
 const OrdersTableHead = ({ head, onSortChange }: OrderTableHeadProps) => {
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
   const getSortKey = () => {
     switch (head) {

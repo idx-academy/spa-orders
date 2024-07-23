@@ -122,24 +122,22 @@ const DashboardOrdersFilterDrawer = ({
     resetFilterByKey("timespan");
   };
 
-  const deliveryMethodsCheckboxes = Object.entries(deliveryMethods).map(
-    ([deliveryMethodKey, deliveryMethod]) => (
-      <AppBox key={deliveryMethodKey}>
+  const deliveryMethodsCheckboxes = deliveryMethods.map(
+    ({ image, translationKey, value }) => (
+      <AppBox key={value}>
         <AppCheckbox
-          checked={filters["delivery-methods"].has(
-            deliveryMethodKey as DeliveryMethod
-          )}
+          checked={filters["delivery-methods"].has(value as DeliveryMethod)}
           onChange={handleCheckboxListChange(
             "delivery-methods",
-            deliveryMethodKey as DeliveryMethod
+            value as DeliveryMethod
           )}
           variant="dark"
-          labelTranslationKey={deliveryMethod.translationKey}
+          labelTranslationKey={translationKey}
           icon={
             <AppBox
               component="img"
               className="order-tab-filters__delivery-method-image"
-              src={deliveryMethod.image}
+              src={image}
             />
           }
         />

@@ -24,8 +24,6 @@ const AppTable = <TableContent,>({
     </AppTableRow>
   ));
 
-  console.log(bodyItems);
-
   const tableFallback = !bodyItems.length && fallback && (
     <AppBox className={cn(classNames?.fallback)} data-testid="table-fallback">
       {fallback}

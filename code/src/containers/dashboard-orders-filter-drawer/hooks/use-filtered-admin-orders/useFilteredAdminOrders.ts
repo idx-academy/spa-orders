@@ -14,14 +14,16 @@ const useFilteredAdminOrders = () => {
 
   const {
     filters: sortFilters,
-    appliedFilters: { sort },
+    appliedFilters: { sortField, sortOrder },
     actions: sortFilterActions
-  } = useFiltersWithApply({ sort: "createdAt,desc" });
+  } = useFiltersWithApply({ sortField: "createdAt", sortOrder: "asc" });
 
   const dateRange = timespan ? timeSpanToDateRange(timespan) : undefined;
 
   const deliveryMethods =
     rest["delivery-methods"] && Array.from(rest["delivery-methods"]);
+
+  const sortParam = sortField && sortOrder && `${sortField},${sortOrder}`;
 
   const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
     isPaid: paid,
@@ -31,10 +33,8 @@ const useFilteredAdminOrders = () => {
     deliveryMethods,
     createdBefore: dateRange?.end.toISOString(),
     createdAfter: dateRange?.start.toISOString(),
-    sort
+    sort: sortParam
   });
-
-  console.log(ordersResponse)
 
   const orders = ordersResponse?.content ?? [];
 

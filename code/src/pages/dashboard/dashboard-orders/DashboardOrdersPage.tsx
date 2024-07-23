@@ -22,8 +22,8 @@ const DashboardOrdersPage = () => {
 
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
-  console.log(sortFilters);
-  console.log(orders);
+  console.log('filter by', sortFilters);
+  console.log('list of orders', orders);
 
   const handleCloseFilterDrawer = () => {
     setIsFilterDrawerOpen(false);
@@ -33,9 +33,9 @@ const DashboardOrdersPage = () => {
     setIsFilterDrawerOpen(true);
   };
 
-  useEffect(() => {
-    sortFilterActions.applyFilters();
-  }, []);
+  // useEffect(() => {
+  //   sortFilterActions.applyFilters();
+  // }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -63,7 +63,7 @@ const DashboardOrdersPage = () => {
   // console.log(ordersData);
 
   const handleSortChange = (value: string) => {
-    sortFilterActions.updateFilterByKey("sort", value);
+    sortFilterActions.updateFilterByKey("sortField", value);
     sortFilterActions.applyFilters();
   };
 

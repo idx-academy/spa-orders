@@ -45,9 +45,13 @@ const DeliveryForm = ({ totalPrice }: DeliveryFormProps) => {
     });
   };
 
-  const deliveryMethodItems = Object.entries(deliveryMethods).map(
-    ([key, { translationKey, value, image }]) => (
-      <AppMenuItem key={key} value={value} className="delivery-form__body-item">
+  const deliveryMethodItems = deliveryMethods.map(
+    ({ translationKey, value, image }) => (
+      <AppMenuItem
+        key={value}
+        value={value}
+        className="delivery-form__body-item"
+      >
         <AppBox
           component="img"
           src={image}
@@ -87,7 +91,7 @@ const DeliveryForm = ({ totalPrice }: DeliveryFormProps) => {
         />
         <AppSelect
           {...register("deliveryMethod")}
-          defaultValue={deliveryMethods.NOVA_POST.value}
+          defaultValue={deliveryMethods[0].value}
           labelId="delivery-method"
           label="deliveryForm.postMethod"
           error={Boolean(errors.deliveryMethod)}

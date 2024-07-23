@@ -22,8 +22,6 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
     [defaultFiltersRef.current, searchParams]
   );
 
-  console.log(defaultActiveFilters, defaultFiltersFromParams);
-
   const activeFiltersRef = useRef(defaultActiveFilters);
   const [localFilters, setLocalFilters] = useState(defaultFiltersFromParams);
 
