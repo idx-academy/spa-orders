@@ -1,7 +1,7 @@
 import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 
-import OrdersTabFilterDrawer from "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer";
-import { AdminOrderFilters } from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders.types";
+import DashboardOrdersFilterDrawer from "@/containers/dashboard-orders-filter-drawer/DashboardOrdersFilterDrawer";
+import { AdminOrderFilters } from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders.types";
 
 import { deliveryMethods } from "@/constants/deliveryMethods";
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
@@ -36,7 +36,7 @@ const renderAndMock = ({
   const filters = { ...defaultFilters, ...filtersFromArgs };
 
   return renderWithProviders(
-    <OrdersTabFilterDrawer
+    <DashboardOrdersFilterDrawer
       activeFiltersCount={activeFiltersCount}
       filters={filters}
       filterActions={{
