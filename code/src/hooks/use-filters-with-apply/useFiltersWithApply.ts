@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import parseFiltersFromParams from "@/hooks/use-filters-with-apply/parse-filters-from-params/parseFiltersFromParams";
@@ -58,7 +58,7 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
     return activeFiltersRef.current.has(key);
   };
 
-  const applyFilters: ApplyFilters = ({ withDefault = false } = {}) => {
+  const applyFilters: ApplyFilters = () => {
     const params = new URLSearchParams(searchParams);
 
     for (const [filterKey, filterValue] of Object.entries(localFilters)) {
