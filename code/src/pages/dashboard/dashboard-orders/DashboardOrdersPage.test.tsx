@@ -1,9 +1,9 @@
 import { fireEvent, screen } from "@testing-library/react";
 import React, { useState } from "react";
 
-import OrdersTab from "@/containers/dashboard-tabs/components/orders-tab/OrdersTab";
-import useFilteredAdminOrders from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
+import useFilteredAdminOrders from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
 
+import DashboardOrdersPage from "@/pages/dashboard/dashboard-orders/DashboardOrdersPage";
 import { AdminOrder } from "@/types/order.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
@@ -15,7 +15,7 @@ jest.mock("react", () => ({
 }));
 
 jest.mock(
-  "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders"
+  "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders"
 );
 
 jest.mock("@/containers/tables/orders-table/OrdersTable", () => ({
@@ -24,7 +24,7 @@ jest.mock("@/containers/tables/orders-table/OrdersTable", () => ({
 }));
 
 jest.mock(
-  "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer",
+  "@/containers/dashboard-orders-filter-drawer/DashboardOrdersFilterDrawer",
   () => ({
     __esModule: true,
     default: () => <div>OrdersTabFilterDrawer</div>
@@ -56,7 +56,7 @@ const renderAndMock = (args: RenderAndMock = {}) => {
     ...args
   });
 
-  renderWithProviders(<OrdersTab />);
+  renderWithProviders(<DashboardOrdersPage />);
 };
 
 describe("OrdersTab", () => {
