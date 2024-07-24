@@ -35,7 +35,11 @@ const CartPage = () => {
     <PageWrapper>
       <AppBox className="spa-cart-page">
         <AppBox className="spa-cart-page__content">
-          <AppBox className="spa-cart-page__items" data-cy="myCartLabel">
+          <AppBox
+            className="spa-cart-page__items"
+            data-testid="myCartLabel"
+            data-cy="myCartLabel"
+          >
             <AppTypography
               className="spa-cart-page__items--label"
               variant="h3"
