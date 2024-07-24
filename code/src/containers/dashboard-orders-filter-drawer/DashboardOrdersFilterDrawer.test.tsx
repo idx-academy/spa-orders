@@ -1,8 +1,11 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 
 import OrdersTabFilterDrawer from "@/containers/dashboard-tabs/components/orders-tab-filter-drawer/OrdersTabFilterDrawer";
 import { AdminOrderFilters } from "@/containers/dashboard-tabs/hooks/use-filtered-admin-orders/useFilteredAdminOrders.types";
 
+import { deliveryMethods } from "@/constants/deliveryMethods";
+import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
+import { DeliveryMethod } from "@/types/delivery.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
@@ -11,13 +14,7 @@ const mockCheckFilterActive = jest.fn(() => true);
 const mockResetFilterByKey = jest.fn();
 const mockUpdateFilterByKey = jest.fn();
 const mockResetFilters = jest.fn();
-
 const mockCloseFilterDrawer = jest.fn();
-
-type RenderAndMock = {
-  activeFiltersCount?: number;
-  filters?: Partial<AdminOrderFilters>;
-};
 
 const defaultFilters: AdminOrderFilters = {
   paid: false,
@@ -27,9 +24,14 @@ const defaultFilters: AdminOrderFilters = {
   "delivery-methods": new Set()
 };
 
+type RenderAndMock = {
+  activeFiltersCount?: number;
+  filters?: Partial<AdminOrderFilters>;
+};
+
 const renderAndMock = ({
   activeFiltersCount = 0,
-  filters: filtersFromArgs = {} as AdminOrderFilters
+  filters: filtersFromArgs = {}
 }: RenderAndMock = {}) => {
   const filters = { ...defaultFilters, ...filtersFromArgs };
 
@@ -50,16 +52,16 @@ const renderAndMock = ({
 };
 
 describe("OrdersTabFilterDrawer", () => {
-  test("applies filters and closes drawer when we press aply filters button", () => {
-    renderAndMock();
-
-    const applyFilterButton = screen.getByRole("button", {
-      name: "dashboardTabs.orders.filters.applyFiltersButton"
+  describe("apply filters and drawer actions", () => {
+    test("applies filters and closes drawer when apply filters button is pressed", () => {
+      renderAndMock();
+      const applyFilterButton = screen.getByRole("button", {
+        name: "dashboardTabs.orders.filters.applyFiltersButton"
+      });
+      fireEvent.click(applyFilterButton);
+      expect(mockApplyFilters).toHaveBeenCalled();
+      expect(mockCloseFilterDrawer).toHaveBeenCalled();
     });
-    fireEvent.click(applyFilterButton);
-
-    expect(mockApplyFilters).toHaveBeenCalled();
-    expect(mockCloseFilterDrawer).toHaveBeenCalled();
   });
 
   describe("price filter", () => {
@@ -78,7 +80,7 @@ describe("OrdersTabFilterDrawer", () => {
 
     test("updates correctly", async () => {
       const start = 90;
-      const end = 15;
+      const end = 1500;
 
       await typeIntoInput(rangeStartInput, start);
       expect(mockUpdateFilterByKey).toHaveBeenCalledWith("price", {
@@ -95,11 +97,63 @@ describe("OrdersTabFilterDrawer", () => {
 
     test("resets correctly", () => {
       const resetButton = screen.getByTestId(
-        `reset-filter-button-dashboardTabs.orders.filters.price`
+        "reset-filter-button-dashboardTabs.orders.filters.price"
       );
-
       fireEvent.click(resetButton);
       expect(mockResetFilterByKey).toHaveBeenCalledWith("price");
+    });
+  });
+
+  describe("order status checkboxes", () => {
+    beforeEach(() => {
+      renderAndMock();
+    });
+
+    test("renders checkboxes with correct labels and checked state", () => {
+      Object.entries(orderStatusesTranslationKeys).forEach(
+        ([status, translationKey]) => {
+          const checkbox = screen.getByLabelText(translationKey);
+          expect(checkbox).toBeInTheDocument();
+
+          if (
+            defaultFilters.statuses.has(
+              status as keyof typeof orderStatusesTranslationKeys
+            )
+          ) {
+            expect(checkbox).toBeChecked();
+          } else {
+            expect(checkbox).not.toBeChecked();
+          }
+        }
+      );
+    });
+  });
+
+  describe("checkbox list changes", () => {
+    beforeEach(() => {
+      renderAndMock();
+    });
+
+    test("adds value to set when checkbox is checked", () => {
+      const checkbox = screen.getByLabelText(
+        deliveryMethods["NOVA_POST"].translationKey
+      );
+      fireEvent.click(checkbox);
+      expect(mockUpdateFilterByKey).toHaveBeenCalledWith(
+        "delivery-methods",
+        new Set(["NOVA_POST"])
+      );
+    });
+
+    test("handles checkbox list change correctly for delivery methods", () => {
+      const deliveryMethodCheckbox = screen.getByLabelText(
+        deliveryMethods["NOVA_POST"].translationKey
+      );
+      fireEvent.click(deliveryMethodCheckbox);
+      expect(mockUpdateFilterByKey).toHaveBeenCalledWith(
+        "delivery-methods",
+        expect.any(Set)
+      );
     });
   });
 
@@ -108,11 +162,50 @@ describe("OrdersTabFilterDrawer", () => {
       renderAndMock();
     });
 
-    test("uses default value from filters", () => {});
+    test("date period select has the correct className from inputProps", () => {
+      const timespanSelect = screen.getByRole("combobox");
 
-    test("updates correctly", () => {});
+      expect(timespanSelect).toHaveClass(
+        "order-tab-filters__date-period-select"
+      );
+    });
 
-    test("resets correctly", () => {});
+    test("uses default value from filters", () => {
+      const timespanSelect = screen.getByRole("combobox");
+      fireEvent.mouseDown(timespanSelect);
+      const selectedOption = screen.getAllByText("select.defaultOption");
+      expect(selectedOption[0]).toBeInTheDocument();
+    });
+
+    test("updates correctly", async () => {
+      const timespanSelect = screen.getByRole("combobox");
+      fireEvent.mouseDown(timespanSelect);
+
+      const optionToSelect = screen.getByRole("option", {
+        name: "timespan.last7Days"
+      });
+
+      act(() => {
+        fireEvent.click(optionToSelect);
+      });
+
+      await waitFor(() => {
+        expect(mockUpdateFilterByKey).toHaveBeenCalledWith(
+          "timespan",
+          "last-week"
+        );
+      });
+
+      expect(optionToSelect).toBeInTheDocument();
+    });
+
+    test("resets correctly", () => {
+      const resetButton = screen.getByTestId(
+        "reset-filter-button-dashboardTabs.orders.filters.timespan"
+      );
+      fireEvent.click(resetButton);
+      expect(mockResetFilterByKey).toHaveBeenCalledWith("timespan");
+    });
   });
 
   describe("isPaid filter", () => {
@@ -129,7 +222,6 @@ describe("OrdersTabFilterDrawer", () => {
 
     test("updates correctly", () => {
       fireEvent.click(checkbox);
-
       expect(mockUpdateFilterByKey).toHaveBeenCalledWith(
         "paid",
         !defaultFilters.paid
@@ -138,11 +230,88 @@ describe("OrdersTabFilterDrawer", () => {
 
     test("resets correctly", () => {
       const resetButton = screen.getByTestId(
-        `reset-filter-button-dashboardTabs.orders.filters.other`
+        "reset-filter-button-dashboardTabs.orders.filters.other"
       );
-
       fireEvent.click(resetButton);
       expect(mockResetFilterByKey).toHaveBeenCalledWith("paid");
+    });
+  });
+
+  describe("delivery methods filter", () => {
+    test("updates correctly", () => {
+      const mockFilters = {
+        ...defaultFilters,
+        "delivery-methods": new Set(["NOVA_POST" as DeliveryMethod])
+      };
+
+      renderAndMock({ filters: mockFilters });
+
+      const deliveryMethodCheckbox = screen.getByLabelText(
+        deliveryMethods["NOVA_POST"].translationKey
+      );
+      fireEvent.click(deliveryMethodCheckbox);
+
+      expect(mockUpdateFilterByKey).toHaveBeenCalledWith(
+        "delivery-methods",
+        new Set<DeliveryMethod>()
+      );
+    });
+
+    test("resets correctly", () => {
+      renderAndMock();
+
+      const resetButton = screen.getByTestId(
+        "reset-filter-button-dashboardTabs.orders.filters.deliveryMethod"
+      );
+      fireEvent.click(resetButton);
+
+      expect(mockResetFilterByKey).toHaveBeenCalledWith("delivery-methods");
+    });
+
+    test("applies filters and closes drawer on apply filters button click", () => {
+      renderAndMock();
+
+      const applyFilterButton = screen.getByRole("button", {
+        name: "dashboardTabs.orders.filters.applyFiltersButton"
+      });
+      fireEvent.click(applyFilterButton);
+
+      expect(mockApplyFilters).toHaveBeenCalled();
+      expect(mockCloseFilterDrawer).toHaveBeenCalled();
+    });
+  });
+
+  describe("clear filters", () => {
+    beforeEach(() => {
+      renderAndMock({ activeFiltersCount: 1 });
+    });
+
+    test("resets order status filter correctly", () => {
+      const resetButton = screen.getByTestId(
+        "reset-filter-button-dashboardTabs.orders.filters.status"
+      );
+      fireEvent.click(resetButton);
+      expect(mockResetFilterByKey).toHaveBeenCalledWith("statuses");
+    });
+
+    test("resets all filters correctly", () => {
+      const resetButton = screen.getByTestId("FilterListOffIcon");
+      fireEvent.click(resetButton);
+      expect(mockResetFilters).toHaveBeenCalled();
+    });
+  });
+
+  describe("active filters button", () => {
+    test("renders 'clear all filters' button when activeFiltersCount > 0", () => {
+      renderAndMock({ activeFiltersCount: 1 });
+      const clearAllFiltersButton = screen.getByTestId("FilterListOffIcon");
+      expect(clearAllFiltersButton).toBeInTheDocument();
+    });
+
+    test("does not render 'clear all filters' button when activeFiltersCount is 0", () => {
+      renderAndMock({ activeFiltersCount: 0 });
+      const clearAllFiltersButton = screen.queryByTestId("FilterListOffIcon");
+      expect(clearAllFiltersButton).toBeNull();
     });
   });
 });
