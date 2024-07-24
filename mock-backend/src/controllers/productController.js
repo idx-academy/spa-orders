@@ -1,3 +1,4 @@
+const managerProducts = require("../data/managerProducts");
 const products = require("../data/mokedData");
 const { sortProducts } = require("../utils/sortUtils");
 
@@ -25,4 +26,8 @@ const getAllProducts = (req, res) => {
   res.json(response);
 };
 
-module.exports = { getAllProducts };
+const getAllManagerProducts = (req, res) => {
+  res.json(managerProducts);
+};
+
+module.exports = { getAllProducts, getAllManagerProducts };
