@@ -33,5 +33,7 @@
   "select.defaultOption": "Виберіть елемент зі списку...",
   "product.status.visible": "Видимий",
   "product.status.hidden": "Прихований",
-  "category.computer": "Комп'ютери"
+  "category.computer": "Комп'ютер",
+  "category.mobile": "Телефони",
+  "category.tablet": "Планшети"
 }

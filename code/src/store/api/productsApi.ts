@@ -2,6 +2,8 @@ import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
 import {
+  GetManagerProductsParams,
+  GetManagerProductsResponse,
   GetUserProductsParams,
   GetUserProductsResponse,
   Product
@@ -18,6 +20,12 @@ const productsApi = appApi.injectEndpoints({
         url: URLS.products.getForUser,
         params: params ?? {}
       })
+    }),
+    getManagerProducts: build.query<
+      GetManagerProductsResponse,
+      GetManagerProductsParams
+    >({
+      query: (params) => URLS.products.getForManager(params)
     }),
     addProduct: build.mutation<
       Product,
@@ -40,6 +48,7 @@ const productsApi = appApi.injectEndpoints({
 
 export const {
   useGetUserProductsQuery,
+  useGetManagerProductsQuery,
   useAddProductMutation,
   useDeleteProductMutation
 } = productsApi;

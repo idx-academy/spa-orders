@@ -3,15 +3,25 @@ import AddIcon from "@mui/icons-material/Add";
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
 import ProductsTable from "@/containers/tables/products-table/ProductsTable";
-import { mockProducts } from "@/containers/tables/products-table/ProductsTable.constants";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import routePaths from "@/constants/routes";
+import { useLocaleContext } from "@/context/i18n/I18nProvider";
+import { useGetManagerProductsQuery } from "@/store/api/productsApi";
 
 const DashboardProductsPage = () => {
+  const { locale } = useLocaleContext();
+  const { data, isLoading } = useGetManagerProductsQuery({ lang: locale });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const products = data?.content ?? [];
+
   return (
     <DashboardTabContainer>
       <AppBox className="dashboard-tabs__toolbar">
@@ -28,7 +38,7 @@ const DashboardProductsPage = () => {
           <AppTypography translationKey="dashboardTabs.addProduct.label" />
         </AppButton>
       </AppBox>
-      <ProductsTable products={mockProducts} />
+      <ProductsTable products={products} />
     </DashboardTabContainer>
   );
 };

@@ -1,3 +1,5 @@
+import { Lang, Pageable } from "./common";
+
 export type ProductStatus = "AVAILABLE";
 
 export type Product = {
@@ -35,3 +37,19 @@ export type GetUserProductsParams = {
   size?: number;
   sort?: string;
 };
+
+export type GetManagerProductsResponse = {
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  size: number;
+  empty: boolean;
+  content: ManagerProduct[];
+};
+
+export type GetManagerProductsParams = Partial<
+  Lang & ManagerProduct & Pageable
+>;
