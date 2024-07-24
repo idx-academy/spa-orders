@@ -48,7 +48,13 @@ describe("DeliveryForm", () => {
     expect(departmentInput).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();
   });
+  test("select has the correct className from inputProps", () => {
+    const select = screen.getByRole("combobox");
 
+    expect(select).toHaveClass(
+      "delivery-form__method-select-input"
+    );
+  });
   test("handles input changes and form submission", async () => {
     const cityInput = screen.getByLabelText(/deliveryForm.city/);
     const departmentInput = screen.getByLabelText(/deliveryForm.department/);
