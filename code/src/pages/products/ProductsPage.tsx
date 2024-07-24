@@ -48,26 +48,28 @@ const ProductsPage = () => {
 
   const productsCount = filteredProductsList?.length ?? 0;
 
+  const productsAllLabels = !categoryType
+    ? "productsAll.label"
+    : `productsAll.${categoryType}`;
+
+  const productsItemsLabel = !categoryType
+    ? "productsItems.label"
+    : `productsItems.category.${categoryType}`;
+
   return (
     <PageWrapper>
       <AppBox className="spa-products-page" data-cy="products-page">
         <AppTypography
           variant="h3"
           className="spa-products-page__header"
-          translationKey={
-            !categoryType ? "productsAll.label" : `productsAll.${categoryType}`
-          }
+          translationKey={productsAllLabels}
           component="h1"
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">
             {productsCount}
             <AppTypography
-              translationKey={
-                !categoryType
-                  ? "productsItems.label"
-                  : `productsItems.category.${categoryType}`
-              }
+              translationKey={productsItemsLabel}
               component="span"
             />
           </AppTypography>
