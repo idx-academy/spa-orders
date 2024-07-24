@@ -8,60 +8,58 @@ Given("As a user I am signed in", () => {
 });
 
 When("I click on the Cart button", () => {
-  cy.get("[data-cy='header-cart-button']").click();
+  cy.getById("header-cart-button").click();
 });
 
 Then("I should see the Cart drawer", () => {
-  cy.get("[data-cy='cart-drawer']").should("be.visible");
+  cy.getById("cart-drawer").should("be.visible");
 });
 
 When("I click view the cart it opens the cart page", () => {
-  cy.get("[data-cy='cart-drawer-button']").click();
+  cy.getById("cart-drawer-button").click();
 });
 
 Then("I should see the cart page", () => {
-  cy.get("[data-cy='myCartLabel']").should("be.visible");
+  cy.getById("myCartLabel").should("be.visible");
 });
 
 Given("I am on the cart page", () => {
   cy.visit("/cart");
-  cy.get("[data-cy='cart-item']").should("be.visible");
+  cy.getById("cart-item").should("be.visible");
 });
 
 Given("the cart has an item with quantity {int}", (quantity) => {
   cy.visit("/cart");
-  cy.get("[data-cy='cart-item']")
+  cy.getById("cart-item")
     .first()
     .within(() => {
-      cy.get("[data-cy='cart-item-quantity']")
-        .clear()
-        .type(quantity.toString());
+      cy.getById("cart-item-quantity").clear().type(quantity.toString());
     });
 });
 
 When("I click on the increase button for the product quantity", () => {
   cy.intercept(httpMethod.patch, /\/api\/v1\/cart\/items\/\d+/);
-  cy.get("[data-cy='cart-item']")
+  cy.getById("cart-item")
     .first()
     .within(() => {
-      cy.get("[data-cy='increase-quantity-button']").click();
+      cy.getById("increase-quantity-button").click();
     });
 });
 
 When("I click on the decrease button for the product quantity", () => {
   cy.intercept(httpMethod.patch, /\/api\/v1\/cart\/items\/\d+/);
-  cy.get("[data-cy='cart-item']")
+  cy.getById("cart-item")
     .first()
     .within(() => {
-      cy.get("[data-cy='decrease-quantity-button']").click();
+      cy.getById("decrease-quantity-button").click();
     });
 });
 
 Then("I should see the changed quantity is {int}", (quantity) => {
-  cy.get("[data-cy='cart-item']")
+  cy.getById("cart-item")
     .first()
     .within(() => {
-      cy.get("[data-cy='cart-item-quantity']").should(
+      cy.getById("cart-item-quantity").should(
         "have.value",
         quantity.toString()
       );
@@ -70,13 +68,13 @@ Then("I should see the changed quantity is {int}", (quantity) => {
 
 When("I click on the remove button for a product", () => {
   cy.intercept(httpMethod.delete, /\/api\/v1\/cart\/items\/\d+/);
-  cy.get("[data-cy='cart-item']")
+  cy.getById("cart-item")
     .first()
     .within(() => {
-      cy.get("[data-cy='remove-cart-item-button']").click();
+      cy.getById("remove-cart-item-button").click();
     });
 });
 
 Then("I should see the remove snackbar", () => {
-  cy.get("[data-cy='snackbar']").should("exist");
+  cy.getById("snackbar").should("exist");
 });

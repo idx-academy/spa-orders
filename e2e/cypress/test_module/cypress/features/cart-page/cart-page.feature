@@ -1,4 +1,4 @@
-Feature: Cart
+Feature: | Сart page |
   Verify that cart page functionality works correctly
 
   Background: User is signed in and navigates to the cart page
