@@ -3,11 +3,11 @@ import { screen } from "@testing-library/react";
 import BestSellers from "@/containers/best-sellers/BestSellers";
 import { ProductsContainerProps } from "@/containers/products-container/ProductsContainer.types";
 
-import { useGetProductsQuery } from "@/store/api/productsApi";
+import { useGetUserProductsQuery } from "@/store/api/productsApi";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/api/productsApi", () => ({
-  useGetProductsQuery: jest.fn()
+  useGetUserProductsQuery: jest.fn()
 }));
 
 const mockProductsResponse = {
@@ -29,9 +29,9 @@ jest.mock("@/containers/products-container/ProductsContainer", () => ({
 }));
 
 const renderAndMock = (
-  mockData: Partial<ReturnType<typeof useGetProductsQuery>> = {}
+  mockData: Partial<ReturnType<typeof useGetUserProductsQuery>> = {}
 ) => {
-  (useGetProductsQuery as jest.Mock).mockReturnValue({
+  (useGetUserProductsQuery as jest.Mock).mockReturnValue({
     data: mockData.data || null,
     isLoading: mockData.isLoading || false,
     isError: mockData.isError || false
@@ -52,7 +52,7 @@ describe("BestSellers", () => {
   test("should pass the correct size to the query and render ProductsContainer with correct props", () => {
     renderAndMock({ data: mockProductsResponse });
 
-    expect(useGetProductsQuery).toHaveBeenCalledWith({
+    expect(useGetUserProductsQuery).toHaveBeenCalledWith({
       page: 0,
       size: 5
     });

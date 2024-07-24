@@ -23,3 +23,15 @@ export type ManagerProduct = {
   status: ManagerProductStatus;
   tags: string[];
 };
+
+export type GetUserProductsResponse = {
+  content: Product[];
+  totalPages: number;
+  totalElements: number;
+};
+
+export type GetUserProductsParams = {
+  page?: number;
+  size?: number;
+  sort?: string;
+};

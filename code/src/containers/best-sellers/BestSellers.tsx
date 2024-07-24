@@ -7,7 +7,7 @@ import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import routes from "@/constants/routes";
-import { useGetProductsQuery } from "@/store/api/productsApi";
+import { useGetUserProductsQuery } from "@/store/api/productsApi";
 
 import "@/containers/best-sellers/BestSellers.scss";
 
@@ -16,7 +16,7 @@ const BestSellers = () => {
     data: productsResponse,
     isLoading,
     isError
-  } = useGetProductsQuery({
+  } = useGetUserProductsQuery({
     page: 0,
     size: 5
   });

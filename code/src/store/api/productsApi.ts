@@ -1,26 +1,21 @@
 import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
-import { Product } from "@/types/product.types";
+import {
+  GetUserProductsParams,
+  GetUserProductsResponse,
+  Product
+} from "@/types/product.types";
 import createUrlPath from "@/utils/create-url-path/createUrlPath";
-
-type GetProductsResponse = {
-  content: Product[];
-  totalPages: number;
-  totalElements: number;
-};
-
-type GetProductsParams = {
-  page?: number;
-  size?: number;
-  sort?: string;
-};
 
 const productsApi = appApi.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<GetProductsResponse, GetProductsParams>({
+    getUserProducts: build.query<
+      GetUserProductsResponse,
+      GetUserProductsParams
+    >({
       query: (params) => ({
-        url: URLS.products.get,
+        url: URLS.products.getForUser,
         params: params ?? {}
       })
     }),
@@ -44,7 +39,7 @@ const productsApi = appApi.injectEndpoints({
 });
 
 export const {
-  useGetProductsQuery,
+  useGetUserProductsQuery,
   useAddProductMutation,
   useDeleteProductMutation
 } = productsApi;

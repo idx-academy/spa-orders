@@ -3,7 +3,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import { ProductsContainerProps } from "@/containers/products-container/ProductsContainer.types";
 
 import ProductsPage from "@/pages/products/ProductsPage";
-import { useGetProductsQuery } from "@/store/api/productsApi";
+import { useGetUserProductsQuery } from "@/store/api/productsApi";
 import { PaginationParams, RTKQueryReturnState } from "@/types/common";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
@@ -37,7 +37,7 @@ jest.mock("@/containers/products-container/ProductsContainer", () => ({
 }));
 
 jest.mock("@/store/api/productsApi", () => ({
-  useGetProductsQuery: jest.fn()
+  useGetUserProductsQuery: jest.fn()
 }));
 
 const defaultQueryArguments = {
@@ -47,7 +47,7 @@ const defaultQueryArguments = {
 };
 
 const testQueryArguments = (args: Partial<PaginationParams> = {}) => {
-  expect(useGetProductsQuery).toHaveBeenCalledWith({
+  expect(useGetUserProductsQuery).toHaveBeenCalledWith({
     ...defaultQueryArguments,
     ...args
   });
@@ -62,7 +62,7 @@ const renderAndMock = (
     mockResponse?: Partial<RTKQueryReturnState<Partial<typeof mockData>>>;
   } = { entries: "", mockResponse: {} }
 ) => {
-  (useGetProductsQuery as jest.Mock).mockReturnValue({
+  (useGetUserProductsQuery as jest.Mock).mockReturnValue({
     isLoading: false,
     isError: false,
     isSuccess: true,

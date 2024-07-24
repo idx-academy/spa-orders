@@ -9,7 +9,7 @@ import AppDropdown from "@/components/app-dropdown/AppDropdown";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
-import { useGetProductsQuery } from "@/store/api/productsApi";
+import { useGetUserProductsQuery } from "@/store/api/productsApi";
 import categoryFilter from "@/utils/filter-products-by-category/categoryFilter";
 import validatePage from "@/utils/validate-page/validatePage";
 
@@ -28,7 +28,7 @@ const ProductsPage = () => {
     data: productsResponse,
     isLoading,
     isError
-  } = useGetProductsQuery({
+  } = useGetUserProductsQuery({
     page: page - 1,
     size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
     sort: sortOption ?? "recommended"
