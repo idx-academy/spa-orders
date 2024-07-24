@@ -2,9 +2,10 @@
 
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { httpMethod } from "@cypress-e2e/fixtures/global-data";
+import { UserRole } from "..";
 
-Given("As a user I am signed in", () => {
-  cy.signIn();
+Given("I authenticate to the system under User role", (role: UserRole) => {
+  cy.loginWithRole(role);
 });
 
 When("I click on the Cart button", () => {
@@ -75,6 +76,6 @@ When("I click on the remove button for a product", () => {
     });
 });
 
-Then("I should see the remove snackbar", () => {
-  cy.getById("snackbar").should("exist");
+Then("I should to get a snackbar with message", (message: string) => {
+  cy.getById("snackbar").should("contain", message);
 });

@@ -2,7 +2,7 @@ Feature: | Сart page |
   Verify that cart page functionality works correctly
 
   Background: User is signed in and navigates to the cart page
-    Given As a user I am signed in
+    Given I authenticate to the system under User role
     When I click on the Cart button
     Then I should see the Cart drawer
     When I click view the cart it opens the cart page
@@ -25,5 +25,5 @@ Feature: | Сart page |
   Scenario: Remove a product item from the cart
     Given the cart has an item with quantity 1
     When I click on the remove button for a product
-    Then I should see the remove snackbar
+    Then I should receive a snackbar with message 'Продукт успішно видалено з кошика.'
 
