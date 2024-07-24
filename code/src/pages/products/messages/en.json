@@ -1,6 +1,12 @@
 {
   "productsAll.label": "All Products",
+  "productsAll.computer": "Computers",
+  "productsAll.mobile": "Mobiles",
+  "productsAll.tablet": "Tablets",
   "productsItems.label": "products",
+  "productsItems.category.computer": "computers",
+  "productsItems.category.mobile": "mobiles",
+  "productsItems.category.tablet": "tablets",
   "productsDefault.label": "Recommended",
   "sortOptions.newest": "Newest",
   "sortOptions.priceLowHigh": "Price (low to high)",

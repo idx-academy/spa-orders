@@ -30,7 +30,7 @@ const ProductsPage = () => {
     isError
   } = useGetProductsQuery({
     page: page - 1,
-    size: Infinity,
+    size: Infinity, //Infinity is temporary solution, until we implement endless scrolling.
     sort: sortOption ?? "recommended"
   });
 
@@ -54,14 +54,20 @@ const ProductsPage = () => {
         <AppTypography
           variant="h3"
           className="spa-products-page__header"
-          translationKey="productsAll.label"
+          translationKey={
+            !categoryType ? "productsAll.label" : `productsAll.${categoryType}`
+          }
           component="h1"
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">
             {productsCount}
             <AppTypography
-              translationKey="productsItems.label"
+              translationKey={
+                !categoryType
+                  ? "productsItems.label"
+                  : `productsItems.category.${categoryType}`
+              }
               component="span"
             />
           </AppTypography>

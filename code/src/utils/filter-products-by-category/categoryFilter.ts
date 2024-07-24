@@ -1,9 +1,6 @@
 import { Product } from "@/types/product.types";
 
-const categoryFilter = (
-  category: string | null,
-  productsList: Product[] | undefined
-) => {
+const categoryFilter = (category: string | null, productsList?: Product[]) => {
   if (!category) {
     return productsList;
   }

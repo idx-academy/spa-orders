@@ -1,6 +1,12 @@
 {
   "productsAll.label": "Всі товари",
+  "productsAll.computer": "Комп'ютери",
+  "productsAll.mobile": "Мобільний",
+  "productsAll.tablet": "Планшети",
   "productsItems.label": "товари",
+  "productsItems.category.computer": "комп'ютери",
+  "productsItems.category.mobile": "мобільний",
+  "productsItems.category.tablet": "планшети",
   "productsDefault.label": "Рекомендовані",
   "sortOptions.newest": "Нові",
   "sortOptions.priceLowHigh": "Ціна (від низької до високої)",
