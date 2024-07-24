@@ -24,7 +24,7 @@ describe("OrdersTableBody", () => {
   test("renders order information correctly", () => {
     const ordersId = screen.getByText(mockOrders[0].id);
     const ordersReceiver = screen.getByText(
-      `${mockOrders[0].receiver.firstName} ${mockOrders[0].receiver.lastName}`
+      `${mockOrders[0].receiver.lastName} ${mockOrders[0].receiver.firstName}`
     );
     const doneIcon = screen.getByTestId(/DoneIcon/);
 

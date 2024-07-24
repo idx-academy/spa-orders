@@ -20,8 +20,7 @@ const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
     createdAt: "desc",
     total: "desc",
     orderStatus: "desc",
-    isPaid: "desc",
-   
+    isPaid: "desc"
   });
 
   const getSortKey = () => {
@@ -34,7 +33,6 @@ const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
         return "orderStatus";
       case "ordersTable.columns.isPaid":
         return "isPaid";
-
       default:
         return null;
     }
@@ -63,9 +61,10 @@ const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
     <AppTableCell className="spa-order-table__head">
       {sortKey !== null ? (
         <AppTableSortLabel
-          active
+          active={sortKey === head}
           onClick={handleSort}
           sortDirection={sortDirection as "asc" | "desc"}
+          className="spa-order-table__head-label"
         >
           <AppTypography translationKey={head} variant="caption" />
         </AppTableSortLabel>

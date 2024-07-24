@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import OrdersTable from "@/containers/tables/orders-table/OrdersTable";
 import {
@@ -6,17 +6,19 @@ import {
   tableColumns
 } from "@/containers/tables/orders-table/OrdersTable.constants";
 
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
 const mockSetStatus = jest.fn();
 
 jest.mock("@/store/api/ordersApi", () => ({
   useChangeOrderStatusMutation: jest.fn(() => [mockSetStatus])
 }));
 
-const mockSortChange = jest.fn();
-
 describe("OrdersTable", () => {
   test("renders correctly", () => {
-    const { container } = render(<OrdersTable ordersData={mockOrders} />);
+    const { container } = renderWithProviders(
+      <OrdersTable ordersData={mockOrders} />
+    );
 
     tableColumns.forEach((column) => {
       const columnElement = screen.getByText(column);
@@ -34,7 +36,7 @@ describe("OrdersTable", () => {
   });
 
   test("renders fallback", () => {
-    render(<OrdersTable ordersData={[]} onSortChange={mockSortChange}/>);
+    renderWithProviders(<OrdersTable ordersData={[]} />);
 
     const fallbackText = screen.getByText(/ordersTable.fallback/);
     expect(fallbackText).toBeInTheDocument();
@@ -44,7 +46,7 @@ describe("OrdersTable", () => {
   });
 
   test("Should call function to set status", () => {
-    render(<OrdersTable ordersData={mockOrders} />);
+    renderWithProviders(<OrdersTable ordersData={mockOrders} />);
 
     const statusSelect = screen.getByText("orders.statuses.inProgress");
 

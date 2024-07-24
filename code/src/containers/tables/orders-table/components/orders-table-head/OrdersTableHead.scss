@@ -4,10 +4,9 @@
   background-color: var(--spa-order-table-head-bg-color, $light-alpha);
   color: var(--spa-order-table-head-color, $white);
 
-  .MuiTableSortLabel-root.Mui-active {
-    color: var(--spa-table-sort-label-active-color, $white);
-    svg {
-      color: var(--spa-table-sort-label-active-color, $white);
+  &-label {
+    .MuiTableSortLabel-icon {
+      opacity: 1;
     }
   }
 }

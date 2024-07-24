@@ -1,21 +1,81 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
+import { useSearchParams } from "react-router-dom";
 
 import OrdersTableHead from "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead";
+
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useSearchParams: jest.fn()
+}));
+
+const mockSetSearchParams = jest.fn();
+
+const sortableFields = [
+  "ordersTable.columns.createdAt",
+  "ordersTable.columns.totalPrice",
+  "ordersTable.columns.status",
+  "ordersTable.columns.isPaid"
+];
+
 describe("OrderTableHead", () => {
-  test("renders correctly", () => {
+  beforeEach(() => {
+    (useSearchParams as jest.Mock).mockReturnValue([
+      new URLSearchParams(),
+      mockSetSearchParams
+    ]);
+  });
+
+  const renderComponent = (head: string) => {
     renderWithProviders(
       <table>
         <tbody>
           <tr>
-            <OrdersTableHead head="test" />
+            <OrdersTableHead head={head} />
           </tr>
         </tbody>
       </table>
     );
+  };
 
-    const headElement = screen.getByText(/test/);
+  test("renders correctly with the provided head", () => {
+    renderComponent("ordersTable.columns.createdAt");
+    const headElement = screen.getByText(/ordersTable.columns.createdAt/i);
     expect(headElement).toBeInTheDocument();
+  });
+
+  test("renders AppTableSortLabel when sortKey is valid", () => {
+    renderComponent("ordersTable.columns.totalPrice");
+    const sortLabelElement = screen.getByRole("button");
+    expect(sortLabelElement).toBeInTheDocument();
+  });
+
+  test("does not render AppTableSortLabel when sortKey is null", () => {
+    renderComponent("invalid.column");
+    const headElement = screen.getByText(/invalid.column/i);
+    expect(headElement).toBeInTheDocument();
+    const sortLabelElement = screen.queryByRole("button");
+    expect(sortLabelElement).not.toBeInTheDocument();
+  });
+
+  test("updates searchParams on sort", () => {
+    renderComponent("ordersTable.columns.totalPrice");
+    const sortButton = screen.getByTestId("ArrowDownwardIcon");
+
+    expect(sortButton).toBeInTheDocument();
+    fireEvent.click(sortButton);
+
+    expect(mockSetSearchParams).toHaveBeenCalledTimes(1);
+  });
+  test("renders all sortable fields with AppTableSortLabel", () => {
+    sortableFields.forEach((field, index) => {
+      renderComponent(field);
+      const sortButton = screen.getAllByTestId("ArrowDownwardIcon")[index];
+      expect(sortButton).toBeInTheDocument();
+
+      fireEvent.click(sortButton);
+      expect(mockSetSearchParams).toHaveBeenCalled();
+    });
   });
 });
