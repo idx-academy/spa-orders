@@ -16,82 +16,80 @@ const mockUseFiltersWithApply = useFiltersWithApply as jest.Mock;
 const mockUseGetAdminOrdersQuery = useGetAdminOrdersQuery as jest.Mock;
 const mockTimeSpanToDateRange = timeSpanToDateRange as jest.Mock;
 
+const mockFiltersWithApplyValue = {
+  filters: {},
+  appliedFilters: {},
+  activeFiltersCount: 0,
+  actions: {}
+};
+
 describe("useFilteredAdminOrders", () => {
   beforeEach(() => {
-    mockUseFiltersWithApply.mockReturnValue({
-      filters: {},
-      appliedFilters: {},
-      activeFiltersCount: 0,
-      actions: {}
-    });
+    mockUseFiltersWithApply.mockReturnValue(mockFiltersWithApplyValue);
     mockUseGetAdminOrdersQuery.mockReturnValue({
       data: { content: [] },
       isLoading: false
     });
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  test("initial state is correct", () => {
-    const { result } = renderHook(useFilteredAdminOrders);
-    expect(result.current).toMatchObject({
-      filters: {},
-      filterActions: {},
-      activeFiltersCount: 0,
-      orders: [],
-      isLoading: false
-    });
-  });
-
-  test("dateRange is undefined when timespan is not provided", () => {
-    mockUseFiltersWithApply.mockReturnValueOnce({
-      filters: {},
-      appliedFilters: {}, // timespan not included
-      activeFiltersCount: 0,
-      actions: {}
+  describe("without filters", () => {
+    test("initial state is correct", () => {
+      const { result } = renderHook(useFilteredAdminOrders);
+      expect(result.current).toMatchObject({
+        filters: {},
+        filterActions: {},
+        activeFiltersCount: 0,
+        orders: [],
+        isLoading: false
+      });
     });
 
-    const { result } = renderHook(() => useFilteredAdminOrders());
-    expect(result.current).toEqual({
-      activeFiltersCount: 0,
-      filterActions: {},
-      filters: {},
-      isLoading: false,
-      orders: []
-    });
-  });
+    test("dateRange is undefined when timespan is not provided", () => {
+      mockUseFiltersWithApply.mockReturnValueOnce({
+        ...mockFiltersWithApplyValue,
+        appliedFilters: {}
+      });
 
-  test("orders is assigned with content from ordersResponse", () => {
-    const ordersData = [{ id: 1, name: "Order 1" }];
-    mockUseGetAdminOrdersQuery.mockReturnValueOnce({
-      data: { content: ordersData },
-      isLoading: false
-    });
-
-    const { result } = renderHook(() => useFilteredAdminOrders());
-    expect(result.current.orders).toEqual(ordersData);
-  });
-
-  test("returns empty orders array when ordersResponse is null", () => {
-    mockUseGetAdminOrdersQuery.mockReturnValueOnce({
-      data: null, // Simulate API returning null
-      isLoading: false
+      const { result } = renderHook(() => useFilteredAdminOrders());
+      expect(result.current).toEqual({
+        activeFiltersCount: 0,
+        filterActions: {},
+        filters: {},
+        isLoading: false,
+        orders: []
+      });
     });
 
-    const { result } = renderHook(() => useFilteredAdminOrders());
-    expect(result.current.orders).toEqual([]);
-  });
+    test("orders is assigned with content from ordersResponse", () => {
+      const ordersData = [{ id: 1, name: "Order 1" }];
+      mockUseGetAdminOrdersQuery.mockReturnValueOnce({
+        data: { content: ordersData },
+        isLoading: false
+      });
 
-  test("orders is an empty array when ordersResponse has no content", () => {
-    mockUseGetAdminOrdersQuery.mockReturnValueOnce({
-      data: {}, // No content
-      isLoading: false
+      const { result } = renderHook(() => useFilteredAdminOrders());
+      expect(result.current.orders).toEqual(ordersData);
     });
 
-    const { result } = renderHook(() => useFilteredAdminOrders());
-    expect(result.current.orders).toEqual([]);
+    test("returns empty orders array when ordersResponse is null", () => {
+      mockUseGetAdminOrdersQuery.mockReturnValueOnce({
+        data: null,
+        isLoading: false
+      });
+
+      const { result } = renderHook(() => useFilteredAdminOrders());
+      expect(result.current.orders).toEqual([]);
+    });
+
+    test("orders is an empty array when ordersResponse has no content", () => {
+      mockUseGetAdminOrdersQuery.mockReturnValueOnce({
+        data: {},
+        isLoading: false
+      });
+
+      const { result } = renderHook(() => useFilteredAdminOrders());
+      expect(result.current.orders).toEqual([]);
+    });
   });
 
   describe("with filters", () => {
@@ -102,10 +100,9 @@ describe("useFilteredAdminOrders", () => {
     test("applies timespan filter correctly", () => {
       const mockTimespan = { start: "2021-01-01", end: "2021-01-31" };
       mockUseFiltersWithApply.mockReturnValueOnce({
-        filters: {},
+        ...mockFiltersWithApplyValue,
         appliedFilters: { timespan: mockTimespan },
-        activeFiltersCount: 1,
-        actions: {}
+        activeFiltersCount: 1
       });
       mockTimeSpanToDateRange.mockReturnValueOnce({
         start: new Date(mockTimespan.start),
@@ -133,10 +130,9 @@ describe("useFilteredAdminOrders", () => {
       ];
 
       mockUseFiltersWithApply.mockReturnValueOnce({
-        filters: {},
+        ...mockFiltersWithApplyValue,
         appliedFilters: { "delivery-methods": deliveryMethods },
-        activeFiltersCount: 1,
-        actions: {}
+        activeFiltersCount: 1
       });
 
       mockUseGetAdminOrdersQuery.mockReturnValueOnce({
@@ -151,10 +147,9 @@ describe("useFilteredAdminOrders", () => {
     test("converts statuses set to array when provided", () => {
       const statusesSet = new Set(["PENDING", "SHIPPED"]);
       mockUseFiltersWithApply.mockReturnValueOnce({
-        filters: {},
+        ...mockFiltersWithApplyValue,
         appliedFilters: { statuses: statusesSet },
-        activeFiltersCount: 1,
-        actions: {}
+        activeFiltersCount: 1
       });
 
       mockUseGetAdminOrdersQuery.mockImplementation((queryParameters) => {
@@ -167,14 +162,10 @@ describe("useFilteredAdminOrders", () => {
 
     test("handles empty delivery-methods set correctly", () => {
       mockUseFiltersWithApply.mockReturnValueOnce({
-        filters: {},
-        appliedFilters: { "delivery-methods": new Set() },
-        activeFiltersCount: 0,
-        actions: {}
+        ...mockFiltersWithApplyValue,
+        appliedFilters: { "delivery-methods": new Set() }
       });
-
-      const { result } = renderHook(() => useFilteredAdminOrders());
-      expect(mockUseGetAdminOrdersQuery).toHaveBeenCalledWith({
+      const expectedQueryParams = {
         isPaid: undefined,
         totalLess: undefined,
         totalMore: undefined,
@@ -182,7 +173,12 @@ describe("useFilteredAdminOrders", () => {
         deliveryMethods: [],
         createdBefore: undefined,
         createdAfter: undefined
-      });
+      };
+
+      const { result } = renderHook(() => useFilteredAdminOrders());
+      expect(mockUseGetAdminOrdersQuery).toHaveBeenCalledWith(
+        expectedQueryParams
+      );
       expect(result.current.orders).toEqual([]);
     });
   });
