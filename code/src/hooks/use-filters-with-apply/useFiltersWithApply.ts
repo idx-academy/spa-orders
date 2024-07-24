@@ -58,7 +58,7 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
     return activeFiltersRef.current.has(key);
   };
 
-  const applyFilters: ApplyFilters = () => {
+  const applyFilters: ApplyFilters = ({ withDefault = false } = {}) => {
     const params = new URLSearchParams(searchParams);
 
     for (const [filterKey, filterValue] of Object.entries(localFilters)) {

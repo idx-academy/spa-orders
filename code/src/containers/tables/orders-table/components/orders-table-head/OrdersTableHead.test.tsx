@@ -1,16 +1,15 @@
 import { render, screen } from "@testing-library/react";
 
 import OrdersTableHead from "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead";
-
-const mockOnSortChange = jest.fn();
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 describe("OrderTableHead", () => {
   test("renders correctly", () => {
-    render(
+    renderWithProviders(
       <table>
         <tbody>
           <tr>
-            <OrdersTableHead head="test" onSortChange={mockOnSortChange} />
+            <OrdersTableHead head="test" />
           </tr>
         </tbody>
       </table>

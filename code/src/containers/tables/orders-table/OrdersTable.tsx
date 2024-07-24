@@ -12,10 +12,9 @@ import "@/containers/tables/orders-table/OrdersTable.scss";
 
 type OrdersTableProps = {
   ordersData: AdminOrder[];
-  onSortChange: (newSort: string) => void;
 };
 
-const OrdersTable = ({ ordersData, onSortChange }: OrdersTableProps) => {
+const OrdersTable = ({ ordersData }: OrdersTableProps) => {
   const [changeOrderStatus] = useChangeOrderStatusMutation();
 
   const OrderTableBodyItem = (order: AdminOrder) => {
@@ -33,7 +32,7 @@ const OrdersTable = ({ ordersData, onSortChange }: OrdersTableProps) => {
   };
 
   const OrderTableHeadItem = (head: string) => (
-    <OrdersTableHead key={head} head={head} onSortChange={onSortChange} />
+    <OrdersTableHead key={head} head={head} />
   );
 
   const ordersTableFallback = (

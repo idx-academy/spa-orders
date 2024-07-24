@@ -1,3 +1,5 @@
+import { useSearchParams } from "react-router-dom";
+
 import { defaultAdminOrderFilters } from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders.constants";
 
 import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
@@ -12,18 +14,12 @@ const useFilteredAdminOrders = () => {
     actions: filterActions
   } = useFiltersWithApply(defaultAdminOrderFilters);
 
-  const {
-    filters: sortFilters,
-    appliedFilters: { sortField, sortOrder },
-    actions: sortFilterActions
-  } = useFiltersWithApply({ sortField: "createdAt", sortOrder: "asc" });
-
   const dateRange = timespan ? timeSpanToDateRange(timespan) : undefined;
 
   const deliveryMethods =
     rest["delivery-methods"] && Array.from(rest["delivery-methods"]);
 
-  const sortParam = sortField && sortOrder && `${sortField},${sortOrder}`;
+  const [searchParams] = useSearchParams();
 
   const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
     isPaid: paid,
@@ -33,7 +29,7 @@ const useFilteredAdminOrders = () => {
     deliveryMethods,
     createdBefore: dateRange?.end.toISOString(),
     createdAfter: dateRange?.start.toISOString(),
-    sort: sortParam
+    sort: searchParams.get("sort") || undefined
   });
 
   const orders = ordersResponse?.content ?? [];
@@ -43,9 +39,7 @@ const useFilteredAdminOrders = () => {
     filterActions,
     activeFiltersCount,
     orders,
-    isLoading,
-    sortFilters,
-    sortFilterActions
+    isLoading
   } as const;
 };
 

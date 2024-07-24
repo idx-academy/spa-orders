@@ -3,7 +3,6 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import { AppTableSortLabelProps } from "@/components/app-table/components/app-table-sort-label/AppTableSortLabel.types";
 
 const AppTableSortLabel = ({
-  className,
   sortDirection,
   onSortClick,
   children,
@@ -11,7 +10,6 @@ const AppTableSortLabel = ({
 }: AppTableSortLabelProps) => {
   return (
     <TableSortLabel
-      className={className}
       active
       direction={sortDirection}
       onClick={onSortClick}

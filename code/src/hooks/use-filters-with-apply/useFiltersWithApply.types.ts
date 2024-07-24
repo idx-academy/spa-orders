@@ -17,8 +17,10 @@ export type CheckFilterActive<Filters> = <Key extends keyof Filters>(
 ) => boolean;
 
 export type ResetFilters = () => void;
-
-export type ApplyFilters = () => void;
+export type ApplyFilterOptions = {
+  withDefault: boolean;
+};
+export type ApplyFilters = (options?: Partial<ApplyFilterOptions>) => void;
 
 export type FilterActions<Filters> = {
   updateFilterByKey: UpdateFilterByKey<Filters>;
