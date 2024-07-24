@@ -19,13 +19,18 @@ const EmptyCart = () => {
           variant="h3"
           translationKey="cartEmpty.label"
           data-testid="emptyCartLabel"
+          data-cy="empty-cart-title"
         />
-        <AppTypography translationKey="cartEmpty.subtitle" />
+        <AppTypography
+          translationKey="cartEmpty.subtitle"
+          data-cy="empty-cart-subtitle"
+        />
         <AppIconButton
           className="empty-cart__img"
           disableRipple
           component={AppLink}
           to={routes.products.path}
+          data-cy="empty-cart-link"
         >
           <svg>
             <use href={`${cartIconWithPlus}#cart-with-plus`} />

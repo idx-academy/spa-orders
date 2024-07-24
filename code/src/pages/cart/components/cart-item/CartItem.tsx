@@ -57,7 +57,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
   const disableMinusQuantity = quantity === 1 && "disabled";
 
   return (
-    <AppBox className="spa-cart-item">
+    <AppBox className="spa-cart-item" data-cy="cart-item">
       <AppBox
         component="img"
         src={item.image}
@@ -73,6 +73,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
         <AppBox
           className={cn("spa-cart-item__quantity-block", disableMinusQuantity)}
           onClick={handleDecreaseQuantity}
+          data-cy="decrease-quantity-button"
         >
           <RemoveCircleOutlineIcon />
         </AppBox>
@@ -81,10 +82,12 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
           className="spa-cart-item__quantity-input"
           onChange={handleQuantityInputChange}
           onBlur={handleBlur}
+          data-cy="cart-item-quantity"
         />
         <AppBox
           className="spa-cart-item__quantity-block"
           onClick={handleIncreaseQuantity}
+          data-cy="increase-quantity-button"
         >
           <AddCircleOutlineIcon />
         </AppBox>
@@ -95,6 +98,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
       <AppBox
         className="spa-cart-item__delete-block"
         onClick={handleRemoveCartItem}
+        data-cy="remove-cart-item-button"
       >
         <DeleteIcon />
       </AppBox>

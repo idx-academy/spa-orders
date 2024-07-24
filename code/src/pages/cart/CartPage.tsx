@@ -35,17 +35,15 @@ const CartPage = () => {
     <PageWrapper>
       <AppBox className="spa-cart-page">
         <AppBox className="spa-cart-page__content">
-          <AppBox className="spa-cart-page__items">
+          <AppBox className="spa-cart-page__items" data-cy="myCartLabel">
             <AppTypography
               className="spa-cart-page__items--label"
               variant="h3"
               component="h1"
               translationKey="myCart.label"
-              data-testid="myCartLabel"
             />
             {cartItemsBlock}
           </AppBox>
-
           <DeliveryForm totalPrice={totalPrice} />
         </AppBox>
       </AppBox>

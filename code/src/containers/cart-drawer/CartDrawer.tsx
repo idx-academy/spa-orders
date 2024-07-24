@@ -87,6 +87,7 @@ const CartDrawer = () => {
           className="cart-drawer__button"
           onClick={handleOpenCartPage}
           fullWidth
+          data-cy="cart-drawer-button"
         >
           <AppTypography translationKey="cart.viewCart" />
         </AppButton>

@@ -170,7 +170,9 @@ const HeaderToolbar = () => {
   } else if (userRole === ROLES.USER || !isAuthenticated) {
     cartButton = (
       <AppTooltip titleTranslationKey="cart.tooltip">
-        <AppIconButton onClick={handleOpenCart}>{badge}</AppIconButton>
+        <AppIconButton data-cy="header-cart-button" onClick={handleOpenCart}>
+          {badge}
+        </AppIconButton>
       </AppTooltip>
     );
   }

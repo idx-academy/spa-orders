@@ -9,7 +9,9 @@ export const httpStatusCode = {
 export const httpMethod = {
   get: "GET",
   post: "POST",
-  put: "PUT"
+  put: "PUT",
+  patch: "PATCH",
+  delete: "DELETE"
 } as const;
 
 export const ROLES = {
@@ -21,3 +23,10 @@ export const ROLES = {
 export const ERRORS = {
   somethingWentWrong: "Something went wrong. Please try again later"
 } as const;
+
+export const homePage = {
+  headerSearchFieldClearIcon: '[data-testid="ClearIcon"]',
+  headerShopingCartIcon: '[data-testid="ShoppingCartIcon"]',
+  cartDrawerCloseIcon: '[data-testid="KeyboardArrowRightIcon"]',
+  headerMenuList: '[data-testid="menu-item"]'
+};
