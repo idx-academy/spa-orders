@@ -1,7 +1,9 @@
+import { rtkQueryTags } from "@/constants/api-tags";
 import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
 import {
+  CreateProductBody,
   GetManagerProductsParams,
   GetManagerProductsResponse,
   GetUserProductsParams,
@@ -19,7 +21,8 @@ const productsApi = appApi.injectEndpoints({
       query: (params) => ({
         url: URLS.products.getForUser,
         params: params ?? {}
-      })
+      }),
+      providesTags: [rtkQueryTags.PRODUCTS]
     }),
     getManagerProducts: build.query<
       GetManagerProductsResponse,
@@ -42,6 +45,14 @@ const productsApi = appApi.injectEndpoints({
         url: createUrlPath(URLS.products.delete, id),
         method: httpMethods.delete
       })
+    }),
+    createProduct: build.mutation<void, CreateProductBody>({
+      query: (body) => ({
+        url: URLS.products.post,
+        method: httpMethods.post,
+        body
+      }),
+      invalidatesTags: [rtkQueryTags.ADMIN_PRODUCTS, rtkQueryTags.PRODUCTS]
     })
   })
 });
@@ -50,5 +61,6 @@ export const {
   useGetUserProductsQuery,
   useGetManagerProductsQuery,
   useAddProductMutation,
-  useDeleteProductMutation
+  useDeleteProductMutation,
+  useCreateProductMutation
 } = productsApi;

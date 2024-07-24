@@ -1,3 +1,5 @@
+import { ProductTranslation } from "@/containers/forms/new-product-form/NewProductForm.types";
+
 import { Lang, Pageable } from "@/types/common";
 
 export type ProductStatus = "AVAILABLE";
@@ -51,3 +53,11 @@ export type GetManagerProductsResponse = {
 };
 
 export type GetManagerProductsParams = Partial<ManagerProduct & Pageable>;
+export type CreateProductBody = {
+  status: ManagerProductStatus;
+  tagIds: number[];
+  image: string;
+  price: number;
+  quantity: number;
+  productTranslations: ProductTranslation[];
+};

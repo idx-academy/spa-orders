@@ -18,8 +18,9 @@ const locales: LocalesType[] = [
     key: "uk",
     translationKey: "language.ukrainian",
     icon: `${ukIcon}#uk-icon-id`
-
   }
 ];
+
+export const supportedLocales = locales.map(({ key }) => key);
 
 export default locales;

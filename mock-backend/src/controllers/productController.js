@@ -30,4 +30,8 @@ const getAllManagerProducts = (req, res) => {
   res.json(managerProducts);
 };
 
-module.exports = { getAllProducts, getAllManagerProducts };
+const createProduct = (req, res) => {
+  res.status(201).json()
+}
+
+module.exports = { getAllProducts, createProduct, getAllManagerProducts };

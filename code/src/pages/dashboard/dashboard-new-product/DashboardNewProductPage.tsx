@@ -1,7 +1,11 @@
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
+import NewProductForm from "@/containers/forms/new-product-form/NewProductForm";
+
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
+
+import "@/pages/dashboard/dashboard-new-product/DashboardNewProductPage.scss";
 
 const DashboardNewProductPage = () => {
   return (
@@ -10,9 +14,10 @@ const DashboardNewProductPage = () => {
         <AppTypography
           component="h1"
           variant="h3"
-          translationKey="dashboardTabs.addProduct.label"
+          translationKey="dashboard.products.title"
         />
       </AppBox>
+      <NewProductForm />
     </DashboardTabContainer>
   );
 };

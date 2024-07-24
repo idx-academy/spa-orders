@@ -7,6 +7,7 @@ import cartDrawerMessages from "@/containers/cart-drawer/message";
 import categorySectionMessages from "@/containers/category-section/messages";
 import dashboardOrdersFilterMessages from "@/containers/dashboard-orders-filter-drawer/messages";
 import deliveryFormMessages from "@/containers/forms/delivery-form/messages";
+import productFormMessages from "@/containers/forms/new-product-form/messages";
 import signInFormMessages from "@/containers/forms/sign-in-form/messages";
 import signupFormMessages from "@/containers/forms/sign-up-form/messages";
 import bannerMessages from "@/containers/intro-banner/messages";
@@ -22,9 +23,9 @@ import productCardMessages from "@/components/product-card/messages";
 import commonMessages from "@/constants/common-messages";
 import { Locale } from "@/context/i18n/I18nProvider";
 import cartPageMessages from "@/pages/cart/messages";
+import dashboardNewProductPageMessages from "@/pages/dashboard/dashboard-new-product/messages";
 import dashboardOrdersPageMessages from "@/pages/dashboard/dashboard-orders/messages";
-import dashboardProductsPageMessages from "@/pages/dashboard/dashboard-orders/messages";
-import dashboardNewProductPageMessages from "@/pages/dashboard/dashboard-products/messages";
+import dashboardProductsPageMessages from "@/pages/dashboard/dashboard-products/messages";
 import notFoundMessages from "@/pages/not-found/messages";
 import orderPageMessages from "@/pages/orders/messages";
 import productsItemsMessages from "@/pages/products/messages";
@@ -59,7 +60,8 @@ const messages: MessagesType = {
     ...dashboardOrdersFilterMessages.en,
     ...dashboardOrdersPageMessages.en,
     ...dashboardProductsPageMessages.en,
-    ...dashboardNewProductPageMessages.en
+    ...dashboardNewProductPageMessages.en,
+    ...productFormMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -88,7 +90,8 @@ const messages: MessagesType = {
     ...dashboardOrdersFilterMessages.uk,
     ...dashboardOrdersPageMessages.uk,
     ...dashboardProductsPageMessages.uk,
-    ...dashboardNewProductPageMessages.uk
+    ...dashboardNewProductPageMessages.uk,
+    ...productFormMessages.uk
   }
 };
 
