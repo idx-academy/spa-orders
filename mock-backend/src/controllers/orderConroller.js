@@ -10,7 +10,7 @@ const getUserOrders = (req, res) => {
 const getAdminOrders = (req, res) => {
   const filteredOrders = filterOrders(adminOrders, req.query);
 
-  const { sort } = req.query;
+  const { sort = "createdAt,desc" } = req.query;
 
   const sortedAdminOrders = {
     ...filteredOrders,
@@ -18,7 +18,7 @@ const getAdminOrders = (req, res) => {
       ? sortOrders(filteredOrders.content, sort)
       : filteredOrders.content,
   };
-  console.log(sort);
+
   res.json(sortedAdminOrders);
 };
 

@@ -13,7 +13,7 @@ const getAllProducts = (req, res) => {
   let sortedProducts = sort ? sortProducts(products, sort) : products;
   const skip = page * size;
   const limit = (page + 1) * size;
-  console.log(sort);
+
   const slicedProducts = sortedProducts.slice(skip, limit);
 
   const response = {
