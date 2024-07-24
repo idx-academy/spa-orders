@@ -1,11 +1,10 @@
 import parseSerializedSet from "@/hooks/use-filters-with-apply/parse-serialized-set/parseSerializedSet";
 
 const setWithStatuses = new Set(["completed", "canceled", "delivered"]);
+const serializedSet = "{completed,canceled,delivered}";
 
 describe("parseSerializedSet", () => {
   test("parses correct serialized set correctly", () => {
-    const serializedSet = "{completed,canceled,delivered}";
-
     const deserializedSet = parseSerializedSet(serializedSet);
     expect(deserializedSet).toEqual(setWithStatuses);
   });
