@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 import { Then, When, Given } from "@badeball/cypress-cucumber-preprocessor";
-import { UserRole } from "..";
+import { UserRole } from "@cypress-e2e/support";
 
 Given("I authenticate to the system under role {word}", (role: UserRole) => {
   cy.loginWithRole(role);

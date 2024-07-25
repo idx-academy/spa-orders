@@ -2,7 +2,7 @@
 
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { httpMethod } from "@cypress-e2e/fixtures/global-data";
-import { UserRole } from "..";
+import { UserRole } from "@cypress-e2e/support";
 
 Given("I authenticate to the system under User role", (role: UserRole) => {
   cy.loginWithRole(role);
