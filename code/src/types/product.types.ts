@@ -1,4 +1,4 @@
-import { Lang, Pageable } from "@/types/common";
+import { Pageable } from "@/types/common";
 
 export type ProductStatus = "AVAILABLE";
 
@@ -50,6 +50,4 @@ export type GetManagerProductsResponse = {
   content: ManagerProduct[];
 };
 
-export type GetManagerProductsParams = Partial<
-  Lang & ManagerProduct & Pageable
->;
+export type GetManagerProductsParams = Partial<ManagerProduct & Pageable>;
