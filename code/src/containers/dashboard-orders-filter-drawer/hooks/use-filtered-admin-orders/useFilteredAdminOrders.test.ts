@@ -23,6 +23,14 @@ const mockFiltersWithApplyValue = {
   actions: {}
 };
 
+const mockFiltersEmpty = {
+  activeFiltersCount: 0,
+  filterActions: {},
+  filters: {},
+  isLoading: false,
+  orders: []
+};
+
 describe("useFilteredAdminOrders", () => {
   beforeEach(() => {
     mockUseFiltersWithApply.mockReturnValue(mockFiltersWithApplyValue);
@@ -35,13 +43,7 @@ describe("useFilteredAdminOrders", () => {
   describe("without filters", () => {
     test("initial state is correct", () => {
       const { result } = renderHook(useFilteredAdminOrders);
-      expect(result.current).toMatchObject({
-        filters: {},
-        filterActions: {},
-        activeFiltersCount: 0,
-        orders: [],
-        isLoading: false
-      });
+      expect(result.current).toMatchObject(mockFiltersEmpty);
     });
 
     test("dateRange is undefined when timespan is not provided", () => {
@@ -51,13 +53,7 @@ describe("useFilteredAdminOrders", () => {
       });
 
       const { result } = renderHook(() => useFilteredAdminOrders());
-      expect(result.current).toEqual({
-        activeFiltersCount: 0,
-        filterActions: {},
-        filters: {},
-        isLoading: false,
-        orders: []
-      });
+      expect(result.current).toEqual(mockFiltersEmpty);
     });
 
     test("orders is assigned with content from ordersResponse", () => {
@@ -116,11 +112,7 @@ describe("useFilteredAdminOrders", () => {
 
     test("undefined timespan results in default state", () => {
       const { result } = renderHook(useFilteredAdminOrders);
-      expect(result.current).toMatchObject({
-        activeFiltersCount: 0,
-        isLoading: false,
-        orders: []
-      });
+      expect(result.current).toMatchObject(mockFiltersEmpty);
     });
 
     test("applies delivery-methods filter correctly", () => {
@@ -165,20 +157,11 @@ describe("useFilteredAdminOrders", () => {
         ...mockFiltersWithApplyValue,
         appliedFilters: { "delivery-methods": new Set() }
       });
-      const expectedQueryParams = {
-        isPaid: undefined,
-        totalLess: undefined,
-        totalMore: undefined,
-        statuses: undefined,
-        deliveryMethods: [],
-        createdBefore: undefined,
-        createdAfter: undefined
-      };
 
       const { result } = renderHook(() => useFilteredAdminOrders());
-      expect(mockUseGetAdminOrdersQuery).toHaveBeenCalledWith(
-        expectedQueryParams
-      );
+      expect(mockUseGetAdminOrdersQuery).toHaveBeenCalledWith({
+        deliveryMethods: []
+      });
       expect(result.current.orders).toEqual([]);
     });
   });
