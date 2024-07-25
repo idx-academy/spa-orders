@@ -1,9 +1,7 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import OrdersTableHead from "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead";
-import { initialSortOrder } from "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead.constants";
 
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
