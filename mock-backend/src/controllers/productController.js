@@ -20,7 +20,7 @@ const getAllProducts = (req, res) => {
   const response = {
     content: slicedProducts,
     totalPages: Math.ceil(products.length / size),
-    totalElements: products.length,
+    totalElements: products.length
   };
 
   res.json(response);
