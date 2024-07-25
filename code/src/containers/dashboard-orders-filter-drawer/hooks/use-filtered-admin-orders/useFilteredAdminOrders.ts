@@ -24,6 +24,8 @@ const useFilteredAdminOrders = () => {
 
   const [searchParams] = useSearchParams();
 
+  const sortParam = searchParams.get("sort") as SortOrder | null;
+
   const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
     lang: locale,
     isPaid: paid,
@@ -33,7 +35,7 @@ const useFilteredAdminOrders = () => {
     deliveryMethods,
     createdBefore: dateRange?.end.toISOString(),
     createdAfter: dateRange?.start.toISOString(),
-    sort: searchParams.get("sort") as SortOrder
+    sort: sortParam ?? undefined
   });
 
   const orders = ordersResponse?.content ?? [];
