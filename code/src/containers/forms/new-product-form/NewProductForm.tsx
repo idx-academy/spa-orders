@@ -140,6 +140,7 @@ const NewProductForm = () => {
               className="product-form__visibility-checkbox"
               variant="dark"
               labelTranslationKey="productForm.inputLabel.status"
+              labelClassName="product-form__visibility-checkbox-label"
               {...register("status")}
             />
           </AppBox>

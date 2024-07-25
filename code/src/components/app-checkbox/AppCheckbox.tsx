@@ -18,13 +18,18 @@ const AppCheckbox = forwardRef(
       label,
       icon,
       className,
+      labelClassName,
       variant = "contained",
       ...props
     }: AppCheckboxProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const labelElement = labelTranslationKey ? (
-      <AppTypography component="span" translationKey={labelTranslationKey} />
+      <AppTypography
+        component="span"
+        translationKey={labelTranslationKey}
+        className={labelClassName}
+      />
     ) : (
       label
     );

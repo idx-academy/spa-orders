@@ -1,9 +1,12 @@
 @import "@design-system";
 
+$gridGap: spacing(5);
+$gridGapHalf: $gridGap / 2;
+
 .product-form {
   display: grid;
-  grid-template-columns: calc(30% - 10px) calc(70% - 10px);
-  grid-gap: spacing(5);
+  grid-template-columns: calc(30% - $gridGapHalf) calc(70% - $gridGapHalf);
+  grid-gap: $gridGap;
   margin-bottom: spacing(5);
 
   &__header {
@@ -112,7 +115,7 @@
   &__visibility-checkbox {
     padding: spacing(1) spacing(3);
 
-    & span {
+    &-label {
       color: var(
         --new-rpoduct-form-checkbox-color,
         $light-alpha

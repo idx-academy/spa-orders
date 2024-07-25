@@ -10,6 +10,7 @@ export type AppCheckboxProps = Omit<
 > & {
   variant?: AppCheckboxVariant;
   icon?: ReactNode;
+  labelClassName?: string;
 } & (
     | { labelTranslationKey: string; label?: never }
     | { labelTranslationKey?: never; label: ReactNode }
