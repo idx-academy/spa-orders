@@ -26,11 +26,13 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
     />
   );
 
-  const category = (
+  const category = categoryName ? (
     <AppTypography
       translationKey={`productsAll.${categoryName}`}
       variant="caption"
     />
+  ) : (
+    <AppTypography variant="caption">-</AppTypography>
   );
 
   const nameElement = (
