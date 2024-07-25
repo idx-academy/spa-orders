@@ -9,7 +9,7 @@ Feature: | Sign In |
         And I type an email test@mail.com
         And I type a password 'Tomato1$'
         And I press sign in button inside modal
-        Then I should receive a snackbar with message 'Ви успішно увійшли'
+        Then I should receive a snackbar with message 'You successfully signed in'
 
     Scenario Outline: Sign in form validation
         And I type an email '<email>'

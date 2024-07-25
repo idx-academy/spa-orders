@@ -25,5 +25,5 @@ Feature: | Сart page |
   Scenario: Remove a product item from the cart
     Given the cart has an item with quantity 1
     When I click on the remove button for a product
-    Then I should receive a snackbar with message 'Продукт успішно видалено з кошика.'
+    Then I should receive a snackbar with message 'The product was successfully removed from the cart.'
 

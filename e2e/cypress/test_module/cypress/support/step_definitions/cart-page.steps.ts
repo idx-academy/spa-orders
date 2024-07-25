@@ -25,12 +25,12 @@ Then("I should see the cart page", () => {
 });
 
 Given("I am on the cart page", () => {
-  cy.visit("/cart");
+  cy.visitWithLanguage("/cart");
   cy.getById("cart-item").should("be.visible");
 });
 
 Given("the cart has an item with quantity {int}", (quantity) => {
-  cy.visit("/cart");
+  cy.visitWithLanguage("/cart");
   cy.getById("cart-item")
     .first()
     .within(() => {

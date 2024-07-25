@@ -33,7 +33,7 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
         expect(userDetails.role).to.eq(role);
       });
 
-    cy.getById("snackbar").should("contain", "Ви успішно увійшли");
+    cy.getById("snackbar").should("contain", "You successfully signed in");
   });
 });
 
