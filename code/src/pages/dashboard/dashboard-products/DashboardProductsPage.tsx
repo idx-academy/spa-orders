@@ -11,6 +11,8 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import routePaths from "@/constants/routes";
 import { useGetManagerProductsQuery } from "@/store/api/productsApi";
 
+import "@/pages/dashboard/dashboard-products/DashboardProductsPage.scss";
+
 const DashboardProductsPage = () => {
   const { data, isLoading, error } = useGetManagerProductsQuery({});
 
@@ -28,7 +30,7 @@ const DashboardProductsPage = () => {
 
   return (
     <DashboardTabContainer>
-      <AppBox className="dashboard-tabs__toolbar">
+      <AppBox className="dashboard-products-tab__toolbar">
         <AppTypography
           component="h1"
           variant="h3"

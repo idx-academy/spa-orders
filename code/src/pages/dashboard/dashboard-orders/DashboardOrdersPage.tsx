@@ -49,7 +49,7 @@ const DashboardOrdersPage = () => {
 
   return (
     <DashboardTabContainer>
-      <AppBox className="dashboard-tabs__toolbar">
+      <AppBox className="dashboard-orders-tab__toolbar">
         <AppTypography
           component="h1"
           variant="h3"
