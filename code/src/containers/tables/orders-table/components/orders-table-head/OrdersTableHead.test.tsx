@@ -85,4 +85,17 @@ describe("OrderTableHead", () => {
       expect(mockSetSearchParams).toHaveBeenCalled();
     });
   });
+
+  test("sort icon has correct initial and updated classes", () => {
+    renderComponent("ordersTable.columns.totalPrice");
+    const sortButton = screen.getByTestId("ArrowDownwardIcon");
+
+    expect(sortButton).toHaveClass("MuiTableSortLabel-iconDirectionDesc");
+
+    fireEvent.click(sortButton);
+    expect(sortButton).toHaveClass("MuiTableSortLabel-iconDirectionAsc");
+
+    fireEvent.click(sortButton);
+    expect(sortButton).toHaveClass("MuiTableSortLabel-iconDirectionDesc");
+  });
 });
