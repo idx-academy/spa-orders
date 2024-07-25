@@ -27,9 +27,11 @@ const HeaderCategories = () => {
             }
             key={category.label}
           >
-            <AppTypography variant="caption" data-testid="menu-item">
-              {category.label}
-            </AppTypography>
+            <AppTypography
+              variant="caption"
+              data-testid="menu-item"
+              translationKey={category.label}
+            />
           </AppLink>
         ))}
       </AppContainer>

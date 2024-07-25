@@ -1,8 +1,8 @@
 import routes from "@/constants/routes";
 
 export const categories = [
-  { label: "Shop All", href: routes.products.path },
-  { label: "Computers", href: routes.computers.path },
-  { label: "Tablets", href: routes.tablets.path },
-  { label: "Mobile", href: routes.mobiles.path }
+  { label: "productsAll.label", href: routes.products.path },
+  { label: "productsAll.computer", href: routes.computers.path },
+  { label: "productsAll.tablet", href: routes.tablets.path },
+  { label: "productsAll.mobile", href: routes.mobiles.path }
 ];
