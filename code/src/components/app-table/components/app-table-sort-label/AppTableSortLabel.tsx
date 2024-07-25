@@ -4,15 +4,16 @@ import { AppTableSortLabelProps } from "@/components/app-table/components/app-ta
 
 const AppTableSortLabel = ({
   sortDirection,
-  onSortClick,
+  active,
+  onClick,
   children,
   ...props
 }: AppTableSortLabelProps) => {
   return (
     <TableSortLabel
-      active
+      active={active}
       direction={sortDirection}
-      onClick={onSortClick}
+      onClick={onClick}
       {...props}
     >
       {children}

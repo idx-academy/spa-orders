@@ -22,6 +22,8 @@ export type Sort = {
   empty: boolean;
 };
 
+export type SortOrder = "asc" | "desc";
+
 export type APIError = {
   status: number;
   title: string;

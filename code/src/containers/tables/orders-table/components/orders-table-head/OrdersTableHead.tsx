@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
+import { initialSortOrder } from "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead.constants";
+
 import { AppTableCell } from "@/components/app-table/components";
 import AppTableSortLabel from "@/components/app-table/components/app-table-sort-label/AppTableSortLabel";
 import AppTypography from "@/components/app-typography/AppTypography";
+
+import { SortOrder } from "@/types/common";
 
 import "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead.scss";
 
@@ -11,33 +15,28 @@ type OrderTableHeadProps = {
   head: string;
 };
 
+const getSortKey = (head: string): string | null => {
+  switch (head) {
+    case "ordersTable.columns.createdAt":
+      return "createdAt";
+    case "ordersTable.columns.totalPrice":
+      return "total";
+    case "ordersTable.columns.status":
+      return "orderStatus";
+    case "ordersTable.columns.isPaid":
+      return "isPaid";
+    default:
+      return null;
+  }
+};
+
 const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [sortDirections, setSortDirections] = useState<{
-    [key: string]: "asc" | "desc";
-  }>({
-    createdAt: "desc",
-    total: "desc",
-    orderStatus: "desc",
-    isPaid: "desc"
-  });
+  const [sortDirections, setSortDirections] =
+    useState<Record<string, SortOrder>>(initialSortOrder);
 
-  const getSortKey = () => {
-    switch (head) {
-      case "ordersTable.columns.createdAt":
-        return "createdAt";
-      case "ordersTable.columns.totalPrice":
-        return "total";
-      case "ordersTable.columns.status":
-        return "orderStatus";
-      case "ordersTable.columns.isPaid":
-        return "isPaid";
-      default:
-        return null;
-    }
-  };
-  const sortKey = getSortKey();
+  const sortKey = getSortKey(head);
 
   const handleSort = () => {
     if (sortKey !== null) {
@@ -63,7 +62,7 @@ const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
         <AppTableSortLabel
           active={sortKey === head}
           onClick={handleSort}
-          sortDirection={sortDirection as "asc" | "desc"}
+          sortDirection={sortDirection as SortOrder}
           className="spa-order-table__head-label"
         >
           <AppTypography translationKey={head} variant="caption" />

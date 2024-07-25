@@ -67,7 +67,10 @@ describe("OrderTableHead", () => {
     fireEvent.click(sortButton);
 
     expect(mockSetSearchParams).toHaveBeenCalledTimes(1);
+    const params = new URLSearchParams(mockSetSearchParams.mock.calls[0][0]);
+    expect(params.get("sort")).toBe("total,asc");
   });
+
   test("renders all sortable fields with AppTableSortLabel", () => {
     sortableFields.forEach((field, index) => {
       renderComponent(field);

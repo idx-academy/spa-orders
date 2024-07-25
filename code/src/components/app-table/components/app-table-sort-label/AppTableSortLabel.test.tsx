@@ -5,7 +5,7 @@ import { AppTableSortLabelProps } from "@/components/app-table/components/app-ta
 
 const mockProps: AppTableSortLabelProps = {
   sortDirection: "asc",
-  onSortClick: jest.fn(),
+  onClick: jest.fn(),
   children: "Sort Column"
 };
 
@@ -15,11 +15,13 @@ describe("AppTableSortLabel", () => {
   });
 
   test("renders with correct text", () => {
-    expect(screen.getByText("Sort Column")).toBeInTheDocument();
+    const sortColumn = screen.getByText("Sort Column")
+    expect(sortColumn).toBeInTheDocument();
   });
 
   test("calls onSortClick when clicked", () => {
-    fireEvent.click(screen.getByRole("button"));
-    expect(mockProps.onSortClick).toHaveBeenCalledTimes(1);
+    const sortButton = screen.getByRole("button")
+    fireEvent.click(sortButton);
+    expect(mockProps.onClick).toHaveBeenCalledTimes(1);
   });
 });
