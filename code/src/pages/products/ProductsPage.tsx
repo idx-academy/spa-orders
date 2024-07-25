@@ -30,7 +30,7 @@ const ProductsPage = () => {
     isError
   } = useGetProductsQuery({
     page: page - 1,
-    size: Infinity, //Infinity is temporary solution, until we implement endless scrolling.
+    size: 10,
     sort: sortOption ?? "recommended"
   });
 

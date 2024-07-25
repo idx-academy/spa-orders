@@ -41,7 +41,7 @@ jest.mock("@/store/api/productsApi", () => ({
 }));
 
 const defaultQueryArguments = {
-  size: Infinity, //Infinity is temporary solution, until we implement endless scrolling.
+  size: 10,
   page: 0,
   sort: "recommended"
 };
