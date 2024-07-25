@@ -136,18 +136,18 @@ describe("OrdersTabFilterDrawer", () => {
 
     test("adds value to set when checkbox is checked", () => {
       const checkbox = screen.getByLabelText(
-        deliveryMethods["NOVA_POST"].translationKey
+        deliveryMethods[0].translationKey
       );
       fireEvent.click(checkbox);
       expect(mockUpdateFilterByKey).toHaveBeenCalledWith(
         "delivery-methods",
-        new Set(["NOVA_POST"])
+        new Set(["NOVA"])
       );
     });
 
     test("handles checkbox list change correctly for delivery methods", () => {
       const deliveryMethodCheckbox = screen.getByLabelText(
-        deliveryMethods["NOVA_POST"].translationKey
+        deliveryMethods[0].translationKey
       );
       fireEvent.click(deliveryMethodCheckbox);
       expect(mockUpdateFilterByKey).toHaveBeenCalledWith(
@@ -241,13 +241,13 @@ describe("OrdersTabFilterDrawer", () => {
     test("updates correctly", () => {
       const mockFilters = {
         ...defaultFilters,
-        "delivery-methods": new Set(["NOVA_POST" as DeliveryMethod])
+        "delivery-methods": new Set(["NOVA" as DeliveryMethod])
       };
 
       renderAndMock({ filters: mockFilters });
 
       const deliveryMethodCheckbox = screen.getByLabelText(
-        deliveryMethods["NOVA_POST"].translationKey
+        deliveryMethods[0].translationKey
       );
       fireEvent.click(deliveryMethodCheckbox);
 
