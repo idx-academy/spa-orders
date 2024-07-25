@@ -9,7 +9,6 @@ import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import routePaths from "@/constants/routes";
-import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import { useGetManagerProductsQuery } from "@/store/api/productsApi";
 
 const DashboardProductsPage = () => {
