@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import { useSearchParams } from "react-router-dom";
 
 import useFilteredAdminOrders from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
 
@@ -15,6 +16,13 @@ jest.mock("@/utils/time-span-to-date-range/timeSpanToDateRange");
 const mockUseFiltersWithApply = useFiltersWithApply as jest.Mock;
 const mockUseGetAdminOrdersQuery = useGetAdminOrdersQuery as jest.Mock;
 const mockTimeSpanToDateRange = timeSpanToDateRange as jest.Mock;
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useSearchParams: jest.fn()
+}));
+
+const mockSetSearchParams = jest.fn();
 
 const mockFiltersWithApplyValue = {
   filters: {},
@@ -38,6 +46,10 @@ describe("useFilteredAdminOrders", () => {
       data: { content: [] },
       isLoading: false
     });
+    (useSearchParams as jest.Mock).mockReturnValue([
+      new URLSearchParams(),
+      mockSetSearchParams
+    ]);
   });
 
   describe("without filters", () => {
