@@ -10,7 +10,7 @@ import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
 import getCategoryFromTags from "@/utils/get-category-from-tags/getCategoryFromTags";
 
-const categoryTag = getCategoryFromTags(mockProducts[0].tags) || "-";
+const categoryTag = getCategoryFromTags(mockProducts[0].tags);
 
 describe("Test ProductsTable", () => {
   test("Should be rendered correctly", () => {
