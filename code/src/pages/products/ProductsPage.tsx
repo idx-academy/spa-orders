@@ -30,7 +30,7 @@ const ProductsPage = () => {
     isError
   } = useGetProductsQuery({
     page: page - 1,
-    size: 10,
+    size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
     sort: sortOption ?? "recommended"
   });
 
@@ -43,7 +43,9 @@ const ProductsPage = () => {
   );
 
   const handleSortChange = (value: string) => {
-    setSearchParams({ sort: value });
+    searchParams.delete("sort");
+    searchParams.append("sort", value);
+    setSearchParams(searchParams);
   };
 
   const productsCount = filteredProductsList?.length ?? 0;

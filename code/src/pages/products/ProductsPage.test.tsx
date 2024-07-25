@@ -18,7 +18,7 @@ const mockProducts = [
   { id: 8, name: "Product 8", price: 400 }
 ];
 
-const mockData = { content: mockProducts, totalPages: 1, totalElements: 8 };
+const mockData = { content: mockProducts, totalPages: 2, totalElements: 8 };
 
 jest.mock("@/containers/products-container/ProductsContainer", () => ({
   __esModule: true,
@@ -41,7 +41,7 @@ jest.mock("@/store/api/productsApi", () => ({
 }));
 
 const defaultQueryArguments = {
-  size: 10,
+  size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
   page: 0,
   sort: "recommended"
 };
@@ -138,6 +138,14 @@ describe("ProductsPage", () => {
     const linkElements = screen.getAllByRole("link");
 
     expect(linkElements.length).toBe(mockProducts.length);
+  });
+
+  test("Should render pagination if there are more than one page", () => {
+    renderAndMock();
+
+    const linkElements = screen.getAllByRole("link");
+
+    expect(linkElements.length).toBe(mockProducts.length + 4);
   });
 
   test("Should apply default values for pageCount and productsCount if data is undefined", () => {
