@@ -5,12 +5,13 @@ import { sortingNameParamMap } from "@cypress-e2e/fixtures/constants";
 import { httpMethod } from "@cypress-e2e/fixtures/global-data";
 
 Given("The user is on the products page", () => {
-  cy.visit("/products");
+  cy.visitWithLanguage("/products");
+
   cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
 });
 
 Given("The user is on the products page and his connection is bad", () => {
-  cy.visit("/products");
+  cy.visitWithLanguage("/products");
   cy.getProductsServerError(10)
 });
 
@@ -35,12 +36,12 @@ Then("The user should be redirected to Home Page and see the banner", () => {
 })
 
 Given("The user is on the first page of products", () => {
-  cy.visit("/products?page=1");
+  cy.visitWithLanguage("/products?page=1");
   cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
 });
 
 Given("The user is on the second page of products", () => {
-  cy.visit("/products?page=2");
+  cy.visitWithLanguage("/products?page=2");
   cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
 });
 

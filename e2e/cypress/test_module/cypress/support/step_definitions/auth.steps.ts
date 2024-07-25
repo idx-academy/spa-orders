@@ -3,7 +3,7 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 
 Given("I am on any page", () => {
-  cy.visit("/");
+  cy.visitWithLanguage("/");
 });
 
 When("I see the header", () => {

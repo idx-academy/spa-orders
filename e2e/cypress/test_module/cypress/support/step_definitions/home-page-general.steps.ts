@@ -6,7 +6,7 @@ import { ERRORS } from "@cypress-e2e/fixtures/global-data";
 
 Given("I am on a home page", () => {
   cy.getProductsWithQuantity(5);
-  cy.visit("/");
+  cy.visitWithLanguage("/");
 });
 
 Given("I am on a home page and receive products server error", () => {
