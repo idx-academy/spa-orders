@@ -1,4 +1,4 @@
-import { Pageable } from "@/types/common";
+import { Lang, Pageable } from "@/types/common";
 
 export type ProductStatus = "AVAILABLE";
 
@@ -32,7 +32,7 @@ export type GetUserProductsResponse = {
   totalElements: number;
 };
 
-export type GetUserProductsParams = {
+export type GetUserProductsParams = Lang & {
   page?: number;
   size?: number;
   sort?: string;
