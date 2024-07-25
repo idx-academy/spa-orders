@@ -34,6 +34,6 @@
   "product.status.visible": "Видимий",
   "product.status.hidden": "Прихований",
   "category.computer": "Комп'ютер",
-  "category.mobile": "Телефони",
-  "category.tablet": "Планшети"
+  "category.mobile": "Телефон",
+  "category.tablet": "Планшет"
 }
