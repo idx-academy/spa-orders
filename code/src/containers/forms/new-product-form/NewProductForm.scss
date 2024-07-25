@@ -133,4 +133,8 @@ $gridGapHalf: calc($gridGap / 2);
   &__category-select-container {
     margin-bottom: spacing(4);
   }
+
+  &__category-select-helper {
+    padding-left: spacing(3);
+  }
 }

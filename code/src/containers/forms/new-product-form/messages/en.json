@@ -15,5 +15,6 @@
   "productForm.submit": "Create product",
   "productForm.creation.success": "Product successfully created",
   "productForm.creation.fail": "Failed to create product",
-  "productForm.creation.validationError": "The provided data is invalid, please check it and try again"
+  "productForm.creation.validationError": "The provided data is invalid, please check it and try again",
+  "productForm.creation.translationError": "At least one of the translations is required"
 }

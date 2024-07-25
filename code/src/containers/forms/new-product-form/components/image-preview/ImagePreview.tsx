@@ -3,9 +3,12 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppInput from "@/components/app-input/AppInput";
+import { AppInputProps } from "@/components/app-input/AppInput.types";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-type ImagePreviewProps = { imageInputProps: UseFormRegisterReturn<"image"> };
+type ImagePreviewProps = {
+  imageInputProps: UseFormRegisterReturn<"image"> & AppInputProps;
+};
 
 const ImagePreview = ({ imageInputProps }: ImagePreviewProps) => {
   const [imageUrl, setImageUrl] = useState("");
