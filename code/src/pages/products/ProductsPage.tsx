@@ -43,8 +43,7 @@ const ProductsPage = () => {
   );
 
   const handleSortChange = (value: string) => {
-    searchParams.delete("sort");
-    searchParams.append("sort", value);
+    searchParams.set("sort", value);
     setSearchParams(searchParams);
   };
 
