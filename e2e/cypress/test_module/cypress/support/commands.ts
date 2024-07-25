@@ -17,7 +17,7 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
 
   cy.intercept("POST", "/api/auth/sign-in").as("loginRequest");
 
-  cy.visit("/");
+  cy.visitWithLanguage("/");
   cy.getById("auth-button").click();
   cy.getById("auth-email").click().type(email);
   cy.getById("auth-password").click().type(password, { log: false });
@@ -44,9 +44,13 @@ Cypress.Commands.add("getProductsWithQuantity", (quantity) => {
 });
 
 Cypress.Commands.add("getProductsServerError", (quantity) => {
-  cy.intercept(httpMethod.get,  new RegExp(`\/api\/v1\/products\\?page=0&size=${quantity}(?:&.*)?`), {
-    statusCode: httpStatusCode.internalServerError
-  }).as("getProductsRequestServerError");
+  cy.intercept(
+    httpMethod.get,
+    new RegExp(`\/api\/v1\/products\\?page=0&size=${quantity}(?:&.*)?`),
+    {
+      statusCode: httpStatusCode.internalServerError
+    }
+  ).as("getProductsRequestServerError");
 });
 
 Cypress.Commands.add("getProductsLoading", (quantity) => {
@@ -64,4 +68,15 @@ Cypress.Commands.add("getProductsLoading", (quantity) => {
       });
     }
   ).as("getProductsRequestLoading");
+});
+
+Cypress.Commands.add("visitWithLanguage", (url, language = "en-US") => {
+  cy.visit(url, {
+    onBeforeLoad: (win) => {
+      Object.defineProperty(win.navigator, "language", {
+        value: language,
+        configurable: true
+      });
+    }
+  });
 });
