@@ -12,6 +12,7 @@ const CategorySection = () => {
       key={element.id}
       label={element.label}
       image={element.image}
+      href={element.href}
     />
   ));
 

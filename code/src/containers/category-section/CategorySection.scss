@@ -13,17 +13,24 @@
 
   &__element {
     display: flex;
-    justify-content: center;
     align-items: center;
     position: relative;
     flex-direction: column;
     gap: spacing(3);
   }
-  &__image {
+  &__link {
+    display: flex;
+    justify-content: center;
     max-width: 70%;
+    border-radius: 50%;
+  }
+  &__image {
+    max-width: 100%;
+    border-radius: 50%;
   }
   &__container {
     display: flex;
     margin-top: spacing(5);
+    gap: spacing(10);
   }
 }

@@ -1,22 +1,26 @@
 import AppBox from "@/components/app-box/AppBox";
+import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 type CategoryItemProps = {
   label: string;
   image: string;
+  href: string;
 };
 
-const CategoryItem = ({ label, image }: CategoryItemProps) => {
+const CategoryItem = ({ label, image, href }: CategoryItemProps) => {
   return (
     <AppBox
       className="spa-category-section__element"
       data-testid="spa-category-section-item"
     >
-      <AppBox
-        component="img"
-        src={image}
-        className="spa-category-section__image"
-      />
+      <AppLink to={href} key={href} className="spa-category-section__link">
+        <AppBox
+          component="img"
+          src={image}
+          className="spa-category-section__image"
+        />
+      </AppLink>
       <AppTypography
         translationKey={label}
         variant="subtitle2"
