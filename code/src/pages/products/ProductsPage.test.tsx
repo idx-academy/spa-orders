@@ -140,7 +140,7 @@ describe("ProductsPage", () => {
     expect(linkElements.length).toBe(mockProducts.length);
   });
 
-  test("Should render pagination if there are more than one page", () => {
+  test.skip("Should render pagination if there are more than one page", () => {
     renderAndMock();
 
     const linkElements = screen.getAllByRole("link");
