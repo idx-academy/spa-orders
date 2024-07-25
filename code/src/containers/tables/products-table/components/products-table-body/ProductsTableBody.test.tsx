@@ -30,7 +30,7 @@ describe("Test ProductsTable", () => {
     const statusElement = screen.getByText(
       productStatuToTranslationKeyMap[mockProducts[0].status]
     );
-    const categoryElement = screen.getByText(`category.${categoryTag}`);
+    const categoryElement = screen.getByText(`productsAll.${categoryTag}`);
     const dateElement = screen.getByText(formatDate(mockProducts[0].createdAt));
 
     expect(imageElement).toBeInTheDocument();
