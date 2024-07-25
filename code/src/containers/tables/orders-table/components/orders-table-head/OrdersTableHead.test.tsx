@@ -1,7 +1,9 @@
 import { fireEvent, screen } from "@testing-library/react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import OrdersTableHead from "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead";
+import { initialSortOrder } from "@/containers/tables/orders-table/components/orders-table-head/OrdersTableHead.constants";
 
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
@@ -55,7 +57,7 @@ describe("OrderTableHead", () => {
     renderComponent("invalid.column");
     const headElement = screen.getByText(/invalid.column/i);
     expect(headElement).toBeInTheDocument();
-    const sortLabelElement = screen.queryByRole("button");
+    const sortLabelElement = screen.queryByTestId("ArrowDownwardIcon");
     expect(sortLabelElement).not.toBeInTheDocument();
   });
 
@@ -69,6 +71,10 @@ describe("OrderTableHead", () => {
     expect(mockSetSearchParams).toHaveBeenCalledTimes(1);
     const params = new URLSearchParams(mockSetSearchParams.mock.calls[0][0]);
     expect(params.get("sort")).toBe("total,asc");
+
+    fireEvent.click(sortButton);
+    const newparams = new URLSearchParams(mockSetSearchParams.mock.calls[1][0]);
+    expect(newparams.get("sort")).toBe("total,desc");
   });
 
   test("renders all sortable fields with AppTableSortLabel", () => {

@@ -17,11 +17,13 @@ module.exports = {
   incrementalFile: "stryker-config/stryker-incremental.json",
   disableTypeChecks: true,
   mutate: [
-    "src/**/*.ts?(x)",
-    "!src/**/index.ts?(x)",
-    "!src/**/selectors/*.ts?(x)",
-    "!src/**/*@(.test|.spec|Spec).ts?(x)",
-    "!src/{assets,messages,services,test-utils,types}/**/*"
+    "src/containers/tables/orders-table/components/orders-table-head/OrdersTableHead.tsx",
+    "src/containers/tables/orders-table/components/orders-table-body/OrdersTableBody.tsx"
+    // "src/**/*.ts?(x)",
+    // "!src/**/index.ts?(x)",
+    // "!src/**/selectors/*.ts?(x)",
+    // "!src/**/*@(.test|.spec|Spec).ts?(x)",
+    // "!src/{assets,messages,services,test-utils,types}/**/*"
   ],
   ignoreStatic: true,
   reporters: ["clear-text", "progress", "html", "json"],
