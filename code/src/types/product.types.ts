@@ -1,4 +1,4 @@
-import { Lang, Pageable } from "./common";
+import { Lang, Pageable } from "@/types/common";
 
 export type ProductStatus = "AVAILABLE";
 
