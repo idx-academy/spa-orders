@@ -1,4 +1,4 @@
-import { Lang, Pageable, Sort } from "@/types/common";
+import { Lang, Pageable, Sort, SortOrder } from "@/types/common";
 import { DeliveryMethod, PostAddress } from "@/types/delivery.types";
 import { Product } from "@/types/product.types";
 import { User, UserId } from "@/types/user.types";
@@ -78,8 +78,7 @@ export type GetUserOrderParams = Lang & {
 };
 
 export type GetAdminOrderParams = Partial<
-  Lang &
-    Pick<BaseOrder, "isPaid"> & {
+  Lang & { sort: SortOrder } & Pick<BaseOrder, "isPaid"> & {
       deliveryMethods: DeliveryMethod[];
       statuses: OrderStatus[];
       totalMore: number;
