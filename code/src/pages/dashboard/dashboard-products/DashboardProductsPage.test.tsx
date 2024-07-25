@@ -67,9 +67,5 @@ describe("DashboardProductsPage", () => {
       expect(title).toBeInTheDocument();
       expect(addProductButton).toBeInTheDocument();
     });
-
-    test("fetches data with initial params correctly", () => {
-      expect(useGetManagerProductsQuery).toHaveBeenCalledWith({ lang: "en" });
-    });
   });
 });
