@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { SelectChangeEvent } from "@mui/material/Select/SelectInput";
 
@@ -19,6 +20,7 @@ import AppSelect from "@/components/app-select/AppSelect";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { supportedLocales } from "@/constants/locales";
+import routes from "@/constants/routes";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useCreateProductMutation } from "@/store/api/productsApi";
 import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus";
@@ -31,6 +33,8 @@ const NewProductForm = () => {
   });
 
   const { openSnackbarWithTimeout } = useSnackbar();
+
+  const navigate = useNavigate();
 
   const [createProduct, { isLoading }] = useCreateProductMutation();
 
@@ -61,6 +65,8 @@ const NewProductForm = () => {
         variant: "success",
         messageTranslationKey: "productForm.creation.success"
       });
+
+      navigate(routes.dashboard.products.path);
     } catch (e: unknown) {
       const messageTranslationKey =
         isErrorWithStatus(e) && e.status === 400

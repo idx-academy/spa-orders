@@ -1,7 +1,7 @@
 @import "@design-system";
 
 $gridGap: spacing(5);
-$gridGapHalf: $gridGap / 2;
+$gridGapHalf: calc($gridGap / 2);
 
 .product-form {
   display: grid;
