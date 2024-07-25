@@ -14,10 +14,18 @@ import { useGetManagerProductsQuery } from "@/store/api/productsApi";
 
 const DashboardProductsPage = () => {
   const { locale } = useLocaleContext();
-  const { data, isLoading } = useGetManagerProductsQuery({ lang: locale });
+  const { data, isLoading, error } = useGetManagerProductsQuery({
+    lang: locale
+  });
 
+  // @TODO: replace with actual loading fallback
   if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  // @TODO: replace with actual error fallback
+  if (error) {
+    return <div>Error occured! Please try again later!</div>;
   }
 
   const products = data?.content ?? [];

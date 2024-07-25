@@ -17,15 +17,18 @@ jest.mock("@/store/api/productsApi", () => ({
 type RenderAndMock = {
   isLoading: boolean;
   data: Partial<GetManagerProductsResponse>;
+  error: Error | null;
 };
 
 const renderAndMock = ({
   isLoading = false,
-  data
+  data,
+  error = null
 }: Partial<RenderAndMock> = {}) => {
   (useGetManagerProductsQuery as jest.Mock).mockReturnValue({
     data,
-    isLoading
+    isLoading,
+    error
   });
 
   renderWithProviders(<DashboardProductsPage />);
@@ -37,6 +40,15 @@ describe("DashboardProductsPage", () => {
 
     const loadingElement = screen.getByText("Loading...");
     expect(loadingElement).toBeInTheDocument();
+  });
+
+  test("shows error element when error occured", () => {
+    renderAndMock({ error: new Error("Some error") });
+
+    const errorElement = screen.getByText(
+      "Error occured! Please try again later!"
+    );
+    expect(errorElement).toBeInTheDocument();
   });
 
   test("shows empty table fallback when data is undefined", () => {
