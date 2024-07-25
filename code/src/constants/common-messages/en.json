@@ -32,8 +32,5 @@
   "timespan.lastMonth": "Last month",
   "select.defaultOption": "Select an option...",
   "product.status.visible": "Visible",
-  "product.status.hidden": "Hidden",
-  "category.computer": "Computer",
-  "category.mobile": "Mobile",
-  "category.tablet": "Tablet"
+  "product.status.hidden": "Hidden"
 }
