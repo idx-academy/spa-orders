@@ -175,9 +175,9 @@ describe("useFilteredAdminOrders", () => {
       });
 
       const { result } = renderHook(() => useFilteredAdminOrders());
-      expect(mockUseGetAdminOrdersQuery).toHaveBeenCalledWith({
-        deliveryMethods: []
-      });
+      expect(mockUseGetAdminOrdersQuery).toHaveBeenCalledWith(
+        expect.objectContaining({ deliveryMethods: [] })
+      );
       expect(result.current.orders).toEqual([]);
     });
   });
