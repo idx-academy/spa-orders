@@ -5,11 +5,6 @@ import { useGetManagerProductsQuery } from "@/store/api/productsApi";
 import { GetManagerProductsResponse } from "@/types/product.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
-jest.mock("@/context/i18n/I18nProvider", () => ({
-  ...jest.requireActual("@/context/i18n/I18nProvider"),
-  useLocaleContext: () => ({ locale: "en" })
-}));
-
 jest.mock("@/store/api/productsApi", () => ({
   useGetManagerProductsQuery: jest.fn()
 }));

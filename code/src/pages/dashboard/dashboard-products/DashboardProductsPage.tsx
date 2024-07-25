@@ -13,10 +13,7 @@ import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import { useGetManagerProductsQuery } from "@/store/api/productsApi";
 
 const DashboardProductsPage = () => {
-  const { locale } = useLocaleContext();
-  const { data, isLoading, error } = useGetManagerProductsQuery({
-    lang: locale
-  });
+  const { data, isLoading, error } = useGetManagerProductsQuery({});
 
   // @TODO: replace with actual loading fallback
   if (isLoading) {
