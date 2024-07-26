@@ -6,6 +6,16 @@ const { sortOrders } = require("../utils/sortUtils");
 const getUserOrders = (req, res) => {
   res.json(userOrders);
 };
+const getAdminOrderById = (req, res) => {
+  const { orderId } = req.params;
+  const order = adminOrders.content.find((order) => order.id === orderId);
+
+  if (!order) {
+    return res.status(404).json({ message: "Order not found" });
+  }
+
+  res.json(order);
+};
 
 const getAdminOrders = (req, res) => {
   const filteredOrders = filterOrders(adminOrders, req.query);
@@ -42,5 +52,6 @@ module.exports = {
   getUserOrders,
   getAdminOrders,
   createOrder,
+  getAdminOrderById,
   changeOrderStatus,
 };
