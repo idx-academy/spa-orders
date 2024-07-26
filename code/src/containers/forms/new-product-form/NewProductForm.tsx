@@ -140,6 +140,7 @@ const NewProductForm = () => {
                 type="number"
                 error={Boolean(errors.price)}
                 helperText={errors.price ? errors.price.message : undefined}
+                data-testid="new-product-price-input"
                 {...register("price", { valueAsNumber: true })}
               />
               <AppInput
@@ -151,6 +152,7 @@ const NewProductForm = () => {
                 helperText={
                   errors.quantity ? errors.quantity.message : undefined
                 }
+                data-testid="new-product-quantity-input"
                 {...register("quantity", { valueAsNumber: true })}
               />
             </AppBox>
@@ -164,6 +166,7 @@ const NewProductForm = () => {
                 error={Boolean(errors.tagIds)}
                 value={selectedCategory}
                 onChange={handleSelectChange}
+                data-testid="new-product-category-select"
               >
                 {categories.map((item) => (
                   <AppMenuItem value={item.id} key={item.id}>
@@ -188,6 +191,7 @@ const NewProductForm = () => {
               variant="dark"
               labelTranslationKey="productForm.inputLabel.status"
               labelClassName="product-form__visibility-checkbox-label"
+              data-testid="new-product-status-checkbox"
               {...register("status")}
             />
           </AppBox>
@@ -208,6 +212,8 @@ const NewProductForm = () => {
                   className="product-form__text-input"
                   fullWidth
                   labelTranslationKey="productForm.inputLabel.name"
+                  data-testid={`new-product-name-input-${locale}`}
+                  type="text"
                   error={Boolean(
                     errors.productTranslations &&
                       errors.productTranslations[index]?.name
@@ -215,7 +221,7 @@ const NewProductForm = () => {
                   helperText={
                     errors.productTranslations &&
                     errors.productTranslations[index]?.name
-                      ? errors.productTranslations[index]?.name.message
+                      ? errors.productTranslations[index].name.message
                       : undefined
                   }
                   {...register(`productTranslations.${index}.name`)}
@@ -225,6 +231,8 @@ const NewProductForm = () => {
                   fullWidth
                   multiline
                   labelTranslationKey="productForm.inputLabel.description"
+                  data-testid={`new-product-description-input-${locale}`}
+                  type="text"
                   inputProps={{
                     className: "product-form__description-input"
                   }}
@@ -236,7 +244,7 @@ const NewProductForm = () => {
                   helperText={
                     errors.productTranslations &&
                     errors.productTranslations[index]?.description
-                      ? errors.productTranslations[index]?.description.message
+                      ? errors.productTranslations[index].description.message
                       : undefined
                   }
                   {...register(`productTranslations.${index}.description`)}

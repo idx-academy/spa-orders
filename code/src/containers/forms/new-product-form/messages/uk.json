@@ -16,5 +16,5 @@
   "productForm.creation.success": "Продукт успішно створено",
   "productForm.creation.fail": "Не вдалося створити продукт",
   "productForm.creation.validationError": "Вказані дані недійсні, перевірте їх і спробуйте ще раз",
-  "productForm.creation.translationError": "At least one of the translations is required"
+  "productForm.creation.translationError": "Потрібен хоча б один з перекладів"
 }

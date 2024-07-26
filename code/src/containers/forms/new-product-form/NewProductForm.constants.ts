@@ -5,8 +5,8 @@ import { supportedLocales } from "@/constants/locales";
 export const defaultValues: NewProductFormValues = {
   status: false,
   image: "",
-  quantity: 0,
-  price: 0,
+  quantity: undefined,
+  price: undefined,
   tagIds: [],
   productTranslations: supportedLocales.map((item) => ({
     name: "",

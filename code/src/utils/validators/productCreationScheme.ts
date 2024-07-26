@@ -21,11 +21,13 @@ const productCreationScheme = z.object({
   image: z.string().url({ message: "Please provide a valid URL" }),
   price: z
     .number({ message: "Invalid price" })
-    .min(0, { message: "Invalid price" }),
+    .min(0, { message: "Invalid price" })
+    .max(100000000, { message: "Must be less than 100 mln" }),
   status: z.boolean(),
   quantity: z
     .number({ message: "Invalid quantity" })
-    .min(0, { message: "Invalid quantity" }),
+    .min(0, { message: "Invalid quantity" })
+    .max(100000000, { message: "Must be less than 100 mln" }),
   tagIds: z.array(z.number()).min(1, { message: "Select at least one tag" }),
   productTranslations: z.array(productTranslationSchema).refine(
     // To check if at least one translation has non-empty name and description
