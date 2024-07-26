@@ -5,16 +5,6 @@ import ImagePreview from "@/containers/forms/new-product-form/components/image-p
 
 const mockOnChange = jest.fn();
 
-const renderImagePreview = () => {
-  render(
-    <ImagePreview
-      imageInputProps={
-        { onChange: mockOnChange } as unknown as UseFormRegisterReturn<"image">
-      }
-    />
-  );
-};
-
 const typeIntoImageInput = (value: string) => {
   const imageInput = screen.getByRole("textbox");
 
@@ -26,9 +16,19 @@ const typeIntoImageInput = (value: string) => {
 };
 
 describe("Test image preview", () => {
-  test("should render input and image preview text", () => {
-    renderImagePreview();
+  beforeEach(() => {
+    render(
+      <ImagePreview
+        imageInputProps={
+          {
+            onChange: mockOnChange
+          } as unknown as UseFormRegisterReturn<"image">
+        }
+      />
+    );
+  });
 
+  test("should render input and image preview text", () => {
     const imageInput = screen.getByRole("textbox");
     const imagePreviewText = screen.getByText("productForm.image.preview");
 
@@ -37,8 +37,6 @@ describe("Test image preview", () => {
   });
 
   test("should render image preview when input is filled", () => {
-    renderImagePreview();
-
     typeIntoImageInput(
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg"
     );
@@ -48,8 +46,6 @@ describe("Test image preview", () => {
   });
 
   test("should render image loading error message if url is incorrect", () => {
-    renderImagePreview();
-
     typeIntoImageInput("https://invalid-url.com");
 
     const imageElement = screen.getByRole("img");
@@ -61,8 +57,6 @@ describe("Test image preview", () => {
   });
 
   test("should call passed onChange function", () => {
-    renderImagePreview();
-
     typeIntoImageInput(
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg"
     );

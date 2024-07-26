@@ -184,7 +184,7 @@ describe("Test NewProductForm", () => {
     expect(quantityInput.closest(".Mui-error")).toBeFalsy();
   });
 
-  test("Should show helper texts and have properiate styles if validation failed", async () => {
+  test("Should show helper texts and have propriate styles if validation failed", async () => {
     render();
 
     await typeIntoInput(nameInput, "a");
@@ -213,7 +213,7 @@ describe("Test NewProductForm", () => {
     expect(quantityInput.closest(".Mui-error")).toBeTruthy();
   });
 
-  test("Should display message to fill at least one translation", async () => {
+  test("Should display message to fill in at least one translation, if none was filled", async () => {
     render();
 
     await typeIntoInput(imgUrlInput, testData.image);
