@@ -271,12 +271,11 @@ describe("Test NewProductForm", () => {
     await fillInTestData();
     await selectCategory();
 
-    const nameInputUk = screen
-      .getByTestId(`new-product-name-input-uk`)
-      .querySelector("input")!;
-    const descriptionInputUk = screen
-      .getByTestId(`new-product-description-input-uk`)
-      .querySelector("textarea")!;
+    const nameInputUk = getTagIn("new-product-name-input-uk");
+    const descriptionInputUk = getTagIn(
+      "new-product-description-input-uk",
+      "textarea"
+    );
 
     await typeIntoInput(nameInputUk, testData.productTranslations[0].name);
     await typeIntoInput(
