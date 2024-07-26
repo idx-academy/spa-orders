@@ -1,13 +1,13 @@
 import { AdminOrder } from "@/types/order.types";
 
 export const tableColumns = [
-  "ordersTable.columns.id",
+  "ordersTable.columns.receiver",
   "ordersTable.columns.status",
   "ordersTable.columns.createdAt",
-  "ordersTable.columns.receiver",
   "ordersTable.columns.deliveryMethod",
   "ordersTable.columns.totalPrice",
-  "ordersTable.columns.isPaid"
+  "ordersTable.columns.isPaid",
+  "ordersTable.columns.details"
 ];
 
 export const mockOrders: AdminOrder[] = [

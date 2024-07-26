@@ -1,13 +1,15 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import { mockOrders } from "@/containers/tables/orders-table/OrdersTable.constants";
 import OrdersTableBody from "@/containers/tables/orders-table/components/orders-table-body/OrdersTableBody";
+
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockStatusChange = jest.fn();
 
 describe("OrdersTableBody", () => {
   beforeEach(() => {
-    render(
+    renderWithProviders(
       <table>
         <tbody>
           <tr>
@@ -22,14 +24,12 @@ describe("OrdersTableBody", () => {
   });
 
   test("renders order information correctly", () => {
-    const ordersId = screen.getByText(mockOrders[0].id);
     const ordersReceiver = screen.getByText(
       `${mockOrders[0].receiver.lastName} ${mockOrders[0].receiver.firstName}`
     );
     const doneIcon = screen.getByTestId(/DoneIcon/);
 
     expect(doneIcon).toBeInTheDocument();
-    expect(ordersId).toBeInTheDocument();
     expect(ordersReceiver).toBeInTheDocument();
   });
 

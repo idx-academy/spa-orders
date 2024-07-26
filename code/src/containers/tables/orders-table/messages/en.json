@@ -1,5 +1,5 @@
 {
-  "ordersTable.columns.id": "ID",
+  "ordersTable.columns.details": "Details",
   "ordersTable.columns.status": "Status",
   "ordersTable.columns.createdAt": "Created At",
   "ordersTable.columns.receiver": "Receiver",

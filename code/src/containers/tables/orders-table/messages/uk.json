@@ -1,5 +1,5 @@
 {
-  "ordersTable.columns.id": "ID",
+  "ordersTable.columns.details": "Деталі",
   "ordersTable.columns.status": "Статус",
   "ordersTable.columns.createdAt": "Створено",
   "ordersTable.columns.receiver": "Одержувач",

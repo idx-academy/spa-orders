@@ -1,14 +1,18 @@
 import DoneIcon from "@mui/icons-material/Done";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { MenuItem } from "@mui/material";
 
 import { orderBadgeVariants } from "@/containers/order-item/OrderItem.constants";
 
 import AppBadge from "@/components/app-badge/AppBadge";
+import AppIconButton from "@/components/app-icon-button/AppIconButton";
+import AppLink from "@/components/app-link/AppLink";
 import AppSelect from "@/components/app-select/AppSelect";
 import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
+import routes from "@/constants/routes";
 import { AdminOrder, OrderStatus } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
@@ -35,7 +39,6 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
 
   const statusBlock = (
     <AppSelect
-      labelId="order-status"
       defaultValue={orderStatus}
       value={orderStatus}
       IconComponent={() => null}
@@ -83,13 +86,19 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
 
   return (
     <>
-      <AppTableCell>{id}</AppTableCell>
+      <AppTableCell>{orderReceiver}</AppTableCell>
       <AppTableCell>{statusBlock}</AppTableCell>
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
-      <AppTableCell>{orderReceiver}</AppTableCell>
       <AppTableCell>{deliveryMethod}</AppTableCell>
       <AppTableCell>{formatPrice(total)}</AppTableCell>
       <AppTableCell>{isPaid && <DoneIcon color="success" />}</AppTableCell>
+      <AppTableCell>
+        <AppLink to={routes.dashboard.orderDetails.path(id)}>
+          <AppIconButton>
+            <MoreHorizIcon />
+          </AppIconButton>
+        </AppLink>
+      </AppTableCell>
     </>
   );
 };

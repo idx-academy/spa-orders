@@ -25,9 +25,6 @@ describe("OrdersTable", () => {
       expect(columnElement).toBeInTheDocument();
     });
 
-    const ordersId = screen.getByText(mockOrders[0].id);
-    expect(ordersId).toBeInTheDocument();
-
     const bodyElement = container.querySelector(".spa-order-table__body");
     const containerElement = container.querySelector(".spa-order-table");
 
