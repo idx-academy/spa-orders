@@ -1,3 +1,5 @@
+import { OrderId } from "@/types/order.types";
+
 const routes = {
   home: {
     path: "/"
@@ -33,6 +35,9 @@ const routes = {
     },
     users: {
       path: "/dashboard/users"
+    },
+    orderDetails: {
+      path: (orderId: OrderId = ":orderId") => `/dashboard/orders/${orderId}`
     }
   },
   error: {
