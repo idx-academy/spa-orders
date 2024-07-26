@@ -3,7 +3,9 @@ import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
 import {
+  GetAdminOrderByIdResponse,
   AdminOrderResponse,
+  GetAdminOrderByIdParams,
   GetAdminOrderParams,
   GetUserOrderParams,
   OrderPatchParams,
@@ -23,6 +25,13 @@ const ordersApi = appApi.injectEndpoints({
       providesTags: [rtkQueryTags.USER_ORDERS]
     }),
 
+    getAdminOrderById: build.query<
+      GetAdminOrderByIdResponse,
+      GetAdminOrderByIdParams
+    >({
+      query: (params) => URLS.orders.getByIdForAdmin(params)
+    }),
+
     createOrder: build.mutation<OrderPostResponse, OrderPostParams>({
       query: ({ userId, ...body }) => ({
         url: URLS.orders.post({ userId }),
@@ -35,6 +44,7 @@ const ordersApi = appApi.injectEndpoints({
         rtkQueryTags.USER_ORDERS
       ]
     }),
+
     changeOrderStatus: build.mutation<void, OrderPatchParams>({
       query: ({ orderStatus, ...params }) => ({
         url: URLS.orders.patch(params),
@@ -50,5 +60,6 @@ export const {
   useGetUserOrdersQuery,
   useGetAdminOrdersQuery,
   useCreateOrderMutation,
-  useChangeOrderStatusMutation
+  useChangeOrderStatusMutation,
+  useGetAdminOrderByIdQuery
 } = ordersApi;

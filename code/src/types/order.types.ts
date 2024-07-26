@@ -16,7 +16,7 @@ export type OrderItem = {
   product: Product;
 };
 
-type OrderId = string;
+export type OrderId = string;
 
 type Receiver = Pick<User, "email" | "firstName" | "lastName">;
 
@@ -57,6 +57,8 @@ export type AdminOrderResponse = BaseOrderResponse & {
   content: AdminOrder[];
 };
 
+export type GetAdminOrderByIdResponse = AdminOrder
+
 export type OrderPostParams = PostAddress & {
   userId: UserId;
   firstName: string;
@@ -75,6 +77,10 @@ export type OrderPatchParams = {
 
 export type GetUserOrderParams = Lang & {
   userId: UserId;
+};
+
+export type GetAdminOrderByIdParams = Lang & {
+  orderId: OrderId;
 };
 
 export type GetAdminOrderParams = Partial<

@@ -5,6 +5,7 @@ import {
   CartManagementPostParams
 } from "@/types/cart.types";
 import {
+  GetAdminOrderByIdParams,
   GetAdminOrderParams,
   GetUserOrderParams,
   OrderPatchParams,
@@ -31,6 +32,8 @@ export const URLS = {
       `/v1/users/${userId}/orders?lang=${lang}`,
     getForAdmin: (queryParams: GetAdminOrderParams) =>
       createUrlPath("/v1/management/orders", undefined, queryParams),
+    getByIdForAdmin: ({ orderId, lang }: GetAdminOrderByIdParams) =>
+      `/v1/management/orders/${orderId}?lang=${lang}`,
     post: ({ userId }: Pick<OrderPostParams, "userId">) =>
       `/v1/users/${userId}/orders`,
     patch: ({ orderId }: Pick<OrderPatchParams, "orderId">) =>
