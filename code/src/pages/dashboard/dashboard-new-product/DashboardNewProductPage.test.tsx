@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import DashboardNewProductPage from "./DashboardNewProductPage";
+import DashboardNewProductPage from "@/pages/dashboard/dashboard-new-product/DashboardNewProductPage";
 
 jest.mock("@/containers/forms/new-product-form/NewProductForm", () => ({
   __esModule: true,

@@ -3,19 +3,13 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 import ImagePreview from "@/containers/forms/new-product-form/components/image-preview/ImagePreview";
 
+import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
+
 const mockOnChange = jest.fn();
 
-const typeIntoImageInput = (value: string) => {
-  const imageInput = screen.getByRole("textbox");
-
-  fireEvent.change(imageInput, {
-    target: {
-      value
-    }
-  });
-};
-
 describe("Test image preview", () => {
+  let imageInput: HTMLInputElement;
+
   beforeEach(() => {
     render(
       <ImagePreview
@@ -26,6 +20,8 @@ describe("Test image preview", () => {
         }
       />
     );
+
+    imageInput = screen.getByRole("textbox");
   });
 
   test("should render input and image preview text", () => {
@@ -36,8 +32,9 @@ describe("Test image preview", () => {
     expect(imagePreviewText).toBeInTheDocument();
   });
 
-  test("should render image preview when input is filled", () => {
-    typeIntoImageInput(
+  test("should render image preview when input is filled", async () => {
+    await typeIntoInput(
+      imageInput,
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg"
     );
 
@@ -45,8 +42,8 @@ describe("Test image preview", () => {
     expect(imagePreview).toBeInTheDocument();
   });
 
-  test("should render image loading error message if url is incorrect", () => {
-    typeIntoImageInput("https://invalid-url.com");
+  test("should render image loading error message if url is incorrect", async () => {
+    await typeIntoInput(imageInput, "https://invalid-url.com");
 
     const imageElement = screen.getByRole("img");
 
@@ -56,8 +53,9 @@ describe("Test image preview", () => {
     expect(imageErrorMsg).toBeInTheDocument();
   });
 
-  test("should call passed onChange function", () => {
-    typeIntoImageInput(
+  test("should call passed onChange function", async () => {
+    await typeIntoInput(
+      imageInput,
       "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/computer_1-J0a7bI2jB5NozuSaXnzyMtxHyijWoD.jpg"
     );
 

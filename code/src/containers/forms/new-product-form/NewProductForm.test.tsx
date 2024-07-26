@@ -53,6 +53,15 @@ const twoTranslationsTestData = {
   ]
 };
 
+const getTagIn = <T extends keyof HTMLElementTagNameMap = "input">(
+  testId: string,
+  tag: T = "input" as T
+) => {
+  return screen
+    .getByTestId(testId)
+    .querySelector(tag)! as unknown as HTMLElementTagNameMap[T];
+};
+
 describe("Test NewProductForm", () => {
   let imgUrlInput: HTMLInputElement;
   let priceInput: HTMLInputElement;
@@ -70,25 +79,13 @@ describe("Test NewProductForm", () => {
   const render = () => {
     const result = renderWithProviders(<NewProductForm />);
 
-    imgUrlInput = screen
-      .getByTestId("new-product-image-input")
-      .querySelector("input")!;
-    priceInput = screen
-      .getByTestId("new-product-price-input")
-      .querySelector("input")!;
-    quantityInput = screen
-      .getByTestId("new-product-quantity-input")
-      .querySelector("input")!;
+    imgUrlInput = getTagIn("new-product-image-input");
+    priceInput = getTagIn("new-product-price-input");
+    quantityInput = getTagIn("new-product-quantity-input");
     categorySelect = screen.getByLabelText("productForm.inputLabel.category");
-    nameInput = screen
-      .getByTestId(`new-product-name-input-en`)
-      .querySelector("input")!;
-    descriptionInput = screen
-      .getByTestId(`new-product-description-input-en`)
-      .querySelector("textarea")!;
-    statusInput = screen
-      .getByTestId("new-product-status-checkbox")
-      .querySelector("input")!;
+    nameInput = getTagIn(`new-product-name-input-en`);
+    descriptionInput = getTagIn(`new-product-description-input-en`, "textarea");
+    statusInput = getTagIn("new-product-status-checkbox");
     submitButton = screen.getByText("productForm.submit");
 
     return result;
@@ -121,6 +118,12 @@ describe("Test NewProductForm", () => {
     await act(async () => {
       fireEvent.click(categoryOption);
     });
+  };
+
+  const baseSteps = async () => {
+    await fillInTestData();
+    await selectCategory();
+    await submit();
   };
 
   test("Should be rendered correctly", () => {
@@ -232,9 +235,7 @@ describe("Test NewProductForm", () => {
   test("Should show success message, redirect and send request if validation was passed", async () => {
     render();
 
-    await fillInTestData();
-    await selectCategory();
-    await submit();
+    await baseSteps();
 
     expect(mockCreateProductMutation).toHaveBeenCalledWith(testData);
     expect(mockShowSnackbar).toHaveBeenCalledWith({
@@ -251,9 +252,7 @@ describe("Test NewProductForm", () => {
       fireEvent.click(statusInput);
     });
 
-    await fillInTestData();
-    await selectCategory();
-    await submit();
+    await baseSteps();
 
     expect(mockCreateProductMutation).toHaveBeenCalledWith({
       ...testData,
@@ -299,9 +298,7 @@ describe("Test NewProductForm", () => {
 
     render();
 
-    await fillInTestData();
-    await selectCategory();
-    await submit();
+    await baseSteps();
 
     expect(mockShowSnackbar).toHaveBeenCalledWith({
       variant: "error",
@@ -316,9 +313,7 @@ describe("Test NewProductForm", () => {
 
     render();
 
-    await fillInTestData();
-    await selectCategory();
-    await submit();
+    await baseSteps();
 
     expect(mockShowSnackbar).toHaveBeenCalledWith({
       variant: "error",

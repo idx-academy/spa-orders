@@ -1,10 +1,10 @@
 import { ChangeEvent, useState } from "react";
 
+import { ImagePreviewProps } from "@/containers/forms/new-product-form/NewProductForm.types";
+
 import AppBox from "@/components/app-box/AppBox";
 import AppInput from "@/components/app-input/AppInput";
 import AppTypography from "@/components/app-typography/AppTypography";
-
-import { ImagePreviewProps } from "../../NewProductForm.types";
 
 const ImagePreview = ({ imageInputProps }: ImagePreviewProps) => {
   const [imageUrl, setImageUrl] = useState("");
@@ -48,7 +48,6 @@ const ImagePreview = ({ imageInputProps }: ImagePreviewProps) => {
       <AppBox className="product-form__image-preview">{imageContent}</AppBox>
       <AppInput
         fullWidth
-        type="text"
         labelTranslationKey="productForm.inputLabel.image"
         data-testid="new-product-image-input"
         {...imageInputProps}
