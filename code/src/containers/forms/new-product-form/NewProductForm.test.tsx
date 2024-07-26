@@ -62,69 +62,69 @@ const getTagIn = <T extends keyof HTMLElementTagNameMap = "input">(
     .querySelector(tag)! as unknown as HTMLElementTagNameMap[T];
 };
 
-describe("Test NewProductForm", () => {
-  let imgUrlInput: HTMLInputElement;
-  let priceInput: HTMLInputElement;
-  let quantityInput: HTMLInputElement;
-  let categorySelect: HTMLSpanElement;
-  let nameInput: HTMLInputElement;
-  let descriptionInput: HTMLTextAreaElement;
-  let submitButton: HTMLButtonElement;
-  let statusInput: HTMLInputElement;
+let imgUrlInput: HTMLInputElement;
+let priceInput: HTMLInputElement;
+let quantityInput: HTMLInputElement;
+let categorySelect: HTMLSpanElement;
+let nameInput: HTMLInputElement;
+let descriptionInput: HTMLTextAreaElement;
+let submitButton: HTMLButtonElement;
+let statusInput: HTMLInputElement;
 
+const render = () => {
+  const result = renderWithProviders(<NewProductForm />);
+
+  imgUrlInput = getTagIn("new-product-image-input");
+  priceInput = getTagIn("new-product-price-input");
+  quantityInput = getTagIn("new-product-quantity-input");
+  categorySelect = screen.getByLabelText("productForm.inputLabel.category");
+  nameInput = getTagIn(`new-product-name-input-en`);
+  descriptionInput = getTagIn(`new-product-description-input-en`, "textarea");
+  statusInput = getTagIn("new-product-status-checkbox");
+  submitButton = screen.getByText("productForm.submit");
+
+  return result;
+};
+
+const fillInTestData = async () => {
+  await typeIntoInput(imgUrlInput, testData.image);
+  await typeIntoInput(priceInput, testData.price);
+  await typeIntoInput(quantityInput, testData.quantity);
+  await typeIntoInput(nameInput, testData.productTranslations[0].name);
+  await typeIntoInput(
+    descriptionInput,
+    testData.productTranslations[0].description
+  );
+};
+
+const submit = async () => {
+  await act(async () => {
+    fireEvent.click(submitButton);
+  });
+};
+
+const selectCategory = async () => {
+  await act(async () => {
+    fireEvent.mouseDown(categorySelect);
+  });
+
+  const categoryOption = screen.getByText("productsAll.computer");
+
+  await act(async () => {
+    fireEvent.click(categoryOption);
+  });
+};
+
+const baseSteps = async () => {
+  await fillInTestData();
+  await selectCategory();
+  await submit();
+};
+
+describe("Test NewProductForm", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-
-  const render = () => {
-    const result = renderWithProviders(<NewProductForm />);
-
-    imgUrlInput = getTagIn("new-product-image-input");
-    priceInput = getTagIn("new-product-price-input");
-    quantityInput = getTagIn("new-product-quantity-input");
-    categorySelect = screen.getByLabelText("productForm.inputLabel.category");
-    nameInput = getTagIn(`new-product-name-input-en`);
-    descriptionInput = getTagIn(`new-product-description-input-en`, "textarea");
-    statusInput = getTagIn("new-product-status-checkbox");
-    submitButton = screen.getByText("productForm.submit");
-
-    return result;
-  };
-
-  const fillInTestData = async () => {
-    await typeIntoInput(imgUrlInput, testData.image);
-    await typeIntoInput(priceInput, testData.price);
-    await typeIntoInput(quantityInput, testData.quantity);
-    await typeIntoInput(nameInput, testData.productTranslations[0].name);
-    await typeIntoInput(
-      descriptionInput,
-      testData.productTranslations[0].description
-    );
-  };
-
-  const submit = async () => {
-    await act(async () => {
-      fireEvent.click(submitButton);
-    });
-  };
-
-  const selectCategory = async () => {
-    await act(async () => {
-      fireEvent.mouseDown(categorySelect);
-    });
-
-    const categoryOption = screen.getByText("productsAll.computer");
-
-    await act(async () => {
-      fireEvent.click(categoryOption);
-    });
-  };
-
-  const baseSteps = async () => {
-    await fillInTestData();
-    await selectCategory();
-    await submit();
-  };
 
   test("Should be rendered correctly", () => {
     render();
