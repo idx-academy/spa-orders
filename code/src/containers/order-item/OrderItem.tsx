@@ -20,9 +20,10 @@ import "@/containers/order-item/OrderItem.scss";
 
 type OrderItemProps = {
   order: UserOrder;
+  isExpanded?: boolean;
 };
 
-const OrderItem = ({ order }: OrderItemProps) => {
+const OrderItem = ({ order, isExpanded }: OrderItemProps) => {
   const { createdAt, orderStatus, isPaid } = order;
 
   const orderDeliveryStatus = orderStatusesTranslationKeys[orderStatus];
@@ -45,10 +46,13 @@ const OrderItem = ({ order }: OrderItemProps) => {
   );
 
   return (
-    <AppAccordionContainer className="spa-order-item__container">
+    <AppAccordionContainer
+      expanded={isExpanded}
+      className="spa-order-item__container"
+    >
       <AppAccordionSummary
         className="spa-order-item__title"
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={!isExpanded && <ExpandMoreIcon />}
       >
         <AppBox className="spa-order-item__status">
           <AppTypography

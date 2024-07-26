@@ -47,9 +47,20 @@ describe("OrderItem", () => {
     expect(receiverEmail).toBeInTheDocument();
   });
   test("renders total price correctly", () => {
-    render(<OrderItem order={{ ...mockOrder, isPaid: true }} />);
+    render(<OrderItem order={{ ...mockOrder, isPaid: true }} isExpanded />);
 
     const totalPrice = screen.getByText(formatPrice(mockOrder.total));
     expect(totalPrice).toBeInTheDocument();
+  });
+
+  test("Should not render ExpandMoreIcon when isExpanded is true", () => {
+    render(<OrderItem order={mockOrder} isExpanded={true} />);
+    const expandIcon = screen.queryByTestId("ExpandMoreIcon");
+    expect(expandIcon).toBeNull();
+  });
+  test("Should render ExpandMoreIcon when isExpanded is false", () => {
+    render(<OrderItem order={mockOrder} isExpanded={false} />);
+    const expandIcon = screen.getByTestId("ExpandMoreIcon");
+    expect(expandIcon).toBeInTheDocument();
   });
 });
