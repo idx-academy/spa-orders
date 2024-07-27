@@ -98,7 +98,7 @@ describe("DashboardOrderDetailsPage", () => {
     test("Displays 'no order found' message", () => {
       renderAndMock({ data: null });
 
-      const messageElement = screen.getByText(/ordersPage.noOrderFound/);
+      const messageElement = screen.getByText(/dashboardOrderDetailsPage.noOrderFound/);
 
       expect(messageElement).toBeInTheDocument();
     });
