@@ -5,6 +5,9 @@ const routes = {
   products: {
     path: "/products"
   },
+  productDetails: {
+    path: "/products/:productId"
+  },
   cart: {
     path: "/cart"
   },
@@ -33,6 +36,14 @@ const routes = {
     },
     users: {
       path: "/dashboard/users"
+    }
+  },
+  error: {
+    notFound: {
+      path: "/not-found"
+    },
+    unknown: {
+      path: "/unknown"
     }
   },
   any: {
