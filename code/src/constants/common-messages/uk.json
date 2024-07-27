@@ -2,6 +2,7 @@
   "errors.badRequest": "Недійсні вхідні дані. Будь ласка, перевірте їх і спробуйте ще раз",
   "errors.unauthorized": "Користувач не має прав для виконання цієї дії",
   "errors.conflict": "Вже існує",
+  "errors.notFound": "Не знайдено",
   "errors.somethingWentWrong": "Щось пішло не так. Будь ласка, спробуйте пізніше",
   "signIn.label": "Увійти",
   "signIn.success": "Ви успішно увійшли",

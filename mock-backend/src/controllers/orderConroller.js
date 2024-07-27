@@ -11,7 +11,7 @@ const getAdminOrderById = (req, res) => {
   const order = adminOrders.content.find((order) => order.id === orderId);
 
   if (!order) {
-    return res.status(404).json({ message: "Order not found" });
+    return res.status(404).json({ message: "Order not found", stats: 404 });
   }
 
   res.json(order);

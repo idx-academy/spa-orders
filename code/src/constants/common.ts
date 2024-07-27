@@ -8,6 +8,7 @@ export const LOCAL_STORAGE_KEYS = {
 export const ERROR_MESSAGES_BY_STATUS_CODE = {
   400: "errors.badRequest",
   401: "errors.unauthorized",
+  404: "errors.notFound",
   409: "errors.conflict"
 } as const;
 

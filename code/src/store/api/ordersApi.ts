@@ -29,7 +29,11 @@ const ordersApi = appApi.injectEndpoints({
       GetAdminOrderByIdResponse,
       GetAdminOrderByIdParams
     >({
-      query: (params) => URLS.orders.getByIdForAdmin(params)
+      query: (params) => URLS.orders.getByIdForAdmin(params),
+      transformErrorResponse: (response) => {
+        response.isSnackbarHidden = false;
+        return response;
+      }
     }),
 
     createOrder: build.mutation<OrderPostResponse, OrderPostParams>({
