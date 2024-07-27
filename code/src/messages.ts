@@ -23,6 +23,7 @@ import productCardMessages from "@/components/product-card/messages";
 import commonMessages from "@/constants/common-messages";
 import { Locale } from "@/context/i18n/I18nProvider";
 import cartPageMessages from "@/pages/cart/messages";
+import dashboardOrderDetailsPageMessages from "@/pages/dashboard-order-details/messages";
 import dashboardNewProductPageMessages from "@/pages/dashboard/dashboard-new-product/messages";
 import dashboardOrdersPageMessages from "@/pages/dashboard/dashboard-orders/messages";
 import dashboardProductsPageMessages from "@/pages/dashboard/dashboard-products/messages";
@@ -61,7 +62,8 @@ const messages: MessagesType = {
     ...dashboardOrdersPageMessages.en,
     ...dashboardProductsPageMessages.en,
     ...dashboardNewProductPageMessages.en,
-    ...productFormMessages.en
+    ...productFormMessages.en,
+    ...dashboardOrderDetailsPageMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -91,7 +93,8 @@ const messages: MessagesType = {
     ...dashboardOrdersPageMessages.uk,
     ...dashboardProductsPageMessages.uk,
     ...dashboardNewProductPageMessages.uk,
-    ...productFormMessages.uk
+    ...productFormMessages.uk,
+    ...dashboardOrderDetailsPageMessages.uk
   }
 };
 

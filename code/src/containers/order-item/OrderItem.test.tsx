@@ -54,7 +54,7 @@ describe("OrderItem", () => {
   });
 
   test("Should not render ExpandMoreIcon when isExpanded is true", () => {
-    render(<OrderItem order={mockOrder} isExpanded={true} />);
+    render(<OrderItem order={mockOrder} isExpanded />);
     const expandIcon = screen.queryByTestId("ExpandMoreIcon");
     expect(expandIcon).toBeNull();
   });
