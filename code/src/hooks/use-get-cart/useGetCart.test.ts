@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
+import { ROLES } from "@/constants/common";
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import { useLazyGetCartItemsQuery } from "@/store/api/cartApi";
 import { useLocalCartSelector } from "@/store/slices/localCart";
@@ -7,6 +8,7 @@ import {
   useIsAuthLoadingSelector,
   useUserDetailsSelector
 } from "@/store/slices/userSlice";
+import { UserRole } from "@/types/user.types";
 
 jest.mock("@/store/api/cartApi");
 jest.mock("@/store/slices/localCart");
@@ -20,7 +22,7 @@ jest.mock("@/context/i18n/I18nProvider", () => ({
 const mockFetchCart = jest.fn();
 
 type ExtraParams = {
-  user: { id: number } | null;
+  user: { id: number; role?: UserRole } | null;
   isAuthLoading: boolean;
   isUninitialized: boolean;
   isLoading: boolean;
@@ -92,9 +94,14 @@ describe("useGetCart", () => {
       jest.clearAllMocks();
     });
 
-    test("calls fetchCart when user is authorized", () => {
-      renderAndMock({ user: { id: 1 } });
+    test("calls fetchCart when user is authorized under ROLE_USER role", () => {
+      renderAndMock({ user: { id: 1, role: ROLES.USER } });
       expect(mockFetchCart).toHaveBeenCalledWith({ userId: 1, lang: "en" });
+    });
+
+    test("does not call fetchCart when user is authorized but is not under ROLE_USER role", () => {
+      renderAndMock({ user: { id: 1 } });
+      expect(mockFetchCart).not.toHaveBeenCalled();
     });
 
     test("does not call fetchCart when user is unauthorized", () => {

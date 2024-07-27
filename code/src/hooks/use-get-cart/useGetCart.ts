@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { ROLES } from "@/constants/common";
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import { useLazyGetCartItemsQuery } from "@/store/api/cartApi";
 import { useLocalCartSelector } from "@/store/slices/localCart";
@@ -17,12 +18,13 @@ const useGetCart = () => {
   const [fetchCart, requestState] = useLazyGetCartItemsQuery();
 
   const userId = user?.id;
+  const shouldFetchCart = userId && user.role === ROLES.USER;
 
   useEffect(() => {
-    if (userId) {
+    if (shouldFetchCart) {
       fetchCart({ userId, lang: locale });
     }
-  }, [userId, locale]);
+  }, [shouldFetchCart, locale]);
 
   const isLoading =
     isAuthLoading ||
