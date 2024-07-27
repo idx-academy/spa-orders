@@ -78,7 +78,7 @@ module.exports = {
     //Stryker Exclusions:
 
     // General Exclusions
-    "!src/{i18n,services,modules,types,constants}/**/*",
+    "!src/{i18n,services,modules,types,constants,store,routes}/**/*",
     "!src/**/module.*",
     "!src/**/modules.*",
     "!src/**/routes.*",
