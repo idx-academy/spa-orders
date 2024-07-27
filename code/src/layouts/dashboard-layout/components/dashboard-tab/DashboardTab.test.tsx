@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import {
   DashboardTabName,
   DashboardTab as DashboardTabType
-} from "@/layouts/dashboard-layout/DashboardLayout.constants";
+} from "@/layouts/dashboard-layout/DashboardLayout.types";
 import DashboardTab from "@/layouts/dashboard-layout/components/dashboard-tab/DashboardTab";
 
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";

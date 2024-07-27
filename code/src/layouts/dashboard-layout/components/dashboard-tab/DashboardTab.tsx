@@ -1,4 +1,4 @@
-import { DashboardTab as DashboardTabType } from "@/layouts/dashboard-layout/DashboardLayout.constants";
+import { DashboardTab as DashboardTabType } from "@/layouts/dashboard-layout/DashboardLayout.types";
 
 import AppLink from "@/components/app-link/AppLink";
 import AppTypography from "@/components/app-typography/AppTypography";
