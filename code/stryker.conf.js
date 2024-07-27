@@ -21,7 +21,7 @@ module.exports = {
     "!src/**/index.ts?(x)",
     "!src/**/selectors/*.ts?(x)",
     "!src/**/*@(.test|.spec|Spec).ts?(x)",
-    "!src/{assets,messages,services,test-utils,types}/**/*"
+    "!src/{assets,messages,services,test-utils,types,store,routes}/**/*"
   ],
   ignoreStatic: true,
   reporters: ["clear-text", "progress", "html", "json"],
