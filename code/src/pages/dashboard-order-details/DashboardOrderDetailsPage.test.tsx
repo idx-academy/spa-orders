@@ -30,6 +30,15 @@ jest.mock("react-router-dom", () => ({
   useParams: jest.fn()
 }));
 
+jest.mock("@/hooks/use-error-page-redirect/useErrorPageRedirect", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
+    renderRedirectComponent: jest.fn(({ errorMessageTranslationKey }) => (
+      <div>{errorMessageTranslationKey}</div>
+    ))
+  }))
+}));
+
 jest.mock("@/store/api/ordersApi", () => ({
   useGetAdminOrderByIdQuery: jest.fn()
 }));
@@ -105,25 +114,13 @@ describe("DashboardOrderDetailsPage", () => {
     });
   });
 
-  describe("When there is an error", () => {
-    test("Displays error message", () => {
-      renderAndMock({ isError: true });
-
-      const errorMessageElement = screen.getByText(/errors.somethingWentWrong/);
-
-      expect(errorMessageElement).toBeInTheDocument();
-    });
-  });
-
-  describe("When no orderId is provided", () => {
-    beforeEach(() => {
+  describe("When orderId is not provided", () => {
+    test("Redirects to not found page", () => {
       mockOrderId = undefined;
-    });
 
-    test("Displays error message", () => {
       renderAndMock();
 
-      const errorMessageElement = screen.getByText(/errors.somethingWentWrong/);
+      const errorMessageElement = screen.getByText(/errors.orderNotFound/);
 
       expect(errorMessageElement).toBeInTheDocument();
     });

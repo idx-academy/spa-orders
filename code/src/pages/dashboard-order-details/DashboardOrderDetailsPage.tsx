@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import OrderItem from "@/containers/order-item/OrderItem";
 
 import AppLoader from "@/components/app-loader/AppLoader";
-import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
+import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
 import { useGetAdminOrderByIdQuery } from "@/store/api/ordersApi";
 import { OrderId } from "@/types/order.types";
 
@@ -18,23 +18,16 @@ type DashboardOrderDetailsPageParams = {
 const DashboardOrderDetailsPage = () => {
   const { orderId } = useParams<DashboardOrderDetailsPageParams>();
   const { locale: lang } = useLocaleContext();
+  const { renderRedirectComponent } = useErrorPageRedirect();
 
   if (!orderId) {
-    return (
-      <AppTypography
-        variant="h3"
-        component="h1"
-        textAlign="center"
-        translationKey="errors.somethingWentWrong"
-      />
-    );
+    return renderRedirectComponent({
+      errorType: "notFound",
+      errorMessageTranslationKey: "errors.orderNotFound"
+    });
   }
 
-  const {
-    data: orderData,
-    isLoading,
-    isError
-  } = useGetAdminOrderByIdQuery({
+  const { data: orderData, isLoading } = useGetAdminOrderByIdQuery({
     orderId,
     lang
   });
@@ -48,29 +41,14 @@ const DashboardOrderDetailsPage = () => {
     );
   }
 
-  if (isError) {
-    return (
-      <AppTypography
-        variant="h3"
-        component="h1"
-        textAlign="center"
-        translationKey="errors.somethingWentWrong"
-      />
-    );
-  }
-
   if (!orderData) {
-    return (
-      <AppTypography
-        variant="h3"
-        component="h1"
-        textAlign="center"
-        translationKey="ordersPage.noOrderFound"
-      />
-    );
+    return renderRedirectComponent({
+      errorType: "notFound",
+      errorMessageTranslationKey: "dashboardOrderDetailsPage.noOrderFound"
+    });
   }
 
-  return <OrderItem isExpanded={true} order={orderData} />;
+  return <OrderItem isExpanded order={orderData} />;
 };
 
 export default DashboardOrderDetailsPage;
