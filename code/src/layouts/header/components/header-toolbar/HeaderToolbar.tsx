@@ -132,7 +132,7 @@ const HeaderToolbar = () => {
   const authenticatedDashboardButton = isDashboardAvailable && (
     <AppTooltip titleTranslationKey="dashboard.tooltip">
       <AppIconButton
-        to={routes.dashboard.orders.path}
+        to={routes.dashboard.path}
         component={AppLink}
         data-cy="dashboard-button"
       >
