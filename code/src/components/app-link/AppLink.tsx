@@ -20,7 +20,7 @@ const NavLinkWrapper = forwardRef<HTMLAnchorElement, NavLinkProps>(
   ({ className, ...props }, ref) => {
     const classNameCallback = ({ isActive }: NavLinkRenderProps) =>
       cn(className, isActive && "spa-link--active");
-    return <NavLink ref={ref} className={classNameCallback} {...props} />;
+    return <NavLink ref={ref} data-testid="nav-link" className={classNameCallback} {...props} />;
   }
 );
 
