@@ -54,6 +54,7 @@ describe("useFilteredAdminOrders", () => {
       new URLSearchParams(),
       mockSetSearchParams
     ]);
+    jest.clearAllMocks();
   });
 
   describe("without filters", () => {
@@ -101,6 +102,19 @@ describe("useFilteredAdminOrders", () => {
 
       const { result } = renderHook(() => useFilteredAdminOrders());
       expect(result.current.orders).toEqual([]);
+    });
+
+    test("does not set default sort parameter if already present", () => {
+      const searchParams = new URLSearchParams("sort=total,asc");
+      (useSearchParams as jest.Mock).mockReturnValue([
+        searchParams,
+        mockSetSearchParams
+      ]);
+
+      renderHook(() => useFilteredAdminOrders());
+
+      expect(mockSetSearchParams).not.toHaveBeenCalled();
+      expect(searchParams.get("sort")).toEqual("total,asc");
     });
   });
 

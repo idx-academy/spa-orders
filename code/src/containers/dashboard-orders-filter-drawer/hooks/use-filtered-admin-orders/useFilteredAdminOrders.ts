@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { defaultAdminOrderFilters } from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders.constants";
@@ -24,7 +25,9 @@ const useFilteredAdminOrders = () => {
 
   const [searchParams] = useSearchParams();
 
-  const sortParam = searchParams.get("sort") as SortOrder | null;
+  const sortParam = searchParams.get("sort") as SortOrder;
+
+  console.log("hook calls");
 
   const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
     lang: locale,
@@ -35,7 +38,7 @@ const useFilteredAdminOrders = () => {
     deliveryMethods,
     createdBefore: dateRange?.end.toISOString(),
     createdAfter: dateRange?.start.toISOString(),
-    sort: sortParam ?? undefined
+    sort: sortParam
   });
 
   const orders = ordersResponse?.content ?? [];

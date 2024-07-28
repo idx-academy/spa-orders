@@ -3,7 +3,13 @@
 .spa-order-table__head {
   background-color: var(--spa-order-table-head-bg-color, $light-alpha);
   color: var(--spa-order-table-head-color, $white);
+  .Mui-active {
+    color: var(--spa-order-table-head-bg-active-color, $purple-light);
 
+    .MuiTableSortLabel-icon {
+      color: var(--spa-order-table-head-bg-icon-active-color, $purple-light);
+    }
+  }
   &-label {
     .MuiTableSortLabel-icon {
       opacity: 1;
