@@ -9,7 +9,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
-import calculateCartItemsCounter from "@/utils/calculate-cart-items-counter/lculateCartItemsCounter";
+import calculateCartItemsCounter from "@/utils/calculate-cart-items-counter/calculateCartItemsCounter";
 
 const HeaderCartButton = () => {
   const { openDrawer } = useDrawerContext();

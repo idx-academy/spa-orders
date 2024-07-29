@@ -1,5 +1,5 @@
 import { CartItem } from "@/types/cart.types";
-import calculateCartItemsCounter from "@/utils/calculate-cart-items-counter/lculateCartItemsCounter";
+import calculateCartItemsCounter from "@/utils/calculate-cart-items-counter/calculateCartItemsCounter";
 
 const generateCart = (length: number, increaseQuantity: boolean = false) => {
   return Array.from({ length }, (_, i) => ({
