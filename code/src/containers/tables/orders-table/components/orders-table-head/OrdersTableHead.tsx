@@ -59,9 +59,7 @@ const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
 
   useEffect(() => {
     if (!searchParams.has("sort")) {
-      const newSearchParams = new URLSearchParams(searchParams);
-      newSearchParams.set("sort", "createdAt,desc");
-      setSearchParams(newSearchParams);
+      updateSearchParams("createdAt", "desc");
     }
   }, [searchParams, setSearchParams]);
 
