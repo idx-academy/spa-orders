@@ -9,6 +9,7 @@ import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRe
 import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
 import { useGetUserProductByIdQuery } from "@/store/api/productsApi";
 import formatPrice from "@/utils/format-price/formatPrice";
+import getCategoryFromTags from "@/utils/get-category-from-tags/getCategoryFromTags";
 import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus";
 
 import "@/pages/product-details/components/product-details-container/ProductDetailsContainer.scss";
@@ -39,27 +40,18 @@ const ProductDetailsContainer = ({
     return renderRedirectComponent(productNotFoundRedirectConfig);
   }
 
-  const productTags = product.tags.map((tag) => {
-    let tagValue: string;
+  const categoryTag = getCategoryFromTags(product.tags);
 
-    if (/\w+:\w+/.test(tag)) {
-      tagValue = tag.split(":")[1];
-    } else {
-      tagValue = tag;
-    }
-
-    return (
-      <AppBadge
-        key={tag}
-        badgeContent={
-          <AppTypography
-            variant="caption-small"
-            translationKey={`productsAll.${tagValue}`}
-          />
-        }
-      />
-    );
-  });
+  const categoryBadge = categoryTag && (
+    <AppBadge
+      badgeContent={
+        <AppTypography
+          variant="caption-small"
+          translationKey={`productsAll.${categoryTag}`}
+        />
+      }
+    />
+  );
 
   const productDescription = product.description
     .split("/")
@@ -95,7 +87,7 @@ const ProductDetailsContainer = ({
         <AppBox component="img" src={product.image} alt={product.name} />
       </AppBox>
       <AppBox className="product-details__summary">
-        {productTags}
+        {categoryBadge}
         <AppTypography variant="h3" component="h1">
           {product.name}
         </AppTypography>
