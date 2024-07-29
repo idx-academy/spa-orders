@@ -36,22 +36,25 @@ const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
     ? sortDirections[sortKey]
     : initialSortOrder[sortKey];
 
+  const updateSearchParams = (key: string, direction: SortOrder) => {
+    const newSort = `${key},${direction}`;
+    const params = new URLSearchParams(searchParams);
+    params.set("sort", newSort);
+    setSearchParams(params);
+  };
+
   const handleSort = () => {
-    const newSortDirection =
-      (isActive ? sortDirections[sortKey] : initialSortOrder[sortKey]) ===
-      "desc"
-        ? "asc"
-        : "desc";
+    const currentSortDirection = isActive
+      ? sortDirections[sortKey]
+      : initialSortOrder[sortKey];
+    const newSortDirection = currentSortDirection === "desc" ? "asc" : "desc";
 
     setSortDirections((prevDirections) => ({
       ...prevDirections,
       [sortKey]: newSortDirection
     }));
 
-    const newSort = `${sortKey},${newSortDirection}`;
-    const params = new URLSearchParams(searchParams);
-    params.set("sort", newSort);
-    setSearchParams(params);
+    updateSearchParams(sortKey, newSortDirection);
   };
 
   useEffect(() => {

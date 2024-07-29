@@ -22,7 +22,7 @@ const sortableFields = [
 describe("OrderTableHead", () => {
   beforeEach(() => {
     (useSearchParams as jest.Mock).mockReturnValue([
-      new URLSearchParams(`sort=${"createdAt,desc"}`),
+      new URLSearchParams({ sort: "createdAt,asc" }),
       mockSetSearchParams
     ]);
   });
@@ -43,6 +43,23 @@ describe("OrderTableHead", () => {
         </tbody>
       </table>
     );
+  };
+
+  const checkSortParams = async (index: number, expected: string) => {
+    await waitFor(() => {
+      const params = new URLSearchParams(
+        mockSetSearchParams.mock.calls[index][0]
+      );
+      expect(params.get("sort")).toBe(expected);
+    });
+  };
+
+  const checkSetSearchParamsCall = async (expectedSort: string) => {
+    await waitFor(() => {
+      expect(mockSetSearchParams).toHaveBeenCalledWith(
+        new URLSearchParams({ sort: expectedSort })
+      );
+    });
   };
 
   test("renders correctly with the provided head", () => {
@@ -81,22 +98,13 @@ describe("OrderTableHead", () => {
     expect(params.get("sort")).toBe("createdAt,asc");
 
     fireEvent.click(sortButtonCreatedAt);
-    await waitFor(() => {
-      params = new URLSearchParams(mockSetSearchParams.mock.calls[1][0]);
-      expect(params.get("sort")).toBe("createdAt,desc");
-    });
+    await checkSortParams(1, "createdAt,desc");
 
     fireEvent.click(sortButtonTotalPrice);
-    await waitFor(() => {
-      params = new URLSearchParams(mockSetSearchParams.mock.calls[2][0]);
-      expect(params.get("sort")).toBe("total,asc");
-    });
+    await checkSortParams(2, "total,asc");
 
     fireEvent.click(sortButtonCreatedAt);
-    await waitFor(() => {
-      params = new URLSearchParams(mockSetSearchParams.mock.calls[3][0]);
-      expect(params.get("sort")).toBe("createdAt,asc");
-    });
+    await checkSortParams(3, "createdAt,asc");
   });
 
   test("initial isActive is set correctly based on URL-sort parameter and icon class updates", () => {
@@ -137,30 +145,28 @@ describe("OrderTableHead", () => {
   });
 
   test("correctly updates state on sort direction change", async () => {
-    renderComponent(["ordersTable.columns.createdAt"]);
+    renderComponent([
+      "ordersTable.columns.createdAt",
+      "ordersTable.columns.totalPrice"
+    ]);
     const sortButtonCreatedAt = screen.getByText(
       /ordersTable.columns.createdAt/i
     );
+    const sortButtonTotal = screen.getByText(/ordersTable.columns.totalPrice/i);
 
     fireEvent.click(sortButtonCreatedAt);
-    await waitFor(() => {
-      expect(mockSetSearchParams).toHaveBeenCalledWith(
-        new URLSearchParams({ sort: "createdAt,asc" })
-      );
-    });
+    await checkSetSearchParamsCall("createdAt,asc");
 
     fireEvent.click(sortButtonCreatedAt);
-    await waitFor(() => {
-      expect(mockSetSearchParams).toHaveBeenCalledWith(
-        new URLSearchParams({ sort: "createdAt,desc" })
-      );
-    });
+    await checkSetSearchParamsCall("createdAt,desc");
 
     fireEvent.click(sortButtonCreatedAt);
-    await waitFor(() => {
-      expect(mockSetSearchParams).toHaveBeenCalledWith(
-        new URLSearchParams({ sort: "createdAt,asc" })
-      );
-    });
+    await checkSetSearchParamsCall("createdAt,asc");
+
+    fireEvent.click(sortButtonTotal);
+    await checkSetSearchParamsCall("total,asc");
+
+    fireEvent.click(sortButtonCreatedAt);
+    await checkSetSearchParamsCall("createdAt,asc");
   });
 });
