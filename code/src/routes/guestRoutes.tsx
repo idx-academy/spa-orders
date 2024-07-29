@@ -12,7 +12,7 @@ const ProductDetailsPage = lazy(
 const guestRoutes: RouteObject[] = [
   { index: true, element: <HomePage /> },
   { path: routePaths.products.path, element: <ProductsPage /> },
-  { path: routePaths.productDetails.path, element: <ProductDetailsPage /> }
+  { path: routePaths.productDetails.path(), element: <ProductDetailsPage /> }
 ];
 
 export default guestRoutes;

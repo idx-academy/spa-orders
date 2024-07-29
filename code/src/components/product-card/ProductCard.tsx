@@ -8,6 +8,7 @@ import { ProductCardProps } from "@/components/product-card/ProductCard.types";
 
 import cartIconWithCheck from "@/assets/icons/cart-with-check.svg";
 import cartIconWithPlus from "@/assets/icons/cart-with-plus.svg";
+import routePaths from "@/constants/routes";
 import cn from "@/utils/cn/cn";
 import formatPrice from "@/utils/format-price/formatPrice";
 
@@ -40,7 +41,10 @@ const ProductCard = ({
       className="spa-product-card"
       data-cy="product-card"
     >
-      <AppLink className="spa-product-card__link-wrapper" to="/">
+      <AppLink
+        className="spa-product-card__link-wrapper"
+        to={routePaths.productDetails.path(product.id)}
+      >
         <AppBox className="spa-product-card__img">
           <AppBox
             alt={product.name}

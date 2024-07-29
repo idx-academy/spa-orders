@@ -8,7 +8,7 @@ const routes = {
     path: "/products"
   },
   productDetails: {
-    path: "/products/:productId"
+    path: (productId = ":productId") => `/products/${productId}`
   },
   cart: {
     path: "/cart"
