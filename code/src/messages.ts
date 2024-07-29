@@ -29,6 +29,7 @@ import dashboardOrdersPageMessages from "@/pages/dashboard/dashboard-orders/mess
 import dashboardProductsPageMessages from "@/pages/dashboard/dashboard-products/messages";
 import notFoundMessages from "@/pages/not-found/messages";
 import orderPageMessages from "@/pages/orders/messages";
+import productDetailsMessages from "@/pages/product-details/messages";
 import productsItemsMessages from "@/pages/products/messages";
 
 type MessagesType = Record<Locale, Record<string, string>>;
@@ -63,7 +64,8 @@ const messages: MessagesType = {
     ...dashboardProductsPageMessages.en,
     ...dashboardNewProductPageMessages.en,
     ...productFormMessages.en,
-    ...dashboardOrderDetailsPageMessages.en
+    ...dashboardOrderDetailsPageMessages.en,
+    ...productDetailsMessages.en
   },
   uk: {
     ...commonMessages.uk,
@@ -94,7 +96,8 @@ const messages: MessagesType = {
     ...dashboardProductsPageMessages.uk,
     ...dashboardNewProductPageMessages.uk,
     ...productFormMessages.uk,
-    ...dashboardOrderDetailsPageMessages.uk
+    ...dashboardOrderDetailsPageMessages.uk,
+    ...productDetailsMessages.uk
   }
 };
 

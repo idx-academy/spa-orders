@@ -7,6 +7,9 @@ const routes = {
   products: {
     path: "/products"
   },
+  productDetails: {
+    path: "/products/:productId"
+  },
   cart: {
     path: "/cart"
   },
