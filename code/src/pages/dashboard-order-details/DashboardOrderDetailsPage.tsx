@@ -6,6 +6,7 @@ import AppLoader from "@/components/app-loader/AppLoader";
 
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
+import { dashboardOrderDetailsPageErrorConfig } from "@/pages/dashboard-order-details/DashboardOrderDetails.constants";
 import { useGetAdminOrderByIdQuery } from "@/store/api/ordersApi";
 import { OrderId } from "@/types/order.types";
 
@@ -21,10 +22,7 @@ const DashboardOrderDetailsPage = () => {
   const { renderRedirectComponent } = useErrorPageRedirect();
 
   if (!orderId) {
-    return renderRedirectComponent({
-      errorType: "notFound",
-      errorMessageTranslationKey: "errors.orderNotFound"
-    });
+    return renderRedirectComponent(dashboardOrderDetailsPageErrorConfig);
   }
 
   const { data: orderData, isLoading } = useGetAdminOrderByIdQuery({
@@ -42,10 +40,7 @@ const DashboardOrderDetailsPage = () => {
   }
 
   if (!orderData) {
-    return renderRedirectComponent({
-      errorType: "notFound",
-      errorMessageTranslationKey: "dashboardOrderDetailsPage.noOrderFound"
-    });
+    return renderRedirectComponent(dashboardOrderDetailsPageErrorConfig);
   }
 
   return <OrderItem isExpanded order={orderData} />;
