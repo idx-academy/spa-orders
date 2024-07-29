@@ -8,7 +8,10 @@ const mockDispatch = jest.fn();
 
 jest.mock(
   "@/layouts/header/components/header-toolbar/header-cart-button/HeaderCartButton",
-  () => () => <button data-testid="header-cart-button" />
+  () => ({
+    __esModule: true,
+    default: () => <button data-testid="header-cart-button" />
+  })
 );
 
 jest.mock("@/store/slices/userSlice", () => ({

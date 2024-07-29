@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import HeaderUnauthorizedUserToolbar from "@/layouts/header/components/header-toolbar/header-unauthorized-user-toolbar/HeaderUnauthorizedUserToolbar";
 
@@ -8,7 +8,10 @@ const mockOpenModal = jest.fn();
 
 jest.mock(
   "@/layouts/header/components/header-toolbar/header-cart-button/HeaderCartButton",
-  () => () => <button data-testid="header-cart-button" />
+  () => ({
+    __esModule: true,
+    default: () => <button data-testid="header-cart-button" />
+  })
 );
 
 jest.mock("@/context/modal/ModalContext", () => ({

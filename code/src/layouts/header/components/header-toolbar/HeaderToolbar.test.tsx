@@ -1,38 +1,46 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 
 import { ROLES } from "@/constants/common";
-import useGetCart from "@/hooks/use-get-cart/useGetCart";
-import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import {
-  logout,
   useIsAuthLoadingSelector,
   useIsAuthSelector,
   useUserRoleSelector
 } from "@/store/slices/userSlice";
-import { CartItem } from "@/types/cart.types";
 import { UserRole } from "@/types/user.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock(
   "@/layouts/header/components/header-toolbar/header-admin-toolbar/HeaderAdminToolbar",
-  () => () => <div>Admin Toolbar</div>
+  () => ({
+    __esModule: true,
+    default: () => <div>Admin Toolbar</div>
+  })
 );
 
 jest.mock(
   "@/layouts/header/components/header-toolbar/header-shop-manager-toolbar/HeaderShopManagerToolbar",
-  () => () => <div>Shop Manager Toolbar</div>
+  () => ({
+    __esModule: true,
+    default: () => <div>Shop Manager Toolbar</div>
+  })
 );
 
 jest.mock(
   "@/layouts/header/components/header-toolbar/header-unauthorized-user-toolbar/HeaderUnauthorizedUserToolbar",
-  () => () => <div>Unauthorized User Toolbar</div>
+  () => ({
+    __esModule: true,
+    default: () => <div>Unauthorized User Toolbar</div>
+  })
 );
 
 jest.mock(
   "@/layouts/header/components/header-toolbar/header-user-toolbar/HeaderUserToolbar",
-  () => () => <div>User Toolbar</div>
+  () => ({
+    __esModule: true,
+    default: () => <div>User Toolbar</div>
+  })
 );
 
 jest.mock("@/store/slices/userSlice", () => ({
