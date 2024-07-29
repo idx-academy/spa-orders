@@ -4,6 +4,7 @@ import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { deliveryMethods as deliveryMethodsData } from "@/constants/deliveryMethods";
+import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
 import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
 import { useGetUserProductByIdQuery } from "@/store/api/productsApi";
@@ -20,12 +21,14 @@ const ProductDetailsContainer = ({
   productId
 }: ProductDetailsContainerProps) => {
   const { renderRedirectComponent } = useErrorPageRedirect();
+  const { locale } = useLocaleContext();
   const {
     data: product,
     isLoading,
     error
   } = useGetUserProductByIdQuery({
-    productId
+    productId,
+    lang: locale
   });
 
   if (isLoading) {

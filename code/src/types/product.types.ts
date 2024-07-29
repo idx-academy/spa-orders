@@ -47,7 +47,7 @@ export type GetUserProductByIdResponse = Pick<
   quantity: number;
 };
 
-export type GetUserProductByIdParams = {
+export type GetUserProductByIdParams = Lang & {
   productId: string;
 };
 
