@@ -26,8 +26,6 @@ const useFilteredAdminOrders = () => {
 
   const sortParam = searchParams.get("sort") as SortOrder;
 
-  console.log("hook calls");
-
   const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
     lang: locale,
     isPaid: paid,

@@ -37,13 +37,11 @@ const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
     : initialSortOrder[sortKey];
 
   const handleSort = () => {
-    let newSortDirection: SortOrder;
-
-    if (isActive) {
-      newSortDirection = sortDirections[sortKey] === "desc" ? "asc" : "desc";
-    } else {
-      newSortDirection = initialSortOrder[sortKey] === "desc" ? "asc" : "desc";
-    }
+    const newSortDirection =
+      (isActive ? sortDirections[sortKey] : initialSortOrder[sortKey]) ===
+      "desc"
+        ? "asc"
+        : "desc";
 
     setSortDirections((prevDirections) => ({
       ...prevDirections,
