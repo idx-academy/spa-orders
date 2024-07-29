@@ -94,7 +94,7 @@ describe("OrderTableHead", () => {
 
     fireEvent.click(sortButtonCreatedAt);
 
-    let params = new URLSearchParams(mockSetSearchParams.mock.calls[0][0]);
+    const params = new URLSearchParams(mockSetSearchParams.mock.calls[0][0]);
     expect(params.get("sort")).toBe("createdAt,asc");
 
     fireEvent.click(sortButtonCreatedAt);
