@@ -54,7 +54,6 @@ describe("useFilteredAdminOrders", () => {
       new URLSearchParams(),
       mockSetSearchParams
     ]);
-    jest.clearAllMocks();
   });
 
   describe("without filters", () => {
