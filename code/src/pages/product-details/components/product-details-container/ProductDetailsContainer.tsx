@@ -77,7 +77,7 @@ const ProductDetailsContainer = ({
     )
   );
 
-  const inStockTypography = true && (
+  const inStockTypography = product.quantity > 0 && (
     <AppTypography
       className="product-details__in-stock"
       fontWeight="extra-bold"

@@ -40,7 +40,12 @@ export type GetUserProductsParams = Lang & {
   sort?: string;
 };
 
-export type GetUserProductByIdResponse = Product;
+export type GetUserProductByIdResponse = Pick<
+  Product,
+  "image" | "price" | "tags" | "name" | "description"
+> & {
+  quantity: number;
+};
 
 export type GetUserProductByIdParams = {
   productId: string;

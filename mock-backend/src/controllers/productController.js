@@ -35,7 +35,16 @@ const getProductById = (req, res) => {
     return;
   }
 
-  res.json(product);
+  const transformedProduct = {
+    image: product.image,
+    quantity: 10,
+    price: product.price,
+    tags: product.tags,
+    name: product.name,
+    description: product.description,
+  };
+
+  res.json(transformedProduct);
 };
 
 const getAllManagerProducts = (req, res) => {
