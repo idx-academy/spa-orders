@@ -29,18 +29,13 @@ jest.mock("@/store/slices/userSlice", () => ({
 
 const renderAndMock = (role?: UserRole) => {
   (useUserRoleSelector as jest.Mock).mockReturnValue(role);
-  renderWithProviders(<DashboardLayout />);
+  return renderWithProviders(<DashboardLayout />);
 };
 
 describe("DashboardLayout", () => {
   test("renders null if userRole is not admin or shop manager", () => {
-    renderAndMock();
-
-    const adminLayout = screen.queryByText("DashboardAdminLayout");
-    expect(adminLayout).not.toBeInTheDocument();
-
-    const managerLayout = screen.queryByText("DashboardManagerLayout");
-    expect(managerLayout).not.toBeInTheDocument();
+    const { container } = renderAndMock();
+    expect(container).toBeEmptyDOMElement();
   });
 
   test("renders AdminLayout if userRole admin", () => {
