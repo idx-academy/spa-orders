@@ -1,0 +1,141 @@
+import AppBadge from "@/components/app-badge/AppBadge";
+import AppBox from "@/components/app-box/AppBox";
+import AppButton from "@/components/app-button/AppButton";
+import AppTypography from "@/components/app-typography/AppTypography";
+
+import { deliveryMethods as deliveryMethodsData } from "@/constants/deliveryMethods";
+import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
+import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
+import { useGetUserProductByIdQuery } from "@/store/api/productsApi";
+import formatPrice from "@/utils/format-price/formatPrice";
+import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus";
+
+import "@/pages/product-details/components/product-details-container/ProductDetailsContainer.scss";
+
+type ProductDetailsContainerProps = {
+  productId: string;
+};
+
+const ProductDetailsContainer = ({
+  productId
+}: ProductDetailsContainerProps) => {
+  const { renderRedirectComponent } = useErrorPageRedirect();
+  const {
+    data: product,
+    isLoading,
+    error
+  } = useGetUserProductByIdQuery({
+    productId
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!product || (isErrorWithStatus(error) && error.status === 404)) {
+    return renderRedirectComponent(productNotFoundRedirectConfig);
+  }
+
+  const productTags = product.tags.map((tag) => {
+    let tagValue: string;
+
+    if (/\w+:\w+/.test(tag)) {
+      tagValue = tag.split(":")[1];
+    } else {
+      tagValue = tag;
+    }
+
+    return (
+      <AppBadge
+        key={tag}
+        badgeContent={
+          <AppTypography
+            variant="caption-small"
+            translationKey={`productsAll.${tagValue}`}
+          />
+        }
+      />
+    );
+  });
+
+  const productDescription = product.description
+    .split("/")
+    .map((paragraph) => (
+      <AppTypography key={paragraph}>{paragraph}</AppTypography>
+    ));
+
+  const deliveryMethods = deliveryMethodsData.map(
+    ({ image, translationKey, value }) => (
+      <AppBox className="product-details__delivery-method" key={value}>
+        <AppBox
+          component="img"
+          className="product-details__delivery-method-image"
+          src={image}
+        />
+        <AppTypography translationKey={translationKey} />
+      </AppBox>
+    )
+  );
+
+  const inStockTypography = true && (
+    <AppTypography
+      className="product-details__in-stock"
+      fontWeight="extra-bold"
+      variant="caption"
+      translationKey="productDetailsPage.inStock"
+    />
+  );
+
+  return (
+    <AppBox className="product-details">
+      <AppBox className="product-details__image-wrapper">
+        <AppBox component="img" src={product.image} alt={product.name} />
+      </AppBox>
+      <AppBox className="product-details__summary">
+        {productTags}
+        <AppTypography variant="h3" component="h1">
+          {product.name}
+        </AppTypography>
+        <AppBox>
+          <AppBox className="product-details__section">
+            {inStockTypography}
+            <AppBox className="product-details__buy-action">
+              <AppTypography
+                className="product-details__price"
+                variant="h3"
+                component="h2"
+              >
+                {formatPrice(product.price)}
+              </AppTypography>
+              <AppButton>
+                <AppTypography translationKey="productDetailsPage.buyNowButton" />
+              </AppButton>
+            </AppBox>
+          </AppBox>
+          <AppBox className="product-details__section">
+            <AppTypography
+              className="product-details__section-caption"
+              variant="caption-small"
+              translationKey="productDetailsPage.deliveryMethodsCaption"
+            />
+            <AppBox className="product-details__delivery-method-container">
+              {deliveryMethods}
+            </AppBox>
+          </AppBox>
+          <AppBox className="product-details__section">
+            <AppTypography
+              className="product-details__section-caption"
+              variant="caption-small"
+              translationKey="productDetailsPage.descriptionCaption"
+            />
+            <AppBox className="product-details__description">
+              {productDescription}
+            </AppBox>
+          </AppBox>
+        </AppBox>
+      </AppBox>
+    </AppBox>
+  );
+};
+
+export default ProductDetailsContainer;

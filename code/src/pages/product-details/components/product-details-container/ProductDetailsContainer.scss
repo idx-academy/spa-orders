@@ -1,0 +1,80 @@
+@import "@design-system";
+
+.product-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: spacing(8) spacing(15);
+  background-color: $white;
+  padding: spacing(6);
+
+  &__image-wrapper {
+    flex: 3;
+    width: 100%;
+    min-width: 300px;
+    max-width: 700px;
+  }
+
+  &__image-wrapper img {
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid $ghost-alpha;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(5);
+    flex: 5;
+    min-width: min-content;
+
+    @include breakpoint("md") {
+      overflow-y: scroll;
+      height: 510px;
+    }
+  }
+
+  &__in-stock {
+    color: $green;
+  }
+
+  &__buy-action {
+    display: flex;
+    column-gap: spacing(6);
+    align-items: center;
+  }
+
+  &__delivery-method-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: spacing(4);
+  }
+
+  &__delivery-method {
+    display: flex;
+    column-gap: spacing(2);
+    align-items: center;
+  }
+
+  &__delivery-method-image {
+    width: 22px;
+  }
+
+  &__section {
+    border-top: 1px solid $ghost-alpha;
+    padding: spacing(4) spacing(2);
+    display: flex;
+    flex-direction: column;
+    gap: spacing(2);
+  }
+
+  &__section-caption {
+    color: $gray;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    row-gap: spacing(2);
+  }
+}

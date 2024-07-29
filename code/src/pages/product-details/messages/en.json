@@ -1,4 +1,8 @@
 {
   "productDetailsPage.notFound": "Sorry, but the product was not found.\nPlease select another product or try again later.",
-  "productDetailsPage.goBack": "Continue shopping"
+  "productDetailsPage.goBack": "Continue shopping",
+  "productDetailsPage.buyNowButton": "Buy now",
+  "productDetailsPage.inStock": "In stock",
+  "productDetailsPage.deliveryMethodsCaption": "Delivery methods",
+  "productDetailsPage.descriptionCaption": "Description"
 }
