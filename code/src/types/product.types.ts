@@ -40,6 +40,12 @@ export type GetUserProductsParams = Lang & {
   sort?: string;
 };
 
+export type GetUserProductByIdResponse = Product;
+
+export type GetUserProductByIdParams = {
+  productId: string;
+};
+
 export type GetManagerProductsResponse = {
   totalElements: number;
   totalPages: number;
