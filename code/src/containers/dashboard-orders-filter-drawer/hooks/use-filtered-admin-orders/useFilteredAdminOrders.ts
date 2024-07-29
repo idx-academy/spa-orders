@@ -1,4 +1,3 @@
-import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { defaultAdminOrderFilters } from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders.constants";
