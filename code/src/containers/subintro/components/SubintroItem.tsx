@@ -12,7 +12,7 @@ const SubintroItem = ({ content, icon }: SubintroItemProps) => {
       <img className="spa-subintro__icon" src={icon} />
       <AppTypography
         translationKey={content}
-        variant="subtitle2"
+        variant="subtitle1"
         className="spa-subintro__content"
       />
     </AppBox>
