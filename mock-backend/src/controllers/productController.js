@@ -20,10 +20,22 @@ const getAllProducts = (req, res) => {
   const response = {
     content: slicedProducts,
     totalPages: Math.ceil(products.length / size),
-    totalElements: products.length
+    totalElements: products.length,
   };
 
   res.json(response);
+};
+
+const getProductById = (req, res) => {
+  const { productId } = req.params;
+  const product = products.find((product) => product.id === productId);
+
+  if (!product) {
+    res.status(404).json({ status: 404, message: "Product not found" });
+    return;
+  }
+
+  res.json(product);
 };
 
 const getAllManagerProducts = (req, res) => {
@@ -31,7 +43,12 @@ const getAllManagerProducts = (req, res) => {
 };
 
 const createProduct = (req, res) => {
-  res.status(201).json()
-}
+  res.status(201).json();
+};
 
-module.exports = { getAllProducts, createProduct, getAllManagerProducts };
+module.exports = {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  getAllManagerProducts,
+};
