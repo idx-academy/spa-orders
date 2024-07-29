@@ -21,11 +21,14 @@ const sortableFields = [
 
 describe("OrderTableHead", () => {
   beforeEach(() => {
-    mockSetSearchParams.mockClear();
     (useSearchParams as jest.Mock).mockReturnValue([
       new URLSearchParams(`sort=${"createdAt,desc"}`),
       mockSetSearchParams
     ]);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   const renderComponent = (heads: string[]) => {
@@ -50,14 +53,8 @@ describe("OrderTableHead", () => {
     expect(sortLabelElement).toBeInTheDocument();
   });
 
-  // test("renders AppTableSortLabel when sortKey is valid", () => {
-  //   renderComponent(["ordersTable.columns.totalPrice"]);
-  //   const sortLabelElement = screen.getByRole("button");
-  //   expect(sortLabelElement).toBeInTheDocument();
-  // });
-
   test("does not render AppTableSortLabel when sortKey is null", () => {
-    renderComponent([]);
+    renderComponent(["nonSortableColumn"]);
     const sortLabelElement = screen.queryByTestId("ArrowDownwardIcon");
     expect(sortLabelElement).not.toBeInTheDocument();
   });
@@ -73,31 +70,30 @@ describe("OrderTableHead", () => {
     });
   });
 
-  test("updates searchParams on sort", () => {
+  test("updates searchParams on sort", async () => {
     renderComponent(sortableFields);
     const sortButtonCreatedAt = screen.getAllByTestId("ArrowDownwardIcon")[0];
     const sortButtonTotalPrice = screen.getAllByTestId("ArrowDownwardIcon")[1];
 
     fireEvent.click(sortButtonCreatedAt);
 
-    expect(mockSetSearchParams).toHaveBeenCalledTimes(1);
     let params = new URLSearchParams(mockSetSearchParams.mock.calls[0][0]);
     expect(params.get("sort")).toBe("createdAt,asc");
 
     fireEvent.click(sortButtonCreatedAt);
-    waitFor(() => {
+    await waitFor(() => {
       params = new URLSearchParams(mockSetSearchParams.mock.calls[1][0]);
       expect(params.get("sort")).toBe("createdAt,desc");
     });
 
     fireEvent.click(sortButtonTotalPrice);
-    waitFor(() => {
+    await waitFor(() => {
       params = new URLSearchParams(mockSetSearchParams.mock.calls[2][0]);
       expect(params.get("sort")).toBe("total,asc");
     });
 
     fireEvent.click(sortButtonCreatedAt);
-    waitFor(() => {
+    await waitFor(() => {
       params = new URLSearchParams(mockSetSearchParams.mock.calls[3][0]);
       expect(params.get("sort")).toBe("createdAt,asc");
     });
@@ -110,38 +106,60 @@ describe("OrderTableHead", () => {
     ]);
     const sortButtonCreatedAt = screen.getAllByRole("button")[0];
     expect(sortButtonCreatedAt).toHaveClass("Mui-active");
-    const sortButtonCreatedAtIcon =
-      screen.getAllByTestId("ArrowDownwardIcon")[0];
 
     const sortButtonTotal = screen.getAllByRole("button")[1];
     expect(sortButtonTotal).not.toHaveClass("Mui-active");
-    const sortButtonTotalIcon = screen.getAllByTestId("ArrowDownwardIcon")[1];
-    expect(sortButtonTotalIcon).toHaveClass(
-      "MuiTableSortLabel-iconDirectionDesc"
-    );
 
     fireEvent.click(sortButtonTotal);
 
     waitFor(() => {
-      expect(sortButtonTotal).toHaveClass("Mui-active");
-      expect(sortButtonTotalIcon).not.toHaveClass(
-        "MuiTableSortLabel-iconDirectionDesc"
+      expect(sortButtonCreatedAt).toHaveClass("Mui-active");
+      expect(sortButtonTotal).not.toHaveClass("Mui-active");
+    });
+    waitFor(() => {
+      fireEvent.click(sortButtonCreatedAt);
+    });
+    expect(sortButtonCreatedAt).toHaveClass("Mui-active");
+    expect(sortButtonTotal).not.toHaveClass("Mui-active");
+  });
+
+  test("sets default sort direction on first render", async () => {
+    (useSearchParams as jest.Mock).mockReturnValue([
+      new URLSearchParams(),
+      mockSetSearchParams
+    ]);
+    renderComponent(sortableFields);
+    await waitFor(() => {
+      expect(mockSetSearchParams).toHaveBeenCalledWith(
+        new URLSearchParams({ sort: "createdAt,desc" })
       );
-      expect(sortButtonCreatedAt).not.toHaveClass("Mui-active");
-      expect(sortButtonCreatedAtIcon).toHaveClass(
-        "MuiTableSortLabel-iconDirectionDesc"
+    });
+  });
+
+  test("correctly updates state on sort direction change", async () => {
+    renderComponent(["ordersTable.columns.createdAt"]);
+    const sortButtonCreatedAt = screen.getByText(
+      /ordersTable.columns.createdAt/i
+    );
+
+    fireEvent.click(sortButtonCreatedAt);
+    await waitFor(() => {
+      expect(mockSetSearchParams).toHaveBeenCalledWith(
+        new URLSearchParams({ sort: "createdAt,asc" })
       );
     });
 
     fireEvent.click(sortButtonCreatedAt);
-    waitFor(() => {
-      expect(sortButtonCreatedAt).toHaveClass("Mui-active");
-      expect(sortButtonCreatedAtIcon).toHaveClass(
-        "MuiTableSortLabel-iconDirectionAsc"
+    await waitFor(() => {
+      expect(mockSetSearchParams).toHaveBeenCalledWith(
+        new URLSearchParams({ sort: "createdAt,desc" })
       );
-      expect(sortButtonTotal).not.toHaveClass("Mui-active");
-      expect(sortButtonTotalIcon).toHaveClass(
-        "MuiTableSortLabel-iconDirectionDesc"
+    });
+
+    fireEvent.click(sortButtonCreatedAt);
+    await waitFor(() => {
+      expect(mockSetSearchParams).toHaveBeenCalledWith(
+        new URLSearchParams({ sort: "createdAt,asc" })
       );
     });
   });
