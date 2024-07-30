@@ -6,3 +6,16 @@ export const sortingNameParamMap = {
   "Name A-Z": "name,asc",
   "Name Z-A": "name,desc"
 };
+
+export const orderDeliveryStatuses = {
+  "In progress": "IN_PROGRESS",
+  Shipped: "SHIPPED",
+  Delivered: "DELIVERED",
+  Canceled: "CANCELED",
+  Completed: "COMPLETED"
+} as const;
+
+export const deliveryMethods = {
+  "Nova Post": "NOVA",
+  "Ukr Post": "UKRPOSHTA"
+} as const;
