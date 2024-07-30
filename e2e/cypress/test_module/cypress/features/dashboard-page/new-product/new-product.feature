@@ -1,7 +1,7 @@
 Feature: | New Product |
 
   Background: Before each
-    Given I authenticate to the system under ROLE_MANAGER role
+    Given I authenticate to the system under "ROLE_MANAGER" role
     When I click on the Dashboard button
     When I click on the 'products' tab
 
