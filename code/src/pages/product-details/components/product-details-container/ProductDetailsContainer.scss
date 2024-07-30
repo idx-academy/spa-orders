@@ -16,7 +16,7 @@
   &__image-wrapper img {
     width: 100%;
     object-fit: cover;
-    border: 1px solid $ghost-alpha;
+    border: 1px solid var(--spa-product-details-delimiter-color, $ghost-alpha);
   }
 
   &__summary {
@@ -33,7 +33,7 @@
   }
 
   &__in-stock {
-    color: $green;
+    color: var(--spa-product-details-in-stock-color, $green);
   }
 
   &__buy-action {
@@ -59,7 +59,8 @@
   }
 
   &__section {
-    border-top: 1px solid $ghost-alpha;
+    border-top: 1px solid
+      var(--spa-product-details-delimiter-color, $ghost-alpha);
     padding: spacing(4) spacing(2);
     display: flex;
     flex-direction: column;
@@ -67,7 +68,7 @@
   }
 
   &__section-caption {
-    color: $gray;
+    color: var(--spa-product-details-caption-color, $gray);
   }
 
   &__description {
