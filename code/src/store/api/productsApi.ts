@@ -30,7 +30,15 @@ const productsApi = appApi.injectEndpoints({
       GetUserProductByIdResponse,
       GetUserProductByIdParams
     >({
-      query: (params) => URLS.products.getForUserById(params)
+      query: (params) => URLS.products.getForUserById(params),
+      transformErrorResponse: (response) => {
+        if (response.status !== 404) {
+          response.isSnackbarHidden = false;
+        }
+
+        return response;
+      },
+      providesTags: [rtkQueryTags.PRODUCTS]
     }),
     getManagerProducts: build.query<
       GetManagerProductsResponse,
