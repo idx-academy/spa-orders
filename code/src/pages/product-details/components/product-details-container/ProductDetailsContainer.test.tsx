@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 
+import { deliveryMethods } from "@/constants/deliveryMethods";
 import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
 import ProductDetailsContainer from "@/pages/product-details/components/product-details-container/ProductDetailsContainer";
 import { useGetUserProductByIdQuery } from "@/store/api/productsApi";
@@ -139,7 +140,7 @@ describe("ProductDetailsContainer", () => {
     const deliveryMethodImages = screen.getAllByAltText(
       /dashboardTabs.orders.filters.\w+/
     );
-    expect(deliveryMethodImages).toHaveLength(2);
+    expect(deliveryMethodImages).toHaveLength(deliveryMethods.length);
   });
 
   test("renders description correctly", () => {
