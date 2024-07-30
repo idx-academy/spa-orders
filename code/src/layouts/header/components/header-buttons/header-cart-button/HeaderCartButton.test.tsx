@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import HeaderCartButton from "@/layouts/header/components/header-toolbar/header-cart-button/HeaderCartButton";
+import HeaderCartButton from "@/layouts/header/components/header-buttons/header-cart-button/HeaderCartButton";
 
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import { CartItem } from "@/types/cart.types";

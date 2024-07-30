@@ -1,66 +1,30 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import HeaderUserToolbar from "@/layouts/header/components/header-toolbar/header-user-toolbar/HeaderUserToolbar";
 
-import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-
-const mockDispatch = jest.fn();
-
 jest.mock(
-  "@/layouts/header/components/header-toolbar/header-cart-button/HeaderCartButton",
-  () => ({
-    __esModule: true,
-    default: () => <button data-testid="header-cart-button" />
-  })
+  "@/layouts/header/components/header-buttons/header-cart-button/HeaderCartButton",
+  () => () => <div>Cart Button</div>
+);
+jest.mock(
+  "@/layouts/header/components/header-buttons/header-logout-button/HeaderLogoutButton",
+  () => () => <div>Logout Button</div>
+);
+jest.mock(
+  "@/layouts/header/components/header-buttons/header-orders-button/HeaderOrdersButton",
+  () => () => <div>Orders Button</div>
 );
 
-jest.mock("@/store/slices/userSlice", () => ({
-  logout: jest.fn()
-}));
+describe("Test HeaderUserToolbar", () => {
+  it("should render the cart button, orders button and logout button", () => {
+    render(<HeaderUserToolbar />);
 
-jest.mock("@/store/api/cartApi", () => ({
-  __esModule: true,
-  default: {
-    util: {
-      resetApiState: jest.fn()
-    }
-  }
-}));
+    const cartButton = screen.getByText("Cart Button");
+    const ordersButton = screen.getByText("Orders Button");
+    const logoutButton = screen.getByText("Logout Button");
 
-jest.mock("@/store/slices/localCart", () => ({
-  endpoints: {
-    getCartItems: {
-      matchFulfilled: jest.fn()
-    }
-  },
-  clearLocalCart: jest.fn()
-}));
-
-jest.mock("@/hooks/use-redux/useRedux", () => ({
-  __esModule: true,
-  useAppDispatch: () => mockDispatch
-}));
-
-describe("Test HeaderUserToolbar component", () => {
-  beforeEach(() => {
-    renderWithProviders(<HeaderUserToolbar />);
-  });
-
-  test("Should render orders button", () => {
-    const ordersButton = screen.getByTestId("header-orders-button");
-    const cartButton = screen.getByTestId("header-cart-button");
-    const logoutButton = screen.getByTestId("header-logout-button");
-
-    expect(ordersButton).toBeInTheDocument();
     expect(cartButton).toBeInTheDocument();
     expect(logoutButton).toBeInTheDocument();
-  });
-
-  test("Should call dispatch 3 times", () => {
-    const logoutButton = screen.getByTestId("header-logout-button");
-
-    fireEvent.click(logoutButton);
-
-    expect(mockDispatch).toHaveBeenCalledTimes(3);
+    expect(ordersButton).toBeInTheDocument();
   });
 });

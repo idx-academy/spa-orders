@@ -12,91 +12,41 @@ import { UserRole } from "@/types/user.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock(
-  "@/layouts/header/components/header-toolbar/header-admin-toolbar/HeaderAdminToolbar",
+  "@/layouts/header/utils/get-header-toolbar-by-role/getHeaderToolbarByRole",
   () => ({
     __esModule: true,
-    default: () => <div>Admin Toolbar</div>
-  })
-);
-
-jest.mock(
-  "@/layouts/header/components/header-toolbar/header-shop-manager-toolbar/HeaderShopManagerToolbar",
-  () => ({
-    __esModule: true,
-    default: () => <div>Shop Manager Toolbar</div>
-  })
-);
-
-jest.mock(
-  "@/layouts/header/components/header-toolbar/header-unauthorized-user-toolbar/HeaderUnauthorizedUserToolbar",
-  () => ({
-    __esModule: true,
-    default: () => <div>Unauthorized User Toolbar</div>
-  })
-);
-
-jest.mock(
-  "@/layouts/header/components/header-toolbar/header-user-toolbar/HeaderUserToolbar",
-  () => ({
-    __esModule: true,
-    default: () => <div>User Toolbar</div>
+    default: () => <div>Toolbar for specific role</div>
   })
 );
 
 jest.mock("@/store/slices/userSlice", () => ({
   useIsAuthLoadingSelector: jest.fn(),
-  useIsAuthSelector: jest.fn(),
   useUserRoleSelector: jest.fn()
 }));
 
-type SetupMocks = {
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  role: UserRole | null;
-};
-
-const mockAndRender = ({
-  isLoading = false,
-  role = null
-}: Partial<SetupMocks> = {}) => {
-  (useIsAuthSelector as jest.Mock).mockReturnValue(Boolean(role));
+const mockAndRender = (isLoading = false) => {
   (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(isLoading);
-  (useUserRoleSelector as jest.Mock).mockReturnValue(role);
 
   renderWithProviders(<HeaderToolbar />);
 };
 
-const testData = [
-  { role: ROLES.ADMIN, text: "Admin Toolbar" },
-  { role: ROLES.SHOP_MANAGER, text: "Shop Manager Toolbar" },
-  { role: ROLES.USER, text: "User Toolbar" },
-  { role: null, text: "Unauthorized User Toolbar" }
-];
-
 describe("Test HeaderToolbar", () => {
-  test("Should render logo and search field", () => {
+  test("Should render logo and search field and navigation toolbar", () => {
     mockAndRender();
 
     const logo = screen.getByAltText("App logo");
     const searchField = screen.getByRole("textbox");
+    const navigationToolbar = screen.getByText("Toolbar for specific role");
 
     expect(logo).toBeInTheDocument();
     expect(searchField).toBeInTheDocument();
+    expect(navigationToolbar).toBeInTheDocument();
   });
 
   test("Should render loaders when authenticatin loading is in progress", () => {
-    mockAndRender({ isLoading: true });
+    mockAndRender(true);
 
     const loaders = screen.getAllByTestId("header-icon-loader");
     expect(loaders).toHaveLength(4);
   });
-
-  test.each(testData)(
-    "Should render propriate component when the role is $role",
-    ({ role, text }) => {
-      mockAndRender({ role });
-      const toolbar = screen.getByText(text);
-      expect(toolbar).toBeInTheDocument;
-    }
-  );
 });

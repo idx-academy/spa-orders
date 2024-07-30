@@ -28,6 +28,10 @@ const HeaderCartButton = () => {
     </AppTypography>
   );
 
+  const shoppingCartIcon = (
+    <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
+  );
+
   const cartIcon = cartItemsCount ? (
     <AppBadge
       badgeContent={badgeContent}
@@ -36,10 +40,10 @@ const HeaderCartButton = () => {
       className="header__toolbar-cart-badge"
       data-testid="header-cart-badge"
     >
-      <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
+      {shoppingCartIcon}
     </AppBadge>
   ) : (
-    <ShoppingCartIcon className="header__toolbar-icon" fontSize="medium" />
+    shoppingCartIcon
   );
 
   return (
