@@ -46,7 +46,7 @@ const getAdminOrders = (req, res) => {
     totalPages: Math.ceil(adminOrders.content.length / size),
     totalElements: adminOrders.content.length,
   };
-  console.log(response);
+
   res.json(response);
 };
 
