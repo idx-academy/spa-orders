@@ -15,6 +15,7 @@ const DashboardNewProductPage = () => {
           component="h1"
           variant="h3"
           translationKey="dashboard.products.title"
+          data-cy="dashboard-new-product-title"
         />
       </AppBox>
       <NewProductForm />
