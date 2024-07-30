@@ -5,14 +5,11 @@ import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import AppBox from "@/components/app-box/AppBox";
 
 import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
+import { ProductDetailsPageParams } from "@/pages/product-details/ProductDetails.types";
 import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
 import ProductDetailsContainer from "@/pages/product-details/components/product-details-container/ProductDetailsContainer";
 
 import "@/pages/product-details/ProductDetailsPage.scss";
-
-type ProductDetailsPageParams = {
-  productId: string;
-};
 
 const ProductDetailsPage = () => {
   const { productId } = useParams<ProductDetailsPageParams>();
