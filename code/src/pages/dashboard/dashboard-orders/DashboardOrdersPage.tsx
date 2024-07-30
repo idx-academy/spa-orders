@@ -37,6 +37,7 @@ const DashboardOrdersPage = () => {
     activeFiltersCount > 0 ? (
       <AppTypography
         translationKey="dashboardTabs.orders.filters.titleWithCount"
+        data-cy="applied-filters-count"
         translationProps={{
           values: {
             count: activeFiltersCount
@@ -49,16 +50,21 @@ const DashboardOrdersPage = () => {
 
   return (
     <DashboardTabContainer>
-      <AppBox className="dashboard-orders-tab__toolbar">
+      <AppBox
+        className="dashboard-orders-tab__toolbar"
+        data-cy="dashboard-orders-tab-content"
+      >
         <AppTypography
           component="h1"
           variant="h3"
+          data-cy="orders-tab"
           translationKey="dashboardTabs.orders.title"
         />
         <AppButton
           variant="dark"
           onClick={handleOpenFilterDrawer}
           data-testid="filter-button"
+          data-cy="filter-button"
         >
           {titleTypography}
           <FilterListIcon />
