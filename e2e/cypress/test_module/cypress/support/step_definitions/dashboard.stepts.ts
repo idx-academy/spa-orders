@@ -4,9 +4,9 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { UserRole } from "@cypress-e2e/support";
 
 Given(
-  "I authenticate to the system under ROLE_MANAGER role",
+  "I authenticate to the system under {string} role",
   (role: UserRole) => {
-    cy.loginWithRole("ROLE_MANAGER");
+    cy.loginWithRole(role);
   }
 );
 
