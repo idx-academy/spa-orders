@@ -2,4 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &-pagination-container {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -55,9 +55,11 @@ export type UserOrderResponse = BaseOrderResponse & {
 
 export type AdminOrderResponse = BaseOrderResponse & {
   content: AdminOrder[];
+  totalPages: number;
+  totalItems: number;
 };
 
-export type GetAdminOrderByIdResponse = AdminOrder
+export type GetAdminOrderByIdResponse = AdminOrder;
 
 export type OrderPostParams = PostAddress & {
   userId: UserId;
@@ -91,5 +93,7 @@ export type GetAdminOrderParams = Partial<
       totalLess: number;
       createdBefore: string;
       createdAfter: string;
+      page?: number;
+      size?: number;
     }
 >;

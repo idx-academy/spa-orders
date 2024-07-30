@@ -10,14 +10,24 @@ import OrdersTable from "@/containers/tables/orders-table/OrdersTable";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
+import AppContainer from "@/components/app-container/AppContainer";
 import AppDrawer from "@/components/app-drawer/AppDrawer";
+import AppPagination from "@/components/app-pagination/AppPagination";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import "@/pages/dashboard/dashboard-orders/DashboardOrdersPage.scss";
 
 const DashboardOrdersPage = () => {
-  const { filters, filterActions, activeFiltersCount, orders, isLoading } =
-    useFilteredAdminOrders();
+  const {
+    filters,
+    filterActions,
+    activeFiltersCount,
+    orders,
+    page,
+    totalPages,
+
+    isLoading
+  } = useFilteredAdminOrders();
 
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
@@ -79,6 +89,9 @@ const DashboardOrdersPage = () => {
           closeFilterDrawer={handleCloseFilterDrawer}
         />
       </AppDrawer>
+      <AppContainer className="dashboard-orders-tab__toolbar-pagination-container">
+        <AppPagination page={page} count={totalPages} size="large" />
+      </AppContainer>
     </DashboardTabContainer>
   );
 };

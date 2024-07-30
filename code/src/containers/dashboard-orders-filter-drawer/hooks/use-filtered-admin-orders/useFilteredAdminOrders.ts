@@ -26,6 +26,10 @@ const useFilteredAdminOrders = () => {
 
   const sortParam = searchParams.get("sort") as SortOrder;
 
+  const searchParamsPage = searchParams.get("page");
+  const isPageValid = searchParamsPage && !Number.isNaN(searchParamsPage);
+  const page = isPageValid ? Number(searchParamsPage) : 1;
+
   const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
     lang: locale,
     isPaid: paid,
@@ -35,16 +39,22 @@ const useFilteredAdminOrders = () => {
     deliveryMethods,
     createdBefore: dateRange?.end.toISOString(),
     createdAfter: dateRange?.start.toISOString(),
-    sort: sortParam
+    sort: sortParam || undefined,
+    page: page - 1,
+    size: 8
   });
+  console.log(ordersResponse);
 
   const orders = ordersResponse?.content ?? [];
+  const totalPages = ordersResponse?.totalPages;
 
   return {
     filters,
     filterActions,
     activeFiltersCount,
     orders,
+    totalPages,
+    page,
     isLoading
   } as const;
 };
