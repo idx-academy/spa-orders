@@ -14,7 +14,7 @@ const CategoryItem = ({ label, image, href }: CategoryItemProps) => {
       className="spa-category-section__element"
       data-testid="spa-category-section-item"
     >
-      <AppLink to={href} key={href} className="spa-category-section__link">
+      <AppLink to={href} className="spa-category-section__link">
         <AppBox
           component="img"
           src={image}

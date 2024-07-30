@@ -71,10 +71,10 @@ const ProductsPage = () => {
         />
         <AppBox className="spa-products-page__info">
           <AppTypography className="spa-products-page__count" component="span">
-            {productsCount}
             <AppTypography
               translationKey={productsItemsLabel}
               component="span"
+              count={productsCount}
             />
           </AppTypography>
           <AppDropdown
