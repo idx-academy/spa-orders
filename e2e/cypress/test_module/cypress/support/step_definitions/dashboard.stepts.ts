@@ -1,0 +1,29 @@
+/// <reference types="cypress" />
+
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { UserRole } from "@cypress-e2e/support";
+
+Given(
+  "I authenticate to the system under ROLE_MANAGER role",
+  (role: UserRole) => {
+    cy.loginWithRole("ROLE_MANAGER");
+  }
+);
+
+When("I click on the Dashboard button", () => {
+  cy.getById("dashboard-button").click();
+});
+
+When("I can see the {string} and {string} tabs", (...tabs) => {
+  tabs.forEach((tab) => {
+    cy.getById(`dashboard-tab-${tab}`).should("be.visible");
+  });
+});
+
+When("I click on the {string} tab", (tab) => {
+  cy.getById(`dashboard-tab-${tab}`).click();
+});
+
+Then("I should see the {string} tab content", (tab) => {
+  cy.getById(`dashboard-${tab}-tab-content`).should("be.visible");
+});

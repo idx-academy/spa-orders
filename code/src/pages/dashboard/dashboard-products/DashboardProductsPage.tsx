@@ -30,13 +30,14 @@ const DashboardProductsPage = () => {
 
   return (
     <DashboardTabContainer>
-      <AppBox className="dashboard-products-tab__toolbar">
+      <AppBox className="dashboard-products-tab__toolbar" data-cy="dashboard-products-tab-content">
         <AppTypography
           component="h1"
           variant="h3"
           translationKey="dashboardTabs.products.label"
         />
         <AppButton
+          data-cy="new-product-button"
           variant="contained"
           to={routePaths.dashboard.products.new.path}
         >
