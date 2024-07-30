@@ -99,4 +99,26 @@ const managerProducts = {
   ],
 };
 
-module.exports = managerProducts;
+const managerProduct = {
+  id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  status: "VISIBLE",
+  image: "string",
+  createdAt: "2024-07-29T20:20:02.404Z",
+  quantity: 10,
+  price: 999.99,
+  tags: [
+    {
+      id: 1,
+      name: "category:mobile"
+    }
+  ],
+  productTranslations: [
+    {
+      name: "APPLE iPhone",
+      description: "Screen 6.1 Super Retina XDR, 2532x1170 / A16 Bionic chip",
+      languageCode: "en"
+    }
+  ]
+};
+
+module.exports = { managerProducts, managerProduct };

@@ -4,6 +4,8 @@ import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
 import {
   CreateProductBody,
+  GetManagerProductByIdParams,
+  GetManagerProductByIdResponse,
   GetManagerProductsParams,
   GetManagerProductsResponse,
   GetUserProductByIdParams,
@@ -47,6 +49,12 @@ const productsApi = appApi.injectEndpoints({
       query: (params) => URLS.products.getForManager(params),
       providesTags: [rtkQueryTags.ADMIN_PRODUCTS]
     }),
+    getManagerProduct: build.query<
+      GetManagerProductByIdResponse,
+      GetManagerProductByIdParams
+    >({
+      query: (params) => URLS.products.getForManagerById(params)
+    }),
     addProduct: build.mutation<
       Product,
       Pick<Product, "name" | "description" | "price">
@@ -80,5 +88,6 @@ export const {
   useGetManagerProductsQuery,
   useAddProductMutation,
   useDeleteProductMutation,
-  useCreateProductMutation
+  useCreateProductMutation,
+  useGetManagerProductQuery
 } = productsApi;

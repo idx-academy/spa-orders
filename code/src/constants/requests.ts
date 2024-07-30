@@ -12,6 +12,7 @@ import {
   OrderPostParams
 } from "@/types/order.types";
 import {
+  GetManagerProductByIdParams,
   GetManagerProductsParams,
   GetUserProductByIdParams
 } from "@/types/product.types";
@@ -30,7 +31,9 @@ export const URLS = {
       createUrlPath(`/v1/management/products`, undefined, params),
     post: "/v1/management/products",
     put: "/v1/products",
-    delete: "/v1/products"
+    delete: "/v1/products",
+    getForManagerById: ({ productId }: GetManagerProductByIdParams) =>
+      `/v1/management/products/${productId}`
   },
   orders: {
     getForUser: ({ userId, lang }: GetUserOrderParams) =>

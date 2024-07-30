@@ -34,6 +34,10 @@ const routes = {
       path: "/dashboard/products",
       new: {
         path: "/dashboard/products/new"
+      },
+      update: {
+        path: (productId: string = ":productId") =>
+          `/dashboard/products/${productId}/edit`
       }
     },
     users: {

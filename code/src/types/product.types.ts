@@ -72,3 +72,23 @@ export type CreateProductBody = {
   quantity: number;
   productTranslations: ProductTranslation[];
 };
+
+export type ManagerProductTag = {
+  id: number;
+  name: string;
+};
+
+export type GetManagerProductByIdResponse = {
+  id: string;
+  status: ManagerProductStatus;
+  image: string;
+  createdAt: string;
+  quantity: number;
+  price: number;
+  tags: ManagerProductTag[];
+  productTranslations: ProductTranslation[];
+};
+
+export type GetManagerProductByIdParams = {
+  productId: string;
+};

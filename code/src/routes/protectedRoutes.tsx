@@ -26,6 +26,13 @@ const DashboardOrderDetailsPage = lazy(
   () => import("@/pages/dashboard-order-details/DashboardOrderDetailsPage")
 );
 
+const DashboardUpdateProductPage = lazy(
+  () =>
+    import(
+      "@/pages/dashboard/dashboard-update-product/DashboardUpdateProductPage"
+    )
+);
+
 const protectedRoutes: RouteObject[] = [
   {
     path: routePaths.orders.path,
@@ -64,6 +71,10 @@ const protectedRoutes: RouteObject[] = [
       {
         path: routePaths.dashboard.products.new.path,
         element: <DashboardNewProductPage />
+      },
+      {
+        path: routePaths.dashboard.products.update.path(),
+        element: <DashboardUpdateProductPage />
       }
     ]
   },
