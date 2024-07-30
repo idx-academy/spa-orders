@@ -7,6 +7,7 @@ const getUserOrders = (req, res) => {
   res.json(userOrders);
 };
 const getAdminOrderById = (req, res) => {
+  // @TODO: add lang param usage
   const { orderId } = req.params;
   const order = adminOrders.content.find((order) => order.id === orderId);
 
