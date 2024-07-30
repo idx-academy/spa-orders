@@ -8,6 +8,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import { deliveryMethods as deliveryMethodsData } from "@/constants/deliveryMethods";
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
+import { ProductDetailsPageParams } from "@/pages/product-details/ProductDetails.types";
 import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
 import { useGetUserProductByIdQuery } from "@/store/api/productsApi";
 import formatPrice from "@/utils/format-price/formatPrice";
@@ -16,9 +17,7 @@ import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus";
 
 import "@/pages/product-details/components/product-details-container/ProductDetailsContainer.scss";
 
-type ProductDetailsContainerProps = {
-  productId: string;
-};
+type ProductDetailsContainerProps = ProductDetailsPageParams;
 
 const ProductDetailsContainer = ({
   productId
