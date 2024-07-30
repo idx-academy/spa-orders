@@ -40,7 +40,9 @@ const mockFiltersEmpty = {
   filterActions: {},
   filters: {},
   isLoading: false,
-  orders: []
+  orders: [],
+  page: 1,
+  totalPages: undefined
 };
 
 describe("useFilteredAdminOrders", () => {
@@ -193,5 +195,28 @@ describe("useFilteredAdminOrders", () => {
       );
       expect(result.current.orders).toEqual([]);
     });
+  });
+
+  test("sets page to 1 when page parameter is absent", () => {
+    const { result } = renderHook(() => useFilteredAdminOrders());
+    expect(result.current.page).toBe(1);
+  });
+
+  test("sets page to the value of the page parameter when present and valid", () => {
+    (useSearchParams as jest.Mock).mockReturnValue([
+      new URLSearchParams("page=2"),
+      mockSetSearchParams
+    ]);
+    const { result } = renderHook(() => useFilteredAdminOrders());
+    expect(result.current.page).toBe(2);
+  });
+
+  test("sets page to 1 when page parameter is invalid", () => {
+    (useSearchParams as jest.Mock).mockReturnValue([
+      new URLSearchParams("page=invalid"),
+      mockSetSearchParams
+    ]);
+    const { result } = renderHook(() => useFilteredAdminOrders());
+    expect(result.current.page).toBe(NaN);
   });
 });

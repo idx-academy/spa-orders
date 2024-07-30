@@ -35,6 +35,7 @@ type RenderAndMock = {
   isLoading?: boolean;
   orders?: AdminOrder;
   activeFiltersCount?: number;
+  totalPages?: number;
 };
 
 const defaultArgs = {
@@ -42,7 +43,8 @@ const defaultArgs = {
   filterActions: {},
   activeFiltersCount: 0,
   orders: [],
-  isLoading: false
+  isLoading: false,
+  totalPages: 1
 };
 
 const renderAndMock = (args: RenderAndMock = {}) => {
@@ -112,5 +114,22 @@ describe("OrdersTab", () => {
     // @TODO: close drawer
 
     expect(mockSetIsFilterDrawerOpen).toHaveBeenCalledWith(false);
+  });
+
+  test("Should not render pagination if there are one page", () => {
+    renderAndMock();
+
+    const prevPageButton = screen.queryByLabelText("Go to previous page");
+
+    expect(prevPageButton).not.toBeInTheDocument();
+  });
+
+  test("Should not render pagination if there are one page", () => {
+    const totalPages = 2;
+    renderAndMock({ totalPages });
+
+    const prevPageButton = screen.getByLabelText("Go to previous page");
+
+    expect(prevPageButton).toBeInTheDocument();
   });
 });

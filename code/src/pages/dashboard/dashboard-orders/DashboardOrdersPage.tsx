@@ -25,7 +25,6 @@ const DashboardOrdersPage = () => {
     orders,
     page,
     totalPages,
-
     isLoading
   } = useFilteredAdminOrders();
 
@@ -58,6 +57,13 @@ const DashboardOrdersPage = () => {
       <AppTypography translationKey="dashboardTabs.orders.filters.title" />
     );
 
+  const paginationBlock =
+    (totalPages ?? 0) > 1 ? (
+      <AppContainer className="dashboard-orders-tab__toolbar-pagination-container">
+        <AppPagination page={page} count={totalPages} size="large" />
+      </AppContainer>
+    ) : null;
+
   return (
     <DashboardTabContainer>
       <AppBox
@@ -89,9 +95,7 @@ const DashboardOrdersPage = () => {
           closeFilterDrawer={handleCloseFilterDrawer}
         />
       </AppDrawer>
-      <AppContainer className="dashboard-orders-tab__toolbar-pagination-container">
-        <AppPagination page={page} count={totalPages} size="large" />
-      </AppContainer>
+      {paginationBlock}
     </DashboardTabContainer>
   );
 };
