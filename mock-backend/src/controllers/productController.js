@@ -27,6 +27,7 @@ const getAllProducts = (req, res) => {
 };
 
 const getProductById = (req, res) => {
+  // @TODO: add lang param usage
   const { productId } = req.params;
   const product = products.find((product) => product.id === productId);
 
