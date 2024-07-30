@@ -15,6 +15,7 @@ const DashboardTab = ({ tab }: DashboardTabProps) => {
       key={tab.name}
       className={cn("dashboard-tabs__label-item")}
       data-testid="dashboard-tab-label"
+      data-cy={`dashboard-tab-${tab.name}`}
       to={tab.name}
       isNavLink
     >

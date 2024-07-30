@@ -83,7 +83,11 @@ const AppRangeSlider = ({
           value={rangeStart}
           onChange={handleRangeStartChange}
           className={cn(className?.toolbarInput)}
-          inputProps={{ "data-testid": "range-start", ...commonRangeProps }}
+          inputProps={{
+            "data-testid": "range-start",
+            "data-cy": "price-range-from",
+            ...commonRangeProps
+          }}
         />
         <AppTypography variant="caption" translationKey="filters.to" />
         <AppInput
@@ -92,7 +96,11 @@ const AppRangeSlider = ({
           value={rangeEnd}
           onChange={handleRangeEndChange}
           className={cn(className?.toolbarInput)}
-          inputProps={{ "data-testid": "range-end", ...commonRangeProps }}
+          inputProps={{
+            "data-testid": "range-end",
+            "data-cy": "price-range-to",
+            ...commonRangeProps
+          }}
         />
       </AppBox>
       <Slider

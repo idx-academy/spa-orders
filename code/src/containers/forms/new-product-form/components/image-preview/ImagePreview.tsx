@@ -48,6 +48,7 @@ const ImagePreview = ({ imageInputProps }: ImagePreviewProps) => {
       <AppBox className="product-form__image-preview">{imageContent}</AppBox>
       <AppInput
         fullWidth
+        data-cy="image-url-input"
         labelTranslationKey="productForm.inputLabel.image"
         data-testid="new-product-image-input"
         {...imageInputProps}

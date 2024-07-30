@@ -67,6 +67,7 @@ const OrdersTableHead = ({ head }: OrderTableHeadProps) => {
     <AppTableCell className="spa-order-table__head">
       {sortKey ? (
         <AppTableSortLabel
+          data-cy={`table-head-${sortKey}-label`}
           active={isActive}
           onClick={handleSort}
           sortDirection={sortDirection as SortOrder}

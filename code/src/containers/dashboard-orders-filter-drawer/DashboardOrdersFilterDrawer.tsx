@@ -76,6 +76,7 @@ const DashboardOrdersFilterDrawer = ({
       onChange={handleCheckboxListChange("statuses", status as OrderStatus)}
       variant="dark"
       labelTranslationKey={translationKey}
+      data-cy={`order-${status}-status`}
     />
   ));
 
@@ -91,7 +92,7 @@ const DashboardOrdersFilterDrawer = ({
 
   const timespanSelectNonDefaultOptions = Object.entries(timeSpans).map(
     ([datePeriod, translationKey]) => (
-      <AppMenuItem value={datePeriod} key={datePeriod}>
+      <AppMenuItem value={datePeriod} key={datePeriod} data-cy={`${datePeriod}-date-select`}>
         <AppTypography translationKey={translationKey} />
       </AppMenuItem>
     )
@@ -107,6 +108,7 @@ const DashboardOrdersFilterDrawer = ({
       defaultValue=""
       value={filters.timespan}
       onChange={handleTimespanSelectChange}
+      data-cy='creation-date-select'
     >
       <AppMenuItem value="" disabled>
         <AppTypography translationKey="select.defaultOption" />
@@ -126,6 +128,7 @@ const DashboardOrdersFilterDrawer = ({
     ({ image, translationKey, value }) => (
       <AppBox key={value}>
         <AppCheckbox
+          data-cy={`delivery-method-${value}`}
           checked={filters["delivery-methods"].has(value as DeliveryMethod)}
           onChange={handleCheckboxListChange(
             "delivery-methods",
@@ -191,7 +194,7 @@ const DashboardOrdersFilterDrawer = ({
   };
 
   return (
-    <AppBox className="order-tab-filters">
+    <AppBox className="order-tab-filters" data-cy="orders-filter-drawer">
       <AppBox className="order-tab-filters__header">
         <AppTypography
           variant="subtitle2"
@@ -243,11 +246,16 @@ const DashboardOrdersFilterDrawer = ({
             onChange={handleIsPaidChange}
             variant="dark"
             labelTranslationKey="dashboardTabs.orders.filters.isPaid"
+            data-cy="is-paid-checkbox"
           />
         </FilterRecordAccordion>
       </AppBox>
       <AppBox className="order-tab-filters__footer">
-        <AppButton fullWidth onClick={handleApplyFilters}>
+        <AppButton
+          fullWidth
+          onClick={handleApplyFilters}
+          data-cy="apply-filters-button"
+        >
           <AppTypography translationKey="dashboardTabs.orders.filters.applyFiltersButton" />
         </AppButton>
       </AppBox>
