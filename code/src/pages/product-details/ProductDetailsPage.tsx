@@ -15,7 +15,7 @@ const ProductDetailsPage = () => {
   const { productId } = useParams<ProductDetailsPageParams>();
   const { renderRedirectComponent } = useErrorPageRedirect();
 
-  if (productId === undefined) {
+  if (!productId) {
     return renderRedirectComponent(productNotFoundRedirectConfig);
   }
 
