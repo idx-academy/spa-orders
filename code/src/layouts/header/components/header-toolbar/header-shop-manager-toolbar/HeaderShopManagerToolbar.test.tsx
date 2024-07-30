@@ -4,11 +4,17 @@ import HeaderShopManagerToolbar from "@/layouts/header/components/header-toolbar
 
 jest.mock(
   "@/layouts/header/components/header-buttons/header-dashboard-button/HeaderDashboardButton",
-  () => () => <div>Dashboard Button</div>
+  () => ({
+    __esModule: true,
+    default: () => <div>Dashboard Button</div>
+  })
 );
 jest.mock(
   "@/layouts/header/components/header-buttons/header-logout-button/HeaderLogoutButton",
-  () => () => <div>Logout Button</div>
+  () => ({
+    __esModule: true,
+    default: () => <div>Logout Button</div>
+  })
 );
 
 describe("HeaderShopManagerToolbar", () => {

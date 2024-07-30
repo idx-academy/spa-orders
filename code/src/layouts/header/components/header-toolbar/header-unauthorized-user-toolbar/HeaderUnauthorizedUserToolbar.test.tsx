@@ -4,11 +4,17 @@ import HeaderUnauthorizedUserToolbar from "@/layouts/header/components/header-to
 
 jest.mock(
   "@/layouts/header/components/header-buttons/header-cart-button/HeaderCartButton",
-  () => () => <div>Cart Button</div>
+  () => ({
+    __esModule: true,
+    default: () => <div>Cart Button</div>
+  })
 );
 jest.mock(
   "@/layouts/header/components/header-buttons/header-login-button/HeaderLoginButton",
-  () => () => <div>Login Button</div>
+  () => ({
+    __esModule: true,
+    default: () => <div>Login Button</div>
+  })
 );
 
 describe("Test HeaderUnauthorizedUserToolbar", () => {

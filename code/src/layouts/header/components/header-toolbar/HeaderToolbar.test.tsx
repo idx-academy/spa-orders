@@ -2,13 +2,7 @@ import { screen } from "@testing-library/react";
 
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 
-import { ROLES } from "@/constants/common";
-import {
-  useIsAuthLoadingSelector,
-  useIsAuthSelector,
-  useUserRoleSelector
-} from "@/store/slices/userSlice";
-import { UserRole } from "@/types/user.types";
+import { useIsAuthLoadingSelector } from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock(

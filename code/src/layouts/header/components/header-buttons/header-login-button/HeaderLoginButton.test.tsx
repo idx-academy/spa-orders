@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import HeaderLoginButton from "@/layouts/header/components/header-buttons/header-login-button/HeaderLoginButton";
 
