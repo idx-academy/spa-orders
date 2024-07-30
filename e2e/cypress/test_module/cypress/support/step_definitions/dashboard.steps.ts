@@ -3,17 +3,6 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { UserRole } from "@cypress-e2e/support";
 
-Given(
-  "I authenticate to the system under {string} role",
-  (role: UserRole) => {
-    cy.loginWithRole(role);
-  }
-);
-
-When("I click on the Dashboard button", () => {
-  cy.getById("dashboard-button").click();
-});
-
 When("I can see the {string} and {string} tabs", (...tabs) => {
   tabs.forEach((tab) => {
     cy.getById(`dashboard-tab-${tab}`).should("be.visible");

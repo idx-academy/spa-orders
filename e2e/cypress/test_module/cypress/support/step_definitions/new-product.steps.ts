@@ -47,12 +47,3 @@ When("I check the 'Visible to customers' checkbox", () => {
 When("I click on the 'Create product' button", () => {
   cy.getById("create-product-button").click();
 });
-
-Then(
-  "I should see snackbar with message 'Product successfully created'",
-  () => {
-    cy.getById("snackbar")
-      .contains("Product successfully created")
-      .should("be.visible");
-  }
-);

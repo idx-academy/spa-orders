@@ -1,8 +1,9 @@
 Feature: | Dashboard Page |
 
   Background: Before each
-    Given I authenticate to the system under "ROLE_MANAGER" role
-    When I click on the Dashboard button
+    Given I authenticate to the system under role ROLE_MANAGER
+    When I can see dashboard button on the header
+    And I click on the dashboard button
 
 
   Scenario Outline: General view of the dashboard page

@@ -26,12 +26,9 @@ Then("I should see the orders filter drawer closed", () => {
   cy.getById("orders-filter-drawer").should("not.be.visible");
 });
 
-Given(
-  "I select order status {string}",
-  (orderStatus: keyof typeof orderDeliveryStatuses) => {
-    cy.getById(`order-${orderDeliveryStatuses[orderStatus]}-status`).click();
-  }
-);
+Given("I select order status {string}", (orderStatus: string) => {
+  cy.getById(`order-${orderDeliveryStatuses[orderStatus]}-status`).click();
+});
 
 When("I select creation date {string}", (creationDate: string) => {
   cy.getById("creation-date-select").click();

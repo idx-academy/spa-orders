@@ -1,11 +1,13 @@
 Feature: | New Product |
 
   Background: Before each
-    Given I authenticate to the system under "ROLE_MANAGER" role
-    When I click on the Dashboard button
-    When I click on the 'products' tab
+    Given I authenticate to the system under role ROLE_MANAGER
+    When I can see dashboard button on the header
+    When I click on the dashboard button
 
   Scenario Outline: Create a new product
+    When I can see the "products" and "orders" tabs
+    When I click on the "products" tab
     When I click on the 'New product' button
     Then I should see the 'Create a product' form
     When I fill in the 'Image URL' field with "<imageUrl>"
@@ -18,7 +20,7 @@ Feature: | New Product |
     And I select 'Category' as "<category>"
     And I check the 'Visible to customers' checkbox
     When I click on the 'Create product' button
-    Then I should see snackbar with message 'Product successfully created'
+    Then I should receive a snackbar with message 'Product successfully created'
 
     Examples:
       | imageUrl                      | productNameEn | productNameUa    | productDescriptionEn                                  | productDescriptionUa                        | price | quantity | category |
