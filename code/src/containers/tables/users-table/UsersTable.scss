@@ -1,0 +1,5 @@
+@import "@design-system";
+
+.users-table {
+  box-shadow: var(--users-table-shadow, $shadow-black);
+}
