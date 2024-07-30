@@ -2,9 +2,13 @@ import { useParams } from "react-router-dom";
 
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
+import AppBox from "@/components/app-box/AppBox";
+
 import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
 import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
 import ProductDetailsContainer from "@/pages/product-details/components/product-details-container/ProductDetailsContainer";
+
+import "@/pages/product-details/ProductDetailsPage.scss";
 
 type ProductDetailsPageParams = {
   productId: string;
@@ -20,7 +24,9 @@ const ProductDetailsPage = () => {
 
   return (
     <PageWrapper>
-      <ProductDetailsContainer productId={productId} />
+      <AppBox className="spa-product-details-page">
+        <ProductDetailsContainer productId={productId} />
+      </AppBox>
     </PageWrapper>
   );
 };
