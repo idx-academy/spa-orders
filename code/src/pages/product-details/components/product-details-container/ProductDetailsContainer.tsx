@@ -1,3 +1,5 @@
+import { useIntl } from "react-intl";
+
 import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
@@ -23,6 +25,7 @@ const ProductDetailsContainer = ({
 }: ProductDetailsContainerProps) => {
   const { renderRedirectComponent } = useErrorPageRedirect();
   const { locale } = useLocaleContext();
+  const { formatMessage } = useIntl();
   const {
     data: product,
     isLoading,
@@ -32,12 +35,20 @@ const ProductDetailsContainer = ({
     lang: locale
   });
 
+  // @TODO: replace with actual loading fallback
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (!product || (isErrorWithStatus(error) && error.status === 404)) {
+  const isNotFoundOnServer = isErrorWithStatus(error) && error.status === 404;
+
+  if (isNotFoundOnServer) {
     return renderRedirectComponent(productNotFoundRedirectConfig);
+  }
+
+  // @TODO: add error handling
+  if (!product || error) {
+    return <div>Error...</div>;
   }
 
   const categoryTag = getCategoryFromTags(product.tags);
@@ -60,16 +71,23 @@ const ProductDetailsContainer = ({
     ));
 
   const deliveryMethods = deliveryMethodsData.map(
-    ({ image, translationKey, value }) => (
-      <AppBox className="product-details__delivery-method" key={value}>
-        <AppBox
-          component="img"
-          className="product-details__delivery-method-image"
-          src={image}
-        />
-        <AppTypography translationKey={translationKey} />
-      </AppBox>
-    )
+    ({ image, translationKey, value }) => {
+      const translatedDeliveryMethodName = formatMessage({
+        id: translationKey
+      });
+
+      return (
+        <AppBox className="product-details__delivery-method" key={value}>
+          <AppBox
+            component="img"
+            className="product-details__delivery-method-image"
+            src={image}
+            alt={translatedDeliveryMethodName}
+          />
+          <AppTypography>{translatedDeliveryMethodName}</AppTypography>
+        </AppBox>
+      );
+    }
   );
 
   const inStockTypography = product.quantity > 0 && (
