@@ -158,7 +158,7 @@ const DashboardOrdersFilterDrawer = ({
     resetFilterByKey("delivery-methods");
   };
 
-  const handlePriceRangeChange = (event: Event, value: number[]) => {
+  const handlePriceRangeChange = (value: number[]) => {
     updateFilterByKey("price", { start: value[0], end: value[1] });
   };
 

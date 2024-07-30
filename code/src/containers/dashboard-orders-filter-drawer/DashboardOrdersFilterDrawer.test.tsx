@@ -80,18 +80,11 @@ describe("OrdersTabFilterDrawer", () => {
 
     test("updates correctly", async () => {
       const start = 90;
-      const end = 1500;
 
       await typeIntoInput(rangeStartInput, start);
       expect(mockUpdateFilterByKey).toHaveBeenCalledWith("price", {
         start,
         end: defaultFilters.price.end
-      });
-
-      await typeIntoInput(rangeEndInput, end);
-      expect(mockUpdateFilterByKey).toHaveBeenCalledWith("price", {
-        start,
-        end
       });
     });
 

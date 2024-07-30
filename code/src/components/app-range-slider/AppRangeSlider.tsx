@@ -1,9 +1,10 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 
 import Slider from "@mui/material/Slider";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppInput from "@/components/app-input/AppInput";
+import { AppInputProps } from "@/components/app-input/AppInput.types";
 import { AppRangeSliderProps } from "@/components/app-range-slider/AppRangeSlider.types";
 import AppTypography from "@/components/app-typography/AppTypography";
 
@@ -11,104 +12,95 @@ import cn from "@/utils/cn/cn";
 
 import "@/components/app-range-slider/AppRangeSlider.scss";
 
-const parseRangePositionValue = (
-  event: ChangeEvent<HTMLInputElement>,
-  limiterFn: typeof Math.max | typeof Math.min,
-  edgeValue: number
-) => {
-  const value = event.target.value;
-  const numericValue = parseInt(value);
-  const limitedNewValue = limiterFn(edgeValue, numericValue);
-
-  // needed for typescript, we don't need to pass first parameter at all
-  const typedEvent = event as unknown as Event;
-
-  return { typedEvent, limitedNewValue };
-};
-
 const AppRangeSlider = ({
   className,
   onChange,
   min = 0,
   max = 20000,
-  step = 10,
+  step,
   value,
   ...props
 }: AppRangeSliderProps) => {
-  const initialRangeStart = value?.[0] ?? min;
-  const initialRangeEnd = value?.[1] ?? max;
+  const rangeStart = value?.[0];
+  const rangeEnd = value?.[1];
+  const range = [rangeStart || min, rangeEnd || max];
 
-  const [rangeStart, setRangeStart] = useState(initialRangeStart);
-  const [rangeEnd, setRangeEnd] = useState(initialRangeEnd);
+  const checkValueValid = (value?: number) => {
+    if (value === undefined) {
+      return true;
+    }
 
-  const commonRangeProps = { min, max, step };
+    return value < min || value > max;
+  };
+
+  const updateWithValue = (value: number[]) => {
+    onChange?.(value);
+  };
+
+  const handleSliderChange = (event: Event, value: number | number[]) => {
+    updateWithValue(value as number[]);
+  };
 
   const handleRangeStartChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { limitedNewValue, typedEvent } = parseRangePositionValue(
-      event,
-      Math.max,
-      min
-    );
-
-    setRangeStart(limitedNewValue);
-    onChange?.(typedEvent, [limitedNewValue, rangeEnd]);
+    updateWithValue([parseInt(event.target.value), rangeEnd!]);
   };
 
   const handleRangeEndChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { limitedNewValue, typedEvent } = parseRangePositionValue(
-      event,
-      Math.min,
-      max
-    );
-
-    setRangeEnd(limitedNewValue);
-    onChange?.(typedEvent, [rangeStart, limitedNewValue]);
+    updateWithValue([rangeStart!, parseInt(event.target.value)]);
   };
 
-  const handleSliderChange = (event: Event, newValue: number | number[]) => {
-    const typedNewValue = newValue as number[];
+  const rangeStartInputValue = Number.isNaN(rangeStart) ? "" : rangeStart;
+  const rangeEndInputValue = Number.isNaN(rangeEnd) ? "" : rangeEnd;
 
-    setRangeStart(typedNewValue[0]);
-    setRangeEnd(typedNewValue[1]);
-    onChange?.(event, typedNewValue);
-  };
+  const isRangeStartInvalid = checkValueValid(rangeStart);
+  const isRangeEndInvalid = checkValueValid(rangeEnd);
+
+  const commonInputProps = {
+    type: "number",
+    fullWidth: true,
+    className: cn(className?.toolbarInput)
+  } satisfies AppInputProps;
 
   return (
     <AppBox className={cn("spa-range-slider", className?.root)}>
       <AppBox className={cn("spa-range-slider__toolbar", className?.toolbar)}>
         <AppTypography variant="caption" translationKey="filters.from" />
         <AppInput
-          type="number"
-          fullWidth
-          value={rangeStart}
-          onChange={handleRangeStartChange}
-          className={cn(className?.toolbarInput)}
+          {...commonInputProps}
           inputProps={{
+            step,
             "data-testid": "range-start",
-            "data-cy": "price-range-from",
-            ...commonRangeProps
+            "data-cy": "price-range-from"
           }}
+          value={rangeStartInputValue}
+          error={isRangeStartInvalid}
+          color={isRangeStartInvalid ? "danger" : undefined}
+          onChange={handleRangeStartChange}
+          placeholder={min.toString()}
         />
         <AppTypography variant="caption" translationKey="filters.to" />
         <AppInput
-          type="number"
-          fullWidth
-          value={rangeEnd}
-          onChange={handleRangeEndChange}
-          className={cn(className?.toolbarInput)}
+          {...commonInputProps}
           inputProps={{
+            step,
             "data-testid": "range-end",
-            "data-cy": "price-range-to",
-            ...commonRangeProps
+            "data-cy": "price-range-to"
           }}
+          value={rangeEndInputValue}
+          error={isRangeEndInvalid}
+          color={isRangeEndInvalid ? "danger" : undefined}
+          onChange={handleRangeEndChange}
+          placeholder={max.toString()}
         />
       </AppBox>
       <Slider
         data-testid="range-slider"
         className={cn("spa-range-slider__range", className?.range)}
-        value={[rangeStart, rangeEnd]}
+        value={range}
         onChange={handleSliderChange}
-        {...commonRangeProps}
+        step={step}
+        min={min}
+        max={max}
         {...props}
       />
     </AppBox>

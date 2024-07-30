@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import AppRangeSlider from "@/components/app-range-slider/AppRangeSlider";
 
@@ -14,10 +14,12 @@ describe("AppRangeSlider", () => {
     });
 
     test("uses default props correctly", async () => {
-      const rangeStartInput = screen.getByTestId("range-start");
-      expect(rangeStartInput).toHaveAttribute("min", "0");
-      expect(rangeStartInput).toHaveAttribute("max", "20000");
-      expect(rangeStartInput).toHaveAttribute("step", "10");
+      const rangeSlider = screen
+        .getByTestId("range-slider")
+        .querySelector("input");
+
+      expect(rangeSlider).toHaveAttribute("min", "0");
+      expect(rangeSlider).toHaveAttribute("max", "20000");
 
       const rangeEndInput = screen.getByTestId("range-end");
       await typeIntoInput(rangeEndInput, 90);
@@ -25,8 +27,8 @@ describe("AppRangeSlider", () => {
     });
 
     test("changes input with default props correctly", async () => {
-      const rangeEndInput = screen.getByTestId("range-end");
       const rangeStartInput = screen.getByTestId("range-start");
+      const rangeEndInput = screen.getByTestId("range-end");
 
       await typeIntoInput(rangeEndInput, 90);
       await typeIntoInput(rangeStartInput, 15);
@@ -49,7 +51,11 @@ describe("AppRangeSlider", () => {
       );
     });
 
-    test("renderWithProviderss correctly", () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    test("renders correctly", () => {
       const rangeStartInput = screen.getByTestId("range-start");
       expect(rangeStartInput).toBeInTheDocument();
 
@@ -64,28 +70,21 @@ describe("AppRangeSlider", () => {
       const rangeStartInput = screen.getByTestId("range-start");
       await typeIntoInput(rangeStartInput, 20);
 
-      expect(mockHandleChange).toHaveBeenCalledWith(
-        expect.any(Object),
-        [20, 40]
-      );
+      expect(mockHandleChange).toHaveBeenCalledWith([20, 40]);
     });
 
     test("triggers range end value change when correspoinding number input is changed", async () => {
       const rangeEndInput = screen.getByTestId("range-end");
       await typeIntoInput(rangeEndInput, 90);
 
-      expect(mockHandleChange).toHaveBeenCalledWith(
-        expect.any(Object),
-        [10, 90]
-      );
+      expect(mockHandleChange).toHaveBeenCalledWith([10, 90]);
     });
 
     test("triggers value change when range input is changes", async () => {
       const sliders = screen.getAllByRole("slider");
-
       await typeIntoInput(sliders[0], 60);
 
-      expect(mockHandleChange).toHaveBeenCalledTimes(3);
+      expect(mockHandleChange).toHaveBeenCalledTimes(1);
     });
   });
 });

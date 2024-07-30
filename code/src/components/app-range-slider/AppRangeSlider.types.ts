@@ -11,7 +11,7 @@ export type AppRangeSliderProps = Omit<
 > & {
   className?: AppRangeClassNames;
   value?: number[];
-  onChange?: (event: Event, value: number[], activeThumb?: number) => void;
+  onChange?: (value: number[]) => void;
 };
 
 export type RangeInputProps = Pick<
