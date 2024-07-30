@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import AppRangeSlider from "@/components/app-range-slider/AppRangeSlider";
 
