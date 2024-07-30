@@ -16,7 +16,7 @@ export const defaultValues: NewProductFormValues = {
 };
 
 export const categories = [
-  { label: "productsAll.mobile", id: 1 },
-  { label: "productsAll.tablet", id: 2 },
-  { label: "productsAll.computer", id: 3 }
+  { label: "productsAll.mobile", id: "mobile", value: 1 },
+  { label: "productsAll.tablet", id: "tablet", value: 2 },
+  { label: "productsAll.computer", id: "computer", value: 3 }
 ];

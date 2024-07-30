@@ -43,11 +43,8 @@ const NewProductForm = () => {
   });
 
   const { openSnackbarWithTimeout } = useSnackbar();
-
   const navigate = useNavigate();
-
   const [createProduct, { isLoading }] = useCreateProductMutation();
-
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
@@ -80,19 +77,16 @@ const NewProductForm = () => {
 
     try {
       await createProduct(product).unwrap();
-
       openSnackbarWithTimeout({
         variant: "success",
         messageTranslationKey: "productForm.creation.success"
       });
-
       navigate(routes.dashboard.products.path);
     } catch (e: unknown) {
       const messageTranslationKey =
         isErrorWithStatus(e) && e.status === 400
           ? "productForm.creation.validationError"
           : "productForm.creation.fail";
-
       openSnackbarWithTimeout({
         variant: "error",
         messageTranslationKey: messageTranslationKey
@@ -129,9 +123,10 @@ const NewProductForm = () => {
             className="product-form__text-input"
             fullWidth
             labelTranslationKey="productForm.inputLabel.name"
-            data-testid={`new-product-name-input-${locale}`}
             error={isNameError}
             helperText={nameHelperText}
+            data-testid={`new-product-name-input-${locale}`}
+            data-cy={`new-product-name-input-${locale}`}
             {...register(`productTranslations.${index}.name`)}
           />
           <AppInput
@@ -140,6 +135,7 @@ const NewProductForm = () => {
             multiline
             labelTranslationKey="productForm.inputLabel.description"
             data-testid={`new-product-description-input-${locale}`}
+            data-cy={`new-product-description-input-${locale}`}
             inputProps={{
               className: "product-form__description-input"
             }}
@@ -165,12 +161,13 @@ const NewProductForm = () => {
         value={selectedCategory}
         onChange={handleSelectChange}
         data-testid="new-product-category-select"
+        data-cy="new-product-category-select"
       >
-        {categories.map((item) => (
-          <AppMenuItem value={item.id} key={item.id}>
+        {categories.map(({ label, id, value }) => (
+          <AppMenuItem value={value} key={id} data-cy={`category-${id}`}>
             <AppTypography
               className="product-form__category-select-label"
-              translationKey={item.label}
+              translationKey={label}
             />
           </AppMenuItem>
         ))}
@@ -227,6 +224,7 @@ const NewProductForm = () => {
                 error={Boolean(errors.price)}
                 helperText={errors.price ? errors.price.message : undefined}
                 data-testid="new-product-price-input"
+                data-cy="new-product-price-input"
                 {...register("price", { valueAsNumber: true })}
               />
               <AppInput
@@ -239,6 +237,7 @@ const NewProductForm = () => {
                   errors.quantity ? errors.quantity.message : undefined
                 }
                 data-testid="new-product-quantity-input"
+                data-cy="new-product-quantity-input"
                 {...register("quantity", { valueAsNumber: true })}
               />
             </AppBox>
@@ -251,6 +250,7 @@ const NewProductForm = () => {
               labelTranslationKey="productForm.inputLabel.status"
               labelClassName="product-form__visibility-checkbox-label"
               data-testid="new-product-status-checkbox"
+              data-cy="new-product-visible-status-checkbox"
               {...register("status")}
             />
           </AppBox>
@@ -263,6 +263,7 @@ const NewProductForm = () => {
             size="extra-large"
             isLoading={isLoading}
             fullWidth
+            data-cy="create-product-button"
           >
             <AppTypography translationKey="productForm.submit" />
           </AppButton>
