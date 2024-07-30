@@ -11,12 +11,12 @@
     width: 100%;
     min-width: 300px;
     max-width: 700px;
-  }
 
-  &__image-wrapper img {
-    width: 100%;
-    object-fit: cover;
-    border: 1px solid var(--spa-product-details-delimiter-color, $ghost-alpha);
+    img {
+      width: 100%;
+      object-fit: cover;
+      border: 1px solid var(--spa-product-details-delimiter-color, $ghost-alpha);
+    }
   }
 
   &__summary {
