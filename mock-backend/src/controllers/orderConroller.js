@@ -3,6 +3,10 @@ const wait = require("../utils/wait");
 const { filterOrders } = require("../utils/filterUtils");
 const { sortOrders } = require("../utils/sortUtils");
 
+const validateNumberQueryParam = (value, defaultValue = 0) => {
+  return !isNaN(value) && Number(value) >= 0 ? Number(value) : defaultValue;
+};
+
 const getUserOrders = (req, res) => {
   res.json(userOrders);
 };
@@ -18,6 +22,9 @@ const getAdminOrderById = (req, res) => {
 };
 
 const getAdminOrders = (req, res) => {
+  const page = validateNumberQueryParam(req.query.page);
+  const size = validateNumberQueryParam(req.query.size, 8);
+
   const filteredOrders = filterOrders(adminOrders, req.query);
 
   const { sort = "createdAt,desc" } = req.query;
@@ -28,8 +35,19 @@ const getAdminOrders = (req, res) => {
       ? sortOrders(filteredOrders.content, sort)
       : filteredOrders.content,
   };
+  const skip = page * size;
+  const limit = (page + 1) * size;
 
-  res.json(sortedAdminOrders);
+  const slicedAdminOrders = sortedAdminOrders.content.slice(skip, limit);
+
+  const response = {
+    ...sortedAdminOrders,
+    content: slicedAdminOrders,
+    totalPages: Math.ceil(adminOrders.content.length / size),
+    totalElements: adminOrders.content.length,
+  };
+  console.log(response);
+  res.json(response);
 };
 
 const changeOrderStatus = (req, res) => {
