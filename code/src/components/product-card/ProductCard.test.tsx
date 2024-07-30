@@ -2,6 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 
 import ProductCard from "@/components/product-card/ProductCard";
 
+import routes from "@/constants/routes";
 import { Product } from "@/types/product.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
@@ -65,7 +66,10 @@ describe("ProductCard component", () => {
 
   test("should render product link", () => {
     const productLink = screen.getByRole("link");
-    expect(productLink).toHaveAttribute("href", "/");
+    expect(productLink).toHaveAttribute(
+      "href",
+      routes.productDetails.path(mockProduct.id)
+    );
   });
 
   test("should call useState on mount", () => {
