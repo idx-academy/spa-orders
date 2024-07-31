@@ -3,19 +3,12 @@ import { UsersTableProps } from "@/containers/tables/users-table/UsersTable.type
 import UsersTableBody from "@/containers/tables/users-table/components/users-table-body/UsersTableBody";
 import UsersTableHead from "@/containers/tables/users-table/components/users-table-head/UsersTableHead";
 
-
-
 import AppTable from "@/components/app-table/AppTable";
 import AppTypography from "@/components/app-typography/AppTypography";
 
-
-
 import { ExtendedUserDetails } from "@/types/user.types";
 
-
-
 import "@/containers/tables/users-table/UsersTable.scss";
-
 
 const UsersTable = ({ users }: UsersTableProps) => {
   const UsersTableBodyItem = (user: ExtendedUserDetails) => {

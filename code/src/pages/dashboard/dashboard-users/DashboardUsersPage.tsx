@@ -1,17 +1,10 @@
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
-
-
 import UsersTable from "@/containers/tables/users-table/UsersTable";
-
-
 
 import AppTypography from "@/components/app-typography/AppTypography";
 
-
-
 import { useGetUsersForAdminDashboardQuery } from "@/store/api/usersApi";
-
 
 const DashboardUsersPage = () => {
   const { data, isLoading, isError } = useGetUsersForAdminDashboardQuery();
