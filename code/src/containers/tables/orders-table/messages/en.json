@@ -3,6 +3,7 @@
   "ordersTable.columns.status": "Status",
   "ordersTable.columns.createdAt": "Created At",
   "ordersTable.columns.receiver": "Receiver",
+  "ordersTable.columns.email": "Email",
   "ordersTable.columns.deliveryMethod": "Delivery method",
   "ordersTable.columns.totalPrice": "Total price",
   "ordersTable.columns.isPaid": "Is paid",

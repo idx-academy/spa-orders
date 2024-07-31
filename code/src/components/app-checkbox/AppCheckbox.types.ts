@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 import { FormControlLabelProps } from "@mui/material/FormControlLabel";
 
-export type AppCheckboxVariant = "contained" | "dark";
+export type AppCheckboxVariant = "contained" | "dark" | "success";
 
 export type AppCheckboxProps = Omit<
   FormControlLabelProps,
@@ -14,4 +14,5 @@ export type AppCheckboxProps = Omit<
 } & (
     | { labelTranslationKey: string; label?: never }
     | { labelTranslationKey?: never; label: ReactNode }
+    | { labelTranslationKey?: string; label?: never }
   );

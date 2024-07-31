@@ -2,6 +2,7 @@ import { AdminOrder } from "@/types/order.types";
 
 export const tableColumns = [
   "ordersTable.columns.receiver",
+  "ordersTable.columns.email",
   "ordersTable.columns.status",
   "ordersTable.columns.createdAt",
   "ordersTable.columns.deliveryMethod",

@@ -28,4 +28,28 @@
   &-status-select-input {
     padding-right: 0 !important; // To overwrite mui styles
   }
+
+  &-email {
+    @include text-truncate($line-clamp: 1);
+    overflow: hidden;
+    width: 105px;
+  }
+
+  &-checkbox {
+    & svg {
+      fill: var(
+        --new-rpoduct-form-checkbox-color,
+        $light-alpha
+      ) !important; // To rewrite mui styles and styles setted in AppCheckbox
+    }
+  }
+
+  &-checkbox-success {
+    & svg {
+      fill: var(
+        --new-rpoduct-form-checkbox-color,
+        $green
+      ) !important; // To rewrite mui styles and styles setted in AppCheckbox
+    }
+  }
 }

@@ -20,7 +20,11 @@ const OrdersTable = ({ ordersData }: OrdersTableProps) => {
   const OrderTableBodyItem = (order: AdminOrder) => {
     const handleChangeOrderStatus = (orderStatus: OrderStatus) => {
       changeOrderStatus({ orderId: order.id, orderStatus });
+
+      //change status logic there
     };
+
+    console.log(order);
 
     return (
       <OrdersTableBody

@@ -5,6 +5,7 @@ import { MenuItem } from "@mui/material";
 import { orderBadgeVariants } from "@/containers/order-item/OrderItem.constants";
 
 import AppBadge from "@/components/app-badge/AppBadge";
+import AppCheckbox from "@/components/app-checkbox/AppCheckbox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLink from "@/components/app-link/AppLink";
 import AppSelect from "@/components/app-select/AppSelect";
@@ -30,7 +31,7 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
     createdAt,
     total,
     orderStatus,
-    receiver: { firstName, lastName },
+    receiver: { firstName, lastName, email },
     postAddress: { deliveryMethod },
     isPaid
   } = order;
@@ -87,11 +88,26 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
   return (
     <>
       <AppTableCell>{orderReceiver}</AppTableCell>
+      <AppTableCell>
+        <AppTypography
+          variant="caption"
+          className="spa-order-table__body-email"
+        >
+          {email}
+        </AppTypography>
+      </AppTableCell>
       <AppTableCell>{statusBlock}</AppTableCell>
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>{deliveryMethod}</AppTableCell>
       <AppTableCell>{formatPrice(total)}</AppTableCell>
-      <AppTableCell>{isPaid && <DoneIcon color="success" />}</AppTableCell>
+
+      <AppTableCell>
+        {isPaid ? (
+          <AppCheckbox className="spa-order-table__body-checkbox-success" />
+        ) : (
+          <AppCheckbox className="spa-order-table__body-checkbox" />
+        )}
+      </AppTableCell>
       <AppTableCell>
         <AppLink to={routes.dashboard.orderDetails.path(id)}>
           <AppIconButton>
