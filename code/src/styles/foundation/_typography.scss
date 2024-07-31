@@ -2,9 +2,10 @@
 @import "functions";
 
 $font-weights: mapjoin($fw, ";");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@#{$font-weights}&display=swap");
 
-$body-font-family: var(--spa-body-font-family, $lato) !default;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@#{$font-weights}&display=swap");
+
+$body-font-family: var(--spa-body-font-family, $inter) !default;
 $body-font-size: var(--spa-body-font-size, $fs-base) !default;
 $body-font-weight: var(--spa-body-font-weight, $fw-regular) !default;
 
