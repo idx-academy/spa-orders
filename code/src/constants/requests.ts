@@ -60,5 +60,8 @@ export const URLS = {
       quantity
     }: CartManagementPatchParams) =>
       `/v1/users/${userId}/cart/${productId}/setquantity?quantity=${quantity}`
+  },
+  users: {
+    getForAdmin: "/v1/management/users"
   }
 } as const;
