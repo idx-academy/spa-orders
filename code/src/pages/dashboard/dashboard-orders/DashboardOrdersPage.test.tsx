@@ -124,7 +124,7 @@ describe("OrdersTab", () => {
     expect(prevPageButton).not.toBeInTheDocument();
   });
 
-  test("Should not render pagination if there are one page", () => {
+  test("Should render pagination if there are more than one page", () => {
     const totalPages = 2;
     renderAndMock({ totalPages });
 
