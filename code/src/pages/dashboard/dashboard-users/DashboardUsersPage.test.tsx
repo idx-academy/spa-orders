@@ -1,28 +1,16 @@
 import { screen } from "@testing-library/react";
 
-import { ROLES, USER_STATUSES } from "@/constants/common";
+import { mockUser } from "@/containers/tables/users-table/UsersTable.constants";
+
 import DashboardUsersPage from "@/pages/dashboard/dashboard-users/DashboardUsersPage";
 import { useGetUsersForAdminDashboardQuery } from "@/store/api/usersApi";
 import { RTKQueryMockState } from "@/types/common";
-import {
-  ExtendedUserDetails,
-  GetUsersForAdminResponse
-} from "@/types/user.types";
+import { GetUsersForAdminResponse } from "@/types/user.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 jest.mock("@/store/api/usersApi", () => ({
   useGetUsersForAdminDashboardQuery: jest.fn()
 }));
-
-const mockUser: ExtendedUserDetails = {
-  id: 1,
-  firstName: "John",
-  lastName: "Doe",
-  role: ROLES.ADMIN,
-  email: "johndoe@gmail.com",
-  createdAt: "2021-01-01",
-  status: USER_STATUSES.ACTIVE
-};
 
 const defaultArgs: RTKQueryMockState<GetUsersForAdminResponse> = {
   data: null,
@@ -64,7 +52,7 @@ describe("UsersTab", () => {
   test("renders table fallback when empty array is returned from backend", () => {
     mockAndRender();
 
-    const fallback = screen.getByText('usersTable.fallback');
+    const fallback = screen.getByText("usersTable.fallback");
     expect(fallback).toBeInTheDocument();
   });
 });
