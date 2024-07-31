@@ -9,10 +9,12 @@ import { useGetUsersForAdminDashboardQuery } from "@/store/api/usersApi";
 const DashboardUsersPage = () => {
   const { data, isLoading, isError } = useGetUsersForAdminDashboardQuery();
 
+  // @TODO: Add loading state
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+  // @TODO: Add error state
   if (isError) {
     return <div>Error</div>;
   }
