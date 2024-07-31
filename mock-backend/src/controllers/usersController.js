@@ -1,7 +1,7 @@
 const mockedUsers = require("../data/mockedUsers");
 
 const getAllUsers = (req, res) => {
-    res.json(mockedUsers);
+  res.json(mockedUsers);
 };
 
-module.exports = {getAllUsers};
+module.exports = { getAllUsers };
