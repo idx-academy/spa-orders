@@ -1,11 +1,11 @@
 {
   "productsAll.label": "Всі товари",
   "productsAll.computer": "Комп'ютери",
-  "productsAll.mobile": "Мобільний",
+  "productsAll.mobile": "Мобільні",
   "productsAll.tablet": "Планшети",
   "productsItems.label": "{count, plural, one {# товар} other {# товари}}",
   "productsItems.category.computer": "{count, plural, one {# комп'ютер} other {# комп'ютери}}",
-  "productsItems.category.mobile": "{count, plural, one {# мобільний} other {# мобільний}}",
+  "productsItems.category.mobile": "{count, plural, one {# мобільний} other {# мобільні}}",
   "productsItems.category.tablet": "{count, plural, one {# планшет} other {# планшети}}",
   "productsDefault.label": "Рекомендовані",
   "sortOptions.newest": "Нові",
