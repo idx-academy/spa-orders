@@ -43,7 +43,6 @@ const useFilteredAdminOrders = () => {
     page: page - 1,
     size: 8
   });
-  console.log(ordersResponse);
 
   const orders = ordersResponse?.content ?? [];
   const totalPages = ordersResponse?.totalPages;

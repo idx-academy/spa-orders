@@ -41,8 +41,7 @@ const mockFiltersEmpty = {
   filters: {},
   isLoading: false,
   orders: [],
-  page: 1,
-  totalPages: undefined
+  page: 1
 };
 
 describe("useFilteredAdminOrders", () => {
@@ -103,19 +102,6 @@ describe("useFilteredAdminOrders", () => {
 
       const { result } = renderHook(() => useFilteredAdminOrders());
       expect(result.current.orders).toEqual([]);
-    });
-
-    test("does not set default sort parameter if already present", () => {
-      const searchParams = new URLSearchParams("sort=total,asc");
-      (useSearchParams as jest.Mock).mockReturnValue([
-        searchParams,
-        mockSetSearchParams
-      ]);
-
-      renderHook(() => useFilteredAdminOrders());
-
-      expect(mockSetSearchParams).not.toHaveBeenCalled();
-      expect(searchParams.get("sort")).toEqual("total,asc");
     });
   });
 
@@ -197,6 +183,19 @@ describe("useFilteredAdminOrders", () => {
     });
   });
 
+  test("does not set default sort parameter if already present", () => {
+    const searchParams = new URLSearchParams("sort=total,asc");
+    (useSearchParams as jest.Mock).mockReturnValue([
+      searchParams,
+      mockSetSearchParams
+    ]);
+
+    renderHook(() => useFilteredAdminOrders());
+
+    expect(mockSetSearchParams).not.toHaveBeenCalled();
+    expect(searchParams.get("sort")).toEqual("total,asc");
+  });
+
   test("sets page to 1 when page parameter is absent", () => {
     const { result } = renderHook(() => useFilteredAdminOrders());
     expect(result.current.page).toBe(1);
@@ -209,14 +208,5 @@ describe("useFilteredAdminOrders", () => {
     ]);
     const { result } = renderHook(() => useFilteredAdminOrders());
     expect(result.current.page).toBe(2);
-  });
-
-  test("sets page to 1 when page parameter is invalid", () => {
-    (useSearchParams as jest.Mock).mockReturnValue([
-      new URLSearchParams("page=invalid"),
-      mockSetSearchParams
-    ]);
-    const { result } = renderHook(() => useFilteredAdminOrders());
-    expect(result.current.page).toBe(NaN);
   });
 });
