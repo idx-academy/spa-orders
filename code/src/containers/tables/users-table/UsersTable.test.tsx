@@ -1,7 +1,10 @@
 import { render, screen } from "@testing-library/react";
 
-import UsersTable from "./UsersTable";
-import { mockUser, usersTableColumns } from "./UsersTable.constants";
+import UsersTable from "@/containers/tables/users-table/UsersTable";
+import {
+  mockUser,
+  usersTableColumns
+} from "@/containers/tables/users-table/UsersTable.constants";
 
 describe("UsersTable", () => {
   test("renders correctly", () => {
@@ -27,7 +30,7 @@ describe("UsersTable", () => {
   test("renders fallback correctly", () => {
     render(<UsersTable users={[]} />);
 
-    const fallbackText = screen.getByText('usersTable.fallback');
+    const fallbackText = screen.getByText("usersTable.fallback");
     expect(fallbackText).toBeInTheDocument();
 
     const fallBackContainer = screen.getByTestId("table-fallback");
