@@ -1,4 +1,5 @@
 import { SyntheticEvent } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import { SelectChangeEvent } from "@mui/material/Select";
@@ -92,7 +93,11 @@ const DashboardOrdersFilterDrawer = ({
 
   const timespanSelectNonDefaultOptions = Object.entries(timeSpans).map(
     ([datePeriod, translationKey]) => (
-      <AppMenuItem value={datePeriod} key={datePeriod} data-cy={`${datePeriod}-date-select`}>
+      <AppMenuItem
+        value={datePeriod}
+        key={datePeriod}
+        data-cy={`${datePeriod}-date-select`}
+      >
         <AppTypography translationKey={translationKey} />
       </AppMenuItem>
     )
@@ -108,7 +113,7 @@ const DashboardOrdersFilterDrawer = ({
       defaultValue=""
       value={filters.timespan}
       onChange={handleTimespanSelectChange}
-      data-cy='creation-date-select'
+      data-cy="creation-date-select"
     >
       <AppMenuItem value="" disabled>
         <AppTypography translationKey="select.defaultOption" />

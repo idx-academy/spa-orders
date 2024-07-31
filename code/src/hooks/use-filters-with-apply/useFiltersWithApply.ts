@@ -68,7 +68,7 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
         params.delete(filterKey);
       }
     }
-
+    params.set("page", "1");
     setSearchParams(params);
   };
 

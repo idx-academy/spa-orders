@@ -132,9 +132,10 @@ describe("useFiltersWithApply", () => {
       .spyOn(URLSearchParams.prototype, "delete")
       .mockImplementationOnce(mockDelete);
 
-    expect(mockSetSearchParams).toHaveBeenCalledWith(
-      new URLSearchParams(updatedFilters)
-    );
+    const expectedParams = new URLSearchParams(updatedFilters);
+    expectedParams.set("page", "1");
+
+    expect(mockSetSearchParams).toHaveBeenCalledWith(expectedParams);
     expect(mockDelete).not.toHaveBeenCalled();
 
     (parseFiltersFromParams as jest.Mock).mockReturnValue({
@@ -149,10 +150,11 @@ describe("useFiltersWithApply", () => {
     act(() => {
       result.current.actions.applyFilters();
     });
-
-    expect(mockSetSearchParams).toHaveBeenCalledWith(
-      new URLSearchParams({ filter2: updatedFilters.filter2 })
-    );
+    const expectedParamsAfterReset = new URLSearchParams({
+      filter2: updatedFilters.filter2
+    });
+    expectedParamsAfterReset.set("page", "1");
+    expect(mockSetSearchParams).toHaveBeenCalledWith(expectedParamsAfterReset);
     expect(mockDelete).toHaveBeenCalled();
   });
 

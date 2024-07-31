@@ -135,9 +135,7 @@ describe("OrdersTabFilterDrawer", () => {
     });
 
     test("adds value to set when checkbox is checked", () => {
-      const checkbox = screen.getByLabelText(
-        deliveryMethods[0].translationKey
-      );
+      const checkbox = screen.getByLabelText(deliveryMethods[0].translationKey);
       fireEvent.click(checkbox);
       expect(mockUpdateFilterByKey).toHaveBeenCalledWith(
         "delivery-methods",
