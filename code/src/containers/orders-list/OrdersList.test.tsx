@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import OrdersList from "@/containers/orders-list/OrdersList";
 
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { UserOrder } from "@/types/order.types";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockOrder: UserOrder = {
   id: "order-1",
@@ -40,7 +41,7 @@ const mockOrder: UserOrder = {
 
 describe("Test OrdersList", () => {
   test("Should render orders list", () => {
-    render(<OrdersList orders={[mockOrder]} />);
+    renderWithProviders(<OrdersList orders={[mockOrder]} />);
 
     const emailElements = screen.getByText(
       orderStatusesTranslationKeys[mockOrder.orderStatus]

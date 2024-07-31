@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import OrderProductItem from "@/containers/order-item/components/order-product-item/OrderProductItem";
 
 import { Product } from "@/types/product.types";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockProduct: Product = {
   id: "1",
@@ -19,7 +20,7 @@ describe("OrderProductItem", () => {
     const quantity = 2;
     const price = mockProduct.price * quantity;
 
-    render(
+    renderWithProviders(
       <OrderProductItem
         product={mockProduct}
         quantity={quantity}

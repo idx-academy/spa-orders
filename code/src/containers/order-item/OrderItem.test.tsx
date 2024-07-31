@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import OrderItem from "@/containers/order-item/OrderItem";
 
 import { UserOrder } from "@/types/order.types";
 import formatPrice from "@/utils/format-price/formatPrice";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockOrder: UserOrder = {
   id: "order-1",
@@ -40,26 +41,28 @@ const mockOrder: UserOrder = {
 
 describe("OrderItem", () => {
   test("renders order receiver details", () => {
-    render(<OrderItem order={mockOrder} />);
+    renderWithProviders(<OrderItem order={mockOrder} />);
 
     const receiverEmail = screen.getByText(/john.doe@example.com/);
 
     expect(receiverEmail).toBeInTheDocument();
   });
   test("renders total price correctly", () => {
-    render(<OrderItem order={{ ...mockOrder, isPaid: true }} isExpanded />);
+    renderWithProviders(
+      <OrderItem order={{ ...mockOrder, isPaid: true }} isExpanded />
+    );
 
     const totalPrice = screen.getByText(formatPrice(mockOrder.total));
     expect(totalPrice).toBeInTheDocument();
   });
 
   test("Should not render ExpandMoreIcon when isExpanded is true", () => {
-    render(<OrderItem order={mockOrder} isExpanded />);
+    renderWithProviders(<OrderItem order={mockOrder} isExpanded />);
     const expandIcon = screen.queryByTestId("ExpandMoreIcon");
     expect(expandIcon).toBeNull();
   });
   test("Should render ExpandMoreIcon when isExpanded is false", () => {
-    render(<OrderItem order={mockOrder} isExpanded={false} />);
+    renderWithProviders(<OrderItem order={mockOrder} isExpanded={false} />);
     const expandIcon = screen.getByTestId("ExpandMoreIcon");
     expect(expandIcon).toBeInTheDocument();
   });

@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import OrderProductDetails from "@/containers/order-item/components/order-item-details/OrderItemDetails";
 
 import { UserOrder } from "@/types/order.types";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockOrder: UserOrder = {
   id: "order-1",
@@ -39,7 +40,7 @@ const mockOrder: UserOrder = {
 
 describe("Test OrderProductDetails", () => {
   test("Should correctly render address fields", () => {
-    render(<OrderProductDetails order={mockOrder} />);
+    renderWithProviders(<OrderProductDetails order={mockOrder} />);
 
     const cityField = screen.getByText(/orderProductItem.details.city/);
     const departmentField = screen.getByText(
