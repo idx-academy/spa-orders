@@ -13,7 +13,6 @@ import {
 } from "@/types/order.types";
 import {
   GetManagerProductByIdParams,
-  GetManagerProductsParams,
   GetUserProductByIdParams
 } from "@/types/product.types";
 import createUrlPath from "@/utils/create-url-path/createUrlPath";
