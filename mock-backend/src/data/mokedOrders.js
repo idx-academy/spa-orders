@@ -19,7 +19,7 @@ const userOrders = {
   empty: true,
   content: [
     {
-      id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      id: "f4831fef-35a8-4766-b50e-dcb25d7b2e7b",
       isPaid: true,
       orderStatus: "IN_PROGRESS",
       createdAt: "2024-07-05T12:35:14.396Z",
@@ -39,7 +39,7 @@ const userOrders = {
           price: 1799,
           quantity: 1,
           product: {
-            id: "123e4567-e89b-12d3-a456-426614174000123",
+            id: "126",
             name: 'Laptop Dell XPS 13 (9310) 13.4" FHD+ Touchscreen',
             description:
               "Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.",
@@ -54,7 +54,7 @@ const userOrders = {
           price: 2997,
           quantity: 4,
           product: {
-            id: "123e4567-e89b-12d3-a456-426614174000111",
+            id: "125",
             name: "APPLE iPhone",
             description:
               "Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.",
@@ -88,7 +88,7 @@ const userOrders = {
           price: 2997,
           quantity: 3,
           product: {
-            id: "123e4567-e89b-12d3-a456-42661417400012312",
+            id: "124",
             name: "APPLE iPhone",
             description:
               "Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.",
@@ -103,7 +103,7 @@ const userOrders = {
           price: 1999,
           quantity: 1,
           product: {
-            id: "123e4567-e89b-12d3-a456-42661417400011132",
+            id: "123",
             name: 'Laptop HP Spectre x360 14" (2023) Intel Core i7 1TB SSD Nightfall Black',
             description:
               'Screen: 14" UHD OLED, 3840x2160 / Intel Core i7-1260P / RAM 16 GB / 1TB SSD / Wi-Fi 6E / Bluetooth 5.2 / Windows 11 Home / 66 Wh battery',
@@ -140,7 +140,7 @@ const adminOrders = {
   empty: true,
   content: [
     {
-      id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      id: "126bf189-9f8c-46ed-9138-f74d9d93206e",
       isPaid: true,
       orderStatus: "IN_PROGRESS",
       createdAt: "2024-07-05T12:35:14.396Z",
@@ -160,7 +160,7 @@ const adminOrders = {
           price: 1799,
           quantity: 1,
           product: {
-            id: "123e4567-e89b-12d3-a456-426614174000123",
+            id: "126bf189-9f8c-46ed-9138-f74d9d93206e",
             name: 'Laptop Dell XPS 13 (9310) 13.4" FHD+ Touchscreen',
             description:
               "Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.",
@@ -175,7 +175,7 @@ const adminOrders = {
           price: 2997,
           quantity: 4,
           product: {
-            id: "123e4567-e89b-12d3-a456-426614174000111",
+            id: "6394f3b7-ce20-44b5-a2d0-f77395cb780c",
             name: "APPLE iPhone",
             description:
               "Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.Device type, operation system, etc.",

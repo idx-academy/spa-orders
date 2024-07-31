@@ -4,15 +4,20 @@ $divider-color: var(--spa-order-divider-color, $ghost-alpha);
 
 .spa-order-product {
   flex-grow: 1;
+
   &__items {
+    display: flex;
+    flex-direction: column;
+    gap: spacing(3);
+    padding-bottom: spacing(3);
     border-bottom: 1px solid $divider-color;
   }
+
   &__container {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: spacing(2);
   }
 
   &__info {
