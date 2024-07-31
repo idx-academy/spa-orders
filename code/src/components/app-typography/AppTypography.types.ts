@@ -29,7 +29,6 @@ export type AppTypographyProps<T extends ElementType = "span"> = Omit<
 } & (
     | {
         translationKey: string;
-        count?: number;
         translationProps?: TranslationProps;
         children?: never;
       }

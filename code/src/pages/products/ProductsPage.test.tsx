@@ -91,7 +91,9 @@ describe("ProductsPage", () => {
   test("renders the product count correctly", () => {
     renderAndMock();
 
-    const productsCountElement = screen.getByText(mockProducts.length);
+    const productsCountElement = screen.getByText(
+      `productsItems.label/count:${mockProducts.length}`
+    );
 
     expect(productsCountElement).toBeInTheDocument();
   });
@@ -161,7 +163,7 @@ describe("ProductsPage", () => {
       }
     });
 
-    const productsCount = screen.getByText("0");
+    const productsCount = screen.getByText("productsItems.label/count:0");
     const linksElemnts = screen.queryAllByRole("link");
 
     expect(productsCount).toBeInTheDocument();

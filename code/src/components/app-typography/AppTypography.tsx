@@ -32,16 +32,11 @@ const AppTypography = <T extends ElementType = "span">({
   component,
   children,
   translationKey,
-  count,
   translationProps,
   ...props
 }: AppTypographyProps<T>) => {
   const TypographyContent = translationKey ? (
-    <FormattedMessage
-      id={translationKey}
-      {...translationProps}
-      values={{ count }}
-    />
+    <FormattedMessage id={translationKey} {...translationProps} />
   ) : (
     children
   );

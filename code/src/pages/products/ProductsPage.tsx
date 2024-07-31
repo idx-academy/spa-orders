@@ -74,7 +74,7 @@ const ProductsPage = () => {
             <AppTypography
               translationKey={productsItemsLabel}
               component="span"
-              count={productsCount}
+              translationProps={{ values: { count: productsCount } }}
             />
           </AppTypography>
           <AppDropdown
