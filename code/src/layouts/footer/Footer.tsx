@@ -17,7 +17,7 @@ const Footer = () => {
   const locationItems = locationFooterItems.map((item) => (
     <AppBox component="li" className="footer__list-item" key={item.label}>
       <AppTypography
-        className="footer__list-item-link"
+        className={item.href && "footer__list-item-link"}
         translationKey={item.label}
         component={item.href ? AppLink : undefined}
         to={item.href as string}
