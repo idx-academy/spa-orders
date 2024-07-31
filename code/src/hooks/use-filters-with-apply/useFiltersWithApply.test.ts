@@ -132,10 +132,9 @@ describe("useFiltersWithApply", () => {
       .spyOn(URLSearchParams.prototype, "delete")
       .mockImplementationOnce(mockDelete);
 
-    const expectedParams = new URLSearchParams(updatedFilters);
-    expectedParams.set("page", "1");
-
-    expect(mockSetSearchParams).toHaveBeenCalledWith(expectedParams);
+    expect(mockSetSearchParams).toHaveBeenCalledWith(
+      new URLSearchParams(updatedFilters)
+    );
     expect(mockDelete).not.toHaveBeenCalled();
 
     (parseFiltersFromParams as jest.Mock).mockReturnValue({
@@ -150,10 +149,62 @@ describe("useFiltersWithApply", () => {
     act(() => {
       result.current.actions.applyFilters();
     });
+
+    expect(mockSetSearchParams).toHaveBeenCalledWith(
+      new URLSearchParams({ filter2: updatedFilters.filter2 })
+    );
+    expect(mockDelete).toHaveBeenCalled();
+  });
+
+  test("applies filters correctly with additional params", () => {
+    act(() => {
+      result.current.actions.updateFilterByKey(
+        "filter1",
+        updatedFilters.filter1
+      );
+      result.current.actions.updateFilterByKey(
+        "filter2",
+        updatedFilters.filter2
+      );
+    });
+
+    act(() => {
+      result.current.actions.applyFilters({
+        additionalParams: { key: "value" }
+      });
+    });
+
+    const mockDelete = jest.fn();
+    jest
+      .spyOn(URLSearchParams.prototype, "delete")
+      .mockImplementationOnce(mockDelete);
+
+    const expectedParams = new URLSearchParams(updatedFilters);
+    expectedParams.set("key", "value");
+
+    expect(mockSetSearchParams).toHaveBeenCalledWith(expectedParams);
+    expect(mockDelete).not.toHaveBeenCalled();
+
+    (parseFiltersFromParams as jest.Mock).mockReturnValue({
+      defaultActiveFilters: new Set([filterKeys.filter1]),
+      defaultFiltersFromParams: { filter1: updatedFilters.filter1 }
+    });
+
+    act(() => {
+      result.current.actions.resetFilterByKey(filterKeys.filter1);
+    });
+
+    act(() => {
+      result.current.actions.applyFilters({
+        additionalParams: { key: "value" }
+      });
+    });
+
     const expectedParamsAfterReset = new URLSearchParams({
       filter2: updatedFilters.filter2
     });
-    expectedParamsAfterReset.set("page", "1");
+    expectedParamsAfterReset.set("key", "value");
+
     expect(mockSetSearchParams).toHaveBeenCalledWith(expectedParamsAfterReset);
     expect(mockDelete).toHaveBeenCalled();
   });

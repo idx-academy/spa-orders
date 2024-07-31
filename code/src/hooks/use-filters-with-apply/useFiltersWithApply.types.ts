@@ -18,7 +18,7 @@ export type CheckFilterActive<Filters> = <Key extends keyof Filters>(
 
 export type ResetFilters = () => void;
 export type ApplyFilterOptions = {
-  withDefault: boolean;
+  additionalParams: Record<string, unknown>;
 };
 export type ApplyFilters = (options?: Partial<ApplyFilterOptions>) => void;
 
@@ -27,5 +27,5 @@ export type FilterActions<Filters> = {
   resetFilterByKey: ResetFilterByKey<Filters>;
   resetFilters: ResetFilters;
   checkFilterActive: CheckFilterActive<Filters>;
-  applyFilters: () => void;
+  applyFilters: ApplyFilters;
 };

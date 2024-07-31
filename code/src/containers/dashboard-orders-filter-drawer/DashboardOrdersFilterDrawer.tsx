@@ -194,7 +194,7 @@ const DashboardOrdersFilterDrawer = ({
   );
 
   const handleApplyFilters = () => {
-    applyFilters();
+    applyFilters({ additionalParams: { page: "1" } });
     closeFilterDrawer();
   };
 
