@@ -9,28 +9,24 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 
 
-import { UserRole, UserStatus } from "@/types/user.types";
 import formatDate from "@/utils/format-date/formatDate";
 
 
 const UsersTableBody = ({ user }: UsersTableBodyProps) => {
-  // @TODO: replace with User type
-
-  const roleBadgeDetails = roleBadges[user.role as UserRole];
-
+    const roleBadgeDetails = roleBadges[user.role];
     const roleBadge = (
-    <AppBadge
-      variant={roleBadgeDetails.variant}
-      badgeContent={
-        <AppTypography
-          variant="caption-small"
-          translationKey={roleBadgeDetails.translationKey}
-        />
-      }
-    />
-  );
+      <AppBadge
+        variant={roleBadgeDetails.variant}
+        badgeContent={
+          <AppTypography
+            variant="caption-small"
+            translationKey={roleBadgeDetails.translationKey}
+          />
+        }
+      />
+    );
 
-    const statusBadgeDetails = statusBadges[user.status as UserStatus];
+    const statusBadgeDetails = statusBadges[user.status];
   const statusBadge = (
     <AppBadge
       variant={statusBadgeDetails.variant}

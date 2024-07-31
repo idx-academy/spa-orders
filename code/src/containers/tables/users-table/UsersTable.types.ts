@@ -1,11 +1,12 @@
-// @TODO: replace with User type
+import { ExtendedUserDetails } from "@/types/user.types";
+
+
 export type UsersTableBodyProps = {
-  user: any;
+  user: ExtendedUserDetails;
 };
 
-// @TODO: replace with User type
 export type UsersTableProps = {
-  users: any[];
+  users: ExtendedUserDetails[];
 };
 
 export type UsersTableHeadProps = {

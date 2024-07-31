@@ -27,3 +27,14 @@ export type TokenPayload = {
 };
 
 export type UserDetails = User & TokenPayload;
+
+export type ExtendedUserDetails = User & {
+  status: UserStatus;
+  createdAt: string;
+};
+
+export type GetAdminUsersResponse = {
+  content: ExtendedUserDetails[];
+};
+
+export type GetAdminUsersParams = {};

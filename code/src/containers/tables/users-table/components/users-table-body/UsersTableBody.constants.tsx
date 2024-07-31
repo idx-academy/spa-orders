@@ -1,10 +1,7 @@
 import { AppBadgeColorVariant } from "@/components/app-badge/AppBadge.types";
 
-
-
 import { ROLES, USER_STATUSES } from "@/constants/common";
 import { UserRole, UserStatus } from "@/types/user.types";
-
 
 type BadgeDetails = {
   translationKey: string;
