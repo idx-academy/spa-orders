@@ -155,8 +155,8 @@ describe("useUserCartItems", () => {
 
     const { result } = renderWithMockParams({ data: cartItems });
 
-    await act(() => {
-      result.current.handleQuantityChange(cartItems[0], 2);
+    await act(async () => {
+      await result.current.handleQuantityChange(cartItems[0], 2);
     });
 
     expect(mockOpenSnackbarWithTimeout).toHaveBeenCalledWith({

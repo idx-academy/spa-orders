@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
 import CartItem from "@/pages/cart/components/cart-item/CartItem";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
@@ -53,33 +53,39 @@ describe("CartItem", () => {
   });
 
   test("should remove item after click on button", () => {
-    const deleteicon = screen.getByTestId("DeleteIcon");
-    fireEvent.click(deleteicon);
+    const deleteIcon = screen.getByTestId("DeleteIcon");
+    fireEvent.click(deleteIcon);
     expect(mockOnRemove).toHaveBeenCalled();
   });
 
-  test("should increase quantity when add icon is clicked", () => {
+  test("should increase quantity when add icon is clicked", async () => {
     const addIconElement = screen.getByTestId("AddCircleOutlineIcon");
 
     fireEvent.click(addIconElement);
 
-    expect(mockOnQuantityChange).toHaveBeenCalledWith(mockedItem, 3);
+    await waitFor(() => {
+      expect(mockOnQuantityChange).toHaveBeenCalledWith(mockedItem, 3);
+    });
   });
 
-  test("should decrease quantity when remove icon is clicked", () => {
+  test("should decrease quantity when remove icon is clicked", async () => {
     const removeIconElement = screen.getByTestId("RemoveCircleOutlineIcon");
 
     fireEvent.click(removeIconElement);
 
-    expect(mockOnQuantityChange).toHaveBeenCalledWith(mockedItem, 1);
+    await waitFor(() => {
+      expect(mockOnQuantityChange).toHaveBeenCalledWith(mockedItem, 1);
+    });
   });
 
-  test("should change quantity via input", () => {
+  test("should change quantity via input", async () => {
     const quantityInputElement = getQuantityInputElement();
 
     fireEvent.change(quantityInputElement, { target: { value: "5" } });
 
-    expect(mockOnQuantityChange).toHaveBeenCalledWith(mockedItem, 5);
+    await waitFor(() => {
+      expect(mockOnQuantityChange).toHaveBeenCalledWith(mockedItem, 5);
+    });
   });
 
   test("should reset quantity to initial value on blur if input is zero", () => {

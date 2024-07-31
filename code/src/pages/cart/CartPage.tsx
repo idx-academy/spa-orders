@@ -3,6 +3,7 @@ import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import DeliveryForm from "@/containers/forms/delivery-form/DeliveryForm";
 
 import AppBox from "@/components/app-box/AppBox";
+import AppLoader from "@/components/app-loader/AppLoader";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import useUserCartItems from "@/hooks/use-user-cart-items/useUserCartItems";
@@ -13,9 +14,21 @@ import { CartItem as CartItemType } from "@/types/cart.types";
 import "@/pages/cart/CartPage.scss";
 
 const CartPage = () => {
-  const { cartItems, isError, handleRemoveItem, handleQuantityChange } =
-    useUserCartItems();
+  const {
+    cartItems,
+    isError,
+    isCartItemsLoading,
+    handleRemoveItem,
+    handleQuantityChange,
+    optimisticTotalPrice
+  } = useUserCartItems();
+
   if (isError) return <AppTypography translationKey="error.label" />;
+
+  if (isCartItemsLoading) {
+    return <AppLoader size="extra-large" />;
+  }
+
   if (!cartItems?.items?.length) {
     return <EmptyCart />;
   }
@@ -28,8 +41,6 @@ const CartPage = () => {
       onQuantityChange={handleQuantityChange}
     />
   ));
-
-  const totalPrice = cartItems.totalPrice ?? 0;
 
   return (
     <PageWrapper>
@@ -48,7 +59,7 @@ const CartPage = () => {
             />
             {cartItemsBlock}
           </AppBox>
-          <DeliveryForm totalPrice={totalPrice} />
+          <DeliveryForm totalPrice={optimisticTotalPrice} />
         </AppBox>
       </AppBox>
     </PageWrapper>

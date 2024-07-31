@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import useRemoveFromCart from "@/hooks/use-remove-from-cart/useRemoveFromCart";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
@@ -6,6 +8,7 @@ import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
 
 const useUserCartItems = () => {
+  const [optimisticTotalPrice, setOptimisticTotalPrice] = useState(0);
   const user = useUserDetailsSelector();
   const { openSnackbarWithTimeout } = useSnackbar();
 
@@ -16,11 +19,18 @@ const useUserCartItems = () => {
   } = useGetCart();
 
   const [removeItem] = useRemoveFromCart();
+
   const {
     updateQuantity,
     isLoading: isUpdating,
     isError: updateError
   } = useUpdateCartItemQuantity();
+
+  useEffect(() => {
+    if (cartItems) {
+      setOptimisticTotalPrice(cartItems.totalPrice);
+    }
+  }, [cartItems]);
 
   const handleRemoveItem = (product: CartItem) => {
     removeItem(product);
@@ -31,6 +41,12 @@ const useUserCartItems = () => {
     newQuantity: number
   ) => {
     if (user) {
+      const oldQuantity = product.quantity;
+      const priceDifference =
+        product.productPrice * (newQuantity - oldQuantity);
+
+      setOptimisticTotalPrice((prevState) => prevState + priceDifference);
+
       try {
         await updateQuantity({
           userId: user.id,
@@ -42,6 +58,7 @@ const useUserCartItems = () => {
           messageTranslationKey: "cart.itemQuantityUpdate.fail",
           variant: "error"
         });
+        setOptimisticTotalPrice((prevState) => prevState - priceDifference);
       }
     }
   };
@@ -54,7 +71,8 @@ const useUserCartItems = () => {
     handleRemoveItem,
     handleQuantityChange,
     isUpdating,
-    updateError
+    updateError,
+    optimisticTotalPrice
   };
 };
 

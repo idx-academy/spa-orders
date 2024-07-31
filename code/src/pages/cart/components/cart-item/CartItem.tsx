@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -7,6 +7,7 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
 import { CartItemProps } from "@/types/cart.types";
 import cn from "@/utils/cn/cn";
 import formatPrice from "@/utils/format-price/formatPrice";
@@ -15,23 +16,27 @@ import "@/pages/cart/components/cart-item/CartItem.scss";
 
 const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
   const [quantity, setQuantity] = useState(item.quantity);
+  const debouncedQuantity = useDebouncedValue(quantity, 500);
+
+  const lastDebouncedQuantityRef = useRef(debouncedQuantity);
+
+  useEffect(() => {
+    if (debouncedQuantity !== lastDebouncedQuantityRef.current) {
+      onQuantityChange(item, debouncedQuantity);
+      lastDebouncedQuantityRef.current = debouncedQuantity;
+    }
+  }, [debouncedQuantity, item, onQuantityChange]);
 
   const handleRemoveCartItem = () => {
     onRemove(item);
   };
 
   const handleIncreaseQuantity = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-    onQuantityChange(item, newQuantity);
+    setQuantity((prevState) => prevState + 1);
   };
 
   const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
-      onQuantityChange(item, newQuantity);
-    }
+    setQuantity((prevState) => (prevState > 1 ? prevState - 1 : prevState));
   };
 
   const handleQuantityInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +48,6 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
       const numberValue = parseInt(value, 10);
       if (!isNaN(numberValue) && numberValue >= 1) {
         setQuantity(numberValue);
-        onQuantityChange(item, numberValue);
       }
     }
   };
@@ -55,6 +59,8 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
   };
 
   const disableMinusQuantity = quantity === 1 && "disabled";
+
+  const totalPrice = formatPrice(quantity * item.productPrice);
 
   return (
     <AppBox className="spa-cart-item" data-cy="cart-item">
@@ -93,7 +99,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
         </AppBox>
       </AppBox>
       <AppTypography className="spa-cart-item__price">
-        {formatPrice(item.calculatedPrice)}
+        {totalPrice}
       </AppTypography>
       <AppBox
         className="spa-cart-item__delete-block"
