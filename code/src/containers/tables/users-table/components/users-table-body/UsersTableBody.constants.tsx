@@ -1,7 +1,10 @@
 import { AppBadgeColorVariant } from "@/components/app-badge/AppBadge.types";
 
-import { ROLES } from "@/constants/common";
-import { UserRole } from "@/types/user.types";
+
+
+import { ROLES, USER_STATUSES } from "@/constants/common";
+import { UserRole, UserStatus } from "@/types/user.types";
+
 
 type BadgeDetails = {
   translationKey: string;
@@ -23,14 +26,13 @@ export const roleBadges: Record<UserRole, BadgeDetails> = {
   }
 };
 
-// @TODO: replace with real statuses type
-export const statusBadges: Record<string, BadgeDetails> = {
-  ACTIVE: {
+export const statusBadges: Record<UserStatus, BadgeDetails> = {
+  [USER_STATUSES.ACTIVE]: {
     translationKey: "user.status.active",
     variant: "success"
   },
-  DISABLED: {
-    translationKey: "user.status.blocked",
+  [USER_STATUSES.DEACTIVATED]: {
+    translationKey: "user.status.deactivated",
     variant: "danger"
   }
 };

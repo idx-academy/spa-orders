@@ -17,3 +17,8 @@ export const ROLES = {
   SHOP_MANAGER: "ROLE_MANAGER",
   ADMIN: "ROLE_ADMIN"
 } as const;
+
+export const USER_STATUSES = {
+  ACTIVE: "ACTIVE",
+  DEACTIVATED: "DEACTIVATED"
+} as const;

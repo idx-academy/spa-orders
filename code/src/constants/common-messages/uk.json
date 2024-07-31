@@ -8,7 +8,7 @@
   "roles.manager": "менеджер",
   "roles.user": "користувач",
   "user.status.active": "активний",
-  "user.status.blocked": "заблокований",
+  "user.status.deactivated": "деактивований",
   "signIn.label": "Увійти",
   "signIn.success": "Ви успішно увійшли",
   "signUp.success": "Ви успішно зареєструвалися",

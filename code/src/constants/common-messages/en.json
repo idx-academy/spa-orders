@@ -7,7 +7,7 @@
   "roles.manager": "manager",
   "roles.user": "user",
   "user.status.active": "active",
-  "user.status.blocked": "blocked",
+  "user.status.deactivated": "deactivated",
   "errors.somethingWentWrong": "Something went wrong. Please try again later",
   "signIn.success": "You successfully signed in",
   "signUp.success": "You successfully signed up",

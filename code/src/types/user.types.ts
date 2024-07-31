@@ -1,7 +1,9 @@
-import { ROLES } from "@/constants/common";
+import { ROLES, USER_STATUSES } from "@/constants/common";
 import { ExtractValues } from "@/types/common";
 
+
 export type UserRole = ExtractValues<typeof ROLES>;
+export type UserStatus = ExtractValues<typeof USER_STATUSES>;
 
 export type UserId = number;
 
