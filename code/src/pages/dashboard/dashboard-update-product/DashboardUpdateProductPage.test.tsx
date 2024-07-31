@@ -3,9 +3,6 @@ import { useParams } from "react-router-dom";
 
 import { RedirectConfig } from "@/hooks/use-error-page-redirect/useErrorPageRedirect.types";
 import DashboardUpdateProductPage from "@/pages/dashboard/dashboard-update-product/DashboardUpdateProductPage";
-import { useGetManagerProductQuery } from "@/store/api/productsApi";
-import { RTKQueryReturnState } from "@/types/common";
-import { GetManagerProductByIdResponse } from "@/types/product.types";
 
 const validUUID = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
 
@@ -24,30 +21,24 @@ jest.mock("react-router-dom", () => ({
   useParams: jest.fn()
 }));
 
-jest.mock("@/store/api/productsApi", () => ({
-  useGetManagerProductQuery: jest.fn()
-}));
-
-const mockData = {} as GetManagerProductByIdResponse;
+jest.mock(
+  "@/pages/dashboard/dashboard-update-product/components/dashboard-update-product-container/DashboardUpdateProductContainer",
+  () => ({
+    __esModule: true,
+    default: () => <div>Product Container</div>
+  })
+);
 
 type MockRenderParams = {
-  productId: string | null;
-  rtkqResponse: Partial<
-    RTKQueryReturnState<GetManagerProductByIdResponse, unknown>
-  >;
+  productId?: string | null;
 };
 
 const defaultParams = {
-  productId: validUUID,
-  rtkqResponse: { data: mockData, isLoading: false, error: null }
+  productId: validUUID
 };
 
-const mockAndRender = ({
-  productId,
-  rtkqResponse
-}: Partial<MockRenderParams> = defaultParams) => {
+const mockAndRender = ({ productId }: MockRenderParams = defaultParams) => {
   (useParams as jest.Mock).mockReturnValue({ productId });
-  (useGetManagerProductQuery as jest.Mock).mockReturnValue(rtkqResponse);
   render(<DashboardUpdateProductPage />);
 };
 
@@ -56,57 +47,31 @@ describe("Test DashboardUpdateProductPage", () => {
     jest.clearAllMocks();
   });
 
-  test("Should render title", () => {
+  test("Should be rendered correctly if product id is valid", () => {
     mockAndRender();
 
-    const title = screen.getByText("product.update.title");
+    const productContainer = screen.getByText("Product Container");
 
-    expect(title).toBeInTheDocument();
-  });
-
-  test("Should call useGetManagerProductQuery with productId", () => {
-    mockAndRender();
-
-    expect(useGetManagerProductQuery).toHaveBeenCalledWith({
-      productId: validUUID
-    });
+    expect(productContainer).toBeInTheDocument();
   });
 
   test("Should redirect to not found page if productId is not provided", () => {
-    mockAndRender({ productId: null, rtkqResponse: {} });
+    mockAndRender({ productId: null });
 
     const label = screen.getByText("product.productNotFound");
+    const productContainer = screen.queryByText("Product Container");
 
     expect(label).toBeInTheDocument();
-    expect(useGetManagerProductQuery).not.toHaveBeenCalled();
+    expect(productContainer).not.toBeInTheDocument();
   });
 
   test("Should redirect to not found page if productId is not valid", () => {
-    mockAndRender({ productId: "invalid", rtkqResponse: {} });
+    mockAndRender({ productId: "invalid" });
 
     const label = screen.getByText("product.productNotFound");
+    const productContainer = screen.queryByText("Product Container");
 
     expect(label).toBeInTheDocument();
-    expect(useGetManagerProductQuery).not.toHaveBeenCalled();
-  });
-
-  test("Should show error message if there is some request error that is not 404", () => {
-    mockAndRender({
-      productId: validUUID,
-      rtkqResponse: { error: { status: 500 }, data: mockData }
-    });
-
-    const label = screen.getByText("errors.somethingWentWrong");
-    expect(label).toBeInTheDocument();
-  });
-
-  test("Should display loadign message while loading", () => {
-    mockAndRender({
-      productId: validUUID,
-      rtkqResponse: { isLoading: true }
-    });
-
-    const label = screen.getByTestId("page-loading-fallback");
-    expect(label).toBeInTheDocument();
+    expect(productContainer).not.toBeInTheDocument();
   });
 });

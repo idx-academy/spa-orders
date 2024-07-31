@@ -7,7 +7,14 @@ import "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardT
 type TabContainerProps = PropsWithChildren;
 
 const DashboardTabContainer = ({ children }: TabContainerProps) => {
-  return <AppContainer className="tab-container">{children}</AppContainer>;
+  return (
+    <AppContainer
+      className="tab-container"
+      data-testid="dashboard-tab-container"
+    >
+      {children}
+    </AppContainer>
+  );
 };
 
 export default DashboardTabContainer;
