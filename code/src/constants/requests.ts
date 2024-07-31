@@ -27,8 +27,7 @@ export const URLS = {
     getForUser: "/v1/products",
     getForUserById: ({ productId, lang }: GetUserProductByIdParams) =>
       `/v1/products/${productId}?lang=${lang}`,
-    getForManager: (params: GetManagerProductsParams) =>
-      createUrlPath(`/v1/management/products`, undefined, params),
+    getForManager: `/v1/management/products`,
     post: "/v1/management/products",
     put: "/v1/products",
     delete: "/v1/products",

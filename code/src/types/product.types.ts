@@ -53,7 +53,8 @@ export type GetUserProductByIdParams = Lang & {
 
 export type GetManagerProductsResponse = PageableResponse<ManagerProduct[]>;
 
-export type GetManagerProductsParams = Partial<ManagerProduct & Pageable>;
+export type GetManagerProductsParams = Partial<Pageable & Lang>;
+
 export type CreateProductBody = {
   status: ManagerProductStatus;
   tagIds: number[];

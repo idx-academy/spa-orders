@@ -49,7 +49,22 @@ const getProductById = (req, res) => {
 };
 
 const getAllManagerProducts = (req, res) => {
-  res.json(managerProducts);
+  const page = validateNumberQueryParam(req.query.page);
+  const size = validateNumberQueryParam(req.query.size, 10);
+
+  const skip = page * size;
+  const limit = (page + 1) * size;
+
+  const slicedProducts = managerProducts.content.slice(skip, limit);
+
+  const response = {
+    ...managerProducts,
+    content: slicedProducts,
+    totalPages: Math.ceil(managerProducts.content.length / size),
+    totalElements: managerProducts.content.length,
+  };
+
+  return res.json(response);
 };
 
 const createProduct = (req, res) => {

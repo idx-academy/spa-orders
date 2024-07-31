@@ -1,5 +1,14 @@
+@import "@design-system";
+
 .dashboard-products-tab__toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.dashboard-products-tab__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: spacing(6);
 }

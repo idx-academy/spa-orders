@@ -21,6 +21,7 @@ const AppPagination = (props: AppPaginationProps) => {
         component={AppLink}
         to={{ search: itemSearchParamsString }}
         data-cy="pagination"
+        data-testid="pagination-button"
         {...itemProps}
       />
     );
