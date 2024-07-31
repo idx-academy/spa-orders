@@ -1,5 +1,4 @@
 import { SyntheticEvent } from "react";
-import { useSearchParams } from "react-router-dom";
 
 import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import { SelectChangeEvent } from "@mui/material/Select";
