@@ -24,10 +24,11 @@ import productCardMessages from "@/components/product-card/messages";
 import commonMessages from "@/constants/common-messages";
 import { Locale } from "@/context/i18n/I18nProvider";
 import cartPageMessages from "@/pages/cart/messages";
+import dashboardOrderDetailsPageMessages from "@/pages/dashboard-order-details/messages";
 import dashboardNewProductPageMessages from "@/pages/dashboard/dashboard-new-product/messages";
 import dashboardOrdersPageMessages from "@/pages/dashboard/dashboard-orders/messages";
 import dashboardProductsPageMessages from "@/pages/dashboard/dashboard-products/messages";
-import dashboardOrderDetailsPageMessages from "@/pages/dashboard/dashboard-update-product/messages";
+import dashboardUpdateProductPageMessages from "@/pages/dashboard/dashboard-update-product/messages";
 import notFoundMessages from "@/pages/not-found/messages";
 import orderPageMessages from "@/pages/orders/messages";
 import productDetailsMessages from "@/pages/product-details/messages";
@@ -62,10 +63,10 @@ const messages: MessagesType = {
     ...dashboardLayoutMessages.en,
     ...dashboardOrdersFilterMessages.en,
     ...dashboardOrdersPageMessages.en,
+    ...dashboardOrderDetailsPageMessages.en,
     ...dashboardProductsPageMessages.en,
     ...dashboardNewProductPageMessages.en,
-    ...productFormMessages.en,
-    ...dashboardOrderDetailsPageMessages.en,
+    ...dashboardUpdateProductPageMessages.en,
     ...productDetailsMessages.en,
     ...usersTableMessages.en
   },
@@ -95,10 +96,11 @@ const messages: MessagesType = {
     ...dashboardLayoutMessages.uk,
     ...dashboardOrdersFilterMessages.uk,
     ...dashboardOrdersPageMessages.uk,
+    ...dashboardOrderDetailsPageMessages.uk,
     ...dashboardProductsPageMessages.uk,
     ...dashboardNewProductPageMessages.uk,
     ...productFormMessages.uk,
-    ...dashboardOrderDetailsPageMessages.uk,
+    ...dashboardUpdateProductPageMessages.uk,
     ...productDetailsMessages.uk,
     ...usersTableMessages.uk
   }

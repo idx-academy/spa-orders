@@ -1,4 +1,4 @@
 export const dashboardOrderDetailsPageErrorConfig = {
   errorType: "notFound",
-  errorMessageTranslationKey: "errors.orderNotFound"
+  errorMessageTranslationKey: "dashboardOrderDetailsPage.orderNotFound"
 } as const;
