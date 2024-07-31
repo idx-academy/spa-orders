@@ -44,7 +44,7 @@ const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
       key={product.id}
       product={product}
       quantity={quantity}
-      price={price}
+      totalPrice={price}
     />
   ));
 

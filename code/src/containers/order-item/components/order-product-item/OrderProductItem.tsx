@@ -11,15 +11,18 @@ import "@/containers/order-item/components/order-product-item/OrderProductItem.s
 type OrderProductItemProps = {
   product: Product;
   quantity: number;
-  price: number;
+  totalPrice: number;
 };
 
 const OrderProductItem = ({
   product,
   quantity,
-  price
+  totalPrice
 }: OrderProductItemProps) => {
-  const { price: productPrice, id, image, name, description } = product;
+  const { price, id, image, name, description } = product;
+
+  const priceQuantityLabel = `${formatPrice(price)} x ${quantity}`;
+
 
   return (
     <AppLink
@@ -56,12 +59,11 @@ const OrderProductItem = ({
           component="p"
           fontWeight="extra-bold"
         >
-          {formatPrice(productPrice)} x {quantity}
+          {priceQuantityLabel}
         </AppTypography>
       </AppBox>
-
       <AppTypography variant="body" component="p" fontWeight="extra-bold">
-        {formatPrice(price)}
+        {formatPrice(totalPrice)}
       </AppTypography>
     </AppLink>
   );

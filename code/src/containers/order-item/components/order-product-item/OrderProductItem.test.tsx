@@ -18,13 +18,13 @@ const mockProduct: Product = {
 describe("OrderProductItem", () => {
   test("renders product information correctly", () => {
     const quantity = 2;
-    const price = mockProduct.price * quantity;
+    const totalPrice = mockProduct.price * quantity;
 
     renderWithProviders(
       <OrderProductItem
         product={mockProduct}
         quantity={quantity}
-        price={price}
+        totalPrice={totalPrice}
       />
     );
     const productName = screen.getByText(mockProduct.name);
