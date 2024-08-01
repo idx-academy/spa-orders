@@ -10,3 +10,26 @@ body {
   box-sizing: border-box;
   background-color: $light;
 }
+
+$scrollbar-width: 9px;
+$scrollbar-thumb-color: $gray-light;
+$scrollbar-track-color: $light;
+
+::-webkit-scrollbar {
+  width: $scrollbar-width;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $scrollbar-track-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $scrollbar-thumb-color;
+}
+
+@-moz-document url-prefix() {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: $scrollbar-thumb-color $scrollbar-track-color;
+  }
+}
