@@ -6,6 +6,7 @@ import OrdersTableBody from "@/containers/tables/orders-table/components/orders-
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockStatusChange = jest.fn();
+const mockIsPaidChange = jest.fn();
 
 describe("OrdersTableBody", () => {
   beforeEach(() => {
@@ -15,6 +16,7 @@ describe("OrdersTableBody", () => {
           <tr>
             <OrdersTableBody
               onStatusChange={mockStatusChange}
+              onIsPaidChange={mockIsPaidChange}
               order={mockOrders[0]}
             />
           </tr>

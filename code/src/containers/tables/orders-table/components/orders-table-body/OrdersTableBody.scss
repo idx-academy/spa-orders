@@ -30,24 +30,23 @@
   }
 
   &-email {
-    @include text-truncate($line-clamp: 1);
-    overflow: hidden;
-    width: 105px;
+    word-break: break-word;
   }
 
   &-checkbox {
+    margin: 0;
+
     & svg {
-      fill: var(
-        --new-rpoduct-form-checkbox-color,
-        $light-alpha
-      ) !important; // To rewrite mui styles and styles setted in AppCheckbox
+      fill: var(--order-table-body-checkbox-color, $light-alpha) !important;
+      margin: 0 !important; // To rewrite mui styles and styles setted in AppCheckbox
     }
   }
 
   &-checkbox-success {
+    margin: 0;
     & svg {
       fill: var(
-        --new-rpoduct-form-checkbox-color,
+        --order-table-body-checkbox-success-color,
         $green
       ) !important; // To rewrite mui styles and styles setted in AppCheckbox
     }

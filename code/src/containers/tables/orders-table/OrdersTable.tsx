@@ -6,7 +6,7 @@ import AppTable from "@/components/app-table/AppTable";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useChangeOrderStatusMutation } from "@/store/api/ordersApi";
-import { AdminOrder, OrderStatus } from "@/types/order.types";
+import { AdminOrder, OrderIsPaid, OrderStatus } from "@/types/order.types";
 
 import "@/containers/tables/orders-table/OrdersTable.scss";
 
@@ -19,9 +19,18 @@ const OrdersTable = ({ ordersData }: OrdersTableProps) => {
 
   const OrderTableBodyItem = (order: AdminOrder) => {
     const handleChangeOrderStatus = (orderStatus: OrderStatus) => {
-      changeOrderStatus({ orderId: order.id, orderStatus });
+      changeOrderStatus({
+        orderId: order.id,
+        orderStatus
+      });
+    };
 
-      //change status logic there
+    const handleChangeOrderIsPaid = (isPaid: OrderIsPaid) => {
+      changeOrderStatus({
+        orderId: order.id,
+        orderStatus: order.orderStatus,
+        isPaid
+      });
     };
 
     console.log(order);
@@ -31,6 +40,7 @@ const OrdersTable = ({ ordersData }: OrdersTableProps) => {
         key={order.id}
         order={order}
         onStatusChange={handleChangeOrderStatus}
+        onIsPaidChange={handleChangeOrderIsPaid}
       />
     );
   };

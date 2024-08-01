@@ -10,11 +10,12 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLink from "@/components/app-link/AppLink";
 import AppSelect from "@/components/app-select/AppSelect";
 import { AppTableCell } from "@/components/app-table/components";
+import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import routes from "@/constants/routes";
-import { AdminOrder, OrderStatus } from "@/types/order.types";
+import { AdminOrder, OrderIsPaid, OrderStatus } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
 
@@ -23,9 +24,14 @@ import "@/containers/tables/orders-table/components/orders-table-body/OrdersTabl
 type OrderTableBodyProps = {
   order: AdminOrder;
   onStatusChange: (status: OrderStatus) => void;
+  onIsPaidChange: (isPaid: OrderIsPaid) => void;
 };
 
-const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
+const OrdersTableBody = ({
+  order,
+  onStatusChange,
+  onIsPaidChange
+}: OrderTableBodyProps) => {
   const {
     id,
     createdAt,
@@ -85,29 +91,46 @@ const OrdersTableBody = ({ order, onStatusChange }: OrderTableBodyProps) => {
     </AppSelect>
   );
 
+  const handleIsPaidChange = () => {
+    if (!isPaid) {
+      onIsPaidChange(true);
+    }
+  };
+
+  const emailField = (
+    <AppTypography variant="caption" className="spa-order-table__body-email">
+      {email}
+    </AppTypography>
+  );
+
+  const isPaidField = isPaid ? (
+    <AppTooltip followCursor titleTranslationKey="ordersTable.ispaid.tooltip">
+      <AppCheckbox
+        className="spa-order-table__body-checkbox-success"
+        checked
+        disabled
+      />
+    </AppTooltip>
+  ) : (
+    <AppTooltip followCursor titleTranslationKey="ordersTable.notpaid.tooltip">
+      <AppCheckbox
+        className="spa-order-table__body-checkbox"
+        onChange={handleIsPaidChange}
+      />
+    </AppTooltip>
+  );
+
   return (
     <>
       <AppTableCell>{orderReceiver}</AppTableCell>
-      <AppTableCell>
-        <AppTypography
-          variant="caption"
-          className="spa-order-table__body-email"
-        >
-          {email}
-        </AppTypography>
+      <AppTableCell className="spa-order-table__body-email-cell">
+        {emailField}
       </AppTableCell>
       <AppTableCell>{statusBlock}</AppTableCell>
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>{deliveryMethod}</AppTableCell>
       <AppTableCell>{formatPrice(total)}</AppTableCell>
-
-      <AppTableCell>
-        {isPaid ? (
-          <AppCheckbox className="spa-order-table__body-checkbox-success" />
-        ) : (
-          <AppCheckbox className="spa-order-table__body-checkbox" />
-        )}
-      </AppTableCell>
+      <AppTableCell>{isPaidField}</AppTableCell>
       <AppTableCell>
         <AppLink to={routes.dashboard.orderDetails.path(id)}>
           <AppIconButton>

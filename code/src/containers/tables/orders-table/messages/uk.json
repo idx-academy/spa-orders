@@ -7,5 +7,7 @@
   "ordersTable.columns.deliveryMethod": "Спосіб доставки",
   "ordersTable.columns.totalPrice": "Загальна вартість",
   "ordersTable.columns.isPaid": "Оплачено",
-  "ordersTable.fallback": "Замовлень не знайдено"
+  "ordersTable.fallback": "Замовлень не знайдено",
+  "ordersTable.notpaid.tooltip": "Позначити це замовлення як оплачене?",
+  "ordersTable.ispaid.tooltip": "Ви не можете змінити статус оплати"
 }

@@ -10,6 +10,8 @@ export type OrderStatus =
   | "CANCELED"
   | "COMPLETED";
 
+export type OrderIsPaid = boolean;
+
 export type OrderItem = {
   price: number;
   quantity: number;
@@ -22,7 +24,7 @@ type Receiver = Pick<User, "email" | "firstName" | "lastName">;
 
 type BaseOrder = {
   id: OrderId;
-  isPaid: boolean;
+  isPaid: OrderIsPaid;
   total: number;
   orderStatus: OrderStatus;
   createdAt: string;
@@ -75,6 +77,7 @@ export type OrderPostResponse = {
 export type OrderPatchParams = {
   orderId: OrderId;
   orderStatus: OrderStatus;
+  isPaid?: boolean;
 };
 
 export type GetUserOrderParams = Lang & {

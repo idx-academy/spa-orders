@@ -4,8 +4,10 @@
   "ordersTable.columns.createdAt": "Created At",
   "ordersTable.columns.receiver": "Receiver",
   "ordersTable.columns.email": "Email",
-  "ordersTable.columns.deliveryMethod": "Delivery method",
+  "ordersTable.columns.deliveryMethod": "Delivery\n method",
   "ordersTable.columns.totalPrice": "Total price",
   "ordersTable.columns.isPaid": "Is paid",
-  "ordersTable.fallback": "No orders found"
+  "ordersTable.fallback": "No orders found",
+  "ordersTable.notpaid.tooltip": "Mark this order as paid?",
+  "ordersTable.ispaid.tooltip": "You cannot change the payment status"
 }
