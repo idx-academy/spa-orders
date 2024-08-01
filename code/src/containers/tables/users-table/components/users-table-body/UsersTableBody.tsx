@@ -11,7 +11,10 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import formatDate from "@/utils/format-date/formatDate";
 
 const UsersTableBody = ({ user }: UsersTableBodyProps) => {
-  const roleBadgeDetails = roleBadges[user.role];
+  const { firstName, lastName, role, status, createdAt, email } = user;
+  const fullName = `${firstName} ${lastName}`;
+
+  const roleBadgeDetails = roleBadges[role];
   const roleBadge = (
     <AppBadge
       variant={roleBadgeDetails.variant}
@@ -24,7 +27,7 @@ const UsersTableBody = ({ user }: UsersTableBodyProps) => {
     />
   );
 
-  const statusBadgeDetails = statusBadges[user.status];
+  const statusBadgeDetails = statusBadges[status];
   const statusBadge = (
     <AppBadge
       variant={statusBadgeDetails.variant}
@@ -40,18 +43,14 @@ const UsersTableBody = ({ user }: UsersTableBodyProps) => {
   return (
     <>
       <AppTableCell>
-        <AppTypography variant="caption">
-          {user.firstName} {user.lastName}
-        </AppTypography>
+        <AppTypography variant="caption">{fullName}</AppTypography>
       </AppTableCell>
       <AppTableCell>
-        <AppTypography variant="caption">{user.email}</AppTypography>
+        <AppTypography variant="caption">{email}</AppTypography>
       </AppTableCell>
       <AppTableCell>{roleBadge}</AppTableCell>
       <AppTableCell>
-        <AppTypography variant="caption">
-          {formatDate(user.createdAt)}
-        </AppTypography>
+        <AppTypography variant="caption">{formatDate(createdAt)}</AppTypography>
       </AppTableCell>
       <AppTableCell>{statusBadge}</AppTableCell>
     </>
