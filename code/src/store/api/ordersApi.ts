@@ -6,7 +6,6 @@ import {
   AdminOrderResponse,
   GetAdminOrderByIdParams,
   GetAdminOrderByIdResponse,
-  GetAdminOrderByIdResponse,
   GetAdminOrderParams,
   GetUserOrderParams,
   OrderPatchParams,
@@ -23,7 +22,6 @@ const ordersApi = appApi.injectEndpoints({
 
     getAdminOrders: build.query<AdminOrderResponse, GetAdminOrderParams>({
       query: (params) => URLS.orders.getForAdmin(params),
-      providesTags: [rtkQueryTags.USER_ORDERS, rtkQueryTags.ADMIN_ORDERS]
       providesTags: [rtkQueryTags.USER_ORDERS, rtkQueryTags.ADMIN_ORDERS]
     }),
 
