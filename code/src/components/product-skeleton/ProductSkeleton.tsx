@@ -16,7 +16,7 @@ const ProductSkeleton = () => {
         width={254}
         animation="pulse"
       />
-      <AppBox className="spa-product-skeleton__footer">
+      <AppBox className="spa-product-skeleton__footer" width={234}>
         <AppSkeleton variant="text" width={64} height={35} animation="pulse" />
         <AppSkeleton
           variant="circular"
