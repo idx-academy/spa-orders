@@ -61,7 +61,12 @@ const ProductCard = ({
           </AppBox>
         </AppBox>
         <AppBox>
-          <AppTypography variant="caption">{product.name}</AppTypography>
+          <AppTypography
+            variant="caption"
+            className="spa-product-card__product-name"
+          >
+            {product.name}
+          </AppTypography>
         </AppBox>
       </AppLink>
       <AppBox className="spa-product-card__footer">
