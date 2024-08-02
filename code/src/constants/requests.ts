@@ -14,7 +14,8 @@ import {
 import {
   GetManagerProductByIdParams,
   GetUserProductByIdParams,
-  GetUserProductsBySearchQueryParams
+  GetUserProductsBySearchQueryParams,
+  UpdateProductBody
 } from "@/types/product.types";
 import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
@@ -30,6 +31,8 @@ export const URLS = {
     getForManager: `/v1/management/products`,
     post: "/v1/management/products",
     put: "/v1/products",
+    patch: ({ productId }: Pick<UpdateProductBody, "productId">) =>
+      `/v1/management/products/${productId}`,
     delete: "/v1/products",
     getForManagerById: ({ productId }: GetManagerProductByIdParams) =>
       `/v1/management/products/${productId}`,

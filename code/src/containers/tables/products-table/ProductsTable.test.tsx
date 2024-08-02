@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import ProductsTable from "@/containers/tables/products-table/ProductsTable";
 import {
@@ -6,9 +6,13 @@ import {
   productsTableColumns
 } from "@/containers/tables/products-table/ProductsTable.constants";
 
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
 describe("Test ProductsTable", () => {
   test("Should be rendered correctly", () => {
-    const { container } = render(<ProductsTable products={mockProducts} />);
+    const { container } = renderWithProviders(
+      <ProductsTable products={mockProducts} />
+    );
 
     productsTableColumns
       .filter((item) => item)
@@ -28,7 +32,7 @@ describe("Test ProductsTable", () => {
   });
 
   test("Should render fallback", () => {
-    render(<ProductsTable products={[]} />);
+    renderWithProviders(<ProductsTable products={[]} />);
 
     const fallbackText = screen.getByText(/productsTable.fallback/);
     expect(fallbackText).toBeInTheDocument();

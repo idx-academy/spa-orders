@@ -219,7 +219,7 @@ const NewProductForm = () => {
               <AppInput
                 fullWidth
                 labelTranslationKey="productForm.inputLabel.price"
-                inputProps={{ min: 0 }}
+                inputProps={{ min: 0, step: "0.5" }}
                 type="number"
                 error={Boolean(errors.price)}
                 helperText={errors.price ? errors.price.message : undefined}

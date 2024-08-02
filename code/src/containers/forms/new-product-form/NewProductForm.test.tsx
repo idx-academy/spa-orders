@@ -4,6 +4,7 @@ import NewProductForm from "@/containers/forms/new-product-form/NewProductForm";
 import { defaultValues } from "@/containers/forms/new-product-form/NewProductForm.constants";
 
 import routes from "@/constants/routes";
+import getTagIn from "@/utils/get-tag-in/getTagIn";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
@@ -51,15 +52,6 @@ const twoTranslationsTestData = {
     testData.productTranslations[0],
     { ...testData.productTranslations[0], languageCode: "uk" }
   ]
-};
-
-const getTagIn = <T extends keyof HTMLElementTagNameMap = "input">(
-  testId: string,
-  tag: T = "input" as T
-) => {
-  return screen
-    .getByTestId(testId)
-    .querySelector(tag)! as unknown as HTMLElementTagNameMap[T];
 };
 
 let imgUrlInput: HTMLInputElement;

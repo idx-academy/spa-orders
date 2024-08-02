@@ -201,7 +201,7 @@ const managerProducts = {
 const managerProduct = {
   id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   status: "VISIBLE",
-  image: "string",
+  image: "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
   createdAt: "2024-07-29T20:20:02.404Z",
   quantity: 10,
   price: 999.99,
@@ -216,6 +216,11 @@ const managerProduct = {
       name: "APPLE iPhone",
       description: "Screen 6.1 Super Retina XDR, 2532x1170 / A16 Bionic chip",
       languageCode: "en"
+    },
+    {
+      name: "APPLE Айфон",
+      description: "Дисплей 6.1 Super Retina XDR, 2532x1170 / A16 Bionic chip",
+      languageCode: "uk"
     }
   ]
 };

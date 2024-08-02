@@ -68,7 +68,7 @@ export type GetUserProductsBySearchQueryResponse = PageableResponse<
   ProductFromSearch[]
 >;
 
-export type CreateProductBody = {
+export type ProductBody = {
   status: ManagerProductStatus;
   tagIds: number[];
   image: string;
@@ -76,6 +76,12 @@ export type CreateProductBody = {
   quantity: number;
   productTranslations: ProductTranslation[];
 };
+
+export type UpdateProductBody = Partial<ProductBody> & {
+  productId: string;
+};
+
+export type CreateProductBody = ProductBody;
 
 export type ManagerProductTag = {
   id: number;
@@ -91,6 +97,15 @@ export type GetManagerProductByIdResponse = {
   price: number;
   tags: ManagerProductTag[];
   productTranslations: ProductTranslation[];
+};
+
+export type FullManagerProduct = Omit<
+  ManagerProduct,
+  "tags" | "name" | "description" | "imageLink"
+> & {
+  tags: ManagerProductTag[];
+  productTranslations: ProductTranslation[];
+  image: string;
 };
 
 export type GetManagerProductByIdParams = {

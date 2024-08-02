@@ -14,6 +14,11 @@ const mockRedirect = ({
   <div>{errorMessageTranslationKey}</div>
 );
 
+jest.mock("@/containers/forms/product-form/UpdateProductForm", () => ({
+  __esModule: true,
+  default: () => <div>UpdateProductForm</div>
+}));
+
 jest.mock("@/hooks/use-error-page-redirect/useErrorPageRedirect", () => ({
   __esModule: true,
   default: jest.fn(() => ({ renderRedirectComponent: mockRedirect }))
@@ -45,12 +50,14 @@ describe("Test DashboardUpdateProductPage", () => {
     jest.clearAllMocks();
   });
 
-  test("Should render title", () => {
+  test("Should render title and update form", () => {
     mockAndRender();
 
     const title = screen.getByText("product.update.title");
+    const form = screen.getByText("UpdateProductForm");
 
     expect(title).toBeInTheDocument();
+    expect(form).toBeInTheDocument();
   });
 
   test("Should call useGetManagerProductQuery with productId", () => {

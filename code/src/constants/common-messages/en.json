@@ -32,6 +32,8 @@
   "filters.to": "to",
   "language.ukrainian": "UK",
   "language.english": "EN",
+  "language.full.ukrainian": "Ukrainian",
+  "language.full.english": "English",
   "timespan.yesterday": "Yesterday",
   "timespan.last7Days": "Last 7 days",
   "timespan.last14Days": "Last 14 days",

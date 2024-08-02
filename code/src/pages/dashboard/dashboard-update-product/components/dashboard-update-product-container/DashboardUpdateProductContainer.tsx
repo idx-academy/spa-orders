@@ -1,3 +1,6 @@
+import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
+
+import UpdateProductForm from "@/containers/forms/product-form/UpdateProductForm";
 import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 
 import AppBox from "@/components/app-box/AppBox";
@@ -14,7 +17,11 @@ import "@/pages/dashboard/dashboard-update-product/DashboardUpdateProductPage.sc
 const DashboardUpdateProductContainer = ({
   productId
 }: DashboardUpdateProductPageProps) => {
-  const { data, isLoading, error } = useGetManagerProductQuery({ productId });
+  const {
+    data: productData,
+    isLoading,
+    error
+  } = useGetManagerProductQuery({ productId });
 
   const { renderRedirectComponent } = useErrorPageRedirect();
 
@@ -23,18 +30,18 @@ const DashboardUpdateProductContainer = ({
   }
 
   const shouldShowNotFoundError =
-    !data && isErrorWithStatus(error) && error.status === 404;
+    !productData && isErrorWithStatus(error) && error.status === 404;
 
   if (shouldShowNotFoundError) {
     return renderRedirectComponent(updateProductPageNotFoundErrorConfig);
   }
 
-  if (error) {
+  if (!productData || error) {
     return <AppTypography translationKey="errors.somethingWentWrong" />;
   }
 
   return (
-    <>
+    <DashboardTabContainer>
       <AppBox className="dashboard-products-tab__toolbar">
         <AppTypography
           component="h1"
@@ -42,8 +49,8 @@ const DashboardUpdateProductContainer = ({
           translationKey="product.update.title"
         />
       </AppBox>
-      {data?.id}
-    </>
+      <UpdateProductForm product={productData} />
+    </DashboardTabContainer>
   );
 };
 

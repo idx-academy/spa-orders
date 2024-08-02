@@ -1,13 +1,15 @@
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { productStatuToTranslationKeyMap } from "@/containers/tables/products-table/ProductsTable.constants";
 import { ProductsTableBodyProps } from "@/containers/tables/products-table/ProductsTable.types";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
+import AppLink from "@/components/app-link/AppLink";
 import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import routes from "@/constants/routes";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
 import getCategoryFromTags from "@/utils/get-category-from-tags/getCategoryFromTags";
@@ -15,7 +17,8 @@ import getCategoryFromTags from "@/utils/get-category-from-tags/getCategoryFromT
 import "@/containers/tables/products-table/components/products-table-body/ProductsTableBody.scss";
 
 const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
-  const { name, imageLink, price, quantity, status, tags, createdAt } = product;
+  const { name, imageLink, price, quantity, status, tags, createdAt, id } =
+    product;
 
   const categoryName = getCategoryFromTags(tags);
 
@@ -37,7 +40,7 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
 
   const nameElement = (
     <AppTypography className="products-table__body-name" variant="caption">
-      {name}
+      <AppLink to={routes.productDetails.path(id)}>{name}</AppLink>
     </AppTypography>
   );
 
@@ -57,8 +60,11 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
       <AppTableCell>{formatPrice(price)}</AppTableCell>
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>
-        <AppIconButton>
-          <MoreHorizIcon />
+        <AppIconButton
+          to={routes.dashboard.products.update.path(id)}
+          component={AppLink}
+        >
+          <EditIcon />
         </AppIconButton>
       </AppTableCell>
     </>

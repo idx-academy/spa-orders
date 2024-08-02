@@ -14,7 +14,8 @@ import {
   GetUserProductsBySearchQueryResponse,
   GetUserProductsParams,
   GetUserProductsResponse,
-  Product
+  Product,
+  UpdateProductBody
 } from "@/types/product.types";
 import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
@@ -88,7 +89,15 @@ const productsApi = appApi.injectEndpoints({
       GetUserProductsBySearchQueryResponse,
       GetUserProductsBySearchQueryParams
     >({
-      query: (params) => URLS.products.searchByQuery(params),
+      query: (params) => URLS.products.searchByQuery(params)
+    }),
+    updateProduct: build.mutation<void, UpdateProductBody>({
+      query: ({ productId, ...body }) => ({
+        url: URLS.products.patch({ productId }),
+        method: httpMethods.patch,
+        body
+      }),
+      invalidatesTags: [rtkQueryTags.ADMIN_PRODUCTS, rtkQueryTags.PRODUCTS]
     })
   })
 });
@@ -100,5 +109,6 @@ export const {
   useDeleteProductMutation,
   useCreateProductMutation,
   useGetManagerProductQuery,
-  useGetUserProductsBySearchQuery
+  useGetUserProductsBySearchQuery,
+  useUpdateProductMutation
 } = productsApi;
