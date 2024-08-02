@@ -71,7 +71,6 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
 
     if (options.additionalParams) {
       for (const [key, value] of Object.entries(options.additionalParams)) {
-        console.log(value);
         params.set(key, serializeToQueryString(value));
       }
     }
