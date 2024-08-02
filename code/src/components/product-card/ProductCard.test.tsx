@@ -1,8 +1,9 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import ProductCard from "@/components/product-card/ProductCard";
 
 import routes from "@/constants/routes";
+import useAddToCartOrOpenDrawer from "@/hooks/use-add-to-cart-or-open-drawer/useAddToCartOrOpenDrawer";
 import { Product } from "@/types/product.types";
 import formatPrice from "@/utils/format-price/formatPrice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
@@ -19,78 +20,77 @@ const mockProduct: Product = {
   price: 500
 };
 
-const mockCartIconClickHandler = jest.fn();
-const mockSetState = jest.fn();
+const mockAddToCartOrOpenDrawer = jest.fn();
 
-jest.mock("react", () => ({
-  ...jest.requireActual("react"),
-  useState: jest.fn((init) => [init, mockSetState])
-}));
+jest.mock("@/hooks/use-add-to-cart-or-open-drawer/useAddToCartOrOpenDrawer");
+
+const renderAndMock = (isProductInCart: boolean) => {
+  (useAddToCartOrOpenDrawer as jest.Mock).mockReturnValue({
+    isProductInCart,
+    addToCartOrOpenDrawer: mockAddToCartOrOpenDrawer
+  });
+  renderWithProviders(<ProductCard product={mockProduct} />);
+};
 
 describe("ProductCard component", () => {
-  beforeEach(() => {
-    renderWithProviders(
-      <ProductCard
-        product={mockProduct}
-        onCartIconClick={mockCartIconClickHandler}
-        isUserAuthorized
-        isInCart
-      />
-    );
-  });
-
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  test("should render product name", () => {
-    const productName = screen.getByText(mockProduct.name);
-    expect(productName).toBeInTheDocument();
-  });
+  describe("when product is not in cart", () => {
+    beforeEach(() => {
+      renderAndMock(false);
+    });
 
-  test("should render product price", () => {
-    const productPrice = screen.getByText(formatPrice(mockProduct.price));
-    expect(productPrice).toBeInTheDocument();
-  });
+    test("should render product name", () => {
+      const productName = screen.getByText(mockProduct.name);
+      expect(productName).toBeInTheDocument();
+    });
 
-  test("should render product description", () => {
-    const productDescription = screen.getByText(mockProduct.description);
-    expect(productDescription).toBeInTheDocument();
-  });
+    test("should render product price", () => {
+      const productPrice = screen.getByText(formatPrice(mockProduct.price));
+      expect(productPrice).toBeInTheDocument();
+    });
 
-  test("should render product image with correct src and alt attributes", () => {
-    const productImage = screen.getByRole("img", { name: mockProduct.name });
-    expect(productImage).toHaveAttribute("src", mockProduct.image);
-    expect(productImage).toHaveAttribute("alt", mockProduct.name);
-  });
+    test("should render product description", () => {
+      const productDescription = screen.getByText(mockProduct.description);
+      expect(productDescription).toBeInTheDocument();
+    });
 
-  test("should render product link", () => {
-    const productLink = screen.getByRole("link");
-    expect(productLink).toHaveAttribute(
-      "href",
-      routes.productDetails.path(mockProduct.id)
-    );
-  });
+    test("should render product image with correct src and alt attributes", () => {
+      const productImage = screen.getByRole("img", { name: mockProduct.name });
+      expect(productImage).toHaveAttribute("src", mockProduct.image);
+      expect(productImage).toHaveAttribute("alt", mockProduct.name);
+    });
 
-  test("should call useState on mount", () => {
-    expect(mockSetState).toHaveBeenCalledWith(true);
-  });
+    test("should render product link", () => {
+      const productLink = screen.getByRole("link");
+      expect(productLink).toHaveAttribute(
+        "href",
+        routes.productDetails.path(mockProduct.id)
+      );
+    });
 
-  test("Should call functions on cart icon click", () => {
-    const cartIcon = screen.getByTestId("add-to-cart-button");
-
-    fireEvent.click(cartIcon);
-
-    expect(mockSetState).toHaveBeenNthCalledWith(3, true); // 3 times becase mui button internally calls it once
-    expect(mockCartIconClickHandler).toHaveBeenCalledWith({
-      ...mockProduct,
-      isInCart: true
+    test("should render icon with plus", () => {
+      const addToCartIcon = screen.getByTestId("add-to-cart-icon");
+      expect(addToCartIcon).toHaveAttribute(
+        "href",
+        expect.stringContaining("cart-with-plus")
+      );
     });
   });
 
-  test("should render cart icon with right class if product is in cart", () => {
-    const cartIcon = screen.getByTestId("add-to-cart-button");
+  describe("when product is in cart", () => {
+    beforeEach(() => {
+      renderAndMock(true);
+    });
 
-    expect(cartIcon).toHaveClass("spa-product-card__cart-button--active");
+    test("should render icon with check mark", () => {
+      const addToCartIcon = screen.getByTestId("add-to-cart-icon");
+      expect(addToCartIcon).toHaveAttribute(
+        "href",
+        expect.stringContaining("cart-with-check")
+      );
+    });
   });
 });

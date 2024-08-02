@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLink from "@/components/app-link/AppLink";
@@ -9,27 +7,15 @@ import { ProductCardProps } from "@/components/product-card/ProductCard.types";
 import cartIconWithCheck from "@/assets/icons/cart-with-check.svg";
 import cartIconWithPlus from "@/assets/icons/cart-with-plus.svg";
 import routePaths from "@/constants/routes";
+import useAddToCartOrOpenDrawer from "@/hooks/use-add-to-cart-or-open-drawer/useAddToCartOrOpenDrawer";
 import cn from "@/utils/cn/cn";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/components/product-card/ProductCard.scss";
 
-const ProductCard = ({
-  product,
-  isInCart,
-  isUserAuthorized,
-  onCartIconClick
-}: ProductCardProps) => {
-  const [isProductInCart, setIsProductInCart] = useState(isInCart);
-
-  useEffect(() => {
-    setIsProductInCart(isInCart);
-  }, [isInCart]);
-
-  const handleCartIconClick = () => {
-    isUserAuthorized && setIsProductInCart(true);
-    onCartIconClick({ ...product, isInCart });
-  };
+const ProductCard = ({ product }: ProductCardProps) => {
+  const { isProductInCart, addToCartOrOpenDrawer } =
+    useAddToCartOrOpenDrawer(product);
 
   const cartIconId = isProductInCart ? "cart-with-check" : "cart-with-plus";
   const cartIconLink = isProductInCart ? cartIconWithCheck : cartIconWithPlus;
@@ -75,15 +61,14 @@ const ProductCard = ({
         </AppTypography>
         <AppIconButton
           data-cy="add-to-cart-button"
-          onClick={handleCartIconClick}
+          onClick={addToCartOrOpenDrawer}
           className={cn(
             "spa-product-card__cart-button",
             isProductInCart && "spa-product-card__cart-button--active"
           )}
-          data-testid="add-to-cart-button"
         >
           <svg>
-            <use href={cartIconFullLink} />
+            <use data-testid="add-to-cart-icon" href={cartIconFullLink} />
           </svg>
         </AppIconButton>
       </AppBox>
