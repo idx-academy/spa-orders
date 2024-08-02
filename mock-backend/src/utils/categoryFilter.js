@@ -1,8 +1,2 @@
-const categoryFilter = (category, productsList) => {
-  if (!category) {
-    return productsList;
-  }
-  return productsList?.filter((product) => {return product.tags.includes(category);});
-};
-
+const categoryFilter = (category, productsList) => !category ? productsList : productsList?.filter(product => product.tags.includes(category))
 module.exports = {categoryFilter}
