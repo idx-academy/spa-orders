@@ -1,4 +1,3 @@
-import DoneIcon from "@mui/icons-material/Done";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { MenuItem } from "@mui/material";
 
@@ -14,6 +13,7 @@ import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
+import { orderDeliveryStatuses } from "@/constants/orderStatuses";
 import routes from "@/constants/routes";
 import { AdminOrder, OrderIsPaid, OrderStatus } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
@@ -103,6 +103,26 @@ const OrdersTableBody = ({
     </AppTypography>
   );
 
+  const notPaidOrderCheckbox =
+    orderStatus !== orderDeliveryStatuses.Canceled ? (
+      <AppTooltip
+        followCursor
+        titleTranslationKey="ordersTable.notpaid.tooltip"
+      >
+        <AppCheckbox
+          className="spa-order-table__body-checkbox"
+          onChange={handleIsPaidChange}
+        />
+      </AppTooltip>
+    ) : (
+      <AppTooltip
+        followCursor
+        titleTranslationKey="ordersTable.canceled.tooltip"
+      >
+        <AppCheckbox className="spa-order-table__body-checkbox" disabled />
+      </AppTooltip>
+    );
+
   const isPaidField = isPaid ? (
     <AppTooltip followCursor titleTranslationKey="ordersTable.ispaid.tooltip">
       <AppCheckbox
@@ -112,20 +132,13 @@ const OrdersTableBody = ({
       />
     </AppTooltip>
   ) : (
-    <AppTooltip followCursor titleTranslationKey="ordersTable.notpaid.tooltip">
-      <AppCheckbox
-        className="spa-order-table__body-checkbox"
-        onChange={handleIsPaidChange}
-      />
-    </AppTooltip>
+    notPaidOrderCheckbox
   );
 
   return (
     <>
       <AppTableCell>{orderReceiver}</AppTableCell>
-      <AppTableCell className="spa-order-table__body-email-cell">
-        {emailField}
-      </AppTableCell>
+      <AppTableCell>{emailField}</AppTableCell>
       <AppTableCell>{statusBlock}</AppTableCell>
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>{deliveryMethod}</AppTableCell>

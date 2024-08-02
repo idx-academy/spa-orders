@@ -33,8 +33,6 @@ const OrdersTable = ({ ordersData }: OrdersTableProps) => {
       });
     };
 
-    console.log(order);
-
     return (
       <OrdersTableBody
         key={order.id}

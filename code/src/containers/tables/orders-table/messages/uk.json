@@ -9,5 +9,6 @@
   "ordersTable.columns.isPaid": "Оплачено",
   "ordersTable.fallback": "Замовлень не знайдено",
   "ordersTable.notpaid.tooltip": "Позначити це замовлення як оплачене?",
-  "ordersTable.ispaid.tooltip": "Ви не можете змінити статус оплати"
+  "ordersTable.ispaid.tooltip": "Ви не можете змінити статус оплати",
+  "ordersTable.canceled.tooltip": "Замовлення не можна позначити як оплачене"
 }

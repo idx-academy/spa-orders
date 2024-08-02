@@ -7,7 +7,6 @@ export const initialSortOrder: Record<string, SortOrder> = {
   isPaid: "desc"
 };
 
-
 export const sortKeyMap: Record<string, string> = {
   "ordersTable.columns.createdAt": "createdAt",
   "ordersTable.columns.totalPrice": "total",

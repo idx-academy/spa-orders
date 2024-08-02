@@ -9,5 +9,6 @@
   "ordersTable.columns.isPaid": "Is paid",
   "ordersTable.fallback": "No orders found",
   "ordersTable.notpaid.tooltip": "Mark this order as paid?",
-  "ordersTable.ispaid.tooltip": "You cannot change the payment status"
+  "ordersTable.ispaid.tooltip": "You cannot change the payment status",
+  "ordersTable.canceled.tooltip": "Order cannot be marked as paid"
 }

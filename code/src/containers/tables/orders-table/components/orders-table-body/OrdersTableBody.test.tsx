@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
 import { mockOrders } from "@/containers/tables/orders-table/OrdersTable.constants";
 import OrdersTableBody from "@/containers/tables/orders-table/components/orders-table-body/OrdersTableBody";
@@ -29,9 +29,9 @@ describe("OrdersTableBody", () => {
     const ordersReceiver = screen.getByText(
       `${mockOrders[0].receiver.lastName} ${mockOrders[0].receiver.firstName}`
     );
-    const doneIcon = screen.getByTestId(/DoneIcon/);
+    const checkbox = screen.getByRole("checkbox");
 
-    expect(doneIcon).toBeInTheDocument();
+    expect(checkbox).toBeInTheDocument();
     expect(ordersReceiver).toBeInTheDocument();
   });
 
@@ -65,5 +65,58 @@ describe("OrdersTableBody", () => {
     fireEvent.click(desiredStatus);
 
     expect(mockStatusChange).toHaveBeenCalledWith("DELIVERED");
+  });
+
+  test("Should trigger isPaid status change after click on checkbox", () => {
+    const checkbox = screen.getByRole("checkbox");
+
+    expect(checkbox).not.toBeDisabled();
+
+    fireEvent.click(checkbox);
+
+    expect(mockIsPaidChange).toHaveBeenCalled();
+  });
+
+  test("Should show tooltip after hover", () => {
+    const checkbox = screen.getByRole("checkbox");
+
+    fireEvent.mouseOver(checkbox);
+    waitFor(() => {
+      const tooltip = screen.getByText(/ordersTable.notpaid.tooltip/);
+      expect(tooltip).toBeInTheDocument();
+    });
+  });
+});
+
+describe("OrdersTableBody canceled order", () => {
+  beforeEach(() => {
+    renderWithProviders(
+      <table>
+        <tbody>
+          <tr>
+            <OrdersTableBody
+              onStatusChange={mockStatusChange}
+              onIsPaidChange={mockIsPaidChange}
+              order={mockOrders[1]}
+            />
+          </tr>
+        </tbody>
+      </table>
+    );
+  });
+  test("Should not trigger isPaid status change after click on checkbox", () => {
+    const checkbox = screen.getByRole("checkbox");
+
+    expect(checkbox).toBeDisabled();
+  });
+
+  test("Should show tooltip after hover", () => {
+    const checkbox = screen.getByRole("checkbox");
+
+    fireEvent.mouseOver(checkbox);
+    waitFor(() => {
+      const tooltip = screen.getByText(/ordersTable.canceled.tooltip/);
+      expect(tooltip).toBeInTheDocument();
+    });
   });
 });
