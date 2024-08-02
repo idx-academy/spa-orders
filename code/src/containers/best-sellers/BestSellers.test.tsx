@@ -55,8 +55,7 @@ describe("BestSellers", () => {
     expect(useGetUserProductsQuery).toHaveBeenCalledWith({
       page: 0,
       size: 5,
-      lang: "en",
-      tags: ""
+      lang: "en"
     });
     const productsContainer = screen.getByTestId("products-container");
     expect(productsContainer).toBeInTheDocument();

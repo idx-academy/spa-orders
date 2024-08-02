@@ -19,7 +19,6 @@ const BestSellers = () => {
     isLoading,
     isError
   } = useGetUserProductsQuery({
-    tags: "",
     page: 0,
     size: 5,
     lang: locale
