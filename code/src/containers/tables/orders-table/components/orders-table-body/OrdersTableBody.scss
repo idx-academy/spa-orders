@@ -37,18 +37,19 @@
     margin: 0;
 
     & svg {
-      fill: var(--order-table-body-checkbox-color, $light-alpha) !important;
-      margin: 0 !important; // To rewrite mui styles and styles setted in AppCheckbox
-    }
-  }
-
-  &-checkbox-success {
-    margin: 0;
-    & svg {
       fill: var(
-        --order-table-body-checkbox-success-color,
-        $green
+        --order-table-body-checkbox-color,
+        $light-alpha
       ) !important; // To rewrite mui styles and styles setted in AppCheckbox
+    }
+
+    .Mui-checked {
+      & svg {
+        fill: var(
+          --order-table-body-checkbox-color,
+          $green
+        ) !important; // To rewrite mui styles and styles setted in AppCheckbox
+      }
     }
   }
 }

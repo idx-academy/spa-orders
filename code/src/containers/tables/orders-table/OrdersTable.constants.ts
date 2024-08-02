@@ -47,5 +47,23 @@ export const mockOrders: AdminOrder[] = [
     },
     orderItems: [],
     total: 0
+  },
+  {
+    id: "3",
+    isPaid: true,
+    orderStatus: "SHIPPED",
+    createdAt: "2024-06-27T12:35:14.396Z",
+    receiver: {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com"
+    },
+    postAddress: {
+      deliveryMethod: "NOVA",
+      city: "New York",
+      department: "123"
+    },
+    orderItems: [],
+    total: 0
   }
 ];

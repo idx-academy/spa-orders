@@ -240,7 +240,7 @@ const adminOrders = {
     {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa61",
       isPaid: false,
-      orderStatus: "DELIVERED",
+      orderStatus: "CANCELED",
       createdAt: "2024-07-20T08:31:49.779Z",
       receiver: {
         firstName: "Maksym",

@@ -48,7 +48,6 @@ const OrdersTableBody = ({
     <AppSelect
       defaultValue={orderStatus}
       value={orderStatus}
-      IconComponent={() => null}
       className="spa-order-table__body-status-select"
       data-testid="order-status"
       MenuProps={{
@@ -92,9 +91,7 @@ const OrdersTableBody = ({
   );
 
   const handleIsPaidChange = () => {
-    if (!isPaid) {
-      onIsPaidChange(true);
-    }
+    !isPaid && onIsPaidChange(true);
   };
 
   const emailField = (
@@ -126,7 +123,7 @@ const OrdersTableBody = ({
   const isPaidField = isPaid ? (
     <AppTooltip followCursor titleTranslationKey="ordersTable.ispaid.tooltip">
       <AppCheckbox
-        className="spa-order-table__body-checkbox-success"
+        className="spa-order-table__body-checkbox"
         checked
         disabled
       />
