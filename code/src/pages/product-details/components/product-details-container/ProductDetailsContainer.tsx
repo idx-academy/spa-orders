@@ -2,7 +2,6 @@ import { useIntl } from "react-intl";
 
 import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
-import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { deliveryMethods as deliveryMethodsData } from "@/constants/deliveryMethods";
@@ -10,6 +9,7 @@ import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
 import { ProductDetailsPageParams } from "@/pages/product-details/ProductDetails.types";
 import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
+import BuyNowButton from "@/pages/product-details/components/buy-now-button/BuyNowButton";
 import { useGetUserProductByIdQuery } from "@/store/api/productsApi";
 import formatPrice from "@/utils/format-price/formatPrice";
 import getCategoryFromTags from "@/utils/get-category-from-tags/getCategoryFromTags";
@@ -51,6 +51,7 @@ const ProductDetailsContainer = ({
   }
 
   const categoryTag = getCategoryFromTags(product.tags);
+  const productWithId = { ...product, id: productId };
 
   const categoryBadge = categoryTag && (
     <AppBadge
@@ -119,9 +120,7 @@ const ProductDetailsContainer = ({
               >
                 {formatPrice(product.price)}
               </AppTypography>
-              <AppButton>
-                <AppTypography translationKey="productDetailsPage.buyNowButton" />
-              </AppButton>
+              <BuyNowButton productWithId={productWithId} />
             </AppBox>
           </AppBox>
           <AppBox className="product-details__section">

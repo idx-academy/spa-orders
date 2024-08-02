@@ -7,7 +7,11 @@ import useAddToCart from "@/hooks/use-add-to-cart/useAddToCart";
 import useCheckItemInCartExistance from "@/hooks/use-item-in-cart-existance/useItemInCartExistance";
 import { Product } from "@/types/product.types";
 
-const useAddToCartOrOpenDrawer = (product: Product) => {
+type MinimalRequiredProduct = Omit<Product, "status">;
+
+const useAddToCartOrOpenDrawer = <T extends MinimalRequiredProduct>(
+  product: T
+) => {
   const checkItemInCartExistance = useCheckItemInCartExistance();
 
   const isInCart = checkItemInCartExistance(product.id);

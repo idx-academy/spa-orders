@@ -2,6 +2,7 @@
   "productDetailsPage.notFound": "Вибачте, але товар не знайдено.\nБудь ласка, виберіть інший товар або спробуйте пізніше.",
   "productDetailsPage.goBack": "Продовжити покупки",
   "productDetailsPage.buyNowButton": "Придбати зараз",
+  "productDetailsPage.addToCartButton": "Додати до кошика",
   "productDetailsPage.inStock": "На складі",
   "productDetailsPage.deliveryMethodsCaption": "Методи доставки",
   "productDetailsPage.descriptionCaption": "Опис"
