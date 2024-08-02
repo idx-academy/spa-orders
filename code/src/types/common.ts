@@ -53,3 +53,15 @@ export type RTKQueryMockState<TData = null, TError = null> = Partial<
 >;
 
 export type TimeSpan = keyof typeof timeSpans;
+
+export type PageableResponse<Content> = {
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  size: number;
+  empty: boolean;
+  content: Content;
+};

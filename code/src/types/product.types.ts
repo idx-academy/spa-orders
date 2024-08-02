@@ -1,6 +1,6 @@
 import { ProductTranslation } from "@/containers/forms/new-product-form/NewProductForm.types";
 
-import { Lang, Pageable } from "@/types/common";
+import { Lang, Pageable, PageableResponse } from "@/types/common";
 
 export type ProductStatus = "AVAILABLE";
 
@@ -51,17 +51,7 @@ export type GetUserProductByIdParams = Lang & {
   productId: string;
 };
 
-export type GetManagerProductsResponse = {
-  totalElements: number;
-  totalPages: number;
-  first: boolean;
-  last: boolean;
-  number: number;
-  numberOfElements: number;
-  size: number;
-  empty: boolean;
-  content: ManagerProduct[];
-};
+export type GetManagerProductsResponse = PageableResponse<ManagerProduct[]>;
 
 export type GetManagerProductsParams = Partial<ManagerProduct & Pageable>;
 export type CreateProductBody = {

@@ -18,7 +18,9 @@ const defaultArgs: RTKQueryMockState<GetUsersForAdminResponse> = {
   isLoading: false
 };
 
-const mockAndRender = (args?: RTKQueryMockState<GetUsersForAdminResponse>) => {
+const mockAndRender = (
+  args?: RTKQueryMockState<Partial<GetUsersForAdminResponse>>
+) => {
   (useGetUsersForAdminDashboardQuery as jest.Mock).mockReturnValue({
     ...defaultArgs,
     ...args
@@ -43,7 +45,9 @@ describe("UsersTab", () => {
   });
 
   test("renders user table if we have data from server", () => {
-    mockAndRender({ data: { content: [mockUser] } });
+    mockAndRender({
+      data: { content: [mockUser] }
+    });
 
     const email = screen.getByText(mockUser.email);
     expect(email).toBeInTheDocument();
