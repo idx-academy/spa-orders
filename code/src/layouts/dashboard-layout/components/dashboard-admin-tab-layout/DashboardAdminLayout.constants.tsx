@@ -6,13 +6,13 @@ import { DashboardTab } from "@/layouts/dashboard-layout/DashboardLayout.types";
 
 export const dashboardAdminTabs: DashboardTab[] = [
   {
-    labelTranslationKey: "dashboardTabs.orders.label",
-    name: DASHBOARD_TAB_NAMES.ORDERS,
-    icon: <ReceiptLongIcon />
-  },
-  {
     labelTranslationKey: "dashboardTabs.users.label",
     name: DASHBOARD_TAB_NAMES.USERS,
     icon: <PeopleIcon />
+  },
+  {
+    labelTranslationKey: "dashboardTabs.orders.label",
+    name: DASHBOARD_TAB_NAMES.ORDERS,
+    icon: <ReceiptLongIcon />
   }
 ];
