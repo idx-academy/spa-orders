@@ -5,6 +5,7 @@ import AppTypography from "@/components/app-typography/AppTypography";
 
 import { PostAddress } from "@/types/delivery.types";
 import { UserOrder } from "@/types/order.types";
+import extractFullname from "@/utils/extract-fullname/extractFullname";
 import formatPrice from "@/utils/format-price/formatPrice";
 
 import "@/containers/order-item/components/order-item-details/OrderItemDetails.scss";
@@ -20,13 +21,9 @@ const postAddressFields: Record<keyof PostAddress, string> = {
 };
 
 const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
-  const {
-    receiver: { firstName, lastName, email },
-    postAddress,
-    orderItems
-  } = order;
+  const { receiver, postAddress, orderItems } = order;
 
-  const orderReceiver = `${firstName} ${lastName}`;
+  const fullName = extractFullname(receiver);
 
   const postAddressFieldsList = Object.entries(postAddressFields).map(
     ([key, label]) => (
@@ -63,14 +60,14 @@ const OrderItemDetails = ({ order }: OrderItemDetailsProps) => {
               variant="caption"
               fontWeight="extra-bold"
             >
-              {orderReceiver}
+              {fullName}
             </AppTypography>
             <AppTypography
               className="spa-order-details__receiver-item"
               variant="caption"
               fontWeight="extra-bold"
             >
-              {email}
+              {receiver.email}
             </AppTypography>
           </AppBox>
         </AppBox>

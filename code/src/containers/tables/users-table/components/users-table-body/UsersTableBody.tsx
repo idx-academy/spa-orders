@@ -9,6 +9,7 @@ import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import useLongestTranslationLength from "@/hooks/use-longest-translation-length/useLongestTranslationLength";
+import extractFullname from "@/utils/extract-fullname/extractFullname";
 import formatDate from "@/utils/format-date/formatDate";
 
 const UsersTableBody = ({ user }: UsersTableBodyProps) => {
@@ -22,8 +23,8 @@ const UsersTableBody = ({ user }: UsersTableBodyProps) => {
     (value) => value.translationKey
   );
 
-  const { firstName, lastName, role, status, createdAt, email } = user;
-  const fullName = `${firstName} ${lastName}`;
+  const { role, status, createdAt, email } = user;
+  const fullName = extractFullname(user);
 
   const roleBadgeDetails = roleBadges[role];
   const roleBadge = (
