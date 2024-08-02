@@ -1,4 +1,4 @@
-const {categoryFilter} = require('../utils/categoryFilter')
+const { categoryFilter } = require('../utils/categoryFilter')
 
 const { managerProducts, managerProduct } = require("../data/managerProducts");
 const products = require("../data/mokedData");
