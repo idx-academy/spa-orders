@@ -1,8 +1,7 @@
 import { renderHook } from "@testing-library/react";
 
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
-
-import useLongestTranslationLength from "./useLongestTranslationLength";
+import useLongestTranslationLength from "@/hooks/use-longest-translation-length/useLongestTranslationLength";
 
 jest.mock("@/context/i18n/I18nProvider", () => ({
   ...jest.requireActual("@/context/i18n/I18nProvider"),
@@ -22,28 +21,22 @@ const translationList: ListItem[] = [
 ];
 const extractTranslationKey = (value: ListItem) => value.key;
 
+const renderAndMock = (list: ListItem[]) => {
+  (useLocaleContext as jest.Mock).mockReturnValue({ locale: mockLocale });
+
+  return renderHook(() =>
+    useLongestTranslationLength(list, extractTranslationKey)
+  );
+};
+
 describe("useLongestTranslationLength", () => {
-  beforeEach(() => {
-    (useLocaleContext as jest.Mock).mockReturnValue({ locale: mockLocale });
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   it("returns the length of the longest translation", () => {
-    const { result } = renderHook(() =>
-      useLongestTranslationLength(translationList, extractTranslationKey)
-    );
-
+    const { result } = renderAndMock(translationList);
     expect(result.current).toBe(9);
   });
 
   it("returns 0 when the translation list is empty", () => {
-    const { result } = renderHook(() =>
-      useLongestTranslationLength([] as ListItem[], extractTranslationKey)
-    );
-
+    const { result } = renderAndMock([]);
     expect(result.current).toBe(0);
   });
 });
