@@ -7,9 +7,9 @@ export const orderStatusesTranslationKeys = {
 } as const;
 
 export const orderDeliveryStatuses = {
-  InProgress: "IN_PROGRESS",
-  Shipped: "SHIPPED",
-  Delivered: "DELIVERED",
-  Canceled: "CANCELED",
-  Completed: "COMPLETED"
+  IN_PROGRESS: "IN_PROGRESS",
+  SHIPPED: "SHIPPED",
+  DELIVERED: "DELIVERED",
+  CANCELED: "CANCELED",
+  COMPLETED: "COMPLETED"
 } as const;

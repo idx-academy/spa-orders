@@ -12,7 +12,6 @@ export type AppCheckboxProps = Omit<
   icon?: ReactNode;
   labelClassName?: string;
 } & (
-    | { labelTranslationKey: string; label?: never }
-    | { labelTranslationKey?: never; label: ReactNode }
     | { labelTranslationKey?: string; label?: never }
+    | { labelTranslationKey?: never; label: ReactNode }
   );

@@ -101,7 +101,7 @@ const OrdersTableBody = ({
   );
 
   const notPaidOrderCheckbox =
-    orderStatus !== orderDeliveryStatuses.Canceled ? (
+    orderStatus !== orderDeliveryStatuses.CANCELED ? (
       <AppTooltip
         followCursor
         titleTranslationKey="ordersTable.notpaid.tooltip"
