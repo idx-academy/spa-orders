@@ -19,6 +19,7 @@
   &__img {
     position: relative;
     overflow: hidden;
+    aspect-ratio: 1 / 1;
 
     &:hover .spa-product-card__description {
       opacity: 1;
