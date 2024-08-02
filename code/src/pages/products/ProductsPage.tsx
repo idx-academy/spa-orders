@@ -11,7 +11,6 @@ import AppTypography from "@/components/app-typography/AppTypography";
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetUserProductsQuery } from "@/store/api/productsApi";
-import categoryFilter from "@/utils/filter-products-by-category/categoryFilter";
 import validatePage from "@/utils/validate-page/validatePage";
 
 import "@/pages/products/ProductsPage.scss";
@@ -31,6 +30,7 @@ const ProductsPage = () => {
     isLoading,
     isError
   } = useGetUserProductsQuery({
+    tags: categoryType ? `category:${categoryType}` : "",
     page: page - 1,
     size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
     sort: sortOption ?? "recommended",
@@ -38,8 +38,6 @@ const ProductsPage = () => {
   });
 
   const productsList = productsResponse?.content;
-
-  const filteredProductsList = categoryFilter(categoryType, productsList);
 
   const defaultDropdownText = (
     <AppTypography translationKey="productsDefault.label" />
@@ -50,7 +48,7 @@ const ProductsPage = () => {
     setSearchParams(searchParams);
   };
 
-  const productsCount = filteredProductsList?.length ?? 0;
+  const productsCount = productsList?.length ?? 0;
 
   const productsAllLabels = !categoryType
     ? "productsAll.label"
@@ -87,7 +85,7 @@ const ProductsPage = () => {
         </AppBox>
         <ProductsContainer
           className="spa-products-page__grid"
-          products={filteredProductsList ?? []}
+          products={productsList ?? []}
           loadingItemsCount={10}
           isLoading={isLoading}
           isError={isError}

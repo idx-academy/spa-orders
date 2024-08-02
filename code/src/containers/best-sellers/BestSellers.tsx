@@ -7,8 +7,8 @@ import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import routes from "@/constants/routes";
-import { useGetUserProductsQuery } from "@/store/api/productsApi";
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
+import { useGetUserProductsQuery } from "@/store/api/productsApi";
 
 import "@/containers/best-sellers/BestSellers.scss";
 
@@ -19,6 +19,7 @@ const BestSellers = () => {
     isLoading,
     isError
   } = useGetUserProductsQuery({
+    tags: "",
     page: 0,
     size: 5,
     lang: locale

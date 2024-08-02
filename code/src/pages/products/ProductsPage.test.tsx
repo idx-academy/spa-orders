@@ -46,6 +46,7 @@ jest.mock("@/context/i18n/I18nProvider", () => ({
 }));
 
 const defaultQueryArguments = {
+  tags: "",
   size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
   page: 0,
   sort: "recommended",

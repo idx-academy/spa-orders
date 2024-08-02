@@ -37,6 +37,7 @@ export type GetUserProductsResponse = {
 };
 
 export type GetUserProductsParams = Lang & {
+  tags: string | null;
   page?: number;
   size?: number;
   sort?: string;
