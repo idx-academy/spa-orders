@@ -1,0 +1,10 @@
+@import "@design-system";
+
+.users-table__body {
+  @include transition((background-color));
+  background-color: var(--products-table-body-bg-color, $white);
+
+  &:hover {
+    background-color: var(--products-table-body-hover-bg-color, $light);
+  }
+}

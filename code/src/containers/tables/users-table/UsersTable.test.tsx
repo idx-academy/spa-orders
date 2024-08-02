@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import UsersTable from "@/containers/tables/users-table/UsersTable";
 import {
@@ -6,9 +6,13 @@ import {
   usersTableColumns
 } from "@/containers/tables/users-table/UsersTable.constants";
 
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+
 describe("UsersTable", () => {
   test("renders correctly", () => {
-    const { container } = render(<UsersTable users={[mockUser]} />);
+    const { container } = renderWithProviders(
+      <UsersTable users={[mockUser]} />
+    );
 
     usersTableColumns
       .filter((item) => item)
@@ -28,7 +32,7 @@ describe("UsersTable", () => {
   });
 
   test("renders fallback correctly", () => {
-    render(<UsersTable users={[]} />);
+    renderWithProviders(<UsersTable users={[]} />);
 
     const fallbackText = screen.getByText("usersTable.fallback");
     expect(fallbackText).toBeInTheDocument();

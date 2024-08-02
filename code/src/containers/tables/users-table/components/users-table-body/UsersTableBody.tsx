@@ -8,9 +8,20 @@ import AppBadge from "@/components/app-badge/AppBadge";
 import { AppTableCell } from "@/components/app-table/components";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import useLongestTranslationLength from "@/hooks/use-longest-translation-length/useLongestTranslationLength";
 import formatDate from "@/utils/format-date/formatDate";
 
 const UsersTableBody = ({ user }: UsersTableBodyProps) => {
+  const roleBadgeWidth = useLongestTranslationLength(
+    Object.values(roleBadges),
+    (value) => value.translationKey
+  );
+
+  const statusBadgeWidth = useLongestTranslationLength(
+    Object.values(statusBadges),
+    (value) => value.translationKey
+  );
+
   const { firstName, lastName, role, status, createdAt, email } = user;
   const fullName = `${firstName} ${lastName}`;
 
@@ -20,6 +31,8 @@ const UsersTableBody = ({ user }: UsersTableBodyProps) => {
       variant={roleBadgeDetails.variant}
       badgeContent={
         <AppTypography
+          data-testid="role-badge"
+          style={{ width: `${roleBadgeWidth}ch` }}
           variant="caption-small"
           translationKey={roleBadgeDetails.translationKey}
         />
@@ -33,6 +46,8 @@ const UsersTableBody = ({ user }: UsersTableBodyProps) => {
       variant={statusBadgeDetails.variant}
       badgeContent={
         <AppTypography
+          data-testid="status-badge"
+          style={{ width: `${statusBadgeWidth}ch` }}
           variant="caption-small"
           translationKey={statusBadgeDetails.translationKey}
         />

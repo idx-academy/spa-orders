@@ -3,6 +3,8 @@ import { AppBadgeColorVariant } from "@/components/app-badge/AppBadge.types";
 import { ROLES, USER_STATUSES } from "@/constants/common";
 import { UserRole, UserStatus } from "@/types/user.types";
 
+import "@/containers/tables/users-table/components/users-table-body/UsersTableBody.scss";
+
 type BadgeDetails = {
   translationKey: string;
   variant: AppBadgeColorVariant;
