@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
 import OrdersTable from "@/containers/tables/orders-table/OrdersTable";
 import {
@@ -9,9 +9,10 @@ import {
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockSetStatus = jest.fn();
+const mockSetIsPaid = jest.fn();
 
 jest.mock("@/store/api/ordersApi", () => ({
-  useChangeOrderStatusMutation: jest.fn(() => [mockSetStatus])
+  useChangeOrderStatusMutation: jest.fn(() => [mockSetStatus, mockSetIsPaid])
 }));
 
 describe("OrdersTable", () => {
@@ -56,6 +57,21 @@ describe("OrdersTable", () => {
     expect(mockSetStatus).toHaveBeenCalledWith({
       orderId: mockOrders[0].id,
       orderStatus: "DELIVERED"
+    });
+  });
+
+  test("Should call function to set status", () => {
+    renderWithProviders(<OrdersTable ordersData={mockOrders} />);
+
+    const checkboxBlank = screen.getAllByTestId("CheckBoxOutlineBlankIcon")[0];
+
+    fireEvent.click(checkboxBlank);
+    waitFor(() => {
+      expect(mockSetIsPaid).toHaveBeenCalledWith({
+        orderId: mockOrders[0].id,
+        orderStatus: "IN_PROGRESS",
+        isPaid: true
+      });
     });
   });
 });

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 import { FormControlLabelProps } from "@mui/material/FormControlLabel";
 
-export type AppCheckboxVariant = "contained" | "dark" | "success";
+export type AppCheckboxVariant = "contained" | "dark";
 
 export type AppCheckboxProps = Omit<
   FormControlLabelProps,
