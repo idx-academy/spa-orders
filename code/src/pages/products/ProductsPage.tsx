@@ -30,7 +30,7 @@ const ProductsPage = () => {
     isLoading,
     isError
   } = useGetUserProductsQuery({
-    tags: categoryType ? `category:${categoryType}` : undefined,
+    tags: categoryType ? `category:${categoryType}` : "",
     page: page - 1,
     size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
     sort: sortOption ?? "recommended",

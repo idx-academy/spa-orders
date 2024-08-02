@@ -21,7 +21,8 @@ const BestSellers = () => {
   } = useGetUserProductsQuery({
     page: 0,
     size: 5,
-    lang: locale
+    lang: locale,
+    tags: ""
   });
 
   return (
