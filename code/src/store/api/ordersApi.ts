@@ -3,9 +3,9 @@ import { httpMethods } from "@/constants/methods";
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
 import {
-  GetAdminOrderByIdResponse,
   AdminOrderResponse,
   GetAdminOrderByIdParams,
+  GetAdminOrderByIdResponse,
   GetAdminOrderParams,
   GetUserOrderParams,
   OrderPatchParams,
@@ -22,7 +22,7 @@ const ordersApi = appApi.injectEndpoints({
 
     getAdminOrders: build.query<AdminOrderResponse, GetAdminOrderParams>({
       query: (params) => URLS.orders.getForAdmin(params),
-      providesTags: [rtkQueryTags.USER_ORDERS]
+      providesTags: [rtkQueryTags.USER_ORDERS, rtkQueryTags.ADMIN_ORDERS]
     }),
 
     getAdminOrderById: build.query<
@@ -53,7 +53,7 @@ const ordersApi = appApi.injectEndpoints({
       query: ({ orderStatus, ...params }) => ({
         url: URLS.orders.patch(params),
         method: httpMethods.patch,
-        params: { orderStatus }
+        body: { orderStatus }
       }),
       invalidatesTags: [rtkQueryTags.ADMIN_ORDERS]
     })

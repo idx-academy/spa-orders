@@ -45,7 +45,7 @@ export const URLS = {
     post: ({ userId }: Pick<OrderPostParams, "userId">) =>
       `/v1/users/${userId}/orders`,
     patch: ({ orderId }: Pick<OrderPatchParams, "orderId">) =>
-      `/v1/orders/${orderId}/status`
+      `/v1/management/orders/${orderId}/status`
   },
   cart: {
     get: ({ userId, lang }: CartManagementGetParams) =>
