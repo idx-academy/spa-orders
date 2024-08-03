@@ -72,13 +72,51 @@ const createProduct = (req, res) => {
 };
 
 const getProductByIdForManager = (req, res) => {
-  return res.json(managerProduct)
-}
+  return res.json(managerProduct);
+};
+
+const searchProducts = (req, res) => {
+  const { searchQuery, sort } = req.query;
+  const page = validateNumberQueryParam(req.query.page);
+  const size = validateNumberQueryParam(req.query.size, 10);
+
+  let filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
+
+  if (sort) {
+    filteredProducts = sortProducts(filteredProducts, sort);
+  }
+
+  const skip = 1;
+  const limit = (page + 1) * size;
+  const paginatedProducts = filteredProducts.slice(skip, limit);
+
+  const response = {
+    totalElements: filteredProducts.length,
+    totalPages: Math.ceil(filteredProducts.length / size),
+    first: page === 0,
+    last: page === Math.ceil(filteredProducts.length / size) - 1,
+    number: page,
+    numberOfElements: paginatedProducts.length,
+    size: size,
+    empty: paginatedProducts.length === 0,
+    content: paginatedProducts.map((product) => ({
+      id: product.id,
+      image: product.image,
+      name: product.name,
+    })),
+  };
+
+  res.json(response);
+};
 
 module.exports = {
   getAllProducts,
   getProductById,
   createProduct,
   getAllManagerProducts,
-  getProductByIdForManager
+  searchProducts,
+  getProductByIdForManager,
 };
