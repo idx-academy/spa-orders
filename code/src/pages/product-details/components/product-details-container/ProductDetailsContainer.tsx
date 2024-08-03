@@ -120,7 +120,7 @@ const ProductDetailsContainer = ({
                 {formatPrice(product.price)}
               </AppTypography>
               <BuyNowButton
-                productWithId={{ ...product, id: productId } as any}
+                productWithId={{ ...product, id: productId }}
               />
             </AppBox>
           </AppBox>
