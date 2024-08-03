@@ -54,4 +54,9 @@ const filterOrders = (orders, filters) => {
   };
 };
 
-module.exports = { filterOrders };
+const filteredProductsBySearchQuery = (products, searchQuery) =>
+  products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+module.exports = { filterOrders, filteredProductsBySearchQuery };

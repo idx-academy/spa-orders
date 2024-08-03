@@ -1,6 +1,7 @@
 const { managerProducts, managerProduct } = require("../data/managerProducts");
 const products = require("../data/mokedData");
 const { sortProducts } = require("../utils/sortUtils");
+const { filteredProductsBySearchQuery } = require("../utils/filterUtils");
 
 const validateNumberQueryParam = (value, defaultValue = 0) => {
   return !isNaN(value) && Number(value) >= 0 ? Number(value) : defaultValue;
@@ -80,10 +81,7 @@ const searchProducts = (req, res) => {
   const page = validateNumberQueryParam(req.query.page);
   const size = validateNumberQueryParam(req.query.size, 10);
 
-  let filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
-
+  let filteredProducts = filteredProductsBySearchQuery(products, searchQuery);
 
   if (sort) {
     filteredProducts = sortProducts(filteredProducts, sort);
