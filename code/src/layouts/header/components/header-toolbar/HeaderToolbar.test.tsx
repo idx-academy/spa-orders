@@ -4,6 +4,7 @@ import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderTool
 
 import { useIsAuthLoadingSelector } from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import {useGetUserProductsBySearchQuery} from "@/store/api/productsApi";
 
 jest.mock(
   "@/layouts/header/utils/get-header-toolbar-by-role/getHeaderToolbarByRole",
@@ -17,10 +18,20 @@ jest.mock("@/store/slices/userSlice", () => ({
   useIsAuthLoadingSelector: jest.fn(),
   useUserRoleSelector: jest.fn()
 }));
+jest.mock("@/store/api/productsApi", () => ({
+  useGetUserProductsBySearchQuery: jest.fn()
+}));
 
 const mockAndRender = (isLoading = false) => {
   (useIsAuthLoadingSelector as jest.Mock).mockReturnValue(isLoading);
-
+  (useGetUserProductsBySearchQuery as jest.Mock).mockReturnValue({
+    data: {
+      totalElements: 5,
+      content: [{ id: 1, name: "Product 1", image: "image1.png" }]
+    },
+    isLoading: false,
+    isError: false
+  });
   renderWithProviders(<HeaderToolbar />);
 };
 
