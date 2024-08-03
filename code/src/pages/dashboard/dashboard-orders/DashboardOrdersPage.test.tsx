@@ -1,5 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
-import React, { useState } from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { useState } from "react";
 
 import useFilteredAdminOrders from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
 
@@ -8,11 +8,6 @@ import { AdminOrder } from "@/types/order.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const mockSetIsFilterDrawerOpen = jest.fn();
-
-jest.mock("react", () => ({
-  ...jest.requireActual("react"),
-  useState: jest.fn()
-}));
 
 jest.mock(
   "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders"
@@ -23,20 +18,27 @@ jest.mock("@/containers/tables/orders-table/OrdersTable", () => ({
   default: () => <div>OrdersTable</div>
 }));
 
+type DashboardTabContainerProps = {
+  closeFilterDrawer: () => void;
+};
+
 jest.mock(
   "@/containers/dashboard-orders-filter-drawer/DashboardOrdersFilterDrawer",
   () => ({
     __esModule: true,
-    default: () => <div>OrdersTabFilterDrawer</div>
+    default: ({ closeFilterDrawer }: DashboardTabContainerProps) => (
+      <button data-testid="close-drawer" onClick={closeFilterDrawer}>
+        Close drawer
+      </button>
+    )
   })
 );
 
-type RenderAndMock = {
-  isLoading?: boolean;
-  orders?: AdminOrder;
-  activeFiltersCount?: number;
-  totalPages?: number;
-};
+// don't change this mock because otherwise it will not work
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useState: jest.fn().mockImplementation(jest.requireActual("react").useState)
+}));
 
 const defaultArgs = {
   filters: {},
@@ -47,21 +49,38 @@ const defaultArgs = {
   totalPages: 1
 };
 
-const renderAndMock = (args: RenderAndMock = {}) => {
-  (useState as jest.Mock).mockImplementation((init) => [
-    init,
-    mockSetIsFilterDrawerOpen
-  ]);
+type RenderAndMock = {
+  isLoading?: boolean;
+  orders?: AdminOrder;
+  activeFiltersCount?: number;
+  totalPages?: number;
+  mockUseStateValue?: boolean;
+};
 
+const renderAndMock = ({ mockUseStateValue, ...args }: RenderAndMock = {}) => {
   (useFilteredAdminOrders as jest.Mock).mockReturnValue({
     ...defaultArgs,
     ...args
   });
 
-  renderWithProviders(<DashboardOrdersPage />);
+  if (mockUseStateValue !== undefined) {
+    (useState as jest.Mock).mockReturnValueOnce([
+      mockUseStateValue,
+      mockSetIsFilterDrawerOpen
+    ]);
+
+    // use render instead of renderWithProviders because it does not work with mock useState for some reason
+    render(<DashboardOrdersPage />);
+  } else {
+    renderWithProviders(<DashboardOrdersPage />);
+  }
 };
 
-describe("OrdersTab", () => {
+describe("DashboardOrdersPage", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("renders loading element correctly", () => {
     renderAndMock({ isLoading: true });
 
@@ -89,7 +108,12 @@ describe("OrdersTab", () => {
   });
 
   test("opens filter drawer correctly", () => {
-    renderAndMock();
+    renderAndMock({ mockUseStateValue: false });
+    expect(useState).toHaveBeenCalledWith(false);
+
+    const closeDrawerButtonFromPlayground =
+      screen.queryByTestId("close-drawer");
+    expect(closeDrawerButtonFromPlayground).not.toBeInTheDocument();
 
     const filterButton = screen.getByTestId("filter-button");
     fireEvent.click(filterButton);
@@ -97,22 +121,14 @@ describe("OrdersTab", () => {
     expect(mockSetIsFilterDrawerOpen).toHaveBeenCalledWith(true);
   });
 
-  test.skip("closes filter drawer correctly", async () => {
-    jest
-      .spyOn(React, "useState")
-      .mockImplementationOnce(() => [false, mockSetIsFilterDrawerOpen])
-      .mockImplementationOnce(() => [true, mockSetIsFilterDrawerOpen]);
+  test("closes filter drawer correctly", async () => {
+    renderAndMock({ mockUseStateValue: true });
+    expect(useState).not.toHaveBeenCalledWith(true); // initial value for use state in this component is always false, required for mutation tests
 
-    renderAndMock();
+    const closeDrawerButtonFromPlayground = screen.getByTestId("close-drawer");
+    expect(closeDrawerButtonFromPlayground).toBeInTheDocument();
 
-    const filterButton = screen.getByTestId("filter-button");
-    fireEvent.click(filterButton);
-
-    const drawerContent = await screen.findByText("OrdersTabFilterDrawer");
-    expect(drawerContent).toBeInTheDocument();
-
-    // @TODO: close drawer
-
+    fireEvent.click(closeDrawerButtonFromPlayground);
     expect(mockSetIsFilterDrawerOpen).toHaveBeenCalledWith(false);
   });
 
