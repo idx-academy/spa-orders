@@ -13,7 +13,8 @@ import {
 } from "@/types/order.types";
 import {
   GetManagerProductByIdParams,
-  GetUserProductByIdParams
+  GetUserProductByIdParams,
+  GetUserProductsBySearchQueryParams
 } from "@/types/product.types";
 import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
@@ -31,7 +32,14 @@ export const URLS = {
     put: "/v1/products",
     delete: "/v1/products",
     getForManagerById: ({ productId }: GetManagerProductByIdParams) =>
-      `/v1/management/products/${productId}`
+      `/v1/management/products/${productId}`,
+    searchByQuery: ({
+      searchQuery,
+      lang,
+      page,
+      size
+    }: GetUserProductsBySearchQueryParams) =>
+      `/v1/products/search?searchQuery=${searchQuery}&lang=${lang}&page=${page}&size=${size}`
   },
   orders: {
     getForUser: ({ userId, lang }: GetUserOrderParams) =>

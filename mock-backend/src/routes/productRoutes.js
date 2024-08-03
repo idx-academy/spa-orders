@@ -4,15 +4,17 @@ const {
   getProductById,
   getAllManagerProducts,
   createProduct,
-  getProductByIdForManager
+  getProductByIdForManager,
+  searchProducts,
 } = require("../controllers/productController");
 
 const router = express.Router();
 
 router.get("/products", getAllProducts);
+router.get("/products/search", searchProducts);
 router.get("/products/:productId", getProductById);
 router.get("/management/products", getAllManagerProducts);
-router.get("/management/products/:id", getProductByIdForManager)
+router.get("/management/products/:id", getProductByIdForManager);
 router.post("/management/products", createProduct);
 
 module.exports = router;

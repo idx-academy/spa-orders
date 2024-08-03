@@ -10,6 +10,8 @@ import {
   GetManagerProductsResponse,
   GetUserProductByIdParams,
   GetUserProductByIdResponse,
+  GetUserProductsBySearchQueryParams,
+  GetUserProductsBySearchQueryResponse,
   GetUserProductsParams,
   GetUserProductsResponse,
   Product
@@ -81,10 +83,15 @@ const productsApi = appApi.injectEndpoints({
         body
       }),
       invalidatesTags: [rtkQueryTags.ADMIN_PRODUCTS, rtkQueryTags.PRODUCTS]
+    }),
+    GetUserProductsBySearch: build.query<
+      GetUserProductsBySearchQueryResponse,
+      GetUserProductsBySearchQueryParams
+    >({
+      query: (params) => URLS.products.searchByQuery(params),
     })
   })
 });
-
 export const {
   useGetUserProductsQuery,
   useGetUserProductByIdQuery,
@@ -92,5 +99,6 @@ export const {
   useAddProductMutation,
   useDeleteProductMutation,
   useCreateProductMutation,
-  useGetManagerProductQuery
+  useGetManagerProductQuery,
+  useGetUserProductsBySearchQuery
 } = productsApi;

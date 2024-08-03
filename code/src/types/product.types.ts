@@ -28,6 +28,8 @@ export type ManagerProduct = {
   tags: string[];
 };
 
+export type ProductFromSearch = Pick<Product, "id" | "image" | "name">;
+
 export type GetUserProductsResponse = {
   content: Product[];
   totalPages: number;
@@ -54,6 +56,23 @@ export type GetUserProductByIdParams = Lang & {
 export type GetManagerProductsResponse = PageableResponse<ManagerProduct[]>;
 
 export type GetManagerProductsParams = Partial<Pageable & Lang>;
+export type GetUserProductsBySearchQueryParams = Lang & {
+  page?: number;
+  size?: number;
+  sort?: string;
+  searchQuery: string;
+};
+export type GetUserProductsBySearchQueryResponse = {
+  content: ProductFromSearch[];
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  size: number;
+  empty: boolean;
+};
 
 export type CreateProductBody = {
   status: ManagerProductStatus;
