@@ -1,0 +1,35 @@
+@import "@design-system";
+
+.spa-search-input {
+  position: relative;
+  padding: spacing(1) spacing(2);
+  display: flex;
+  align-items: flex-end;
+  height: spacing(9);
+  border-radius: spacing(10);
+  background-color: var(--spa-search-input-background-color, $light);
+  box-shadow: $shadow-black-alpha;
+
+  &:hover,
+  &:focus-within {
+    background-color: var(--spa-search-input-hover-background-color, $white);
+  }
+
+  &__text-field {
+    margin-left: spacing(2);
+  }
+
+  &__clear-icon {
+    visibility: hidden;
+  }
+
+  &__search-icon {
+    background-color: var(--spa-search-button-background-color, $purple);
+    color: var(--spa-search-button-icon-color, $white);
+
+    &:hover {
+      background-color: var(--spa-search-button-background-color, $black);
+    }
+  }
+
+}

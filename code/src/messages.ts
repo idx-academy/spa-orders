@@ -1,5 +1,6 @@
 import dashboardLayoutMessages from "@/layouts/dashboard-layout/messages";
 import footerMessages from "@/layouts/footer/messages";
+import headerMessages from "@/layouts/header/messages";
 
 import bestSellersMessages from "@/containers/best-sellers/messages";
 import callToActionSectionMessages from "@/containers/call-to-action/messages";
@@ -40,6 +41,7 @@ const messages: MessagesType = {
   en: {
     ...commonMessages.en,
     ...footerMessages.en,
+    ...headerMessages.en,
     ...bannerMessages.en,
     ...bestSellersMessages.en,
     ...subintroMessages.en,
@@ -73,6 +75,7 @@ const messages: MessagesType = {
   uk: {
     ...commonMessages.uk,
     ...footerMessages.uk,
+    ...headerMessages.uk,
     ...bannerMessages.uk,
     ...bestSellersMessages.uk,
     ...subintroMessages.uk,
