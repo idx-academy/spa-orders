@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 import CartDrawer from "@/containers/cart-drawer/CartDrawer";
 
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import useAddToCart from "@/hooks/use-add-to-cart/useAddToCart";
-import useCheckItemInCartExistance from "@/hooks/use-item-in-cart-existance/useItemInCartExistance";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
 import { Product } from "@/types/product.types";
 
 type MinimalRequiredProduct = Omit<Product, "status">;
@@ -12,17 +12,15 @@ type MinimalRequiredProduct = Omit<Product, "status">;
 const useAddToCartOrOpenDrawer = <T extends MinimalRequiredProduct>(
   product: T
 ) => {
-  const checkItemInCartExistance = useCheckItemInCartExistance();
+  const { data: cartData, isFetching: isCartFetching } = useGetCart();
+  const cartLength = cartData.items.length;
 
-  const isInCart = checkItemInCartExistance(product.id);
+  const isProductInCart = useMemo(() => {
+    return cartData.items.some((item) => item.productId === product.id);
+  }, [cartLength, isCartFetching, product.id]);
 
   const [addToCart] = useAddToCart();
   const { openDrawer } = useDrawerContext();
-  const [isProductInCart, setIsProductInCart] = useState(isInCart);
-
-  useEffect(() => {
-    setIsProductInCart(isInCart);
-  }, [isInCart]);
 
   const addToCartOrOpenDrawer = () => {
     if (isProductInCart) {
@@ -38,7 +36,6 @@ const useAddToCartOrOpenDrawer = <T extends MinimalRequiredProduct>(
       quantity: 1,
       calculatedPrice: product.price
     });
-    setIsProductInCart(true);
   };
 
   return { isProductInCart, addToCartOrOpenDrawer } as const;

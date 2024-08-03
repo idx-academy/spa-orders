@@ -8,6 +8,8 @@ import { RTKQueryMockState } from "@/types/common";
 import formatPrice from "@/utils/format-price/formatPrice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
+import BuyNowButton from "../buy-now-button/BuyNowButton";
+
 const mockProduct = {
   image:
     "https://j65jb0fdkxuua0go.public.blob.vercel-storage.com/phone_1-QodrkqNjm6MWrKqg9ixBBMMfFU40X7.jpg",
@@ -38,6 +40,16 @@ jest.mock("@/context/i18n/I18nProvider", () => ({
   ...jest.requireActual("@/context/i18n/I18nProvider"),
   useLocaleContext: jest.fn(() => ({ locale }))
 }));
+
+jest.mock(
+  "@/pages/product-details/components/buy-now-button/BuyNowButton",
+  () => ({
+    __esModule: true,
+    default: jest.fn(() => (
+      <button data-testid="buy-now-button">Buy now</button>
+    ))
+  })
+);
 
 type MockState = RTKQueryMockState<
   typeof mockProduct,
@@ -132,6 +144,14 @@ describe("ProductDetailsContainer", () => {
 
     const inStockTypography = screen.getByText("productDetailsPage.inStock");
     expect(inStockTypography).toBeInTheDocument();
+
+    const buyNowButton = screen.getByTestId("buy-now-button");
+    expect(buyNowButton).toBeInTheDocument();
+
+    expect(BuyNowButton).toHaveBeenCalledWith(
+      { productWithId: { ...mockProduct, id: productId } },
+      {}
+    );
   });
 
   test("renders delivery methods correctly", () => {

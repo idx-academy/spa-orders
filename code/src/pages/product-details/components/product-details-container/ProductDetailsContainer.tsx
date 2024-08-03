@@ -51,7 +51,6 @@ const ProductDetailsContainer = ({
   }
 
   const categoryTag = getCategoryFromTags(product.tags);
-  const productWithId = { ...product, id: productId };
 
   const categoryBadge = categoryTag && (
     <AppBadge
@@ -120,7 +119,9 @@ const ProductDetailsContainer = ({
               >
                 {formatPrice(product.price)}
               </AppTypography>
-              <BuyNowButton productWithId={productWithId} />
+              <BuyNowButton
+                productWithId={{ ...product, id: productId } as any}
+              />
             </AppBox>
           </AppBox>
           <AppBox className="product-details__section">

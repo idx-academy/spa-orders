@@ -3,27 +3,46 @@ import { act, renderHook } from "@testing-library/react";
 import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import useAddToCartOrOpenDrawer from "@/hooks/use-add-to-cart-or-open-drawer/useAddToCartOrOpenDrawer";
 import useAddToCart from "@/hooks/use-add-to-cart/useAddToCart";
-import useCheckItemInCartExistance from "@/hooks/use-item-in-cart-existance/useItemInCartExistance";
+import useGetCart from "@/hooks/use-get-cart/useGetCart";
+import { Product } from "@/types/product.types";
 
-jest.mock("@/hooks/use-item-in-cart-existance/useItemInCartExistance");
 jest.mock("@/hooks/use-add-to-cart/useAddToCart");
 jest.mock("@/context/drawer/DrawerContext");
+jest.mock("@/hooks/use-get-cart/useGetCart");
 
-const product = {
-  id: "1",
+const baseProduct = {
   name: "Product 1",
   image: "image.jpg",
   price: 100
 };
 
+const productThatIsInCart = {
+  ...baseProduct,
+  id: "1"
+};
+
+const productThatInNotInCart = {
+  ...baseProduct,
+  id: "2"
+};
+
+const mockCartItems = [
+  {
+    ...baseProduct,
+    productId: productThatIsInCart.id
+  }
+];
+
 const mockAddToCart = jest.fn();
 const mockOpenDrawer = jest.fn();
 
-const renderAndMock = (isInCart = false) => {
-  const checkItemInCartExistance = jest.fn().mockReturnValue(isInCart);
-  (useCheckItemInCartExistance as jest.Mock).mockReturnValue(
-    checkItemInCartExistance
-  );
+const renderAndMock = (product: Partial<Product>) => {
+  (useGetCart as jest.Mock).mockReturnValue({
+    data: {
+      items: mockCartItems
+    },
+    isFetching: false
+  });
 
   (useAddToCart as jest.Mock).mockReturnValue([mockAddToCart]);
 
@@ -31,7 +50,7 @@ const renderAndMock = (isInCart = false) => {
     openDrawer: mockOpenDrawer
   });
 
-  return renderHook(() => useAddToCartOrOpenDrawer(product as any));
+  return renderHook(() => useAddToCartOrOpenDrawer(product as Product));
 };
 
 describe("useAddToCartOrOpenDrawer", () => {
@@ -39,8 +58,8 @@ describe("useAddToCartOrOpenDrawer", () => {
     jest.clearAllMocks();
   });
 
-  it("should add product to cart if not in cart and open drawer if already in cart", () => {
-    const { result } = renderAndMock(false);
+  test("adds product to cart if it was not added before", () => {
+    const { result } = renderAndMock(productThatInNotInCart);
 
     expect(result.current.isProductInCart).toBe(false);
 
@@ -48,25 +67,20 @@ describe("useAddToCartOrOpenDrawer", () => {
       result.current.addToCartOrOpenDrawer();
     });
 
+    const { id, name, image, price } = productThatInNotInCart;
+
     expect(mockAddToCart).toHaveBeenCalledWith({
-      productId: product.id,
-      name: product.name,
-      image: product.image,
-      productPrice: product.price,
+      productId: id,
+      name,
+      image,
+      productPrice: price,
       quantity: 1,
-      calculatedPrice: product.price
+      calculatedPrice: price
     });
-    expect(result.current.isProductInCart).toBe(true);
-
-    act(() => {
-      result.current.addToCartOrOpenDrawer();
-    });
-
-    expect(mockOpenDrawer).toHaveBeenCalled();
   });
 
-  it("should set isProductInCart based on item existence in cart", () => {
-    const { result } = renderAndMock(true);
+  test("opens drawer when item is already in cart", () => {
+    const { result } = renderAndMock(productThatIsInCart);
 
     expect(result.current.isProductInCart).toBe(true);
 
