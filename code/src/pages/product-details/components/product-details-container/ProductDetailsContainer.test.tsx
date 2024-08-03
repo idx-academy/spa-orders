@@ -2,13 +2,12 @@ import { screen } from "@testing-library/react";
 
 import { deliveryMethods } from "@/constants/deliveryMethods";
 import { productNotFoundRedirectConfig } from "@/pages/product-details/ProductsDetailsPage.constants";
+import BuyNowButton from "@/pages/product-details/components/buy-now-button/BuyNowButton";
 import ProductDetailsContainer from "@/pages/product-details/components/product-details-container/ProductDetailsContainer";
 import { useGetUserProductByIdQuery } from "@/store/api/productsApi";
 import { RTKQueryMockState } from "@/types/common";
 import formatPrice from "@/utils/format-price/formatPrice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-
-import BuyNowButton from "../buy-now-button/BuyNowButton";
 
 const mockProduct = {
   image:
