@@ -14,7 +14,7 @@ let observerOptions: Partial<IntersectionObserverInit> | undefined;
 let observerCallback: (entry?: { isIntersecting: boolean }) => void;
 
 const rightIntersectionOptions = { rootMargin: "300px" };
-const headerStyleWithoutIntersection = "--top: -112px";
+const headerStyleWithoutIntersection = "--top: -322px";
 const headerStyleWithIntersection = "--top: 0";
 
 global.IntersectionObserver = jest.fn((callback, options) => {

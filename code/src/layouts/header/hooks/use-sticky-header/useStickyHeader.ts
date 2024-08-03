@@ -15,7 +15,7 @@ const useStickyHeader = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) {
-          const headerHeight = `-${headerElement.clientHeight}px`;
+          const headerHeight = `-${headerElement.clientHeight + 210}px`;
           headerElement.style.setProperty("--top", headerHeight);
         } else {
           headerElement.style.setProperty("--top", "0");
