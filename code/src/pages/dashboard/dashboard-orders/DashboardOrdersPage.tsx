@@ -4,7 +4,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
-import OrdersTabFilterDrawer from "@/containers/dashboard-orders-filter-drawer/DashboardOrdersFilterDrawer";
+import DashboardOrdersFilterDrawer from "@/containers/dashboard-orders-filter-drawer/DashboardOrdersFilterDrawer";
 import useFilteredAdminOrders from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
 import OrdersTable from "@/containers/tables/orders-table/OrdersTable";
 
@@ -87,7 +87,7 @@ const DashboardOrdersPage = () => {
       </AppBox>
       <OrdersTable ordersData={orders} />
       <AppDrawer isOpen={isFilterDrawerOpen} onClose={handleCloseFilterDrawer}>
-        <OrdersTabFilterDrawer
+        <DashboardOrdersFilterDrawer
           filters={filters}
           filterActions={filterActions}
           activeFiltersCount={activeFiltersCount}
