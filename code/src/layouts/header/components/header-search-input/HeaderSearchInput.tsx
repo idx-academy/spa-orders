@@ -23,7 +23,7 @@ const HeaderSearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isDropdownOpened, setIsDropdownOpened] = useState(false);
   const { locale: lang } = useLocaleContext();
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleCloseDropdown = () => {
     setIsDropdownOpened(false);
@@ -71,9 +71,9 @@ const HeaderSearchInput = () => {
 
   const searchContent = debouncedSearchQuery.length >= 4 && (
     <SearchInputDropdown
-      totalElements={searchProducts?.totalElements || 0}
+      totalElements={searchProducts?.totalElements ?? 0}
       handleCloseDropdown={handleCloseDropdown}
-      searchResults={searchProducts?.content || []}
+      searchResults={searchProducts?.content ?? []}
       isError={isError}
       isLoading={isLoading}
     />

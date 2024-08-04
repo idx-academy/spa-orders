@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useRef } from "react";
 
-import { useOnClickOutside } from "./useOnClickOutside";
+import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside";
 
 const TestComponent = ({
   onClickOutside
@@ -26,63 +26,66 @@ let handleClickOutside: jest.Mock;
 
 const setup = () => {
   handleClickOutside = jest.fn();
-  const utils = render(<TestComponent onClickOutside={handleClickOutside} />);
-  return { ...utils };
+  return render(<TestComponent onClickOutside={handleClickOutside} />);
 };
 
 describe("useOnClickOutside", () => {
-  beforeEach(() => {
-    removeEventListenerSpy = jest.spyOn(document, "removeEventListener");
+  describe("with mounted component", () => {
+    beforeEach(() => {
+      setup();
+    });
+
+    test("calls handler when clicking outside the element", () => {
+      const outsideElement = screen.getByTestId(/outside/);
+
+      fireEvent.mouseDown(outsideElement);
+      expect(handleClickOutside).toHaveBeenCalled();
+    });
+
+    test("does not call handler when clicking inside the element", () => {
+      const insideElement = screen.getByTestId(/inside/);
+
+      fireEvent.mouseDown(insideElement);
+      expect(handleClickOutside).not.toHaveBeenCalled();
+    });
+
+    test("calls handler when touchstart outside the element", () => {
+      const outsideElement = screen.getByTestId(/outside/);
+
+      fireEvent.touchStart(outsideElement);
+      expect(handleClickOutside).toHaveBeenCalled();
+    });
+
+    test("does not call handler when touchstart inside the element", () => {
+      const insideElement = screen.getByTestId(/inside/);
+
+      fireEvent.touchStart(insideElement);
+      expect(handleClickOutside).not.toHaveBeenCalled();
+    });
   });
 
-  afterEach(() => {
-    removeEventListenerSpy.mockRestore();
-  });
+  describe("with unmounted component", () => {
+    beforeEach(() => {
+      removeEventListenerSpy = jest.spyOn(document, "removeEventListener");
+    });
 
-  test("removes event listeners on unmount", () => {
-    const { unmount } = setup();
+    afterEach(() => {
+      removeEventListenerSpy.mockRestore();
+    });
 
-    unmount();
+    test("removes event listeners on unmount", () => {
+      const { unmount } = setup();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith(
-      "mousedown",
-      expect.any(Function)
-    );
-    expect(removeEventListenerSpy).toHaveBeenCalledWith(
-      "touchstart",
-      expect.any(Function)
-    );
-  });
+      unmount();
 
-  test("calls handler when clicking outside the element", () => {
-    setup();
-    const outsideElement = screen.getByTestId(/outside/);
-
-    fireEvent.mouseDown(outsideElement);
-    expect(handleClickOutside).toHaveBeenCalled();
-  });
-
-  test("does not call handler when clicking inside the element", () => {
-    setup();
-    const insideElement = screen.getByTestId(/inside/);
-
-    fireEvent.mouseDown(insideElement);
-    expect(handleClickOutside).not.toHaveBeenCalled();
-  });
-
-  test("calls handler when touchstart outside the element", () => {
-    setup();
-    const outsideElement = screen.getByTestId(/outside/);
-
-    fireEvent.touchStart(outsideElement);
-    expect(handleClickOutside).toHaveBeenCalled();
-  });
-
-  test("does not call handler when touchstart inside the element", () => {
-    setup();
-    const insideElement = screen.getByTestId(/inside/);
-
-    fireEvent.touchStart(insideElement);
-    expect(handleClickOutside).not.toHaveBeenCalled();
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "mousedown",
+        expect.any(Function)
+      );
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "touchstart",
+        expect.any(Function)
+      );
+    });
   });
 });

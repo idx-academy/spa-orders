@@ -62,17 +62,10 @@ export type GetUserProductsBySearchQueryParams = Lang & {
   sort?: string;
   searchQuery: string;
 };
-export type GetUserProductsBySearchQueryResponse = {
-  content: ProductFromSearch[];
-  totalElements: number;
-  totalPages: number;
-  first: boolean;
-  last: boolean;
-  number: number;
-  numberOfElements: number;
-  size: number;
-  empty: boolean;
-};
+
+export type GetUserProductsBySearchQueryResponse = PageableResponse<
+  ProductFromSearch[]
+>;
 
 export type CreateProductBody = {
   status: ManagerProductStatus;

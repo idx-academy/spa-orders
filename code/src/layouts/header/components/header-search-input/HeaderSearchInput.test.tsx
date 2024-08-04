@@ -11,7 +11,7 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetUserProductsBySearchQuery: jest.fn()
 }));
 
-describe("Test HeaderSearchInput", () => {
+describe("HeaderSearchInput", () => {
   const loadingLabel = "Loading...";
   const noResultsLabel = "header.searchInputNoResults";
 
@@ -71,8 +71,7 @@ describe("Test HeaderSearchInput", () => {
       await typeIntoInput(searchField, "test");
       expect(searchField).toHaveValue("test");
 
-      fireEvent.change(searchField, { target: { value: "" } });
-      expect(searchField).toHaveValue("");
+      await typeIntoInput(searchField, "");
 
       const dropdown = screen.queryByTestId("search-dropdown");
       expect(dropdown).not.toBeInTheDocument();
@@ -149,7 +148,7 @@ describe("Test HeaderSearchInput", () => {
     });
   });
 
-  describe("Query Params", () => {
+  describe("tests Query Params", () => {
     test("passes correct query parameters when debouncedSearchQuery length is 4 or more", async () => {
       const mockQueryParams = {
         searchQuery: "test",

@@ -14,8 +14,8 @@
   overflow-y: auto;
 
   &__no-results {
+    @include list-reset;
     height: 100%;
-    list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@
     gap: spacing(3);
 
     &-image {
-      @include box(100px)
+      @include box(100px);
     }
   }
 
@@ -41,7 +41,10 @@
     padding: spacing(2);
 
     &:hover {
-      background-color: var(--spa-dropdown-item-hover-background-color, $ghost-alpha);
+      background-color: var(
+                      --spa-dropdown-item-hover-background-color,
+                      $ghost-alpha
+      );
     }
 
     &-container {
@@ -51,7 +54,7 @@
     }
 
     &-image {
-      @include box(40px)
+      @include box(40px);
     }
   }
 }

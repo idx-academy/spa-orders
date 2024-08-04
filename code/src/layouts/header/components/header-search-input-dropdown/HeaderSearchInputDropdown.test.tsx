@@ -14,22 +14,24 @@ const searchResults: ProductFromSearch[] = [
   { id: "2", name: "Product 2", image: "image2.png" }
 ];
 
-describe("HeaderSearchInputDropdown", () => {
-  const noResultsLabel = /header.searchInputNoResults/;
-  const mockHandleCloseDropdown = jest.fn();
+const noResultsLabel = /header.searchInputNoResults/;
 
-  const renderComponent = (props = {}) => {
-    const defaultProps = {
-      handleCloseDropdown: mockHandleCloseDropdown,
-      searchResults: [],
-      totalElements: 0,
-      isError: false,
-      isLoading: false,
-      ...props
-    };
-    return renderWithProviders(<HeaderSearchInputDropdown {...defaultProps} />);
+const mockHandleCloseDropdown = jest.fn();
+
+const renderComponent = (props = {}) => {
+  const defaultProps = {
+    handleCloseDropdown: mockHandleCloseDropdown,
+    searchResults: [],
+    totalElements: 0,
+    isError: false,
+    isLoading: false,
+    ...props
   };
 
+  return renderWithProviders(<HeaderSearchInputDropdown {...defaultProps} />);
+};
+
+describe("HeaderSearchInputDropdown", () => {
   test("renders error label when isError is true", () => {
     renderComponent({ isError: true });
 

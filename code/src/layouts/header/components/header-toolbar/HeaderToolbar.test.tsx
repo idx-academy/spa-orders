@@ -2,9 +2,9 @@ import { screen } from "@testing-library/react";
 
 import HeaderToolbar from "@/layouts/header/components/header-toolbar/HeaderToolbar";
 
+import { useGetUserProductsBySearchQuery } from "@/store/api/productsApi";
 import { useIsAuthLoadingSelector } from "@/store/slices/userSlice";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
-import {useGetUserProductsBySearchQuery} from "@/store/api/productsApi";
 
 jest.mock(
   "@/layouts/header/utils/get-header-toolbar-by-role/getHeaderToolbarByRole",

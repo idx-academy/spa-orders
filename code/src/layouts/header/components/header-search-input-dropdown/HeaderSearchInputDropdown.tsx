@@ -25,7 +25,7 @@ const HeaderSearchInputDropdown = ({
   isLoading
 }: HeaderSearchInputDropdownProps) => {
   const errorLabel = (
-    <AppTypography component="li" translationKey="errors.somethingWentWrong" /> // will be replaced by error layout
+    <AppTypography component="li" translationKey="errors.somethingWentWrong" /> //@TODO  will be replaced by error layout
   );
 
   const searchResultsLabel = (
@@ -34,7 +34,7 @@ const HeaderSearchInputDropdown = ({
         variant="caption"
         component="p"
         translationKey="header.searchInputResults"
-      ></AppTypography>
+      />
       <AppTypography
         className="search-input-dropdown__results-value"
         variant="caption"
@@ -44,7 +44,7 @@ const HeaderSearchInputDropdown = ({
     </AppMenuItem>
   );
 
-  //Will be implemented with pagination
+  //@TODO: Will be implemented with pagination
   const loadingLabel = <AppTypography component="li">Loading...</AppTypography>;
 
   const noResultsLabel = (
@@ -91,7 +91,7 @@ const HeaderSearchInputDropdown = ({
                 component="img"
                 src={image}
                 alt={name}
-              ></AppBox>
+              />
               <AppTypography variant="caption-small">{name}</AppTypography>
             </AppLink>
           </AppMenuItem>
