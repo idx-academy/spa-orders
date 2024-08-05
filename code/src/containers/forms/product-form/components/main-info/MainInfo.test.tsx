@@ -65,6 +65,10 @@ describe("Test MainInfo component", () => {
     const langButtons = screen.getAllByTestId("product-form-language-button");
 
     expect(langButtons).toHaveLength(2);
+    expect(langButtons[0]).toHaveClass("product-form__language-button--active");
+    expect(langButtons[1]).not.toHaveClass(
+      "product-form__language-button--active"
+    );
   });
 
   test("Should navigate between languages", () => {

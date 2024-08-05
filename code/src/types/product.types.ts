@@ -1,4 +1,4 @@
-import { ProductTranslation } from "@/containers/forms/new-product-form/NewProductForm.types";
+import { ProductTranslation } from "@/containers/forms/product-form/ProductForm.types";
 
 import { Lang, Pageable, PageableResponse } from "@/types/common";
 

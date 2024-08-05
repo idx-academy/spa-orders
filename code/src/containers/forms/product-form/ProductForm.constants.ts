@@ -1,3 +1,6 @@
+import { ProductFormValues } from "@/containers/forms/product-form/ProductForm.types";
+
+import { supportedLocales } from "@/constants/locales";
 import { Locale } from "@/context/i18n/I18nProvider";
 
 type ProductLocale = {
@@ -20,3 +23,16 @@ export const productCategories: ProductCategory[] = [
   { label: "productsAll.tablet", id: 2 },
   { label: "productsAll.computer", id: 3 }
 ];
+
+export const defaultValues: ProductFormValues = {
+  status: false,
+  image: "",
+  quantity: undefined,
+  price: undefined,
+  category: "",
+  productTranslations: supportedLocales.map((item) => ({
+    name: "",
+    description: "",
+    languageCode: item
+  }))
+};

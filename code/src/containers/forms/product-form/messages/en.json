@@ -12,6 +12,7 @@
   "productForm.inputLabel.category": "Category",
   "productForm.inputLabel.status": "Visible to customers",
   "productForm.update.submit": "Update product",
+  "productForm.create.submit": "Create product",
   "productForm.creation.success": "Product successfully created",
   "productForm.updation.success": "Product successfully updated",
   "productForm.creation.fail": "Failed to create product",

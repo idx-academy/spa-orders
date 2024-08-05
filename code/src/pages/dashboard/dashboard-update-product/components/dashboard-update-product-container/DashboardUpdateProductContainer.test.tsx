@@ -14,10 +14,13 @@ const mockRedirect = ({
   <div>{errorMessageTranslationKey}</div>
 );
 
-jest.mock("@/containers/forms/product-form/UpdateProductForm", () => ({
-  __esModule: true,
-  default: () => <div>UpdateProductForm</div>
-}));
+jest.mock(
+  "@/containers/forms/product-form/components/update-product-form/UpdateProductForm",
+  () => ({
+    __esModule: true,
+    default: () => <div>UpdateProductForm</div>
+  })
+);
 
 jest.mock("@/hooks/use-error-page-redirect/useErrorPageRedirect", () => ({
   __esModule: true,

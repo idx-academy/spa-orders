@@ -1,6 +1,6 @@
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
-import NewProductForm from "@/containers/forms/new-product-form/NewProductForm";
+import CreateProductForm from "@/containers/forms/product-form/components/create-product-form/CreateProductForm";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
@@ -18,7 +18,7 @@ const DashboardNewProductPage = () => {
           data-cy="dashboard-new-product-title"
         />
       </AppBox>
-      <NewProductForm />
+      <CreateProductForm />
     </DashboardTabContainer>
   );
 };

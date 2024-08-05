@@ -12,6 +12,7 @@
   "productForm.inputLabel.category": "Категорія",
   "productForm.inputLabel.status": "Видимий для покупців",
   "productForm.update.submit": "Оновити товар",
+  "productForm.create.submit": "Створити товар",
   "productForm.creation.success": "Продукт успішно створено",
   "productForm.updation.success": "Продукт успішно оновлено",
   "productForm.creation.fail": "Не вдалося створити продукт",

@@ -13,9 +13,9 @@ import { FullManagerProduct } from "@/types/product.types";
 export type ProductFormValues = {
   status: boolean;
   image: string;
-  quantity: number | undefined;
-  price: number | undefined;
-  category: number;
+  quantity?: number;
+  price?: number;
+  category: number | "";
   productTranslations: ProductTranslation[];
 };
 

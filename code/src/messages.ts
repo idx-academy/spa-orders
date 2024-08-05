@@ -8,7 +8,6 @@ import cartDrawerMessages from "@/containers/cart-drawer/message";
 import categorySectionMessages from "@/containers/category-section/messages";
 import dashboardOrdersFilterMessages from "@/containers/dashboard-orders-filter-drawer/messages";
 import deliveryFormMessages from "@/containers/forms/delivery-form/messages";
-import newProductFormMessages from "@/containers/forms/new-product-form/messages";
 import productFormMessages from "@/containers/forms/product-form/messages";
 import signInFormMessages from "@/containers/forms/sign-in-form/messages";
 import signupFormMessages from "@/containers/forms/sign-up-form/messages";
@@ -73,7 +72,6 @@ const messages: MessagesType = {
     ...productDetailsMessages.en,
     ...usersTableMessages.en,
     ...productFormMessages.en,
-    ...newProductFormMessages.en,
     ...dashboardOrderDetailsPageMessages.en,
     ...productDetailsMessages.en
   },
@@ -111,7 +109,6 @@ const messages: MessagesType = {
     ...dashboardUpdateProductPageMessages.uk,
     ...productDetailsMessages.uk,
     ...usersTableMessages.uk,
-    ...newProductFormMessages.uk,
     ...dashboardOrderDetailsPageMessages.uk,
     ...productDetailsMessages.uk
   }

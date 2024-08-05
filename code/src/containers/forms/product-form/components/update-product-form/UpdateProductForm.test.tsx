@@ -2,7 +2,7 @@ import { act, fireEvent, screen } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
 
-import UpdateProductForm from "@/containers/forms/product-form/UpdateProductForm";
+import UpdateProductForm from "@/containers/forms/product-form/components/update-product-form/UpdateProductForm";
 
 import { FullManagerProduct } from "@/types/product.types";
 import getTagIn from "@/utils/get-tag-in/getTagIn";

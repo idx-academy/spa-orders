@@ -1,6 +1,6 @@
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
-import UpdateProductForm from "@/containers/forms/product-form/UpdateProductForm";
+import UpdateProductForm from "@/containers/forms/product-form/components/update-product-form/UpdateProductForm";
 import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 
 import AppBox from "@/components/app-box/AppBox";
