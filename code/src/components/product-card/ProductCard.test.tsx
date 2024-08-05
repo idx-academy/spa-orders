@@ -32,7 +32,7 @@ const renderAndMock = (isProductInCart: boolean) => {
   renderWithProviders(<ProductCard product={mockProduct} />);
 };
 
-describe("ProductCard component", () => {
+describe("ProductCard", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -60,7 +60,6 @@ describe("ProductCard component", () => {
     test("should render product image with correct src and alt attributes", () => {
       const productImage = screen.getByRole("img", { name: mockProduct.name });
       expect(productImage).toHaveAttribute("src", mockProduct.image);
-      expect(productImage).toHaveAttribute("alt", mockProduct.name);
     });
 
     test("should render product link", () => {

@@ -88,6 +88,7 @@ describe("Test ProductsContainer", () => {
     const { container } = renderProductsContainer({ className: "products" });
 
     const gridContainer = container.getElementsByClassName("products")[0];
+    
     expect(gridContainer).toBeInTheDocument();
   });
 
@@ -95,6 +96,7 @@ describe("Test ProductsContainer", () => {
     renderProductsContainer({ isError: true });
 
     const errorElement = screen.getByText("errors.somethingWentWrong");
+
     expect(errorElement).toBeInTheDocument();
   });
 
@@ -102,6 +104,7 @@ describe("Test ProductsContainer", () => {
     renderProductsContainer({ isError: true, errorMessage: "error" });
 
     const errorElement = screen.getByText("error");
+
     expect(errorElement).toBeInTheDocument();
   });
 });
