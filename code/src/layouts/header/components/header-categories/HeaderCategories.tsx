@@ -31,6 +31,7 @@ const HeaderCategories = () => {
               variant="caption"
               data-testid="menu-item"
               translationKey={category.label}
+              data-cy={`menu-item-${index}`}
             />
           </AppLink>
         ))}

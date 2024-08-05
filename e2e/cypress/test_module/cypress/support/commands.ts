@@ -28,9 +28,24 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
       .its("localStorage")
       .invoke("getItem", "spa-user-details")
       .then((value) => {
-        const userDetails = JSON.parse(value);
-        expect(userDetails.token).to.exist;
-        expect(userDetails.role).to.eq(role);
+        const userDetails = value ? JSON.parse(value) : null;
+        if (userDetails) {
+          expect(userDetails.token).to.exist;
+          expect(userDetails.role).to.eq(role);
+        } else {
+          cy.wait(1000);
+          cy.window()
+            .its("localStorage")
+            .invoke("getItem", "spa-user-details")
+            .then((retryValue) => {
+              const retryUserDetails = retryValue
+                ? JSON.parse(retryValue)
+                : null;
+              expect(retryUserDetails).to.not.be.null;
+              expect(retryUserDetails.token).to.exist;
+              expect(retryUserDetails.role).to.eq(role);
+            });
+        }
       });
 
     cy.getById("snackbar").should("contain", "You successfully signed in");

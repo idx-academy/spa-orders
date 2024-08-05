@@ -74,6 +74,7 @@ const ProductCard = ({
           {formatPrice(product.price)}
         </AppTypography>
         <AppIconButton
+          data-cy="add-to-cart-button"
           onClick={handleCartIconClick}
           className={cn(
             "spa-product-card__cart-button",

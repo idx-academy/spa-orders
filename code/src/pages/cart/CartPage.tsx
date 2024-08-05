@@ -44,7 +44,7 @@ const CartPage = () => {
 
   return (
     <PageWrapper>
-      <AppBox className="spa-cart-page">
+      <AppBox data-cy="cart-page" className="spa-cart-page">
         <AppBox className="spa-cart-page__content">
           <AppBox
             className="spa-cart-page__items"

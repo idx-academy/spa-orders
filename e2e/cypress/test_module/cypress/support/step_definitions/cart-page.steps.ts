@@ -8,25 +8,31 @@ Given("I authenticate to the system under User role", (role: UserRole) => {
   cy.loginWithRole(role);
 });
 
-When("I click on the Cart button", () => {
-  cy.getById("header-cart-button").click();
+When("I click on {string} to open the all products page", () => {
+  cy.getById("menu-item-0").click();
+  cy.url().should("include", "/products");
 });
 
-Then("I should see the Cart drawer", () => {
-  cy.getById("cart-drawer").should("be.visible");
+When("I add the first product to the cart", () => {
+  cy.intercept(httpMethod.post, /\/api\/v1\/cart\/items/);
+  cy.getById("product-card")
+    .first()
+    .within(() => {
+      cy.getById("add-to-cart-button").click();
+    });
 });
 
-When("I click view the cart it opens the cart page", () => {
-  cy.getById("cart-drawer-button").click();
-});
-
-Then("I should see the cart page", () => {
-  cy.getById("myCartLabel").should("be.visible");
+Then("the cart icon should display {int} item", (itemCount) => {
+  cy.getById("header-cart-button").should("contain", itemCount.toString());
 });
 
 Given("I am on the cart page", () => {
   cy.visitWithLanguage("/cart");
   cy.getById("cart-item").should("be.visible");
+});
+
+Then("I should see the cart page", () => {
+  cy.getById("cart-page").should("be.visible");
 });
 
 Given("the cart has an item with quantity {int}", (quantity) => {
