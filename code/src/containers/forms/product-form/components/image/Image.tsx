@@ -72,6 +72,7 @@ const Image = ({ errors, control }: ProductFormImageSectionProps) => {
             error={Boolean(errors.image)}
             helperText={errors.image ? errors.image.message : undefined}
             onChange={handleChange}
+            {...handlers}
           />
         </AppBox>
       </AppBox>

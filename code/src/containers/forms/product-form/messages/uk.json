@@ -1,8 +1,7 @@
 {
   "productForm.section.image.title": "Зображення продукту",
   "productForm.section.additionalInformation.title": "Додаткова інформація",
-  "productForm.section.mainInformation.title.en": "Основна інформація (англійська)",
-  "productForm.section.mainInformation.title.uk": "Основна інформація (українська)",
+  "productForm.section.mainInformation.title": "Основна інформація",
   "productForm.image.preview": "Вставте посилання на зображення для попереднього перегляду",
   "productForm.image.previewError": "Помилка завантаження зображення",
   "productForm.inputLabel.image": "URL зображення",
