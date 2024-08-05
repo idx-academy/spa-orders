@@ -31,7 +31,7 @@ const AppRangeSlider = ({
     max
   });
 
-  const updateWithValue = <Value extends string | number>(value: Value[]) => {
+  const updateWithValue = (value: Array<string | number>) => {
     onChange?.(value as number[]);
   };
 

@@ -19,20 +19,17 @@ const parseRangeValues = ({
   const isRangeStartValueValid = !isNaN(numericRangeStart);
   const isRangeEndValueValid = !isNaN(numericRangeEnd);
 
-  const isRangeStartInputValid = Boolean(
-    checkWithinRange({
-      value: numericRangeStart,
-      min,
-      max
-    })
-  );
-  const isRangeEndInputValid = Boolean(
-    checkWithinRange({
-      value: numericRangeEnd,
-      min,
-      max
-    })
-  );
+  const limits = { min, max };
+
+  const isRangeStartInputValid = checkWithinRange({
+    ...limits,
+    value: numericRangeStart
+  });
+  
+  const isRangeEndInputValid = checkWithinRange({
+    ...limits,
+    value: numericRangeEnd
+  });
 
   return {
     sliderRange: [
