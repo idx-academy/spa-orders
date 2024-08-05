@@ -34,6 +34,7 @@ const mockOrder: UserOrder = {
   ],
   isPaid: false,
   orderStatus: "IN_PROGRESS",
+  availableStatuses: ["SHIPPED", "DELIVERED", "COMPLETED", "CANCELED"],
   createdAt: "20.12.2020",
   total: 0
 };

@@ -143,6 +143,7 @@ const adminOrders = {
       id: "126bf189-9f8c-46ed-9138-f74d9d93206e",
       isPaid: true,
       orderStatus: "IN_PROGRESS",
+      availableStatuses: ["SHIPPED", "DELIVERED", "COMPLETED", "CANCELED"],
       createdAt: "2024-07-05T12:35:14.396Z",
       total: 4796,
       receiver: {
@@ -192,6 +193,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa62",
       isPaid: false,
       orderStatus: "COMPLETED",
+      availableStatuses: [],
       createdAt: "2024-07-15T14:25:15.396Z",
       receiver: {
         firstName: "Eugene",
@@ -241,6 +243,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa61",
       isPaid: false,
       orderStatus: "CANCELED",
+      availableStatuses: [],
       createdAt: "2024-07-20T08:31:49.779Z",
       receiver: {
         firstName: "Maksym",
@@ -290,6 +293,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa63",
       isPaid: false,
       orderStatus: "CANCELED",
+      availableStatuses: [],
       createdAt: "2024-06-10T10:20:30.456Z",
       receiver: {
         firstName: "Anna",
@@ -339,6 +343,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa64",
       isPaid: true,
       orderStatus: "IN_PROGRESS",
+      availableStatuses: ["SHIPPED", "DELIVERED", "COMPLETED", "CANCELED"],
       createdAt: "2024-07-12T09:15:25.123Z",
       receiver: {
         firstName: "John",
@@ -387,7 +392,8 @@ const adminOrders = {
     {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa65",
       isPaid: false,
-      orderStatus: "IN_PROGRESS",
+      orderStatus: "COMPLETED",
+      availableStatuses: [],
       createdAt: "2024-07-18T11:30:40.789Z",
       receiver: {
         firstName: "Alice",
@@ -437,6 +443,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa66",
       isPaid: true,
       orderStatus: "DELIVERED",
+      availableStatuses: ["COMPLETED", "CANCELED"],
       createdAt: "2024-07-22T16:45:55.456Z",
       receiver: {
         firstName: "David",
@@ -486,6 +493,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa67",
       isPaid: false,
       orderStatus: "CANCELED",
+      availableStatuses: [],
       createdAt: "2024-07-25T18:55:30.123Z",
       receiver: {
         firstName: "Emily",
@@ -535,6 +543,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa68",
       isPaid: true,
       orderStatus: "SHIPPED",
+      availableStatuses: ["DELIVERED", "COMPLETED", "CANCELED"],
       createdAt: "2024-07-28T10:00:50.678Z",
       receiver: {
         firstName: "Michael",
@@ -584,6 +593,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa64",
       isPaid: true,
       orderStatus: "IN_PROGRESS",
+      availableStatuses: ["SHIPPED", "DELIVERED", "COMPLETED", "CANCELED"],
       createdAt: "2024-07-12T09:15:25.123Z",
       receiver: {
         firstName: "John",
@@ -633,6 +643,7 @@ const adminOrders = {
       id: "3fa85f64-5717-4562-b3fc-2c963f66afa65",
       isPaid: false,
       orderStatus: "IN_PROGRESS",
+      availableStatuses: ["SHIPPED", "DELIVERED", "COMPLETED", "CANCELED"],
       createdAt: "2024-07-18T11:30:40.789Z",
       receiver: {
         firstName: "Alice",

@@ -27,6 +27,7 @@ type BaseOrder = {
   isPaid: OrderIsPaid;
   total: number;
   orderStatus: OrderStatus;
+  availableStatuses: OrderStatus[];
   createdAt: string;
   receiver: Receiver;
   postAddress: PostAddress;

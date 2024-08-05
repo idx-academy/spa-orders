@@ -16,6 +16,7 @@ export const mockOrders: AdminOrder[] = [
     id: "1",
     isPaid: false,
     orderStatus: "IN_PROGRESS",
+    availableStatuses: ["SHIPPED", "DELIVERED", "COMPLETED", "CANCELED"],
     createdAt: "2024-06-27T12:35:14.396Z",
     receiver: {
       firstName: "John",
@@ -34,6 +35,7 @@ export const mockOrders: AdminOrder[] = [
     id: "2",
     isPaid: false,
     orderStatus: "CANCELED",
+    availableStatuses: [],
     createdAt: "2024-06-27T12:35:14.396Z",
     receiver: {
       firstName: "John",
@@ -52,6 +54,7 @@ export const mockOrders: AdminOrder[] = [
     id: "3",
     isPaid: true,
     orderStatus: "SHIPPED",
+    availableStatuses: ["DELIVERED", "COMPLETED", "CANCELED"],
     createdAt: "2024-06-27T12:35:14.396Z",
     receiver: {
       firstName: "John",

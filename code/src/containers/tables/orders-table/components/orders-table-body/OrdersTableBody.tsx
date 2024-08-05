@@ -1,5 +1,4 @@
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { MenuItem } from "@mui/material";
 
 import { orderBadgeVariants } from "@/containers/order-item/OrderItem.constants";
 
@@ -7,14 +6,17 @@ import AppBadge from "@/components/app-badge/AppBadge";
 import AppCheckbox from "@/components/app-checkbox/AppCheckbox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLink from "@/components/app-link/AppLink";
+import AppMenuItem from "@/components/app-menu-item/AppMenuItem";
 import AppSelect from "@/components/app-select/AppSelect";
 import { AppTableCell } from "@/components/app-table/components";
 import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import { ROLES } from "@/constants/common";
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { orderDeliveryStatuses } from "@/constants/orderStatuses";
 import routes from "@/constants/routes";
+import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { AdminOrder, OrderIsPaid, OrderStatus } from "@/types/order.types";
 import formatDate from "@/utils/format-date/formatDate";
 import formatPrice from "@/utils/format-price/formatPrice";
@@ -37,19 +39,43 @@ const OrdersTableBody = ({
     createdAt,
     total,
     orderStatus,
+    isPaid,
+    availableStatuses,
     receiver: { firstName, lastName, email },
-    postAddress: { deliveryMethod },
-    isPaid
+    postAddress: { deliveryMethod }
   } = order;
 
+  const user = useUserDetailsSelector();
+
   const orderReceiver = `${lastName} ${firstName}`;
+
+  const userId = user?.id;
+  const userRole = user?.role;
+  const loginWithAdminRole = Boolean(userRole === ROLES.ADMIN && userId);
+  const loginWithManagerRole = Boolean(
+    userRole === ROLES.SHOP_MANAGER && userId
+  );
+
+  const filteredOrderStatuses: OrderStatus[] = Boolean(availableStatuses.length)
+    ? (Object.keys(orderStatusesTranslationKeys) as OrderStatus[]).filter(
+        (status) => availableStatuses.includes(status)
+      )
+    : [];
+
+  const adminOrderStatuses = Object.keys(
+    orderStatusesTranslationKeys
+  ) as OrderStatus[];
+  const managerOrderStatuses = [orderStatus, ...filteredOrderStatuses];
+
+  const orderStatusesForSelect = loginWithManagerRole
+    ? managerOrderStatuses
+    : adminOrderStatuses;
 
   const statusBlock = (
     <AppSelect
       defaultValue={orderStatus}
       value={orderStatus}
       className="spa-order-table__body-status-select"
-      data-testid="order-status"
       MenuProps={{
         PaperProps: {
           className: "spa-order-table__body-status-select",
@@ -61,38 +87,47 @@ const OrdersTableBody = ({
         "data-testid": "order-status-input"
       }}
     >
-      {Object.keys(orderStatusesTranslationKeys).map((status) => {
+      {orderStatusesForSelect.map((status) => {
         const orderBadgeItemStatus = (
           <AppTypography
             className="spa-order-table__body-status-text"
             variant="caption"
-            translationKey={orderStatusesTranslationKeys[status as OrderStatus]}
+            translationKey={orderStatusesTranslationKeys[status]}
           />
         );
 
         const handleStatusChange = () => {
-          onStatusChange(status as OrderStatus);
+          onStatusChange(status);
         };
 
         return (
-          <MenuItem value={status} key={status} onClick={handleStatusChange}>
+          <AppMenuItem
+            value={status}
+            key={status}
+            onClick={handleStatusChange}
+            disabled={status === orderStatus}
+          >
             <AppBadge
-              variant={
-                orderBadgeVariants[
-                  orderStatusesTranslationKeys[status as OrderStatus]
-                ]
-              }
+              variant={orderBadgeVariants[orderStatusesTranslationKeys[status]]}
               badgeContent={orderBadgeItemStatus}
             />
-          </MenuItem>
+          </AppMenuItem>
         );
       })}
     </AppSelect>
   );
 
-  const handleIsPaidChange = () => {
+  const handleManagerIsPaidChange = () => {
     !isPaid && onIsPaidChange(true);
   };
+
+  const handleAdminIsPaidChange = () => {
+    !isPaid ? onIsPaidChange(true) : onIsPaidChange(false);
+  };
+
+  const handleIsPaidChange = loginWithManagerRole
+    ? handleManagerIsPaidChange
+    : handleAdminIsPaidChange;
 
   const emailField = (
     <AppTypography variant="caption" className="spa-order-table__body-email">
@@ -120,7 +155,7 @@ const OrdersTableBody = ({
       </AppTooltip>
     );
 
-  const isPaidField = isPaid ? (
+  const isPaidFieldForManagerRole = isPaid ? (
     <AppTooltip followCursor titleTranslationKey="ordersTable.ispaid.tooltip">
       <AppCheckbox
         className="spa-order-table__body-checkbox"
@@ -131,6 +166,18 @@ const OrdersTableBody = ({
   ) : (
     notPaidOrderCheckbox
   );
+
+  const isPaidFieldForAdminRole = (
+    <AppCheckbox
+      className="spa-order-table__body-checkbox"
+      checked={isPaid}
+      onChange={handleIsPaidChange}
+    />
+  );
+
+  const isPaidField = loginWithAdminRole
+    ? isPaidFieldForAdminRole
+    : isPaidFieldForManagerRole;
 
   return (
     <>
