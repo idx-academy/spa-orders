@@ -6,6 +6,7 @@ import AppBox from "@/components/app-box/AppBox";
 import AppInput from "@/components/app-input/AppInput";
 import { AppInputProps } from "@/components/app-input/AppInput.types";
 import { AppRangeSliderProps } from "@/components/app-range-slider/AppRangeSlider.types";
+import parseRangeValues from "@/components/app-range-slider/utils/parse-range-values/parseRangeValues";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import cn from "@/utils/cn/cn";
@@ -21,20 +22,18 @@ const AppRangeSlider = ({
   value,
   ...props
 }: AppRangeSliderProps) => {
-  const rangeStart = value?.[0];
-  const rangeEnd = value?.[1];
-  const range = [rangeStart || min, rangeEnd || max];
+  const rangeStart = value?.[0].toString() ?? "";
+  const rangeEnd = value?.[1].toString() ?? "";
 
-  const checkValueValid = (value?: number) => {
-    if (value === undefined) {
-      return true;
-    }
+  const { sliderRange, inputData } = parseRangeValues({
+    rangeStart,
+    rangeEnd,
+    min,
+    max
+  });
 
-    return value < min || value > max;
-  };
-
-  const updateWithValue = (value: number[]) => {
-    onChange?.(value);
+  const updateWithValue = <Value extends string | number>(value: Value[]) => {
+    onChange?.(value as number[]);
   };
 
   const handleSliderChange = (event: Event, value: number | number[]) => {
@@ -42,24 +41,21 @@ const AppRangeSlider = ({
   };
 
   const handleRangeStartChange = (event: ChangeEvent<HTMLInputElement>) => {
-    updateWithValue([parseInt(event.target.value), rangeEnd!]);
+    updateWithValue([event.target.value, rangeEnd]);
   };
 
   const handleRangeEndChange = (event: ChangeEvent<HTMLInputElement>) => {
-    updateWithValue([rangeStart!, parseInt(event.target.value)]);
+    updateWithValue([rangeStart, event.target.value]);
   };
-
-  const rangeStartInputValue = Number.isNaN(rangeStart) ? "" : rangeStart;
-  const rangeEndInputValue = Number.isNaN(rangeEnd) ? "" : rangeEnd;
-
-  const isRangeStartInvalid = checkValueValid(rangeStart);
-  const isRangeEndInvalid = checkValueValid(rangeEnd);
 
   const commonInputProps = {
     type: "number",
     fullWidth: true,
     className: cn(className?.toolbarInput)
   } satisfies AppInputProps;
+
+  const isRangeStartInputInvalid = !inputData.start.isValid;
+  const isRangeEndInputInvalid = !inputData.end.isValid;
 
   return (
     <AppBox className={cn("spa-range-slider", className?.root)}>
@@ -72,9 +68,9 @@ const AppRangeSlider = ({
             "data-testid": "range-start",
             "data-cy": "price-range-from"
           }}
-          value={rangeStartInputValue}
-          error={isRangeStartInvalid}
-          color={isRangeStartInvalid ? "danger" : undefined}
+          value={inputData.start.value}
+          error={isRangeStartInputInvalid}
+          color={isRangeStartInputInvalid ? "danger" : undefined}
           onChange={handleRangeStartChange}
           placeholder={min.toString()}
         />
@@ -86,9 +82,9 @@ const AppRangeSlider = ({
             "data-testid": "range-end",
             "data-cy": "price-range-to"
           }}
-          value={rangeEndInputValue}
-          error={isRangeEndInvalid}
-          color={isRangeEndInvalid ? "danger" : undefined}
+          value={inputData.end.value}
+          error={isRangeEndInputInvalid}
+          color={isRangeEndInputInvalid ? "danger" : undefined}
           onChange={handleRangeEndChange}
           placeholder={max.toString()}
         />
@@ -96,7 +92,7 @@ const AppRangeSlider = ({
       <Slider
         data-testid="range-slider"
         className={cn("spa-range-slider__range", className?.range)}
-        value={range}
+        value={sliderRange}
         onChange={handleSliderChange}
         step={step}
         min={min}

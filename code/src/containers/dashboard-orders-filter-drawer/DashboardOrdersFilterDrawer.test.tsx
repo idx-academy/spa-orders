@@ -51,7 +51,11 @@ const renderAndMock = ({
   );
 };
 
-describe("OrdersTabFilterDrawer", () => {
+describe("DashboardOrdersFilterDrawer", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe("apply filters and drawer actions", () => {
     test("applies filters and closes drawer when apply filters button is pressed", () => {
       renderAndMock();
@@ -66,9 +70,10 @@ describe("OrdersTabFilterDrawer", () => {
 
   describe("price filter", () => {
     let rangeEndInput: HTMLElement, rangeStartInput: HTMLElement;
+    let renderAndMockResult: ReturnType<typeof renderAndMock>;
 
     beforeEach(() => {
-      renderAndMock();
+      renderAndMockResult = renderAndMock();
       rangeEndInput = screen.getByTestId("range-end");
       rangeStartInput = screen.getByTestId("range-start");
     });
@@ -80,11 +85,11 @@ describe("OrdersTabFilterDrawer", () => {
 
     test("updates correctly", async () => {
       const start = 90;
-
       await typeIntoInput(rangeStartInput, start);
+
       expect(mockUpdateFilterByKey).toHaveBeenCalledWith("price", {
-        start,
-        end: defaultFilters.price.end
+        start: start.toString(),
+        end: defaultFilters.price.end.toString()
       });
     });
 
