@@ -4,7 +4,6 @@ import Slider from "@mui/material/Slider";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppInput from "@/components/app-input/AppInput";
-import { AppInputProps } from "@/components/app-input/AppInput.types";
 import { AppRangeSliderProps } from "@/components/app-range-slider/AppRangeSlider.types";
 import parseRangeValues from "@/components/app-range-slider/utils/parse-range-values/parseRangeValues";
 import AppTypography from "@/components/app-typography/AppTypography";
@@ -48,12 +47,6 @@ const AppRangeSlider = ({
     updateWithValue([rangeStart, event.target.value]);
   };
 
-  const commonInputProps = {
-    type: "number",
-    fullWidth: true,
-    className: cn(className?.toolbarInput)
-  } satisfies AppInputProps;
-
   const isRangeStartInputInvalid = !inputData.start.isValid;
   const isRangeEndInputInvalid = !inputData.end.isValid;
 
@@ -62,7 +55,9 @@ const AppRangeSlider = ({
       <AppBox className={cn("spa-range-slider__toolbar", className?.toolbar)}>
         <AppTypography variant="caption" translationKey="filters.from" />
         <AppInput
-          {...commonInputProps}
+          fullWidth
+          type="number"
+          className={cn(className?.toolbarInput)}
           inputProps={{
             step,
             "data-testid": "range-start",
@@ -76,7 +71,9 @@ const AppRangeSlider = ({
         />
         <AppTypography variant="caption" translationKey="filters.to" />
         <AppInput
-          {...commonInputProps}
+          fullWidth
+          type="number"
+          className={cn(className?.toolbarInput)}
           inputProps={{
             step,
             "data-testid": "range-end",
