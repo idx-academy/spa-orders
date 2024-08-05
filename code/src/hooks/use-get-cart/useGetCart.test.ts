@@ -67,13 +67,13 @@ describe("useGetCart", () => {
       expect(result.current.isLoading).toBe(true);
     });
 
-    test("returns true if user is authorized and request is uninitialized", () => {
+    test("returns false if user is authorized and request is uninitialized", () => {
       const { result } = renderAndMock({
         isUninitialized: true,
         user: { id: 1 }
       });
 
-      expect(result.current.isLoading).toBe(true);
+      expect(result.current.isLoading).toBe(false);
     });
 
     test("returns false if user is authorized but request is not ununitialized", () => {

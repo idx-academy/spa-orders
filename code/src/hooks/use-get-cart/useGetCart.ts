@@ -26,10 +26,7 @@ const useGetCart = () => {
     }
   }, [shouldFetchCart, locale]);
 
-  const isLoading =
-    isAuthLoading ||
-    requestState.isLoading ||
-    (Boolean(user?.id) && requestState.isUninitialized);
+  const isLoading = isAuthLoading || requestState.isLoading;
 
   return {
     ...requestState,
