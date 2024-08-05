@@ -63,17 +63,19 @@ describe("DashboardOrdersFilterDrawer", () => {
         name: "dashboardTabs.orders.filters.applyFiltersButton"
       });
       fireEvent.click(applyFilterButton);
-      expect(mockApplyFilters).toHaveBeenCalled();
+      expect(mockApplyFilters).toHaveBeenCalledWith({
+        additionalParams: { page: "1" }
+      });
+
       expect(mockCloseFilterDrawer).toHaveBeenCalled();
     });
   });
 
   describe("price filter", () => {
     let rangeEndInput: HTMLElement, rangeStartInput: HTMLElement;
-    let renderAndMockResult: ReturnType<typeof renderAndMock>;
 
     beforeEach(() => {
-      renderAndMockResult = renderAndMock();
+      renderAndMock();
       rangeEndInput = screen.getByTestId("range-end");
       rangeStartInput = screen.getByTestId("range-start");
     });
