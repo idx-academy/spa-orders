@@ -3,11 +3,11 @@ import { useRef } from "react";
 
 import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside";
 
-const TestComponent = ({
-  onClickOutside
-}: {
+type TestComponentProps = {
   onClickOutside: (event: MouseEvent | TouchEvent) => void;
-}) => {
+};
+
+const TestComponent = ({ onClickOutside }: TestComponentProps) => {
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, onClickOutside);
 

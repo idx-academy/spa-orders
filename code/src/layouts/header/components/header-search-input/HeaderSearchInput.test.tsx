@@ -11,20 +11,38 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetUserProductsBySearchQuery: jest.fn()
 }));
 
+const mockedContent = [{ id: 1, name: "Product 1", image: "image1.png" }];
+
+const mockUseGetUserProductsBySearchQuery = {
+  data: null,
+  isLoading: false,
+  isError: false
+};
+
+const mockUseGetUserProductsBySearchQueryWithData = {
+  ...mockUseGetUserProductsBySearchQuery,
+  data: {
+    totalElements: 5,
+    content: mockedContent
+  }
+};
+
+const mockQueryParams = {
+  searchQuery: "test",
+  lang: "en",
+  page: 1,
+  size: 10
+};
+
 describe("HeaderSearchInput", () => {
   const loadingLabel = "Loading...";
   const noResultsLabel = "header.searchInputNoResults";
 
   describe("With results", () => {
     beforeEach(() => {
-      (useGetUserProductsBySearchQuery as jest.Mock).mockReturnValue({
-        data: {
-          totalElements: 5,
-          content: [{ id: 1, name: "Product 1", image: "image1.png" }]
-        },
-        isLoading: false,
-        isError: false
-      });
+      (useGetUserProductsBySearchQuery as jest.Mock).mockReturnValue(
+        mockUseGetUserProductsBySearchQueryWithData
+      );
       renderWithProviders(<HeaderSearchInput />);
     });
 
@@ -51,9 +69,7 @@ describe("HeaderSearchInput", () => {
       );
       expect(searchField).toBeInTheDocument();
 
-      const clearButton = screen
-        .getByTestId("ClearIcon")
-        .closest("button") as HTMLButtonElement;
+      const clearButton = screen.getByTestId("ClearIcon");
 
       await typeIntoInput(searchField, "Hello!");
       expect(searchField).toHaveValue("Hello!");
@@ -107,9 +123,8 @@ describe("HeaderSearchInput", () => {
   describe("Without results", () => {
     test("displays loading label when isLoading is true", async () => {
       (useGetUserProductsBySearchQuery as jest.Mock).mockReturnValue({
-        data: null,
-        isLoading: true,
-        isError: false
+        ...mockUseGetUserProductsBySearchQuery,
+        isLoading: true
       });
 
       renderWithProviders(<HeaderSearchInput />);
@@ -127,12 +142,11 @@ describe("HeaderSearchInput", () => {
 
     test("displays no results label when totalElements is 0 and not loading", async () => {
       (useGetUserProductsBySearchQuery as jest.Mock).mockReturnValue({
+        ...mockUseGetUserProductsBySearchQuery,
         data: {
           totalElements: 0,
           content: []
-        },
-        isLoading: false,
-        isError: false
+        }
       });
 
       renderWithProviders(<HeaderSearchInput />);
@@ -150,26 +164,12 @@ describe("HeaderSearchInput", () => {
 
   describe("tests Query Params", () => {
     test("passes correct query parameters when debouncedSearchQuery length is 4 or more", async () => {
-      const mockQueryParams = {
-        searchQuery: "test",
-        lang: "en",
-        page: 1,
-        size: 10
-      };
-
       (useGetUserProductsBySearchQuery as jest.Mock).mockImplementation(
         (params) => {
           if (params !== skipToken) {
             expect(params).toEqual(mockQueryParams);
           }
-          return {
-            data: {
-              totalElements: 5,
-              content: [{ id: 1, name: "Product 1", image: "image1.png" }]
-            },
-            isLoading: false,
-            isError: false
-          };
+          return mockUseGetUserProductsBySearchQueryWithData;
         }
       );
 

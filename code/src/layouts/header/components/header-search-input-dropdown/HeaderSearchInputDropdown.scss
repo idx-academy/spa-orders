@@ -41,10 +41,7 @@
     padding: spacing(2);
 
     &:hover {
-      background-color: var(
-                      --spa-dropdown-item-hover-background-color,
-                      $ghost-alpha
-      );
+      background-color: var(--spa-dropdown-item-hover-background-color, $ghost-alpha);
     }
 
     &-container {
