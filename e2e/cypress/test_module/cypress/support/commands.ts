@@ -1,5 +1,6 @@
 import { httpMethod, httpStatusCode } from "@cypress-e2e/fixtures/global-data";
 import "cypress-wait-until";
+import { checkUserDetailsInLocalStorage } from "@cypress-e2e/support/helpers";
 
 Cypress.Commands.addQuery("getById", (id: string) => {
   const getFn = cy.now(
@@ -30,20 +31,14 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
       .then((value) => {
         const userDetails = value ? JSON.parse(value) : null;
         if (userDetails) {
-          expect(userDetails.token).to.exist;
-          expect(userDetails.role).to.eq(role);
+          checkUserDetailsInLocalStorage(value, role);
         } else {
           cy.wait(1000);
           cy.window()
             .its("localStorage")
             .invoke("getItem", "spa-user-details")
             .then((retryValue) => {
-              const retryUserDetails = retryValue
-                ? JSON.parse(retryValue)
-                : null;
-              expect(retryUserDetails).to.not.be.null;
-              expect(retryUserDetails.token).to.exist;
-              expect(retryUserDetails.role).to.eq(role);
+              checkUserDetailsInLocalStorage(retryValue, role);
             });
         }
       });

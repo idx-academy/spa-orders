@@ -82,6 +82,9 @@ When("I click on the remove button for a product", () => {
     });
 });
 
-Then("I should to get a snackbar with message", (message: string) => {
-  cy.getById("snackbar").should("contain", message);
-});
+Then(
+  "I should to receive a snackbar with message {string}",
+  (message: string) => {
+    cy.getById("snackbar").should("contain", message);
+  }
+);

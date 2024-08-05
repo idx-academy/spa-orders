@@ -3,7 +3,7 @@ Feature: | Сart page |
 
   Background: User is signed in and navigates to the products page and adds an item to the cart
     Given I authenticate to the system under User role
-    When I click on "<tab1>" to open the all products page
+    When I click on "All Products" to open the all products page
     And I add the first product to the cart
 
   Scenario: Verify the item is in the cart
@@ -26,8 +26,4 @@ Feature: | Сart page |
   Scenario: Remove a product item from the cart
     Given the cart has an item with quantity 1
     When I click on the remove button for a product
-    Then I should receive a snackbar with message 'The product was successfully removed from the cart.'
-    
-    Examples:
-      | tab1         | 
-      | All Products |
+    Then I should to receive a snackbar with message 'The product was successfully removed from the cart.'
