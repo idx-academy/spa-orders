@@ -20,20 +20,18 @@ const parseRangeValues = ({
   const isRangeEndValueValid = !isNaN(numericRangeEnd);
 
   const isRangeStartInputValid = Boolean(
-    isRangeStartValueValid &&
-      checkWithinRange({
-        value: numericRangeStart,
-        min,
-        max
-      })
+    checkWithinRange({
+      value: numericRangeStart,
+      min,
+      max
+    })
   );
   const isRangeEndInputValid = Boolean(
-    isRangeEndValueValid &&
-      checkWithinRange({
-        value: numericRangeEnd,
-        min,
-        max
-      })
+    checkWithinRange({
+      value: numericRangeEnd,
+      min,
+      max
+    })
   );
 
   return {
