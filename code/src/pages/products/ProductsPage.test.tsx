@@ -46,7 +46,7 @@ jest.mock("@/context/i18n/I18nProvider", () => ({
 }));
 
 const defaultQueryArguments = {
-  size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
+  size: 10,
   page: 0,
   sort: "recommended",
   lang: "en",
@@ -149,7 +149,7 @@ describe("ProductsPage", () => {
     expect(linkElements.length).toBe(mockProducts.length);
   });
 
-  test.skip("Should render pagination if there are more than one page", () => {
+  test("Should render pagination if there are more than one page", () => {
     renderAndMock();
 
     const linkElements = screen.getAllByRole("link");

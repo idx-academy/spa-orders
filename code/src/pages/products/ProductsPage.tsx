@@ -5,7 +5,9 @@ import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import ProductsContainer from "@/containers/products-container/ProductsContainer";
 
 import AppBox from "@/components/app-box/AppBox";
+import AppContainer from "@/components/app-container/AppContainer";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
+import AppPagination from "@/components/app-pagination/AppPagination";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
@@ -32,12 +34,13 @@ const ProductsPage = () => {
   } = useGetUserProductsQuery({
     tags: categoryType ? `category:${categoryType}` : "",
     page: page - 1,
-    size: 1000, //The number 1000 is temporary solution, until we implement endless scrolling.
+    size: 10,
     sort: sortOption ?? "recommended",
     lang: locale
   });
 
   const productsList = productsResponse?.content;
+  console.log(productsList);
 
   const defaultDropdownText = (
     <AppTypography translationKey="productsDefault.label" />
@@ -48,8 +51,6 @@ const ProductsPage = () => {
     setSearchParams(searchParams);
   };
 
-  const productsCount = productsList?.length ?? 0;
-
   const productsAllLabels = !categoryType
     ? "productsAll.label"
     : `productsAll.${categoryType}`;
@@ -57,6 +58,16 @@ const ProductsPage = () => {
   const productsItemsLabel = !categoryType
     ? "productsItems.label"
     : `productsItems.category.${categoryType}`;
+
+  const pagesCount = productsResponse?.totalPages ?? 1;
+
+  const productsCount = productsResponse?.totalElements ?? 0;
+
+  const paginationBlock = pagesCount > 1 && (
+    <AppContainer className="spa-products-page__pagination">
+      <AppPagination page={page} count={pagesCount} size="large" />
+    </AppContainer>
+  );
 
   return (
     <PageWrapper>
@@ -90,6 +101,7 @@ const ProductsPage = () => {
           isLoading={isLoading}
           isError={isError}
         />
+        {paginationBlock}
       </AppBox>
     </PageWrapper>
   );

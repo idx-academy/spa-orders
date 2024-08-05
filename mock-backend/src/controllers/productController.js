@@ -18,14 +18,14 @@ const getAllProducts = (req, res) => {
   const skip = page * size;
   const limit = (page + 1) * size;
 
-  const slicedProducts = sortedProducts.slice(skip, limit);
+  const finalProducts = categoryFilter(category, sortedProducts)
 
-  const finalProducts = categoryFilter(category, slicedProducts)
+  const slicedProducts = finalProducts.slice(skip, limit);
 
   const response = {
-    content: finalProducts,
-    totalPages: Math.ceil(products.length / size),
-    totalElements: products.length,
+    content: slicedProducts,
+    totalPages: Math.ceil(finalProducts.length / size),
+    totalElements: finalProducts.length,
   };
 
   res.json(response);
