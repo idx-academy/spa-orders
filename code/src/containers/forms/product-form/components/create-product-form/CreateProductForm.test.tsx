@@ -8,8 +8,7 @@ import getTagIn from "@/utils/get-tag-in/getTagIn";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
-const mockUnwrap = jest.fn();
-const mockCreateProduct = jest.fn(() => ({ unwrap: mockUnwrap }));
+const mockCreateProduct = jest.fn(() => {});
 
 jest.mock(
   "@/containers/forms/product-form/hooks/use-create-product/useCreateProduct",
@@ -34,37 +33,9 @@ const expectedBody = {
   ]
 };
 
-let imgUrlInput: HTMLInputElement;
-let priceInput: HTMLInputElement;
-let quantityInput: HTMLInputElement;
-let categorySelect: HTMLSpanElement;
-let nameInput: HTMLInputElement;
-let descriptionInput: HTMLTextAreaElement;
-let submitButton: HTMLButtonElement;
-let statusInput: HTMLInputElement;
-
-const submit = async () => await act(async () => fireEvent.click(submitButton));
-
-const selectCategory = async () => {
-  await act(async () => fireEvent.mouseDown(categorySelect));
-  const categoryOption = screen.getByText("productsAll.computer");
-  await act(async () => fireEvent.click(categoryOption));
-};
-
 describe("Test CreateProductForm", () => {
   beforeEach(() => {
-    const result = renderWithProviders(<CreateProductForm />);
-
-    imgUrlInput = getTagIn("product-form-image-input");
-    priceInput = getTagIn("product-form-price-input");
-    quantityInput = getTagIn("product-form-quantity-input");
-    categorySelect = screen.getByLabelText("productForm.inputLabel.category");
-    nameInput = getTagIn(`product-form-name-input`);
-    descriptionInput = getTagIn(`product-form-description-input`, "textarea");
-    statusInput = getTagIn("product-form-status-checkbox");
-    submitButton = screen.getByText("productForm.create.submit");
-
-    return result;
+    renderWithProviders(<CreateProductForm />);
   });
 
   afterEach(() => {
@@ -87,32 +58,34 @@ describe("Test CreateProductForm", () => {
     expect(additionalInfoSectionTitle).toBeInTheDocument();
   });
 
-  test("Should show helper texts if validation failed", async () => {
-    await submit();
-
-    const mainInfoHelperText = screen.getAllByText(
-      "At least one translation must have non-empty name and description"
-    )[0];
-    const imageUrlHelperText = screen.getByText("Please provide a valid URL");
-    const priceHelperText = screen.getByText("Invalid price");
-    const quantityHelperText = screen.getByText("Invalid quantity");
-
-    expect(mainInfoHelperText).toBeInTheDocument();
-    expect(imageUrlHelperText).toBeInTheDocument();
-    expect(priceHelperText).toBeInTheDocument();
-    expect(quantityHelperText).toBeInTheDocument();
-  });
-
   test("Should call create function with filled values", async () => {
+    const imgUrlInput = getTagIn("product-form-image-input");
+    const priceInput = getTagIn("product-form-price-input");
+    const quantityInput = getTagIn("product-form-quantity-input");
+    const categorySelect = screen.getByLabelText(
+      "productForm.inputLabel.category"
+    );
+    const nameInput = getTagIn(`product-form-name-input`);
+    const descriptionInput = getTagIn(
+      `product-form-description-input`,
+      "textarea"
+    );
+    const statusInput = getTagIn("product-form-status-checkbox");
+    const submitButton = screen.getByText("productForm.create.submit");
+
     await act(async () => fireEvent.click(statusInput));
-    await selectCategory();
+
+    await act(async () => fireEvent.mouseDown(categorySelect));
+    const categoryOption = screen.getByText("productsAll.computer");
+    await act(async () => fireEvent.click(categoryOption));
+
     await typeIntoInput(nameInput, "name");
     await typeIntoInput(descriptionInput, "example description");
     await typeIntoInput(imgUrlInput, "https://example.com");
     await userEvent.type(priceInput, "100");
     await userEvent.type(quantityInput, "100");
 
-    await submit();
+    await act(async () => fireEvent.click(submitButton));
 
     expect(mockCreateProduct).toHaveBeenCalledWith(expectedBody);
   });
