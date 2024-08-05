@@ -98,6 +98,8 @@ const ProductDetailsContainer = ({
     />
   );
 
+  const productWithId = { ...product, id: productId };
+
   return (
     <AppBox className="product-details">
       <AppBox className="product-details__image-wrapper">
@@ -119,9 +121,7 @@ const ProductDetailsContainer = ({
               >
                 {formatPrice(product.price)}
               </AppTypography>
-              <BuyNowButton
-                productWithId={{ ...product, id: productId }}
-              />
+              <BuyNowButton productWithId={productWithId} />
             </AppBox>
           </AppBox>
           <AppBox className="product-details__section">
