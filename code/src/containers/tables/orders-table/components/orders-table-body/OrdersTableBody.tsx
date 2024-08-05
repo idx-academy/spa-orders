@@ -56,7 +56,7 @@ const OrdersTableBody = ({
     userRole === ROLES.SHOP_MANAGER && userId
   );
 
-  const filteredOrderStatuses: OrderStatus[] = Boolean(availableStatuses.length)
+  const filteredOrderStatuses: OrderStatus[] = availableStatuses.length
     ? (Object.keys(orderStatusesTranslationKeys) as OrderStatus[]).filter(
         (status) => availableStatuses.includes(status)
       )
