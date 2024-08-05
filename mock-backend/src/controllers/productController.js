@@ -12,8 +12,7 @@ const validateNumberQueryParam = (value, defaultValue = 0) => {
 const getAllProducts = (req, res) => {
   const page = validateNumberQueryParam(req.query.page);
   const size = validateNumberQueryParam(req.query.size, 10);
-  const { sort } = req.query;
-  const category = req.query.tags;
+  const {sort, tags: category} = req.query
 
   let sortedProducts = sort ? sortProducts(products, sort) : products;
   const skip = page * size;
