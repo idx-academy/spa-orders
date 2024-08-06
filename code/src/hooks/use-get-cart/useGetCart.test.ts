@@ -96,7 +96,10 @@ describe("useGetCart", () => {
 
     test("calls fetchCart when user is authorized under ROLE_USER role", () => {
       renderAndMock({ user: { id: 1, role: ROLES.USER } });
-      expect(mockFetchCart).toHaveBeenCalledWith({ userId: 1, lang: "en" });
+      expect(mockFetchCart).toHaveBeenCalledWith(
+        { userId: 1, lang: "en" },
+        true
+      );
     });
 
     test("does not call fetchCart when user is authorized but is not under ROLE_USER role", () => {

@@ -41,10 +41,16 @@ const renderAndMock = (product: Partial<Product>) => {
     data: {
       items: mockCartItems
     },
-    isFetching: false
+    isFetching: false,
+    isLoading: false
   });
 
-  (useAddToCart as jest.Mock).mockReturnValue([mockAddToCart]);
+  (useAddToCart as jest.Mock).mockReturnValue([
+    mockAddToCart,
+    {
+      isLoading: false
+    }
+  ]);
 
   (useDrawerContext as jest.Mock).mockReturnValue({
     openDrawer: mockOpenDrawer
