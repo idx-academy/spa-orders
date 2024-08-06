@@ -33,7 +33,7 @@ const ProductsPage = () => {
     tags: categoryType ? `category:${categoryType}` : "",
     page: page - 1,
     size: 10,
-    sort: sortOption ?? "recommended",
+    sort: sortOption ?? undefined,
     lang: locale
   });
 

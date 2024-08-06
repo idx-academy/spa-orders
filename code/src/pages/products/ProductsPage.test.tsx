@@ -48,12 +48,16 @@ jest.mock("@/context/i18n/I18nProvider", () => ({
 const defaultQueryArguments = {
   size: 10,
   page: 0,
-  sort: "recommended",
+  sort: undefined,
   lang: "en",
   tags: ""
 };
 
-const testQueryArguments = (args: Partial<PaginationParams> = {}) => {
+type TestQueryArguments = PaginationParams & {
+  tags: string;
+};
+
+const testQueryArguments = (args: Partial<TestQueryArguments> = {}) => {
   expect(useGetUserProductsQuery).toHaveBeenCalledWith({
     ...defaultQueryArguments,
     ...args
@@ -117,6 +121,18 @@ describe("ProductsPage", () => {
     renderAndMock({ entries: "?page=3" });
 
     testQueryArguments({ page: 2 });
+  });
+
+  test("Should give category type correctly", () => {
+    renderAndMock({ entries: "?category=computers" });
+
+    testQueryArguments({ tags: `category:computers` });
+
+    const labelByCategory = screen.getByText("productsAll.computers");
+    expect(labelByCategory).toBeInTheDocument();
+
+    const categoryAllLabel = screen.queryByText("productsAll.label");
+    expect(categoryAllLabel).not.toBeInTheDocument();
   });
 
   test("Should give default parameters if no params were provided", () => {
