@@ -16,20 +16,14 @@ const AppPagination = (props: AppPaginationProps) => {
     onClick,
     ...itemProps
   }: Omit<PaginationRenderItemParams, "selected">) => {
-    const isPageType = itemProps.type === "page";
-    const selected = isPageType && page === itemProps.page;
-
     const handlePageChange = (event: MouseEvent<HTMLDivElement>) => {
-      if (isPageType) {
-        setPage(itemProps.page!);
-      }
-
+      setPage(itemProps.page!);
       onClick(event);
     };
 
     return (
       <PaginationItem
-        selected={selected}
+        selected={page === itemProps.page}
         onClick={handlePageChange}
         data-cy="pagination"
         data-testid="pagination-button"
