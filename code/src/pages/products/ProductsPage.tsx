@@ -40,7 +40,6 @@ const ProductsPage = () => {
   });
 
   const productsList = productsResponse?.content;
-  console.log(productsList);
 
   const defaultDropdownText = (
     <AppTypography translationKey="productsDefault.label" />
