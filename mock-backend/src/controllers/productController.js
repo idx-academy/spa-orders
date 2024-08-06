@@ -1,22 +1,16 @@
-const { categoryFilter } = require('../utils/categoryFilter')
+const { categoryFilter } = require("../utils/categoryFilter");
 
 const { managerProducts, managerProduct } = require("../data/managerProducts");
 const products = require("../data/mokedData");
 const { sortProducts } = require("../utils/sortUtils");
 const { filteredProductsBySearchQuery } = require("../utils/filterUtils");
-
-const validateNumberQueryParam = (value, defaultValue = 0) => {
-  return !isNaN(value) && Number(value) >= 0 ? Number(value) : defaultValue;
-};
+const { parsePageable } = require("../utils/parsePageable");
 
 const getAllProducts = (req, res) => {
-  const page = validateNumberQueryParam(req.query.page);
-  const size = validateNumberQueryParam(req.query.size, 10);
-  const {sort, tags: category} = req.query
+  const { sort, tags: category } = req.query;
+  const { limit, skip, size } = parsePageable(req, 10);
 
   let sortedProducts = sort ? sortProducts(products, sort) : products;
-  const skip = page * size;
-  const limit = (page + 1) * size;
 
   const finalProducts = categoryFilter(category, sortedProducts)
 
@@ -54,11 +48,7 @@ const getProductById = (req, res) => {
 };
 
 const getAllManagerProducts = (req, res) => {
-  const page = validateNumberQueryParam(req.query.page);
-  const size = validateNumberQueryParam(req.query.size, 10);
-
-  const skip = page * size;
-  const limit = (page + 1) * size;
+  const { limit, size, skip } = parsePageable(req);
 
   const slicedProducts = managerProducts.content.slice(skip, limit);
 
@@ -81,9 +71,7 @@ const getProductByIdForManager = (req, res) => {
 };
 
 const searchProducts = (req, res) => {
-  const { searchQuery, sort } = req.query;
-  const page = validateNumberQueryParam(req.query.page);
-  const size = validateNumberQueryParam(req.query.size, 10);
+  const { limit, size, skip } = parsePageable(req, 10);
 
   let filteredProducts = filteredProductsBySearchQuery(products, searchQuery);
 
@@ -91,8 +79,6 @@ const searchProducts = (req, res) => {
     filteredProducts = sortProducts(filteredProducts, sort);
   }
 
-  const skip = 1;
-  const limit = (page + 1) * size;
   const paginatedProducts = filteredProducts.slice(skip, limit);
 
   const response = {

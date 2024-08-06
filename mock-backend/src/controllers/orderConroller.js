@@ -2,14 +2,12 @@ const { userOrders, adminOrders } = require("../data/mokedOrders");
 const wait = require("../utils/wait");
 const { filterOrders } = require("../utils/filterUtils");
 const { sortOrders } = require("../utils/sortUtils");
-
-const validateNumberQueryParam = (value, defaultValue = 0) => {
-  return !isNaN(value) && Number(value) >= 0 ? Number(value) : defaultValue;
-};
+const { parsePageable } = require("../utils/parsePageable");
 
 const getUserOrders = (req, res) => {
   res.json(userOrders);
 };
+
 const getAdminOrderById = (req, res) => {
   const { orderId } = req.params;
   const order = adminOrders.content.find((order) => order.id === orderId);
@@ -22,8 +20,7 @@ const getAdminOrderById = (req, res) => {
 };
 
 const getAdminOrders = (req, res) => {
-  const page = validateNumberQueryParam(req.query.page);
-  const size = validateNumberQueryParam(req.query.size, 8);
+  const { limit, skip, size } = parsePageable(req);
 
   const filteredOrders = filterOrders(adminOrders, req.query);
 
@@ -35,8 +32,6 @@ const getAdminOrders = (req, res) => {
       ? sortOrders(filteredOrders.content, sort)
       : filteredOrders.content,
   };
-  const skip = page * size;
-  const limit = (page + 1) * size;
 
   const slicedAdminOrders = sortedAdminOrders.content.slice(skip, limit);
 
