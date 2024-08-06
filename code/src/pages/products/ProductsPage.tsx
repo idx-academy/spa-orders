@@ -2,30 +2,28 @@ import { useSearchParams } from "react-router-dom";
 
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 
+import PaginationBlock from "@/containers/pagination-block/PaginationBlock";
 import ProductsContainer from "@/containers/products-container/ProductsContainer";
 
 import AppBox from "@/components/app-box/AppBox";
-import AppContainer from "@/components/app-container/AppContainer";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
-import AppPagination from "@/components/app-pagination/AppPagination";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
+import usePagination from "@/hooks/use-pagination/usePagination";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetUserProductsQuery } from "@/store/api/productsApi";
-import validatePage from "@/utils/validate-page/validatePage";
 
 import "@/pages/products/ProductsPage.scss";
 
 const ProductsPage = () => {
   const { locale } = useLocaleContext();
+  const { page } = usePagination();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const sortOption = searchParams.get("sort");
 
   const categoryType = searchParams.get("category");
-
-  const searchParamsPage = searchParams.get("page");
-  const page = validatePage(searchParamsPage);
 
   const {
     data: productsResponse,
@@ -58,15 +56,7 @@ const ProductsPage = () => {
     ? "productsItems.label"
     : `productsItems.category.${categoryType}`;
 
-  const pagesCount = productsResponse?.totalPages ?? 1;
-
   const productsCount = productsResponse?.totalElements ?? 0;
-
-  const paginationBlock = pagesCount > 1 && (
-    <AppContainer className="spa-products-page__pagination">
-      <AppPagination page={page} count={pagesCount} size="large" />
-    </AppContainer>
-  );
 
   return (
     <PageWrapper>
@@ -100,7 +90,10 @@ const ProductsPage = () => {
           isLoading={isLoading}
           isError={isError}
         />
-        {paginationBlock}
+        <PaginationBlock
+          page={page}
+          totalPages={productsResponse?.totalPages}
+        />
       </AppBox>
     </PageWrapper>
   );

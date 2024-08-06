@@ -149,14 +149,6 @@ describe("ProductsPage", () => {
     expect(linkElements.length).toBe(mockProducts.length);
   });
 
-  test("Should render pagination if there are more than one page", () => {
-    renderAndMock();
-
-    const linkElements = screen.getAllByRole("link");
-
-    expect(linkElements.length).toBe(mockProducts.length + 4);
-  });
-
   test("Should apply default values for pageCount and productsCount if data is undefined", () => {
     renderAndMock({
       mockResponse: {
