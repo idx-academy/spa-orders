@@ -1,0 +1,17 @@
+@import "@design-system";
+
+.spa-search-input-field {
+  display: flex;
+  align-items: center;
+  padding: 2px 2px;
+  max-width: 250px;
+  border-radius: spacing(10);
+
+  &__input-base {
+    margin-left: spacing(5);
+  }
+
+  &__icons {
+    align-items: center;
+  }
+}

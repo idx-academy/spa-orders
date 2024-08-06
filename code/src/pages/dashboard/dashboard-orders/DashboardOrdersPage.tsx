@@ -12,6 +12,7 @@ import OrdersTable from "@/containers/tables/orders-table/OrdersTable";
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
 import AppDrawer from "@/components/app-drawer/AppDrawer";
+import AppSearchInput from "@/components/app-search-input/AppSearchInput";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import "@/pages/dashboard/dashboard-orders/DashboardOrdersPage.scss";
@@ -68,15 +69,21 @@ const DashboardOrdersPage = () => {
           data-cy="orders-tab"
           translationKey="dashboardTabs.orders.title"
         />
-        <AppButton
-          variant="dark"
-          onClick={handleOpenFilterDrawer}
-          data-testid="filter-button"
-          data-cy="filter-button"
-        >
-          {titleTypography}
-          <FilterListIcon />
-        </AppButton>
+        <AppBox className="dashboard-orders-tab__toolbar-filter-icons">
+          <AppSearchInput
+            placeholder="Search by email..."
+            inputProps={{ "aria-label": "search" }}
+          />
+          <AppButton
+            variant="dark"
+            onClick={handleOpenFilterDrawer}
+            data-testid="filter-button"
+            data-cy="filter-button"
+          >
+            {titleTypography}
+            <FilterListIcon />
+          </AppButton>
+        </AppBox>
       </AppBox>
       <OrdersTable ordersData={orders} />
       <AppDrawer isOpen={isFilterDrawerOpen} onClose={handleCloseFilterDrawer}>
