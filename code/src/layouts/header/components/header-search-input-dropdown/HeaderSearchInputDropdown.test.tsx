@@ -45,7 +45,7 @@ describe("HeaderSearchInputDropdown", () => {
     test("renders error label when isError is true", () => {
       renderComponent({ isError: true });
 
-      const errorLabel = screen.getByText(/errors.somethingWentWrong/i);
+      const errorLabel = screen.getByText(/errors.somethingWentWrong/);
       expect(errorLabel).toBeInTheDocument();
     });
 
@@ -62,24 +62,24 @@ describe("HeaderSearchInputDropdown", () => {
       const noResultsLabelElement = screen.getByText(noResultsLabel);
       expect(noResultsLabelElement).toBeInTheDocument();
 
-      const noResultsImage = screen.getByAltText(/no results image/i);
+      const noResultsImage = screen.getByAltText(/no results image/);
       expect(noResultsImage).toBeInTheDocument();
     });
 
     test("renders search results when there are results", () => {
       renderComponent({ searchResults, totalElements: searchResults.length });
 
-      const searchResultsLabel = screen.getByText(/header.searchInputResults/i);
+      const searchResultsLabel = screen.getByText(/header.searchInputResults/);
       expect(searchResultsLabel).toBeInTheDocument();
 
-      const product1 = screen.getByText(/Product 1/i);
+      const product1 = screen.getByText(/Product 1/);
       expect(product1).toBeInTheDocument();
     });
 
     test("calls handleCloseDropdown when a search result is clicked", () => {
       renderComponent({ searchResults, totalElements: searchResults.length });
 
-      const product1 = screen.getByText(/Product 1/i);
+      const product1 = screen.getByText(/Product 1/);
       fireEvent.click(product1);
 
       expect(mockHandleCloseDropdown).toHaveBeenCalled();
@@ -96,12 +96,12 @@ describe("HeaderSearchInputDropdown", () => {
     });
 
     test("assigns lastItemRef to the last item in searchResults", () => {
-      const lastItem = screen.getByText(/Product 2/i).closest("li");
+      const lastItem = screen.getByText(/Product 2/).closest("li");
       expect(mockLastItemRef).toHaveBeenCalledWith(lastItem);
     });
 
     test("does not assign lastItemRef to items that are not the last item in searchResults", () => {
-      const firstItem = screen.getByText(/Product 1/i).closest("li");
+      const firstItem = screen.getByText(/Product 1/).closest("li");
       expect(mockLastItemRef).not.toHaveBeenCalledWith(firstItem);
     });
   });

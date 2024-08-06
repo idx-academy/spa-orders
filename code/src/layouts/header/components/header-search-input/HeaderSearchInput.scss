@@ -8,7 +8,7 @@
   height: spacing(9);
   border-radius: spacing(10);
   background-color: var(--spa-search-input-background-color, $light);
-  box-shadow: $shadow-black-alpha;
+  box-shadow: var(--spa-search-input-box-shadow, $shadow-black-alpha);
 
   &:hover,
   &:focus-within {
