@@ -19,7 +19,7 @@ import {
 } from "@/types/product.types";
 import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
-const productsApi = appApi.injectEndpoints({
+export const productsApi = appApi.injectEndpoints({
   endpoints: (build) => ({
     getUserProducts: build.query<
       GetUserProductsResponse,
@@ -89,7 +89,8 @@ const productsApi = appApi.injectEndpoints({
       GetUserProductsBySearchQueryResponse,
       GetUserProductsBySearchQueryParams
     >({
-      query: (params) => URLS.products.searchByQuery(params)
+      query: (params) => URLS.products.searchByQuery(params),
+      keepUnusedDataFor: 0
     }),
     updateProduct: build.mutation<void, UpdateProductBody>({
       query: ({ productId, ...body }) => ({
