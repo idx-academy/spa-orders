@@ -1,11 +1,17 @@
 import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
-import { GetUsersForAdminResponse } from "@/types/user.types";
+import {
+  GetUsersForAdminParams,
+  GetUsersForAdminResponse
+} from "@/types/user.types";
 
 const usersApi = appApi.injectEndpoints({
   endpoints: (build) => ({
-    getUsersForAdminDashboard: build.query<GetUsersForAdminResponse, void>({
-      query: () => URLS.users.getForAdmin
+    getUsersForAdminDashboard: build.query<
+      GetUsersForAdminResponse,
+      GetUsersForAdminParams
+    >({
+      query: (params) => URLS.users.getForAdmin(params)
     })
   })
 });

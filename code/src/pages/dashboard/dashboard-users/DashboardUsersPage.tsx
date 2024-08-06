@@ -1,13 +1,19 @@
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
+import PaginationBlock from "@/containers/pagination-block/PaginationBlock";
 import UsersTable from "@/containers/tables/users-table/UsersTable";
 
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import usePagination from "@/hooks/use-pagination/usePagination";
 import { useGetUsersForAdminDashboardQuery } from "@/store/api/usersApi";
 
 const DashboardUsersPage = () => {
-  const { data, isLoading, isError } = useGetUsersForAdminDashboardQuery();
+  const { page } = usePagination();
+  const { data, isLoading, isError } = useGetUsersForAdminDashboardQuery({
+    page: page - 1,
+    size: 8
+  });
 
   // @TODO: Add loading state
   if (isLoading) {
@@ -29,6 +35,7 @@ const DashboardUsersPage = () => {
         translationKey="dashboardTabs.users.label"
       />
       <UsersTable users={users} />
+      <PaginationBlock page={page} totalPages={data?.totalPages} />
     </DashboardTabContainer>
   );
 };

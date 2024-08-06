@@ -6,13 +6,12 @@ import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboa
 
 import DashboardOrdersFilterDrawer from "@/containers/dashboard-orders-filter-drawer/DashboardOrdersFilterDrawer";
 import useFilteredAdminOrders from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
+import PaginationBlock from "@/containers/pagination-block/PaginationBlock";
 import OrdersTable from "@/containers/tables/orders-table/OrdersTable";
 
 import AppBox from "@/components/app-box/AppBox";
 import AppButton from "@/components/app-button/AppButton";
-import AppContainer from "@/components/app-container/AppContainer";
 import AppDrawer from "@/components/app-drawer/AppDrawer";
-import AppPagination from "@/components/app-pagination/AppPagination";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import "@/pages/dashboard/dashboard-orders/DashboardOrdersPage.scss";
@@ -57,12 +56,6 @@ const DashboardOrdersPage = () => {
       <AppTypography translationKey="dashboardTabs.orders.filters.title" />
     );
 
-  const paginationBlock = totalPages && totalPages > 1 && (
-    <AppContainer className="dashboard-orders-tab__toolbar-pagination-container">
-      <AppPagination page={page} count={totalPages} size="large" />
-    </AppContainer>
-  );
-
   return (
     <DashboardTabContainer>
       <AppBox
@@ -94,7 +87,7 @@ const DashboardOrdersPage = () => {
           closeFilterDrawer={handleCloseFilterDrawer}
         />
       </AppDrawer>
-      {paginationBlock}
+      <PaginationBlock page={page} totalPages={totalPages} />
     </DashboardTabContainer>
   );
 };

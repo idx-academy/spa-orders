@@ -4,12 +4,14 @@ import { defaultAdminOrderFilters } from "@/containers/dashboard-orders-filter-d
 
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useFiltersWithApply from "@/hooks/use-filters-with-apply/useFiltersWithApply";
+import usePagination from "@/hooks/use-pagination/usePagination";
 import { useGetAdminOrdersQuery } from "@/store/api/ordersApi";
 import { SortOrder } from "@/types/common";
 import timeSpanToDateRange from "@/utils/time-span-to-date-range/timeSpanToDateRange";
 
 const useFilteredAdminOrders = () => {
   const { locale } = useLocaleContext();
+  const { page } = usePagination();
   const {
     filters,
     appliedFilters: { paid, price, statuses, timespan, ...rest },
@@ -25,10 +27,6 @@ const useFilteredAdminOrders = () => {
   const [searchParams] = useSearchParams();
 
   const sortParam = searchParams.get("sort") as SortOrder;
-
-  const searchParamsPage = searchParams.get("page");
-  const isPageValid = searchParamsPage && !Number.isNaN(searchParamsPage);
-  const page = isPageValid ? Number(searchParamsPage) : 1;
 
   const { data: ordersResponse, isLoading } = useGetAdminOrdersQuery({
     lang: locale,

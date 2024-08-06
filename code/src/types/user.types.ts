@@ -33,3 +33,8 @@ export type ExtendedUserDetails = User & {
 };
 
 export type GetUsersForAdminResponse = PageableResponse<ExtendedUserDetails[]>;
+
+export type GetUsersForAdminParams = {
+  page?: number;
+  size?: number;
+};

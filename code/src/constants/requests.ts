@@ -17,6 +17,7 @@ import {
   GetUserProductsBySearchQueryParams,
   UpdateProductBody
 } from "@/types/product.types";
+import { GetUsersForAdminParams } from "@/types/user.types";
 import createUrlPath from "@/utils/create-url-path/createUrlPath";
 
 export const URLS = {
@@ -66,6 +67,7 @@ export const URLS = {
       `/v1/users/${userId}/cart/${productId}/setquantity?quantity=${quantity}`
   },
   users: {
-    getForAdmin: "/v1/management/users"
+    getForAdmin: (params: GetUsersForAdminParams) =>
+      createUrlPath("/v1/management/users", undefined, params)
   }
 } as const;
