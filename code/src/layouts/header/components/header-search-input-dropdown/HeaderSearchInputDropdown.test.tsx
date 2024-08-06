@@ -2,6 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 
 import HeaderSearchInputDropdown from "@/layouts/header/components/header-search-input-dropdown/HeaderSearchInputDropdown";
 
+import useInfiniteScroll from "@/hooks/use-infinite-scroll/useInfiniteScroll";
 import { ProductFromSearch } from "@/types/product.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
@@ -9,14 +10,16 @@ jest.mock("@/store/api/productsApi", () => ({
   useGetUserProductsBySearchQuery: jest.fn()
 }));
 
+jest.mock("@/hooks/use-infinite-scroll/useInfiniteScroll");
+
 const searchResults: ProductFromSearch[] = [
   { id: "1", name: "Product 1", image: "image1.png" },
   { id: "2", name: "Product 2", image: "image2.png" }
 ];
 
 const noResultsLabel = /header.searchInputNoResults/;
-
 const mockHandleCloseDropdown = jest.fn();
+const mockLoadNextPage = jest.fn();
 
 const renderComponent = (props = {}) => {
   const defaultProps = {
@@ -25,6 +28,7 @@ const renderComponent = (props = {}) => {
     totalElements: 0,
     isError: false,
     isLoading: false,
+    loadNextPage: mockLoadNextPage,
     ...props
   };
 
@@ -32,46 +36,73 @@ const renderComponent = (props = {}) => {
 };
 
 describe("HeaderSearchInputDropdown", () => {
-  test("renders error label when isError is true", () => {
-    renderComponent({ isError: true });
+  describe("renders and test functionality", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      (useInfiniteScroll as jest.Mock).mockReturnValue(jest.fn());
+    });
 
-    const errorLabel = screen.getByText(/errors.somethingWentWrong/i);
-    expect(errorLabel).toBeInTheDocument();
+    test("renders error label when isError is true", () => {
+      renderComponent({ isError: true });
+
+      const errorLabel = screen.getByText(/errors.somethingWentWrong/i);
+      expect(errorLabel).toBeInTheDocument();
+    });
+
+    test("renders loading label when isLoading is true", () => {
+      renderComponent({ isLoading: true });
+
+      const loadingLabel = screen.getByText(/Loading.../i);
+      expect(loadingLabel).toBeInTheDocument();
+    });
+
+    test("renders no results label when totalElements is 0 and not loading", () => {
+      renderComponent({ totalElements: 0 });
+
+      const noResultsLabelElement = screen.getByText(noResultsLabel);
+      expect(noResultsLabelElement).toBeInTheDocument();
+
+      const noResultsImage = screen.getByAltText(/no results image/i);
+      expect(noResultsImage).toBeInTheDocument();
+    });
+
+    test("renders search results when there are results", () => {
+      renderComponent({ searchResults, totalElements: searchResults.length });
+
+      const searchResultsLabel = screen.getByText(/header.searchInputResults/i);
+      expect(searchResultsLabel).toBeInTheDocument();
+
+      const product1 = screen.getByText(/Product 1/i);
+      expect(product1).toBeInTheDocument();
+    });
+
+    test("calls handleCloseDropdown when a search result is clicked", () => {
+      renderComponent({ searchResults, totalElements: searchResults.length });
+
+      const product1 = screen.getByText(/Product 1/i);
+      fireEvent.click(product1);
+
+      expect(mockHandleCloseDropdown).toHaveBeenCalled();
+    });
   });
 
-  test("renders loading label when isLoading is true", () => {
-    renderComponent({ isLoading: true });
+  describe("lastItemRef assignment", () => {
+    let mockLastItemRef: jest.Mock;
 
-    const loadingLabel = screen.getByText(/Loading.../i);
-    expect(loadingLabel).toBeInTheDocument();
-  });
+    beforeEach(() => {
+      mockLastItemRef = jest.fn();
+      (useInfiniteScroll as jest.Mock).mockReturnValue(mockLastItemRef);
+      renderComponent({ searchResults, totalElements: searchResults.length });
+    });
 
-  test("renders no results label when totalElements is 0 and not loading", () => {
-    renderComponent({ totalElements: 0 });
+    test("assigns lastItemRef to the last item in searchResults", () => {
+      const lastItem = screen.getByText(/Product 2/i).closest("li");
+      expect(mockLastItemRef).toHaveBeenCalledWith(lastItem);
+    });
 
-    const noResultsLabelElement = screen.getByText(noResultsLabel);
-    expect(noResultsLabelElement).toBeInTheDocument();
-
-    const noResultsImage = screen.getByAltText(/no results image/i);
-    expect(noResultsImage).toBeInTheDocument();
-  });
-
-  test("renders search results when there are results", () => {
-    renderComponent({ searchResults, totalElements: searchResults.length });
-
-    const searchResultsLabel = screen.getByText(/header.searchInputResults/i);
-    expect(searchResultsLabel).toBeInTheDocument();
-
-    const product1 = screen.getByText(/Product 1/i);
-    expect(product1).toBeInTheDocument();
-  });
-
-  test("calls handleCloseDropdown when a search result is clicked", () => {
-    renderComponent({ searchResults, totalElements: searchResults.length });
-
-    const product1 = screen.getByText(/Product 1/i);
-    fireEvent.click(product1);
-
-    expect(mockHandleCloseDropdown).toHaveBeenCalled();
+    test("does not assign lastItemRef to items that are not the last item in searchResults", () => {
+      const firstItem = screen.getByText(/Product 1/i).closest("li");
+      expect(mockLastItemRef).not.toHaveBeenCalledWith(firstItem);
+    });
   });
 });

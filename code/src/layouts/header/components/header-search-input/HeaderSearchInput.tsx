@@ -1,4 +1,3 @@
-import { skipToken } from "@reduxjs/toolkit/query/react";
 import { ChangeEvent, useRef, useState } from "react";
 import { useIntl } from "react-intl";
 
@@ -11,66 +10,41 @@ import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppInputBase from "@/components/app-input-base/AppInputBase";
 
-import { useLocaleContext } from "@/context/i18n/I18nProvider";
-import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
+import useDropdown from "@/hooks/use-dropdown/useDropdown";
+import useInfiniteSearchQuery from "@/hooks/use-infinite-search/useInfiniteSearch";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside";
-import { useGetUserProductsBySearchQuery } from "@/store/api/productsApi";
 import cn from "@/utils/cn/cn";
 
 import "@/layouts/header/components/header-search-input/HeaderSearchInput.scss";
 
 const HeaderSearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isDropdownOpened, setIsDropdownOpened] = useState(false);
-  const { locale: lang } = useLocaleContext();
+  const { handleCloseDropdown, handleOpenDropdown, isDropdownOpened } =
+    useDropdown();
+
+  const { formatMessage } = useIntl();
   const searchInputRef = useRef<HTMLInputElement | null>(null);
-
-  const handleCloseDropdown = () => {
-    setIsDropdownOpened(false);
-  };
-
-  const handleOpenDropdown = () => {
-    setIsDropdownOpened(true);
-  };
 
   useOnClickOutside(searchInputRef, handleCloseDropdown);
 
-  const debouncedSearchQuery = useDebouncedValue(searchQuery, 500);
-
-  const { formatMessage } = useIntl();
-
-  const queryParams =
-    debouncedSearchQuery.length >= 4
-      ? {
-          searchQuery: debouncedSearchQuery,
-          lang,
-          page: 1,
-          size: 10 //for now, it's hardcoded data
-        }
-      : skipToken;
-
-  const {
-    data: searchProducts,
-    isLoading,
-    isError
-  } = useGetUserProductsBySearchQuery(queryParams);
+  const { searchProducts, isLoading, isError, loadNextPage, resetSearch } =
+    useInfiniteSearchQuery(searchQuery);
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-    if (event.target.value.length > 0) {
-      handleOpenDropdown();
-    } else {
-      handleCloseDropdown();
-    }
+    const { value } = event.target;
+    setSearchQuery(value);
+    value.length && handleOpenDropdown();
   };
 
   const handleClearSearch = () => {
     setSearchQuery("");
     handleCloseDropdown();
+    resetSearch();
   };
 
-  const searchContent = debouncedSearchQuery.length >= 4 && (
+  const searchContent = searchQuery.length >= 4 && (
     <SearchInputDropdown
+      loadNextPage={loadNextPage}
       totalElements={searchProducts?.totalElements ?? 0}
       handleCloseDropdown={handleCloseDropdown}
       searchResults={searchProducts?.content ?? []}
