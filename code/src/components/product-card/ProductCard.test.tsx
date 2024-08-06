@@ -29,7 +29,8 @@ const renderAndMock = (isProductInCart: boolean) => {
     isProductInCart,
     addToCartOrOpenDrawer: mockAddToCartOrOpenDrawer
   });
-  renderWithProviders(<ProductCard product={mockProduct} />);
+
+  return renderWithProviders(<ProductCard product={mockProduct} />);
 };
 
 describe("ProductCard", () => {
@@ -38,8 +39,10 @@ describe("ProductCard", () => {
   });
 
   describe("when product is not in cart", () => {
+    let result: ReturnType<typeof renderAndMock>;
+
     beforeEach(() => {
-      renderAndMock(false);
+      result = renderAndMock(false);
     });
 
     test("should render product name", () => {
@@ -77,11 +80,19 @@ describe("ProductCard", () => {
         expect.stringContaining("cart-with-plus")
       );
     });
+
+    test('does not render "active" class', () => {
+      const isProductActiveElement = result.container.querySelector(
+        ".spa-product-card__cart-button--active"
+      );
+      expect(isProductActiveElement).not.toBeInTheDocument();
+    });
   });
 
   describe("when product is in cart", () => {
+    let result: ReturnType<typeof renderAndMock>;
     beforeEach(() => {
-      renderAndMock(true);
+      result = renderAndMock(true);
     });
 
     test("should render icon with check mark", () => {
@@ -90,6 +101,13 @@ describe("ProductCard", () => {
         "href",
         expect.stringContaining("cart-with-check")
       );
+
+      screen.debug();
+
+      const isProductActiveElement = result.container.querySelector(
+        ".spa-product-card__cart-button--active"
+      );
+      expect(isProductActiveElement).toBeInTheDocument();
     });
   });
 });
