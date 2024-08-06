@@ -4,6 +4,7 @@ import { useDrawerContext } from "@/context/drawer/DrawerContext";
 import useAddToCartOrOpenDrawer from "@/hooks/use-add-to-cart-or-open-drawer/useAddToCartOrOpenDrawer";
 import useAddToCart from "@/hooks/use-add-to-cart/useAddToCart";
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
+import { CartItem } from "@/types/cart.types";
 import { Product } from "@/types/product.types";
 
 jest.mock("@/hooks/use-add-to-cart/useAddToCart");
@@ -33,16 +34,39 @@ const mockCartItems = [
   }
 ];
 
+// isFetching, isLoading, expectedIsLoading
+const loadingTests = [
+  [true, false, true],
+  [false, true, true],
+  [false, false, false],
+  [true, true, true]
+];
+
 const mockAddToCart = jest.fn();
 const mockOpenDrawer = jest.fn();
 
-const renderAndMock = (product: Partial<Product>) => {
+type RenderAndMock = {
+  product: Partial<Product>;
+  cartItems: Partial<CartItem>[];
+  isFetching?: boolean;
+  isLoading?: boolean;
+};
+
+const defaultArgs: RenderAndMock = {
+  product: productThatIsInCart,
+  cartItems: mockCartItems,
+  isFetching: false,
+  isLoading: false
+};
+
+const renderAndMock = (args: Partial<RenderAndMock> = {}) => {
+  const options = { ...defaultArgs, ...args };
   (useGetCart as jest.Mock).mockReturnValue({
     data: {
-      items: mockCartItems
+      items: options.cartItems
     },
-    isFetching: false,
-    isLoading: false
+    isFetching: options.isFetching,
+    isLoading: options.isLoading
   });
 
   (useAddToCart as jest.Mock).mockReturnValue([
@@ -56,7 +80,7 @@ const renderAndMock = (product: Partial<Product>) => {
     openDrawer: mockOpenDrawer
   });
 
-  return renderHook(() => useAddToCartOrOpenDrawer(product as Product));
+  return renderHook(() => useAddToCartOrOpenDrawer(options.product as Product));
 };
 
 describe("useAddToCartOrOpenDrawer", () => {
@@ -65,7 +89,7 @@ describe("useAddToCartOrOpenDrawer", () => {
   });
 
   test("adds product to cart if it was not added before", () => {
-    const { result } = renderAndMock(productThatInNotInCart);
+    const { result } = renderAndMock({ product: productThatInNotInCart });
 
     expect(result.current.isProductInCart).toBe(false);
 
@@ -86,7 +110,7 @@ describe("useAddToCartOrOpenDrawer", () => {
   });
 
   test("opens drawer when item is already in cart", () => {
-    const { result } = renderAndMock(productThatIsInCart);
+    const { result } = renderAndMock({ product: productThatIsInCart });
 
     expect(result.current.isProductInCart).toBe(true);
 
@@ -97,4 +121,17 @@ describe("useAddToCartOrOpenDrawer", () => {
     expect(mockOpenDrawer).toHaveBeenCalled();
     expect(mockAddToCart).not.toHaveBeenCalled();
   });
+
+  test("returns isProductInCart as false when cart items array is empty", () => {
+    const { result } = renderAndMock({ cartItems: [] });
+    expect(result.current.isProductInCart).toBe(false);
+  });
+
+  test.each(loadingTests)(
+    "returns isLoading as %p when isFetching is %p and isLoading is %p",
+    (isFetching, isLoading, expectedIsLoading) => {
+      const { result } = renderAndMock({ isFetching, isLoading });
+      expect(result.current.isCartLoading).toBe(expectedIsLoading);
+    }
+  );
 });
