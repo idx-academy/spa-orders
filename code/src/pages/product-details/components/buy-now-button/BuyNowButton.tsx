@@ -9,15 +9,31 @@ type BuyNowButtonProps = {
 };
 
 const BuyNowButton = ({ productWithId }: BuyNowButtonProps) => {
-  const { isProductInCart, addToCartOrOpenDrawer } =
-    useAddToCartOrOpenDrawer(productWithId);
+  const {
+    isProductInCart,
+    addToCartOrOpenDrawer,
+    isCartLoading,
+    isAddingToCart
+  } = useAddToCartOrOpenDrawer(productWithId);
 
-  const translationKey = isProductInCart
-    ? "productDetailsPage.buyNowButton"
-    : "productDetailsPage.addToCartButton";
+  let translationKey: string;
+
+  if (isAddingToCart) {
+    translationKey = "productDetailsPage.addingToCartButton";
+  } else if (isProductInCart) {
+    translationKey = "productDetailsPage.buyNowButton";
+  } else {
+    translationKey = "productDetailsPage.addToCartButton";
+  }
+
+  const isDisabled = isAddingToCart || isCartLoading;
 
   return (
-    <AppButton onClick={addToCartOrOpenDrawer}>
+    <AppButton
+      onClick={addToCartOrOpenDrawer}
+      disabled={isDisabled}
+      isLoading={isDisabled}
+    >
       <AppTypography translationKey={translationKey} />
     </AppButton>
   );

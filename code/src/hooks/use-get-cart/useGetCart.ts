@@ -22,7 +22,7 @@ const useGetCart = () => {
 
   useEffect(() => {
     if (shouldFetchCart) {
-      fetchCart({ userId, lang: locale });
+      fetchCart({ userId, lang: locale }, true);
     }
   }, [shouldFetchCart, locale]);
 

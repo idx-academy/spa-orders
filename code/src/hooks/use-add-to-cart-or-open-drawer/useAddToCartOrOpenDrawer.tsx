@@ -12,14 +12,19 @@ type MinimalRequiredProduct = Omit<Product, "status">;
 const useAddToCartOrOpenDrawer = <T extends MinimalRequiredProduct>(
   product: T
 ) => {
-  const { data: cartData, isFetching: isCartFetching } = useGetCart();
+  const {
+    data: cartData,
+    isFetching: isCartFetching,
+    isLoading: isCartLoading
+  } = useGetCart();
+
   const cartLength = cartData.items.length;
 
   const isProductInCart = useMemo(() => {
     return cartData.items.some((item) => item.productId === product.id);
-  }, [cartLength, isCartFetching, product.id]);
+  }, [cartLength, product.id]);
 
-  const [addToCart] = useAddToCart();
+  const [addToCart, { isLoading: isAddingToCart }] = useAddToCart();
   const { openDrawer } = useDrawerContext();
 
   const addToCartOrOpenDrawer = () => {
@@ -38,7 +43,14 @@ const useAddToCartOrOpenDrawer = <T extends MinimalRequiredProduct>(
     });
   };
 
-  return { isProductInCart, addToCartOrOpenDrawer } as const;
+  const isLoading = isCartFetching || isCartLoading;
+
+  return {
+    isProductInCart,
+    addToCartOrOpenDrawer,
+    isAddingToCart,
+    isCartLoading: isLoading
+  } as const;
 };
 
 export default useAddToCartOrOpenDrawer;
