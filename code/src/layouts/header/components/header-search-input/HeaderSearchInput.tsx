@@ -45,7 +45,7 @@ const HeaderSearchInput = () => {
   const searchContent = searchQuery.length >= 4 && (
     <SearchInputDropdown
       loadNextPage={loadNextPage}
-      totalElements={searchProducts?.totalElements ?? 0}
+      totalElements={searchProducts?.totalElements}
       handleCloseDropdown={handleCloseDropdown}
       searchResults={searchProducts?.content ?? []}
       isError={isError}

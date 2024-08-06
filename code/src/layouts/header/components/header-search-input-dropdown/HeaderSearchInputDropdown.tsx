@@ -1,6 +1,7 @@
 import AppBox from "@/components/app-box/AppBox";
 import AppLink from "@/components/app-link/AppLink";
 import AppMenuItem from "@/components/app-menu-item/AppMenuItem";
+import AppSkeleton from "@/components/app-skeleton/AppSkeleton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import noResultsImage from "@/assets/images/search/no-results.png";
@@ -14,7 +15,7 @@ type HeaderSearchInputDropdownProps = {
   isError: boolean;
   searchResults: ProductFromSearch[];
   handleCloseDropdown: () => void;
-  totalElements: number;
+  totalElements?: number;
   isLoading: boolean;
   loadNextPage: () => void;
 };
@@ -49,8 +50,15 @@ const HeaderSearchInputDropdown = ({
     </AppMenuItem>
   );
 
-  //@TODO: Will be implemented with pagination
-  const loadingLabel = <AppTypography component="li">Loading...</AppTypography>;
+  const loadingLabel = Array.from({ length: 5 }).map((_, index) => (
+    <AppSkeleton
+      key={index}
+      variant="text"
+      className="search-input-dropdown__skeleton"
+      animation="pulse"
+      data-testid="search-skeleton"
+    />
+  ));
 
   const noResultsLabel = (
     <AppBox className="search-input-dropdown__no-results">
@@ -73,7 +81,7 @@ const HeaderSearchInputDropdown = ({
 
   if (isError) {
     content = errorLabel;
-  } else if (isLoading) {
+  } else if (isLoading || totalElements === undefined) {
     content = loadingLabel;
   } else if (totalElements === 0) {
     content = noResultsLabel;

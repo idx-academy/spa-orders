@@ -52,8 +52,8 @@ describe("HeaderSearchInputDropdown", () => {
     test("renders loading label when isLoading is true", () => {
       renderComponent({ isLoading: true });
 
-      const loadingLabel = screen.getByText(/Loading.../i);
-      expect(loadingLabel).toBeInTheDocument();
+      const skeletonElements = screen.getAllByTestId("search-skeleton");
+      expect(skeletonElements).toHaveLength(5)
     });
 
     test("renders no results label when totalElements is 0 and not loading", () => {

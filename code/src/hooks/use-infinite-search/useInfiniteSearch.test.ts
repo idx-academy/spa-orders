@@ -1,12 +1,9 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-
-
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
 import useInfiniteSearch from "@/hooks/use-infinite-search/useInfiniteSearch";
 import { useGetUserProductsBySearchQuery } from "@/store/api/productsApi";
-
 
 jest.mock("@/hooks/use-debounced-value/useDebouncedValue");
 jest.mock("@/context/i18n/I18nProvider");
@@ -88,8 +85,6 @@ describe("useInfiniteSearch", () => {
   });
 
   test("should fetch data and update searchProducts and isLastPageRef", async () => {
-    
-
     setup(initialMockData as unknown as MockData);
 
     const { result } = renderHook(() => useInfiniteSearch(""));

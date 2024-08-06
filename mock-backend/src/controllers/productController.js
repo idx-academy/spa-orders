@@ -14,6 +14,8 @@ const getAllProducts = (req, res) => {
 
   const finalProducts = categoryFilter(category, sortedProducts)
 
+  const finalProducts = categoryFilter(category, sortedProducts);
+
   const slicedProducts = finalProducts.slice(skip, limit);
 
   const response = {

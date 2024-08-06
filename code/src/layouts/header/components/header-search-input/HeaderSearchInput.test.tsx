@@ -35,9 +35,6 @@ const mockQueryParams = {
 };
 
 describe("HeaderSearchInput", () => {
-  const loadingLabel = "Loading...";
-  const noResultsLabel = "header.searchInputNoResults";
-
   describe("With results", () => {
     beforeEach(() => {
       (useGetUserProductsBySearchQuery as jest.Mock).mockReturnValue(
@@ -136,11 +133,11 @@ describe("HeaderSearchInput", () => {
       await typeIntoInput(searchField, "test");
       expect(searchField).toHaveValue("test");
 
-      const loadingLabelElement = await screen.findByText(loadingLabel);
-      expect(loadingLabelElement).toBeInTheDocument();
+      const skeletonElements = screen.getAllByTestId("search-skeleton");
+      expect(skeletonElements).toHaveLength(5);
     });
 
-    test("displays no results label when totalElements is 0 and not loading", async () => {
+    test("displays loading label when totalElements is undefined and not loading", async () => {
       (useGetUserProductsBySearchQuery as jest.Mock).mockReturnValue({
         ...mockUseGetUserProductsBySearchQuery,
         data: {
@@ -157,8 +154,8 @@ describe("HeaderSearchInput", () => {
 
       await typeIntoInput(searchField, "test");
 
-      const noResultsLabelElement = await screen.findByText(noResultsLabel);
-      expect(noResultsLabelElement).toBeInTheDocument();
+      const skeletonElements = screen.getAllByTestId("search-skeleton");
+      expect(skeletonElements).toHaveLength(5);
     });
   });
 

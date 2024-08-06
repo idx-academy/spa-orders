@@ -13,6 +13,11 @@
   height: 250px;
   overflow-y: auto;
 
+  &__skeleton {
+    height: 50px;
+    margin-inline: spacing(3);
+  }
+
   &__no-results {
     @include list-reset;
     height: 100%;
