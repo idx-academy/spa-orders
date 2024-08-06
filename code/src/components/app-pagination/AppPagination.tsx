@@ -1,25 +1,36 @@
-import { useSearchParams } from "react-router-dom";
+import { MouseEvent } from "react";
 
 import Pagination, {
   PaginationRenderItemParams
 } from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 
-import AppLink from "@/components/app-link/AppLink";
 import { AppPaginationProps } from "@/components/app-pagination/AppPagination.types";
 
+import usePagination from "@/hooks/use-pagination/usePagination";
+
 const AppPagination = (props: AppPaginationProps) => {
-  const [searchParams] = useSearchParams();
+  const { page, setPage } = usePagination();
 
-  const renderPaginationItem = (itemProps: PaginationRenderItemParams) => {
-    searchParams.set("page", String(itemProps.page));
+  const renderPaginationItem = ({
+    onClick,
+    ...itemProps
+  }: Omit<PaginationRenderItemParams, "selected">) => {
+    const isPageType = itemProps.type === "page";
+    const selected = isPageType && page === itemProps.page;
 
-    const itemSearchParamsString = searchParams.toString();
+    const handlePageChange = (event: MouseEvent<HTMLDivElement>) => {
+      if (isPageType) {
+        setPage(itemProps.page!);
+      }
+
+      onClick(event);
+    };
 
     return (
       <PaginationItem
-        component={AppLink}
-        to={{ search: itemSearchParamsString }}
+        selected={selected}
+        onClick={handlePageChange}
         data-cy="pagination"
         data-testid="pagination-button"
         {...itemProps}
