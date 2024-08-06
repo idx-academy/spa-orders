@@ -92,8 +92,8 @@ const OrdersTableBody = ({
         const orderBadgeItemStatus = (
           <AppTypography
             className="spa-order-table__body-status-text"
-            variant="caption"
-            translationKey={orderStatusesTranslationKeys[status]}
+            variant="caption-small"
+            translationKey={orderStatusesTranslationKeys[status as OrderStatus]}
           />
         );
 
