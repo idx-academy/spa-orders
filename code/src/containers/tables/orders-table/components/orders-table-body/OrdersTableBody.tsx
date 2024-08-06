@@ -56,11 +56,12 @@ const OrdersTableBody = ({
     userRole === ROLES.SHOP_MANAGER && userId
   );
 
-  const filteredOrderStatuses: OrderStatus[] = availableStatuses.length
-    ? (Object.keys(orderStatusesTranslationKeys) as OrderStatus[]).filter(
-        (status) => availableStatuses.includes(status)
-      )
-    : [];
+  const filteredOrderStatuses: OrderStatus[] =
+    availableStatuses.length > 0
+      ? (Object.keys(orderStatusesTranslationKeys) as OrderStatus[]).filter(
+          (status) => availableStatuses.includes(status)
+        )
+      : [];
 
   const adminOrderStatuses = Object.keys(
     orderStatusesTranslationKeys
@@ -122,7 +123,7 @@ const OrdersTableBody = ({
   };
 
   const handleAdminIsPaidChange = () => {
-    !isPaid ? onIsPaidChange(true) : onIsPaidChange(false);
+    onIsPaidChange(!isPaid);
   };
 
   const handleIsPaidChange = loginWithManagerRole

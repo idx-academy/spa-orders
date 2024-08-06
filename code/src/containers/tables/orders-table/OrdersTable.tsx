@@ -17,8 +17,6 @@ type OrdersTableProps = {
 const OrdersTable = ({ ordersData }: OrdersTableProps) => {
   const [changeOrderStatus] = useChangeOrderStatusMutation();
 
-  console.log("OrdersTable");
-
   const OrderTableBodyItem = (order: AdminOrder) => {
     const handleChangeOrderStatus = (orderStatus: OrderStatus) => {
       changeOrderStatus({

@@ -4,6 +4,8 @@ import { mockOrders } from "@/containers/tables/orders-table/OrdersTable.constan
 import OrdersTableBody from "@/containers/tables/orders-table/components/orders-table-body/OrdersTableBody";
 
 import { ROLES } from "@/constants/common";
+import { orderDeliveryStatuses } from "@/constants/orderStatuses";
+import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
 import { useUserDetailsSelector } from "@/store/slices/userSlice";
 import { AdminOrder } from "@/types/order.types";
 import { UserRole } from "@/types/user.types";
@@ -73,7 +75,9 @@ describe("OrdersTableBody", () => {
     });
     test("renders select elements properly", () => {
       renderOrdersTableBody({ order: mockOrders[0], role: ROLES.SHOP_MANAGER });
-      const statusSelectText = screen.getByText("orders.statuses.inProgress");
+      const statusSelectText = screen.getByText(
+        orderStatusesTranslationKeys.IN_PROGRESS
+      );
 
       fireEvent.mouseDown(statusSelectText);
 
@@ -86,23 +90,31 @@ describe("OrdersTableBody", () => {
 
     test("changes order status", () => {
       renderOrdersTableBody({ order: mockOrders[0], role: ROLES.SHOP_MANAGER });
-      const statusSelect = screen.getByText("orders.statuses.inProgress");
+      const statusSelect = screen.getByText(
+        orderStatusesTranslationKeys.IN_PROGRESS
+      );
 
       fireEvent.mouseDown(statusSelect);
 
       const options = screen.getAllByRole("option");
       expect(options).toHaveLength(5);
 
-      const desiredStatus = screen.getByText("orders.statuses.delivered");
+      const desiredStatus = screen.getByText(
+        orderStatusesTranslationKeys.DELIVERED
+      );
 
       fireEvent.click(desiredStatus);
-      expect(mockStatusChange).toHaveBeenCalledWith("DELIVERED");
+      expect(mockStatusChange).toHaveBeenCalledWith(
+        orderDeliveryStatuses.DELIVERED
+      );
       expect(desiredStatus).not.toHaveAttribute("aria-disabled", "true");
     });
 
     test("not changes order status when choose the current order status", () => {
       renderOrdersTableBody({ order: mockOrders[2], role: ROLES.SHOP_MANAGER });
-      const statusSelect = screen.getByText("orders.statuses.shipped");
+      const statusSelect = screen.getByText(
+        orderStatusesTranslationKeys.SHIPPED
+      );
 
       fireEvent.mouseDown(statusSelect);
 
@@ -110,19 +122,23 @@ describe("OrdersTableBody", () => {
       expect(options).toHaveLength(4);
 
       const desiredStatus = screen.getByRole("option", {
-        name: "orders.statuses.shipped"
+        name: orderStatusesTranslationKeys.SHIPPED
       });
       expect(desiredStatus).toHaveAttribute("aria-disabled", "true");
 
       fireEvent.click(desiredStatus);
       waitFor(() => {
-        expect(mockStatusChange).not.toHaveBeenCalledWith("SHIPPED");
+        expect(mockStatusChange).not.toHaveBeenCalledWith(
+          orderDeliveryStatuses.SHIPPED
+        );
       });
     });
 
     test("not changes order status when choose the current order status", () => {
       renderOrdersTableBody({ order: mockOrders[1], role: ROLES.SHOP_MANAGER });
-      const statusSelect = screen.getByText("orders.statuses.canceled");
+      const statusSelect = screen.getByText(
+        orderStatusesTranslationKeys.CANCELED
+      );
 
       fireEvent.mouseDown(statusSelect);
 
@@ -131,14 +147,16 @@ describe("OrdersTableBody", () => {
       expect(options).toHaveLength(1);
 
       const desiredStatus = screen.getByRole("option", {
-        name: "orders.statuses.canceled"
+        name: orderStatusesTranslationKeys.CANCELED
       });
 
       expect(desiredStatus).toHaveAttribute("aria-disabled", "true");
 
       fireEvent.click(desiredStatus);
       waitFor(() => {
-        expect(mockStatusChange).not.toHaveBeenCalledWith("CANCELED");
+        expect(mockStatusChange).not.toHaveBeenCalledWith(
+          orderDeliveryStatuses.CANCELED
+        );
       });
     });
 
@@ -225,7 +243,9 @@ describe("OrdersTableBody", () => {
     });
     test("changes order status in progress direction", () => {
       renderOrdersTableBody({ order: mockOrders[0], role: ROLES.ADMIN });
-      const statusSelect = screen.getByText("orders.statuses.inProgress");
+      const statusSelect = screen.getByText(
+        orderStatusesTranslationKeys.IN_PROGRESS
+      );
 
       fireEvent.mouseDown(statusSelect);
 
@@ -233,17 +253,21 @@ describe("OrdersTableBody", () => {
       expect(options).toHaveLength(5);
 
       const desiredStatus = screen.getByRole("option", {
-        name: "orders.statuses.delivered"
+        name: orderStatusesTranslationKeys.DELIVERED
       });
 
       fireEvent.click(desiredStatus);
 
-      expect(mockStatusChange).toHaveBeenCalledWith("DELIVERED");
+      expect(mockStatusChange).toHaveBeenCalledWith(
+        orderDeliveryStatuses.DELIVERED
+      );
     });
 
     test("changes order status in regress direction", () => {
       renderOrdersTableBody({ order: mockOrders[2], role: ROLES.ADMIN });
-      const statusSelect = screen.getByText("orders.statuses.shipped");
+      const statusSelect = screen.getByText(
+        orderStatusesTranslationKeys.SHIPPED
+      );
 
       fireEvent.mouseDown(statusSelect);
 
@@ -251,19 +275,21 @@ describe("OrdersTableBody", () => {
       expect(options).toHaveLength(5);
 
       const desiredStatus = screen.getByRole("option", {
-        name: "orders.statuses.inProgress"
+        name: orderStatusesTranslationKeys.IN_PROGRESS
       });
 
       fireEvent.click(desiredStatus);
 
-      expect(mockStatusChange).toHaveBeenCalledWith("IN_PROGRESS");
+      expect(mockStatusChange).toHaveBeenCalledWith(
+        orderDeliveryStatuses.IN_PROGRESS
+      );
       expect(desiredStatus).not.toHaveAttribute("aria-disabled", "true");
     });
   });
 
   test("not change order status", () => {
     renderOrdersTableBody({ order: mockOrders[2], role: ROLES.ADMIN });
-    const statusSelect = screen.getByText("orders.statuses.shipped");
+    const statusSelect = screen.getByText(orderStatusesTranslationKeys.SHIPPED);
 
     fireEvent.mouseDown(statusSelect);
 
@@ -271,14 +297,16 @@ describe("OrdersTableBody", () => {
     expect(options).toHaveLength(5);
 
     const desiredStatus = screen.getByRole("option", {
-      name: "orders.statuses.shipped"
+      name: orderStatusesTranslationKeys.SHIPPED
     });
 
     expect(desiredStatus).toHaveAttribute("aria-disabled", "true");
 
     fireEvent.click(desiredStatus);
     waitFor(() => {
-      expect(mockStatusChange).not.toHaveBeenCalledWith("SHIPPED");
+      expect(mockStatusChange).not.toHaveBeenCalledWith(
+        orderDeliveryStatuses.SHIPPED
+      );
     });
   });
 
