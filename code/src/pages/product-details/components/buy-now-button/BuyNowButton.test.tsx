@@ -17,16 +17,40 @@ const productWithId = {
 
 const mockAddToCartOrOpenDrawer = jest.fn();
 
-const renderAndMock = (isProductInCart = false) => {
+type RenderAndMock = {
+  isProductInCart?: boolean;
+  isCartLoading?: boolean;
+  isAddingToCart?: boolean;
+};
+
+const defaultArgs: RenderAndMock = {
+  isProductInCart: false,
+  isAddingToCart: false,
+  isCartLoading: false
+};
+
+const renderAndMock = (args: Partial<RenderAndMock> = {}) => {
+  const options = { ...defaultArgs, ...args };
+
   mockUseAddToCartOrOpenDrawer.mockReturnValue({
-    isProductInCart,
-    addToCartOrOpenDrawer: mockAddToCartOrOpenDrawer
+    isProductInCart: options.isProductInCart,
+    addToCartOrOpenDrawer: mockAddToCartOrOpenDrawer,
+    isCartLoading: options.isCartLoading,
+    isAddingToCart: options.isAddingToCart
   });
 
   renderWithProviders(
     <BuyNowButton productWithId={productWithId as Product} />
   );
 };
+
+// isCartLoading, isAddingToCart, translationKey, isDisabled
+const testCases = [
+  [false, false, "productDetailsPage.addToCartButton", false],
+  [true, false, "productDetailsPage.addToCartButton", true],
+  [false, true, "productDetailsPage.addingToCartButton", true],
+  [true, true, "productDetailsPage.addingToCartButton", true]
+] as const;
 
 describe("BuyNowButton", () => {
   test('calls "addToCartOrOpenDrawer" on button click', () => {
@@ -48,11 +72,29 @@ describe("BuyNowButton", () => {
   });
 
   test('displays "buy now" text when isProductInCart is true', () => {
-    renderAndMock(true);
+    renderAndMock({ isProductInCart: true });
 
     const addToCartTypography = screen.getByText(
       "productDetailsPage.buyNowButton"
     );
     expect(addToCartTypography).toBeInTheDocument();
   });
+
+  test.each(testCases)(
+    "displays correct button state when isCartLoading is %p and isAddingToCart is %p",
+    (isCartLoading, isAddingToCart, translationKey, isDisabled) => {
+      renderAndMock({ isCartLoading, isAddingToCart });
+
+      const buttonLabel = screen.getByText(translationKey);
+      expect(buttonLabel).toBeInTheDocument();
+
+      const buyNowButton = screen.getByRole("button");
+
+      if (isDisabled) {
+        expect(buyNowButton).toBeDisabled();
+      } else {
+        expect(buyNowButton).not.toBeDisabled();
+      }
+    }
+  );
 });
