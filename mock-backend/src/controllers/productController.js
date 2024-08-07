@@ -12,8 +12,6 @@ const getAllProducts = (req, res) => {
 
   let sortedProducts = sort ? sortProducts(products, sort) : products;
 
-  const finalProducts = categoryFilter(category, sortedProducts)
-
   const finalProducts = categoryFilter(category, sortedProducts);
 
   const slicedProducts = finalProducts.slice(skip, limit);

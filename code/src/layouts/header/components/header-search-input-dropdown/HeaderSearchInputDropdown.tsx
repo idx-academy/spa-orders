@@ -8,6 +8,7 @@ import noResultsImage from "@/assets/images/search/no-results.png";
 import routePaths from "@/constants/routes";
 import useInfiniteScroll from "@/hooks/use-infinite-scroll/useInfiniteScroll";
 import { ProductFromSearch } from "@/types/product.types";
+import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
 import "@/layouts/header/components/header-search-input-dropdown/HeaderSearchInputDropdown.scss";
 
@@ -50,15 +51,15 @@ const HeaderSearchInputDropdown = ({
     </AppMenuItem>
   );
 
-  const loadingLabel = Array.from({ length: 5 }).map((_, index) => (
+  const loadingLabel = repeatComponent(
     <AppSkeleton
-      key={index}
       variant="text"
       className="search-input-dropdown__skeleton"
       animation="pulse"
       data-testid="search-skeleton"
-    />
-  ));
+    />,
+    5
+  );
 
   const noResultsLabel = (
     <AppBox className="search-input-dropdown__no-results">

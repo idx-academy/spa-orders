@@ -89,8 +89,7 @@ export const productsApi = appApi.injectEndpoints({
       GetUserProductsBySearchQueryResponse,
       GetUserProductsBySearchQueryParams
     >({
-      query: (params) => URLS.products.searchByQuery(params),
-      keepUnusedDataFor: 0
+      query: (params) => URLS.products.searchByQuery(params)
     }),
     updateProduct: build.mutation<void, UpdateProductBody>({
       query: ({ productId, ...body }) => ({

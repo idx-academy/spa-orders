@@ -31,4 +31,24 @@ describe("useDropdown", () => {
 
     expect(result.result.current.isDropdownOpened).toBe(false);
   });
+
+  test("toggles isDropdownOpened to true when initially false", () => {
+    act(() => {
+      result.result.current.toggleDropdown();
+    });
+
+    expect(result.result.current.isDropdownOpened).toBe(true);
+  });
+
+  test("toggles isDropdownOpened to false when initially true", () => {
+    act(() => {
+      result.result.current.handleOpenDropdown();
+    });
+
+    act(() => {
+      result.result.current.toggleDropdown();
+    });
+
+    expect(result.result.current.isDropdownOpened).toBe(false);
+  });
 });

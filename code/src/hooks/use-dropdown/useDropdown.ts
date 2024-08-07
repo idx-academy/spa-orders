@@ -11,8 +11,13 @@ const useDropdown = () => {
     setIsDropdownOpened(true);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpened((prev) => !prev);
+  };
+
   return {
     isDropdownOpened,
+    toggleDropdown,
     handleOpenDropdown,
     handleCloseDropdown
   } as const;

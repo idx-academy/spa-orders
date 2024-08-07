@@ -1,65 +1,61 @@
 import { renderHook } from "@testing-library/react";
 
 import useInfiniteScroll from "@/hooks/use-infinite-scroll/useInfiniteScroll";
+import { setupMockIntersectionObserver } from "@/utils/render-with-providers/renderWithProviders";
 
-const mockAndRender = (item?: HTMLLIElement, isIntersecting: boolean = false) => {
+type MockAndRenderProps = {
+  item?: HTMLLIElement;
+  isIntersecting?: boolean;
+};
+
+const { mockedObserveFn, mockedUnobserveFn, triggerObserverCallback } =
+  setupMockIntersectionObserver();
+
+const mockAndRender = ({
+  item,
+  isIntersecting = false
+}: MockAndRenderProps = {}) => {
   const loadNextPage = jest.fn();
   const { result } = renderHook(() => useInfiniteScroll(loadNextPage));
 
   result.current(item ?? null);
 
   if (item) {
-    const entry = { isIntersecting };
-    (global.IntersectionObserver as jest.Mock).mock.calls[0][0]([entry]);
+    triggerObserverCallback({ isIntersecting });
   }
 
   return { loadNextPage, result, item };
 };
 
 describe("useInfiniteScroll", () => {
-  let observe: jest.Mock;
-  let unobserve: jest.Mock;
-  let disconnect: jest.Mock;
-
   beforeEach(() => {
-    observe = jest.fn();
-    unobserve = jest.fn();
-    disconnect = jest.fn();
-
-    global.IntersectionObserver = jest.fn(() => ({
-      observe,
-      unobserve,
-      disconnect,
-      takeRecords: jest.fn(),
-      root: null,
-      rootMargin: "",
-      thresholds: []
-    }));
-
     jest.clearAllMocks();
   });
 
   test("calls loadNextPage when the last item is intersecting", () => {
     const item = document.createElement("li");
 
-    const { loadNextPage } = mockAndRender(item, true);
+    const { loadNextPage } = mockAndRender({
+      item,
+      isIntersecting: true
+    });
 
     expect(loadNextPage).toHaveBeenCalled();
-    expect(unobserve).toHaveBeenCalledWith(item);
+    expect(mockedUnobserveFn).toHaveBeenCalledWith(item);
   });
 
   test("does not call loadNextPage when the last item is not intersecting", () => {
     const item = document.createElement("li");
-    const { loadNextPage } = mockAndRender(item);
+    const { loadNextPage } = mockAndRender({ item });
 
     expect(loadNextPage).not.toHaveBeenCalled();
-    expect(unobserve).not.toHaveBeenCalled();
+    expect(mockedUnobserveFn).not.toHaveBeenCalled();
   });
 
   test("returns early when item is null", () => {
     mockAndRender();
 
-    expect(observe).not.toHaveBeenCalled();
-    expect(unobserve).not.toHaveBeenCalled();
+    expect(mockedObserveFn).not.toHaveBeenCalled();
+    expect(mockedUnobserveFn).not.toHaveBeenCalled();
   });
 });

@@ -28,7 +28,9 @@ const HeaderSearchInput = () => {
   useOnClickOutside(searchInputRef, handleCloseDropdown);
 
   const { searchProducts, isLoading, isError, loadNextPage, resetSearch } =
-    useInfiniteSearchQuery(searchQuery);
+    useInfiniteSearchQuery({
+      query: searchQuery
+    });
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
