@@ -49,7 +49,7 @@ jest.mock("@/context/i18n/I18nProvider", () => ({
 const size = setProductsPerPageSize(window.innerWidth);
 
 const defaultQueryArguments = {
-  size: size,
+  size,
   page: 0,
   sort: undefined,
   lang: "en",
