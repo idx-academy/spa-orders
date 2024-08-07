@@ -2,19 +2,19 @@ import { FormattedMessage } from "react-intl";
 
 export const sortOptions = [
   {
-    value: "recommended",
+    value: "",
     label: <FormattedMessage id="productsDefault.label" />
   },
   {
-    value: "createdAt,desc",
+    value: "product.createdAt,desc",
     label: <FormattedMessage id="sortOptions.newest" />
   },
   {
-    value: "price,asc",
+    value: "product.price,asc",
     label: <FormattedMessage id="sortOptions.priceLowHigh" />
   },
   {
-    value: "price,desc",
+    value: "product.price,desc",
     label: <FormattedMessage id="sortOptions.priceHighLow" />
   },
   { value: "name,asc", label: <FormattedMessage id="sortOptions.nameAZ" /> },

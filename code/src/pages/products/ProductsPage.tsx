@@ -44,8 +44,15 @@ const ProductsPage = () => {
   );
 
   const handleSortChange = (value: string) => {
-    searchParams.set("sort", value);
-    setSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams);
+
+    if (value) {
+      params.set("sort", value);
+    } else {
+      params.delete("sort");
+    }
+
+    setSearchParams(params);
   };
 
   const productsAllLabels = !categoryType
