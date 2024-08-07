@@ -31,7 +31,7 @@ const OrderItem = ({ order, isExpanded }: OrderItemProps) => {
   const orderPaymentStatusContent = (
     <AppTypography
       className="spa-order-item__badge-status"
-      variant="caption"
+      variant="caption-small"
       translationKey={
         isPaid ? "orderProductItem.payed" : "orderProductItem.notPayed"
       }
@@ -39,7 +39,7 @@ const OrderItem = ({ order, isExpanded }: OrderItemProps) => {
   );
   const orderDeliveryStatusContent = (
     <AppTypography
-      variant="caption"
+      variant="caption-small"
       className="spa-order-item__badge-status"
       translationKey={orderDeliveryStatus}
     />
