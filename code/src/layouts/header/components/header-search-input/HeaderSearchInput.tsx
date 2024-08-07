@@ -17,6 +17,8 @@ import cn from "@/utils/cn/cn";
 
 import "@/layouts/header/components/header-search-input/HeaderSearchInput.scss";
 
+const MIN_SEARCH_QUERY_LENGTH = 4;
+
 const HeaderSearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { handleCloseDropdown, handleOpenDropdown, isDropdownOpened } =
@@ -44,7 +46,7 @@ const HeaderSearchInput = () => {
     resetSearch();
   };
 
-  const searchContent = searchQuery.length >= 4 && (
+  const searchContent = searchQuery.length >= MIN_SEARCH_QUERY_LENGTH && (
     <SearchInputDropdown
       loadNextPage={loadNextPage}
       totalElements={searchProducts?.totalElements}
