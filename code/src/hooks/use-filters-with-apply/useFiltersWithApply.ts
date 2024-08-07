@@ -24,6 +24,7 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
 
   const activeFiltersRef = useRef(defaultActiveFilters);
   const [localFilters, setLocalFilters] = useState(defaultFiltersFromParams);
+  console.log(activeFiltersRef);
 
   const updateFilterByKey: UpdateFilterByKey<Filters> = (key, value) => {
     setLocalFilters((prevFilters) => ({
@@ -33,6 +34,8 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
 
     activeFiltersRef.current.add(key);
   };
+
+  console.log(localFilters);
 
   const resetFilterByKey: ResetFilterByKey<Filters> = (key) => {
     setLocalFilters((prevFilters) => ({

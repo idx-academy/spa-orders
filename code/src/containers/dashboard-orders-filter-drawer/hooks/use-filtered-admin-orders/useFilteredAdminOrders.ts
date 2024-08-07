@@ -14,7 +14,7 @@ const useFilteredAdminOrders = () => {
   const { page } = usePagination();
   const {
     filters,
-    appliedFilters: { paid, price, statuses, timespan, ...rest },
+    appliedFilters: { paid, price, statuses, timespan, accountEmail, ...rest },
     activeFiltersCount,
     actions: filterActions
   } = useFiltersWithApply(defaultAdminOrderFilters);
@@ -38,6 +38,7 @@ const useFilteredAdminOrders = () => {
     createdBefore: dateRange?.end.toISOString(),
     createdAfter: dateRange?.start.toISOString(),
     sort: sortParam || undefined,
+    accountEmail: accountEmail || undefined,
     page: page - 1,
     size: 8
   });

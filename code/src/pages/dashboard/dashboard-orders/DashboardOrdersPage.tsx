@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { useIntl } from "react-intl";
 
 import FilterListIcon from "@mui/icons-material/FilterList";
 
@@ -29,6 +30,25 @@ const DashboardOrdersPage = () => {
   } = useFilteredAdminOrders();
 
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState(filters.accountEmail || "");
+
+  const { formatMessage } = useIntl();
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchValue(value);
+    filterActions.updateFilterByKey("accountEmail", value);
+  };
+
+  const handleClearSearch = () => {
+    setSearchValue("");
+    filterActions.resetFilterByKey("accountEmail");
+    filterActions.applyFilters();
+  };
+
+  const handleSearch = () => {
+    filterActions.applyFilters();
+  };
 
   const handleCloseFilterDrawer = () => {
     setIsFilterDrawerOpen(false);
@@ -71,8 +91,12 @@ const DashboardOrdersPage = () => {
         />
         <AppBox className="dashboard-orders-tab__toolbar-filter-icons">
           <AppSearchInput
-            placeholder="Search by email..."
+            placeholder={formatMessage({ id: "dashboardTabs.orders.search" })}
             inputProps={{ "aria-label": "search" }}
+            value={searchValue}
+            onChange={handleSearchChange}
+            onClear={handleClearSearch}
+            onSearch={handleSearch}
           />
           <AppButton
             variant="dark"

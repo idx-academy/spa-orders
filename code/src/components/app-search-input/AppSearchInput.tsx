@@ -11,6 +11,7 @@ const AppSearchInput = ({
   onSearch,
   onClear,
   value,
+  placeholder,
   className,
   ...props
 }: AppSearchInputProps) => {
@@ -18,13 +19,18 @@ const AppSearchInput = ({
     <Paper className="spa-search-input-field">
       <InputBase
         className="spa-search-input-field__input-base"
+        placeholder={placeholder}
         value={value}
         {...props}
       />
       <AppIconButton aria-label="clear" onClick={onClear}>
         <ClearIcon fontSize="small" />
       </AppIconButton>
-      <AppIconButton aria-label="search" onClick={onSearch}>
+      <AppIconButton
+        aria-label="search"
+        onClick={onSearch}
+        className="spa-search-input-field__search-icon"
+      >
         <SearchIcon />
       </AppIconButton>
     </Paper>

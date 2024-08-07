@@ -101,5 +101,6 @@ export type GetAdminOrderParams = Partial<
       createdAfter: string;
       page?: number;
       size?: number;
+      accountEmail: string;
     }
 >;

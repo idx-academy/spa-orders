@@ -21,7 +21,8 @@ const defaultFilters: AdminOrderFilters = {
   price: { start: 100, end: 1000 },
   statuses: new Set(),
   timespan: "",
-  "delivery-methods": new Set()
+  "delivery-methods": new Set(),
+  accountEmail: ""
 };
 
 type RenderAndMock = {

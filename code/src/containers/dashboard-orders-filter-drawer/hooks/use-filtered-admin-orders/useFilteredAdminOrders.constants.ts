@@ -6,5 +6,6 @@ export const defaultAdminOrderFilters: AdminOrderFilters = {
   price: { start: 0, end: 1_000_000 },
   statuses: new Set(),
   "delivery-methods": new Set(),
-  timespan: ""
+  timespan: "",
+  accountEmail: ""
 };
