@@ -1,4 +1,3 @@
-// import { skipToken } from "@reduxjs/toolkit/query/react";
 import { fireEvent, screen } from "@testing-library/react";
 
 import HeaderSearchInput from "@/layouts/header/components/header-search-input/HeaderSearchInput";

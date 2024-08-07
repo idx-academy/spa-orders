@@ -1,4 +1,5 @@
-import { renderHook, act, RenderHookResult } from "@testing-library/react";
+import { RenderHookResult, act, renderHook } from "@testing-library/react";
+
 import useDropdown from "@/hooks/use-dropdown/useDropdown";
 
 describe("useDropdown", () => {
