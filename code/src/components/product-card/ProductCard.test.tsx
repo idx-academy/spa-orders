@@ -109,8 +109,6 @@ describe("ProductCard", () => {
         expect.stringContaining("cart-with-check")
       );
 
-      screen.debug();
-
       const isProductActiveElement = result.container.querySelector(
         ".spa-product-card__cart-button--active"
       );

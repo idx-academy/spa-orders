@@ -1,3 +1,4 @@
 {
-  "dashboardTabs.addProduct.label": "Додати товар"
+  "dashboardTabs.addProduct.label": "Додати товар",
+  "dashboardTabs.search.placeholder": "Пошук за назвою..."
 }

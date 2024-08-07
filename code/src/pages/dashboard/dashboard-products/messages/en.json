@@ -1,3 +1,4 @@
 {
-  "dashboardTabs.addProduct.label": "New Product"
+  "dashboardTabs.addProduct.label": "New Product",
+  "dashboardTabs.search.placeholder": "Search by name..."
 }
