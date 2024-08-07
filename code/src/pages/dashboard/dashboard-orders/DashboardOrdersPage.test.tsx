@@ -159,7 +159,9 @@ describe("DashboardOrdersPage", () => {
 
     const searchButton = screen.getByTestId("SearchIcon");
     fireEvent.click(searchButton);
-    expect(mockApplyFilters).toHaveBeenCalled();
+    expect(mockApplyFilters).toHaveBeenCalledWith({
+      additionalParams: { page: "1" }
+    });
   });
 
   test("clears search by email filter correctly", () => {

@@ -1,3 +1,5 @@
+@import "@design-system";
+
 .dashboard-orders-tab__toolbar {
   display: flex;
   align-items: center;
@@ -5,6 +7,6 @@
 
   &-filter-icons {
     display: flex;
-    gap: 25px;
+    gap: spacing(6);
   }
 }

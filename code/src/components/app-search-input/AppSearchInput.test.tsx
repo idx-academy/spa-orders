@@ -18,7 +18,7 @@ describe("AppSearchInput ", () => {
     );
   });
   test("Should render search input field", () => {
-    const searchInputField = screen.getByPlaceholderText("Search...");
+    const searchInputField = screen.getByPlaceholderText(placeholder);
     expect(searchInputField).toBeInTheDocument();
   });
 
