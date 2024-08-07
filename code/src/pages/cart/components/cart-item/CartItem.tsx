@@ -103,7 +103,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
           <AddCircleOutlineIcon />
         </AppBox>
       </AppBox>
-      <AppTypography className="spa-cart-item__price">
+      <AppBox className="spa-cart-item__price">
         <AppTooltip titleTranslationKey={totalPrice}>
           <AppTypography
             component="span"
@@ -112,7 +112,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
             {totalPrice}
           </AppTypography>
         </AppTooltip>
-      </AppTypography>
+      </AppBox>
       <AppBox
         className="spa-cart-item__delete-block"
         onClick={handleRemoveCartItem}
