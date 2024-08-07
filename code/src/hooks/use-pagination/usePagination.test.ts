@@ -25,12 +25,24 @@ describe("usePagination", () => {
     expect(result.current.page).toBe(3);
   });
 
-  test("updates page correctly", () => {
+  test("updates page correctly when page is not null", () => {
     const { result } = mockAndRender();
 
     result.current.setPage(5);
     expect(mockSetSearchParams).toHaveBeenCalledWith(
       new URLSearchParams({ page: "5" })
     );
+  });
+
+  test("updates page correctly when page is null", () => {
+    const mockDelete = jest.fn();
+    jest
+      .spyOn(URLSearchParams.prototype, "delete")
+      .mockImplementationOnce(mockDelete);
+
+    const { result } = mockAndRender();
+
+    result.current.setPage(null);
+    expect(mockDelete).toHaveBeenCalledWith("page");
   });
 });
