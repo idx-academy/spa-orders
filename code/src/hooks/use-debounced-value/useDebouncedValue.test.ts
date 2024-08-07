@@ -4,7 +4,7 @@ import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
 
 const delayMS = 500;
 
-const renderHookWithValue = (value: string, delay = delayMS) => {
+const renderHookWithValue = (value: string, delay?: number) => {
   return renderHook(({ value, delay }) => useDebouncedValue(value, delay), {
     initialProps: { value, delay }
   });
