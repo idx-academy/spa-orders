@@ -37,7 +37,12 @@ const cartApi = appApi.injectEndpoints({
         url: URLS.cart.patchQuantity({ userId, productId, quantity }),
         method: httpMethods.patch
       }),
-      invalidatesTags: [rtkQueryTags.CART]
+      invalidatesTags: [rtkQueryTags.CART],
+      transformErrorResponse: (value) => {
+        value.isSnackbarHidden = true;
+
+        return value;
+      }
     })
   })
 });

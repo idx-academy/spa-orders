@@ -2,6 +2,12 @@ import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useUpdateCartItemQuantityMutation } from "@/store/api/cartApi";
 import { CartManagementPatchParams } from "@/types/cart.types";
 
+type ApiErrorQuantity = {
+  data?: {
+    detail: string;
+  };
+};
+
 const useUpdateCartItemQuantity = () => {
   const { openSnackbarWithTimeout } = useSnackbar();
   const [updateCartItemQuantity, { isLoading, isError, data, error }] =
@@ -10,9 +16,15 @@ const useUpdateCartItemQuantity = () => {
   const updateQuantity = async (params: CartManagementPatchParams) => {
     try {
       await updateCartItemQuantity(params).unwrap();
-    } catch {
+    } catch (err) {
+      const apiError = err as ApiErrorQuantity;
+
+      //@TODO Change logic handle products items from the stock for quantity
+      const errorMessage =
+        apiError.data?.detail || "cart.itemQuantityUpdate.fail";
+
       openSnackbarWithTimeout({
-        messageTranslationKey: "cart.itemQuantityUpdate.fail",
+        messageTranslationKey: errorMessage,
         variant: "error"
       });
     }

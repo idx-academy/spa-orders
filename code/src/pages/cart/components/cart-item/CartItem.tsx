@@ -5,6 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 import AppBox from "@/components/app-box/AppBox";
+import AppTooltip from "@/components/app-tooltip/AppTooltip";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
@@ -21,7 +22,10 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
   const lastDebouncedQuantityRef = useRef(debouncedQuantity);
 
   useEffect(() => {
-    if (debouncedQuantity !== lastDebouncedQuantityRef.current) {
+    if (
+      debouncedQuantity !== lastDebouncedQuantityRef.current &&
+      debouncedQuantity > 0
+    ) {
       onQuantityChange(item, debouncedQuantity);
       lastDebouncedQuantityRef.current = debouncedQuantity;
     }
@@ -89,6 +93,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
           onChange={handleQuantityInputChange}
           onBlur={handleBlur}
           data-cy="cart-item-quantity"
+          maxLength={6}
         />
         <AppBox
           className="spa-cart-item__quantity-block"
@@ -99,7 +104,14 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
         </AppBox>
       </AppBox>
       <AppTypography className="spa-cart-item__price">
-        {totalPrice}
+        <AppTooltip titleTranslationKey={totalPrice}>
+          <AppTypography
+            component="span"
+            className="spa-cart-item__price-value"
+          >
+            {totalPrice}
+          </AppTypography>
+        </AppTooltip>
       </AppTypography>
       <AppBox
         className="spa-cart-item__delete-block"

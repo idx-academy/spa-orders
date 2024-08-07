@@ -27,7 +27,7 @@
     align-items: center;
     border: 1px solid var(--spa-cart-quantity-selector-border-color, $black);
     padding: spacing(1);
-    margin-right: spacing(5);
+    margin: 0 spacing(4);
   }
 
   &__quantity-block {
@@ -52,10 +52,16 @@
   }
 
   &__price {
-    font-weight: var(--spa-cart-price-font-weight, $fw-extra-bold);
-    font-size: $fs-lg;
     margin-left: spacing(5);
-    min-width: 80px;
+    min-width: 101px;
+
+    &-value {
+      font-weight: var(--spa-cart-price-value-font-weight, $fw-extra-bold);
+      font-size: var(--spa-cart-price-value-font-size, $fs-lg);
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 
   &__delete-block {
