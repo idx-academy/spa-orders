@@ -66,7 +66,7 @@ const render = (data: FullManagerProduct = testData) => {
   imgUrlInput = getTagIn("product-form-image-input");
   priceInput = getTagIn("product-form-price-input");
   quantityInput = getTagIn("product-form-quantity-input");
-  categorySelect = screen.getByLabelText("productForm.inputLabel.category");
+  categorySelect = screen.getByLabelText("product.category");
   nameInput = getTagIn(`product-form-name-input`);
   descriptionInput = getTagIn(`product-form-description-input`, "textarea");
   statusInput = getTagIn("product-form-status-checkbox");
@@ -92,13 +92,13 @@ describe("Test UpdateProductForm", () => {
     render();
 
     const imageSectionTitle = screen.getByText(
-      "productForm.section.image.title"
+      "dashboardProduct.section.image.title"
     );
     const mainInforEnSectionTitle = screen.getByText(
-      "productForm.section.mainInformation.title"
+      "dashboardProduct.section.mainInformation.title"
     );
     const additionalInfoSectionTitle = screen.getByText(
-      "productForm.section.additionalInformation.title"
+      "dashboardProduct.section.additionalInformation.title"
     );
 
     expect(imageSectionTitle).toBeInTheDocument();

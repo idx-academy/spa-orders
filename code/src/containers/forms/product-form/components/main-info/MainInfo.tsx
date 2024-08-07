@@ -57,7 +57,7 @@ const MainInfo = ({ register, errors }: ProductFormMainInfoSectionProps) => {
         <AppTypography
           component="h1"
           variant="h3"
-          translationKey="productForm.section.mainInformation.title"
+          translationKey="dashboardProduct.section.mainInformation.title"
           className="product-form__header-title"
         />
         <AppBox className="product-form__language-buttons">
@@ -68,7 +68,7 @@ const MainInfo = ({ register, errors }: ProductFormMainInfoSectionProps) => {
         <AppInput
           className="product-form__text-input"
           fullWidth
-          labelTranslationKey="productForm.inputLabel.name"
+          labelTranslationKey="product.name"
           data-testid={"product-form-name-input"}
           error={Boolean(nameErrorMessage)}
           helperText={nameErrorMessage}
@@ -78,7 +78,7 @@ const MainInfo = ({ register, errors }: ProductFormMainInfoSectionProps) => {
           className="product-form__text-input"
           fullWidth
           multiline
-          labelTranslationKey="productForm.inputLabel.description"
+          labelTranslationKey="product.description"
           inputProps={{
             className: "product-form__description-input"
           }}

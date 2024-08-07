@@ -32,13 +32,18 @@
   "filters.to": "до",
   "language.ukrainian": "УКР",
   "language.english": "АНГ",
-  "language.full.ukrainian": "Українська",
-  "language.full.english": "Англійська",
+  "language.full.uk": "Українська",
+  "language.full.en": "Англійська",
   "timespan.yesterday": "Вчора",
   "timespan.last7Days": "Останні 7 днів",
   "timespan.last14Days": "Останні 14 днів",
   "timespan.lastMonth": "Останній місяць",
   "select.defaultOption": "Виберіть елемент зі списку...",
   "product.status.visible": "Видимий",
-  "product.status.hidden": "Прихований"
+  "product.status.hidden": "Прихований",
+  "product.name": "Назва",
+  "product.description": "Опис",
+  "product.price": "Ціна",
+  "product.category": "Категорія",
+  "product.quantity": "Кількість"
 }

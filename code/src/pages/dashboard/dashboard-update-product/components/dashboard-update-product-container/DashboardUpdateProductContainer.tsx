@@ -1,11 +1,15 @@
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
 import UpdateProductForm from "@/containers/forms/product-form/components/update-product-form/UpdateProductForm";
 import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 
 import AppBox from "@/components/app-box/AppBox";
+import AppButton from "@/components/app-button/AppButton";
 import AppTypography from "@/components/app-typography/AppTypography";
 
+import routes from "@/constants/routes";
 import useErrorPageRedirect from "@/hooks/use-error-page-redirect/useErrorPageRedirect";
 import { updateProductPageNotFoundErrorConfig } from "@/pages/dashboard/dashboard-update-product/DashboardUpdateProductPage.constants";
 import { DashboardUpdateProductPageProps } from "@/pages/dashboard/dashboard-update-product/DashboardUpdateProductPage.types";
@@ -48,6 +52,14 @@ const DashboardUpdateProductContainer = ({
           variant="h3"
           translationKey="product.update.title"
         />
+        <AppButton
+          data-cy="update-product-button"
+          variant="contained"
+          to={routes.dashboard.products.productDetails.path(productId)}
+        >
+          <ChevronLeftIcon />
+          <AppTypography translationKey="product.update.productDetails.link" />
+        </AppButton>
       </AppBox>
       <UpdateProductForm product={productData} />
     </DashboardTabContainer>

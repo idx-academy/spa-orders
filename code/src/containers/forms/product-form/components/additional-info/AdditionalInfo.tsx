@@ -42,7 +42,7 @@ const AdditionalInfo = ({
     <>
       <AppSelect
         fullWidth
-        label="productForm.inputLabel.category"
+        label="product.category"
         inputProps={{
           className: "product-form__category-select"
         }}
@@ -62,7 +62,7 @@ const AdditionalInfo = ({
         <AppTypography
           component="h1"
           variant="h3"
-          translationKey="productForm.section.additionalInformation.title"
+          translationKey="dashboardProduct.section.additionalInformation.title"
           className="product-form__header-title"
         />
       </AppBox>
@@ -70,7 +70,7 @@ const AdditionalInfo = ({
         <AppBox className="product-form__quantity-price-container">
           <AppInput
             fullWidth
-            labelTranslationKey="productForm.inputLabel.price"
+            labelTranslationKey="product.price"
             inputProps={{ min: 0, step: "any" }}
             type="number"
             error={Boolean(errors.price)}
@@ -80,7 +80,7 @@ const AdditionalInfo = ({
           />
           <AppInput
             fullWidth
-            labelTranslationKey="productForm.inputLabel.quantity"
+            labelTranslationKey="product.quantity"
             inputProps={{ min: 0 }}
             type="number"
             error={Boolean(errors.quantity)}

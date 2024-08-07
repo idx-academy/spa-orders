@@ -1,0 +1,9 @@
+{
+  "product.edit": "Edit Product",
+  "dashboardProduct.title": "Product",
+  "dashboardProduct.section.image.title": "Image",
+  "dashboardProduct.section.additionalInformation.title": "Additional Information",
+  "dashboardProduct.section.mainInformation.title": "Main Information",
+  "dashboardProduct.status.visible": "The product is currently visible for customers. You can click edit button to edit product and make it hidden.",
+  "dashboardProduct.status.hidden": "The product is currently hidden for customers. You can click edit button to edit product and make it visible."
+}

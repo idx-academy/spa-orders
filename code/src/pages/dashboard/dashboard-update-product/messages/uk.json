@@ -1,4 +1,5 @@
 {
   "product.productNotFound": "Продукт не знайдено",
-  "product.update.title": "Оновити продукт"
+  "product.update.title": "Оновити продукт",
+  "product.update.productDetails.link": "До продукту"
 }

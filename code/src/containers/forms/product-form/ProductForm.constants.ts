@@ -9,8 +9,8 @@ type ProductLocale = {
 };
 
 export const productLocales: ProductLocale[] = [
-  { key: "en", translationKey: "language.full.english" },
-  { key: "uk", translationKey: "language.full.ukrainian" }
+  { key: "en", translationKey: "language.full.en" },
+  { key: "uk", translationKey: "language.full.uk" }
 ];
 
 export type ProductCategory = {

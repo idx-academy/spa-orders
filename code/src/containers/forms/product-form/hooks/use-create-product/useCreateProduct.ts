@@ -14,12 +14,14 @@ const useCreateProduct = () => {
 
   const onSubmit = async (values: CreateProductBody) => {
     try {
-      await createProduct(values).unwrap();
+      const data = await createProduct(values).unwrap();
+
       openSnackbarWithTimeout({
         variant: "success",
         messageTranslationKey: "productForm.creation.success"
       });
-      navigate(routes.dashboard.products.path);
+
+      navigate(routes.dashboard.products.productDetails.path(data.id));
     } catch (e: unknown) {
       openSnackbarWithTimeout({
         variant: "error",

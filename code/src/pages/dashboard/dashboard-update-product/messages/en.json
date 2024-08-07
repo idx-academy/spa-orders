@@ -1,4 +1,5 @@
 {
   "product.productNotFound": "Product not found",
-  "product.update.title": "Update Product"
+  "product.update.title": "Update Product",
+  "product.update.productDetails.link": "To product details"
 }

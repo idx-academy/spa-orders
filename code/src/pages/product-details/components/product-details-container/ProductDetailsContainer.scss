@@ -72,8 +72,6 @@
   }
 
   &__description {
-    display: flex;
-    flex-direction: column;
-    row-gap: spacing(2);
+    line-height: 1.5;
   }
 }

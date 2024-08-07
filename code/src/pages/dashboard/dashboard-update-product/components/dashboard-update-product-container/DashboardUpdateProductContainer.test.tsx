@@ -1,10 +1,11 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import { RedirectConfig } from "@/hooks/use-error-page-redirect/useErrorPageRedirect.types";
 import DashboardUpdateProductContainer from "@/pages/dashboard/dashboard-update-product/components/dashboard-update-product-container/DashboardUpdateProductContainer";
 import { useGetManagerProductQuery } from "@/store/api/productsApi";
 import { RTKQueryReturnState } from "@/types/common";
 import { GetManagerProductByIdResponse } from "@/types/product.types";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
 const validUUID = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
 
@@ -45,7 +46,9 @@ const mockAndRender = (
   > = defaultParams
 ) => {
   (useGetManagerProductQuery as jest.Mock).mockReturnValue(response);
-  render(<DashboardUpdateProductContainer productId={validUUID} />);
+  renderWithProviders(
+    <DashboardUpdateProductContainer productId={validUUID} />
+  );
 };
 
 describe("Test DashboardUpdateProductPage", () => {

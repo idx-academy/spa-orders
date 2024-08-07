@@ -4,6 +4,7 @@ import { URLS } from "@/constants/requests";
 import { appApi } from "@/store/api/appApi";
 import {
   CreateProductBody,
+  FullManagerProduct,
   GetManagerProductByIdParams,
   GetManagerProductByIdResponse,
   GetManagerProductsParams,
@@ -77,7 +78,7 @@ export const productsApi = appApi.injectEndpoints({
         method: httpMethods.delete
       })
     }),
-    createProduct: build.mutation<void, CreateProductBody>({
+    createProduct: build.mutation<FullManagerProduct, CreateProductBody>({
       query: (body) => ({
         url: URLS.products.post,
         method: httpMethods.post,

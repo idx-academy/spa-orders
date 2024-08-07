@@ -1,0 +1,9 @@
+{
+  "product.edit": "Редагувати Товар",
+  "dashboardProduct.title": "Товар",
+  "dashboardProduct.section.image.title": "Зображення",
+  "dashboardProduct.section.additionalInformation.title": "Додаткова інформація",
+  "dashboardProduct.section.mainInformation.title": "Основна інформація",
+  "dashboardProduct.status.visible": "Наразі продукт видимий для користувачів. Ви можете натиснути кнопку редагування, щоб відредагувати продукт і зробити його прихованим.",
+  "dashboardProduct.status.hidden": "Наразі продукт прихований для користувачів. Ви можете натиснути кнопку редагування, щоб відредагувати продукт і зробити його видимим."
+}

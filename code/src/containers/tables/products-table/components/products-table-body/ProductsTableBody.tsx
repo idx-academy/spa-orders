@@ -40,7 +40,9 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
 
   const nameElement = (
     <AppTypography className="products-table__body-name" variant="caption">
-      <AppLink to={routes.productDetails.path(id)}>{name}</AppLink>
+      <AppLink to={routes.dashboard.products.productDetails.path(id)}>
+        {name}
+      </AppLink>
     </AppTypography>
   );
 

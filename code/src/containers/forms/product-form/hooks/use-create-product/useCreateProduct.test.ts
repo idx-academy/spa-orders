@@ -5,7 +5,7 @@ import useCreateProduct from "@/containers/forms/product-form/hooks/use-create-p
 import routes from "@/constants/routes";
 import { ProductBody } from "@/types/product.types";
 
-const mockUnwrap = jest.fn();
+const mockUnwrap = jest.fn().mockResolvedValue({ id: 1 });
 const mockNavigate = jest.fn();
 const mockOpenSnackbar = jest.fn();
 const mockCreateProduct = jest.fn(() => ({ unwrap: mockUnwrap }));
@@ -76,13 +76,13 @@ describe("Test useCreateProduct hook", () => {
 
     expect(mockOpenSnackbar).toHaveBeenCalledWith(successSnackbarConfig);
 
-    expect(mockNavigate).toHaveBeenCalledWith(routes.dashboard.products.path);
+    const expectedPath = routes.dashboard.products.productDetails.path("1");
+
+    expect(mockNavigate).toHaveBeenCalledWith(expectedPath);
   });
 
   test("Should call open snackbar with error message if error", async () => {
-    mockUnwrap.mockImplementationOnce(() => {
-      throw new Error("Error");
-    });
+    mockUnwrap.mockRejectedValue({});
 
     const { result } = renderHook(() => useCreateProduct());
 

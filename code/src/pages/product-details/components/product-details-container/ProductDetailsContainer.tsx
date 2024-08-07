@@ -3,6 +3,7 @@ import { useIntl } from "react-intl";
 import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
+import ProductDescription from "@/components/product-description/ProductDescription";
 
 import { deliveryMethods as deliveryMethodsData } from "@/constants/deliveryMethods";
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
@@ -62,12 +63,6 @@ const ProductDetailsContainer = ({
       }
     />
   );
-
-  const productDescription = product.description
-    .split("/")
-    .map((paragraph) => (
-      <AppTypography key={paragraph}>{paragraph}</AppTypography>
-    ));
 
   const deliveryMethods = deliveryMethodsData.map(
     ({ image, translationKey, value }) => {
@@ -140,9 +135,7 @@ const ProductDetailsContainer = ({
               variant="caption-small"
               translationKey="productDetailsPage.descriptionCaption"
             />
-            <AppBox className="product-details__description">
-              {productDescription}
-            </AppBox>
+            <ProductDescription description={product.description} />
           </AppBox>
         </AppBox>
       </AppBox>

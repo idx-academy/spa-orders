@@ -32,13 +32,18 @@
   "filters.to": "to",
   "language.ukrainian": "UK",
   "language.english": "EN",
-  "language.full.ukrainian": "Ukrainian",
-  "language.full.english": "English",
+  "language.full.uk": "Ukrainian",
+  "language.full.en": "English",
   "timespan.yesterday": "Yesterday",
   "timespan.last7Days": "Last 7 days",
   "timespan.last14Days": "Last 14 days",
   "timespan.lastMonth": "Last month",
   "select.defaultOption": "Select an option...",
   "product.status.visible": "Visible",
-  "product.status.hidden": "Hidden"
+  "product.status.hidden": "Hidden",
+  "product.name": "Name",
+  "product.description": "Description",
+  "product.price": "Price",
+  "product.category": "Category",
+  "product.quantity": "Quantity"
 }

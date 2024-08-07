@@ -57,7 +57,7 @@ const Image = ({ errors, control }: ProductFormImageSectionProps) => {
           <AppTypography
             component="h1"
             variant="h3"
-            translationKey="productForm.section.image.title"
+            translationKey="dashboardProduct.section.image.title"
             className="product-form__header-title"
           />
         </AppBox>

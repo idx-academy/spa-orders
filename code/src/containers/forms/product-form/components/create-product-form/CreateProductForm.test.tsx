@@ -44,13 +44,13 @@ describe("Test CreateProductForm", () => {
 
   test("Should be rendered correctly", () => {
     const imageSectionTitle = screen.getByText(
-      "productForm.section.image.title"
+      "dashboardProduct.section.image.title"
     );
     const mainInforEnSectionTitle = screen.getByText(
-      "productForm.section.mainInformation.title"
+      "dashboardProduct.section.mainInformation.title"
     );
     const additionalInfoSectionTitle = screen.getByText(
-      "productForm.section.additionalInformation.title"
+      "dashboardProduct.section.additionalInformation.title"
     );
 
     expect(imageSectionTitle).toBeInTheDocument();
@@ -62,9 +62,7 @@ describe("Test CreateProductForm", () => {
     const imgUrlInput = getTagIn("product-form-image-input");
     const priceInput = getTagIn("product-form-price-input");
     const quantityInput = getTagIn("product-form-quantity-input");
-    const categorySelect = screen.getByLabelText(
-      "productForm.inputLabel.category"
-    );
+    const categorySelect = screen.getByLabelText("product.category");
     const nameInput = getTagIn(`product-form-name-input`);
     const descriptionInput = getTagIn(
       `product-form-description-input`,
