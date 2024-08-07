@@ -110,6 +110,31 @@ describe("DashboardProductContainer", () => {
     );
   });
 
+  test("renders hidden productStatusLabel correctly", () => {
+    mockAndRender({
+      ...defaultParams,
+      data: { ...managerProduct, status: "HIDDEN" }
+    });
+
+    const hiddenProductStatusLabel = screen.getByText(
+      "dashboardProduct.status.hidden"
+    );
+    expect(hiddenProductStatusLabel).toBeInTheDocument();
+  });
+
+  test("renders minus when category is not valid", () => {
+    mockAndRender({
+      ...defaultParams,
+      data: { ...managerProduct, tags: [] }
+    });
+
+    const categoryLabel = screen.queryByText("productsAll.computers");
+    expect(categoryLabel).not.toBeInTheDocument();
+
+    const minusSign = screen.getByText("-");
+    expect(minusSign).toBeInTheDocument();
+  });
+
   test("Should change languages", async () => {
     mockAndRender();
 
