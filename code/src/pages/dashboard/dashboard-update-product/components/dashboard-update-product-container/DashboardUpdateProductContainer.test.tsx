@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import { RedirectConfig } from "@/hooks/use-error-page-redirect/useErrorPageRedirect.types";
+import { updateProductPageNotFoundErrorConfig } from "@/pages/dashboard/dashboard-update-product/DashboardUpdateProductPage.constants";
 import DashboardUpdateProductContainer from "@/pages/dashboard/dashboard-update-product/components/dashboard-update-product-container/DashboardUpdateProductContainer";
 import { useGetManagerProductQuery } from "@/store/api/productsApi";
 import { RTKQueryReturnState } from "@/types/common";
@@ -9,11 +9,7 @@ import renderWithProviders from "@/utils/render-with-providers/renderWithProvide
 
 const validUUID = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
 
-const mockRedirect = ({
-  errorMessageTranslationKey
-}: Pick<RedirectConfig, "errorMessageTranslationKey">) => (
-  <div>{errorMessageTranslationKey}</div>
-);
+const mockRenderRedirectComponent = jest.fn();
 
 jest.mock(
   "@/containers/forms/product-form/components/update-product-form/UpdateProductForm",
@@ -25,7 +21,9 @@ jest.mock(
 
 jest.mock("@/hooks/use-error-page-redirect/useErrorPageRedirect", () => ({
   __esModule: true,
-  default: jest.fn(() => ({ renderRedirectComponent: mockRedirect }))
+  default: jest.fn(() => ({
+    renderRedirectComponent: mockRenderRedirectComponent
+  }))
 }));
 
 jest.mock("@/store/api/productsApi", () => ({
@@ -51,7 +49,7 @@ const mockAndRender = (
   );
 };
 
-describe("Test DashboardUpdateProductPage", () => {
+describe("DashboardUpdateProductPage", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -82,6 +80,18 @@ describe("Test DashboardUpdateProductPage", () => {
 
     const label = screen.getByText("errors.somethingWentWrong");
     expect(label).toBeInTheDocument();
+
+    expect(mockRenderRedirectComponent).not.toHaveBeenCalled();
+  });
+
+  test("Should redirect to not found page if we get 404 error", () => {
+    mockAndRender({
+      error: { status: 404 }
+    });
+
+    expect(mockRenderRedirectComponent).toHaveBeenCalledWith(
+      updateProductPageNotFoundErrorConfig
+    );
   });
 
   test("Should display loding fallback while loading", () => {
