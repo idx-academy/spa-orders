@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 
-import { RedirectConfig } from "@/hooks/use-error-page-redirect/useErrorPageRedirect.types";
+import { dashboardProductPageNotFoundErrorConfig } from "@/pages/dashboard/dashboard-product/DashboardProductPage.constants";
 import DashboardProductContainer from "@/pages/dashboard/dashboard-product/components/dashboard-product-container/DashboardProductContainer";
 import { useGetManagerProductQuery } from "@/store/api/productsApi";
 import { RTKQueryReturnState } from "@/types/common";
@@ -11,15 +11,13 @@ import renderWithProviders from "@/utils/render-with-providers/renderWithProvide
 
 const validUUID = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
 
-const mockRedirect = ({
-  errorMessageTranslationKey
-}: Pick<RedirectConfig, "errorMessageTranslationKey">) => (
-  <div>{errorMessageTranslationKey}</div>
-);
+const mockRenderRedirectComponent = jest.fn();
 
 jest.mock("@/hooks/use-error-page-redirect/useErrorPageRedirect", () => ({
   __esModule: true,
-  default: jest.fn(() => ({ renderRedirectComponent: mockRedirect }))
+  default: jest.fn(() => ({
+    renderRedirectComponent: mockRenderRedirectComponent
+  }))
 }));
 
 jest.mock("@/store/api/productsApi", () => ({
@@ -69,7 +67,7 @@ const mockAndRender = (
   renderWithProviders(<DashboardProductContainer productId={validUUID} />);
 };
 
-describe("Test DashboardProductPage", () => {
+describe("DashboardProductContainer", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -138,6 +136,16 @@ describe("Test DashboardProductPage", () => {
 
     const label = screen.getByText("errors.somethingWentWrong");
     expect(label).toBeInTheDocument();
+  });
+
+  test("Should redirect to not found page when we get 404 status from server", () => {
+    mockAndRender({
+      error: { status: 404 }
+    });
+
+    expect(mockRenderRedirectComponent).toHaveBeenCalledWith(
+      dashboardProductPageNotFoundErrorConfig
+    );
   });
 
   test("Should display loding fallback while loading", () => {
