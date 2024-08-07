@@ -29,7 +29,7 @@ describe("createUrlPath", () => {
     const query = { key1: "value1", key2: "value2" };
 
     const expectedUrlWithQuery = `${baseUrl}?key1=value1&key2=value2`;
-    expect(createUrlPath(baseUrl, "", query)).toBe(expectedUrlWithQuery);
+    expect(createUrlPath(baseUrl, undefined, query)).toBe(expectedUrlWithQuery);
   });
 
   test("should join base URL, resource path, and query parameters correctly", () => {
