@@ -10,9 +10,15 @@ const usePagination = () => {
   const pageFromParams = searchParams.get(PAGE_KEY);
   const page = validatePage(pageFromParams);
 
-  const setPage = (newPage: number) => {
+  const setPage = (newPage: number | null) => {
     const params = new URLSearchParams(searchParams);
-    params.set(PAGE_KEY, newPage.toString());
+
+    if (newPage !== null) {
+      params.set(PAGE_KEY, newPage.toString());
+    } else {
+      params.delete(PAGE_KEY);
+    }
+
     setSearchParams(params);
   };
 

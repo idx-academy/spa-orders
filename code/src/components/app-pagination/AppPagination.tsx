@@ -17,7 +17,7 @@ const AppPagination = (props: AppPaginationProps) => {
     ...itemProps
   }: Omit<PaginationRenderItemParams, "selected">) => {
     const handlePageChange = (event: MouseEvent<HTMLDivElement>) => {
-      setPage(itemProps.page!);
+      setPage(itemProps.page);
       onClick(event);
     };
 
