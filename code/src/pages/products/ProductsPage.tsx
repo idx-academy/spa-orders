@@ -13,6 +13,9 @@ import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import usePagination from "@/hooks/use-pagination/usePagination";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetUserProductsQuery } from "@/store/api/productsApi";
+import useScreenSize from "@/utils/check-screen-size/useScreenSize";
+import setProductsPerPageSize from "@/utils/set-product-size/setProductsPerPageSize";
+import validatePage from "@/utils/validate-page/validatePage";
 
 import "@/pages/products/ProductsPage.scss";
 
@@ -25,6 +28,13 @@ const ProductsPage = () => {
 
   const categoryType = searchParams.get("category");
 
+  const searchParamsPage = searchParams.get("page");
+  const page = validatePage(searchParamsPage);
+
+  const screenSize = useScreenSize();
+
+  const size = setProductsPerPageSize(screenSize.width);
+
   const {
     data: productsResponse,
     isLoading,
@@ -32,8 +42,8 @@ const ProductsPage = () => {
   } = useGetUserProductsQuery({
     tags: categoryType ? `category:${categoryType}` : "",
     page: page - 1,
-    size: 10,
     sort: sortOption ?? undefined,
+    size: size,
     lang: locale
   });
 
