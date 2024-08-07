@@ -6,8 +6,8 @@ import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
 import { useGetUserProductsBySearchQuery } from "@/store/api/productsApi";
 import { GetUserProductsBySearchQueryResponse } from "@/types/product.types";
 
-type useInfiniteProductsSearchConfig = {
-  query: string;
+type UseInfiniteProductsSearchConfig = {
+  query?: string;
   pageSize?: number;
   minQueryLength?: number;
   debounceDelayMs?: number;
@@ -18,7 +18,7 @@ const useInfiniteProductsSearch = ({
   pageSize = 8,
   minQueryLength = 4,
   debounceDelayMs = 500
-}: useInfiniteProductsSearchConfig) => {
+}: UseInfiniteProductsSearchConfig = {}) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [searchProducts, setSearchProducts] =
     useState<GetUserProductsBySearchQueryResponse>();

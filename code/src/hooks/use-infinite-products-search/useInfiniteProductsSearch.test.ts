@@ -118,9 +118,7 @@ describe("useInfiniteProductsSearch", () => {
   });
 
   test("initializes with default values", () => {
-    const { result } = renderHook(() =>
-      useInfiniteProductsSearch({ query: "" })
-    );
+    const { result } = renderHook(() => useInfiniteProductsSearch());
 
     expect(result.current.searchProducts).toBeUndefined();
     expect(result.current.isLoading).toBe(false);
