@@ -83,6 +83,7 @@ module.exports = {
     "!src/**/modules.*",
     "!src/**/routes.*",
     "!src/**/types.*",
+    "!src/**/utils/validators/**/*",
 
     // Specific Exclusions
     "!src/{main.{js,ts,jsx,tsx},polyfills.js}",
