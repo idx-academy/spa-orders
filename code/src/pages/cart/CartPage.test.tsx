@@ -64,11 +64,13 @@ const userId = { id: 3 };
 
 const renderWithMockParams = ({
   data = null,
-  isError = false
+  isError = false,
+  isLoading = false
 }: RenderWithMockParams) => {
   mockUseGetCart.mockReturnValue({
     data,
-    isError
+    isError,
+    isLoading
   });
 
   mockUseRemoveFromCart.mockReturnValue([jest.fn()]);
@@ -86,6 +88,13 @@ describe("CartPage", () => {
     jest.clearAllMocks();
     mockUseGetUserDetails.mockReturnValue(userId);
     (useCreateOrder as jest.Mock).mockReturnValue([mockCreateOrder, {}]);
+  });
+
+  test("renders loading element when cart is loading", () => {
+    renderWithMockParams({ isLoading: true });
+
+    const loadingElement = screen.getByRole("progressbar");
+    expect(loadingElement).toBeInTheDocument();
   });
 
   test("renders empty view", () => {
