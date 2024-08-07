@@ -53,7 +53,7 @@
 
   &__price {
     margin-left: spacing(5);
-    min-width: 101px;
+    min-width: 101px; // needed for correct view just 101px instead 100px
 
     &-value {
       font-weight: var(--spa-cart-price-value-font-weight, $fw-extra-bold);
