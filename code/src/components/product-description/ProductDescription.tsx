@@ -1,10 +1,10 @@
+import AppBox from "@/components/app-box/AppBox";
+import AppTypography from "@/components/app-typography/AppTypography";
+import { ProductDescriptionProps } from "@/components/product-description/ProductDescription.types";
+
 import cn from "@/utils/cn/cn";
 
-import "./ProductDescription.scss";
-
-import AppBox from "../app-box/AppBox";
-import AppTypography from "../app-typography/AppTypography";
-import { ProductDescriptionProps } from "./ProductDescription.types";
+import "@/components/product-description/ProductDescription.scss";
 
 const ProductDescription = ({
   description,

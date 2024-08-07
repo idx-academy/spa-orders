@@ -96,11 +96,10 @@ describe("Test DashboardProductPage", () => {
     expect(name).toBeInTheDocument();
     expect(name).toBeInTheDocument();
 
-    // Description is divided by "/" so we need to check each part
     managerProduct.productTranslations[0].description
       .split("/")
       .forEach((item) => {
-        const descriptionPart = screen.getByText(new RegExp(item));
+        const descriptionPart = screen.getByText(item.trim());
         expect(descriptionPart).toBeInTheDocument();
       });
 

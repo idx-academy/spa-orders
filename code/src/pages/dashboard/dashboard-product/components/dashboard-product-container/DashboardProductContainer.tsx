@@ -200,13 +200,11 @@ const DashboardProductContainer = ({
                       className="dashboard-product__main-info-item-label"
                       variant="caption"
                     />
-                    <AppTypography className="dashboard-product__description">
-                      <ProductDescription
-                        description={
-                          productTranslations[selectedLocaleIndex].description
-                        }
-                      />
-                    </AppTypography>
+                    <ProductDescription
+                      description={
+                        productTranslations[selectedLocaleIndex].description
+                      }
+                    />
                   </AppBox>
                 </AppBox>
                 <AppBox>
