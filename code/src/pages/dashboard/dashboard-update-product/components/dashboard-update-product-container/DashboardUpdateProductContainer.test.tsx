@@ -49,7 +49,7 @@ const mockAndRender = (
   );
 };
 
-describe("DashboardUpdateProductPage", () => {
+describe("DashboardUpdateProductContainer", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
