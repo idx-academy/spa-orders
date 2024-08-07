@@ -83,6 +83,8 @@ export type OrderPatchParams = {
 
 export type GetUserOrderParams = Lang & {
   userId: UserId;
+  page?: number;
+  size?: number;
 };
 
 export type GetAdminOrderByIdParams = Lang & {

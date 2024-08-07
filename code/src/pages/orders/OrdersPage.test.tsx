@@ -1,12 +1,13 @@
 import { screen } from "@testing-library/react";
 
 import useGetUserDetails from "@/hooks/use-get-user-details/useGetUserDetails";
+import usePagination from "@/hooks/use-pagination/usePagination";
 import OrdersPage from "@/pages/orders/OrdersPage";
 import { useGetUserOrdersQuery } from "@/store/api/ordersApi";
 import { RTKQueryMockState } from "@/types/common";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
 
-const userId = { id: 3 };
+const user = { id: 3 };
 
 const mockOrders = {
   totalElements: 0,
@@ -65,9 +66,8 @@ const mockOrders = {
   ]
 };
 
-jest.mock("@/store/api/ordersApi", () => ({
-  useGetUserOrdersQuery: jest.fn()
-}));
+jest.mock("@/hooks/use-pagination/usePagination");
+jest.mock("@/store/api/ordersApi");
 
 jest.mock("@/containers/orders-list/OrdersList", () =>
   jest.fn(() => <div>OrdersList</div>)
@@ -80,14 +80,18 @@ jest.mock("@/hooks/use-get-user-details/useGetUserDetails", () => ({
 
 const mockUseGetUserDetails = useGetUserDetails as jest.Mock;
 
-const renderAndMock = (response: RTKQueryMockState<typeof mockOrders> = {}) => {
+const renderAndMock = (
+  response: RTKQueryMockState<typeof mockOrders, Error> = {}
+) => {
   (useGetUserOrdersQuery as jest.Mock).mockReturnValueOnce({
     isLoading: false,
     data: mockOrders,
     ...response
   });
 
-  mockUseGetUserDetails.mockReturnValue(userId);
+  (usePagination as jest.Mock).mockReturnValueOnce({ page: 1 });
+
+  mockUseGetUserDetails.mockReturnValue(user);
 
   renderWithProviders(<OrdersPage />);
 };
@@ -95,6 +99,13 @@ const renderAndMock = (response: RTKQueryMockState<typeof mockOrders> = {}) => {
 describe("Test order page", () => {
   test("Should display OrdersList", () => {
     renderAndMock();
+
+    expect(useGetUserOrdersQuery).toHaveBeenCalledWith({
+      userId: user.id,
+      lang: "en",
+      page: 0,
+      size: 8
+    });
 
     const ordersListElement = screen.getByText(/OrdersList/);
 
@@ -125,5 +136,13 @@ describe("Test order page", () => {
     const loaderElement = screen.getByRole("progressbar");
 
     expect(loaderElement).toBeInTheDocument();
+  });
+
+  test("renders error element when error is not null", () => {
+    renderAndMock({ error: new Error("message") });
+
+    const errorElement = screen.getByText("errors.somethingWentWrong");
+
+    expect(errorElement).toBeInTheDocument();
   });
 });

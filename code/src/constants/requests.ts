@@ -41,8 +41,8 @@ export const URLS = {
       createUrlPath("/v1/products/search", undefined, params)
   },
   orders: {
-    getForUser: ({ userId, lang }: GetUserOrderParams) =>
-      `/v1/users/${userId}/orders?lang=${lang}`,
+    getForUser: ({ userId, lang, page }: GetUserOrderParams) =>
+      `/v1/users/${userId}/orders?lang=${lang}&page=${page}`,
     getForAdmin: (queryParams: GetAdminOrderParams) =>
       createUrlPath("/v1/management/orders", undefined, queryParams),
     getByIdForAdmin: ({ orderId, lang }: GetAdminOrderByIdParams) =>
