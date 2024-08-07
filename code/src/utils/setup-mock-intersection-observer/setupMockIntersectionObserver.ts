@@ -1,14 +1,18 @@
+const defaultEntry = {
+  isIntersecting: true
+};
+
+type Entry = typeof defaultEntry;
+
 export const setupMockIntersectionObserver = () => {
   let observerOptions: Partial<IntersectionObserverInit> | undefined;
-  let observerCallback: (entry?: {
-    isIntersecting: boolean;
-  }) => void = () => {};
+  let observerCallback: (entry?: Entry) => void = () => {};
 
   const mockedObserveFn = jest.fn();
   const mockedUnobserveFn = jest.fn();
 
   global.IntersectionObserver = jest.fn((callback, options) => {
-    observerCallback = (entry = { isIntersecting: true }) => {
+    observerCallback = (entry = defaultEntry) => {
       callback(
         [entry as IntersectionObserverEntry],
         {} as IntersectionObserver
@@ -32,7 +36,6 @@ export const setupMockIntersectionObserver = () => {
     mockedObserveFn,
     mockedUnobserveFn,
     getObserverOptions: () => observerOptions,
-    triggerObserverCallback: (entry: { isIntersecting: boolean }) =>
-      observerCallback(entry)
+    triggerObserverCallback: (entry?: Entry) => observerCallback(entry)
   };
 };
