@@ -2,6 +2,7 @@ import { fireEvent, screen, waitFor } from "@testing-library/react";
 
 import CartItem from "@/pages/cart/components/cart-item/CartItem";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
 const mockedItem = {
   productId: "8efbee82-8a0c-407a-a4c0-16bbad40a23e",
@@ -68,8 +69,14 @@ describe("CartItem", () => {
     });
   });
 
-  test("should decrease quantity when remove icon is clicked", async () => {
+  test("should decrease quantity correctly", async () => {
     const removeIconElement = screen.getByTestId("RemoveCircleOutlineIcon");
+
+    fireEvent.click(removeIconElement);
+
+    await waitFor(() => {
+      expect(mockOnQuantityChange).toHaveBeenCalledWith(mockedItem, 1);
+    });
 
     fireEvent.click(removeIconElement);
 
@@ -81,44 +88,51 @@ describe("CartItem", () => {
   test("should change quantity via input", async () => {
     const quantityInputElement = getQuantityInputElement();
 
-    fireEvent.change(quantityInputElement, { target: { value: "5" } });
+    await typeIntoInput(quantityInputElement, "5");
 
     await waitFor(() => {
       expect(mockOnQuantityChange).toHaveBeenCalledWith(mockedItem, 5);
     });
   });
 
-  test("should reset quantity to initial value on blur if input is zero", () => {
+  test("should reset quantity to initial value on blur if input is zero", async () => {
     const quantityInputElement = getQuantityInputElement();
 
-    fireEvent.change(quantityInputElement, { target: { value: "0" } });
-
+    await typeIntoInput(quantityInputElement, "0");
     fireEvent.blur(quantityInputElement);
 
     expect(quantityInputElement.value).toBe(mockedItem.quantity.toString());
   });
 
-  test("should handle empty input change", () => {
+  test("should handle empty input change", async () => {
     const quantityInputElement = getQuantityInputElement();
 
-    fireEvent.change(quantityInputElement, { target: { value: "" } });
+    await typeIntoInput(quantityInputElement, "");
 
     expect(quantityInputElement.value).toBe("");
   });
 
-  test("should handle invalid number input change", () => {
+  test("should reset quantity to default value on blur when quantity is zero", async () => {
     const quantityInputElement = getQuantityInputElement();
 
-    fireEvent.change(quantityInputElement, { target: { value: "-1" } });
+    await typeIntoInput(quantityInputElement, "");
+    fireEvent.blur(quantityInputElement);
+
+    expect(quantityInputElement.value).toBe(mockedItem.quantity.toString());
+  });
+
+  test("should handle invalid number input change", async () => {
+    const quantityInputElement = getQuantityInputElement();
+
+    await typeIntoInput(quantityInputElement, "-1");
 
     expect(quantityInputElement.value).toBe("2");
   });
 
-  test("should not reset quantity on blur if input is valid", () => {
+  test("should not reset quantity on blur if input is valid", async () => {
     const quantityInputElement = getQuantityInputElement();
 
-    fireEvent.change(quantityInputElement, { target: { value: "3" } });
-
+    await typeIntoInput(quantityInputElement, "3");
     fireEvent.blur(quantityInputElement);
 
     expect(quantityInputElement.value).toBe("3");
