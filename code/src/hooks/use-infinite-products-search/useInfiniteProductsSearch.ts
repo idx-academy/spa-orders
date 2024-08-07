@@ -6,19 +6,19 @@ import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
 import { useGetUserProductsBySearchQuery } from "@/store/api/productsApi";
 import { GetUserProductsBySearchQueryResponse } from "@/types/product.types";
 
-type UseInfiniteSearchConfig = {
+type useInfiniteProductsSearchConfig = {
   query: string;
   pageSize?: number;
   minQueryLength?: number;
   debounceDelayMs?: number;
 };
 
-const useInfiniteSearch = ({
+const useInfiniteProductsSearch = ({
   query = "",
   pageSize = 8,
   minQueryLength = 4,
   debounceDelayMs = 500
-}: UseInfiniteSearchConfig) => {
+}: useInfiniteProductsSearchConfig) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [searchProducts, setSearchProducts] =
     useState<GetUserProductsBySearchQueryResponse>();
@@ -77,4 +77,4 @@ const useInfiniteSearch = ({
     resetSearch
   } as const;
 };
-export default useInfiniteSearch;
+export default useInfiniteProductsSearch;

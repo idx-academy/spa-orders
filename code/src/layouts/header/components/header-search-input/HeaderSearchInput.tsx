@@ -11,7 +11,7 @@ import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppInputBase from "@/components/app-input-base/AppInputBase";
 
 import useDropdown from "@/hooks/use-dropdown/useDropdown";
-import useInfiniteSearchQuery from "@/hooks/use-infinite-search/useInfiniteSearch";
+import useInfiniteProductsSearch from "@/hooks/use-infinite-products-search/useInfiniteProductsSearch";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside";
 import cn from "@/utils/cn/cn";
 
@@ -28,7 +28,7 @@ const HeaderSearchInput = () => {
   useOnClickOutside(searchInputRef, handleCloseDropdown);
 
   const { searchProducts, isLoading, isError, loadNextPage, resetSearch } =
-    useInfiniteSearchQuery({
+    useInfiniteProductsSearch({
       query: searchQuery
     });
 

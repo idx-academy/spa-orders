@@ -3,7 +3,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
-import useInfiniteSearch from "@/hooks/use-infinite-search/useInfiniteSearch";
+import useInfiniteProductsSearch from "@/hooks/use-infinite-products-search/useInfiniteProductsSearch";
 import { useGetUserProductsBySearchQuery } from "@/store/api/productsApi";
 
 jest.mock("@/hooks/use-debounced-value/useDebouncedValue");
@@ -71,7 +71,7 @@ const setup = (mockData = defaultMockData) => {
   mockUseGetUserProductsBySearchQuery.mockReturnValue(mockData);
 };
 
-describe("useInfiniteSearch", () => {
+describe("useInfiniteProductsSearch", () => {
   beforeEach(() => {
     setup();
   });
@@ -86,7 +86,9 @@ describe("useInfiniteSearch", () => {
         isError: false
       });
 
-      renderHook(() => useInfiniteSearch({ query: "test", minQueryLength: 4 }));
+      renderHook(() =>
+        useInfiniteProductsSearch({ query: "test", minQueryLength: 4 })
+      );
 
       await waitFor(() => {
         expect(mockUseGetUserProductsBySearchQuery).toHaveBeenCalledWith(
@@ -103,7 +105,9 @@ describe("useInfiniteSearch", () => {
         isError: false
       });
 
-      renderHook(() => useInfiniteSearch({ query: "tes", minQueryLength: 4 }));
+      renderHook(() =>
+        useInfiniteProductsSearch({ query: "tes", minQueryLength: 4 })
+      );
 
       await waitFor(() => {
         expect(mockUseGetUserProductsBySearchQuery).toHaveBeenCalledWith(
@@ -114,7 +118,9 @@ describe("useInfiniteSearch", () => {
   });
 
   test("initializes with default values", () => {
-    const { result } = renderHook(() => useInfiniteSearch({ query: "" }));
+    const { result } = renderHook(() =>
+      useInfiniteProductsSearch({ query: "" })
+    );
 
     expect(result.current.searchProducts).toBeUndefined();
     expect(result.current.isLoading).toBe(false);
@@ -124,7 +130,7 @@ describe("useInfiniteSearch", () => {
   test("resets search when debounced query changes", () => {
     setup(initialMockData);
     const { result, rerender } = renderHook(
-      ({ query }) => useInfiniteSearch({ query }),
+      ({ query }) => useInfiniteProductsSearch({ query }),
       {
         initialProps: { query: "test" }
       }
@@ -142,7 +148,7 @@ describe("useInfiniteSearch", () => {
   test("loads and appends data correctly", async () => {
     setup(initialMockData);
     const { result, rerender } = renderHook(
-      ({ query }) => useInfiniteSearch({ query }),
+      ({ query }) => useInfiniteProductsSearch({ query }),
       {
         initialProps: { query: "test" }
       }
@@ -173,7 +179,9 @@ describe("useInfiniteSearch", () => {
 
   test("does not load next page if it is the last page", async () => {
     setup(newMockData);
-    const { result } = renderHook(() => useInfiniteSearch({ query: "test" }));
+    const { result } = renderHook(() =>
+      useInfiniteProductsSearch({ query: "test" })
+    );
 
     await waitFor(() =>
       expect(result.current.searchProducts).toEqual(newMockData.data)
@@ -193,7 +201,9 @@ describe("useInfiniteSearch", () => {
     };
 
     setup(loadingMockData);
-    const { result } = renderHook(() => useInfiniteSearch({ query: "test" }));
+    const { result } = renderHook(() =>
+      useInfiniteProductsSearch({ query: "test" })
+    );
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isError).toBe(false);
@@ -205,7 +215,7 @@ describe("useInfiniteSearch", () => {
 
     setup(errorMockData);
     const { result: errorResult } = renderHook(() =>
-      useInfiniteSearch({ query: "test" })
+      useInfiniteProductsSearch({ query: "test" })
     );
 
     expect(errorResult.current.isLoading).toBe(false);
@@ -214,7 +224,9 @@ describe("useInfiniteSearch", () => {
 
   test("increments currentPage when loadNextPage is called and not last page", async () => {
     setup(initialMockData);
-    const { result } = renderHook(() => useInfiniteSearch({ query: "test" }));
+    const { result } = renderHook(() =>
+      useInfiniteProductsSearch({ query: "test" })
+    );
 
     await waitFor(() =>
       expect(result.current.searchProducts).toEqual(initialMockData.data)
@@ -245,7 +257,9 @@ describe("useInfiniteSearch", () => {
 
   test("does not increment currentPage when loadNextPage is called and last page", async () => {
     setup(newMockData);
-    const { result } = renderHook(() => useInfiniteSearch({ query: "test" }));
+    const { result } = renderHook(() =>
+      useInfiniteProductsSearch({ query: "test" })
+    );
 
     await waitFor(() =>
       expect(result.current.searchProducts).toEqual(newMockData.data)
