@@ -22,6 +22,8 @@ const DashboardOrdersPage = () => {
   const {
     filters,
     filterActions,
+    searchActions,
+    searchFilters,
     activeFiltersCount,
     orders,
     page,
@@ -29,10 +31,12 @@ const DashboardOrdersPage = () => {
     isLoading
   } = useFilteredAdminOrders();
 
-  const { applyFilters, resetFilterByKey, updateFilterByKey } = filterActions;
+  const { applyFilters, resetFilterByKey, updateFilterByKey } = searchActions;
 
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState(filters.accountEmail || "");
+  const [searchValue, setSearchValue] = useState(
+    searchFilters.accountEmail || ""
+  );
 
   const { formatMessage } = useIntl();
 

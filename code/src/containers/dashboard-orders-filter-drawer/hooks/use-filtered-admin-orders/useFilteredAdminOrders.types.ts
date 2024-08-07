@@ -9,5 +9,8 @@ export type AdminOrderFilters = {
   "delivery-methods": Set<DeliveryMethod>;
   timespan: "" | TimeSpan;
   price: RangeFilter<number>;
+};
+
+export type AdminOrderSearch = {
   accountEmail: string;
 };

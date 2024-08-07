@@ -1,7 +1,10 @@
 import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 
 import DashboardOrdersFilterDrawer from "@/containers/dashboard-orders-filter-drawer/DashboardOrdersFilterDrawer";
-import { AdminOrderFilters } from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders.types";
+import {
+  AdminOrderFilters,
+  AdminOrderSearch
+} from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders.types";
 
 import { deliveryMethods } from "@/constants/deliveryMethods";
 import { orderStatusesTranslationKeys } from "@/constants/orderStatuses";
@@ -21,8 +24,7 @@ const defaultFilters: AdminOrderFilters = {
   price: { start: 100, end: 1000 },
   statuses: new Set(),
   timespan: "",
-  "delivery-methods": new Set(),
-  accountEmail: ""
+  "delivery-methods": new Set()
 };
 
 type RenderAndMock = {

@@ -48,7 +48,9 @@ jest.mock("react", () => ({
 
 const defaultArgs = {
   filters: {},
-  filterActions: {
+  searchFilters: {},
+  filterActions: {},
+  searchActions: {
     updateFilterByKey: mockUpdateFilterByKey,
     applyFilters: mockApplyFilters,
     resetFilterByKey: mockResetFilterByKey
@@ -64,7 +66,7 @@ type RenderAndMock = {
   orders?: AdminOrder;
   activeFiltersCount?: number;
   totalPages?: number;
-  filters?: { accountEmail?: string };
+  searchFilters?: { accountEmail?: string };
   mockUseStateValue?: boolean;
 };
 
@@ -180,7 +182,7 @@ describe("DashboardOrdersPage", () => {
 
   test("renders with existing accountEmail filter correctly", () => {
     const accountEmail = "user@example.com";
-    renderAndMock({ filters: { accountEmail } });
+    renderAndMock({ searchFilters: { accountEmail } });
 
     const searchInput = screen.getByPlaceholderText(
       /dashboardTabs.orders.search/
