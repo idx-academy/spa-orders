@@ -47,7 +47,9 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
     const resetFilters = {} as Filters;
 
     for (const key in localFilters) {
-      resetFilters[key] = defaultFiltersRef.current[key];
+      if (key !== "accountEmail") {
+        resetFilters[key] = defaultFiltersRef.current[key];
+      }
     }
 
     setLocalFilters(resetFilters);
@@ -90,7 +92,7 @@ const useFiltersWithApply = <Filters extends Record<string, unknown>>(
     return filters;
   }, [defaultFiltersFromParams]);
 
-  const activeFiltersCount = activeFiltersRef.current.size;
+  const activeFiltersCount = activeFiltersRef.current.size - 1;
 
   return {
     filters: localFilters,

@@ -12,7 +12,6 @@ const AppSearchInput = ({
   onClear,
   value,
   placeholder,
-  className,
   ...props
 }: AppSearchInputProps) => {
   return (
