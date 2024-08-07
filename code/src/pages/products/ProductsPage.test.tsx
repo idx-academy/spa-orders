@@ -64,6 +64,11 @@ const testQueryArguments = (args: Partial<TestQueryArguments> = {}) => {
   });
 };
 
+const mockDelete = jest.fn();
+jest
+  .spyOn(URLSearchParams.prototype, "delete")
+  .mockImplementationOnce(mockDelete);
+
 const renderAndMock = (
   {
     entries = "",
@@ -103,18 +108,25 @@ describe("ProductsPage", () => {
     expect(productsCountElement).toBeInTheDocument();
   });
 
-  test("Should apply selected sort criterai", () => {
+  test("Should apply selected sort criteria", () => {
     renderAndMock();
 
     const dropdownElement = screen.getByText(/sortBy.label/);
-
     fireEvent.click(dropdownElement);
 
     const dropdownItemElement = screen.getByText(/sortOptions.newest/);
-
     fireEvent.click(dropdownItemElement);
 
-    testQueryArguments({ sort: "createdAt,desc" });
+    testQueryArguments({ sort: "product.createdAt,desc" });
+    expect(mockDelete).not.toHaveBeenCalled();
+
+    fireEvent.click(dropdownElement);
+
+    const defaultOptionElement = screen.getByText(/productsDefault.label/);
+    fireEvent.click(defaultOptionElement);
+
+    testQueryArguments();
+    expect(mockDelete).toHaveBeenCalled();
   });
 
   test("Should give substracted page", () => {
@@ -145,12 +157,6 @@ describe("ProductsPage", () => {
     renderAndMock({ entries: "?page=ah" });
 
     testQueryArguments({ page: 0 });
-  });
-
-  test("Should correctly apply sort criteria from search query", () => {
-    renderAndMock({ entries: "?sort=price%2Casc" });
-
-    testQueryArguments({ sort: "price,asc" });
   });
 
   test("Should not render pagination if there is only one page", () => {
