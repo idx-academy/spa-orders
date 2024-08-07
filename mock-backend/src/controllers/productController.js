@@ -71,6 +71,7 @@ const getProductByIdForManager = (req, res) => {
 };
 
 const searchProducts = (req, res) => {
+  const { searchQuery, sort, page } = req.query;
   const { limit, size, skip } = parsePageable(req, 10);
 
   let filteredProducts = filteredProductsBySearchQuery(products, searchQuery);
@@ -85,7 +86,7 @@ const searchProducts = (req, res) => {
     totalElements: filteredProducts.length,
     totalPages: Math.ceil(filteredProducts.length / size),
     first: page === 0,
-    last: page === Math.ceil(filteredProducts.length / size) - 1,
+    last: limit >= filteredProducts.length,
     number: page,
     numberOfElements: paginatedProducts.length,
     size: size,
