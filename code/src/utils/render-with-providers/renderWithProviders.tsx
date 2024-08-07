@@ -48,6 +48,7 @@ export const setupMockIntersectionObserver = () => {
     triggerObserverCallback: (entry: { isIntersecting: boolean }) => observerCallback(entry)
   };
 };
+
 const renderWithProviders = (
   ui: ReactElement,
   {
