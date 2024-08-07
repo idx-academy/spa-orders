@@ -21,10 +21,16 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
 
   const lastDebouncedQuantityRef = useRef(debouncedQuantity);
 
+  const shouldUpdateQuantity = (
+    debouncedQuantity: number,
+    lastDebouncedQuantity: number
+  ) => {
+    return debouncedQuantity !== lastDebouncedQuantity && debouncedQuantity > 0;
+  };
+
   useEffect(() => {
     if (
-      debouncedQuantity !== lastDebouncedQuantityRef.current &&
-      debouncedQuantity > 0
+      shouldUpdateQuantity(debouncedQuantity, lastDebouncedQuantityRef.current)
     ) {
       onQuantityChange(item, debouncedQuantity);
       lastDebouncedQuantityRef.current = debouncedQuantity;
