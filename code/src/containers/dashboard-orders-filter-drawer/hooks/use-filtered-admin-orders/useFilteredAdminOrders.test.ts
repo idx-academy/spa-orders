@@ -38,7 +38,9 @@ const mockFiltersWithApplyValue = {
 const mockFiltersEmpty = {
   activeFiltersCount: 0,
   filterActions: {},
+  searchActions: {},
   filters: {},
+  searchFilters: {},
   isLoading: false,
   orders: [],
   page: 1
