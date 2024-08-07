@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react";
 
 import useStickyHeader from "@/layouts/header/hooks/use-sticky-header/useStickyHeader";
 
-import { setupMockIntersectionObserver } from "@/utils/render-with-providers/renderWithProviders";
+import { setupMockIntersectionObserver } from "@/utils/setup-mock-intersection-observer/setupMockIntersectionObserver";
 
 type RenderUseStickyHeaderOptions = {
   headerElement?: HTMLDivElement | null;

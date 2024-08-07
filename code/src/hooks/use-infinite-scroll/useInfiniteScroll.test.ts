@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 
 import useInfiniteScroll from "@/hooks/use-infinite-scroll/useInfiniteScroll";
-import { setupMockIntersectionObserver } from "@/utils/render-with-providers/renderWithProviders";
+import { setupMockIntersectionObserver } from "@/utils/setup-mock-intersection-observer/setupMockIntersectionObserver";
 
 type MockAndRenderProps = {
   item?: HTMLLIElement;

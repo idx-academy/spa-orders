@@ -4,9 +4,8 @@ import { fireEvent, screen } from "@testing-library/react";
 import HeaderSearchInput from "@/layouts/header/components/header-search-input/HeaderSearchInput";
 
 import { useGetUserProductsBySearchQuery } from "@/store/api/productsApi";
-import renderWithProviders, {
-  setupMockIntersectionObserver
-} from "@/utils/render-with-providers/renderWithProviders";
+import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import { setupMockIntersectionObserver } from "@/utils/setup-mock-intersection-observer/setupMockIntersectionObserver";
 import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
 jest.mock("@/store/api/productsApi", () => ({
