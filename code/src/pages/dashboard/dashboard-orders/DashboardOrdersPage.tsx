@@ -29,6 +29,8 @@ const DashboardOrdersPage = () => {
     isLoading
   } = useFilteredAdminOrders();
 
+  const { applyFilters, resetFilterByKey, updateFilterByKey } = filterActions;
+
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const [searchValue, setSearchValue] = useState(filters.accountEmail || "");
 
@@ -37,17 +39,17 @@ const DashboardOrdersPage = () => {
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchValue(value);
-    filterActions.updateFilterByKey("accountEmail", value);
+    updateFilterByKey("accountEmail", value);
   };
 
   const handleClearSearch = () => {
     setSearchValue("");
-    filterActions.resetFilterByKey("accountEmail");
-    filterActions.applyFilters();
+    resetFilterByKey("accountEmail");
+    applyFilters();
   };
 
   const handleSearch = () => {
-    filterActions.applyFilters();
+    applyFilters();
   };
 
   const handleCloseFilterDrawer = () => {
@@ -92,7 +94,6 @@ const DashboardOrdersPage = () => {
         <AppBox className="dashboard-orders-tab__toolbar-filter-icons">
           <AppSearchInput
             placeholder={formatMessage({ id: "dashboardTabs.orders.search" })}
-            inputProps={{ "aria-label": "search" }}
             value={searchValue}
             onChange={handleSearchChange}
             onClear={handleClearSearch}

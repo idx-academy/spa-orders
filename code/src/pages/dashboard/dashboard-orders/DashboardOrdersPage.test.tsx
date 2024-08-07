@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useState } from "react";
 
 import useFilteredAdminOrders from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
@@ -6,8 +6,14 @@ import useFilteredAdminOrders from "@/containers/dashboard-orders-filter-drawer/
 import DashboardOrdersPage from "@/pages/dashboard/dashboard-orders/DashboardOrdersPage";
 import { AdminOrder } from "@/types/order.types";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import typeIntoInput from "@/utils/type-into-input/typeIntoInput";
 
 const mockSetIsFilterDrawerOpen = jest.fn();
+
+const mockApplyFilters = jest.fn();
+
+const mockResetFilterByKey = jest.fn();
+const mockUpdateFilterByKey = jest.fn();
 
 jest.mock(
   "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders"
@@ -42,7 +48,11 @@ jest.mock("react", () => ({
 
 const defaultArgs = {
   filters: {},
-  filterActions: {},
+  filterActions: {
+    updateFilterByKey: mockUpdateFilterByKey,
+    applyFilters: mockApplyFilters,
+    resetFilterByKey: mockResetFilterByKey
+  },
   activeFiltersCount: 0,
   orders: [],
   isLoading: false,
@@ -54,6 +64,7 @@ type RenderAndMock = {
   orders?: AdminOrder;
   activeFiltersCount?: number;
   totalPages?: number;
+  filters?: { accountEmail?: string };
   mockUseStateValue?: boolean;
 };
 
@@ -130,6 +141,53 @@ describe("DashboardOrdersPage", () => {
 
     fireEvent.click(closeDrawerButtonFromPlayground);
     expect(mockSetIsFilterDrawerOpen).toHaveBeenCalledWith(false);
+  });
+
+  test("applays search by email filter correctly", () => {
+    renderAndMock();
+    const searchInput = screen.getByPlaceholderText(
+      /dashboardTabs.orders.search/
+    );
+    expect(searchInput).toHaveValue("");
+
+    typeIntoInput(searchInput, "user");
+    expect(searchInput).toHaveValue("user");
+
+    expect(mockUpdateFilterByKey).toHaveBeenCalledWith("accountEmail", "user");
+
+    const searchButton = screen.getByTestId("SearchIcon");
+    fireEvent.click(searchButton);
+    expect(mockApplyFilters).toHaveBeenCalled();
+  });
+
+  test("clears search by email filter correctly", () => {
+    renderAndMock();
+    const searchInput = screen.getByPlaceholderText(
+      /dashboardTabs.orders.search/
+    );
+    typeIntoInput(searchInput, "user");
+    expect(mockUpdateFilterByKey).toHaveBeenCalledWith("accountEmail", "user");
+
+    const clearButton = screen.getByTestId("ClearIcon");
+
+    fireEvent.click(clearButton);
+    waitFor(() => {
+      expect(searchInput).toHaveValue("");
+    });
+    expect(mockResetFilterByKey).toHaveBeenCalledWith("accountEmail");
+    expect(mockApplyFilters).toHaveBeenCalled();
+  });
+
+  test("renders with existing accountEmail filter correctly", () => {
+    const accountEmail = "user@example.com";
+    renderAndMock({ filters: { accountEmail } });
+
+    const searchInput = screen.getByPlaceholderText(
+      /dashboardTabs.orders.search/
+    );
+    expect(searchInput).toHaveValue(accountEmail);
+
+    expect(mockUpdateFilterByKey).not.toHaveBeenCalled();
   });
 
   test("Should not render pagination if there are one page", () => {
