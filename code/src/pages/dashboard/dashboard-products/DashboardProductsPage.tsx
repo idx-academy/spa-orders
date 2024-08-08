@@ -28,7 +28,17 @@ const DashboardProductsPage = () => {
   });
 
   const handleSearchChange = (value: string) => {
-    setSearchParams({ search: value });
+    const params = new URLSearchParams(searchParams);
+
+    if (value) {
+      params.set("search", value);
+    } else {
+      params.delete("search");
+    }
+
+    params.set("page", "1");
+
+    setSearchParams(params);
   };
 
   // @TODO: replace with actual loading fallback
@@ -45,8 +55,8 @@ const DashboardProductsPage = () => {
 
   return (
     <DashboardTabContainer>
-      <DashboardProductsHeader onSearch={handleSearchChange} />
-      <ProductsTable products={products} />
+      <DashboardProductsHeader onSearch={handleSearchChange} defaultValue={searchValue} />
+      <ProductsTable products={products}  />
       <PaginationBlock page={page} totalPages={data?.totalPages} />
     </DashboardTabContainer>
   );

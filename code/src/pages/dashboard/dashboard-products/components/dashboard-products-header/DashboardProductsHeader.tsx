@@ -12,9 +12,10 @@ import routes from "@/constants/routes";
 import { DashboardProductsHeaderProps } from "@/pages/dashboard/dashboard-products/DashboardProductsPage.types";
 
 const DashboardProductsHeader = ({
-  onSearch
+  onSearch,
+  defaultValue = ""
 }: DashboardProductsHeaderProps) => {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(defaultValue);
 
   const { formatMessage } = useIntl();
 
