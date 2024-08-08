@@ -19,6 +19,7 @@ const CategoryItem = ({ label, image, href }: CategoryItemProps) => {
           component="img"
           src={image}
           className="spa-category-section__image"
+          data-cy="spa-category-section-item-link"
         />
       </AppLink>
       <AppTypography
