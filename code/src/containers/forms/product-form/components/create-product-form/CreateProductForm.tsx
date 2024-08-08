@@ -46,6 +46,7 @@ const CreateProductForm = () => {
           <AppButton
             className="product-form__footer-button"
             type="submit"
+            data-cy="create-product-button"
             isLoading={isLoading}
             fullWidth
           >

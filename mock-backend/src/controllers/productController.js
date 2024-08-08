@@ -63,7 +63,7 @@ const getAllManagerProducts = (req, res) => {
 };
 
 const createProduct = (req, res) => {
-  res.status(201).json();
+  res.status(201).json({ id: "new-product-id" });
 };
 
 const getProductByIdForManager = (req, res) => {
@@ -101,6 +101,10 @@ const searchProducts = (req, res) => {
   res.json(response);
 };
 
+const updateProduct = (req, res) => {
+  res.status(204).end();
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
@@ -108,4 +112,5 @@ module.exports = {
   getAllManagerProducts,
   searchProducts,
   getProductByIdForManager,
+  updateProduct
 };

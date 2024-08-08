@@ -1,6 +1,8 @@
 import { SyntheticEvent } from "react";
 import { Controller } from "react-hook-form";
 
+import { MenuProps } from "@mui/material/Menu";
+
 import { productCategories } from "@/containers/forms/product-form/ProductForm.constants";
 import {
   ProductFormAdditionalInfoSectionProps,
@@ -27,7 +29,7 @@ const AdditionalInfo = ({
   );
 
   const categoryItems = productCategories.map(({ id, label }) => (
-    <AppMenuItem value={id} key={id}>
+    <AppMenuItem value={id} key={id} data-cy={`product-form-category-${id}`}>
       <AppTypography
         className="product-form__category-select-label"
         translationKey={label}
@@ -47,6 +49,12 @@ const AdditionalInfo = ({
         }}
         error={Boolean(errors.category)}
         data-testid="product-form-category-select"
+        data-cy="product-form-category-select"
+        MenuProps={
+          {
+            "data-cy": "product-form-category-menu"
+          } as Partial<MenuProps>
+        }
         {...handlers}
       >
         {categoryItems}
@@ -96,6 +104,7 @@ const AdditionalInfo = ({
             error={Boolean(errors.price)}
             helperText={errors.price ? errors.price.message : undefined}
             data-testid="product-form-price-input"
+            data-cy="product-form-price-input"
             {...register("price", { valueAsNumber: true })}
           />
           <AppInput
@@ -106,6 +115,7 @@ const AdditionalInfo = ({
             error={Boolean(errors.quantity)}
             helperText={errors.quantity ? errors.quantity.message : undefined}
             data-testid="product-form-quantity-input"
+            data-cy="product-form-quantity-input"
             {...register("quantity", { valueAsNumber: true })}
           />
         </AppBox>

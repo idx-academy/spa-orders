@@ -69,6 +69,7 @@ const Image = ({ errors, control }: ProductFormImageSectionProps) => {
             fullWidth
             labelTranslationKey="productForm.inputLabel.image"
             data-testid="product-form-image-input"
+            data-cy="product-form-image-input"
             error={Boolean(errors.image)}
             helperText={errors.image ? errors.image.message : undefined}
             onChange={handleChange}

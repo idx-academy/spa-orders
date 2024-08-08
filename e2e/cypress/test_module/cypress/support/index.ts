@@ -29,6 +29,8 @@ declare global {
       getProductsLoading(quantity: number): Chainable<void>;
 
       visitWithLanguage(url: string, language?: string): Chainable<void>;
+
+      typeIntoBlank(element: Cypress.Chainable<JQuery<HTMLElement>>, text: string): Cypress.Chainable<JQuery<HTMLElement>>
     }
   }
 }

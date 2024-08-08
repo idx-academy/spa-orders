@@ -14,3 +14,8 @@ When("I should see validation error message {string}", (message: string) => {
 Then("I should receive a snackbar with message {string}", (message: string) => {
   cy.getById("snackbar").should("contain", message);
 });
+
+Then("I should not receive any snackbar message", () => {
+  cy.wait(1000) // To give snackbar some time to appear
+  cy.getById("snackbar").should('not.exist');
+});

@@ -10,6 +10,14 @@ Cypress.Commands.addQuery("getById", (id: string) => {
   return () => getFn();
 });
 
+Cypress.Commands.add("typeIntoBlank", (element: Cypress.Chainable<JQuery<HTMLElement>>, text: string) => {
+  if (!text) {
+    return element.clear();
+  } else {
+    return element.clear().type(text);
+  }
+});
+
 Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
   cy.clearLocalStorage();
 

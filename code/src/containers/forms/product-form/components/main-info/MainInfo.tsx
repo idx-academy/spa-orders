@@ -32,6 +32,7 @@ const MainInfo = ({ register, errors }: ProductFormMainInfoSectionProps) => {
         key={item.key}
         className={buttonClassNames}
         data-testid="product-form-language-button"
+        data-cy={`product-form-language-button-${item.key}`}
         onClick={handleClick}
       >
         <AppTypography translationKey={item.translationKey} />
@@ -70,6 +71,7 @@ const MainInfo = ({ register, errors }: ProductFormMainInfoSectionProps) => {
           fullWidth
           labelTranslationKey="product.name"
           data-testid={"product-form-name-input"}
+          data-cy="product-form-name-input"
           error={Boolean(nameErrorMessage)}
           helperText={nameErrorMessage}
           {...register(`productTranslations.${selectedLocaleIndex}.name`)}
@@ -83,7 +85,8 @@ const MainInfo = ({ register, errors }: ProductFormMainInfoSectionProps) => {
             className: "product-form__description-input"
           }}
           rows={18}
-          data-testid={"product-form-description-input"}
+          data-testid="product-form-description-input"
+          data-cy="product-form-description-input"
           error={Boolean(descriptionErrorMessage)}
           helperText={descriptionErrorMessage}
           {...register(

@@ -6,6 +6,7 @@ const {
   createProduct,
   getProductByIdForManager,
   searchProducts,
+  updateProduct
 } = require("../controllers/productController");
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.get("/products/:productId", getProductById);
 router.get("/management/products", getAllManagerProducts);
 router.get("/management/products/:id", getProductByIdForManager);
 router.post("/management/products", createProduct);
+router.patch("/management/products/:id", updateProduct);
 
 module.exports = router;

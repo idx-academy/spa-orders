@@ -216,11 +216,6 @@ const managerProduct = {
       name: "APPLE iPhone",
       description: "Screen 6.1 Super Retina XDR, 2532x1170 / A16 Bionic chip",
       languageCode: "en"
-    },
-    {
-      name: "APPLE Айфон",
-      description: "Дисплей 6.1 Super Retina XDR, 2532x1170 / A16 Bionic chip",
-      languageCode: "uk"
     }
   ]
 };

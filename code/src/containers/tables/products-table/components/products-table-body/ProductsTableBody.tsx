@@ -39,7 +39,11 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
   );
 
   const nameElement = (
-    <AppTypography className="products-table__body-name" variant="caption">
+    <AppTypography
+      className="products-table__body-name"
+      variant="caption"
+      data-cy="products-table-item"
+    >
       <AppLink to={routes.dashboard.products.productDetails.path(id)}>
         {name}
       </AppLink>
@@ -63,6 +67,7 @@ const ProductsTableBody = ({ product }: ProductsTableBodyProps) => {
       <AppTableCell>{formatDate(createdAt)}</AppTableCell>
       <AppTableCell>
         <AppIconButton
+          data-cy="products-table-item-update-icon"
           to={routes.dashboard.products.update.path(id)}
           component={AppLink}
         >

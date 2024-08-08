@@ -53,6 +53,7 @@ const UpdateProductForm = ({ product }: UpdateProductFormProps) => {
           <MainInfo register={register} errors={errors} />
           <AppButton
             className="product-form__footer-button"
+            data-cy="update-product-form-button"
             type="submit"
             isLoading={isLoading}
             fullWidth
