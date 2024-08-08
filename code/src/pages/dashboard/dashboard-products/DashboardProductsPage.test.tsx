@@ -137,4 +137,23 @@ describe("DashboardProductsPage", () => {
       });
     });
   });
+
+  test("Should call useGetManagerProductsQuery with searchByName equal to undefined when input is empty", async () => {
+    renderAndMock();
+
+    const input = screen.getByPlaceholderText(
+      "dashboardTabs.search.placeholder"
+    );
+
+    expect(input).toHaveValue("");
+
+    const submit = screen.getByLabelText("search");
+
+    fireEvent.click(submit);
+
+    expect(useGetManagerProductsQuery).toHaveBeenCalledWith({
+      ...expectedQueryArgs,
+      searchByName: undefined
+    });
+  });
 });

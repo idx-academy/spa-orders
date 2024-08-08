@@ -182,6 +182,23 @@ describe("DashboardOrdersPage", () => {
     expect(mockApplyFilters).toHaveBeenCalled();
   });
 
+  test("resets search param if input is submited without value", async () => {
+    renderAndMock();
+
+    const searchInput = screen.getByPlaceholderText(
+      /dashboardTabs.orders.search/
+    );
+
+    await typeIntoInput(searchInput, "user");
+    await typeIntoInput(searchInput, "");
+
+    const searchButton = screen.getByTestId("SearchIcon");
+
+    fireEvent.click(searchButton);
+
+    expect(mockResetFilterByKey).toHaveBeenCalledWith("accountEmail");
+  });
+
   test("renders with existing accountEmail filter correctly", () => {
     const accountEmail = "user@example.com";
     renderAndMock({ searchFilters: { accountEmail } });

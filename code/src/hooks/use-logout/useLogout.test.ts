@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import useLogout from "./useLogout";
+import useLogout from "@/hooks/use-logout/useLogout";
 
 const mockDispatch = jest.fn();
 

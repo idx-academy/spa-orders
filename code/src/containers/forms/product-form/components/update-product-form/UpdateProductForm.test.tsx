@@ -156,4 +156,12 @@ describe("Test UpdateProductForm", () => {
 
     expect(mockUpdateProduct).toHaveBeenCalledWith(expectedChangedProductBody);
   });
+
+  test("Should not send request if nothing was changed", async () => {
+    render();
+
+    await submit();
+
+    expect(mockUpdateProduct).not.toHaveBeenCalled();
+  });
 });

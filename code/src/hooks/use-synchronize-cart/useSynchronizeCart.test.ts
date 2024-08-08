@@ -1,6 +1,8 @@
 import { renderHook } from "@testing-library/react";
 
+import { ROLES } from "@/constants/common";
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
+import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import useSynchronizeCart from "@/hooks/use-synchronize-cart/useSynchronizeCart";
 import { useAddToCartMutation } from "@/store/api/cartApi";
@@ -9,16 +11,19 @@ import {
   useUserDetailsSelector
 } from "@/store/slices/userSlice";
 import { CartItem } from "@/types/cart.types";
+import { UserRole } from "@/types/user.types";
 
 jest.mock("@/hooks/use-get-cart/useGetCart");
 jest.mock("@/hooks/use-snackbar/useSnackbar");
 jest.mock("@/store/api/cartApi");
 jest.mock("@/store/slices/userSlice");
 
+jest.mock("@/hooks/use-redux/useRedux");
+
 type ErrorLike = Record<string, unknown> | null;
 
 type MockAndRender = {
-  user: { id: number } | null;
+  user: { id: number; role: UserRole } | null;
   isFirstSessionAfterAuth: boolean;
   items: Partial<CartItem>[];
   error: ErrorLike;
@@ -31,10 +36,13 @@ const defaultArgs: MockAndRender = {
   error: null
 };
 
-const mockUser = { id: 1 };
+const mockUser = { id: 1, role: ROLES.USER };
 
 const mockAddToCart = jest.fn();
 const mockSnackbarWithTimeout = jest.fn();
+
+const mockUnwrap = jest.fn();
+const mockDispatch = jest.fn(() => ({ unwrap: mockUnwrap }));
 
 const mockAndRender = (paramsFromArgs: Partial<MockAndRender> = {}) => {
   const params = { ...defaultArgs, ...paramsFromArgs };
@@ -47,6 +55,7 @@ const mockAndRender = (paramsFromArgs: Partial<MockAndRender> = {}) => {
   (useIsFirstSessionAfterAuthSelector as jest.Mock).mockReturnValue(
     params.isFirstSessionAfterAuth
   );
+  (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch);
 
   if (params.error) {
     mockAddToCart.mockImplementation(() => {
@@ -96,6 +105,16 @@ describe("useSynchronizeCart", () => {
         userId: mockUser.id
       });
     }
+  });
+
+  test("Should send items only if user has role USER", () => {
+    mockAndRender({
+      user: { ...mockUser, role: ROLES.SHOP_MANAGER },
+      isFirstSessionAfterAuth: true
+    });
+
+    expect(mockAddToCart).not.toHaveBeenCalled();
+    expect(mockDispatch).toHaveBeenCalled();
   });
 
   test("does not show error snackbar if error does not have status field", () => {

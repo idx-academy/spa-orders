@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 
+import { ROLES } from "@/constants/common";
 import useGetCart from "@/hooks/use-get-cart/useGetCart";
+import { useAppDispatch } from "@/hooks/use-redux/useRedux";
 import useSnackbar from "@/hooks/use-snackbar/useSnackbar";
 import { useAddToCartMutation } from "@/store/api/cartApi";
+import { clearLocalCart } from "@/store/slices/localCart";
 import {
   useIsFirstSessionAfterAuthSelector,
   useUserDetailsSelector
@@ -14,12 +17,19 @@ const useSynchronizeCart = () => {
   const { openSnackbarWithTimeout } = useSnackbar();
   const [addToCart] = useAddToCartMutation();
 
+  const dispatch = useAppDispatch();
+
   const user = useUserDetailsSelector();
   const isFirstSessionAfterAuth = useIsFirstSessionAfterAuthSelector();
 
   const userId = user?.id;
 
   const synchornize = async (userId: number) => {
+    if (user?.role !== ROLES.USER) {
+      dispatch(clearLocalCart());
+      return;
+    }
+
     // @TODO: change it to make only one request when backend will have such endpoint
     for (const cartItem of cartData.items) {
       try {
