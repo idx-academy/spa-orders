@@ -1,9 +1,10 @@
-import { Controller, ControllerRenderProps } from "react-hook-form";
+import { SyntheticEvent } from "react";
+import { Controller } from "react-hook-form";
 
 import { productCategories } from "@/containers/forms/product-form/ProductForm.constants";
 import {
   ProductFormAdditionalInfoSectionProps,
-  ProductFormValues
+  ProductFormControllerRenderFunctionProps
 } from "@/containers/forms/product-form/ProductForm.types";
 
 import AppBox from "@/components/app-box/AppBox";
@@ -36,9 +37,7 @@ const AdditionalInfo = ({
 
   const selectControllerRenderFunction = ({
     field: handlers
-  }: {
-    field: ControllerRenderProps<ProductFormValues>;
-  }) => (
+  }: ProductFormControllerRenderFunctionProps) => (
     <>
       <AppSelect
         fullWidth
@@ -55,6 +54,27 @@ const AdditionalInfo = ({
       {categoryErrorElement}
     </>
   );
+
+  const checkboxControllerRenderFunction = ({
+    field: { onChange, ...props }
+  }: ProductFormControllerRenderFunctionProps) => {
+    const handelChange = (_: SyntheticEvent, checked: boolean) => {
+      onChange(checked);
+    };
+
+    return (
+      <AppCheckbox
+        className="product-form__visibility-checkbox"
+        variant="dark"
+        labelTranslationKey="productForm.inputLabel.status"
+        labelClassName="product-form__visibility-checkbox-label"
+        data-testid="product-form-status-checkbox"
+        checked={Boolean(props.value)}
+        onChange={handelChange}
+        {...props}
+      />
+    );
+  };
 
   return (
     <AppBox className="product-form__container product-form__additional-info-section">
@@ -96,13 +116,10 @@ const AdditionalInfo = ({
             render={selectControllerRenderFunction}
           />
         </AppBox>
-        <AppCheckbox
-          className="product-form__visibility-checkbox"
-          variant="dark"
-          labelTranslationKey="productForm.inputLabel.status"
-          labelClassName="product-form__visibility-checkbox-label"
-          data-testid="product-form-status-checkbox"
-          {...register("status")}
+        <Controller
+          name="status"
+          control={control}
+          render={checkboxControllerRenderFunction}
         />
       </AppBox>
     </AppBox>

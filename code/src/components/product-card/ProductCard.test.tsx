@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import ProductCard from "@/components/product-card/ProductCard";
 
@@ -65,6 +65,13 @@ describe("ProductCard", () => {
       expect(productImage).toHaveAttribute("src", mockProduct.image);
     });
 
+    test("sets src image on image error", () => {
+      const productImage = screen.getByRole("img", { name: mockProduct.name });
+      fireEvent.error(productImage);
+
+      expect(productImage).toHaveAttribute("src");
+    });
+
     test("should render product link", () => {
       const productLink = screen.getByRole("link");
       expect(productLink).toHaveAttribute(
@@ -101,8 +108,6 @@ describe("ProductCard", () => {
         "href",
         expect.stringContaining("cart-with-check")
       );
-
-      screen.debug();
 
       const isProductActiveElement = result.container.querySelector(
         ".spa-product-card__cart-button--active"

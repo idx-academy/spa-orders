@@ -1,5 +1,6 @@
 import {
   Control,
+  ControllerRenderProps,
   FieldErrors,
   UseFormRegister,
   UseFormRegisterReturn
@@ -53,3 +54,7 @@ export type ProductFormMainInfoSectionProps = ProductFormSectionProps;
 
 export type ProductFormAdditionalInfoSectionProps =
   ProductFormSectionExtendedProps;
+
+export type ProductFormControllerRenderFunctionProps = {
+  field: ControllerRenderProps<ProductFormValues>;
+};

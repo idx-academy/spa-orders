@@ -39,12 +39,16 @@ const DashboardOrdersPage = () => {
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    updateFilterByKey("accountEmail", value);
+    if (value.trim()) {
+      updateFilterByKey("accountEmail", value);
+    } else {
+      resetFilterByKey("accountEmail");
+    }
   };
 
   const handleClearSearch = () => {
     resetFilterByKey("accountEmail");
-    applyFilters();
+    applyFilters({ additionalParams: { page: "1" } });
   };
 
   const handleSearch = () => {
