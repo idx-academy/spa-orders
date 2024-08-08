@@ -138,7 +138,7 @@ describe("DashboardProductsPage", () => {
     });
   });
 
-  test("Should call useGetManagerProductsQuery with searchByName equal to undefined when input is empty", async () => {
+  test("Should call useGetManagerProductsQuery with searchByName equal to undefined when input is empty", () => {
     renderAndMock();
 
     const input = screen.getByPlaceholderText(
