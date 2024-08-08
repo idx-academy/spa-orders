@@ -48,7 +48,7 @@ const DashboardOrdersPage = () => {
 
   const handleClearSearch = () => {
     resetFilterByKey("accountEmail");
-    applyFilters();
+    applyFilters({ additionalParams: { page: "1" } });
   };
 
   const handleSearch = () => {

@@ -24,7 +24,10 @@ const DashboardProductsHeader = ({
     setSearchValue(value);
   };
 
-  const handleClearSearch = () => setSearchValue("");
+  const handleClearSearch = () => {
+    setSearchValue("");
+    onSearch("");
+  };
 
   const handleSearch = () => {
     onSearch(searchValue);
