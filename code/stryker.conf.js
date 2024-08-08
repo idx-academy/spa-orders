@@ -19,9 +19,8 @@ module.exports = {
   mutate: [
     "src/**/*.ts?(x)",
     "!src/**/index.ts?(x)",
-    "!src/**/selectors/*.ts?(x)",
     "!src/**/*@(.test|.spec|Spec).ts?(x)",
-    "!src/{assets,messages,services,test-utils,types,store,routes}/**/*"
+    "!src/{assets,messages,services,test-utils,types,store,routes,constants}/**/*"
   ],
   ignoreStatic: true,
   reporters: ["clear-text", "progress", "html", "json"],
