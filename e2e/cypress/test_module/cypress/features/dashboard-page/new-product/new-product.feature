@@ -1,4 +1,4 @@
-Feature: | Update Product |
+Feature: | New Product |
 
   Background: Before each
     Given I authenticate to the system under role ROLE_MANAGER
