@@ -84,20 +84,20 @@ describe("HeaderSearchInput", () => {
       expect(dropdown).not.toBeInTheDocument();
     });
 
-    test("opens dropdown when search query length is 4 or more", async () => {
+    test("opens dropdown when search query length is 3 or more", async () => {
       const searchField = screen.getByPlaceholderText(
         /header.searchInputPlaceholder/
       );
       expect(searchField).toBeInTheDocument();
 
-      await typeIntoInput(searchField, "test");
-      expect(searchField).toHaveValue("test");
+      await typeIntoInput(searchField, "tes");
+      expect(searchField).toHaveValue("tes");
 
       const dropdown = await screen.findByTestId("search-dropdown");
       expect(dropdown).toBeInTheDocument();
     });
 
-    test("does not open dropdown when search query length is less than 2", async () => {
+    test("does not open dropdown when search query length is less than 3", async () => {
       const searchField = screen.getByPlaceholderText(
         /header.searchInputPlaceholder/
       );

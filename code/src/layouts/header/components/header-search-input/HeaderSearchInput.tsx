@@ -17,7 +17,7 @@ import cn from "@/utils/cn/cn";
 
 import "@/layouts/header/components/header-search-input/HeaderSearchInput.scss";
 
-const MIN_SEARCH_QUERY_LENGTH = 2;
+const MIN_SEARCH_QUERY_LENGTH = 3;
 
 const HeaderSearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
