@@ -1,9 +1,11 @@
+import { BREAKPOINTS } from "@/constants/breakpoints";
+
 const setProductsPerPageSize = (screenWidth: number) => {
-  if (screenWidth >= 1536) {
+  if (screenWidth >= BREAKPOINTS.xl) {
     return 10;
-  } else if (screenWidth >= 1200) {
+  } else if (screenWidth >= BREAKPOINTS.l) {
     return 12;
-  } else if (screenWidth >= 900) {
+  } else if (screenWidth >= BREAKPOINTS.m) {
     return 9;
   } else {
     return 10;

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
@@ -74,6 +75,19 @@ const ProductsPage = () => {
     : `productsItems.category.${categoryType}`;
 
   const productsCount = productsResponse?.totalElements ?? 0;
+
+  useEffect(() => {
+    if (page > pagesCount) {
+      searchParams.set("page", pagesCount.toString());
+      setSearchParams(searchParams);
+    }
+  }, [pagesCount, page, searchParams, setSearchParams]);
+
+  const paginationBlock = pagesCount > 1 && (
+    <AppContainer className="spa-products-page__pagination">
+      <AppPagination page={page} count={pagesCount} size="large" />
+    </AppContainer>
+  );
 
   return (
     <PageWrapper>
