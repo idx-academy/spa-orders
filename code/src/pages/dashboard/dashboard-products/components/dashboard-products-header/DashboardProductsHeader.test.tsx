@@ -32,8 +32,8 @@ describe("Test DashboardProductsHeader", () => {
     expect(input).toBeInTheDocument();
   });
 
-  test("Should change value of input and call provided function with corrct value", async () => {
-    await typeIntoInput(input, value);
+  test("Should change value of input and call provided function with correct value", () => {
+    typeIntoInput(input, value);
 
     expect(input).toHaveValue(value);
 
@@ -42,8 +42,8 @@ describe("Test DashboardProductsHeader", () => {
     expect(mockOnSearch).toHaveBeenCalledWith(value);
   });
 
-  test("Should clear input value", async () => {
-    await typeIntoInput(input, value);
+  test("Should clear input value", () => {
+    typeIntoInput(input, value);
 
     expect(input).toHaveValue(value);
 
@@ -51,7 +51,7 @@ describe("Test DashboardProductsHeader", () => {
 
     fireEvent.click(clearButton);
 
-    await waitFor(() => {
+    waitFor(() => {
       expect(input).toHaveValue("");
     });
   });
