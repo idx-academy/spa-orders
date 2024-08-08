@@ -60,7 +60,8 @@ export const productsApi = appApi.injectEndpoints({
       GetManagerProductByIdResponse,
       GetManagerProductByIdParams
     >({
-      query: (params) => URLS.products.getForManagerById(params)
+      query: (params) => URLS.products.getForManagerById(params),
+      providesTags: [rtkQueryTags.ADMIN_PRODUCTS]
     }),
     addProduct: build.mutation<
       Product,

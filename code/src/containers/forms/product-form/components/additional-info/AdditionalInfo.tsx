@@ -1,3 +1,4 @@
+import { SyntheticEvent } from "react";
 import { Controller, ControllerRenderProps } from "react-hook-form";
 
 import { productCategories } from "@/containers/forms/product-form/ProductForm.constants";
@@ -56,6 +57,29 @@ const AdditionalInfo = ({
     </>
   );
 
+  const checkboxControllerRenderFunction = ({
+    field: { onChange, ...props }
+  }: {
+    field: ControllerRenderProps<ProductFormValues>;
+  }) => {
+    const handelChange = (_: SyntheticEvent, checked: boolean) => {
+      onChange(checked);
+    };
+
+    return (
+      <AppCheckbox
+        className="product-form__visibility-checkbox"
+        variant="dark"
+        labelTranslationKey="productForm.inputLabel.status"
+        labelClassName="product-form__visibility-checkbox-label"
+        data-testid="product-form-status-checkbox"
+        checked={Boolean(props.value)}
+        onChange={handelChange}
+        {...props}
+      />
+    );
+  };
+
   return (
     <AppBox className="product-form__container product-form__additional-info-section">
       <AppBox className="product-form__header">
@@ -96,13 +120,10 @@ const AdditionalInfo = ({
             render={selectControllerRenderFunction}
           />
         </AppBox>
-        <AppCheckbox
-          className="product-form__visibility-checkbox"
-          variant="dark"
-          labelTranslationKey="productForm.inputLabel.status"
-          labelClassName="product-form__visibility-checkbox-label"
-          data-testid="product-form-status-checkbox"
-          {...register("status")}
+        <Controller
+          name="status"
+          control={control}
+          render={checkboxControllerRenderFunction}
         />
       </AppBox>
     </AppBox>
