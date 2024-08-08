@@ -7,7 +7,9 @@ import PaginationBlock from "@/containers/pagination-block/PaginationBlock";
 import ProductsContainer from "@/containers/products-container/ProductsContainer";
 
 import AppBox from "@/components/app-box/AppBox";
+import AppContainer from "@/components/app-container/AppContainer";
 import AppDropdown from "@/components/app-dropdown/AppDropdown";
+import AppPagination from "@/components/app-pagination/AppPagination";
 import AppTypography from "@/components/app-typography/AppTypography";
 
 import { useLocaleContext } from "@/context/i18n/I18nProvider";
@@ -30,7 +32,6 @@ const ProductsPage = () => {
   const categoryType = searchParams.get("category");
 
   const searchParamsPage = searchParams.get("page");
-  const page = validatePage(searchParamsPage);
 
   const screenSize = useScreenSize();
 
@@ -49,6 +50,8 @@ const ProductsPage = () => {
   });
 
   const productsList = productsResponse?.content;
+
+  const pagesCount = productsResponse?.totalPages ?? 1;
 
   const defaultDropdownText = (
     <AppTypography translationKey="productsDefault.label" />
