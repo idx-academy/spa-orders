@@ -14,9 +14,9 @@ import "@/layouts/header/components/header-search-input-dropdown/HeaderSearchInp
 
 type HeaderSearchInputDropdownProps = {
   isError: boolean;
-  searchResults: ProductFromSearch[];
+  searchResults: ProductFromSearch[] | undefined;
   handleCloseDropdown: () => void;
-  totalElements?: number;
+  totalElements: number | undefined;
   isLoading: boolean;
   loadNextPage: () => void;
 };
@@ -82,7 +82,7 @@ const HeaderSearchInputDropdown = ({
 
   if (isError) {
     content = errorLabel;
-  } else if (isLoading || totalElements === undefined) {
+  } else if (isLoading || searchResults === undefined) {
     content = loadingLabel;
   } else if (totalElements === 0) {
     content = noResultsLabel;
