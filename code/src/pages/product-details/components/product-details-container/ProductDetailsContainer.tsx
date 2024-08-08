@@ -1,5 +1,7 @@
 import { useIntl } from "react-intl";
 
+import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
+
 import AppBadge from "@/components/app-badge/AppBadge";
 import AppBox from "@/components/app-box/AppBox";
 import AppTypography from "@/components/app-typography/AppTypography";
@@ -35,9 +37,8 @@ const ProductDetailsContainer = ({
     lang: locale
   });
 
-  // @TODO: replace with actual loading fallback
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <PageLoadingFallback />;
   }
 
   const isNotFoundOnServer = isErrorWithStatus(error) && error.status === 404;
