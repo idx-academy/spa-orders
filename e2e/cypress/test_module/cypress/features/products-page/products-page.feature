@@ -52,6 +52,7 @@ Feature: | Products |
 
         Examples:
             | criteria            |
+            | Recommended         |
             | Newest              |
             | Price (low to high) |
             | Price (high to low) |
