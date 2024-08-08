@@ -17,7 +17,7 @@ import cn from "@/utils/cn/cn";
 
 import "@/layouts/header/components/header-search-input/HeaderSearchInput.scss";
 
-const MIN_SEARCH_QUERY_LENGTH = 4;
+const MIN_SEARCH_QUERY_LENGTH = 3;
 
 const HeaderSearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -51,7 +51,7 @@ const HeaderSearchInput = () => {
       loadNextPage={loadNextPage}
       totalElements={searchProducts?.totalElements}
       handleCloseDropdown={handleCloseDropdown}
-      searchResults={searchProducts?.content ?? []}
+      searchResults={searchProducts?.content}
       isError={isError}
       isLoading={isLoading}
     />

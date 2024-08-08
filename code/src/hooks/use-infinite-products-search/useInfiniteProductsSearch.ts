@@ -16,7 +16,7 @@ type UseInfiniteProductsSearchConfig = {
 const useInfiniteProductsSearch = ({
   query = "",
   pageSize = 8,
-  minQueryLength = 4,
+  minQueryLength = 3,
   debounceDelayMs = 500
 }: UseInfiniteProductsSearchConfig = {}) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -51,7 +51,7 @@ const useInfiniteProductsSearch = ({
   }, [debouncedQuery]);
 
   useEffect(() => {
-    if (data?.content) {
+    if (data) {
       setSearchProducts((prev) => {
         const wasSearchReset = prev !== undefined;
 

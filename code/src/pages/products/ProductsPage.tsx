@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
@@ -13,6 +14,8 @@ import { useLocaleContext } from "@/context/i18n/I18nProvider";
 import usePagination from "@/hooks/use-pagination/usePagination";
 import { sortOptions } from "@/pages/products/ProductsPage.constants";
 import { useGetUserProductsQuery } from "@/store/api/productsApi";
+import useScreenSize from "@/utils/check-screen-size/useScreenSize";
+import setProductsPerPageSize from "@/utils/set-product-size/setProductsPerPageSize";
 
 import "@/pages/products/ProductsPage.scss";
 
@@ -25,6 +28,10 @@ const ProductsPage = () => {
 
   const categoryType = searchParams.get("category");
 
+  const screenSize = useScreenSize();
+
+  const size = setProductsPerPageSize(screenSize.width);
+
   const {
     data: productsResponse,
     isLoading,
@@ -32,12 +39,14 @@ const ProductsPage = () => {
   } = useGetUserProductsQuery({
     tags: categoryType ? `category:${categoryType}` : "",
     page: page - 1,
-    size: 10,
     sort: sortOption ?? undefined,
+    size,
     lang: locale
   });
 
   const productsList = productsResponse?.content;
+
+  const pagesCount = productsResponse?.totalPages ?? 1;
 
   const defaultDropdownText = (
     <AppTypography translationKey="productsDefault.label" />
@@ -64,6 +73,13 @@ const ProductsPage = () => {
     : `productsItems.category.${categoryType}`;
 
   const productsCount = productsResponse?.totalElements ?? 0;
+
+  useEffect(() => {
+    if (page > pagesCount) {
+      searchParams.set("page", pagesCount.toString());
+      setSearchParams(searchParams);
+    }
+  }, [pagesCount, page, searchParams, setSearchParams]);
 
   return (
     <PageWrapper>

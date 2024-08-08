@@ -1,7 +1,14 @@
 @import "@design-system";
 
-.dashboard-products-tab__toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.dashboard-products-tab {
+  &__header-container {
+    display: flex;
+    gap: spacing(6);
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

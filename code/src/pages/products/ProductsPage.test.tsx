@@ -6,6 +6,7 @@ import ProductsPage from "@/pages/products/ProductsPage";
 import { useGetUserProductsQuery } from "@/store/api/productsApi";
 import { PaginationParams, RTKQueryReturnState } from "@/types/common";
 import renderWithProviders from "@/utils/render-with-providers/renderWithProviders";
+import setProductsPerPageSize from "@/utils/set-product-size/setProductsPerPageSize";
 
 const mockProducts = [
   { id: 1, name: "Product 1", price: 100 },
@@ -45,8 +46,10 @@ jest.mock("@/context/i18n/I18nProvider", () => ({
   useLocaleContext: jest.fn(() => ({ locale: "en" }))
 }));
 
+const size = setProductsPerPageSize(window.innerWidth);
+
 const defaultQueryArguments = {
-  size: 10,
+  size,
   page: 0,
   sort: undefined,
   lang: "en",

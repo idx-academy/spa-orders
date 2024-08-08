@@ -27,7 +27,7 @@ const UpdateProductForm = ({ product }: UpdateProductFormProps) => {
     handleSubmit,
     register,
     control,
-    formState: { errors, dirtyFields }
+    formState: { errors, dirtyFields, isDirty }
   } = useForm<ProductFormValues>({
     defaultValues: getDefaultValues(product),
     resolver: zodResolver(productScheme)
@@ -36,6 +36,8 @@ const UpdateProductForm = ({ product }: UpdateProductFormProps) => {
   const [updateProduct, { isLoading }] = useUpdateProduct();
 
   const onSubmit = async (values: ProductFormValues) => {
+    if (!isDirty) return;
+
     const filteredFields = filterDirtyFields(values, dirtyFields);
     const body = getRequestBodyFromValues(filteredFields);
 

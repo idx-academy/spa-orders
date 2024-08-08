@@ -56,7 +56,10 @@ export type GetUserProductByIdParams = Lang & {
 
 export type GetManagerProductsResponse = PageableResponse<ManagerProduct[]>;
 
-export type GetManagerProductsParams = Partial<Pageable & Lang>;
+export type GetManagerProductsParams = Partial<Pageable & Lang> & {
+  searchByName?: string;
+};
+
 export type GetUserProductsBySearchQueryParams = Lang & {
   page?: number;
   size?: number;
