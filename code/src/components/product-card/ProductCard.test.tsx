@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import ProductCard from "@/components/product-card/ProductCard";
 
@@ -63,6 +63,13 @@ describe("ProductCard", () => {
     test("should render product image with correct src and alt attributes", () => {
       const productImage = screen.getByRole("img", { name: mockProduct.name });
       expect(productImage).toHaveAttribute("src", mockProduct.image);
+    });
+
+    test("sets src image on image error", () => {
+      const productImage = screen.getByRole("img", { name: mockProduct.name });
+      fireEvent.error(productImage);
+
+      expect(productImage).toHaveAttribute("src");
     });
 
     test("should render product link", () => {

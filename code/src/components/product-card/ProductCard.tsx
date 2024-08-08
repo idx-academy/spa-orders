@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import AppBox from "@/components/app-box/AppBox";
 import AppIconButton from "@/components/app-icon-button/AppIconButton";
 import AppLink from "@/components/app-link/AppLink";
@@ -6,6 +8,7 @@ import { ProductCardProps } from "@/components/product-card/ProductCard.types";
 
 import cartIconWithCheck from "@/assets/icons/cart-with-check.svg";
 import cartIconWithPlus from "@/assets/icons/cart-with-plus.svg";
+import fallbackImage from "@/assets/images/default-product-image.png";
 import routePaths from "@/constants/routes";
 import useAddToCartOrOpenDrawer from "@/hooks/use-add-to-cart-or-open-drawer/useAddToCartOrOpenDrawer";
 import cn from "@/utils/cn/cn";
@@ -16,6 +19,13 @@ import "@/components/product-card/ProductCard.scss";
 const ProductCard = ({ product }: ProductCardProps) => {
   const { isProductInCart, addToCartOrOpenDrawer } =
     useAddToCartOrOpenDrawer(product);
+  const { id, name, image, price, description } = product;
+
+  const [imgSrc, setImgSrc] = useState(image);
+
+  const handleImageError = () => {
+    setImgSrc(fallbackImage);
+  };
 
   const cartIconId = isProductInCart ? "cart-with-check" : "cart-with-plus";
   const cartIconLink = isProductInCart ? cartIconWithCheck : cartIconWithPlus;
@@ -29,21 +39,22 @@ const ProductCard = ({ product }: ProductCardProps) => {
     >
       <AppLink
         className="spa-product-card__link-wrapper"
-        to={routePaths.productDetails.path(product.id)}
+        to={routePaths.productDetails.path(id)}
       >
         <AppBox className="spa-product-card__img">
           <AppBox
-            alt={product.name}
+            alt={name}
             className="spa-product-card__img-name"
             data-cy="product-card-img"
             component="img"
-            src={product.image}
+            src={imgSrc}
+            onError={handleImageError}
           />
           <AppBox
             className="spa-product-card__description"
             data-cy="product-card-description"
           >
-            <AppTypography>{product.description}</AppTypography>
+            <AppTypography>{description}</AppTypography>
           </AppBox>
         </AppBox>
         <AppBox>
@@ -51,13 +62,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
             variant="caption"
             className="spa-product-card__product-name"
           >
-            {product.name}
+            {name}
           </AppTypography>
         </AppBox>
       </AppLink>
       <AppBox className="spa-product-card__footer">
         <AppTypography className="spa-product-card__footer-price">
-          {formatPrice(product.price)}
+          {formatPrice(price)}
         </AppTypography>
         <AppIconButton
           data-cy="add-to-cart-button"
