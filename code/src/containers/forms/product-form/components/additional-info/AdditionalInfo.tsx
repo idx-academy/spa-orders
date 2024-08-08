@@ -1,10 +1,10 @@
 import { SyntheticEvent } from "react";
-import { Controller, ControllerRenderProps } from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 import { productCategories } from "@/containers/forms/product-form/ProductForm.constants";
 import {
   ProductFormAdditionalInfoSectionProps,
-  ProductFormValues
+  ProductFormControllerRenderFunctionProps
 } from "@/containers/forms/product-form/ProductForm.types";
 
 import AppBox from "@/components/app-box/AppBox";
@@ -37,9 +37,7 @@ const AdditionalInfo = ({
 
   const selectControllerRenderFunction = ({
     field: handlers
-  }: {
-    field: ControllerRenderProps<ProductFormValues>;
-  }) => (
+  }: ProductFormControllerRenderFunctionProps) => (
     <>
       <AppSelect
         fullWidth
@@ -59,9 +57,7 @@ const AdditionalInfo = ({
 
   const checkboxControllerRenderFunction = ({
     field: { onChange, ...props }
-  }: {
-    field: ControllerRenderProps<ProductFormValues>;
-  }) => {
+  }: ProductFormControllerRenderFunctionProps) => {
     const handelChange = (_: SyntheticEvent, checked: boolean) => {
       onChange(checked);
     };
