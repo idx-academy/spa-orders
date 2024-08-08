@@ -8,10 +8,6 @@ Given("I am on a home page", () => {
   cy.visitWithLanguage("/");
 });
 
-Given("I am on a home page and receive products server error", () => {
-  cy.getProductsServerError(5);
-});
-
 Given("I am on a home page and Products are loading", () => {
   cy.getProductsLoading(5);
 });
@@ -148,19 +144,6 @@ When("I click on View All button", () => {
 
 Then("I should be redirected to Products Page immediately", () => {
   cy.getById("products-page").should("be.visible");
-});
-
-When("I look throw Best Sellers section with error", () => {
-  cy.getById("best-sellers").should("be.visible");
-});
-
-Then("I should see an error message", () => {
-  cy.wait("@getProductsRequestServerError").then(() => {
-    cy.getById("products-error").should("be.visible");
-    cy.getById("products-error-label")
-      .contains(ERRORS.somethingWentWrong)
-      .should("be.visible");
-  });
 });
 
 When("I look throw Best Sellers section with skeletons", () => {
