@@ -12,7 +12,7 @@ Given("The user is on the products page", () => {
 
 Given("The user is on the products page and his connection is bad", () => {
   cy.visitWithLanguage("/products");
-  cy.getProductsServerError(10);
+  cy.getProductsServerError(12);
 });
 
 When("The user clicks on Logo button", () => {
@@ -36,13 +36,21 @@ Then("The user should be redirected to Home Page and see the banner", () => {
 });
 
 Given("The user is on the first page of products", () => {
-  cy.visitWithLanguage("/products?page=1");
   cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
+  cy.visitWithLanguage("/products?page=1");
 });
 
 Given("The user is on the second page of products", () => {
-  cy.visitWithLanguage("/products?page=2");
   cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
+  cy.visitWithLanguage("/products?page=1");
+  cy.get(`[aria-current="true"]`)
+    .invoke("text")
+    .then((text) => {
+      cy.intercept(httpMethod.get, new RegExp("page=" + (Number(text) + 1))).as(
+        "productsPageRequest"
+      );
+    });
+  cy.get('[aria-label="Go to next page"]').click();
 });
 
 When("The user looks at the pagination", () => {
