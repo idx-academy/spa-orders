@@ -12,7 +12,7 @@ Given("The user is on the products page", () => {
 
 Given("The user is on the products page and his connection is bad", () => {
   cy.visitWithLanguage("/products");
-  cy.getProductsServerError(10)
+  cy.getProductsServerError(12);
 });
 
 When("The user clicks on Logo button", () => {
@@ -20,29 +20,37 @@ When("The user clicks on Logo button", () => {
 });
 
 Given("The loading fails", () => {
-  cy.wait("@getProductsRequestServerError")
-})
+  cy.wait("@getProductsRequestServerError");
+});
 
 Then("The user should see error message", () => {
   cy.getById("products-error-label").should("be.visible");
-})
+});
 
 When("The user waits until products will be loaded", () => {
   cy.getById("product-skeleton").should("have.length", 10);
-})
+});
 
 Then("The user should be redirected to Home Page and see the banner", () => {
   cy.getById("banner").should("be.visible");
-})
+});
 
 Given("The user is on the first page of products", () => {
-  cy.visitWithLanguage("/products?page=1");
   cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
+  cy.visitWithLanguage("/products?page=1");
 });
 
 Given("The user is on the second page of products", () => {
-  cy.visitWithLanguage("/products?page=2");
   cy.intercept(httpMethod.get, /\/api\/v1\/products/).as("productsPageRequest");
+  cy.visitWithLanguage("/products?page=1");
+  cy.get(`[aria-current="true"]`)
+    .invoke("text")
+    .then((text) => {
+      cy.intercept(httpMethod.get, new RegExp("page=" + (Number(text) + 1))).as(
+        "productsPageRequest"
+      );
+    });
+  cy.get('[aria-label="Go to next page"]').click();
 });
 
 When("The user looks at the pagination", () => {
@@ -57,11 +65,13 @@ When("Hovers product image", () => {
   cy.getById("product-card-img").first().invoke("mouseover");
   cy.getById("product-card-description").first().as("firstProductDescription");
 
-  cy.get("@firstProductDescription").should("be.hidden").then((el) => {
-    el.css("visibility", "visible");
-    el.css("opacity", "1");
-    el.css("transform", "translateY(0)");
-  });
+  cy.get("@firstProductDescription")
+    .should("be.hidden")
+    .then((el) => {
+      el.css("visibility", "visible");
+      el.css("opacity", "1");
+      el.css("transform", "translateY(0)");
+    });
 });
 
 Then("The user should see product description", () => {
@@ -85,7 +95,9 @@ When("The user opens sorting dropdown", () => {
 });
 
 When("The user clicks {int} page", (page: number) => {
-  cy.intercept(httpMethod.get, new RegExp("page=" + page)).as("productsPageRequest");
+  cy.intercept(httpMethod.get, new RegExp("page=" + page)).as(
+    "productsPageRequest"
+  );
   cy.get(`[aria-label="Go to page ${page}"]`).click();
 });
 
@@ -130,6 +142,5 @@ Then("The {int} page of products should be displayed", (page) => {
 });
 
 Then("Sorting by {string} should be applied", (criteria: string) => {
-  cy.wait("@productsRequest");
   cy.getById("products-dropdown").contains(criteria).should("be.visible");
 });

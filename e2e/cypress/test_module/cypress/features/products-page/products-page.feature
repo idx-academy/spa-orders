@@ -11,7 +11,7 @@ Feature: | Products |
     Scenario: User sees list of products after loading
         When The user looks at the products section
         And The user waits until products will be loaded
-        Then The user should see 10 products
+        Then The user should see 12 products
 
     Scenario: Request for products fails and user sees error message
         Given The user is on the products page and his connection is bad

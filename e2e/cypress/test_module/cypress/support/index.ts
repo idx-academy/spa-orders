@@ -34,9 +34,3 @@ declare global {
     }
   }
 }
-
-Cypress.on("uncaught:exception", (promise) => {
-  if (promise) {
-    return false;
-  }
-});

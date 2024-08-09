@@ -56,15 +56,18 @@ Cypress.Commands.add("loginWithRole", (role = "ROLE_USER") => {
 });
 
 Cypress.Commands.add("getProductsWithQuantity", (quantity) => {
-  cy.intercept(httpMethod.get, `/api/v1/products?page=0&size=${quantity}`).as(
-    "getProductsWithQuantityRequest"
-  );
+  cy.intercept(
+    httpMethod.get,
+    `/api/v1/products?page=0&size=${quantity}&lang=en&tags=`
+  ).as("getProductsWithQuantityRequest");
 });
 
 Cypress.Commands.add("getProductsServerError", (quantity) => {
   cy.intercept(
     httpMethod.get,
-    new RegExp(`\/api\/v1\/products\\?page=0&size=${quantity}(?:&.*)?`),
+    new RegExp(
+      `\/api\/v1\/products\\?tags=&page=0&size=${quantity}(?:&.*)?&lang=en`
+    ),
     {
       statusCode: httpStatusCode.internalServerError
     }
@@ -74,7 +77,7 @@ Cypress.Commands.add("getProductsServerError", (quantity) => {
 Cypress.Commands.add("getProductsLoading", (quantity) => {
   cy.intercept(
     httpMethod.get,
-    `/api/v1/products?page=0&size=${quantity}`,
+    `/api/v1/products?page=0&size=${quantity}&lang=en&tags=`,
     (req) => {
       req.continue((res) => {
         res.send({

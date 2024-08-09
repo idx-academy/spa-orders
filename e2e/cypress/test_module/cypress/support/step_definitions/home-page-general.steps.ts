@@ -8,10 +8,6 @@ Given("I am on a home page", () => {
   cy.visitWithLanguage("/");
 });
 
-Given("I am on a home page and receive products server error", () => {
-  cy.getProductsServerError(5);
-});
-
 Given("I am on a home page and Products are loading", () => {
   cy.getProductsLoading(5);
 });
@@ -29,8 +25,12 @@ When(
   }
 );
 
-When("I type text Mobile in search field", () => {
-  cy.get('input[placeholder="Search..."]').type("Mobile");
+When("I type text Mobi in search field", () => {
+  cy.get('input[placeholder="Search..."]').type("Mobi");
+});
+
+When("I can see search Content", () => {
+  cy.getById("header-search-result-label").should("be.visible");
 });
 
 When("I click on clear button", () => {
@@ -39,6 +39,22 @@ When("I click on clear button", () => {
 
 Then("I can see empty search field again", () => {
   cy.get('input[placeholder="Search..."]').should("be.empty");
+});
+
+When("I type text Mobil in search field", () => {
+  cy.get('input[placeholder="Search..."]').type("Mobil");
+});
+
+When("I can see search Content with elements", () => {
+  cy.getById("header-search-result-label").should("be.visible");
+});
+
+When("I click on first searched product", () => {
+  cy.get('img[alt*="Mobil"]').first().click();
+});
+
+Then("I should be redirected on single product page", () => {
+  cy.visitWithLanguage("/products/");
 });
 
 When("I click on Cart button", () => {
@@ -66,7 +82,7 @@ Then("I should see Sign In dialog", () => {
 });
 
 When("I click on Shop All button", () => {
-  cy.get(homePage.headerMenuList).contains("Shop All").click();
+  cy.get(homePage.headerMenuList).contains("All Products").click();
 });
 
 Then("I should be redirected to All Products Page", () => {
@@ -79,6 +95,19 @@ When("I click on Shop Now button", () => {
 
 Then("I should be redirected to Products Page", () => {
   cy.getById("products-page").should("be.visible");
+});
+
+When(
+  "I look through Call-to-action section and click on {string} banner button",
+  (category: string) => {
+    const buttonIndex = category === "mobile" ? 0 : 1;
+    cy.getById("call-to-action-button").eq(buttonIndex).click();
+  }
+);
+
+Then("I should be redirected to {string} category page", (category) => {
+  const categoryPath = category;
+  cy.visitWithLanguage(`/products?category=${categoryPath}`);
 });
 
 When("I look throw Best Sellers section", () => {
@@ -117,19 +146,6 @@ Then("I should be redirected to Products Page immediately", () => {
   cy.getById("products-page").should("be.visible");
 });
 
-When("I look throw Best Sellers section with error", () => {
-  cy.getById("best-sellers").should("be.visible");
-});
-
-Then("I should see an error message", () => {
-  cy.wait("@getProductsRequestServerError").then(() => {
-    cy.getById("products-error").should("be.visible");
-    cy.getById("products-error-label")
-      .contains(ERRORS.somethingWentWrong)
-      .should("be.visible");
-  });
-});
-
 When("I look throw Best Sellers section with skeletons", () => {
   cy.getById("best-sellers").should("be.visible");
 });
@@ -140,4 +156,17 @@ Then("I should see {int} skeletons loading components", (sceletonsCount) => {
       cy.getById("product-skeleton").should("have.length", sceletonsCount);
     });
   });
+});
+
+When(
+  "I look throw Shop By Category section and click on {string} category",
+  (category: string) => {
+    const categories = ["computer", "tablet", "mobile"];
+    const linkIndex = categories.indexOf(category);
+    cy.getById("spa-category-section-item-link").eq(linkIndex).click();
+  }
+);
+
+Then("I should be immidiately redirected to {string} category page", () => {
+  cy.visitWithLanguage("/products?category=computer${category}");
 });

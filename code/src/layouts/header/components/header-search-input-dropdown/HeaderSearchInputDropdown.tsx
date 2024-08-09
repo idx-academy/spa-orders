@@ -41,6 +41,7 @@ const HeaderSearchInputDropdown = ({
         variant="caption"
         component="p"
         translationKey="header.searchInputResults"
+        data-cy="header-search-result-label"
       />
       <AppTypography
         className="search-input-dropdown__results-value"
