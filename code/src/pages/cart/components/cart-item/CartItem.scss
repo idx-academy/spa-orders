@@ -18,8 +18,8 @@
   }
 
   &__title {
-    font-size: $fs-lg;
     margin-bottom: spacing(3);
+    max-width: 350px;
   }
 
   &__quantity-selector {
@@ -27,7 +27,7 @@
     align-items: center;
     border: 1px solid var(--spa-cart-quantity-selector-border-color, $black);
     padding: spacing(1);
-    margin: 0 spacing(4);
+    margin-inline: spacing(5) spacing(2);
   }
 
   &__quantity-block {
@@ -52,8 +52,8 @@
   }
 
   &__price {
-    margin-left: spacing(5);
-    min-width: 101px; // needed for correct view just 101px instead 100px
+    text-align: center;
+    width: 130px;
 
     &-value {
       font-weight: var(--spa-cart-price-value-font-weight, $fw-extra-bold);
@@ -70,6 +70,5 @@
     align-items: center;
     justify-content: center;
     @include box(32px);
-    margin-left: spacing(7);
   }
 }

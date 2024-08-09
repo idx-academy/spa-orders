@@ -80,7 +80,11 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
         className="spa-cart-item__image"
       />
       <AppBox className="spa-cart-item__details">
-        <AppTypography className="spa-cart-item__title" variant="h3">
+        <AppTypography
+          className="spa-cart-item__title"
+          variant="subtitle2"
+          fontWeight="extra-bold"
+        >
           {item.name}
         </AppTypography>
         <AppTypography>{formatPrice(item.productPrice)}</AppTypography>
