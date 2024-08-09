@@ -50,7 +50,7 @@ describe("DashboardProductsPage", () => {
   test("shows loading element initially", () => {
     renderAndMock({ isLoading: true });
 
-    const loadingElement = screen.getByText("Loading...");
+    const loadingElement = screen.getByTestId("page-loading-fallback")
     expect(loadingElement).toBeInTheDocument();
   });
 

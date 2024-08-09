@@ -33,7 +33,7 @@ describe("UsersTab", () => {
   test("renders loading element by default", () => {
     mockAndRender({ isLoading: true });
 
-    const loadingElement = screen.getByText("Loading...");
+    const loadingElement = screen.getByTestId("page-loading-fallback");
     expect(loadingElement).toBeInTheDocument();
   });
 

@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
+import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 import PaginationBlock from "@/containers/pagination-block/PaginationBlock";
 import ProductsTable from "@/containers/tables/products-table/ProductsTable";
 
@@ -41,9 +42,8 @@ const DashboardProductsPage = () => {
     setSearchParams(params);
   };
 
-  // @TODO: replace with actual loading fallback
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <PageLoadingFallback />;
   }
 
   // @TODO: replace with actual error fallback
@@ -55,8 +55,11 @@ const DashboardProductsPage = () => {
 
   return (
     <DashboardTabContainer>
-      <DashboardProductsHeader onSearch={handleSearchChange} defaultValue={searchValue} />
-      <ProductsTable products={products}  />
+      <DashboardProductsHeader
+        onSearch={handleSearchChange}
+        defaultValue={searchValue}
+      />
+      <ProductsTable products={products} />
       <PaginationBlock page={page} totalPages={data?.totalPages} />
     </DashboardTabContainer>
   );

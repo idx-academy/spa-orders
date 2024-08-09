@@ -7,6 +7,7 @@ import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboa
 
 import DashboardOrdersFilterDrawer from "@/containers/dashboard-orders-filter-drawer/DashboardOrdersFilterDrawer";
 import useFilteredAdminOrders from "@/containers/dashboard-orders-filter-drawer/hooks/use-filtered-admin-orders/useFilteredAdminOrders";
+import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 import PaginationBlock from "@/containers/pagination-block/PaginationBlock";
 import OrdersTable from "@/containers/tables/orders-table/OrdersTable";
 
@@ -64,7 +65,7 @@ const DashboardOrdersPage = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <PageLoadingFallback />;
   }
 
   const titleTypography =

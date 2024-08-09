@@ -97,7 +97,7 @@ describe("DashboardOrdersPage", () => {
   test("renders loading element correctly", () => {
     renderAndMock({ isLoading: true });
 
-    const loadingElement = screen.getByText("Loading...");
+    const loadingElement = screen.getByTestId("page-loading-fallback");
     expect(loadingElement).toBeInTheDocument();
   });
 

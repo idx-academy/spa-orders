@@ -1,5 +1,6 @@
 import DashboardTabContainer from "@/layouts/dashboard-layout/components/dashboard-tab-container/DashboardTabContainer";
 
+import PageLoadingFallback from "@/containers/page-loading-fallback/PageLoadingFallback";
 import PaginationBlock from "@/containers/pagination-block/PaginationBlock";
 import UsersTable from "@/containers/tables/users-table/UsersTable";
 
@@ -15,9 +16,8 @@ const DashboardUsersPage = () => {
     size: 8
   });
 
-  // @TODO: Add loading state
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <PageLoadingFallback />;
   }
 
   // @TODO: Add error state
