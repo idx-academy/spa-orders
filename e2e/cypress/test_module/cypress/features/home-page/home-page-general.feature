@@ -36,7 +36,7 @@ Feature: | Guest Home Page |
     When I click on Shop Now button
     Then I should be redirected to Products Page
 
-  Scenario: Call-to-action section - redirect to category page
+  Scenario Outline: Call-to-action section - redirect to category page
     When I look through Call-to-action section and click on '<category>' banner button
     Then I should be redirected to '<category>' category page
 
@@ -59,7 +59,7 @@ Feature: | Guest Home Page |
     When I look throw Best Sellers section with skeletons
     Then I should see 5 skeletons loading components
 
-  Scenario: Shop By Category section - redirect to category page
+  Scenario Outline: Shop By Category section - redirect to category page
     When I look throw Shop By Category section and click on '<category>' category
     Then I should be immidiately redirected to '<category>' category page
 
@@ -68,14 +68,3 @@ Feature: | Guest Home Page |
       | computer |
       | tablet   |
       | mobile   |
-
-
-
-
-
-
-
-
-
-
-

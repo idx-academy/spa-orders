@@ -160,21 +160,9 @@ Then("I should see {int} skeletons loading components", (sceletonsCount) => {
 
 When(
   "I look throw Shop By Category section and click on {string} category",
-
   (category: string) => {
-    let linkIndex: number;
-
-    switch (category) {
-      case "computer":
-        linkIndex = 0;
-        break;
-      case "tablet":
-        linkIndex = 1;
-        break;
-      case "mobile":
-        linkIndex = 2;
-        break;
-    }
+    const categories = ["computer", "tablet", "mobile"];
+    const linkIndex = categories.indexOf(category);
     cy.getById("spa-category-section-item-link").eq(linkIndex).click();
   }
 );
