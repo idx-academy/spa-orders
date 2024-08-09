@@ -88,7 +88,7 @@ describe("ProductDetailsContainer", () => {
   test("renders loading element by default", () => {
     renderAndMock({ isLoading: true });
 
-    const loadingElement = screen.getByText("Loading...");
+    const loadingElement = screen.getByTestId("page-loading-fallback-skeleton");
     expect(loadingElement).toBeInTheDocument();
   });
 
