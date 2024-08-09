@@ -44,6 +44,8 @@
   }
 
   &__description {
+    @include transition((all, "medium"));
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,8 +58,11 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(100%);
-    @include transition((all, "medium"));
     backdrop-filter: blur(spacing(2));
+
+    &-text {
+      @include line-clamp(10);
+    }
   }
 
   &__footer {

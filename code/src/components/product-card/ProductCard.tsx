@@ -54,7 +54,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="spa-product-card__description"
             data-cy="product-card-description"
           >
-            <AppTypography>{description}</AppTypography>
+            <AppTypography className="spa-product-card__description-text">
+              {description}
+            </AppTypography>
           </AppBox>
         </AppBox>
         <AppBox>
